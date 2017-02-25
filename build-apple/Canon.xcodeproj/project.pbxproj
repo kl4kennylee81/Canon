@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FFA3F5B1E624EBF0029D648 /* SimpleUnitModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F591E624EBF0029D648 /* SimpleUnitModel.cpp */; };
+		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */; };
@@ -72,6 +74,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FFA3F591E624EBF0029D648 /* SimpleUnitModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleUnitModel.cpp; sourceTree = "<group>"; };
+		9FFA3F5A1E624EBF0029D648 /* SimpleUnitModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SimpleUnitModel.hpp; sourceTree = "<group>"; };
+		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
+		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		DFBD54651E60E4920027FCC1 /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		DFBD54661E60E4920027FCC1 /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayController.cpp; sourceTree = "<group>"; };
@@ -279,6 +285,10 @@
 				DFBD54661E60E4920027FCC1 /* GameEngine.hpp */,
 				DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */,
 				DFBD546E1E60E62D0027FCC1 /* GameplayController.hpp */,
+				9FFA3F591E624EBF0029D648 /* SimpleUnitModel.cpp */,
+				9FFA3F5A1E624EBF0029D648 /* SimpleUnitModel.hpp */,
+				9FFA3F5E1E624F1A0029D648 /* Element.cpp */,
+				9FFA3F5F1E624F1A0029D648 /* Element.hpp */,
 			);
 			name = Source;
 			path = ../source;
@@ -425,7 +435,9 @@
 			files = (
 				DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
+				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
+				9FFA3F5B1E624EBF0029D648 /* SimpleUnitModel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
