@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */; };
+		9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */; };
+		9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */; };
+		9FE8E9E41E6382BC00DBE3BC /* AnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */; };
+		9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */; };
 		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
 		9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */; };
@@ -99,6 +104,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuController.cpp; sourceTree = "<group>"; };
+		9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuController.hpp; sourceTree = "<group>"; };
+		9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuGraph.cpp; sourceTree = "<group>"; };
+		9FE8E9DC1E6381D400DBE3BC /* MenuGraph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuGraph.hpp; sourceTree = "<group>"; };
+		9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuScreenData.cpp; sourceTree = "<group>"; };
+		9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuScreenData.hpp; sourceTree = "<group>"; };
+		9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationController.cpp; sourceTree = "<group>"; };
+		9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationController.hpp; sourceTree = "<group>"; };
+		9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveAnimation.cpp; sourceTree = "<group>"; };
+		9FE8E9E61E6382C800DBE3BC /* ActiveAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAnimation.hpp; sourceTree = "<group>"; };
 		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -247,9 +262,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FE8E9D51E6381A300DBE3BC /* menu */ = {
+			isa = PBXGroup;
+			children = (
+				9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */,
+				9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */,
+				9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */,
+				9FE8E9DC1E6381D400DBE3BC /* MenuGraph.hpp */,
+				9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */,
+				9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */,
+			);
+			name = menu;
+			sourceTree = "<group>";
+		};
+		9FE8E9E11E6382AF00DBE3BC /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
+				9FFA3FCE1E6372830029D648 /* AnimationData.hpp */,
+				9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */,
+				9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */,
+				9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */,
+				9FE8E9E61E6382C800DBE3BC /* ActiveAnimation.hpp */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
 		9FFA3F631E625E490029D648 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				9FFA3FC21E636EF80029D648 /* ObjectData.cpp */,
+				9FFA3FC31E636EF80029D648 /* ObjectData.hpp */,
 				9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */,
 				9FFA3F6B1E634F3A0029D648 /* GameObject.hpp */,
 			);
@@ -262,6 +305,8 @@
 				9FFA3F851E635E8B0029D648 /* collisionEvent */,
 				9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */,
 				9FFA3F751E63574E0029D648 /* PhysicsComponent.hpp */,
+				9FFA3FCA1E6372670029D648 /* ShapeData.cpp */,
+				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
 				9FFA3F891E6362570029D648 /* CollisionController.cpp */,
 				9FFA3F8A1E6362570029D648 /* CollisionController.hpp */,
 				9FFA3F5E1E624F1A0029D648 /* Element.cpp */,
@@ -344,6 +389,8 @@
 				9FFA3FA21E6367A00029D648 /* player */,
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,
 				9FFA3FA51E6367C60029D648 /* ActivePath.hpp */,
+				9FFA3FD31E6373190029D648 /* pathData.cpp */,
+				9FFA3FD41E6373190029D648 /* pathData.hpp */,
 			);
 			name = movement;
 			sourceTree = "<group>";
@@ -407,28 +454,12 @@
 		9FFA3FC81E6372440029D648 /* load */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FC91E63724F0029D648 /* dataPrototype */,
+				9FFA3FE01E6374C90029D648 /* Data.cpp */,
+				9FFA3FE11E6374C90029D648 /* Data.hpp */,
 				9FFA3FD61E6373470029D648 /* LoadController.cpp */,
 				9FFA3FD71E6373470029D648 /* LoadController.hpp */,
 			);
 			name = load;
-			sourceTree = "<group>";
-		};
-		9FFA3FC91E63724F0029D648 /* dataPrototype */ = {
-			isa = PBXGroup;
-			children = (
-				9FFA3FCA1E6372670029D648 /* ShapeData.cpp */,
-				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
-				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
-				9FFA3FCE1E6372830029D648 /* AnimationData.hpp */,
-				9FFA3FC21E636EF80029D648 /* ObjectData.cpp */,
-				9FFA3FC31E636EF80029D648 /* ObjectData.hpp */,
-				9FFA3FD31E6373190029D648 /* pathData.cpp */,
-				9FFA3FD41E6373190029D648 /* pathData.hpp */,
-				9FFA3FE01E6374C90029D648 /* Data.cpp */,
-				9FFA3FE11E6374C90029D648 /* Data.hpp */,
-			);
-			name = dataPrototype;
 			sourceTree = "<group>";
 		};
 		9FFA3FD91E6373640029D648 /* LevelEvent */ = {
@@ -548,6 +579,8 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9FE8E9E11E6382AF00DBE3BC /* Animation */,
+				9FE8E9D51E6381A300DBE3BC /* menu */,
 				9FFA3FC81E6372440029D648 /* load */,
 				9FFA3FB51E636C330029D648 /* level */,
 				9FFA3FB41E636BED0029D648 /* gameplay */,
@@ -707,17 +740,21 @@
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
 				9FFA3FBB1E636CE20029D648 /* Wave.cpp in Sources */,
+				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
+				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */,
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
+				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,
 				9FFA3FB81E636C540029D648 /* LevelController.cpp in Sources */,
 				9FFA3FAD1E636B430029D648 /* GameState.cpp in Sources */,
+				9FE8E9E41E6382BC00DBE3BC /* AnimationController.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
 				9FFA3FA61E6367C60029D648 /* ActivePath.cpp in Sources */,
@@ -726,6 +763,7 @@
 				9FFA3F7D1E6357E00029D648 /* Observer.cpp in Sources */,
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
+				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
