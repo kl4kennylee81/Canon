@@ -11,9 +11,9 @@
 
 #include <stdio.h>
 
-#endif /* Element_hpp */
-
 enum class Element : int {
     BLUE,
     GOLD
 };
+
+#endif /* Element_hpp */
