@@ -12,7 +12,11 @@
 #include <stdio.h>
 
 class GameplayController {
+protected:
     
+    
+    /** The scale between the physics world and the screen (MUST BE UNIFORM) */
+    float _scale;
 };
 
 #endif /* GameplayController_hpp */

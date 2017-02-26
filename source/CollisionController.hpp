@@ -12,12 +12,16 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include <unordered_map>
+#include <vector>
+#include <Box2D/Dynamics/b2WorldCallbacks.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include "BaseController.hpp"
 #include "GameObject.hpp"
 
 class CollisionController : BaseController {
-
+protected:
+    /** The Box2D world */
+    std::shared_ptr<cugl::ObstacleWorld> _world;
 };
 
 #endif /* CollisionController_hpp */
