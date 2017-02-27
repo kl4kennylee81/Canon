@@ -28,7 +28,11 @@ class GameState {
      */
     std::shared_ptr<cugl::Scene>  _scene;
     
-    std::shared_ptr<GameObject>   _activeCharacter;
+    std::vector<std::shared_ptr<GameObject>> _playerCharacters;
+    
+    int _activeCharacterPosition;
+    
+    std::vector<std::shared_ptr<GameObject>> _allObjects;
     
     /** not sure yet if representing time as an int is the move */
     int time_elapsed;
