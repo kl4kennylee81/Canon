@@ -21,7 +21,7 @@ public:
     /**
      * Update the observer state based on an event from the subject
      */
-    virtual void update(Event* e);
+    virtual void eventUpdate(Event* e);
 };
 
 #endif /* Observer_hpp */

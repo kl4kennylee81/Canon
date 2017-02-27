@@ -30,7 +30,7 @@ protected:
     
     // Player modes
     /** The primary controller for the game world */
-    GameplayController _gameplay;
+    std::shared_ptr<GameplayController> _gameplay;
     
     /** A countdown used to move the logo */
     int  _countdown;

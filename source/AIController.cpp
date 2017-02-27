@@ -7,3 +7,24 @@
 //
 
 #include "AIController.hpp"
+
+using namespace cugl;
+
+void AIController::attach(std::shared_ptr<Observer> obs) {
+	BaseController::attach(obs);
+}
+void AIController::detach(std::shared_ptr<Observer> obs) {
+	BaseController::detach(obs);
+}
+void AIController::notify(Event* e) {
+	BaseController::notify(e);
+}
+
+/**
+* Update the observer state based on an event from the subject
+*/
+void AIController::eventUpdate(Event* e) {}
+
+bool AIController::init() {
+	return true;
+}

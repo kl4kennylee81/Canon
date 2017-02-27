@@ -14,7 +14,7 @@
 #include "GameObject.hpp"
 
 class GameState {
-    
+protected:
     /** Reference to the physics world root of the scene graph 
      *  All physics objects are in this
      */
@@ -36,6 +36,16 @@ class GameState {
     
     /** not sure yet if representing time as an int is the move */
     int time_elapsed;
+
+public:
+	virtual bool init() {
+		return true;
+	}
+
+	static std::shared_ptr<GameState> alloc() {
+		std::shared_ptr<GameState> result = std::make_shared<GameState>();
+		return (result->init() ? result : nullptr);
+	}
 };
 
 #endif /* GameState_hpp */

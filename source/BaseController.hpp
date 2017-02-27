@@ -15,19 +15,21 @@
 #include "Subject.hpp"
 
 
-class BaseController : Observer, Subject {
-    std::vector<std::shared_ptr<Observer>> _observers;
+class BaseController : public Observer, Subject {
+protected:   
+	std::vector<std::shared_ptr<Observer>> _observers;
     
+public:
     virtual void attach (std::shared_ptr<Observer> obs);
     
-    virtual void detach (Observer* obs);
+    virtual void detach (std::shared_ptr<Observer> obs);
     
     virtual void notify (Event* e);
     
     /**
      * Update the observer state based on an event from the subject
      */
-    virtual void update(Event* e);
+    virtual void eventUpdate(Event* e);
     
 };
 #endif /* BaseController_hpp */

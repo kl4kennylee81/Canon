@@ -50,6 +50,10 @@ void GameEngine::onStartup() {
     
     // This reads the given JSON file and uses it to load all other assets
     _assets->loadDirectory("json/assets.json");
+
+	// set gameplay controller
+	_gameplay = GameplayController::alloc();
+
     
     // Activate mouse or touch screen input as appropriate
     // We have to do this BEFORE the scene, because the scene has a button
@@ -58,10 +62,7 @@ void GameEngine::onStartup() {
 #else
     Input::activate<Mouse>();
 #endif
-    
-    // Build the scene from these assets
-    buildScene();
-    
+      
     Application::onStartup();
 }
 
@@ -139,70 +140,4 @@ void GameEngine::draw() {
  * have become standard in most game engines.
  */
 
-/**
- * Internal helper to build the scene graph.
- *
- * Scene graphs are not required.  You could manage all scenes just like
- * you do in 3152.  However, they greatly simplify scene management, and
- * have become standard in most game engines.
- */
-void GameEngine::buildScene() {
-    Size size = getDisplaySize();
-    size *= GAME_WIDTH/size.width;
-    
-    // The logo is actually an image+label.  We need a parent node
-    _logo = Node::alloc();
-    
-    // Get the image and add it to the node.
-    std::shared_ptr<Texture> texture  = _assets->get<Texture>("claw");
-    std::shared_ptr<PolygonNode> claw = PolygonNode::allocWithTexture(texture);
-    claw->setScale(0.1f); // Magic number to rescale asset
-    claw->setAnchor(Vec2::ANCHOR_MIDDLE_BOTTOM);
-    claw->setPosition(0,0);
-    _logo->addChild(claw);
-    
-    // Get the font and make a label for the logo
-    std::shared_ptr<Font> font = _assets->get<Font>("charlemagne");
-    std::shared_ptr<Label> label = Label::alloc("CUGL",font);
-    label->setAnchor(Vec2::ANCHOR_MIDDLE_TOP);
-    label->setPosition(15,-15); // Magic numbers for some manual kerning
-    _logo->addChild(label);
-    
-    // Put the logo in the middle of the screen
-    _logo->setAnchor(Vec2::ANCHOR_MIDDLE);
-    _logo->setPosition(size.width/2,size.height/2);
-    
-    
-    // Create a button.  A button has an up image and a down image
-    std::shared_ptr<Texture> up   = _assets->get<Texture>("close-normal");
-    std::shared_ptr<Texture> down = _assets->get<Texture>("close-selected");
-    
-    Size bsize = up->getSize();
-    std::shared_ptr<Button> button = Button::alloc(PolygonNode::allocWithTexture(up),
-                                                   PolygonNode::allocWithTexture(down));
-    
-    // Create a callback function for the button
-    button->setName("close");
-    button->setListener([=] (const std::string& name, bool down) {
-        // Only quit when the button is released
-        if (!down) {
-            CULog("Goodbye!");
-            this->quit();
-        }
-    });
-    
-    // Position the button in the bottom right corner
-    button->setAnchor(Vec2::ANCHOR_MIDDLE);
-    button->setPosition(size.width-bsize.width/2,bsize.height/2);
-    
-    // Add the logo and button to the scene graph
-    _scene->addChild(_logo);
-    _scene->addChild(button);
-    
-    // We can only activate a button AFTER it is added to a scene
-    button->activate(1);
-    
-    // Start the logo countdown and C-style random number generator
-    _countdown = TIME_STEP;
-    std::srand((int)std::time(0));
-}
+
