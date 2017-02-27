@@ -17,7 +17,7 @@ class GameObject {
     
 protected:
     int uid;
-    std::shared_ptr<PhysicsComponent> _body;
+    std::unique_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
 };
 
