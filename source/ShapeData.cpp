@@ -7,3 +7,21 @@
 //
 
 #include "ShapeData.hpp"
+
+using namespace cugl;
+
+std::string ShapeData::serialize(){
+    return "";
+}
+
+bool ShapeData::preload(const std::string& file){
+    return true;
+}
+
+bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    return true;
+}
+
+bool ShapeData::materialize(){
+    return true;
+}

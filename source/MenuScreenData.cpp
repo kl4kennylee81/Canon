@@ -7,3 +7,21 @@
 //
 
 #include "MenuScreenData.hpp"
+
+using namespace cugl;
+
+std::string MenuScreenData::serialize(){
+    return "";
+}
+
+bool MenuScreenData::preload(const std::string& file){
+    return true;
+}
+
+bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    return true;
+}
+
+bool MenuScreenData::materialize(){
+    return true;
+}

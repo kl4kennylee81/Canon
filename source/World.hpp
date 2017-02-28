@@ -16,6 +16,8 @@
 #include "AnimationData.hpp"
 #include "PathData.hpp"
 #include "ShapeData.hpp"
+#include "WaveData.hpp"
+#include "LevelData.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -30,16 +32,28 @@
 class World {
 
 protected:
-
+    // the level of the world
+    std::shared_ptr<LevelData> _levelData;
+    
+    // static prototypes used to spawn units into the gameState
 	std::unordered_map<int, std::shared_ptr<ObjectData>> _objectData;
 	std::unordered_map<int, std::shared_ptr<AnimationData>> _animationData;
 	std::unordered_map<int, std::shared_ptr<PathData>> _pathData;
 	std::unordered_map<int, std::shared_ptr<ShapeData>> _shapeData;
-
+	std::unordered_map<int, std::shared_ptr<WaveData>> _waveData;
 
 public:
+    
+    World();
+    
+    ~World();
+    
+    virtual bool init(){
+        return true;
+    }
 
-	virtual bool init() {
+    virtual bool init(std::shared_ptr<LevelData> levelData) {
+        _levelData = levelData;
 		return true;
 	}
 
@@ -47,6 +61,11 @@ public:
 		std::shared_ptr<World> result = std::make_shared<World>();
 		return (result->init() ? result : nullptr);
 	}
+
+    static std::shared_ptr<World> alloc(std::shared_ptr<LevelData> levelData) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(levelData) ? result : nullptr);
+    }
 };
 
 #endif /* World_hpp */

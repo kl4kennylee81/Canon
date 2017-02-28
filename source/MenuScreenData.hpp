@@ -14,7 +14,14 @@
 #include "Data.hpp"
 
 class MenuScreenData : Data {
-
+public:
+    virtual std::string serialize();
+    
+    virtual bool preload(const std::string& file);
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    virtual bool materialize();
 };
 
 #endif /* MenuScreenData_hpp */

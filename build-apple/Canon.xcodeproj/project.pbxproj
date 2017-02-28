@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
+		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */; };
 		9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */; };
 		9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */; };
@@ -29,7 +31,6 @@
 		9FFA3FAD1E636B430029D648 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FAB1E636B430029D648 /* GameState.cpp */; };
 		9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FAE1E636B780029D648 /* AIController.cpp */; };
 		9FFA3FB81E636C540029D648 /* LevelController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FB61E636C540029D648 /* LevelController.cpp */; };
-		9FFA3FBB1E636CE20029D648 /* Wave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FB91E636CE20029D648 /* Wave.cpp */; };
 		9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FBC1E636CF90029D648 /* Level.cpp */; };
 		9FFA3FC11E636D220029D648 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FBF1E636D220029D648 /* World.cpp */; };
 		9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FC21E636EF80029D648 /* ObjectData.cpp */; };
@@ -104,6 +105,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
+		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
+		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
+		9FCE47111E655D8B002F4A3E /* LevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelData.hpp; sourceTree = "<group>"; };
 		9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuController.cpp; sourceTree = "<group>"; };
 		9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuController.hpp; sourceTree = "<group>"; };
 		9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuGraph.cpp; sourceTree = "<group>"; };
@@ -148,8 +153,6 @@
 		9FFA3FAF1E636B780029D648 /* AIController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AIController.hpp; sourceTree = "<group>"; };
 		9FFA3FB61E636C540029D648 /* LevelController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelController.cpp; sourceTree = "<group>"; };
 		9FFA3FB71E636C540029D648 /* LevelController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelController.hpp; sourceTree = "<group>"; };
-		9FFA3FB91E636CE20029D648 /* Wave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wave.cpp; sourceTree = "<group>"; };
-		9FFA3FBA1E636CE20029D648 /* Wave.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Wave.hpp; sourceTree = "<group>"; };
 		9FFA3FBC1E636CF90029D648 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
 		9FFA3FBD1E636CF90029D648 /* Level.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Level.hpp; sourceTree = "<group>"; };
 		9FFA3FBF1E636D220029D648 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
@@ -262,6 +265,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
+			isa = PBXGroup;
+			children = (
+				9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */,
+				9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */,
+				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
+				9FFA3FCE1E6372830029D648 /* AnimationData.hpp */,
+				9FFA3FC21E636EF80029D648 /* ObjectData.cpp */,
+				9FFA3FC31E636EF80029D648 /* ObjectData.hpp */,
+				9FFA3FCA1E6372670029D648 /* ShapeData.cpp */,
+				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
+				9FFA3FD31E6373190029D648 /* pathData.cpp */,
+				9FFA3FD41E6373190029D648 /* pathData.hpp */,
+				9FCE470D1E655C79002F4A3E /* WaveData.cpp */,
+				9FCE470E1E655C79002F4A3E /* WaveData.hpp */,
+				9FCE47101E655D8B002F4A3E /* LevelData.cpp */,
+				9FCE47111E655D8B002F4A3E /* LevelData.hpp */,
+			);
+			name = prototypes;
+			sourceTree = "<group>";
+		};
 		9FE8E9D51E6381A300DBE3BC /* menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,8 +293,6 @@
 				9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */,
 				9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */,
 				9FE8E9DC1E6381D400DBE3BC /* MenuGraph.hpp */,
-				9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */,
-				9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */,
 			);
 			name = menu;
 			sourceTree = "<group>";
@@ -278,8 +300,6 @@
 		9FE8E9E11E6382AF00DBE3BC /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
-				9FFA3FCE1E6372830029D648 /* AnimationData.hpp */,
 				9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */,
 				9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */,
 				9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */,
@@ -291,8 +311,6 @@
 		9FFA3F631E625E490029D648 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FC21E636EF80029D648 /* ObjectData.cpp */,
-				9FFA3FC31E636EF80029D648 /* ObjectData.hpp */,
 				9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */,
 				9FFA3F6B1E634F3A0029D648 /* GameObject.hpp */,
 			);
@@ -305,8 +323,6 @@
 				9FFA3F851E635E8B0029D648 /* collisionEvent */,
 				9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */,
 				9FFA3F751E63574E0029D648 /* PhysicsComponent.hpp */,
-				9FFA3FCA1E6372670029D648 /* ShapeData.cpp */,
-				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
 				9FFA3F891E6362570029D648 /* CollisionController.cpp */,
 				9FFA3F8A1E6362570029D648 /* CollisionController.hpp */,
 				9FFA3F5E1E624F1A0029D648 /* Element.cpp */,
@@ -389,8 +405,6 @@
 				9FFA3FA21E6367A00029D648 /* player */,
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,
 				9FFA3FA51E6367C60029D648 /* ActivePath.hpp */,
-				9FFA3FD31E6373190029D648 /* pathData.cpp */,
-				9FFA3FD41E6373190029D648 /* pathData.hpp */,
 			);
 			name = movement;
 			sourceTree = "<group>";
@@ -443,8 +457,6 @@
 				9FFA3FD91E6373640029D648 /* LevelEvent */,
 				9FFA3FB61E636C540029D648 /* LevelController.cpp */,
 				9FFA3FB71E636C540029D648 /* LevelController.hpp */,
-				9FFA3FB91E636CE20029D648 /* Wave.cpp */,
-				9FFA3FBA1E636CE20029D648 /* Wave.hpp */,
 				9FFA3FBC1E636CF90029D648 /* Level.cpp */,
 				9FFA3FBD1E636CF90029D648 /* Level.hpp */,
 			);
@@ -454,6 +466,7 @@
 		9FFA3FC81E6372440029D648 /* load */ = {
 			isa = PBXGroup;
 			children = (
+				9FCE470A1E655BEA002F4A3E /* prototypes */,
 				9FFA3FE01E6374C90029D648 /* Data.cpp */,
 				9FFA3FE11E6374C90029D648 /* Data.hpp */,
 				9FFA3FD61E6373470029D648 /* LoadController.cpp */,
@@ -739,7 +752,7 @@
 				DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
-				9FFA3FBB1E636CE20029D648 /* Wave.cpp in Sources */,
+				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
@@ -762,6 +775,7 @@
 				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
 				9FFA3F7D1E6357E00029D648 /* Observer.cpp in Sources */,
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,
+				9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,

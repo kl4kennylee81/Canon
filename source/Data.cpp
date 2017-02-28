@@ -7,3 +7,20 @@
 //
 
 #include "Data.hpp"
+
+using namespace cugl;
+
+bool Data::preload(const std::string& file) {
+    Asset::preload(file);
+    return true;
+}
+
+bool Data::preload(const std::shared_ptr<cugl::JsonValue>& json) {
+    Asset::preload(json);
+    return true;
+}
+
+bool Data::materialize(){
+    Asset::materialize();
+    return true;
+}

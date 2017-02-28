@@ -12,11 +12,16 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 
-class Data {
+class Data : cugl::Asset {
     
-    virtual std::string serialize();
-
-    virtual void fromJson(std::string str);
+    // setting equal to 0 is a pure virtual function equivalent to an abstract function
+    virtual std::string serialize() = 0;
+        
+    virtual bool preload(const std::string& file);
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    virtual bool materialize();;
 };
 
 #endif /* Data_hpp */

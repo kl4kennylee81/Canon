@@ -25,25 +25,10 @@ protected:
     std::shared_ptr<cugl::Scene> _scene;
     /** A 3152 style SpriteBatch to render the scene */
     std::shared_ptr<cugl::SpriteBatch>  _batch;
-    /** A reference to the logo, so that we can move it around */
-    std::shared_ptr<cugl::Node>  _logo;
     
     // Player modes
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
-    
-    /** A countdown used to move the logo */
-    int  _countdown;
-    
-    /**
-     * Internal helper to build the scene graph.
-     *
-     * Scene graphs are not required.  You could manage all scenes just like
-     * you do in 3152.  However, they greatly simplify scene management, and
-     * have become standard in most game engines.
-     */
-    void buildScene();
-    
 public:
     /**
      * Creates, but does not initialized a new application.
@@ -54,7 +39,7 @@ public:
      * of initialization from the constructor allows main.cpp to perform
      * advanced configuration of the application before it starts.
      */
-    GameEngine() : Application(), _countdown(-1) {}
+    GameEngine() : Application(){}
     
     /**
      * Disposes of this application, releasing all resources.

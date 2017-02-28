@@ -1,19 +1,19 @@
 //
-//  AnimationData.hpp
+//  WaveData.hpp
 //  Canon
 //
-//  Created by Kenneth Lee on 2/26/17.
+//  Created by Kenneth Lee on 2/28/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
-#ifndef AnimationData_hpp
-#define AnimationData_hpp
+#ifndef WaveData_hpp
+#define WaveData_hpp
 
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
 
-class AnimationData : public Data {
+class WaveData : public Data {
 public:
     virtual std::string serialize();
     
@@ -24,4 +24,4 @@ public:
     virtual bool materialize();
 };
 
-#endif /* AnimationData_hpp */
+#endif /* WaveData_hpp */

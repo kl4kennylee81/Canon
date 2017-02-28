@@ -13,8 +13,8 @@
 #include <cugl/cugl.h>
 #include "Data.hpp"
 
-class ObjectData : Data {
-
+class ObjectData : public Data {
+protected:
     // key uid to a path data preloaded into the world
     // used to create an activePath
     int path_id;
@@ -34,6 +34,14 @@ class ObjectData : Data {
     // and how many frames to stay there
     // will be in the ActiveAnimation
     int animation_id;
+public:
+    virtual std::string serialize();
+    
+    virtual bool preload(const std::string& file);
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    virtual bool materialize();
 };
 
 #endif /* ObjectData_hpp */

@@ -1,27 +1,34 @@
 {
 	"textures": {
-		"claw": {
-			"file":     "textures/Claw.png",
+		"bg_dark_lake": {
+			"file":     "textures/backgrounds/bg_dark_lake.png",
 			"minfilter":"nearest",
 			"magfilter":"linear",
 			"wrapS":    "clamp",
 			"wrapT":    "clamp"
 		},
-		"close-normal": {
-			"file":     "textures/CloseNormal.png",
+		"bg_floating_crystal": {
+			"file":     "textures/backgrounds/bg_floating_crystal.png",
 			"minfilter":"nearest",
 			"magfilter":"linear",
 			"wrapS":    "clamp",
 			"wrapT":    "clamp"
 		},
-		"close-selected": {
-			"file":     "textures/CloseSelected.png",
+		"model_player_char_one": {
+			"file":     "textures/models/player_models/player_blue.png",
 			"minfilter":"nearest",
 			"magfilter":"linear",
 			"wrapS":    "clamp",
 			"wrapT":    "clamp"
-		}
-	},
+		},
+        "model_player_char_two": {
+            "file":     "textures/models/player_models/player_orange.png",
+            "minfilter":"nearest",
+            "magfilter":"linear",
+            "wrapS":    "clamp",
+            "wrapT":    "clamp"
+        }
+    },
 	"fonts": {
 		"charlemagne": {
 			"file":     "fonts/Charlemagne.ttf",

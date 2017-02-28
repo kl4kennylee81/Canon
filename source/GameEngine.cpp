@@ -39,7 +39,6 @@ void GameEngine::onStartup() {
     _scene = Scene::alloc(size.width, size.height);
     // Create a sprite batch (and background color) to render the scene
     _batch = SpriteBatch::alloc();
-    setClearColor(Color4(229,229,229,255));
     
     // Create an asset manager to load all assets
     _assets = AssetManager::alloc();
@@ -79,7 +78,6 @@ void GameEngine::onStartup() {
  */
 void GameEngine::onShutdown() {
     // Delete all smart pointers
-    _logo = nullptr;
     _scene = nullptr;
     _batch = nullptr;
     _assets = nullptr;
@@ -105,17 +103,6 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
-    if (_countdown == 0) {
-        // Move the logo about the screen
-        Size size = getDisplaySize();
-        size *= GAME_WIDTH/size.width;
-        float x = (float)(std::rand() % (int)(size.width/2))+size.width/4;
-        float y = (float)(std::rand() % (int)(size.height/2))+size.height/8;
-        _logo->setPosition(Vec2(x,y));
-        _countdown = TIME_STEP;
-    } else {
-        _countdown--;
-    }
 }
 
 /**
@@ -131,13 +118,4 @@ void GameEngine::draw() {
     // This takes care of begin/end
     _scene->render(_batch);
 }
-
-/**
- * Internal helper to build the scene graph.
- *
- * Scene graphs are not required.  You could manage all scenes just like
- * you do in 3152.  However, they greatly simplify scene management, and
- * have become standard in most game engines.
- */
-
 

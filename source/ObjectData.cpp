@@ -7,3 +7,21 @@
 //
 
 #include "ObjectData.hpp"
+
+using namespace cugl;
+
+std::string ObjectData::serialize(){
+    return "";
+}
+
+bool ObjectData::preload(const std::string& file){
+    return true;
+}
+
+bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    return true;
+}
+
+bool ObjectData::materialize(){
+    return true;
+}

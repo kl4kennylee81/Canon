@@ -7,3 +7,12 @@
 //
 
 #include "World.hpp"
+
+using namespace cugl;
+
+World::World() :
+_levelData(nullptr)
+{}
+
+World::~World()
+{}
