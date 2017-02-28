@@ -13,7 +13,7 @@ using namespace cugl;
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
-void GameplayController::detach(std::shared_ptr<Observer> obs) {
+void GameplayController::detach(Observer* obs) {
 	BaseController::detach(obs);
 }
 void GameplayController::notify(Event* e) {

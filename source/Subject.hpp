@@ -15,11 +15,11 @@
 
 class Subject {
 public:
-    virtual void attach (std::shared_ptr<Observer> obs);
+    virtual void attach (std::shared_ptr<Observer> obs) = 0;
     
-    virtual void detach (std::shared_ptr<Observer> obs);
+    virtual void detach (Observer* obs) = 0;
     
-    virtual void notify (Event* e);
+    virtual void notify (Event* e) = 0;
 };
 
 #endif /* Subject_hpp */

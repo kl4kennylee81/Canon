@@ -10,12 +10,23 @@
 
 using namespace cugl;
 
+BaseController::BaseController(){
+}
+
+BaseController::~BaseController(){
+}
+
 void BaseController::attach(std::shared_ptr<Observer> obs) {
 	_observers.push_back(obs);
 }
 
-void BaseController::detach(std::shared_ptr<Observer> obs) {
-	_observers.erase(obs);
+void BaseController::detach(Observer* obs) {
+    for(auto it = _observers.begin(); it != _observers.end(); ++it) {
+        if (it->get() == obs) {
+            _observers.erase(it);
+            return;
+        }
+    }
 }
 
 void BaseController::notify(Event* e) {

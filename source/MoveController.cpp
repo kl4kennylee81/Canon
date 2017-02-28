@@ -14,7 +14,7 @@ void MoveController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
 
-void MoveController::detach(std::shared_ptr<Observer> obs) {
+void MoveController::detach(Observer* obs) {
 	BaseController::detach(obs);
 }
 

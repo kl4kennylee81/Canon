@@ -37,7 +37,7 @@ protected:
 public:
 
 	virtual void attach(std::shared_ptr<Observer> obs);
-	virtual void detach(std::shared_ptr<Observer> obs);
+	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 	virtual void eventUpdate(Event* e);
 	virtual bool init();

@@ -20,16 +20,21 @@ protected:
 	std::vector<std::shared_ptr<Observer>> _observers;
     
 public:
+    
+    BaseController();
+    
+    ~BaseController();
+    
     virtual void attach (std::shared_ptr<Observer> obs);
     
-    virtual void detach (std::shared_ptr<Observer> obs);
+    virtual void detach (Observer* obs);
     
     virtual void notify (Event* e);
     
     /**
      * Update the observer state based on an event from the subject
      */
-    virtual void eventUpdate(Event* e);
+    virtual void eventUpdate(Event* e) = 0;
     
 };
 #endif /* BaseController_hpp */

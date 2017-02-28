@@ -13,7 +13,7 @@ using namespace cugl;
 void AIController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
-void AIController::detach(std::shared_ptr<Observer> obs) {
+void AIController::detach(Observer* obs) {
 	BaseController::detach(obs);
 }
 void AIController::notify(Event* e) {

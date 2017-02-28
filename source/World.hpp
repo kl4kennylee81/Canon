@@ -11,11 +11,11 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
-#include <ObjectData.hpp>
-#include <AnimationData.hpp>
-#include <PathData.hpp>
-#include <ShapeData.hpp>
 #include <unordered_map>
+#include "ObjectData.hpp"
+#include "AnimationData.hpp"
+#include "PathData.hpp"
+#include "ShapeData.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active

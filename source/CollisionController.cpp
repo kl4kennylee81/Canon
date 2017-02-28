@@ -16,7 +16,7 @@ using namespace cugl;
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
-void CollisionController::detach(std::shared_ptr<Observer> obs) {
+void CollisionController::detach(Observer* obs) {
 	BaseController::detach(obs);
 }
 void CollisionController::notify(Event* e) {

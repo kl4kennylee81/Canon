@@ -14,7 +14,7 @@ void PathController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
 
-void PathController::detach(std::shared_ptr<Observer> obs) {
+void PathController::detach(Observer* obs) {
 	BaseController::detach(obs);
 }
 
