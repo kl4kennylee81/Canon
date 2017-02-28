@@ -36,5 +36,7 @@ public:
      */
     virtual void eventUpdate(Event* e) = 0;
     
+    virtual void update(float timestep) = 0;
+    
 };
 #endif /* BaseController_hpp */

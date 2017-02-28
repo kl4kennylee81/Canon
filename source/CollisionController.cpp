@@ -13,6 +13,8 @@
 
 using namespace cugl;
 
+CollisionController::CollisionController(){}
+
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
@@ -28,6 +30,15 @@ void CollisionController::notify(Event* e) {
 */
 void CollisionController::eventUpdate(Event* e) {}
 
+void CollisionController::update(float timestep){
+}
+
+
 bool CollisionController::init() {
 	return true;
+}
+    
+bool CollisionController::init(const cugl::Rect& bounds){
+    _world = cugl::ObstacleWorld::alloc(bounds);
+    return true;
 }

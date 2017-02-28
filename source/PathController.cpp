@@ -10,6 +10,8 @@
 
 using namespace cugl;
 
+PathController::PathController(){}
+
 void PathController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
@@ -22,11 +24,14 @@ void PathController::notify(Event* e) {
 	BaseController::notify(e);
 }
 
+/**
+ * Update the observer state based on an event from the subject
+ */
+void PathController::eventUpdate(Event* e) {}
+
+void PathController::update(float timestep)
+{}
+
 bool PathController::init() {
 	return true;
 }
-
-/**
-* Update the observer state based on an event from the subject
-*/
-void PathController::eventUpdate(Event* e) {}

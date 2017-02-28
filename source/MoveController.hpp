@@ -18,6 +18,8 @@
 class MoveController : public BaseController {
 
 public:
+    MoveController();
+    
 	virtual void attach(std::shared_ptr<Observer> obs);
 
 	virtual void detach(Observer* obs);
@@ -28,6 +30,8 @@ public:
 	* Update the observer state based on an event from the subject
 	*/
 	virtual void eventUpdate(Event* e);
+    
+    virtual void update(float timestep);
 
 	virtual bool init();
 

@@ -10,6 +10,8 @@
 
 using namespace cugl;
 
+AIController::AIController(){}
+
 void AIController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
@@ -24,6 +26,8 @@ void AIController::notify(Event* e) {
 * Update the observer state based on an event from the subject
 */
 void AIController::eventUpdate(Event* e) {}
+
+void AIController::update(float timestep){}
 
 bool AIController::init() {
 	return true;

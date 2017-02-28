@@ -10,6 +10,15 @@
 
 using namespace cugl;
 
+GameplayController::GameplayController() :
+_world(nullptr),
+_gameState(nullptr),
+_pathController(nullptr),
+_moveController(nullptr),
+_collisionController(nullptr),
+_aiController(nullptr)
+{}
+
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
 }
@@ -20,6 +29,10 @@ void GameplayController::notify(Event* e) {
 	BaseController::notify(e);
 }
 void GameplayController::eventUpdate(Event* e) {}
+
+void GameplayController::update(float timestep) {
+    
+}
 
 bool GameplayController::init() {
 	_world = World::alloc();

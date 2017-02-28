@@ -17,18 +17,22 @@
 
 class PathController : public BaseController {
 public:
+    PathController();
+    
 	virtual void attach(std::shared_ptr<Observer> obs);
 
 	virtual void detach(Observer* obs);
 
 	virtual void notify(Event* e);
+    
+    /**
+     * Update the observer state based on an event from the subject
+     */
+    virtual void eventUpdate(Event* e);
+    
+    virtual void update(float timestep);
 
 	virtual bool init();
-
-	/**
-	* Update the observer state based on an event from the subject
-	*/
-	virtual void eventUpdate(Event* e);
 
 	static std::shared_ptr<PathController> alloc() {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();

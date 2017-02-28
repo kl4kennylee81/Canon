@@ -35,11 +35,15 @@ protected:
     float _scale;
 
 public:
+    
+    GameplayController();
 
 	virtual void attach(std::shared_ptr<Observer> obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 	virtual void eventUpdate(Event* e);
+    virtual void update(float timestep);
+    
 	virtual bool init();
 
 	static std::shared_ptr<GameplayController> alloc() {

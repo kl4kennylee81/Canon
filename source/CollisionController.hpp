@@ -26,6 +26,8 @@ protected:
     std::shared_ptr<cugl::ObstacleWorld> _world;
 
 public:
+    
+    CollisionController();
 
 	virtual void attach(std::shared_ptr<Observer> obs);
 	virtual void detach(Observer* obs);
@@ -35,14 +37,12 @@ public:
 	* Update the observer state based on an event from the subject
 	*/
 	virtual void eventUpdate(Event* e);
+    
+    virtual void update(float timestep);
 
 	virtual bool init();
 
-	virtual bool init(const cugl::Rect& bounds) {
-		_world = cugl::ObstacleWorld::alloc(bounds);
-		return true;
-
-	}
+    virtual bool init(const cugl::Rect& bounds);
 
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
