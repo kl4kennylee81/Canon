@@ -74,6 +74,8 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     _playerCharacters.push_back(player1);
     _playerCharacters.push_back(player2);
     
+    _allObjects.push_back(player1);
+    _allObjects.push_back(player2);
     
     _activeCharacterPosition = 0;
     return true;

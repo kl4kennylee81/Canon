@@ -34,6 +34,9 @@ protected:
     
     int _activeCharacterPosition;
     
+    /**
+     * All objects include the player characters and all other objects in the game
+     */
     std::vector<std::shared_ptr<GameObject>> _allObjects;
     
     /** not sure yet if representing time as an int is the move */
