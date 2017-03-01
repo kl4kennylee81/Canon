@@ -38,8 +38,37 @@ bool CollisionController::init() {
 	return true;
 }
     
-bool CollisionController::init(const cugl::Rect& bounds){
-    _world = cugl::ObstacleWorld::alloc(bounds);
+bool CollisionController::init(std::shared_ptr<GameState> state){
+    Size size = Application::get()->getDisplaySize();
+    Rect bounds = Rect::Rect(0,0,size.getIWidth(),size.getIHeight());
+    
+    // 2nd arguement is setting gravity to 0
+    _world = cugl::ObstacleWorld::alloc(bounds,Vec2::ZERO);
     _world->setGravity(Vec2::ZERO);
+    _world->onBeginContact = [this](b2Contact* contact) {
+        beginContact(contact);
+    };
+    _world->beforeSolve = [this](b2Contact* contact, const b2Manifold* oldManifold) {
+        beforeSolve(contact,oldManifold);
+    };
+    
+    std::vector<std::shared_ptr<GameObject>> playerChars = state->getPlayerCharacters();
+    
+    // iterate through player character gameObjects and create the PhysicsComponent
+    // and add it to the ObstacleWorld
+    for(auto it = playerChars.begin() ; it != playerChars.end(); ++it) {
+        GameObject* obj = it->get();
+        std::shared_ptr<BoxObstacle> box = BoxObstacle::alloc(obj->getNode()->getPosition(), obj->getNode()->getSize());
+        std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box);
+        obj->setPhysicsComponent(physics);
+        _world->addObstacle(box);
+    }
+    
     return true;
+}
+
+void CollisionController::beginContact(b2Contact* contact) {
+}
+
+void CollisionController::beforeSolve(b2Contact* contact, const b2Manifold* oldManifold) {
 }

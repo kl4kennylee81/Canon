@@ -50,7 +50,7 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
 	_gameState = GameState::alloc(levelWorld->getAssetManager());
 	_pathController = PathController::alloc();
 	_moveController = MoveController::alloc();
-	_collisionController = CollisionController::alloc();
+	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
 	return true;

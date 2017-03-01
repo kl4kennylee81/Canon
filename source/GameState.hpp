@@ -48,6 +48,11 @@ public:
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
+    
+    /**
+     * Return the vector by reference
+     */
+    std::vector<std::shared_ptr<GameObject>>& getPlayerCharacters() { return _playerCharacters; }
 };
 
 #endif /* GameState_hpp */

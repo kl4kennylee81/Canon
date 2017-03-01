@@ -41,6 +41,14 @@ public:
     }
     
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
+    
+    /** get a weak reference to the Scene graph node, don't persist this reference 
+     *  or we will have memory leaks */
+    cugl::Node* getNode(){ return _node.get();}
+
+    /** get a weak reference to the physics component, don't persist this reference 
+     *  or we will have memory leaks */
+    PhysicsComponent* getPhysicsComponent() {return _body.get();}
 };
 
 #endif /* GameObject_hpp */

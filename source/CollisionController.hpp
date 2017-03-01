@@ -19,6 +19,7 @@
 #include "GameObject.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
+#include "GameState.hpp"
 
 class CollisionController : public BaseController {
 protected:
@@ -42,17 +43,21 @@ public:
 
 	virtual bool init();
 
-    virtual bool init(const cugl::Rect& bounds);
+    virtual bool init(std::shared_ptr<GameState> state);
 
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
 		return (result->init() ? result : nullptr);
 	}
 
-	static std::shared_ptr<CollisionController> alloc(const cugl::Rect& bounds) {
+    static std::shared_ptr<CollisionController> alloc(std::shared_ptr<GameState> state) {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
-		return (result->init(bounds) ? result : nullptr);
+		return (result->init(state) ? result : nullptr);
 	}
+    
+    void beginContact(b2Contact* contact);
+    
+    void beforeSolve(b2Contact* contact, const b2Manifold* oldManifold);
 };
 
 #endif /* CollisionController_hpp */
