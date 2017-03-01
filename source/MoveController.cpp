@@ -29,7 +29,7 @@ void MoveController::notify(Event* e) {
 */
 void MoveController::eventUpdate(Event* e) {}
 
-void MoveController::update(float timestep){}
+void MoveController::update(float timestep,std::shared_ptr<GameState> state){}
 
 bool MoveController::init() {
 	return true;

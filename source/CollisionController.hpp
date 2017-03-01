@@ -39,7 +39,7 @@ public:
 	*/
 	virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
 
 	virtual bool init();
 

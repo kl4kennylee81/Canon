@@ -29,7 +29,7 @@ void PathController::notify(Event* e) {
  */
 void PathController::eventUpdate(Event* e) {}
 
-void PathController::update(float timestep)
+void PathController::update(float timestep,std::shared_ptr<GameState> state)
 {}
 
 bool PathController::init() {

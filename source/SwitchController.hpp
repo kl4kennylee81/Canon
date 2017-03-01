@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
+#include "GameState.hpp"
 
 class SwitchController : public BaseController {
 public:
@@ -28,7 +29,7 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
     
     virtual bool init();
     
