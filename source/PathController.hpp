@@ -37,7 +37,7 @@ public:
 	static std::shared_ptr<PathController> alloc() {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
 		return (result->init() ? result : nullptr);
-}
+    }
 };
 
 #endif /* PathController_hpp */

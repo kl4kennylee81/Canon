@@ -10,15 +10,24 @@
 
 using namespace cugl;
 
-bool GameObject::init(std::unique_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
-    _body = std::move(body);
-    
-    // a sensor will return to the collision detection but won't apply collision the internal
-    // box2d kinematics physics on it.
-    b2Fixture* fixture_list = _body->getBody()->getBody()->GetFixtureList();
-    for( b2Fixture* fixture = fixture_list; fixture != NULL; fixture = fixture->GetNext() ) {
-        fixture->SetSensor(true);
-    }
+bool GameObject::init(std::shared_ptr<cugl::Node> node){
     _node = node;
     return true;
 }
+
+bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
+    setPhysicsComponent(body);
+    _node = node;
+    return true;
+}
+
+void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){
+    _body = body;
+    // a sensor will return to the collision detection but won't apply collision the internal
+    // box2d kinematics physics on it.
+    _body->getBody()->setDensity(0.0f);
+    _body->getBody()->setFriction(0.0f);
+    _body->getBody()->setRestitution(0.0f);
+    _body->getBody()->setSensor(true);
+}
+

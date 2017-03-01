@@ -17,7 +17,7 @@ class GameObject {
     
 protected:
     int uid;
-    std::unique_ptr<PhysicsComponent> _body;
+    std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
     
 public:
@@ -26,12 +26,21 @@ public:
     _body(nullptr),
     _node(nullptr){}
     
-    bool init(std::unique_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node);
+    bool init(std::shared_ptr<cugl::Node> node);
     
-    static std::shared_ptr<GameObject> alloc(std::unique_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
+    bool init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node);
+
+    static std::shared_ptr<GameObject> alloc(std::shared_ptr<cugl::Node> node){
         std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
-        return (result->init(std::move(body),node) ? result : nullptr);
+        return (result->init(node) ? result : nullptr);
     }
+    
+    static std::shared_ptr<GameObject> alloc(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
+        std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
+        return (result->init(body,node) ? result : nullptr);
+    }
+    
+    void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
 };
 
 #endif /* GameObject_hpp */

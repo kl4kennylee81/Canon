@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include <memory>
 #include "Element.hpp"
 
 class PhysicsComponent {
@@ -21,7 +22,16 @@ protected:
     Element _elementType;
 public:
     
+    PhysicsComponent();
+    
     cugl::Obstacle* getBody();
+    
+    virtual bool init(std::shared_ptr<cugl::Obstacle> body);
+    
+    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::Obstacle> body) {
+        std::shared_ptr<PhysicsComponent> result = std::make_shared<PhysicsComponent>();
+        return (result->init(body) ? result : nullptr);
+    }
     
 };
 
