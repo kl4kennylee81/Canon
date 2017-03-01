@@ -40,5 +40,6 @@ bool CollisionController::init() {
     
 bool CollisionController::init(const cugl::Rect& bounds){
     _world = cugl::ObstacleWorld::alloc(bounds);
+    _world->setGravity(Vec2::ZERO);
     return true;
 }

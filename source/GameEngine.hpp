@@ -10,6 +10,8 @@
 #define GameEngine_hpp
 #include <cugl/cugl.h>
 #include "GameplayController.hpp"
+#include "LoadController.hpp"
+#include "MenuGraph.hpp"
 
 /**
  * Class for a simple Hello World style application
@@ -29,6 +31,10 @@ protected:
     // Player modes
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
+    
+    std::shared_ptr<LoadController> _loading;
+    
+    MenuGraph _menuGraph;
 public:
     /**
      * Creates, but does not initialized a new application.

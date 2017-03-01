@@ -20,6 +20,8 @@ protected:
      */
     std::shared_ptr<cugl::Node> _worldnode;
     
+    std::shared_ptr<cugl::Node> _bgnode;
+    
     /** The root of our scene graph. 
      * Example:
      * Child1 : Background scene node
@@ -38,14 +40,14 @@ protected:
     int time_elapsed;
 
 public:
-	virtual bool init() {
-		return true;
-	}
+    virtual bool init(const std::shared_ptr<cugl::AssetManager>& assets);
 
-	static std::shared_ptr<GameState> alloc() {
+	static std::shared_ptr<GameState> alloc(const std::shared_ptr<cugl::AssetManager>& assets) {
 		std::shared_ptr<GameState> result = std::make_shared<GameState>();
-		return (result->init() ? result : nullptr);
+		return (result->init(assets) ? result : nullptr);
 	}
+    
+    void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
 };
 
 #endif /* GameState_hpp */

@@ -35,8 +35,6 @@ void GameEngine::onStartup() {
     Size size = getDisplaySize();
     size *= GAME_WIDTH/size.width;
     
-    // Create a scene graph the same size as the window
-    _scene = Scene::alloc(size.width, size.height);
     // Create a sprite batch (and background color) to render the scene
     _batch = SpriteBatch::alloc();
     
@@ -47,11 +45,12 @@ void GameEngine::onStartup() {
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
     
+    _loading = LoadController::alloc(_assets);
+    
+    _menuGraph = MenuGraph::MenuGraph();
+    
     // This reads the given JSON file and uses it to load all other assets
     _assets->loadDirectory("json/assets.json");
-
-	// set gameplay controller
-	_gameplay = GameplayController::alloc();
 
     
     // Activate mouse or touch screen input as appropriate
@@ -78,7 +77,6 @@ void GameEngine::onStartup() {
  */
 void GameEngine::onShutdown() {
     // Delete all smart pointers
-    _scene = nullptr;
     _batch = nullptr;
     _assets = nullptr;
     
@@ -103,6 +101,16 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
+    if (_menuGraph.getMode() == Mode::LOADING && !_loading->isComplete()) {
+        _loading->update(0.01f);
+    } else if (_menuGraph.getMode() == Mode::LOADING) {
+        _loading->dispose(); // Disables the input listeners in this mode
+        std::shared_ptr<World> levelWorld = World::alloc(_assets);
+        _gameplay = GameplayController::alloc(levelWorld);
+        _menuGraph.setMode(Mode::GAMEPLAY);
+    } else {
+        _gameplay->update(timestep);
+    }
 }
 
 /**
@@ -116,6 +124,17 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
-    _scene->render(_batch);
+    switch (_menuGraph.getMode()){
+        case Mode::LOADING:
+            _loading->draw(_batch);
+            break;
+        case Mode::GAMEPLAY:
+            _gameplay->draw(_batch);
+            break;
+        case Mode::MAIN_MENU:
+            break;
+        default:
+            break;
+    }
 }
 

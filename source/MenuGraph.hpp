@@ -10,5 +10,18 @@
 #define MenuGraph_hpp
 
 #include <stdio.h>
+#include <cugl/cugl.h>
+#include "Mode.hpp"
+
+class MenuGraph {
+protected:
+    Mode _currentMode;
+public:
+    MenuGraph();
+    
+    void setMode(Mode mode);
+    
+    Mode getMode();
+};
 
 #endif /* MenuGraph_hpp */

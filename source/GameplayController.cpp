@@ -16,7 +16,8 @@ _gameState(nullptr),
 _pathController(nullptr),
 _moveController(nullptr),
 _collisionController(nullptr),
-_aiController(nullptr)
+_aiController(nullptr),
+_switchController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
@@ -34,12 +35,23 @@ void GameplayController::update(float timestep) {
     
 }
 
-bool GameplayController::init() {
-	_world = World::alloc();
-	_gameState = GameState::alloc();
+/**
+ * The method called to draw the application to the screen.
+ *
+ * This method should contain OpenGL and related drawing calls.
+ */
+void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
+    _gameState->draw(_batch);
+}
+
+
+bool GameplayController::init(std::shared_ptr<World> levelWorld) {
+    _world = levelWorld;
+	_gameState = GameState::alloc(levelWorld->getAssetManager());
 	_pathController = PathController::alloc();
 	_moveController = MoveController::alloc();
 	_collisionController = CollisionController::alloc();
 	_aiController = AIController::alloc();
+    _switchController = SwitchController::alloc();
 	return true;
 }

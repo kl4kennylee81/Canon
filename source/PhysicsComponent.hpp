@@ -14,10 +14,15 @@
 #include "Element.hpp"
 
 class PhysicsComponent {
+protected:
     std::shared_ptr<cugl::Obstacle> _body;
-    float speed;
-    float acceleration;
-    Element elementType;
+    float _speed;
+    float _acceleration;
+    Element _elementType;
+public:
+    
+    cugl::Obstacle* getBody();
+    
 };
 
 #endif /* PhysicsComponent_hpp */

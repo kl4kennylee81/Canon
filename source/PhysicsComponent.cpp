@@ -7,3 +7,9 @@
 //
 
 #include "PhysicsComponent.hpp"
+
+using namespace cugl;
+
+cugl::Obstacle* PhysicsComponent::getBody(){
+    return _body.get();
+}

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
+		9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
+		9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471D1E6686DF002F4A3E /* Mode.cpp */; };
 		9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */; };
 		9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */; };
 		9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */; };
@@ -109,6 +111,10 @@
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
 		9FCE47111E655D8B002F4A3E /* LevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelData.hpp; sourceTree = "<group>"; };
+		9FCE471A1E667448002F4A3E /* SwitchController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwitchController.cpp; sourceTree = "<group>"; };
+		9FCE471B1E667448002F4A3E /* SwitchController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SwitchController.hpp; sourceTree = "<group>"; };
+		9FCE471D1E6686DF002F4A3E /* Mode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mode.cpp; sourceTree = "<group>"; };
+		9FCE471E1E6686DF002F4A3E /* Mode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mode.hpp; sourceTree = "<group>"; };
 		9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuController.cpp; sourceTree = "<group>"; };
 		9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuController.hpp; sourceTree = "<group>"; };
 		9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuGraph.cpp; sourceTree = "<group>"; };
@@ -286,6 +292,15 @@
 			name = prototypes;
 			sourceTree = "<group>";
 		};
+		9FCE47171E667430002F4A3E /* Switching */ = {
+			isa = PBXGroup;
+			children = (
+				9FCE471A1E667448002F4A3E /* SwitchController.cpp */,
+				9FCE471B1E667448002F4A3E /* SwitchController.hpp */,
+			);
+			name = Switching;
+			sourceTree = "<group>";
+		};
 		9FE8E9D51E6381A300DBE3BC /* menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +308,8 @@
 				9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */,
 				9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */,
 				9FE8E9DC1E6381D400DBE3BC /* MenuGraph.hpp */,
+				9FCE471D1E6686DF002F4A3E /* Mode.cpp */,
+				9FCE471E1E6686DF002F4A3E /* Mode.hpp */,
 			);
 			name = menu;
 			sourceTree = "<group>";
@@ -592,6 +609,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9FCE47171E667430002F4A3E /* Switching */,
 				9FE8E9E11E6382AF00DBE3BC /* Animation */,
 				9FE8E9D51E6381A300DBE3BC /* menu */,
 				9FFA3FC81E6372440029D648 /* load */,
@@ -778,10 +796,12 @@
 				9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
+				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
 				9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */,
+				9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */,
 				9FFA3FC11E636D220029D648 /* World.cpp in Sources */,
 				9FFA3F881E635FD10029D648 /* CollisionEvent.cpp in Sources */,
 			);

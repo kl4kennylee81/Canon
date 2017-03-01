@@ -11,8 +11,13 @@
 using namespace cugl;
 
 World::World() :
+_assets(nullptr),
 _levelData(nullptr)
 {}
 
 World::~World()
 {}
+
+std::shared_ptr<cugl::AssetManager> World::getAssetManager(){
+    return _assets;
+}

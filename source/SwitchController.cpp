@@ -1,0 +1,32 @@
+//
+//  SwitchController.cpp
+//  Canon
+//
+//  Created by Kenneth Lee on 2/28/17.
+//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//
+
+#include "SwitchController.hpp"
+
+using namespace cugl;
+
+SwitchController::SwitchController(){}
+
+void SwitchController::attach(std::shared_ptr<Observer> obs) {
+    BaseController::attach(obs);
+}
+void SwitchController::detach(Observer* obs) {
+    BaseController::detach(obs);
+}
+void SwitchController::notify(Event* e) {
+    BaseController::notify(e);
+}
+void SwitchController::eventUpdate(Event* e) {}
+
+void SwitchController::update(float timestep) {
+    
+}
+
+bool SwitchController::init() {
+    return true;
+}

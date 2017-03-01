@@ -35,6 +35,9 @@ protected:
     // the level of the world
     std::shared_ptr<LevelData> _levelData;
     
+    /** The asset manager for this game world. */
+    std::shared_ptr<cugl::AssetManager> _assets;
+    
     // static prototypes used to spawn units into the gameState
 	std::unordered_map<int, std::shared_ptr<ObjectData>> _objectData;
 	std::unordered_map<int, std::shared_ptr<AnimationData>> _animationData;
@@ -52,19 +55,32 @@ public:
         return true;
     }
 
-    virtual bool init(std::shared_ptr<LevelData> levelData) {
-        _levelData = levelData;
+    virtual bool init(std::shared_ptr<cugl::AssetManager> assets) {
+        _assets = assets;
 		return true;
 	}
+    
+    virtual bool init(std::shared_ptr<cugl::AssetManager> assets, std::shared_ptr<LevelData> levelData) {
+        _assets = assets;
+        _levelData = levelData;
+        return true;
+    }
+    
+    std::shared_ptr<cugl::AssetManager> getAssetManager();
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();
 		return (result->init() ? result : nullptr);
 	}
 
-    static std::shared_ptr<World> alloc(std::shared_ptr<LevelData> levelData) {
+    static std::shared_ptr<World> alloc(std::shared_ptr<cugl::AssetManager> assets) {
         std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(levelData) ? result : nullptr);
+        return (result->init(assets) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<World> alloc(std::shared_ptr<cugl::AssetManager> assets,std::shared_ptr<LevelData> levelData) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(assets,levelData) ? result : nullptr);
     }
 };
 

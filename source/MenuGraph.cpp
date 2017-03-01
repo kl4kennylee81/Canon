@@ -7,3 +7,17 @@
 //
 
 #include "MenuGraph.hpp"
+
+using namespace cugl;
+
+MenuGraph::MenuGraph(){
+    _currentMode = Mode::LOADING;
+}
+
+void MenuGraph::setMode(Mode mode){
+    _currentMode = mode;
+}
+
+Mode MenuGraph::getMode(){
+    return _currentMode;
+}
