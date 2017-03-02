@@ -102,3 +102,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
 void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _scene->render(_batch);
 }
+
+std::shared_ptr<GameObject> GameState::getActiveCharacter(){
+    return _playerCharacters.at(_activeCharacterPosition);
+}

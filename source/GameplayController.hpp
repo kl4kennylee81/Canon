@@ -19,6 +19,7 @@
 #include "CollisionController.hpp"
 #include "AIController.hpp"
 #include "SwitchController.hpp"
+#include "LevelController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -32,6 +33,7 @@ protected:
 	std::shared_ptr<CollisionController> _collisionController;
 	std::shared_ptr<AIController> _aiController;
     std::shared_ptr<SwitchController> _switchController;
+    std::shared_ptr<LevelController>  _levelController;
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;

@@ -54,6 +54,8 @@ public:
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
     
+    std::shared_ptr<GameObject> getActiveCharacter();
+    
     /**
      * Return the vector by reference
      */

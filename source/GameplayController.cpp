@@ -18,7 +18,8 @@ _pathController(nullptr),
 _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
-_switchController(nullptr)
+_switchController(nullptr),
+_levelController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
@@ -54,5 +55,9 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _collisionController = CollisionController::alloc(_gameState);
     _aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
+    _levelController = LevelController::alloc();
+    
+    auto gpPtr = std::shared_ptr<GameplayController> (this);
+    _levelController->attach(gpPtr);
     return true;
 }
