@@ -18,7 +18,8 @@ _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
 _switchController(nullptr),
-_levelController(nullptr)
+_levelController(nullptr),
+_syncController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
@@ -36,6 +37,8 @@ void GameplayController::update(float timestep) {
 	_pathController->update(timestep, _gameState);
 	_moveController->update(timestep, _gameState);
     _collisionController->update(timestep, _gameState);
+	_syncController->update(timestep, _gameState);
+	_moveController->updateActivePaths(timestep, _gameState);
 }
 
 /**
@@ -56,6 +59,7 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
 	_levelController = LevelController::alloc(levelWorld);
+	_syncController = SyncController::alloc();
 
 	_pathController->attach(_moveController);
 

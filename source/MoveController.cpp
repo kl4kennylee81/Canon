@@ -8,6 +8,7 @@
 
 #include "MoveController.hpp"
 #include "PathEvent.hpp"
+#include "PathParameters.h"
 
 using namespace cugl;
 
@@ -49,11 +50,27 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : _activePaths) {
 		std::shared_ptr<GameObject> player = it.first;
 		std::shared_ptr<ActivePath> path = it.second;
-		Vec2 vec = path->_path->get(path->_pathIndex);
-		player->getNode()->setPosition(vec);
-		path->_pathIndex = path->_pathIndex + 1;
-		if (path->_pathIndex >= path->_path->size()) {
-			toDelete.push_back(player);
+		Vec2 goal = path->_path->get(path->_pathIndex);
+		Vec2 current = player->getPhysicsComponent()->getBody()->getPosition();
+		Vec2 velocity = getVelocityVector(current, goal, VELOCITY);
+		player->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
+	}
+}
+
+void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState> state) {
+	std::vector<std::shared_ptr<GameObject>> toDelete;
+	for (auto it : _activePaths) {
+		std::shared_ptr<GameObject> player = it.first;
+		std::shared_ptr<ActivePath> path = it.second;
+		Vec2 goal = path->_path->get(path->_pathIndex);
+		Vec2 current = player->getPhysicsComponent()->getBody()->getPosition();
+		if (std::abs(current.distance(goal)) <= RADIUS) {
+			path->_pathIndex = path->_pathIndex + 1;
+			if (path->_pathIndex >= path->_path->size()) {
+				player->getPhysicsComponent()->getBody()->setVX(0);
+				player->getPhysicsComponent()->getBody()->setVY(0);
+				toDelete.push_back(player);
+			}
 		}
 	}
 	for (auto it : toDelete) {
@@ -63,4 +80,11 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 
 bool MoveController::init(std::shared_ptr<GameState> state) {
 	return true;
+}
+
+cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
+{
+	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
+	direction.normalize().scale(VELOCITY * 60);
+	return direction;
 }

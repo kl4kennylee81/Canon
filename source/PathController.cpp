@@ -9,10 +9,9 @@
 #include "PathController.hpp"
 #include "Path.hpp"
 #include "PathEvent.hpp"
+#include "PathParameters.h"
 #include <cugl/base/CUBase.h>
 #include <cugl/2d/CUPathNode.h>
-
-#define MIN_DISTANCE 13
 
 using namespace cugl;
 
@@ -40,7 +39,6 @@ void PathController::eventUpdate(Event* e) {}
 void PathController::addPathToScene() {
 	Poly2 pathPoly = _path->getPoly();
 	auto pathNode = PathNode::allocWithPoly(pathPoly, 5, PathJoint::ROUND, PathCap::ROUND);
-	printf("%i", _path->size());
 	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
@@ -79,7 +77,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		double diffx = position.x - prev.x;
 		double diffy = position.y - prev.y;
 		double distance = std::sqrt((diffx * diffx) + (diffy * diffy));
-		if (distance > 0) {
+		if (distance > MIN_DISTANCE) {
 			_path->add(position);
 			updateMinMax(position);
 			addPathToScene();

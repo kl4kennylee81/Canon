@@ -39,12 +39,20 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
 
+	virtual void updateActivePaths(float timestep, std::shared_ptr<GameState> state);
+
 	virtual bool init(std::shared_ptr<GameState> state);
 
 	static std::shared_ptr<MoveController> alloc(std::shared_ptr<GameState> state) {
 		std::shared_ptr<MoveController> result = std::make_shared<MoveController>();
 		return (result->init(state) ? result : nullptr);
 	}
+
+	/*
+	* Returns a velocity vector which will move an object from start to end at "velocity"
+	* pixels per frame.
+	*/
+	static cugl::Vec2 getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity);
 };
 
 #endif /* MoveController_hpp */
