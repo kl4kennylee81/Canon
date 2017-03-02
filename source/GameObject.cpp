@@ -12,12 +12,14 @@ using namespace cugl;
 
 bool GameObject::init(std::shared_ptr<cugl::Node> node){
     _node = node;
+    _isPlayer = false;
     return true;
 }
 
 bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
     setPhysicsComponent(body);
     _node = node;
+    _isPlayer = false;
     return true;
 }
 
