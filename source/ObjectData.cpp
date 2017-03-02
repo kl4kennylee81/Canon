@@ -10,6 +10,15 @@
 
 using namespace cugl;
 
+bool ObjectData::init(int path_id,int shape_id, int speed,int acceleration){
+    path_id = path_id;
+    shape_id = shape_id;
+    speed = speed;
+    acceleration = acceleration;
+    return true;
+};
+
+
 std::string ObjectData::serialize(){
     return "";
 }

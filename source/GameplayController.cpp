@@ -48,16 +48,12 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 
 
 bool GameplayController::init(std::shared_ptr<World> levelWorld) {
-    _world = levelWorld;
     _gameState = GameState::alloc(levelWorld->getAssetManager());
     _pathController = PathController::alloc();
     _moveController = MoveController::alloc();
     _collisionController = CollisionController::alloc(_gameState);
     _aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
-    _levelController = LevelController::alloc();
-    
-    auto gpPtr = std::shared_ptr<GameplayController> (this);
-    _levelController->attach(gpPtr);
+    _levelController = LevelController::alloc(_world);
     return true;
 }

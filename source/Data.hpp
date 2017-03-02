@@ -13,6 +13,18 @@
 #include <cugl/cugl.h>
 
 class Data : cugl::Asset {
+protected:
+    int _uid;
+public:
+    Data() :
+    Asset(),
+    _uid(-1){}
+    
+    Data(int uid) : Asset(),_uid(-1){
+        _uid = uid;
+    }
+        
+    int getUid(){ return _uid; }
     
     // setting equal to 0 is a pure virtual function equivalent to an abstract function
     virtual std::string serialize() = 0;

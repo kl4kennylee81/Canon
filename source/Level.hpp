@@ -21,12 +21,21 @@ protected:
     int _currentWave;
     /** time elapsed since last wave */
     float _timeElapsed;
+    bool _readyToSpawn;
 public:
     Level(){}
     
     bool init(std::shared_ptr<LevelData> levelData);
     
     int getNextTime();
+    
+    int getCurrentWaveKey();
+    
+    int getCurrentWave();
+    
+    /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
+     *  after returning it, it will return -1 again until the next wave */
+    int pollWave();
     
     void setCurrentWave(int waveNum);
 

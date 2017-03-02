@@ -470,8 +470,6 @@
 		9FFA3FB41E636BED0029D648 /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FBF1E636D220029D648 /* World.cpp */,
-				9FFA3FC01E636D220029D648 /* World.hpp */,
 				9FFA3FAB1E636B430029D648 /* GameState.cpp */,
 				9FFA3FAC1E636B430029D648 /* GameState.hpp */,
 				DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */,
@@ -500,6 +498,8 @@
 				9FFA3FE11E6374C90029D648 /* Data.hpp */,
 				9FFA3FD61E6373470029D648 /* LoadController.cpp */,
 				9FFA3FD71E6373470029D648 /* LoadController.hpp */,
+				9FFA3FBF1E636D220029D648 /* World.cpp */,
+				9FFA3FC01E636D220029D648 /* World.hpp */,
 			);
 			name = load;
 			sourceTree = "<group>";

@@ -10,6 +10,10 @@
 
 using namespace cugl;
 
+bool LevelData::init(int uid){
+    return true;
+}
+
 void LevelData::addLevelEntry(LevelEntry entry){
     _levelEntries.push_back(entry);
 }
