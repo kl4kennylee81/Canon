@@ -23,7 +23,7 @@ void SwitchController::notify(Event* e) {
 }
 void SwitchController::eventUpdate(Event* e) {}
 
-void SwitchController::update(float timestep) {
+void SwitchController::update(float timestep,std::shared_ptr<GameState> state) {
     
 }
 

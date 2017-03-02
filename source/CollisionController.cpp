@@ -52,13 +52,12 @@ void CollisionController::notify(Event* e) {
 */
 void CollisionController::eventUpdate(Event* e) {}
 
-void CollisionController::update(float timestep){
+void CollisionController::update(float timestep,std::shared_ptr<GameState> state){
     Keyboard* keys = Input::get<Keyboard>();
     
     if (keys->keyPressed(DEBUG_KEY)) {
         setDebug(!isDebug());
     }
-}
 
 
 bool CollisionController::init() {

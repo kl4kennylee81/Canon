@@ -14,6 +14,7 @@
 #include "BaseController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
+#include "GameState.hpp"
 
 class PathController : public BaseController {
 public:
@@ -30,7 +31,7 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
 
 	virtual bool init();
 

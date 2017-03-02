@@ -27,7 +27,7 @@ void AIController::notify(Event* e) {
 */
 void AIController::eventUpdate(Event* e) {}
 
-void AIController::update(float timestep){}
+void AIController::update(float timestep,std::shared_ptr<GameState> state){}
 
 bool AIController::init() {
 	return true;
