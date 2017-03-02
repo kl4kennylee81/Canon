@@ -95,7 +95,6 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
-    
     auto obst = obj->getPhysicsComponent()->getBody();
     
     if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {

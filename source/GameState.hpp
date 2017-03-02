@@ -69,7 +69,20 @@ public:
         return _debugnode;
     }
     
-    bool removeObject(GameObject* obj);
+    void removeObject(GameObject* obj) {
+        for(auto it = _playerCharacters.begin() ; it != _playerCharacters.end();) {
+            if (it->get() == obj)
+                it = _playerCharacters.erase(it);
+            else
+                ++it;
+        }
+        for(auto it = _enemyObjects.begin() ; it != _enemyObjects.end();) {
+            if (it->get() == obj)
+                it = _enemyObjects.erase(it);
+            else
+                ++it;
+        }
+    }
 };
 
 #endif /* GameState_hpp */
