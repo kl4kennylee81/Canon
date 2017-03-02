@@ -71,6 +71,8 @@ public:
 
     virtual bool init(std::shared_ptr<GameState> state);
 
+    bool addToWorld(GameObject* obj);
+    
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
 		return (result->init() ? result : nullptr);

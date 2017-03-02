@@ -26,12 +26,14 @@ public:
     
     std::shared_ptr<cugl::Obstacle> getBody();
     
-    virtual bool init(std::shared_ptr<cugl::Obstacle> body);
+    virtual bool init(std::shared_ptr<cugl::Obstacle> body, Element element);
     
-    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::Obstacle> body) {
+    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::Obstacle> body, Element element) {
         std::shared_ptr<PhysicsComponent> result = std::make_shared<PhysicsComponent>();
-        return (result->init(body) ? result : nullptr);
+        return (result->init(body, element) ? result : nullptr);
     }
+    
+    Element getElementType() { return _elementType; };
     
 };
 

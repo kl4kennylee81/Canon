@@ -7,6 +7,7 @@
 //
 
 #include "CollisionController.hpp"
+#include "Element.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
@@ -15,25 +16,8 @@ using namespace cugl;
 
 #define DEBUG_KEY KeyCode::D
 
-#define BASIC_DENSITY       0.0f
-/** Friction of non-crate objects */
-#define BASIC_FRICTION      0.1f
-/** Friction of the crate objects */
-#define BASIC_DAMPING       1.0f
-/** Collision restitution for all objects */
-#define BASIC_RESTITUTION   0.1f
-/** Color to outline the physics nodes */
-#define STATIC_COLOR    Color4::YELLOW
-/** Opacity of the physics outlines */
-#define DYNAMIC_COLOR   Color4::GREEN
-
-/** The positions of the crate pyramid */
-float BOXES[] = { 14.5f, 14.25f,
-    13.0f, 12.00f, 16.0f, 12.00f,
-    11.5f,  9.75f, 14.5f,  9.75f, 17.5f, 9.75f,
-    13.0f,  7.50f, 16.0f,  7.50f,
-    11.5f,  5.25f, 14.5f,  5.25f, 17.5f, 5.25f,
-    10.0f,  3.00f, 13.0f,  3.00f, 16.0f, 3.00f, 19.0f, 3.0f};
+#define BLUE_COLOR   Color4::BLUE
+#define GOLD_COLOR   Color4::YELLOW
 
 CollisionController::CollisionController(){}
 
@@ -58,6 +42,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     if (keys->keyPressed(DEBUG_KEY)) {
         setDebug(!isDebug());
     }
+    _world->update(timestep);
 }
 
 
@@ -86,26 +71,39 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     // iterate through player character gameObjects and create the PhysicsComponent
     // and add it to the ObstacleWorld
     for(auto it = allObjects.begin() ; it != allObjects.end(); ++it) {
-        GameObject* obj = it->get();
-        auto obst = obj->getPhysicsComponent()->getBody();
-        
-        obst->setDebugColor(DYNAMIC_COLOR);
-        obst->setDensity(BASIC_DENSITY);
-        obst->setFriction(BASIC_FRICTION);
-        obst->setAngularDamping(BASIC_DAMPING);
-        obst->setRestitution(BASIC_RESTITUTION);
-        
-        _world->addObstacle(obst);
-        obst->setDebugScene(_debugnode);
+        addToWorld(it->get());
     }
     
     Input::activate<Keyboard>();
     setDebug(false);
     
+    
+    
+    return true;
+}
+
+bool CollisionController::addToWorld(GameObject* obj) {
+    auto obst = obj->getPhysicsComponent()->getBody();
+    
+    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
+        obst->setDebugColor(BLUE_COLOR);
+    }
+    if (obj->getPhysicsComponent()->getElementType() == Element::GOLD) {
+        obst->setDebugColor(GOLD_COLOR);
+    }
+    
+    _world->addObstacle(obst);
+    obst->setDebugScene(_debugnode);
+    obst->getBody()->SetUserData(obj);
+    
     return true;
 }
 
 void CollisionController::beginContact(b2Contact* contact) {
+    b2Body* body1 = contact->GetFixtureA()->GetBody();
+    b2Body* body2 = contact->GetFixtureB()->GetBody();
+    auto gameobj1 = body1->GetUserData();
+    auto gameobj2 = body2->GetUserData();
 }
 
 void CollisionController::beforeSolve(b2Contact* contact, const b2Manifold* oldManifold) {
