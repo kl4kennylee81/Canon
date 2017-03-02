@@ -104,3 +104,11 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
 void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _scene->render(_batch);
 }
+
+#pragma mark Helpers
+
+bool removeObject(GameObject* obj) {
+    //todo
+    return true;
+}
+

@@ -68,6 +68,8 @@ public:
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
     }
+    
+    bool removeObject(GameObject* obj);
 };
 
 #endif /* GameState_hpp */
