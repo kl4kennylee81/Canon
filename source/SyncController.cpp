@@ -25,7 +25,11 @@ void SyncController::notify(Event* e) {
 void SyncController::eventUpdate(Event* e) {}
 
 void SyncController::update(float timestep,std::shared_ptr<GameState> state) {
-    for(auto it = state->getAllObjects().begin() ; it != state->getAllObjects().end(); ++it) {
+    for(auto it = state->getPlayerCharacters().begin() ; it != state->getPlayerCharacters().end(); ++it) {
+        it->get()->sync();
+    }
+
+    for(auto it = state->getEnemyObjects().begin() ; it != state->getEnemyObjects().end(); ++it) {
         it->get()->sync();
     }
 }

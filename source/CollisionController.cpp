@@ -72,11 +72,19 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     
     _debugnode = state->getDebugNode();
     
-    std::vector<std::shared_ptr<GameObject>> allObjects = state->getAllObjects();
+    std::vector<std::shared_ptr<GameObject>> enemyObjects = state->getEnemyObjects();
+
+    std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
     // iterate through player character gameObjects and create the PhysicsComponent
     // and add it to the ObstacleWorld
-    for(auto it = allObjects.begin() ; it != allObjects.end(); ++it) {
+    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
+        addToWorld(it->get());
+    }
+    
+    // iterate through enemy character gameObjects and create the PhysicsComponent
+    // and add it to the ObstacleWorld
+    for(auto it = enemyObjects.begin() ; it != enemyObjects.end(); ++it) {
         addToWorld(it->get());
     }
     

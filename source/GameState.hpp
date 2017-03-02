@@ -39,7 +39,7 @@ protected:
     /**
      * All objects include the player characters and all other objects in the game
      */
-    std::vector<std::shared_ptr<GameObject>> _allObjects;
+    std::vector<std::shared_ptr<GameObject>> _enemyObjects;
     
     /** not sure yet if representing time as an int is the move */
     int time_elapsed;
@@ -61,7 +61,7 @@ public:
      */
     std::vector<std::shared_ptr<GameObject>>& getPlayerCharacters() { return _playerCharacters; }
     
-    std::vector<std::shared_ptr<GameObject>>& getAllObjects() { return _allObjects; }
+    std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
