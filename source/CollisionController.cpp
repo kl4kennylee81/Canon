@@ -91,11 +91,9 @@ bool CollisionController::addToWorld(GameObject* obj) {
     
     if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
         obst->setDebugColor(BLUE_COLOR);
-        obst->setLinearVelocity(-5,-5);
     }
     if (obj->getPhysicsComponent()->getElementType() == Element::GOLD) {
         obst->setDebugColor(GOLD_COLOR);
-        obst->setLinearVelocity(5,5);
     }
     
     obst->setSensor(true);
@@ -113,7 +111,6 @@ bool CollisionController::removeFromWorld(GameObject* obj) {
     return true;
 }
 
-//TODO: events?
 void CollisionController::beginContact(b2Contact* contact) {
     b2Body* body1 = contact->GetFixtureA()->GetBody();
     b2Body* body2 = contact->GetFixtureB()->GetBody();
@@ -123,7 +120,7 @@ void CollisionController::beginContact(b2Contact* contact) {
                         obj2->getPhysicsComponent()->getElementType());
     int remove = 0;
     
-    if (obj1->getIsPlayer() && obj2->getIsPlayer()) {
+    if (obj1->getIsPlayer() && !obj2->getIsPlayer()) {
         if (sameElement) {
             remove = 2;
         } else {
