@@ -13,6 +13,28 @@
 
 using namespace cugl;
 
+#define DEBUG_KEY KeyCode::D
+
+#define BASIC_DENSITY       0.0f
+/** Friction of non-crate objects */
+#define BASIC_FRICTION      0.1f
+/** Friction of the crate objects */
+#define BASIC_DAMPING       1.0f
+/** Collision restitution for all objects */
+#define BASIC_RESTITUTION   0.1f
+/** Color to outline the physics nodes */
+#define STATIC_COLOR    Color4::YELLOW
+/** Opacity of the physics outlines */
+#define DYNAMIC_COLOR   Color4::GREEN
+
+/** The positions of the crate pyramid */
+float BOXES[] = { 14.5f, 14.25f,
+    13.0f, 12.00f, 16.0f, 12.00f,
+    11.5f,  9.75f, 14.5f,  9.75f, 17.5f, 9.75f,
+    13.0f,  7.50f, 16.0f,  7.50f,
+    11.5f,  5.25f, 14.5f,  5.25f, 17.5f, 5.25f,
+    10.0f,  3.00f, 13.0f,  3.00f, 16.0f, 3.00f, 19.0f, 3.0f};
+
 CollisionController::CollisionController(){}
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
@@ -31,6 +53,11 @@ void CollisionController::notify(Event* e) {
 void CollisionController::eventUpdate(Event* e) {}
 
 void CollisionController::update(float timestep){
+    Keyboard* keys = Input::get<Keyboard>();
+    
+    if (keys->keyPressed(DEBUG_KEY)) {
+        setDebug(!isDebug());
+    }
 }
 
 
@@ -52,17 +79,28 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
         beforeSolve(contact,oldManifold);
     };
     
-    std::vector<std::shared_ptr<GameObject>> playerChars = state->getPlayerCharacters();
+    _debugnode = state->getDebugNode();
+    
+    std::vector<std::shared_ptr<GameObject>> allObjects = state->getAllObjects();
     
     // iterate through player character gameObjects and create the PhysicsComponent
     // and add it to the ObstacleWorld
-    for(auto it = playerChars.begin() ; it != playerChars.end(); ++it) {
+    for(auto it = allObjects.begin() ; it != allObjects.end(); ++it) {
         GameObject* obj = it->get();
-        std::shared_ptr<BoxObstacle> box = BoxObstacle::alloc(obj->getNode()->getPosition(), obj->getNode()->getSize());
-        std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box);
-        obj->setPhysicsComponent(physics);
-        _world->addObstacle(box);
+        auto obst = obj->getPhysicsComponent()->getBody();
+        
+        obst->setDebugColor(DYNAMIC_COLOR);
+        obst->setDensity(BASIC_DENSITY);
+        obst->setFriction(BASIC_FRICTION);
+        obst->setAngularDamping(BASIC_DAMPING);
+        obst->setRestitution(BASIC_RESTITUTION);
+        
+        _world->addObstacle(obst);
+        obst->setDebugScene(_debugnode);
     }
+    
+    Input::activate<Keyboard>();
+    setDebug(false);
     
     return true;
 }

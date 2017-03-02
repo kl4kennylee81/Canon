@@ -24,7 +24,7 @@ public:
     
     PhysicsComponent();
     
-    cugl::Obstacle* getBody();
+    std::shared_ptr<cugl::Obstacle> getBody();
     
     virtual bool init(std::shared_ptr<cugl::Obstacle> body);
     

@@ -21,18 +21,18 @@ _switchController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
-	BaseController::attach(obs);
+    BaseController::attach(obs);
 }
 void GameplayController::detach(Observer* obs) {
-	BaseController::detach(obs);
+    BaseController::detach(obs);
 }
 void GameplayController::notify(Event* e) {
-	BaseController::notify(e);
+    BaseController::notify(e);
 }
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
-    
+    _collisionController->update(timestep);
 }
 
 /**
@@ -47,11 +47,11 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 
 bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _world = levelWorld;
-	_gameState = GameState::alloc(levelWorld->getAssetManager());
-	_pathController = PathController::alloc();
-	_moveController = MoveController::alloc();
-	_collisionController = CollisionController::alloc(_gameState);
-	_aiController = AIController::alloc();
+    _gameState = GameState::alloc(levelWorld->getAssetManager());
+    _pathController = PathController::alloc();
+    _moveController = MoveController::alloc();
+    _collisionController = CollisionController::alloc(_gameState);
+    _aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
-	return true;
+    return true;
 }
