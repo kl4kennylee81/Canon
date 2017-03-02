@@ -16,13 +16,14 @@ _speed(0),
 _acceleration(0)
 {}
 
-cugl::Obstacle* PhysicsComponent::getBody(){
-    return _body.get();
+std::shared_ptr<cugl::Obstacle> PhysicsComponent::getBody(){
+    return _body;
 }
 
-bool PhysicsComponent::init(std::shared_ptr<cugl::Obstacle> body){
+bool PhysicsComponent::init(std::shared_ptr<cugl::Obstacle> body, Element element){
     _body = body;
     _speed = 0;
     _acceleration = 0;
+    _elementType = element;
     return true;
 }

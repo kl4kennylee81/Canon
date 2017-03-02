@@ -45,8 +45,13 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _worldnode->setPosition(Vec2::ZERO);
     
+    _debugnode = Node::alloc();
+    _debugnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _debugnode->setPosition(Vec2::ZERO);
+    
     _scene->addChild(_bgnode,0);
     _scene->addChild(_worldnode,1);
+    _scene->addChild(_debugnode,2);
     
     // create the playable character gameObjects
     // the box2d Obstacle will be created in the collisionController init
@@ -60,6 +65,9 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player1Node->setPosition(char1Pos);
     std::shared_ptr<GameObject> player1 = GameObject::alloc(player1Node);
     
+    auto box1 = BoxObstacle::alloc(player1->getNode()->getPosition(), player1->getNode()->getSize());
+    std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, Element::BLUE);
+    player1->setPhysicsComponent(physics1);
     
     Vec2 char2Pos = Vec2::Vec2(150,150);
     image = assets->get<Texture>(PLAYER_CHAR_TWO);
@@ -67,6 +75,10 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player2Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player2Node->setPosition(char2Pos);
     std::shared_ptr<GameObject> player2 = GameObject::alloc(player2Node);
+    
+    auto box2 = BoxObstacle::alloc(player2->getNode()->getPosition(), player2->getNode()->getSize());
+    std::shared_ptr<PhysicsComponent> physics2 = PhysicsComponent::alloc(box2, Element::GOLD);
+    player2->setPhysicsComponent(physics2);
     
     _worldnode->addChild(player1Node,1);
     _worldnode->addChild(player2Node,1);
@@ -78,6 +90,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     _allObjects.push_back(player2);
     
     _activeCharacterPosition = 0;
+    
     return true;
 }
 
