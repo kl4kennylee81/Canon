@@ -55,10 +55,7 @@ public:
         return true;
     }
 
-    virtual bool init(std::shared_ptr<cugl::AssetManager> assets) {
-        _assets = assets;
-		return true;
-	}
+    virtual bool init(std::shared_ptr<cugl::AssetManager> assets);
     
     virtual bool init(std::shared_ptr<cugl::AssetManager> assets, std::shared_ptr<LevelData> levelData){
         _assets = assets;

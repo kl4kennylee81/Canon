@@ -54,3 +54,9 @@ void World::populate(){
     _shapeData.insert(std::make_pair(1,sd));
 }
 
+bool World::init(std::shared_ptr<cugl::AssetManager> assets){
+    _assets = assets;
+    populate();
+    return true;
+}
+
