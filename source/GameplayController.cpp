@@ -32,6 +32,8 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
+	_pathController->update(timestep, _gameState);
+	_moveController->update(timestep, _gameState);
     
 }
 
@@ -48,10 +50,13 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _world = levelWorld;
 	_gameState = GameState::alloc(levelWorld->getAssetManager());
-	_pathController = PathController::alloc();
-	_moveController = MoveController::alloc();
+	_pathController = PathController::alloc(_gameState);
+	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
+
+	_pathController->attach(_moveController);
+
 	return true;
 }

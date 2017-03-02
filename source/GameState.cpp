@@ -27,7 +27,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     Size dimen = Application::get()->getDisplaySize();
     dimen *= GAME_WIDTH/dimen.width; // Lock the game to a reasonable resolution
     
-    _scene = Scene::alloc(dimen);
+    _scene = Scene::alloc(dimen.width, dimen.height);
     
     // Get the space background.  Its size determines all scaling.
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);

@@ -56,6 +56,10 @@ public:
      * Return the vector by reference
      */
     std::vector<std::shared_ptr<GameObject>>& getPlayerCharacters() { return _playerCharacters; }
+
+	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
+
+	std::shared_ptr<GameObject> getActiveCharacter() { return _playerCharacters.at(_activeCharacterPosition); }
 };
 
 #endif /* GameState_hpp */
