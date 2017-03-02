@@ -25,6 +25,32 @@ class CollisionController : public BaseController {
 protected:
     /** The Box2D world */
     std::shared_ptr<cugl::ObstacleWorld> _world;
+    
+    std::shared_ptr<cugl::Node> _debugnode;
+    
+    /** Whether or not debug mode is active */
+    bool _debug;
+    
+    /**
+     * Returns true if debug mode is active.
+     *
+     * If true, all objects will display their physics bodies.
+     *
+     * @return true if debug mode is active.
+     */
+    bool isDebug( ) const { return _debug; }
+    
+    /**
+     * Sets whether debug mode is active.
+     *
+     * If true, all objects will display their physics bodies.
+     *
+     * @param value whether debug mode is active.
+     */
+    void setDebug(bool value) {
+        _debug = value;
+        _debugnode->setVisible(value);
+    }
 
 public:
     
