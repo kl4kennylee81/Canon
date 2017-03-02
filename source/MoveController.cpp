@@ -10,7 +10,8 @@
 
 using namespace cugl;
 
-MoveController::MoveController(){}
+MoveController::MoveController():
+BaseController(){}
 
 void MoveController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);

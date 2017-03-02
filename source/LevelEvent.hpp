@@ -24,8 +24,7 @@ class LevelEvent : Event {
 };
 
 class ObjectSpawnEvent : LevelEvent {
-
-    ObjectData* objData;
+    int objDataKey;
 };
 
 #endif /* LevelEvent_hpp */

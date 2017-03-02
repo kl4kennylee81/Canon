@@ -13,7 +13,8 @@
 
 using namespace cugl;
 
-CollisionController::CollisionController(){}
+CollisionController::CollisionController():
+BaseController(){}
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);

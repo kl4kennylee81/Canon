@@ -11,6 +11,7 @@
 using namespace cugl;
 
 GameplayController::GameplayController() :
+BaseController(),
 _world(nullptr),
 _gameState(nullptr),
 _pathController(nullptr),
