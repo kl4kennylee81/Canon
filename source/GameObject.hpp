@@ -19,6 +19,7 @@ protected:
     int uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
+    bool _isPlayer;
     
 public:
     
@@ -39,6 +40,10 @@ public:
         std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
         return (result->init(body,node) ? result : nullptr);
     }
+    
+    bool getIsPlayer() { return _isPlayer; };
+    
+    void setIsPlayer(bool val) { _isPlayer = val; };
     
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
     

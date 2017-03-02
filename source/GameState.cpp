@@ -64,6 +64,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player1Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player1Node->setPosition(char1Pos);
     std::shared_ptr<GameObject> player1 = GameObject::alloc(player1Node);
+    player1->setIsPlayer(true);
     
     auto box1 = BoxObstacle::alloc(player1->getNode()->getPosition(), player1->getNode()->getSize());
     std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, Element::BLUE);
@@ -75,6 +76,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player2Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player2Node->setPosition(char2Pos);
     std::shared_ptr<GameObject> player2 = GameObject::alloc(player2Node);
+    player2->setIsPlayer(true);
     
     auto box2 = BoxObstacle::alloc(player2->getNode()->getPosition(), player2->getNode()->getSize());
     std::shared_ptr<PhysicsComponent> physics2 = PhysicsComponent::alloc(box2, Element::GOLD);

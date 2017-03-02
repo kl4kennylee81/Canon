@@ -28,6 +28,8 @@ protected:
     
     std::shared_ptr<cugl::Node> _debugnode;
     
+    std::vector<GameObject*> objsScheduledForRemoval;
+    
     /** Whether or not debug mode is active */
     bool _debug;
     
@@ -72,6 +74,8 @@ public:
     virtual bool init(std::shared_ptr<GameState> state);
 
     bool addToWorld(GameObject* obj);
+    
+    bool removeFromWorld(GameObject* obj);
     
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
