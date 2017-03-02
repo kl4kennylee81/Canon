@@ -14,9 +14,24 @@
 #include "Path.hpp"
 
 class ActivePath {
-
+public:
     std::shared_ptr<Path> _path;
-    int pathIndex;
+    int _pathIndex;
+
+	bool init(std::shared_ptr<Path> path) {
+		_path = path;
+		_pathIndex = 0;
+		return true;
+	}
+
+	ActivePath():_path(nullptr),_pathIndex(0) {
+
+	}
+
+	static std::shared_ptr<ActivePath> alloc(std::shared_ptr<Path> path) {
+		std::shared_ptr<ActivePath> result = std::make_shared<ActivePath>();
+		return (result->init(path) ? result : nullptr);
+	}
 };
 
 #endif /* ActivePath_hpp */

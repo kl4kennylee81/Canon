@@ -114,10 +114,10 @@
     <ClInclude Include="..\..\source\Subject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Wave.hpp">
+    <ClInclude Include="..\..\source\World.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\World.hpp">
+    <ClInclude Include="..\..\source\SwitchController.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,9 +180,6 @@
     <ClCompile Include="..\..\source\Subject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Wave.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -235,6 +232,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\LevelController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SwitchController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
