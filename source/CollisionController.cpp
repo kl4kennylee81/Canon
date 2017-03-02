@@ -58,6 +58,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     if (keys->keyPressed(DEBUG_KEY)) {
         setDebug(!isDebug());
     }
+}
 
 
 bool CollisionController::init() {

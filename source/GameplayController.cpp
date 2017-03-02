@@ -32,7 +32,7 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
-    _collisionController->update(timestep);
+    _collisionController->update(timestep, _gameState);
 }
 
 /**
