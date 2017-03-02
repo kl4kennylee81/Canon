@@ -42,7 +42,7 @@ public:
      * This constructor does not allocate any objects or start the game.
      * This allows us to use the object without a heap pointer.
      */
-    LoadController() : _progress(0.0f), _completed(false) {}
+    LoadController() : BaseController(),_progress(0.0f), _completed(false) {}
     
     /**
      * Disposes of all (non-static) resources allocated to this mode.

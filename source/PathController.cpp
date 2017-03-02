@@ -16,7 +16,8 @@
 
 using namespace cugl;
 
-PathController::PathController(){}
+PathController::PathController():
+BaseController(){}
 
 void PathController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);

@@ -11,6 +11,7 @@
 using namespace cugl;
 
 GameplayController::GameplayController() :
+BaseController(),
 _world(nullptr),
 _gameState(nullptr),
 _pathController(nullptr),
@@ -21,20 +22,20 @@ _switchController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
-	BaseController::attach(obs);
+    BaseController::attach(obs);
 }
 void GameplayController::detach(Observer* obs) {
-	BaseController::detach(obs);
+    BaseController::detach(obs);
 }
 void GameplayController::notify(Event* e) {
-	BaseController::notify(e);
+    BaseController::notify(e);
 }
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
 	_pathController->update(timestep, _gameState);
 	_moveController->update(timestep, _gameState);
-    
+    _collisionController->update(timestep, _gameState);
 }
 
 /**

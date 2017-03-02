@@ -202,6 +202,7 @@
     <ClInclude Include="..\..\source\GameState.hpp" />
     <ClInclude Include="..\..\source\Level.hpp" />
     <ClInclude Include="..\..\source\LevelController.hpp" />
+    <ClInclude Include="..\..\source\LevelData.hpp" />
     <ClInclude Include="..\..\source\LevelEvent.hpp" />
     <ClInclude Include="..\..\source\LoadController.hpp" />
     <ClInclude Include="..\..\source\MenuController.hpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="..\..\source\ShapeData.hpp" />
     <ClInclude Include="..\..\source\Subject.hpp" />
     <ClInclude Include="..\..\source\SwitchController.hpp" />
+    <ClInclude Include="..\..\source\WaveData.hpp" />
     <ClInclude Include="..\..\source\World.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -250,6 +252,7 @@
     <ClCompile Include="..\..\source\GameState.cpp" />
     <ClCompile Include="..\..\source\Level.cpp" />
     <ClCompile Include="..\..\source\LevelController.cpp" />
+    <ClCompile Include="..\..\source\LevelData.cpp" />
     <ClCompile Include="..\..\source\LevelEvent.cpp" />
     <ClCompile Include="..\..\source\LoadController.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
@@ -267,6 +270,7 @@
     <ClCompile Include="..\..\source\ShapeData.cpp" />
     <ClCompile Include="..\..\source\Subject.cpp" />
     <ClCompile Include="..\..\source\SwitchController.cpp" />
+    <ClCompile Include="..\..\source\WaveData.cpp" />
     <ClCompile Include="..\..\source\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

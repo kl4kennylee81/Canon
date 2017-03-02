@@ -20,6 +20,8 @@ protected:
      */
     std::shared_ptr<cugl::Node> _worldnode;
     
+    std::shared_ptr<cugl::Node> _debugnode;
+    
     std::shared_ptr<cugl::Node> _bgnode;
     
     /** The root of our scene graph. 
@@ -60,6 +62,12 @@ public:
 	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
 
 	std::shared_ptr<GameObject> getActiveCharacter() { return _playerCharacters.at(_activeCharacterPosition); }
+    
+    std::vector<std::shared_ptr<GameObject>>& getAllObjects() { return _allObjects; }
+    
+    std::shared_ptr<cugl::Node> getDebugNode() {
+        return _debugnode;
+    }
 };
 
 #endif /* GameState_hpp */

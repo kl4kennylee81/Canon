@@ -10,7 +10,8 @@
 
 using namespace cugl;
 
-SwitchController::SwitchController(){}
+SwitchController::SwitchController():
+BaseController(){}
 
 void SwitchController::attach(std::shared_ptr<Observer> obs) {
     BaseController::attach(obs);
