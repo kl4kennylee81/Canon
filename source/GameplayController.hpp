@@ -25,8 +25,6 @@
 
 class GameplayController : public BaseController {
 protected:
-    
-	std::shared_ptr<World> _world;
 	std::shared_ptr<GameState> _gameState;
 	std::shared_ptr<PathController> _pathController;
 	std::shared_ptr<MoveController> _moveController;

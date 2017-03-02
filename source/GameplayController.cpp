@@ -12,7 +12,6 @@ using namespace cugl;
 
 GameplayController::GameplayController() :
 BaseController(),
-_world(nullptr),
 _gameState(nullptr),
 _pathController(nullptr),
 _moveController(nullptr),
@@ -54,6 +53,6 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _collisionController = CollisionController::alloc(_gameState);
     _aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
-    _levelController = LevelController::alloc(_world);
+    _levelController = LevelController::alloc(levelWorld);
     return true;
 }
