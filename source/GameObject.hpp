@@ -49,6 +49,8 @@ public:
     /** get a weak reference to the physics component, don't persist this reference 
      *  or we will have memory leaks */
     PhysicsComponent* getPhysicsComponent() {return _body.get();}
+    
+    void sync();
 };
 
 #endif /* GameObject_hpp */
