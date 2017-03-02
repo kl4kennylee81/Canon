@@ -15,12 +15,12 @@
 
 using namespace cugl;
 
+CollisionController::CollisionController():
+BaseController(){}
 #define DEBUG_KEY KeyCode::D
 
 #define BLUE_COLOR   Color4::BLUE
 #define GOLD_COLOR   Color4::YELLOW
-
-CollisionController::CollisionController(){}
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);

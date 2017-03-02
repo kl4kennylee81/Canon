@@ -10,6 +10,22 @@
 
 using namespace cugl;
 
+void LevelData::addLevelEntry(LevelEntry entry){
+    _levelEntries.push_back(entry);
+}
+
+float LevelData::getTime(int index){
+    return _levelEntries.at(index).time;
+}
+
+int LevelData::getWaveKey(int index){
+    return _levelEntries.at(index).waveKey;
+}
+
+size_t LevelData::getNumberWaves(){
+    return _levelEntries.size();
+}
+
 std::string LevelData::serialize(){
     return "";
 }

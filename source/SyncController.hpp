@@ -1,22 +1,22 @@
 //
-//  LevelController.hpp
+//  SyncController.hpp
 //  Canon
 //
-//  Created by Kenneth Lee on 2/26/17.
+//  Created by Kenneth Lee on 3/2/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
-#ifndef LevelController_hpp
-#define LevelController_hpp
+#ifndef SyncController_hpp
+#define SyncController_hpp
 
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
 
-class LevelController : BaseController {
+class SyncController : public BaseController {
 public:
-    LevelController();
+    SyncController();
     
     virtual void attach(std::shared_ptr<Observer> obs);
     
@@ -33,10 +33,10 @@ public:
     
     virtual bool init();
     
-    static std::shared_ptr<LevelController> alloc() {
-        std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
+    static std::shared_ptr<SyncController> alloc() {
+        std::shared_ptr<SyncController> result = std::make_shared<SyncController>();
         return (result->init() ? result : nullptr);
     }
 };
 
-#endif /* LevelController_hpp */
+#endif /* SyncController_hpp */
