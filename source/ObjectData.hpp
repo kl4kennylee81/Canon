@@ -14,10 +14,10 @@
 #include "Data.hpp"
 
 class ObjectData : public Data {
-protected:
+public:
     // key uid to a path data preloaded into the world
     // used to create an activePath
-    int path_id;
+//    int path_id;
     
     // used to spawn the physics component shape_id,speed,acceleration
     
@@ -33,8 +33,22 @@ protected:
     // and the information about different animation state
     // and how many frames to stay there
     // will be in the ActiveAnimation
-    int animation_id;
-public:
+    
+//    int animation_id;
+    
+    ObjectData() : Data(){}
+    
+    ObjectData(int uid) : Data(uid){}
+    
+    bool init(){ return true; }
+    
+    bool init(int uid, int shape_id, int speed,int acceleration);
+    
+    static std::shared_ptr<ObjectData> alloc() {
+        std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
+        return (result->init() ? result : nullptr);
+    }
+
     virtual std::string serialize();
     
     virtual bool preload(const std::string& file);

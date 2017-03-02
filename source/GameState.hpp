@@ -53,7 +53,7 @@ public:
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
-    
+        
     /**
      * Return the vector by reference
      */

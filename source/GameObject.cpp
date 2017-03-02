@@ -12,12 +12,14 @@ using namespace cugl;
 
 bool GameObject::init(std::shared_ptr<cugl::Node> node){
     _node = node;
+    _isPlayer = false;
     return true;
 }
 
 bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
     setPhysicsComponent(body);
     _node = node;
+    _isPlayer = false;
     return true;
 }
 
@@ -29,5 +31,9 @@ void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){
     _body->getBody()->setFriction(0.0f);
     _body->getBody()->setRestitution(0.0f);
     _body->getBody()->setSensor(true);
+}
+
+void GameObject::sync(){
+    _node->setPosition(_body->getBody()->getPosition());
 }
 

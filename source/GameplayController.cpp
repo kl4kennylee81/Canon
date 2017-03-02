@@ -12,13 +12,13 @@ using namespace cugl;
 
 GameplayController::GameplayController() :
 BaseController(),
-_world(nullptr),
 _gameState(nullptr),
 _pathController(nullptr),
 _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
-_switchController(nullptr)
+_switchController(nullptr),
+_levelController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
@@ -49,13 +49,13 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 
 
 bool GameplayController::init(std::shared_ptr<World> levelWorld) {
-    _world = levelWorld;
 	_gameState = GameState::alloc(levelWorld->getAssetManager());
 	_pathController = PathController::alloc(_gameState);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc();
+	_levelController = LevelController::alloc(levelWorld);
 
 	_pathController->attach(_moveController);
 

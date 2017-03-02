@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CCC181E67F57200F218F8 /* SyncController.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
@@ -107,6 +108,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F1CCC181E67F57200F218F8 /* SyncController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyncController.cpp; sourceTree = "<group>"; };
+		9F1CCC191E67F57200F218F8 /* SyncController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncController.hpp; sourceTree = "<group>"; };
 		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
@@ -271,6 +274,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F1CCC151E67F56200F218F8 /* Syncing */ = {
+			isa = PBXGroup;
+			children = (
+				9F1CCC181E67F57200F218F8 /* SyncController.cpp */,
+				9F1CCC191E67F57200F218F8 /* SyncController.hpp */,
+			);
+			name = Syncing;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,8 +470,6 @@
 		9FFA3FB41E636BED0029D648 /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FBF1E636D220029D648 /* World.cpp */,
-				9FFA3FC01E636D220029D648 /* World.hpp */,
 				9FFA3FAB1E636B430029D648 /* GameState.cpp */,
 				9FFA3FAC1E636B430029D648 /* GameState.hpp */,
 				DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */,
@@ -488,6 +498,8 @@
 				9FFA3FE11E6374C90029D648 /* Data.hpp */,
 				9FFA3FD61E6373470029D648 /* LoadController.cpp */,
 				9FFA3FD71E6373470029D648 /* LoadController.hpp */,
+				9FFA3FBF1E636D220029D648 /* World.cpp */,
+				9FFA3FC01E636D220029D648 /* World.hpp */,
 			);
 			name = load;
 			sourceTree = "<group>";
@@ -609,6 +621,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9F1CCC151E67F56200F218F8 /* Syncing */,
 				9FCE47171E667430002F4A3E /* Switching */,
 				9FE8E9E11E6382AF00DBE3BC /* Animation */,
 				9FE8E9D51E6381A300DBE3BC /* menu */,
@@ -775,6 +788,7 @@
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
+				9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */,
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */,
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,

@@ -19,6 +19,7 @@ protected:
     int uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
+    bool _isPlayer;
     
 public:
     
@@ -40,6 +41,10 @@ public:
         return (result->init(body,node) ? result : nullptr);
     }
     
+    bool getIsPlayer() { return _isPlayer; };
+    
+    void setIsPlayer(bool val) { _isPlayer = val; };
+    
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
     
     /** get a weak reference to the Scene graph node, don't persist this reference 
@@ -49,6 +54,8 @@ public:
     /** get a weak reference to the physics component, don't persist this reference 
      *  or we will have memory leaks */
     PhysicsComponent* getPhysicsComponent() {return _body.get();}
+    
+    void sync();
 };
 
 #endif /* GameObject_hpp */

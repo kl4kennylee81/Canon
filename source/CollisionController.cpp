@@ -8,6 +8,7 @@
 
 #include "CollisionController.hpp"
 #include "Element.hpp"
+#include "CollisionEvent.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
@@ -38,10 +39,15 @@ void CollisionController::eventUpdate(Event* e) {}
 
 void CollisionController::update(float timestep,std::shared_ptr<GameState> state){
     Keyboard* keys = Input::get<Keyboard>();
-    
     if (keys->keyPressed(DEBUG_KEY)) {
         setDebug(!isDebug());
     }
+    
+    for (auto obj : objsScheduledForRemoval) {
+        removeFromWorld(obj);
+    }
+    objsScheduledForRemoval.clear();
+    
     _world->update(timestep);
 }
 
@@ -56,7 +62,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     
     // 2nd arguement is setting gravity to 0
     _world = cugl::ObstacleWorld::alloc(bounds,Vec2::ZERO);
-    _world->setGravity(Vec2::ZERO);
+    _world->activateCollisionCallbacks(true);
     _world->onBeginContact = [this](b2Contact* contact) {
         beginContact(contact);
     };
@@ -77,8 +83,6 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     Input::activate<Keyboard>();
     setDebug(false);
     
-    
-    
     return true;
 }
 
@@ -92,6 +96,8 @@ bool CollisionController::addToWorld(GameObject* obj) {
         obst->setDebugColor(GOLD_COLOR);
     }
     
+    obst->setSensor(true);
+    
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);
     obst->getBody()->SetUserData(obj);
@@ -99,12 +105,50 @@ bool CollisionController::addToWorld(GameObject* obj) {
     return true;
 }
 
+bool CollisionController::removeFromWorld(GameObject* obj) {
+    _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
+    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
+    return true;
+}
+
 void CollisionController::beginContact(b2Contact* contact) {
     b2Body* body1 = contact->GetFixtureA()->GetBody();
     b2Body* body2 = contact->GetFixtureB()->GetBody();
-    auto gameobj1 = body1->GetUserData();
-    auto gameobj2 = body2->GetUserData();
+    auto obj1 = static_cast<GameObject*>(body1->GetUserData());
+    auto obj2 = static_cast<GameObject*>(body2->GetUserData());
+    bool sameElement = (obj1->getPhysicsComponent()->getElementType() ==
+                        obj2->getPhysicsComponent()->getElementType());
+    int remove = 0;
+    
+    if (obj1->getIsPlayer() && !obj2->getIsPlayer()) {
+        if (sameElement) {
+            remove = 2;
+        } else {
+            remove = 1;
+        }
+    }
+    if (obj2->getIsPlayer() && !obj1->getIsPlayer()) {
+        if (sameElement) {
+            remove = 1;
+        } else {
+            remove = 2;
+        }
+    }
+    
+    if (remove == 1) {
+        objsScheduledForRemoval.push_back(obj1);
+        //ObjectGoneEvent* event;
+        //event->init(obj1);
+        //notify(event);
+    }
+    if (remove == 2) {
+        objsScheduledForRemoval.push_back(obj2);
+        //ObjectGoneEvent* event;
+        //event->init(obj2);
+        //notify(event);
+    }
 }
 
 void CollisionController::beforeSolve(b2Contact* contact, const b2Manifold* oldManifold) {
+    //dont need?
 }

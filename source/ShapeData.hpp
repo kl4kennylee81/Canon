@@ -15,6 +15,25 @@
 
 class ShapeData : public Data {
 public:
+    int height;
+    int width;
+    
+    ShapeData(int uid): Data(uid),height(0),width(0){};
+    
+    ShapeData(int uid,int height,int width):Data(uid){
+        height = height;
+        width = width;
+    };
+    
+    bool init(){
+        return true;
+    }
+    
+    static std::shared_ptr<ShapeData> alloc(int uid,int height,int width) {
+        std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>(uid,height,width);
+        return (result->init() ? result : nullptr);
+    }
+    
     virtual std::string serialize();
     
     virtual bool preload(const std::string& file);

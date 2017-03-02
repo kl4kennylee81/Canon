@@ -13,8 +13,14 @@
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
+#include "World.hpp"
+#include "Level.hpp"
 
 class LevelController : BaseController {
+protected:
+    std::shared_ptr<World> _world;
+    
+    Level _level;
 public:
     LevelController();
     
@@ -31,11 +37,11 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
-    virtual bool init();
+    virtual bool init(std::shared_ptr<World> world);
     
-    static std::shared_ptr<LevelController> alloc() {
+    static std::shared_ptr<LevelController> alloc(std::shared_ptr<World> world) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
-        return (result->init() ? result : nullptr);
+        return (result->init(world) ? result : nullptr);
     }
 };
 

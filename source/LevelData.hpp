@@ -14,17 +14,31 @@
 #include "Data.hpp"
 #include <vector>
 
+class LevelEntry {
+public:
+    int waveKey;
+    float time;
+    
+    LevelEntry(int waveKey,int time){
+        waveKey = waveKey;
+        time = time;
+    }
+};
+
 class LevelData : public Data {
 protected:
-    class LevelEntry {
-    public:
-        int waveKey;
-        float time;
-    };
-    
     std::vector<LevelEntry> _levelEntries;
 public:
-    LevelData(){}
+    LevelData() : Data(){}
+
+    LevelData(int uid) : Data(uid){}
+    
+    bool init(int uid);
+    
+    static std::shared_ptr<LevelData> alloc(int uid) {
+        std::shared_ptr<LevelData> result = std::make_shared<LevelData>();
+        return (result->init(uid) ? result : nullptr);
+    }
     
     void addLevelEntry(LevelEntry entry);
     

@@ -55,12 +55,9 @@ public:
         return true;
     }
 
-    virtual bool init(std::shared_ptr<cugl::AssetManager> assets) {
-        _assets = assets;
-		return true;
-	}
+    virtual bool init(std::shared_ptr<cugl::AssetManager> assets);
     
-    virtual bool init(std::shared_ptr<cugl::AssetManager> assets, std::shared_ptr<LevelData> levelData) {
+    virtual bool init(std::shared_ptr<cugl::AssetManager> assets, std::shared_ptr<LevelData> levelData){
         _assets = assets;
         _levelData = levelData;
         return true;
@@ -82,6 +79,13 @@ public:
         std::shared_ptr<World> result = std::make_shared<World>();
         return (result->init(assets,levelData) ? result : nullptr);
     }
+    
+    std::shared_ptr<LevelData> getLevelData(){
+        return _levelData;
+    }
+    
+    /** testing function to populate the world without the data files */
+    void populate();
 };
 
 #endif /* World_hpp */
