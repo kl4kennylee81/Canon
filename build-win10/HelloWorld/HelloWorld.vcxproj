@@ -125,7 +125,7 @@
       <DisableSpecificWarnings>4068;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>CUGL.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -202,6 +202,7 @@
     <ClInclude Include="..\..\source\GameState.hpp" />
     <ClInclude Include="..\..\source\Level.hpp" />
     <ClInclude Include="..\..\source\LevelController.hpp" />
+    <ClInclude Include="..\..\source\LevelData.hpp" />
     <ClInclude Include="..\..\source\LevelEvent.hpp" />
     <ClInclude Include="..\..\source\LoadController.hpp" />
     <ClInclude Include="..\..\source\MenuController.hpp" />
@@ -214,10 +215,13 @@
     <ClInclude Include="..\..\source\PathController.hpp" />
     <ClInclude Include="..\..\source\pathData.hpp" />
     <ClInclude Include="..\..\source\PathEvent.hpp" />
+    <ClInclude Include="..\..\source\PathParameters.h" />
     <ClInclude Include="..\..\source\PhysicsComponent.hpp" />
     <ClInclude Include="..\..\source\ShapeData.hpp" />
     <ClInclude Include="..\..\source\Subject.hpp" />
-    <ClInclude Include="..\..\source\Wave.hpp" />
+    <ClInclude Include="..\..\source\SwitchController.hpp" />
+    <ClInclude Include="..\..\source\SyncController.hpp" />
+    <ClInclude Include="..\..\source\WaveData.hpp" />
     <ClInclude Include="..\..\source\World.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -250,6 +254,7 @@
     <ClCompile Include="..\..\source\GameState.cpp" />
     <ClCompile Include="..\..\source\Level.cpp" />
     <ClCompile Include="..\..\source\LevelController.cpp" />
+    <ClCompile Include="..\..\source\LevelData.cpp" />
     <ClCompile Include="..\..\source\LevelEvent.cpp" />
     <ClCompile Include="..\..\source\LoadController.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
@@ -266,7 +271,9 @@
     <ClCompile Include="..\..\source\PhysicsComponent.cpp" />
     <ClCompile Include="..\..\source\ShapeData.cpp" />
     <ClCompile Include="..\..\source\Subject.cpp" />
-    <ClCompile Include="..\..\source\Wave.cpp" />
+    <ClCompile Include="..\..\source\SwitchController.cpp" />
+    <ClCompile Include="..\..\source\SyncController.cpp" />
+    <ClCompile Include="..\..\source\WaveData.cpp" />
     <ClCompile Include="..\..\source\World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

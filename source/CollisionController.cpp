@@ -44,7 +44,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     }
     
     for (auto obj : objsScheduledForRemoval) {
-        removeFromWorld(obj);
+        removeFromWorld(state, obj);
     }
     objsScheduledForRemoval.clear();
     
@@ -95,6 +95,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
+    
     auto obst = obj->getPhysicsComponent()->getBody();
     
     if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
@@ -113,9 +114,12 @@ bool CollisionController::addToWorld(GameObject* obj) {
     return true;
 }
 
-bool CollisionController::removeFromWorld(GameObject* obj) {
+bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
     _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
+    
+    //todo: possibly move elsewhere
+    state->removeObject(obj);
     return true;
 }
 
@@ -145,15 +149,13 @@ void CollisionController::beginContact(b2Contact* contact) {
     
     if (remove == 1) {
         objsScheduledForRemoval.push_back(obj1);
-        //ObjectGoneEvent* event;
-        //event->init(obj1);
-        //notify(event);
+        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
+        notify(objectGoneEvent.get());
     }
     if (remove == 2) {
         objsScheduledForRemoval.push_back(obj2);
-        //ObjectGoneEvent* event;
-        //event->init(obj2);
-        //notify(event);
+        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
+        notify(objectGoneEvent.get());
     }
 }
 

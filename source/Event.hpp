@@ -13,7 +13,7 @@
 #include <cugl/cugl.h>
 
 class Event {
-
+public:
     /**
      * Enumeration to identify the type of event
      */
@@ -21,10 +21,16 @@ class Event {
         /** Signal that a unit died */
         COLLISION,
         /** Signal that a unit spawned */
-        WAVE_SPAWN
+        WAVE_SPAWN,
+		/** Path **/
+		PATH
     };
     
-    EventType eventType;
+    EventType _eventType;
+
+	void init() {};
+
+	Event() {};
 };
 
 #endif /* Event_hpp */

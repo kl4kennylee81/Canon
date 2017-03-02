@@ -75,7 +75,7 @@ public:
 
     bool addToWorld(GameObject* obj);
     
-    bool removeFromWorld(GameObject* obj);
+    bool removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj);
     
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();

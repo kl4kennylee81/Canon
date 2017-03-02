@@ -14,7 +14,8 @@
 #include "Event.hpp"
 #include "GameObject.hpp"
 
-class CollisionEvent : Event {
+class CollisionEvent : public Event {
+public:
     enum class CollisionEventType : int {
         /** Signal that an object is gone */
         OBJECT_GONE,
@@ -24,15 +25,40 @@ class CollisionEvent : Event {
         GAME_LOST
     };
 
-    CollisionEventType collisionEventType;
+    CollisionEventType _collisionType;
     
-    GameObject* obj1;
+    bool init() {
+        Event::init();
+        _eventType = Event::EventType::COLLISION;
+        return true;
+    }
     
-    GameObject* obj2;
+    static std::shared_ptr<CollisionEvent> alloc() {
+        std::shared_ptr<CollisionEvent> result = std::make_shared<CollisionEvent>();
+        return (result->init() ? result : nullptr);
+    }
+    
+    CollisionEvent() : Event(){}
     
 };
 
-class ObjectGoneEvent : CollisionEvent {
+class ObjectGoneEvent : public CollisionEvent {
+public:
+    GameObject* _obj;
+    
+    bool init(GameObject* obj) {
+        CollisionEvent::init();
+        _obj = obj;
+        _collisionType = CollisionEventType::OBJECT_GONE;
+        return true;
+    }
+    
+    static std::shared_ptr<ObjectGoneEvent> alloc(GameObject* obj) {
+        std::shared_ptr<ObjectGoneEvent> result = std::make_shared<ObjectGoneEvent>();
+        return (result->init(obj) ? result : nullptr);
+    }
+    
+    ObjectGoneEvent() : CollisionEvent(){}
     
 };
 

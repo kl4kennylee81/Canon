@@ -27,7 +27,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     Size dimen = Application::get()->getDisplaySize();
     dimen *= GAME_WIDTH/dimen.width; // Lock the game to a reasonable resolution
     
-    _scene = Scene::alloc(dimen);
+    _scene = Scene::alloc(dimen.width, dimen.height);
     
     // Get the space background.  Its size determines all scaling.
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
@@ -102,6 +102,10 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _scene->render(_batch);
 }
 
-std::shared_ptr<GameObject> GameState::getActiveCharacter(){
-    return _playerCharacters.at(_activeCharacterPosition);
+#pragma mark Helpers
+
+bool removeObject(GameObject* obj) {
+    //todo
+    return true;
 }
+

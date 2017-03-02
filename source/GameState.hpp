@@ -53,19 +53,23 @@ public:
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
-    
-    std::shared_ptr<GameObject> getActiveCharacter();
-    
+        
     /**
      * Return the vector by reference
      */
     std::vector<std::shared_ptr<GameObject>>& getPlayerCharacters() { return _playerCharacters; }
+
+	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
+
+	std::shared_ptr<GameObject> getActiveCharacter() { return _playerCharacters.at(_activeCharacterPosition); }
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
     }
+    
+    bool removeObject(GameObject* obj);
 };
 
 #endif /* GameState_hpp */

@@ -15,9 +15,29 @@
 #include "Observer.hpp"
 #include "Event.hpp"
 #include "GameState.hpp"
+#include "Path.hpp"
 
 class PathController : public BaseController {
 public:
+
+	float _height;
+	float _minx;
+	float _maxx;
+	float _miny;
+	float _maxy;
+
+	std::shared_ptr<Path> _path;
+
+	std::shared_ptr<cugl::Node> _pathSceneNode;
+
+	bool _wasPressed = false;
+
+	void addPathToScene();
+
+	void updateMinMax(cugl::Vec2 vec);
+
+	void resetMinMax();
+	
     PathController();
     
 	virtual void attach(std::shared_ptr<Observer> obs);
@@ -33,11 +53,11 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
 
-	virtual bool init();
+	virtual bool init(std::shared_ptr<GameState> state);
 
-	static std::shared_ptr<PathController> alloc() {
+	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state) {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
-		return (result->init() ? result : nullptr);
+		return (result->init(state) ? result : nullptr);
     }
 };
 

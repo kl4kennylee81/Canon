@@ -59,6 +59,7 @@ void GameEngine::onStartup() {
     Input::activate<Touchscreen>();
 #else
     Input::activate<Mouse>();
+	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
       
     Application::onStartup();
