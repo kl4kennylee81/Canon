@@ -29,33 +29,34 @@ std::shared_ptr<cugl::AssetManager> World::getAssetManager(){
 /** testing function to populate the world without the data files */
 void World::populate(){
     _levelData = LevelData::alloc(1);
-    std::shared_ptr<LevelEntry> e = LevelEntry::alloc(1,0);
-    _levelData->addLevelEntry(e);
-    
     std::mt19937 rng;
     rng.seed(std::random_device()());
     // distribution width and height
+    
+    std::uniform_int_distribution<std::mt19937::result_type> dist3(1,3);
     std::uniform_int_distribution<std::mt19937::result_type> distWidth(1,Application::get()->getDisplayWidth());
     std::uniform_int_distribution<std::mt19937::result_type> distHeight(1,Application::get()->getDisplayHeight());
     
-    auto wd = WaveData::alloc(1);
-    for (int i = 0;i<4;i++){
-        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(1,distWidth(rng),distHeight(rng));
-        wd->addWaveEntry(we);
+    for (int i = 0;i < 10;i++){
+        std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist3(rng),i*150);
+        _levelData->addLevelEntry(e);
     }
     
-    _waveData.insert(std::make_pair(1,wd));
-    
-    std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
-    Element element;
-    if (dist2(rng) == 1){
-        element = Element::BLUE;
-    } else {
-        element = Element::GOLD;
+    for (int i = 1;i < 4;i++){
+        auto wd = WaveData::alloc(1);
+        for (int i = 0;i<4;i++){
+            std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng));
+            wd->addWaveEntry(we);
+        }
+        _waveData.insert(std::make_pair(i,wd));
     }
     
-    auto od = ObjectData::alloc(1,1,5,5,element);
-    _objectData.insert(std::make_pair(1,od));
+    auto od1 = ObjectData::alloc(1,1,5,5,Element::BLUE);
+    _objectData.insert(std::make_pair(1,od1));
+    
+    auto od2 = ObjectData::alloc(2,1,5,5,Element::GOLD);
+    _objectData.insert(std::make_pair(2,od2));
     
     auto sd = ShapeData::alloc(1,50,50);
     _shapeData.insert(std::make_pair(1,sd));

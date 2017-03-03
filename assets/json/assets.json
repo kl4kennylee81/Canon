@@ -1,76 +1,76 @@
 {
     "fonts": {
         "Charlemagne": {
-            "file": ".\\fonts\\Charlemagne.ttf", 
+            "file": "./fonts/Charlemagne.ttf", 
             "size": 64
         }
     }, 
     "textures": {
         "bg_dark_lake": {
-            "file": ".\\textures\\backgrounds\\bg_dark_lake.png", 
+            "file": "./textures/backgrounds/bg_dark_lake.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_shape_circle": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_shape_circle.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_circle.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_shape_di": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_shape_di.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_di.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_shape_rect": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_shape_rect.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_rect.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_shape_rounded_rect": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_shape_rounded_rect.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_rounded_rect.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_shape_tri": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_shape_tri.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_tri.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "play": {
-            "file": ".\\textures\\menus\\loading\\play.png", 
+            "file": "./textures/menus/loading/play.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "player_boy": {
-            "file": ".\\textures\\models\\player_models\\player_boy.png", 
+            "file": "./textures/models/player_models/player_boy.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "player_girl": {
-            "file": ".\\textures\\models\\player_models\\player_girl.png", 
+            "file": "./textures/models/player_models/player_girl.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "progressbar": {
-            "file": ".\\textures\\menus\\loading\\progressbar.png", 
+            "file": "./textures/menus/loading/progressbar.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

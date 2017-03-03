@@ -14,9 +14,9 @@ using namespace cugl;
 #define GAME_WIDTH 1024
 
 /** The name of the space texture */
-#define BACKGROUND_TEXTURE       "bg_floating_crystal"
-#define PLAYER_CHAR_ONE          "model_player_char_one"
-#define PLAYER_CHAR_TWO          "model_player_char_two"
+#define BACKGROUND_TEXTURE       "bg_dark_lake"
+#define PLAYER_CHAR_ONE          "player_boy"
+#define PLAYER_CHAR_TWO          "player_girl"
 
 bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     if (assets == nullptr){

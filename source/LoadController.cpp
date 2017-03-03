@@ -24,7 +24,7 @@ using namespace cugl;
 
 /** The reference to the progress bar textire */
 #define PROGRESS_TEXTURE "textures/menus/loading/progressbar.png"
-#define PROGRESS_KEY     "progress"
+#define PROGRESS_KEY     "progressbar"
 #define PROGRESS_VOFF   0.15f
 
 float BACK_RECT[] = {0.0f,  1.0f,  0.0625f, 0.4375f};

@@ -11,7 +11,7 @@
 
 using namespace cugl;
 
-#define ENEMY_SHAPE         "enemy_shape"
+#define ENEMY_SHAPE         "enemy_shape_rect"
 
 LevelController::LevelController():
 BaseController(),
@@ -53,6 +53,9 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             }
             
             std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
+            if (!enemy){
+                assert(false);
+            }
             enemy->setIsPlayer(false);
             
             auto box1 = BoxObstacle::alloc(enemy->getNode()->getPosition(), enemy->getNode()->getSize());
@@ -60,15 +63,11 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             enemy->setPhysicsComponent(physics1);
             
             state->addEnemyGameObject(enemy);
-
-            state->getWorldNode()->addChild(enemyNode,5);
             
+            std::shared_ptr<ObjectSpawnEvent> event = ObjectSpawnEvent::alloc(enemy);
             
-            
-           Event event = ObjectSpawnEvent::ObjectSpawnEvent(enemy);
-//            
-//            // notify the observers of the object that is spawned
-            notify(&event);
+            // notify the observers of the object that is spawned
+            notify(event.get());
             
         }
     }

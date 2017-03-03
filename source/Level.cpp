@@ -53,7 +53,7 @@ bool Level::isLastWave(){
 }
 
 void Level::update(float timestep){
-    _timeElapsed+=timestep;
+    _timeElapsed+=1;
     if (!isLastWave() && _timeElapsed >= getNextTime()){
         _timeElapsed = 0;
         if (_levelData->getNumberWaves() < _currentWave - 1){
