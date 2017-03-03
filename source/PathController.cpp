@@ -12,6 +12,7 @@
 #include "PathParameters.h"
 #include <cugl/base/CUBase.h>
 #include <cugl/2d/CUPathNode.h>
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -33,7 +34,12 @@ void PathController::notify(Event* e) {
 /**
  * Update the observer state based on an event from the subject
  */
-void PathController::eventUpdate(Event* e) {}
+void PathController::eventUpdate(Event* e) {
+    switch (e->_eventType) {
+        case Event::EventType::MOVE:
+            std::cout << "hi move finished\n";
+    }
+}
 
 
 void PathController::addPathToScene() {
@@ -87,6 +93,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene();
 		std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
 		notify(pathEvent.get());
+        _pathSceneNode->removeAllChildren();
 	}
 	_wasPressed = isPressed;
 }
@@ -99,5 +106,8 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_height = Application::get()->getDisplayHeight();
 	resetMinMax();
 	_path = Path::alloc();
+    
+    _finished_moving = false;
+    
 	return true;
 }

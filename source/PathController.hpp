@@ -25,6 +25,8 @@ public:
 	float _maxx;
 	float _miny;
 	float _maxy;
+    
+    bool _finished_moving;
 
 	std::shared_ptr<Path> _path;
 
