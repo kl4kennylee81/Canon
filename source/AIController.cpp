@@ -35,9 +35,13 @@ void AIController::eventUpdate(Event* e){
 void AIController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : state->getEnemyObjects()) {
 		Element e = it->getPhysicsComponent()->getElementType();
-		int playerIndex = e == Element::BLUE ? 1 : 0;
+        
+        // HACK we should check the actual active player list
+        // and then iterate through to find closest one
+        // no assumption on only 2
+		int playerIndex = e == Element::BLUE ? 0 : 1;
 
-        // HACK MUST FIX
+        // HACK MUST FIX to keep from null pointering
         if (state->getPlayerCharacters().size() == 2){
             auto player = state->getPlayerCharacters().at(playerIndex);
             Vec2 playerPos = player->getNode()->getPosition();
