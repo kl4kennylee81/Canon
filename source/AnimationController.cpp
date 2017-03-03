@@ -8,6 +8,7 @@
 
 #include "AnimationController.hpp"
 #include "CollisionEvent.hpp"
+#include "LevelEvent.hpp"
 #include <cugl/cugl.h>
 
 using namespace cugl;
@@ -38,6 +39,14 @@ void AnimationController::eventUpdate(Event* e) {
             break;
         }
         case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWN:
+                    ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
+                    GameObject* obj = objectSpawn->object.get();
+                    addToWorldNode(obj);
+                    break;
+            }
             break;
         }
     }

@@ -34,6 +34,7 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
+    _levelController->update(timestep, _gameState);
 	_pathController->update(timestep, _gameState);
 	_moveController->update(timestep, _gameState);
     _collisionController->update(timestep, _gameState);

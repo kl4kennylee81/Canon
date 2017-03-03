@@ -9,6 +9,7 @@
 #include "CollisionController.hpp"
 #include "Element.hpp"
 #include "CollisionEvent.hpp"
+#include "LevelEvent.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
@@ -35,7 +36,21 @@ void CollisionController::notify(Event* e) {
 /**
 * Update the observer state based on an event from the subject
 */
-void CollisionController::eventUpdate(Event* e) {}
+void CollisionController::eventUpdate(Event* e) {
+    switch (e->_eventType) {
+        case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWN:
+                    ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
+                    GameObject* obj = objectSpawn->object.get();
+                    addToWorld(obj);
+                    break;
+            }
+            break;
+        }
+    }
+}
 
 void CollisionController::update(float timestep,std::shared_ptr<GameState> state){
     Keyboard* keys = Input::get<Keyboard>();
