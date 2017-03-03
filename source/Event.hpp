@@ -23,7 +23,9 @@ public:
         /** Signal that a unit spawned */
         LEVEL,
 		/** Path **/
-		PATH
+		PATH,
+		/** Move **/
+		MOVE
     };
     
     EventType _eventType;

@@ -100,7 +100,7 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 }
 
 
-void GameState::addGameObject(std::shared_ptr<GameObject> obj){
+void GameState::addEnemyGameObject(std::shared_ptr<GameObject> obj){
     _enemyObjects.push_back(obj);
 }
 

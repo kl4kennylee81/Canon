@@ -10,12 +10,12 @@
 
 using namespace cugl;
 
-bool ObjectData::init(int path_id,int shape_id, int speed,int acceleration,Element element){
-    path_id = path_id;
-    shape_id = shape_id;
-    speed = speed;
-    acceleration = acceleration;
-    element = element;
+bool ObjectData::init(int uid,int shape_id, int speed,int acceleration,Element element){
+    this->_uid = uid;
+    this->shape_id = shape_id;
+    this->speed = speed;
+    this->acceleration = acceleration;
+    this->element = element;
     return true;
 };
 

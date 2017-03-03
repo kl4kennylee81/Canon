@@ -41,15 +41,11 @@ public:
     
     ObjectData() : Data(){}
     
-    ObjectData(int uid) : Data(uid){}
-    
-    bool init(){ return true; }
-    
     bool init(int uid, int shape_id, int speed,int acceleration, Element element);
     
-    static std::shared_ptr<ObjectData> alloc() {
+    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id, int speed,int acceleration, Element element) {
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init() ? result : nullptr);
+        return (result->init(uid,shape_id,speed,acceleration,element) ? result : nullptr);
     }
 
     virtual std::string serialize();

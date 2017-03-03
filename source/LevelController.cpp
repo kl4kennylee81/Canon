@@ -37,15 +37,21 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     if (waveKey != -1){
         // spawn the gameObject from the prototypes
         std::shared_ptr<WaveData> wd = _world->getWaveData(waveKey);
-        for(auto it = wd->getWaveEntries().begin() ; it != wd->getWaveEntries().end(); ++it) {
-            WaveEntry waveEntry = *it;
-            std::shared_ptr<ObjectData> od = _world->getObjectData(waveEntry.objectKey);
+        for(auto it: wd->getWaveEntries()) {
+            std::shared_ptr<ObjectData> od = _world->getObjectData(it->objectKey);
             std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
             
             auto image = _world->getAssetManager()->get<Texture>(ENEMY_SHAPE);
             auto enemyNode = PolygonNode::allocWithTexture(image);
             enemyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-            enemyNode->setPosition(waveEntry.position);
+            enemyNode->setPosition(it->position);
+            
+            if (od->getElement() == Element::BLUE){
+                enemyNode->setColor(Color4::BLUE);
+            } else {
+                enemyNode->setColor(Color4::YELLOW);
+            }
+            
             std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
             enemy->setIsPlayer(false);
             
@@ -53,11 +59,15 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, od->getElement());
             enemy->setPhysicsComponent(physics1);
             
-            state->addGameObject(enemy);
+            state->addEnemyGameObject(enemy);
+
+            state->getWorldNode()->addChild(enemyNode,5);
             
-            Event event = ObjectSpawnEvent::ObjectSpawnEvent(enemy);
             
-            // notify the observers of the object that is spawned
+            
+           Event event = ObjectSpawnEvent::ObjectSpawnEvent(enemy);
+//            
+//            // notify the observers of the object that is spawned
             notify(&event);
             
         }

@@ -40,6 +40,7 @@ void GameplayController::update(float timestep) {
     _collisionController->update(timestep, _gameState);
 	_syncController->update(timestep, _gameState);
 	_moveController->updateActivePaths(timestep, _gameState);
+	_aiController->update(timestep, _gameState);
 	_switchController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
 }
@@ -72,7 +73,8 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _levelController->attach(_animationController);
 
 	_moveController->attach(_switchController);
-    
+
+	_collisionController->attach(_moveController);
     _collisionController->attach(_animationController);
 
 

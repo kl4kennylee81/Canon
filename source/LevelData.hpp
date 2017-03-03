@@ -19,28 +19,37 @@ public:
     int waveKey;
     float time;
     
-    LevelEntry(int waveKey,int time){
-        waveKey = waveKey;
-        time = time;
+    LevelEntry(){}
+    
+    bool init(int wkey,int t){
+        this->waveKey = wkey;
+        this->time = t;
+        return true;
+    }
+
+    static std::shared_ptr<LevelEntry> alloc(int waveKey,int time) {
+        std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
+        return (result->init(waveKey,time) ? result : nullptr);
     }
 };
 
 class LevelData : public Data {
 protected:
-    std::vector<LevelEntry> _levelEntries;
+    std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
 public:
     LevelData() : Data(){}
-
-    LevelData(int uid) : Data(uid){}
     
-    bool init(int uid);
+    bool init(int uid) {
+        this->_uid = uid;
+        return true;
+    }
     
     static std::shared_ptr<LevelData> alloc(int uid) {
         std::shared_ptr<LevelData> result = std::make_shared<LevelData>();
         return (result->init(uid) ? result : nullptr);
     }
     
-    void addLevelEntry(LevelEntry entry);
+    void addLevelEntry(std::shared_ptr<LevelEntry> entry);
     
     float getTime(int index);
     

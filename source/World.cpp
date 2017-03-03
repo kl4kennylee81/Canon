@@ -29,10 +29,8 @@ std::shared_ptr<cugl::AssetManager> World::getAssetManager(){
 /** testing function to populate the world without the data files */
 void World::populate(){
     _levelData = LevelData::alloc(1);
-    for (int i = 0;i<10;i++){
-        LevelEntry e = LevelEntry(1,i*10);
-        _levelData->addLevelEntry(e);
-    }
+    std::shared_ptr<LevelEntry> e = LevelEntry::alloc(1,0);
+    _levelData->addLevelEntry(e);
     
     std::mt19937 rng;
     rng.seed(std::random_device()());
@@ -42,7 +40,7 @@ void World::populate(){
     
     auto wd = WaveData::alloc(1);
     for (int i = 0;i<4;i++){
-        WaveEntry we = WaveEntry(1,distWidth(rng),distHeight(rng));
+        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(1,distWidth(rng),distHeight(rng));
         wd->addWaveEntry(we);
     }
     
@@ -56,12 +54,12 @@ void World::populate(){
         element = Element::GOLD;
     }
     
-    auto od = ObjectData::alloc();
-    od->init(1,1,5,5,element);
+    auto od = ObjectData::alloc(1,1,5,5,element);
     _objectData.insert(std::make_pair(1,od));
     
     auto sd = ShapeData::alloc(1,50,50);
     _shapeData.insert(std::make_pair(1,sd));
+    
 }
 
 bool World::init(std::shared_ptr<cugl::AssetManager> assets){

@@ -9,6 +9,8 @@
 #include "MoveController.hpp"
 #include "PathEvent.hpp"
 #include "PathParameters.h"
+#include "CollisionEvent.hpp"
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -42,6 +44,15 @@ void MoveController::eventUpdate(Event* e) {
 			break;
 		}
 		break;
+	//case Event::EventType::COLLISION:
+	//	CollisionEvent* collisionEvent = (CollisionEvent*)e;
+	//	switch (collisionEvent->_collisionType) {
+	//	case CollisionEvent::CollisionEventType::OBJECT_GONE:
+	//		ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
+	//		//_activePaths.erase(objectGone->_obj);
+	//		break;
+	//	}
+	//	break;
 	}
 }
 
@@ -69,6 +80,8 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			if (path->_pathIndex >= path->_path->size()) {
 				player->getPhysicsComponent()->getBody()->setVX(0);
 				player->getPhysicsComponent()->getBody()->setVY(0);
+				auto moveEvent = MoveEvent::alloc();
+				notify(moveEvent.get());
 				toDelete.push_back(player);
 			}
 		}
@@ -85,6 +98,6 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
 cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
 {
 	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
-	direction.normalize().scale(VELOCITY * 60);
+	direction.normalize().scale(velocity * 60);
 	return direction;
 }
