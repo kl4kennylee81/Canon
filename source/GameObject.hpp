@@ -16,7 +16,7 @@
 class GameObject {
     
 protected:
-    int uid;
+    int _uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
     bool _isPlayer;
@@ -45,7 +45,11 @@ public:
     
     bool getIsPlayer() { return _isPlayer; };
     
+    int getUid() { return _uid; }
+    
     void setIsPlayer(bool val) { _isPlayer = val; };
+    
+    void setUid(int uid) { _uid = uid; }
     
     void setNode(std::shared_ptr<cugl::Node> node);
     

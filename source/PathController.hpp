@@ -26,7 +26,7 @@ public:
 	float _miny;
 	float _maxy;
     
-    bool _finished_moving;
+    bool _is_moving;
 
 	std::shared_ptr<Path> _path;
 
@@ -34,7 +34,7 @@ public:
 
 	bool _wasPressed = false;
 
-	void addPathToScene();
+	void addPathToScene(std::shared_ptr<GameState> state);
 
 	void updateMinMax(cugl::Vec2 vec);
 

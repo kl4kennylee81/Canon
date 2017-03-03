@@ -60,12 +60,12 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     // and then attached to the gameObject
     
     Vec2 char1Pos = Vec2::Vec2(300,300);
-    char1Pos.add(Vec2::Vec2(0,0));
     image = assets->get<Texture>(PLAYER_GIRL_BLUE);
     auto player1Node = PolygonNode::allocWithTexture(image);
     player1Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player1Node->setPosition(char1Pos);
     std::shared_ptr<GameObject> player1 = GameObject::alloc(player1Node);
+    player1->setUid(0);
     player1->setIsPlayer(true);
     
     auto box1 = BoxObstacle::alloc(player1->getNode()->getPosition(), player1->getNode()->getSize());
@@ -78,6 +78,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player2Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player2Node->setPosition(char2Pos);
     std::shared_ptr<GameObject> player2 = GameObject::alloc(player2Node);
+    player1->setUid(1);
     player2->setIsPlayer(true);
     
     auto box2 = BoxObstacle::alloc(player2->getNode()->getPosition(), player2->getNode()->getSize());

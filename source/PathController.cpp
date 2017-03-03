@@ -37,18 +37,25 @@ void PathController::notify(Event* e) {
 void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
-            std::cout << "hi move finished\n";
+            _is_moving = false;
     }
 }
 
 
-void PathController::addPathToScene() {
+void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
 	auto pathNode = PathNode::allocWithPoly(pathPoly, 5, PathJoint::ROUND, PathCap::ROUND);
 	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
-	pathNode->setColor(Color4::CYAN);
+    
+    // switch color of path depending on who's turn
+    if (state->getActiveCharacter()->getUid() == 0) {
+        pathNode->setColor(Color4::ORANGE);
+    } else {
+        pathNode->setColor(Color4::CYAN);
+    }
+    
 	_pathSceneNode->removeAllChildren();
 	_pathSceneNode->addChild(pathNode, 2);
 }
@@ -71,6 +78,12 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	Vec2 position = Input::get<Mouse>()->pointerPosition();
 	position.y = _height - position.y;
 	bool isPressed = Input::get<Mouse>()->buttonDown().hasLeft();
+    
+    // can't start drawing a path before a character is done moving through a previous path
+    if (_is_moving) {
+        return;
+    }
+    
 	if (!_wasPressed && isPressed) {
 		_path->clear();
 		Vec2 currentLocation = state->getActiveCharacter()->getNode()->getPosition();
@@ -86,14 +99,15 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		if (distance > MIN_DISTANCE) {
 			_path->add(position);
 			updateMinMax(position);
-			addPathToScene();
+			addPathToScene(state);
 		}
 	}
 	if (_wasPressed && !isPressed) {
-		addPathToScene();
+		addPathToScene(state);
 		std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
 		notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
+        _is_moving = true;
 	}
 	_wasPressed = isPressed;
 }
@@ -107,7 +121,7 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	resetMinMax();
 	_path = Path::alloc();
     
-    _finished_moving = false;
+    _is_moving = false;
     
 	return true;
 }
