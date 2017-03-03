@@ -19,25 +19,30 @@ public:
     
     cugl::Vec2 position;
     
-    WaveEntry(int objectKey, float x, float y){
-        objectKey = objectKey;
-        position = cugl::Vec2::Vec2(x,y);
+    WaveEntry(){}
+    
+    bool init(int oKey, float x, float y){
+        this->objectKey = oKey;
+        this->position.x = x;
+        this->position.y = y;
+        return true;
+    }
+    
+    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y) {
+        std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
+        return (result->init(objectKey,x,y) ? result : nullptr);
     }
 };
 
 class WaveData : public Data {
 protected:
-    std::vector<WaveEntry> _waveEntries;
+    std::vector<std::shared_ptr<WaveEntry>> _waveEntries;
     
 public:
     WaveData() : Data(){}
     
-    WaveData(int uid) : Data(uid){
-        
-    }
-    
     bool init(int uid) {
-        uid = uid;
+        this->_uid = uid;
         return true;
     }
     
@@ -46,11 +51,11 @@ public:
         return (result->init(uid) ? result : nullptr);
     }
     
-    void addWaveEntry(WaveEntry w){
+    void addWaveEntry(std::shared_ptr<WaveEntry> w){
         _waveEntries.push_back(w);
     }
     
-    std::vector<WaveEntry> getWaveEntries(){
+    std::vector<std::shared_ptr<WaveEntry>> getWaveEntries(){
         return _waveEntries;
     }
     

@@ -18,20 +18,18 @@ public:
     int height;
     int width;
     
-    ShapeData(int uid): Data(uid),height(0),width(0){};
+    ShapeData(): Data(),height(0),width(0){};
     
-    ShapeData(int uid,int height,int width):Data(uid){
-        height = height;
-        width = width;
-    };
-    
-    bool init(){
+    bool init(int uid,int h,int w){
+        this->_uid = uid;
+        this->height = h;
+        this->width = w;
         return true;
     }
     
     static std::shared_ptr<ShapeData> alloc(int uid,int height,int width) {
-        std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>(uid,height,width);
-        return (result->init() ? result : nullptr);
+        std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();
+        return (result->init(uid,height,width) ? result : nullptr);
     }
     
     virtual std::string serialize();
