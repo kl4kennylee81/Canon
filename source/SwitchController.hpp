@@ -13,30 +13,37 @@
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
+#include "Event.hpp"
+//#include "PathEvent.hpp"
+
 
 class SwitchController : public BaseController {
 public:
-    SwitchController();
-    
-    virtual void attach(std::shared_ptr<Observer> obs);
-    
-    virtual void detach(Observer* obs);
-    
-    virtual void notify(Event* e);
-    
-    /**
-     * Update the observer state based on an event from the subject
-     */
-    virtual void eventUpdate(Event* e);
-    
-    virtual void update(float timestep,std::shared_ptr<GameState> state);
-    
-    virtual bool init();
-    
-    static std::shared_ptr<SwitchController> alloc() {
-        std::shared_ptr<SwitchController> result = std::make_shared<SwitchController>();
-        return (result->init() ? result : nullptr);
-    }
+	bool switchFlag = false;
+
+	std::unordered_map <std::shared_ptr<GameObject>, cugl::Color4> _baseColors;
+
+	SwitchController();
+
+	virtual void attach(std::shared_ptr<Observer> obs);
+
+	virtual void detach(Observer* obs);
+
+	virtual void notify(Event* e);
+
+	/**
+	* Update the observer state based on an event from the subject
+	*/
+	virtual void eventUpdate(Event* e);
+
+	virtual void update(float timestep, std::shared_ptr<GameState> state);
+
+	virtual bool init(std::shared_ptr<GameState> state);
+
+	static std::shared_ptr<SwitchController> alloc(std::shared_ptr<GameState> state) {
+		std::shared_ptr<SwitchController> result = std::make_shared<SwitchController>();
+		return (result->init(state) ? result : nullptr);
+	}
 };
 
 #endif /* SwitchController_hpp */
