@@ -16,6 +16,9 @@
 class GameObject {
     
 protected:
+    
+    // HACK once we load from data files we want to uniquely identify a game object
+    // with its uid. the uid would be set by the levelController when it spawns it
     int _uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
@@ -24,8 +27,10 @@ protected:
 public:
     
     GameObject() :
+    _uid(0),
     _body(nullptr),
-    _node(nullptr){}
+    _node(nullptr),
+    _isPlayer(false){}
     
     bool init();
     

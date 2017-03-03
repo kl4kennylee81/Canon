@@ -14,6 +14,7 @@ using namespace cugl;
 #define GAME_WIDTH 1024
 
 /** The name of the space texture */
+// HACK replace with level loading sending event
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
 #define PLAYER_BOY_YELLOW          "player_boy"
 #define PLAYER_GIRL_BLUE         "player_girl"
@@ -59,34 +60,43 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     // the box2d Obstacle will be created in the collisionController init
     // and then attached to the gameObject
     
-    Vec2 char1Pos = Vec2::Vec2(300,300);
+    Vec2 charGirlPos = Vec2::Vec2(300,300);
     image = assets->get<Texture>(PLAYER_GIRL_BLUE);
-    auto player1Node = PolygonNode::allocWithTexture(image);
-    player1Node->setAnchor(Vec2::ANCHOR_MIDDLE);
-    player1Node->setPosition(char1Pos);
-    std::shared_ptr<GameObject> player1 = GameObject::alloc(player1Node);
-    player1->setUid(0);
-    player1->setIsPlayer(true);
+    auto charGirlNode = PolygonNode::allocWithTexture(image);
+    charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    charGirlNode->setPosition(charGirlPos);
     
-    auto box1 = BoxObstacle::alloc(player1->getNode()->getPosition(), player1->getNode()->getSize());
-    std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, Element::BLUE);
-    player1->setPhysicsComponent(physics1);
+    std::shared_ptr<GameObject> charGirl = GameObject::alloc(charGirlNode);
     
-    Vec2 char2Pos = Vec2::Vec2(150,150);
+    // HACK we should not set uid here we need to set uid from the data file
+    // after we are loading the player character from data file as well the uid will
+    // be unique
+    charGirl->setUid(0);
+    charGirl->setIsPlayer(true);
+    
+    auto boxGirl = BoxObstacle::alloc(charGirl->getNode()->getPosition(), charGirl->getNode()->getSize());
+    std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
+    charGirl->setPhysicsComponent(physicsGirl);
+    
+    Vec2 charBoyPos = Vec2::Vec2(150,150);
     image = assets->get<Texture>(PLAYER_BOY_YELLOW);
-    auto player2Node = PolygonNode::allocWithTexture(image);
-    player2Node->setAnchor(Vec2::ANCHOR_MIDDLE);
-    player2Node->setPosition(char2Pos);
-    std::shared_ptr<GameObject> player2 = GameObject::alloc(player2Node);
-    player1->setUid(1);
-    player2->setIsPlayer(true);
+    auto charBoyNode = PolygonNode::allocWithTexture(image);
+    charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    charBoyNode->setPosition(charBoyPos);
+    std::shared_ptr<GameObject> charBoy = GameObject::alloc(charBoyNode);
     
-    auto box2 = BoxObstacle::alloc(player2->getNode()->getPosition(), player2->getNode()->getSize());
-    std::shared_ptr<PhysicsComponent> physics2 = PhysicsComponent::alloc(box2, Element::GOLD);
-    player2->setPhysicsComponent(physics2);
+    // HACK we should not set uid here we need to set uid from the data file
+    // after we are loading the player character from data file as well the uid will
+    // be unique
+    charBoy->setUid(1);
+    charBoy->setIsPlayer(true);
     
-    _playerCharacters.push_back(player1);
-    _playerCharacters.push_back(player2);
+    auto boxBoy = BoxObstacle::alloc(charBoy->getNode()->getPosition(), charBoy->getNode()->getSize());
+    std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
+    charBoy->setPhysicsComponent(physicsBoy);
+    
+    _playerCharacters.push_back(charBoy);
+    _playerCharacters.push_back(charGirl);
     
     _activeCharacterPosition = 0;
     

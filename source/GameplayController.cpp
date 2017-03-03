@@ -40,13 +40,13 @@ void GameplayController::update(float timestep) {
 	}
 	else {
 		_levelController->update(timestep, _gameState);
+        _switchController->update(timestep, _gameState);
 		_pathController->update(timestep, _gameState);
 		_moveController->update(timestep, _gameState);
 		_collisionController->update(timestep, _gameState);
 		_syncController->update(timestep, _gameState);
 		_moveController->updateActivePaths(timestep, _gameState);
 		_aiController->update(timestep, _gameState);
-		_switchController->update(timestep, _gameState);
 		_animationController->update(timestep, _gameState);
 	}
 }
