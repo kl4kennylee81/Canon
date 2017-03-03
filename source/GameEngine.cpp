@@ -56,8 +56,10 @@ void GameEngine::onStartup() {
     // Activate mouse or touch screen input as appropriate
     // We have to do this BEFORE the scene, because the scene has a button
 #if defined (CU_TOUCH_SCREEN)
+	_touch = true;
     Input::activate<Touchscreen>();
 #else
+	_touch = false;
     Input::activate<Mouse>();
 	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
@@ -107,7 +109,7 @@ void GameEngine::update(float timestep) {
     } else if (_menuGraph.getMode() == Mode::LOADING) {
         _loading->dispose(); // Disables the input listeners in this mode
         std::shared_ptr<World> levelWorld = World::alloc(_assets);
-        _gameplay = GameplayController::alloc(levelWorld);
+        _gameplay = GameplayController::alloc(levelWorld, _touch);
         _menuGraph.setMode(Mode::GAMEPLAY);
     } else {
         _gameplay->update(timestep);
