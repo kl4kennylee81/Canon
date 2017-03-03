@@ -9,6 +9,7 @@
 #include "MoveController.hpp"
 #include "PathEvent.hpp"
 #include "PathParameters.h"
+#include "CollisionEvent.hpp"
 
 using namespace cugl;
 
@@ -39,6 +40,15 @@ void MoveController::eventUpdate(Event* e) {
 			PathFinished* pathFinished = (PathFinished*)pathEvent;
 			std::shared_ptr<ActivePath> path = ActivePath::alloc(pathFinished->_path);
 			_activePaths[pathFinished->_character] = path;
+			break;
+		}
+		break;
+	case Event::EventType::COLLISION:
+		CollisionEvent* collisionEvent = (CollisionEvent*)e;
+		switch (collisionEvent->_collisionType) {
+		case CollisionEvent::CollisionEventType::OBJECT_GONE:
+			ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
+			_activePaths.erase(objectGone->_obj);
 			break;
 		}
 		break;
