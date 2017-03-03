@@ -71,7 +71,7 @@ public:
         return _debugnode;
     }
     
-    void addGameObject(std::shared_ptr<GameObject> obj);
+    void addEnemyGameObject(std::shared_ptr<GameObject> obj);
     
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
