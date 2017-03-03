@@ -10,6 +10,7 @@
 #include "PathEvent.hpp"
 #include "PathParameters.h"
 #include "CollisionEvent.hpp"
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -79,6 +80,8 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			if (path->_pathIndex >= path->_path->size()) {
 				player->getPhysicsComponent()->getBody()->setVX(0);
 				player->getPhysicsComponent()->getBody()->setVY(0);
+				auto moveEvent = MoveEvent::alloc();
+				notify(moveEvent.get());
 				toDelete.push_back(player);
 			}
 		}

@@ -26,19 +26,22 @@ void SwitchController::notify(Event* e) {
 
 void SwitchController::eventUpdate(Event* e) {
 	switch (e->_eventType) {
-	case Event::EventType::PATH:
-	{ // scoped brace for pe variable
-		PathEvent* pe = (PathEvent*)e;
-		switch (pe->_pathType) {
-		case PathEvent::PathEventType::PATH_FINISHED:
-			SwitchController::switchFlag = true;
-			break;
-		default:
-			break;
-		}
+	//case Event::EventType::PATH:
+	//{ // scoped brace for pe variable
+	//	PathEvent* pe = (PathEvent*)e;
+	//	switch (pe->_pathType) {
+	//	case PathEvent::PathEventType::PATH_FINISHED:
+	//		SwitchController::switchFlag = true;
+	//		break;
+	//	default:
+	//		break;
+	//	}
 
+	//	break;
+	//}
+	case Event::EventType::MOVE:
+		SwitchController::switchFlag = true;
 		break;
-	}
 	default:
 		break;
 	}
