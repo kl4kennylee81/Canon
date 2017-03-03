@@ -85,6 +85,6 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
 cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
 {
 	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
-	direction.normalize().scale(VELOCITY * 60);
+	direction.normalize().scale(velocity * 60);
 	return direction;
 }
