@@ -28,7 +28,7 @@
             "wrapT": "clamp"
         }, 
         "enemy_shape_rect": {
-            "file": "./textures/models/enemy_models/enemy_shape_rect.png", 
+            "file": "./textures/models/enemy_models/enemy_shape_rect2.png",
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
