@@ -35,6 +35,7 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _playerCharacters;
     
     int _activeCharacterPosition;
+
     
     /**
      * All objects include the player characters and all other objects in the game
@@ -45,6 +46,9 @@ protected:
     int time_elapsed;
 
 public:
+	bool reset = false;
+
+
     virtual bool init(const std::shared_ptr<cugl::AssetManager>& assets);
 
 	static std::shared_ptr<GameState> alloc(const std::shared_ptr<cugl::AssetManager>& assets) {

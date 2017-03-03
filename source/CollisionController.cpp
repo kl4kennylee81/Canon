@@ -129,7 +129,11 @@ bool CollisionController::addToWorld(GameObject* obj) {
 }
 
 bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
-    _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
+	if (obj->getIsPlayer()) {
+		state->reset = true;
+		return true;
+	}
+	_world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
     return true;

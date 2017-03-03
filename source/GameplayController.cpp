@@ -34,15 +34,20 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
-    _levelController->update(timestep, _gameState);
-	_pathController->update(timestep, _gameState);
-	_moveController->update(timestep, _gameState);
-    _collisionController->update(timestep, _gameState);
-	_syncController->update(timestep, _gameState);
-	_moveController->updateActivePaths(timestep, _gameState);
-	_aiController->update(timestep, _gameState);
-	_switchController->update(timestep, _gameState);
-    _animationController->update(timestep, _gameState);
+	if (_gameState->reset) {
+		init(_levelController->getWorld());
+	}
+	else {
+		_levelController->update(timestep, _gameState);
+		_pathController->update(timestep, _gameState);
+		_moveController->update(timestep, _gameState);
+		_collisionController->update(timestep, _gameState);
+		_syncController->update(timestep, _gameState);
+		_moveController->updateActivePaths(timestep, _gameState);
+		_aiController->update(timestep, _gameState);
+		_switchController->update(timestep, _gameState);
+		_animationController->update(timestep, _gameState);
+	}
 }
 
 /**

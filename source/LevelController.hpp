@@ -43,6 +43,10 @@ public:
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
         return (result->init(world) ? result : nullptr);
     }
+
+	std::shared_ptr<World> getWorld() {
+		return _world;
+	}
 };
 
 #endif /* LevelController_hpp */
