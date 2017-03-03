@@ -72,6 +72,7 @@ public:
     }
     
     void removeObject(GameObject* obj) {
+        obj->getNode()->removeFromParent();
         for(auto it = _playerCharacters.begin() ; it != _playerCharacters.end();) {
             if (it->get() == obj)
                 it = _playerCharacters.erase(it);
