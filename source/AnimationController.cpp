@@ -62,6 +62,7 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
 
 void AnimationController::addToWorldNode(GameObject* obj) {
     _worldnode->addChild(obj->getSharedPointerNode(),1);
+    printf("hi");
 }
 
 
