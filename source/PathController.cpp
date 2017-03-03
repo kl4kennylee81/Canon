@@ -87,6 +87,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene();
 		std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
 		notify(pathEvent.get());
+        _pathSceneNode->removeAllChildren();
 	}
 	_wasPressed = isPressed;
 }

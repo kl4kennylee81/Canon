@@ -83,17 +83,17 @@ public:
     }
     
     void removeObject(GameObject* obj) {
-        for(auto it = _playerCharacters.begin() ; it != _playerCharacters.end();) {
-            if (it->get() == obj)
+        for(auto it = _playerCharacters.begin() ; it != _playerCharacters.end(); ++it) {
+            if (it->get() == obj){
                 it = _playerCharacters.erase(it);
-            else
-                ++it;
+                break;
+            }
         }
-        for(auto it = _enemyObjects.begin() ; it != _enemyObjects.end();) {
-            if (it->get() == obj)
+        for(auto it = _enemyObjects.begin() ; it != _enemyObjects.end(); ++it) {
+            if (it->get() == obj){
                 it = _enemyObjects.erase(it);
-            else
-                ++it;
+                break;
+            }
         }
     }
 };

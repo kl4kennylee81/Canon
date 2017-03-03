@@ -55,14 +55,13 @@ void AnimationController::eventUpdate(Event* e) {
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
     for (auto obj : objsToRemove) {
         obj->getNode()->removeFromParent();
-        state->removeObject(obj);
+        //state->removeObject(obj);
     }
     objsToRemove.clear();
 }
 
 void AnimationController::addToWorldNode(GameObject* obj) {
     _worldnode->addChild(obj->getSharedPointerNode(),1);
-    printf("hi");
 }
 
 

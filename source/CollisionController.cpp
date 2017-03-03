@@ -137,8 +137,10 @@ bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, Game
 		state->reset = true;
 		return true;
 	}
-    _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
-    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
+    _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
+    
+    // HACK jon i don't think you need to do this the destructor sets it to the nullptr
+//    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
     return true;
 }
@@ -171,6 +173,7 @@ void CollisionController::beginContact(b2Contact* contact) {
         objsScheduledForRemoval.push_back(obj1);
         std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
         notify(objectGoneEvent.get());
+        
     }
     if (remove == 2) {
         objsScheduledForRemoval.push_back(obj2);
