@@ -7,6 +7,9 @@
 //
 
 #include "AIController.hpp"
+#include "MoveController.hpp"
+#include "Element.hpp"
+#include "PathParameters.h"
 
 using namespace cugl;
 
@@ -28,7 +31,17 @@ void AIController::notify(Event* e) {
 */
 void AIController::eventUpdate(Event* e) {}
 
-void AIController::update(float timestep,std::shared_ptr<GameState> state){}
+void AIController::update(float timestep,std::shared_ptr<GameState> state){
+	for (auto it : state->getEnemyObjects()) {
+		Element e = it->getPhysicsComponent()->getElementType();
+		int playerIndex = e == Element::BLUE ? 1 : 0;
+		auto player = state->getPlayerCharacters().at(playerIndex);
+		Vec2 playerPos = player->getNode()->getPosition();
+		Vec2 enemyPos = it->getNode()->getPosition();
+		Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
+		it->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
+	}
+}
 
 bool AIController::init() {
 	return true;
