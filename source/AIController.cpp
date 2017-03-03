@@ -33,12 +33,14 @@ void AIController::eventUpdate(Event* e) {}
 
 void AIController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : state->getEnemyObjects()) {
+		printf("in enemy list \n");
 		Element e = it->getPhysicsComponent()->getElementType();
 		int playerIndex = e == Element::BLUE ? 1 : 0;
 		auto player = state->getPlayerCharacters().at(playerIndex);
 		Vec2 playerPos = player->getNode()->getPosition();
 		Vec2 enemyPos = it->getNode()->getPosition();
 		Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
+		std::cout << direction.toString() << std::endl;
 		it->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
 	}
 }

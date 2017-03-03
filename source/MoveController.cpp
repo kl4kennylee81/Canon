@@ -43,15 +43,15 @@ void MoveController::eventUpdate(Event* e) {
 			break;
 		}
 		break;
-	case Event::EventType::COLLISION:
-		CollisionEvent* collisionEvent = (CollisionEvent*)e;
-		switch (collisionEvent->_collisionType) {
-		case CollisionEvent::CollisionEventType::OBJECT_GONE:
-			ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
-			_activePaths.erase(objectGone->_obj);
-			break;
-		}
-		break;
+	//case Event::EventType::COLLISION:
+	//	CollisionEvent* collisionEvent = (CollisionEvent*)e;
+	//	switch (collisionEvent->_collisionType) {
+	//	case CollisionEvent::CollisionEventType::OBJECT_GONE:
+	//		ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
+	//		//_activePaths.erase(objectGone->_obj);
+	//		break;
+	//	}
+	//	break;
 	}
 }
 
