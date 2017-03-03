@@ -46,7 +46,8 @@ protected:
     int time_elapsed;
 
 public:
-	bool reset = false;
+    
+    bool reset;
 
 
     virtual bool init(const std::shared_ptr<cugl::AssetManager>& assets);

@@ -15,17 +15,19 @@ using namespace cugl;
 
 /** The name of the space texture */
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
-#define PLAYER_CHAR_ONE          "player_boy"
-#define PLAYER_CHAR_TWO          "player_girl"
+#define PLAYER_BOY_YELLOW          "player_boy"
+#define PLAYER_GIRL_BLUE         "player_girl"
 
 bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     if (assets == nullptr){
         return false;
     }
     
+    reset = false;
+    
     // Create the scene graph
     Size dimen = Application::get()->getDisplaySize();
-    dimen *= GAME_WIDTH/dimen.width; // Lock the game to a reasonable resolution
+//    dimen *= GAME_WIDTH/dimen.width; // Lock the game to a reasonable resolution
     
     _scene = Scene::alloc(dimen.width, dimen.height);
     
@@ -59,7 +61,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     
     Vec2 char1Pos = Vec2::Vec2(300,300);
     char1Pos.add(Vec2::Vec2(0,0));
-    image = assets->get<Texture>(PLAYER_CHAR_ONE);
+    image = assets->get<Texture>(PLAYER_GIRL_BLUE);
     auto player1Node = PolygonNode::allocWithTexture(image);
     player1Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player1Node->setPosition(char1Pos);
@@ -71,7 +73,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     player1->setPhysicsComponent(physics1);
     
     Vec2 char2Pos = Vec2::Vec2(150,150);
-    image = assets->get<Texture>(PLAYER_CHAR_TWO);
+    image = assets->get<Texture>(PLAYER_BOY_YELLOW);
     auto player2Node = PolygonNode::allocWithTexture(image);
     player2Node->setAnchor(Vec2::ANCHOR_MIDDLE);
     player2Node->setPosition(char2Pos);

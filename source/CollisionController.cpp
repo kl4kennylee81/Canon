@@ -59,7 +59,11 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     }
     
     for (auto obj : objsScheduledForRemoval) {
-        removeFromWorld(state, obj);
+        if(!obj->getIsPlayer()) {
+            removeFromWorld(state, obj);
+        } else {
+            state->reset = true;
+        }
     }
     objsScheduledForRemoval.clear();
     
@@ -133,7 +137,7 @@ bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, Game
 		state->reset = true;
 		return true;
 	}
-	_world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
+    _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
     return true;

@@ -49,12 +49,17 @@ void SwitchController::eventUpdate(Event* e) {
 
 void SwitchController::update(float timestep, std::shared_ptr<GameState> state) {
 	if (switchFlag) {
-		cugl::Node* n = state->getActiveCharacter()->getNode();
-		n->setColor(cugl::Color4::GRAY); // tint the character
+//        state->getActiveCharacter()->getNode()->setColor(_baseColors[state->getActiveCharacter()]);
+//        
 		state->toggleActiveCharacter(); // new active character
-		std::shared_ptr<GameObject> character = state->getActiveCharacter();
-		character->getNode()->setColor(_baseColors[character]); // reset tinting on active character
-		switchFlag = false;
+//        
+//        if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == Element::BLUE){
+//            state->getActiveCharacter()->getNode()->setColor(cugl::Color4::BLUE); // tint active character;
+//        } else {
+//            state->getActiveCharacter()->getNode()->setColor(cugl::Color4::YELLOW); // tint active character;
+//        }
+        
+        switchFlag = false;
 	}
 }
 

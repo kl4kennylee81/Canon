@@ -49,14 +49,15 @@ void Level::setCurrentWave(int waveNum){
 
 
 bool Level::isLastWave(){
-    return _currentWave == _levelData ->getNumberWaves();
+    return _currentWave == _levelData->getNumberWaves();
 }
 
 void Level::update(float timestep){
     _timeElapsed+=1;
     if (!isLastWave() && _timeElapsed >= getNextTime()){
         _timeElapsed = 0;
-        if (_levelData->getNumberWaves() < _currentWave - 1){
+        if (_levelData->getNumberWaves() - 1 > _currentWave){
+            _readyToSpawn = true;
             _currentWave+=1;
         }
     };

@@ -38,13 +38,13 @@ void World::populate(){
     std::uniform_int_distribution<std::mt19937::result_type> distHeight(1,Application::get()->getDisplayHeight());
     
     for (int i = 0;i < 10;i++){
-        std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist3(rng),i*150);
+        std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist3(rng),60);
         _levelData->addLevelEntry(e);
     }
     
     for (int i = 1;i < 4;i++){
         auto wd = WaveData::alloc(1);
-        for (int i = 0;i<4;i++){
+        for (int j = 0;j<1;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
             std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng));
             wd->addWaveEntry(we);
