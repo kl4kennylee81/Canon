@@ -18,13 +18,11 @@ protected:
 public:
     Data() :
     Asset(),
-    _uid(-1){}
+    _uid(0){}
     
-    Data(int uid) : Asset(),_uid(-1){
-        _uid = uid;
+    bool init(){
+        return true;
     }
-        
-    int getUid(){ return _uid; }
     
     // setting equal to 0 is a pure virtual function equivalent to an abstract function
     virtual std::string serialize() = 0;

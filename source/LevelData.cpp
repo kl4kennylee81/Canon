@@ -10,20 +10,16 @@
 
 using namespace cugl;
 
-bool LevelData::init(int uid){
-    return true;
-}
-
-void LevelData::addLevelEntry(LevelEntry entry){
+void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
     _levelEntries.push_back(entry);
 }
 
 float LevelData::getTime(int index){
-    return _levelEntries.at(index).time;
+    return _levelEntries.at(index)->time;
 }
 
 int LevelData::getWaveKey(int index){
-    return _levelEntries.at(index).waveKey;
+    return _levelEntries.at(index)->waveKey;
 }
 
 size_t LevelData::getNumberWaves(){
