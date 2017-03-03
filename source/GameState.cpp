@@ -99,12 +99,6 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _scene->render(_batch);
 }
 
-#pragma mark Helpers
-
-bool removeObject(GameObject* obj) {
-    //todo
-    return true;
-}
 
 void GameState::addGameObject(std::shared_ptr<GameObject> obj){
     _enemyObjects.push_back(obj);

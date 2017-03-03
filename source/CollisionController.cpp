@@ -95,7 +95,6 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
-    
     auto obst = obj->getPhysicsComponent()->getBody();
     
     if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
@@ -118,8 +117,6 @@ bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, Game
     _world->getWorld()->DestroyBody(obj->getPhysicsComponent()->getBody()->getBody());
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
-    //todo: possibly move elsewhere
-    state->removeObject(obj);
     return true;
 }
 

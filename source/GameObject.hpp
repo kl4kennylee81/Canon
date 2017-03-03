@@ -54,6 +54,10 @@ public:
     /** get a weak reference to the Scene graph node, don't persist this reference 
      *  or we will have memory leaks */
     cugl::Node* getNode(){ return _node.get();}
+    
+    std::shared_ptr<cugl::Node> getSharedPointerNode() {
+        return _node;
+    }
 
     /** get a weak reference to the physics component, don't persist this reference 
      *  or we will have memory leaks */

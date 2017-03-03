@@ -62,6 +62,8 @@ public:
 	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
 
 	std::shared_ptr<GameObject> getActiveCharacter() { return _playerCharacters.at(_activeCharacterPosition); }
+
+	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     
@@ -69,9 +71,26 @@ public:
         return _debugnode;
     }
     
-    bool removeObject(GameObject* obj);
-    
     void addGameObject(std::shared_ptr<GameObject> obj);
+    
+    std::shared_ptr<cugl::Node> getWorldNode() {
+        return _worldnode;
+    }
+    
+    void removeObject(GameObject* obj) {
+        for(auto it = _playerCharacters.begin() ; it != _playerCharacters.end();) {
+            if (it->get() == obj)
+                it = _playerCharacters.erase(it);
+            else
+                ++it;
+        }
+        for(auto it = _enemyObjects.begin() ; it != _enemyObjects.end();) {
+            if (it->get() == obj)
+                it = _enemyObjects.erase(it);
+            else
+                ++it;
+        }
+    }
 };
 
 #endif /* GameState_hpp */
