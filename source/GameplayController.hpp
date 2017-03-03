@@ -21,6 +21,7 @@
 #include "SwitchController.hpp"
 #include "LevelController.hpp"
 #include "SyncController.hpp"
+#include "AnimationController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -34,6 +35,7 @@ protected:
     std::shared_ptr<SwitchController> _switchController;
     std::shared_ptr<LevelController>  _levelController;
 	std::shared_ptr<SyncController>  _syncController;
+    std::shared_ptr<AnimationController> _animationController;
 
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
