@@ -42,6 +42,8 @@ public:
     bool isLastWave();
     
     void update(float timestep);
+    
+    void reset();
 };
 
 #endif /* Level_hpp */
