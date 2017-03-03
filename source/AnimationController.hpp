@@ -13,10 +13,16 @@
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
+#include "ActiveAnimation.hpp"
+#include <map>
 
 class AnimationController : public BaseController {
 protected:
     std::vector<GameObject*> objsToRemove;
+    
+    std::shared_ptr<cugl::Node> _worldnode;
+    
+    std::map<GameObject*, ActiveAnimation> animationMap;
     
 public:
     AnimationController();
@@ -40,6 +46,8 @@ public:
         std::shared_ptr<AnimationController> result = std::make_shared<AnimationController>();
         return (result->init(state) ? result : nullptr);
     }
+    
+    void addToWorldNode(GameObject* obj);
 };
 
 #endif /* AnimationController_hpp */
