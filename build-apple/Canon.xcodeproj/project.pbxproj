@@ -111,6 +111,7 @@
 		9F1CCC181E67F57200F218F8 /* SyncController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyncController.cpp; sourceTree = "<group>"; };
 		9F1CCC191E67F57200F218F8 /* SyncController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncController.hpp; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
+		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
@@ -284,6 +285,14 @@
 			name = Syncing;
 			sourceTree = "<group>";
 		};
+		9F1CCC221E69486300F218F8 /* MoveEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */,
+			);
+			name = MoveEvent;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +440,7 @@
 		9FFA3FA11E6367820029D648 /* movement */ = {
 			isa = PBXGroup;
 			children = (
+				9F1CCC221E69486300F218F8 /* MoveEvent */,
 				9FFA3FA31E6367AA0029D648 /* enemy */,
 				9FFA3FA21E6367A00029D648 /* player */,
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,

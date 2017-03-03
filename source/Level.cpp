@@ -62,3 +62,7 @@ void Level::update(float timestep){
         }
     };
 };
+
+void Level::reset(){
+    init(_levelData);
+};
