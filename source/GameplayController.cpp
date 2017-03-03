@@ -35,7 +35,8 @@ void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
 	if (_gameState->reset) {
-		init(_levelController->getWorld());
+        std::shared_ptr<World> newWorld = World::alloc(_levelController->getWorld()->getAssetManager());
+        init(newWorld);
 	}
 	else {
 		_levelController->update(timestep, _gameState);
