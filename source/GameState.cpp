@@ -82,9 +82,6 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     std::shared_ptr<PhysicsComponent> physics2 = PhysicsComponent::alloc(box2, Element::GOLD);
     player2->setPhysicsComponent(physics2);
     
-    _worldnode->addChild(player1Node,1);
-    _worldnode->addChild(player2Node,1);
-    
     _playerCharacters.push_back(player1);
     _playerCharacters.push_back(player2);
     
@@ -107,5 +104,9 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 bool removeObject(GameObject* obj) {
     //todo
     return true;
+}
+
+void GameState::addGameObject(std::shared_ptr<GameObject> obj){
+    _enemyObjects.push_back(obj);
 }
 

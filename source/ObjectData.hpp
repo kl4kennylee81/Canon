@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "Element.hpp"
 
 class ObjectData : public Data {
 public:
@@ -26,6 +27,8 @@ public:
     
     int speed;
     int acceleration;
+    
+    Element element;
     
     // key uid to animation/texture data preloaded into the world.
     // for example filmstrip texture will be passed
@@ -42,7 +45,7 @@ public:
     
     bool init(){ return true; }
     
-    bool init(int uid, int shape_id, int speed,int acceleration);
+    bool init(int uid, int shape_id, int speed,int acceleration, Element element);
     
     static std::shared_ptr<ObjectData> alloc() {
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
@@ -56,6 +59,10 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     virtual bool materialize();
+    
+    Element getElement(){
+        return element;
+    }
 };
 
 #endif /* ObjectData_hpp */

@@ -21,7 +21,7 @@ public:
         /** Signal that a unit died */
         COLLISION,
         /** Signal that a unit spawned */
-        WAVE_SPAWN,
+        LEVEL,
 		/** Path **/
 		PATH
     };

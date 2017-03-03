@@ -64,6 +64,26 @@ public:
     }
     
     std::shared_ptr<cugl::AssetManager> getAssetManager();
+    
+    std::shared_ptr<ObjectData> getObjectData(int obKey){
+        return _objectData.at(obKey);
+    }
+    
+    std::shared_ptr<AnimationData> getAnimationData(int aKey){
+        return _animationData.at(aKey);
+    }
+    
+    std::shared_ptr<PathData> getPathData(int pathKey){
+        return _pathData.at(pathKey);
+    }
+    
+    std::shared_ptr<ShapeData> getShapeData(int shapeKey){
+        return _shapeData.at(shapeKey);
+    }
+    
+    std::shared_ptr<WaveData> getWaveData(int waveKey){
+        return _waveData.at(waveKey);
+    }
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();

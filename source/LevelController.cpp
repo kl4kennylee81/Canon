@@ -7,8 +7,11 @@
 //
 
 #include "LevelController.hpp"
+#include "LevelEvent.hpp"
 
 using namespace cugl;
+
+#define ENEMY_SHAPE         "enemy_shape"
 
 LevelController::LevelController():
 BaseController(),
@@ -33,7 +36,31 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     int waveKey = _level.pollWave();
     if (waveKey != -1){
         // spawn the gameObject from the prototypes
-        
+        std::shared_ptr<WaveData> wd = _world->getWaveData(waveKey);
+        for(auto it = wd->getWaveEntries().begin() ; it != wd->getWaveEntries().end(); ++it) {
+            WaveEntry waveEntry = *it;
+            std::shared_ptr<ObjectData> od = _world->getObjectData(waveEntry.objectKey);
+            std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
+            
+            auto image = _world->getAssetManager()->get<Texture>(ENEMY_SHAPE);
+            auto enemyNode = PolygonNode::allocWithTexture(image);
+            enemyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+            enemyNode->setPosition(waveEntry.position);
+            std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
+            enemy->setIsPlayer(false);
+            
+            auto box1 = BoxObstacle::alloc(enemy->getNode()->getPosition(), enemy->getNode()->getSize());
+            std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, od->getElement());
+            enemy->setPhysicsComponent(physics1);
+            
+            state->addGameObject(enemy);
+            
+            Event event = ObjectSpawnEvent::ObjectSpawnEvent(enemy);
+            
+            // notify the observers of the object that is spawned
+            notify(&event);
+            
+        }
     }
     _level.update(timestep);
 }

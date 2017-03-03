@@ -27,6 +27,8 @@ public:
     _body(nullptr),
     _node(nullptr){}
     
+    bool init();
+    
     bool init(std::shared_ptr<cugl::Node> node);
     
     bool init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node);
@@ -44,6 +46,8 @@ public:
     bool getIsPlayer() { return _isPlayer; };
     
     void setIsPlayer(bool val) { _isPlayer = val; };
+    
+    void setNode(std::shared_ptr<cugl::Node> node);
     
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
     

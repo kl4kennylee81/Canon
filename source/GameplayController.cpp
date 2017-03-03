@@ -62,6 +62,8 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
 	_syncController = SyncController::alloc();
 
 	_pathController->attach(_moveController);
+    
+    _levelController->attach(_collisionController);
 
 	return true;
 }

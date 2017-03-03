@@ -50,9 +50,11 @@ public:
         _waveEntries.push_back(w);
     }
     
-    WaveEntry getWaveEntry(int index){
-        return _waveEntries.at(index);
+    std::vector<WaveEntry> getWaveEntries(){
+        return _waveEntries;
     }
+    
+    
     
     virtual std::string serialize();
     

@@ -10,6 +10,11 @@
 
 using namespace cugl;
 
+bool GameObject::init(){
+    _isPlayer = false;
+    return true;
+}
+
 bool GameObject::init(std::shared_ptr<cugl::Node> node){
     _node = node;
     _isPlayer = false;
@@ -21,6 +26,10 @@ bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cug
     _node = node;
     _isPlayer = false;
     return true;
+}
+
+void GameObject::setNode(std::shared_ptr<cugl::Node> node){
+    _node = node;
 }
 
 void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){

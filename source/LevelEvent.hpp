@@ -12,19 +12,33 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Event.hpp"
-#include "ObjectData.hpp"
+#include "GameObject.hpp"
 
-class LevelEvent : Event {
+class LevelEvent : public Event {
+public:
     enum class LevelEventType : int {
         /** Signal that a path is done */
         OBJECT_SPAWN
     };
     
     LevelEventType levelEventType;
+    
+    LevelEvent() : Event() {
+        _eventType = EventType::LEVEL;
+    };
 };
 
-class ObjectSpawnEvent : LevelEvent {
-    int objDataKey;
+class ObjectSpawnEvent : public LevelEvent {
+public:
+    
+    ObjectSpawnEvent(std::shared_ptr<GameObject> object) : LevelEvent() {
+        levelEventType = LevelEventType::OBJECT_SPAWN;
+        object = object;
+    }
+    
+    std::shared_ptr<GameObject> object;
+    
+    
 };
 
 #endif /* LevelEvent_hpp */

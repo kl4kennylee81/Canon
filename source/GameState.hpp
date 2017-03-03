@@ -70,6 +70,8 @@ public:
     }
     
     bool removeObject(GameObject* obj);
+    
+    void addGameObject(std::shared_ptr<GameObject> obj);
 };
 
 #endif /* GameState_hpp */
