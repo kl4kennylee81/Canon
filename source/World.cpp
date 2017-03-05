@@ -10,7 +10,7 @@
 #include "Element.hpp"
 #include <random>
 
-#define TIME_BETWEEN_SPAWN       220
+#define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            3
 
 
