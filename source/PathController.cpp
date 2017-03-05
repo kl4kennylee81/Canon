@@ -74,10 +74,29 @@ void PathController::updateMinMax(Vec2 vec) {
 	_maxy = std::max(_maxy, vec.y);
 }
 
+Vec2 PathController::getInputVector() {
+	if (_touch) {
+		auto set = Input::get<Touchscreen>()->touchSet();
+		return set.size() > 0 ? Input::get<Touchscreen>()->touchPosition(set.at(0)) : Vec2::Vec2();
+	}
+	else {
+		return Input::get<Mouse>()->pointerPosition();
+	}
+}
+
+bool PathController::getIsPressed() {
+	if (_touch) {
+		return Input::get<Touchscreen>()->touchSet().size() > 0;
+	}
+	else {
+		return Input::get<Mouse>()->buttonDown().hasLeft();
+	}
+}
+
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
-	Vec2 position = Input::get<Mouse>()->pointerPosition();
+	bool isPressed = getIsPressed();
+	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
 	position.y = _height - position.y;
-	bool isPressed = Input::get<Mouse>()->buttonDown().hasLeft();
     
     // can't start drawing a path before a character is done moving through a previous path
     if (_is_moving) {
@@ -112,7 +131,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	_wasPressed = isPressed;
 }
 
-bool PathController::init(std::shared_ptr<GameState> state) {
+bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);
@@ -123,5 +142,7 @@ bool PathController::init(std::shared_ptr<GameState> state) {
     
     _is_moving = false;
     
+	_wasPressed = false;
+	_touch = touch;
 	return true;
 }

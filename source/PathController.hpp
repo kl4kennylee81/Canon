@@ -32,7 +32,9 @@ public:
 
 	std::shared_ptr<cugl::Node> _pathSceneNode;
 
-	bool _wasPressed = false;
+	bool _wasPressed;
+
+	bool _touch;
 
 	void addPathToScene(std::shared_ptr<GameState> state);
 
@@ -55,12 +57,16 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
 
-	virtual bool init(std::shared_ptr<GameState> state);
+	virtual bool init(std::shared_ptr<GameState> state, bool touch);
 
-	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state) {
+	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state, bool touch) {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
-		return (result->init(state) ? result : nullptr);
+		return (result->init(state, touch) ? result : nullptr);
     }
+
+	cugl::Vec2 getInputVector();
+
+	bool getIsPressed();
 };
 
 #endif /* PathController_hpp */

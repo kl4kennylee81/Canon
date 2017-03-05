@@ -36,7 +36,7 @@ void GameplayController::eventUpdate(Event* e) {}
 void GameplayController::update(float timestep) {
 	if (_gameState->reset) {
         std::shared_ptr<World> newWorld = World::alloc(_levelController->getWorld()->getAssetManager());
-        init(newWorld);
+        init(newWorld, _touch);
 	}
 	else {
 		_levelController->update(timestep, _gameState);
@@ -61,9 +61,10 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 }
 
 
-bool GameplayController::init(std::shared_ptr<World> levelWorld) {
+bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
+	_touch = touch;
 	_gameState = GameState::alloc(levelWorld->getAssetManager());
-	_pathController = PathController::alloc(_gameState);
+	_pathController = PathController::alloc(_gameState, touch);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
