@@ -67,6 +67,9 @@ public:
 	cugl::Vec2 getInputVector();
 
 	bool getIsPressed();
+
+	bool getDoubleTouch();
+
 };
 
 #endif /* PathController_hpp */

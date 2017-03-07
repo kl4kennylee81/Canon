@@ -93,6 +93,16 @@ bool PathController::getIsPressed() {
 	}
 }
 
+bool PathController::getDoubleTouch() {
+	if (_touch) {
+		return Input::get<Touchscreen>()->touchSet().size() > 1;
+	}
+	else {
+		return Input::get<Mouse>()->buttonDown().hasLeft() &&
+			Input::get<Mouse>()->buttonDown().hasRight();
+	}
+}
+
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
@@ -102,10 +112,22 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     if (_is_moving) {
         return;
     }
+
+	// clear path on two finger touch
+	if (getDoubleTouch()) {
+		_path->clear();
+		_wasPressed = false;
+		_pathSceneNode->removeAllChildren();
+		return;
+	}
     
 	if (!_wasPressed && isPressed) {
 		_path->clear();
 		Vec2 currentLocation = state->getActiveCharacter()->getNode()->getPosition();
+		
+		// can't start drawing a path if the touch is far away from the active character
+		if (position.distance(currentLocation) > TOUCH_RADIUS) return;
+
 		_path->add(currentLocation);
 		resetMinMax();
 		updateMinMax(currentLocation);
