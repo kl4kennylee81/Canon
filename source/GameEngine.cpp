@@ -8,6 +8,7 @@
 
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
+#include "MenuScreenData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -44,13 +45,25 @@ void GameEngine::onStartup() {
     // You have to attach the individual loaders for each asset type
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
+	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
+	_assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
+	_assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
+	_assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
+	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
+	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
+	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
+	_assets->load<LevelData>("level1", "json/level.json");
+
+	auto level1 = _assets->get<LevelData>("level1");
+	printf("%i %f \n", level1->getWaveKey(0), level1->getTime(0));
     
     _menuGraph = MenuGraph::MenuGraph();
     
     // This reads the given JSON file and uses it to load all other assets
     _assets->loadDirectory("json/assets.json");
+	//_assets->loadDirectory("json/level.json");
 
     
     // Activate mouse or touch screen input as appropriate
@@ -63,7 +76,6 @@ void GameEngine::onStartup() {
     Input::activate<Mouse>();
 	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
-      
     Application::onStartup();
 }
 

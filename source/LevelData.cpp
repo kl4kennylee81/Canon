@@ -31,10 +31,17 @@ std::string LevelData::serialize(){
 }
 
 bool LevelData::preload(const std::string& file){
+	std::cout << file.c_str() << std::endl;
+	auto reader = JsonReader::allocWithAsset(file.c_str());
+	auto json = reader->readJson();
+	preload(json);
     return true;
 }
 
 bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+	auto entry = LevelEntry::alloc(json->getFloat("waveKey"), json->getInt("time"));
+	init(json->getInt("id"));
+	addLevelEntry(entry);
     return true;
 }
 
