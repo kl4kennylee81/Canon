@@ -47,7 +47,7 @@ float RGHT_RECT[] = {0.96f, 1.00f, 0.5625f, 0.9375f};
  *
  * @return true if the controller is initialized properly, false otherwise.
  */
-bool LoadController::init(const std::shared_ptr<cugl::AssetManager>& assets) {
+bool LoadController::init(const std::shared_ptr<GenericAssetManager>& assets) {
     // IMMEDIATELY load three assets
     _assets = assets;
     assets->load<Texture>(PLAY_KEY,PLAY_TEXTURE);

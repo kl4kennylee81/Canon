@@ -25,7 +25,7 @@ World::~World()
 {}
 
 
-std::shared_ptr<cugl::AssetManager> World::getAssetManager(){
+std::shared_ptr<GenericAssetManager> World::getAssetManager(){
     return _assets;
 }
 
@@ -66,7 +66,7 @@ void World::populate(){
     
 }
 
-bool World::init(std::shared_ptr<cugl::AssetManager> assets){
+bool World::init(std::shared_ptr<GenericAssetManager> assets){
     _assets = assets;
     populate();
     return true;

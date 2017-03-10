@@ -1,5 +1,28 @@
 {
-  "id": 1,
-  "waveKey": 1,
-  "time": 1
+  "levels": {
+    "level1": {
+      "wave1": {
+        "waveKey": 1,
+        "time": 1
+      },
+      "wave2": {
+        "waveKey": 1,
+        "time": 2
+      }
+    }
+  },
+  "waves": {
+    "wave1": {
+      "object1": {
+        "objectKey": 1,
+        "x": 100,
+        "y": 100
+      },
+      "object2": {
+        "objectKey": 2,
+        "x": 200,
+        "y": 200
+      }
+    }
+  }
 }

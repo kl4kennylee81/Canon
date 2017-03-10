@@ -12,6 +12,7 @@
 #include "GameplayController.hpp"
 #include "LoadController.hpp"
 #include "MenuGraph.hpp"
+#include "GenericAssetManager.hpp"
 
 /**
  * Class for a simple Hello World style application
@@ -22,7 +23,7 @@
 class GameEngine : public cugl::Application {
 protected:
     /** The loaders to (synchronously) load in assets */
-    std::shared_ptr<cugl::AssetManager> _assets;
+    std::shared_ptr<GenericAssetManager> _assets;
     /** A scene graph, used to display our 2D scenes */
     std::shared_ptr<cugl::Scene> _scene;
     /** A 3152 style SpriteBatch to render the scene */

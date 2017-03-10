@@ -27,7 +27,7 @@ public:
     // setting equal to 0 is a pure virtual function equivalent to an abstract function
     virtual std::string serialize() = 0;
         
-    virtual bool preload(const std::string& file);
+	virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     

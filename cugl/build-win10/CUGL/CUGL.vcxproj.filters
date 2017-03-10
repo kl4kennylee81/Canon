@@ -45,9 +45,6 @@
     <Filter Include="Header Files\assets">
       <UniqueIdentifier>{9516626b-9fee-4e3b-86a6-f7f6020d4f30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\renderer">
-      <UniqueIdentifier>{f45c677c-84ad-4a91-9fb1-2985c47228bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\util">
       <UniqueIdentifier>{6b01080a-199d-44ba-aebc-d39cfca059d0}</UniqueIdentifier>
     </Filter>
@@ -101,6 +98,9 @@
     </Filter>
     <Filter Include="Header Files\external\cJSON">
       <UniqueIdentifier>{7c21dd1d-3305-437d-866e-5ba4b97c9f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\math\renderer">
+      <UniqueIdentifier>{f45c677c-84ad-4a91-9fb1-2985c47228bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -360,31 +360,31 @@
       <Filter>Header Files\io</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\cu_renderer.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUCamera.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUOrthographicCamera.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUPerspectiveCamera.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUShader.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUSpriteBatch.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUSpriteShader.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUTexture.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\renderer\CUVertex.h">
-      <Filter>Header Files\renderer</Filter>
+      <Filter>Header Files\math\renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\cugl\util\cu_util.h">
       <Filter>Header Files\util</Filter>

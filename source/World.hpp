@@ -18,6 +18,7 @@
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
 #include "LevelData.hpp"
+#include "GenericAssetManager.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -36,7 +37,7 @@ protected:
     std::shared_ptr<LevelData> _levelData;
     
     /** The asset manager for this game world. */
-    std::shared_ptr<cugl::AssetManager> _assets;
+    std::shared_ptr<GenericAssetManager> _assets;
     
     // static prototypes used to spawn units into the gameState
 	std::unordered_map<int, std::shared_ptr<ObjectData>> _objectData;
@@ -55,15 +56,15 @@ public:
         return true;
     }
 
-    virtual bool init(std::shared_ptr<cugl::AssetManager> assets);
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets);
     
-    virtual bool init(std::shared_ptr<cugl::AssetManager> assets, std::shared_ptr<LevelData> levelData){
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets, std::shared_ptr<LevelData> levelData){
         _assets = assets;
         _levelData = levelData;
         return true;
     }
     
-    std::shared_ptr<cugl::AssetManager> getAssetManager();
+    std::shared_ptr<GenericAssetManager> getAssetManager();
     
     std::shared_ptr<ObjectData> getObjectData(int obKey){
         return _objectData.at(obKey);
@@ -90,12 +91,12 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-    static std::shared_ptr<World> alloc(std::shared_ptr<cugl::AssetManager> assets) {
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<World> result = std::make_shared<World>();
         return (result->init(assets) ? result : nullptr);
     }
     
-    static std::shared_ptr<World> alloc(std::shared_ptr<cugl::AssetManager> assets,std::shared_ptr<LevelData> levelData) {
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {
         std::shared_ptr<World> result = std::make_shared<World>();
         return (result->init(assets,levelData) ? result : nullptr);
     }

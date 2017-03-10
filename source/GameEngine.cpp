@@ -40,7 +40,7 @@ void GameEngine::onStartup() {
     _batch = SpriteBatch::alloc();
     
     // Create an asset manager to load all assets
-    _assets = AssetManager::alloc();
+    _assets = GenericAssetManager::alloc();
     
     // You have to attach the individual loaders for each asset type
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
@@ -54,15 +54,22 @@ void GameEngine::onStartup() {
 	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
-	_assets->load<LevelData>("level1", "json/level.json");
+	//_assets->load<LevelData>("level1", "json/level.json");
 
-	auto level1 = _assets->get<LevelData>("level1");
-	printf("%i %f \n", level1->getWaveKey(0), level1->getTime(0));
     
     _menuGraph = MenuGraph::MenuGraph();
     
     // This reads the given JSON file and uses it to load all other assets
     _assets->loadDirectory("json/assets.json");
+	_assets->loadDirectory("json/level.json");
+
+	auto level1 = _assets->get<LevelData>("level1");
+	printf("%i %f \n", level1->getWaveKey(0), level1->getTime(0));
+	auto wave1 = _assets->get<WaveData>("wave1");
+	auto entries = wave1->getWaveEntries();
+	printf("%i \n", entries.at(0)->objectKey);
+
+
 	//_assets->loadDirectory("json/level.json");
 
     

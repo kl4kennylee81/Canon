@@ -19,7 +19,7 @@ using namespace cugl;
 #define PLAYER_BOY_YELLOW          "player_boy"
 #define PLAYER_GIRL_BLUE         "player_girl"
 
-bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
+bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     if (assets == nullptr){
         return false;
     }
