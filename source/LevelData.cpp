@@ -31,7 +31,6 @@ std::string LevelData::serialize(){
 }
 
 bool LevelData::preload(const std::string& file){
-	std::cout << file.c_str() << std::endl;
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();
 	preload(json);

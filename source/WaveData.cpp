@@ -15,7 +15,6 @@ std::string WaveData::serialize(){
 }
 
 bool WaveData::preload(const std::string& file){
-	std::cout << file.c_str() << std::endl;
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();
 	preload(json);
@@ -23,12 +22,12 @@ bool WaveData::preload(const std::string& file){
 }
 
 bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+	init(0);
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
 		auto entry = WaveEntry::alloc(child->getInt("objectKey"), child->getFloat("x"), child->getFloat("y"));
 		addWaveEntry(entry);
 	}
-	init(0);
     return true;
 }
 

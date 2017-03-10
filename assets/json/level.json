@@ -24,5 +24,19 @@
         "y": 200
       }
     }
+  },
+  "objects": {
+    "object1": {
+      "shape_id": 1,
+      "speed": 1,
+      "acceleration": 1,
+      "Element": "BLUE"
+    }
+  },
+  "shapes": {
+    "shape1": {
+      "width": 100,
+      "height": 100
+    }
   }
 }
