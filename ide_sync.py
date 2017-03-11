@@ -1,3 +1,4 @@
+# from http://effbot.org/zone/element-lib.htm#prettyprint
 def indent(elem, level=0):
     i = "\n" + level*"  "
     if len(elem):
@@ -13,13 +14,8 @@ def indent(elem, level=0):
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
 
-
+## PART ONE: COLLECT DATA FROM XCODE
 xcode_structure = {}
-GROUP_START = '/* Begin PBXGroup section */'
-GROUP_END = '/* End PBXGroup section */'
-COMMENT_START = '/*'
-COMMEND_END = '*/'
-LIST_END = ');'
 should_parse = False
 grab_children = False
 child_buffer = []
@@ -27,38 +23,39 @@ child_buffer = []
 with open('build-apple/Canon.xcodeproj/project.pbxproj') as xcode_config:
 	for line in xcode_config:
 
-		if GROUP_START in line:
+		# the part of the file that we're interested in
+		if '/* Begin PBXGroup section */' in line:
 			should_parse = True
 			continue
-			# start parsing LOL
-		elif GROUP_END in line:
-			break # we are done
+		elif '/* End PBXGroup section */' in line:
+			break
 
 		if should_parse:
 			if grab_children:
-				if LIST_END in line:
+				if ');' in line: # denotes end of children listings
 					grab_children = False
 					continue
 
-				ind1 = line.index(COMMENT_START)
-				ind2 = line.index(COMMEND_END)
-				child = line[ind1+3:ind2-1]
+				ind1 = line.index('/*')
+				ind2 = line.index('*/')
+				child = line[ind1+3:ind2-1] # specific af, dwai
 				child_buffer.append(child)
 
 			elif 'children' in line:
 				grab_children = True
-				child_buffer = [] # some don't have names, so we also reset here
+				child_buffer = [] # some don't have 'name', so we also reset here
+			
 			elif 'name' in line:
-				actual_name = line[line.index('name')+7:len(line)-2]
+				actual_name = line[line.index('name')+7:len(line)-2] # slicing to get rid of comments
 				xcode_structure[actual_name] = child_buffer
 				child_buffer = []
-				# print actual_name, xcode_structure[actual_name]
+
 
 # clean up - we remove all branches that do not eventually lead to a cpp or hpp file
 cpp_files = []
 hpp_files = []
 white_listed = set() # stores good keys
-# print xcode_structure
+
 for k in xcode_structure.keys():
 
 	for kid in xcode_structure[k]:
@@ -71,10 +68,11 @@ for k in xcode_structure.keys():
 				hpp_files.append(kid)
 				white_listed.add(k)
 
-# retrieve parents of white_listed
+
+# retrieve parents of white_listed until no changes in set occurs
 old_white_listed = set()
 while (len(white_listed) != len(old_white_listed)):
-	# print white_listed
+
 	old_white_listed = set(white_listed) # copy
 	for k in xcode_structure.keys():
 		if k not in white_listed:
@@ -82,16 +80,14 @@ while (len(white_listed) != len(old_white_listed)):
 				if kid in white_listed:
 					white_listed.add(k)
 
-# print xcode_structure.keys()
-# print white_listed
+
+## PART TWO: SYNC VCXPROJ
 
 # now, we sync the .vcxproj of the visual studio setup.
 import xml.etree.ElementTree as ET
 ET.register_namespace('', 'http://schemas.microsoft.com/developer/msbuild/2003')
 tree = ET.parse('build-win10/HelloWorld/HelloWorld.vcxproj')
 root = tree.getroot()
-# print root.tag
-# item_group = root.findall('Project')
 
 cpp_item_group = None
 hpp_item_group = None
@@ -115,48 +111,36 @@ for child in root:
 					found_cpp = True
 					kid_dna = kid
 					break
-					# print v
 				elif '.hpp' in v or '.h' in v:
 					found_hpp = True
 					kid_dna = kid
 					break
-					# print v
-
-# print cpp_item_group
-# print hpp_item_group
-# print kid_dna
 
 # generate clcompiles
 cpp_item_group.clear()
 hpp_item_group.clear()
 
-# print kid_dna
-
 # use cpp_files and hpp_files for vcxproj
-# hack
-hpp_files.append('resource.h')
+# hack to automatically include resource.h
+ET.SubElement(hpp_item_group, 'ClInclude', attrib={'Include': 'resource.h'})
+
 for cpp_file in cpp_files:
-	att = {}
-	att['Include'] = "..\..\source\\" + cpp_file
+	att = {'Include': "..\..\source\\" + cpp_file}
 	ET.SubElement(cpp_item_group, 'ClCompile', attrib=att)
 
-# print hpp_files
-
 for hpp_file in hpp_files:
-	att = {}
-	att['Include'] = "..\..\source\\" + hpp_file
+	att = {'Include': "..\..\source\\" + hpp_file}
 	ET.SubElement(hpp_item_group, 'ClInclude', attrib=att)
 
 indent(root)
 # write to file
 tree.write('build-win10/HelloWorld/HelloWorld.vcxproj', encoding="utf-8", xml_declaration=True)
 
-# vcxproj.filters
-# use white_list for vcxproj.filters
+
+## STEP THREE: SYNC FILTERS
+
 filtertree = ET.parse('build-win10/HelloWorld/HelloWorld.vcxproj.filters')
 filterroot = filtertree.getroot()
-
-# print white_listed
 
 filter_parent = None
 include_parent = None
@@ -185,7 +169,6 @@ while len(mapstack) > 0:
 		if not ('.cpp' in k or '.hpp' in k or '.h' in k):
 			mapstack.append(k)
 
-# print child_parent_map
 
 # create flattened child-path mapping
 flat_child_parent_map = {}
@@ -199,7 +182,6 @@ for child in child_parent_map.keys():
 		value = child_parent_map[value]
 	flat_child_parent_map[child] = path
 
-# print flat_child_parent_map
 
 # pin source folder to top
 filter_parent.clear()
@@ -221,7 +203,6 @@ remove_list = []
 for child in include_parent:
 	for k,v in child.items():
 		if 'resource.h' not in v:
-			# print v
 			remove_list.append(child)
 		else:
 			for f in child:
@@ -248,7 +229,3 @@ for c in flat_child_parent_map:
 indent(filterroot)
 # write to file
 filtertree.write('build-win10/HelloWorld/HelloWorld.vcxproj.filters', encoding="utf-8", xml_declaration=True)
-
-
-
-
