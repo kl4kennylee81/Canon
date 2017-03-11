@@ -63,16 +63,6 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/assets.json");
 	_assets->loadDirectory("json/level.json");
 
-	auto level1 = _assets->get<LevelData>("level1");
-	printf("%i %f \n", level1->getWaveKey(0), level1->getTime(0));
-	auto wave1 = _assets->get<WaveData>("wave1");
-	auto entries = wave1->getWaveEntries();
-	printf("%i \n", entries.at(0)->objectKey);
-	auto object1 = _assets->get<ObjectData>("object1");
-	printf("%i \n", object1->shape_id);
-	auto shape1 = _assets->get<ShapeData>("shape1");
-	printf("%i \n", shape1->height);
-
 
 	//_assets->loadDirectory("json/level.json");
 
