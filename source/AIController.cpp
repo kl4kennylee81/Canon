@@ -79,24 +79,6 @@ void AIController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : _enemies) {
 		it->update(state);
 	}
-	
-	//for (auto it : state->getEnemyObjects()) {
-	//	Element e = it->getPhysicsComponent()->getElementType();
- //       
- //       // HACK we should check the actual active player list
- //       // and then iterate through to find closest one
- //       // no assumption on only 2
-	//	int playerIndex = e == Element::BLUE ? 0 : 1;
-
- //       // HACK MUST FIX to keep from null pointering
- //       if (state->getPlayerCharacters().size() == 2){
- //           auto player = state->getPlayerCharacters().at(playerIndex);
- //           Vec2 playerPos = player->getNode()->getPosition();
- //           Vec2 enemyPos = it->getNode()->getPosition();
- //           Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
- //           it->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
- //       }
-	//}
 }
 
 bool AIController::init() {
