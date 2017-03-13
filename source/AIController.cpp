@@ -38,12 +38,22 @@ void AIController::eventUpdate(Event* e){
 	{
 		LevelEvent* levelEvent = (LevelEvent*)e;
 		switch (levelEvent->levelEventType) {
-		case LevelEvent::LevelEventType::OBJECT_SPAWN:
-			ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
-			auto ai = HomingAI::alloc(spawn->object);
-			addAI(ai);
-			break;
+            case LevelEvent::LevelEventType::OBJECT_INIT:
+            {
+                ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
+                std::shared_ptr<HomingAI> ai = HomingAI::alloc(init->object);
+                ai->getObjects();
+                addAI(ai);
+                break;
+            }
+            case LevelEvent::LevelEventType::OBJECT_SPAWN:
+            {
+                ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
+                std::shared_ptr<ActiveAI> activeAi = _map.at(spawn->object.get());
+                activeAi->toggleActive();
+            }
 		}
+        
 		break;
 	}
 	case Event::EventType::COLLISION: 
@@ -62,6 +72,8 @@ void AIController::eventUpdate(Event* e){
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {
 	_enemies.insert(ai);
+    std::cout << "hi" <<std::endl;
+    ai->getObjects();
 	for (auto it : ai->getObjects()) {
 		_map[it.get()] = ai;
 	}

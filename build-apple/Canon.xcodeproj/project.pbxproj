@@ -241,6 +241,7 @@
 		EBC147381E27F254005494CE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		EBC1478F1E280C03005494CE /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
 		EBFE7C041E19B496001007C2 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
+		F134D4841E766B23009EB8E3 /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -481,6 +482,7 @@
 				9FFA3FAF1E636B780029D648 /* AIController.hpp */,
 				DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */,
 				DF93BDD11E76685D00EA6A1D /* HomingAI.hpp */,
+				F134D4841E766B23009EB8E3 /* ActiveAI.hpp */,
 			);
 			name = enemy;
 			sourceTree = "<group>";

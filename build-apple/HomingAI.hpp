@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 2/26/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef HomingAI_hpp
@@ -16,14 +16,25 @@
 #include "GameObject.hpp"
 
 class HomingAI : public ActiveAI {
+private:
+    bool _isActive;
 public:
+    
 	std::shared_ptr<GameObject> _object;
+    
+    virtual bool isActive() {
+        return _isActive;
+    }
+    
+    virtual void toggleActive() {
+        _isActive = !_isActive;
+    }
+    
+	virtual void update(std::shared_ptr<GameState> state);
 
-	void update(std::shared_ptr<GameState> state);
+	virtual bool garbageCollect(GameObject* obj);
 
-	bool garbageCollect(GameObject* obj);
-
-	std::vector<std::shared_ptr<GameObject>> getObjects() {
+	virtual std::vector<std::shared_ptr<GameObject>> getObjects() {
 		std::vector<std::shared_ptr<GameObject>> objects;
 		objects.push_back(_object);
 		return objects;
@@ -31,6 +42,7 @@ public:
 
 	bool init(std::shared_ptr<GameObject> object) {
 		_object = object;
+        _isActive = false;
 		return true;
 	}
 
