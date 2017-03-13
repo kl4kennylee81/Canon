@@ -1,137 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\ActiveAnimation.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\ActivePath.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\AIController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\AnimationController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\AnimationData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\BaseController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\CollisionController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\CollisionEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Data.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Element.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Event.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\GameEngine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\GameObject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\GameplayController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\GameState.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Level.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\LevelController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\LevelEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\LoadController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\MenuController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\MenuGraph.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\MenuScreenData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\MoveController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\ObjectData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Observer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Path.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\PathController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\pathData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\PathEvent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\PhysicsComponent.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\ShapeData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Subject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\World.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\SwitchController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\WaveData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\LevelData.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\SyncController.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\PathParameters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Source\physics">
+    </Filter>
+    <Filter Include="Source\level">
+    </Filter>
+    <Filter Include="Source\gameplay">
+    </Filter>
+    <Filter Include="Source\Animation">
+    </Filter>
+    <Filter Include="Source\Switching">
+    </Filter>
+    <Filter Include="Source\movement">
+    </Filter>
+    <Filter Include="Source">
+    </Filter>
+    <Filter Include="Source\load">
+    </Filter>
+    <Filter Include="Source\pathControls">
+    </Filter>
+    <Filter Include="Source\util">
+    </Filter>
+    <Filter Include="Source\base">
+    </Filter>
+    <Filter Include="Source\Syncing">
+    </Filter>
+    <Filter Include="Source\models">
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{64fa2de1-f270-404b-b528-a4759813c9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\menu" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HelloWorld.rc">
@@ -144,119 +45,268 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\LevelEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\LoadController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\MenuController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\MenuGraph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\MenuScreenData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\MoveController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\ObjectData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Observer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Path.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\PathController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\pathData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\PathEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\PhysicsComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\ShapeData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Subject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source\util</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\ActiveAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\ActivePath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\AIController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\AnimationController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\AnimationData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\BaseController.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\source\ShapeData.cpp">
+      <Filter>Source\load</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\CollisionController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\CollisionEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Element.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\GameEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\GameplayController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\GameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Level.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\LevelController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\SwitchController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source\physics</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\LevelData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source\load</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\WaveData.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\..\source\CollisionEvent.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Level.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LevelEvent.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\pathData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\World.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Path.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameObject.cpp">
+      <Filter>Source\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Data.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameplayController.cpp">
+      <Filter>Source\gameplay</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\SyncController.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source\Syncing</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\MenuGraph.cpp">
+      <Filter>Source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ActivePath.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ActiveAnimation.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PhysicsComponent.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MoveController.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathController.cpp">
+      <Filter>Source\pathControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AIController.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MenuController.cpp">
+      <Filter>Source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AnimationData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ObjectData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Observer.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Mode.cpp">
+      <Filter>Source\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\WaveData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LoadController.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameState.cpp">
+      <Filter>Source\gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SwitchController.cpp">
+      <Filter>Source\Switching</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LevelController.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Element.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameEngine.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Event.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AnimationController.cpp">
+      <Filter>Source\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathEvent.cpp">
+      <Filter>Source\pathControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MenuScreenData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\BaseController.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GenericAssetManager.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\HomingAI.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\Mode.hpp">
+      <Filter>Source\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\pathData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\World.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Element.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathEvent.hpp">
+      <Filter>Source\pathControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AnimationData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameState.hpp">
+      <Filter>Source\gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SwitchController.hpp">
+      <Filter>Source\Switching</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameEngine.hpp">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ShapeData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\WaveData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameObject.hpp">
+      <Filter>Source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MenuController.hpp">
+      <Filter>Source\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MoveEvent.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathController.hpp">
+      <Filter>Source\pathControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActivePath.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SyncController.hpp">
+      <Filter>Source\Syncing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Subject.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MoveController.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ObjectData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CollisionController.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AIController.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PhysicsComponent.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathParameters.h">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LoadController.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MenuGraph.hpp">
+      <Filter>Source\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\BaseController.hpp">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveAnimation.hpp">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Data.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CollisionEvent.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelEvent.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AnimationController.hpp">
+      <Filter>Source\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Path.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Event.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameplayController.hpp">
+      <Filter>Source\gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Observer.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelController.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Level.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\resource.h" />
+    <ClInclude Include="..\..\source\MenuScreenData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GenericAssetManager.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\HomingAI.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveAI.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\assets\json\assets.json">
+      <Filter>Assets</Filter>
+    </None>
+    <None Include="..\..\assets\json\level.json">
+      <Filter>Assets</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,0 +1,42 @@
+{
+  "levels": {
+    "level1": {
+      "wave1": {
+        "waveKey": 1,
+        "time": 1
+      },
+      "wave2": {
+        "waveKey": 1,
+        "time": 2
+      }
+    }
+  },
+  "waves": {
+    "wave1": {
+      "object1": {
+        "objectKey": 1,
+        "x": 100,
+        "y": 100
+      },
+      "object2": {
+        "objectKey": 2,
+        "x": 200,
+        "y": 200
+      }
+    }
+  },
+  "objects": {
+    "object1": {
+      "shape_id": 1,
+      "speed": 1,
+      "acceleration": 1,
+      "Element": "BLUE"
+    }
+  },
+  "shapes": {
+    "shape1": {
+      "width": 100,
+      "height": 100
+    }
+  }
+}

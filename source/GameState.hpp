@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "GameObject.hpp"
+#include "GenericAssetManager.hpp"
 
 class GameState {
 protected:
@@ -55,9 +56,9 @@ public:
     bool reset;
 
 
-    virtual bool init(const std::shared_ptr<cugl::AssetManager>& assets);
+    virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
 
-	static std::shared_ptr<GameState> alloc(const std::shared_ptr<cugl::AssetManager>& assets) {
+	static std::shared_ptr<GameState> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
 		std::shared_ptr<GameState> result = std::make_shared<GameState>();
 		return (result->init(assets) ? result : nullptr);
 	}

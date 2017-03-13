@@ -12,11 +12,12 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
+#include "GenericAssetManager.hpp"
 
 class LoadController : public BaseController {
 protected:
     /** The asset manager for loading. */
-    std::shared_ptr<cugl::AssetManager> _assets;
+    std::shared_ptr<GenericAssetManager> _assets;
     
     // NO CONTROLLER (ALL IN SEPARATE THREAD)
     
@@ -68,9 +69,9 @@ public:
      *
      * @return true if the controller is initialized properly, false otherwise.
      */
-    bool init(const std::shared_ptr<cugl::AssetManager>& assets);
+    bool init(const std::shared_ptr<GenericAssetManager>& assets);
     
-    static std::shared_ptr<LoadController> alloc(const std::shared_ptr<cugl::AssetManager>& assets) {
+    static std::shared_ptr<LoadController> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<LoadController> result = std::make_shared<LoadController>();
         return (result->init(assets) ? result : nullptr);
     }

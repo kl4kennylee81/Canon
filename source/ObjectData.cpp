@@ -25,10 +25,18 @@ std::string ObjectData::serialize(){
 }
 
 bool ObjectData::preload(const std::string& file){
+	auto reader = JsonReader::allocWithAsset(file.c_str());
+	auto json = reader->readJson();
+	preload(json);
     return true;
 }
 
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+	int sid = json->getInt("shape_id");
+	float spd = json->getFloat("speed");
+	float acc = json->getFloat("acceleration");
+	auto el = json->getString("element").compare("BLUE") ? Element::BLUE : Element::GOLD;
+	init(0, sid, spd, acc, el);
     return true;
 }
 

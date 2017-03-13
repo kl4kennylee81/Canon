@@ -15,11 +15,15 @@ std::string ShapeData::serialize(){
 }
 
 bool ShapeData::preload(const std::string& file){
+	auto reader = JsonReader::allocWithAsset(file.c_str());
+	auto json = reader->readJson();
+	preload(json);
     return true;
 }
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-    return true;
+	init(0, json->getFloat("height"), json->getFloat("width"));
+	return true;
 }
 
 bool ShapeData::materialize(){
