@@ -134,7 +134,7 @@ bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, Game
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     // HACK jon i don't think you need to do this the destructor sets it to the nullptr
-//    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
+    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
     return true;
 }
