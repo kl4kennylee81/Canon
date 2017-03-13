@@ -67,7 +67,7 @@ public:
 
 	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
 
-	std::shared_ptr<GameObject> getActiveCharacter() { return _playerCharacters.at(_activeCharacterPosition); }
+    std::shared_ptr<GameObject> getActiveCharacter();
 
 	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
     
