@@ -23,7 +23,11 @@ public:
     // used to spawn the physics component shape_id,speed,acceleration
     
     // key uid to a shape data preloaded into the world
+    
+    int object_id;
+    
     int shape_id;
+    int animation_id;
     
     int speed;
     int acceleration;
@@ -41,11 +45,11 @@ public:
     
     ObjectData() : Data(){}
     
-    bool init(int uid, int shape_id, int speed,int acceleration, Element element);
+    bool init(int uid, int shape_id, int animation_id,int speed,int acceleration, Element element);
     
-    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id, int speed,int acceleration, Element element) {
+    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id,int animation_id, int speed,int acceleration, Element element) {
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(uid,shape_id,speed,acceleration,element) ? result : nullptr);
+        return (result->init(uid,shape_id,animation_id,speed,acceleration,element) ? result : nullptr);
     }
 
     virtual std::string serialize();

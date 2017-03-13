@@ -28,10 +28,6 @@ bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cug
     return true;
 }
 
-void GameObject::setNode(std::shared_ptr<cugl::Node> node){
-    _node = node;
-}
-
 void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){
     _body = body;
     // a sensor will return to the collision detection but won't apply collision the internal

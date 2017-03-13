@@ -31,7 +31,9 @@ public:
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
-    virtual bool materialize();;
+    virtual bool materialize();
+    
+    int getUID(){ return _uid;};
 };
 
 #endif /* Data_hpp */

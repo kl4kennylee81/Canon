@@ -41,7 +41,15 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             for(auto it: wd->getWaveEntries()) {
                 std::shared_ptr<ObjectData> od = _world->getObjectData(it->objectKey);
                 std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
+                std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animation_id);
                 
+                std::shared_ptr<GameObject> enemy = GameObject::alloc();
+                enemy->setIsPlayer(false);
+                
+                std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(enemy, it, od, ad, sd);
+                notify(initevent.get());
+                
+                /*
                 auto image = _world->getAssetManager()->get<Texture>(ENEMY_SHAPE);
                 auto enemyNode = PolygonNode::allocWithTexture(image);
                 enemyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
@@ -53,22 +61,17 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
                     enemyNode->setColor(Color4::YELLOW);
                 }
                 
-                std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
-                if (!enemy){
-                    assert(false);
-                }
-                enemy->setIsPlayer(false);
-                
-                auto box1 = BoxObstacle::alloc(enemy->getNode()->getPosition(), enemy->getNode()->getSize());
+                auto box1 = BoxObstacle::alloc(it->position, enemy->getNode()->getSize());
                 std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, od->getElement());
                 enemy->setPhysicsComponent(physics1);
+                */
                 
                 state->addEnemyGameObject(enemy);
                 
-                std::shared_ptr<ObjectSpawnEvent> event = ObjectSpawnEvent::alloc(enemy);
+                std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(enemy);
                 
                 // notify the observers of the object that is spawned
-                notify(event.get());
+                notify(spawningevent.get());
                 
             }
         }

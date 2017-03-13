@@ -44,8 +44,8 @@ void AIController::update(float timestep,std::shared_ptr<GameState> state){
         // HACK MUST FIX to keep from null pointering
         if (state->getPlayerCharacters().size() == 2){
             auto player = state->getPlayerCharacters().at(playerIndex);
-            Vec2 playerPos = player->getNode()->getPosition();
-            Vec2 enemyPos = it->getNode()->getPosition();
+            Vec2 playerPos = player->getPosition();
+            Vec2 enemyPos = it->getPosition();
             Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
             it->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
         }

@@ -123,7 +123,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     
 	if (!_wasPressed && isPressed) {
 		_path->clear();
-		Vec2 currentLocation = state->getActiveCharacter()->getNode()->getPosition();
+		Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
 		// can't start drawing a path if the touch is far away from the active character
 		if (position.distance(currentLocation) > TOUCH_RADIUS) return;

@@ -27,14 +27,25 @@
   },
   "objects": {
     "object1": {
+      "id": 1,
       "shape_id": 1,
-      "speed": 1,
-      "acceleration": 1,
+      "animation_id": 3,
+      "speed": 5,
+      "acceleration": 5,
       "Element": "BLUE"
+    },
+    "object2": {
+      "id": 2,
+      "shape_id": 1,
+      "animation_id": 4,
+      "speed": 5,
+      "acceleration": 5,
+      "Element": "GOLD"
     }
   },
   "shapes": {
     "shape1": {
+      "id": 1,
       "width": 100,
       "height": 100
     }

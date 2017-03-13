@@ -40,11 +40,12 @@ void GameplayController::update(float timestep) {
 	}
 	else {
 		_levelController->update(timestep, _gameState);
+        _spawnController->update(timestep);
         _switchController->update(timestep, _gameState);
 		_pathController->update(timestep, _gameState);
 		_moveController->update(timestep, _gameState);
 		_collisionController->update(timestep, _gameState);
-		_syncController->update(timestep, _gameState);
+		//_syncController->update(timestep, _gameState);
 		_moveController->updateActivePaths(timestep, _gameState);
 		_aiController->update(timestep, _gameState);
 		_animationController->update(timestep, _gameState);
@@ -70,20 +71,29 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc(_gameState);
 	_levelController = LevelController::alloc(levelWorld);
-	_syncController = SyncController::alloc();
-    _animationController = AnimationController::alloc(_gameState);
+    _spawnController = SpawnController::alloc();
+	//_syncController = SyncController::alloc();
+    _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 
 	_pathController->attach(_moveController);
     _pathController->attach(_switchController);
+    _pathController->attach(_animationController);
     
     _levelController->attach(_collisionController);
     _levelController->attach(_animationController);
+    _levelController->attach(_spawnController);
 
 	_moveController->attach(_switchController);
     _moveController->attach(_pathController);
+    _moveController->attach(_animationController);
 
 //	_collisionController->attach(_moveController);
     _collisionController->attach(_animationController);
+    
+    _spawnController->attach(_collisionController);
+    _spawnController->attach(_animationController);
 
+    _switchController->attach(_animationController);
+    
 	return true;
 }

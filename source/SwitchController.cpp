@@ -8,6 +8,7 @@
 
 #include "SwitchController.hpp"
 #include "PathEvent.hpp"
+#include "SwitchEvent.hpp"
 
 using namespace cugl;
 
@@ -49,24 +50,14 @@ void SwitchController::eventUpdate(Event* e) {
 
 void SwitchController::update(float timestep, std::shared_ptr<GameState> state) {
 	if (switchFlag) {
-        state->getActiveCharacter()->getNode()->setColor(_baseColors[state->getActiveCharacter()]);
-//
 		state->toggleActiveCharacter(); // new active character
-        
-        if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == Element::BLUE){
-            state->getActiveCharacter()->getNode()->setColor(cugl::Color4::BLUE); // tint active character;
-        } else {
-            state->getActiveCharacter()->getNode()->setColor(cugl::Color4::ORANGE); // tint active character;
-        }
-        
+        std::shared_ptr<SwitchEvent> switchevent = SwitchEvent::alloc(state->getActiveCharacter());
+        notify(switchevent.get());
         switchFlag = false;
 	}
 }
 
 bool SwitchController::init(std::shared_ptr<GameState> state) {
-	for (auto it : state->getPlayerCharacters()) {
-		_baseColors[it] = it->getNode()->getColor();
-	}
     switchFlag = true;
 	return true;
 }

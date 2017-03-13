@@ -41,6 +41,7 @@ void MoveController::eventUpdate(Event* e) {
 			PathFinished* pathFinished = (PathFinished*)pathEvent;
 			std::shared_ptr<ActivePath> path = ActivePath::alloc(pathFinished->_path);
 			_activePaths[pathFinished->_character] = path;
+            std::cout << "pathfinished in movecontroller \n";
 			break;
 		}
 		break;
@@ -53,7 +54,7 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 		std::shared_ptr<GameObject> player = it.first;
 		std::shared_ptr<ActivePath> path = it.second;
 		Vec2 goal = path->_path->get(path->_pathIndex);
-		Vec2 current = player->getPhysicsComponent()->getBody()->getPosition();
+		Vec2 current = player->getPosition();
 		Vec2 velocity = getVelocityVector(current, goal, VELOCITY);
 		player->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
 	}
@@ -65,13 +66,14 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 		std::shared_ptr<GameObject> player = it.first;
 		std::shared_ptr<ActivePath> path = it.second;
 		Vec2 goal = path->_path->get(path->_pathIndex);
-		Vec2 current = player->getPhysicsComponent()->getBody()->getPosition();
+		Vec2 current = player->getPosition();
 		if (std::abs(current.distance(goal)) <= RADIUS) {
 			path->_pathIndex = path->_pathIndex + 1;
 			if (path->_pathIndex >= path->_path->size()) {
 				player->getPhysicsComponent()->getBody()->setVX(0);
 				player->getPhysicsComponent()->getBody()->setVY(0);
-				auto moveEvent = MoveEvent::alloc();
+				auto moveEvent = MoveEvent::alloc(player);
+                std::cout << "moveevent created in movecontroller \n";
 				notify(moveEvent.get());
 				toDelete.push_back(player);
 			}

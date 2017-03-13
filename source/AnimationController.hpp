@@ -14,15 +14,14 @@
 #include "BaseController.hpp"
 #include "GameState.hpp"
 #include "ActiveAnimation.hpp"
+#include "WaveData.hpp"
 #include <map>
 
 class AnimationController : public BaseController {
 protected:
-    std::vector<GameObject*> objsToRemove;
-    
     std::shared_ptr<cugl::Node> _worldnode;
     
-    std::map<GameObject*, ActiveAnimation> animationMap;
+    std::map<GameObject*, std::shared_ptr<ActiveAnimation>> animationMap;
     
 public:
     AnimationController();
@@ -40,14 +39,20 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
-    virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets);
     
-    static std::shared_ptr<AnimationController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<AnimationController> alloc(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<AnimationController> result = std::make_shared<AnimationController>();
-        return (result->init(state) ? result : nullptr);
+        return (result->init(state, assets) ? result : nullptr);
     }
     
-    void addToWorldNode(GameObject* obj);
+    void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data);
+    
+    void handleEvent(GameObject* obj, AnimationEvent event);
+    
+    void syncAll();
+    
+    void updateFrames();
 };
 
 #endif /* AnimationController_hpp */

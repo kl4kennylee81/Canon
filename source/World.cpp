@@ -55,14 +55,21 @@ void World::populate(){
         _waveData.insert(std::make_pair(i,wd));
     }
     
-    auto od1 = ObjectData::alloc(1,1,5,5,Element::BLUE);
+    auto od1 = ObjectData::alloc(1,1,3,5,5,Element::BLUE);
     _objectData.insert(std::make_pair(1,od1));
     
-    auto od2 = ObjectData::alloc(2,1,5,5,Element::GOLD);
+    auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD);
     _objectData.insert(std::make_pair(2,od2));
     
     auto sd = ShapeData::alloc(1,50,50);
     _shapeData.insert(std::make_pair(1,sd));
+    
+    std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
+    _animationData.insert({blueEnemy->getUID(),blueEnemy});
+    
+    std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
+    _animationData.insert({yellowEnemy->getUID(),yellowEnemy});
+    
     
 }
 

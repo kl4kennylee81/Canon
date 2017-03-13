@@ -32,6 +32,10 @@ public:
         return (result->init(uid,height,width) ? result : nullptr);
     }
     
+    cugl::Size getSize(){
+        return cugl::Size(width, height);
+    }
+    
     virtual std::string serialize();
     
     virtual bool preload(const std::string& file);

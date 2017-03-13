@@ -10,9 +10,10 @@
 
 using namespace cugl;
 
-bool ObjectData::init(int uid,int shape_id, int speed,int acceleration,Element element){
+bool ObjectData::init(int uid,int shape_id,int animation_id,int speed,int acceleration,Element element){
     this->_uid = uid;
     this->shape_id = shape_id;
+    this->animation_id = animation_id;
     this->speed = speed;
     this->acceleration = acceleration;
     this->element = element;
@@ -32,11 +33,13 @@ bool ObjectData::preload(const std::string& file){
 }
 
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    int id = json->getInt("id");
 	int sid = json->getInt("shape_id");
+    int aid = json->getInt("animation_id");
 	float spd = json->getFloat("speed");
 	float acc = json->getFloat("acceleration");
 	auto el = json->getString("element").compare("BLUE") ? Element::BLUE : Element::GOLD;
-	init(0, sid, spd, acc, el);
+	init(id, sid, aid, spd, acc, el);
     return true;
 }
 

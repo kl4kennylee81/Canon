@@ -66,7 +66,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     charGirlNode->setPosition(charGirlPos);
     
-    std::shared_ptr<GameObject> charGirl = GameObject::alloc(charGirlNode);
+    std::shared_ptr<GameObject> charGirl = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will
@@ -74,7 +74,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charGirl->setUid(0);
     charGirl->setIsPlayer(true);
     
-    auto boxGirl = BoxObstacle::alloc(charGirl->getNode()->getPosition(), charGirl->getNode()->getSize());
+    auto boxGirl = BoxObstacle::alloc(Vec2::Vec2(300,300), charGirlNode->getSize());
     std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
     charGirl->setPhysicsComponent(physicsGirl);
     
@@ -83,7 +83,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     auto charBoyNode = PolygonNode::allocWithTexture(image);
     charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     charBoyNode->setPosition(charBoyPos);
-    std::shared_ptr<GameObject> charBoy = GameObject::alloc(charBoyNode);
+    std::shared_ptr<GameObject> charBoy = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will
@@ -91,7 +91,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charBoy->setUid(1);
     charBoy->setIsPlayer(true);
     
-    auto boxBoy = BoxObstacle::alloc(charBoy->getNode()->getPosition(), charBoy->getNode()->getSize());
+    auto boxBoy = BoxObstacle::alloc(Vec2::Vec2(150,150), charBoyNode->getSize());
     std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
     charBoy->setPhysicsComponent(physicsBoy);
     

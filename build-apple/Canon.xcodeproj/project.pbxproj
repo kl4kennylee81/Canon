@@ -43,6 +43,9 @@
 		9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FD61E6373470029D648 /* LoadController.cpp */; };
 		9FFA3FDC1E6373770029D648 /* LevelEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FDA1E6373770029D648 /* LevelEvent.cpp */; };
 		9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FE01E6374C90029D648 /* Data.cpp */; };
+		DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */; };
+		DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */; };
+		DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */; };
 		DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */; };
@@ -182,6 +185,11 @@
 		9FFA3FDB1E6373770029D648 /* LevelEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEvent.hpp; sourceTree = "<group>"; };
 		9FFA3FE01E6374C90029D648 /* Data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
 		9FFA3FE11E6374C90029D648 /* Data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
+		DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
+		DF93BDC11E75C20B00EA6A1D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
+		DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnController.cpp; sourceTree = "<group>"; };
+		DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpawnController.hpp; sourceTree = "<group>"; };
+		DF93BDC81E7660BF00EA6A1D /* SwitchEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SwitchEvent.hpp; sourceTree = "<group>"; };
 		DFBD54651E60E4920027FCC1 /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		DFBD54661E60E4920027FCC1 /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayController.cpp; sourceTree = "<group>"; };
@@ -317,6 +325,7 @@
 		9FCE47171E667430002F4A3E /* Switching */ = {
 			isa = PBXGroup;
 			children = (
+				DF93BDC71E7660A600EA6A1D /* SwitchEvent */,
 				9FCE471A1E667448002F4A3E /* SwitchController.cpp */,
 				9FCE471B1E667448002F4A3E /* SwitchController.hpp */,
 			);
@@ -498,6 +507,8 @@
 				9FFA3FB71E636C540029D648 /* LevelController.hpp */,
 				9FFA3FBC1E636CF90029D648 /* Level.cpp */,
 				9FFA3FBD1E636CF90029D648 /* Level.hpp */,
+				DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */,
+				DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */,
 			);
 			name = level;
 			sourceTree = "<group>";
@@ -510,6 +521,8 @@
 				9FFA3FE11E6374C90029D648 /* Data.hpp */,
 				9FFA3FD61E6373470029D648 /* LoadController.cpp */,
 				9FFA3FD71E6373470029D648 /* LoadController.hpp */,
+				DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */,
+				DF93BDC11E75C20B00EA6A1D /* GenericAssetManager.hpp */,
 				9FFA3FBF1E636D220029D648 /* World.cpp */,
 				9FFA3FC01E636D220029D648 /* World.hpp */,
 			);
@@ -523,6 +536,14 @@
 				9FFA3FDB1E6373770029D648 /* LevelEvent.hpp */,
 			);
 			name = LevelEvent;
+			sourceTree = "<group>";
+		};
+		DF93BDC71E7660A600EA6A1D /* SwitchEvent */ = {
+			isa = PBXGroup;
+			children = (
+				DF93BDC81E7660BF00EA6A1D /* SwitchEvent.hpp */,
+			);
+			name = SwitchEvent;
 			sourceTree = "<group>";
 		};
 		EB2BE9B71D749870002FE78B /* Assets */ = {
@@ -782,6 +803,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
+				DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 			);
@@ -821,8 +843,10 @@
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,
 				9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
+				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
+				DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,

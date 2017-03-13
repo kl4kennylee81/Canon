@@ -22,6 +22,7 @@
 #include "LevelController.hpp"
 #include "SyncController.hpp"
 #include "AnimationController.hpp"
+#include "SpawnController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -34,6 +35,7 @@ protected:
 	std::shared_ptr<AIController> _aiController;
     std::shared_ptr<SwitchController> _switchController;
     std::shared_ptr<LevelController>  _levelController;
+    std::shared_ptr<SpawnController> _spawnController;
 	std::shared_ptr<SyncController>  _syncController;
     std::shared_ptr<AnimationController> _animationController;
 

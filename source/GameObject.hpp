@@ -38,6 +38,11 @@ public:
     
     bool init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node);
 
+    static std::shared_ptr<GameObject> alloc(){
+        std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
+        return (result->init() ? result : nullptr);
+    }
+    
     static std::shared_ptr<GameObject> alloc(std::shared_ptr<cugl::Node> node){
         std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
         return (result->init(node) ? result : nullptr);
@@ -56,23 +61,15 @@ public:
     
     void setUid(int uid) { _uid = uid; }
     
-    void setNode(std::shared_ptr<cugl::Node> node);
-    
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
-    
-    /** get a weak reference to the Scene graph node, don't persist this reference 
-     *  or we will have memory leaks */
-    cugl::Node* getNode(){ return _node.get();}
-    
-    std::shared_ptr<cugl::Node> getSharedPointerNode() {
-        return _node;
-    }
 
     /** get a weak reference to the physics component, don't persist this reference 
      *  or we will have memory leaks */
     PhysicsComponent* getPhysicsComponent() {return _body.get();}
     
     void sync();
+    
+    cugl::Vec2 getPosition() {return _body->getBody()->getPosition();};
 };
 
 #endif /* GameObject_hpp */

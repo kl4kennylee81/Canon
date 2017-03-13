@@ -62,9 +62,7 @@ void GameEngine::onStartup() {
     // This reads the given JSON file and uses it to load all other assets
     _assets->loadDirectory("json/assets.json");
 	_assets->loadDirectory("json/level.json");
-
-
-	//_assets->loadDirectory("json/level.json");
+    _assets->loadDirectory("json/animations.json");
 
     
     // Activate mouse or touch screen input as appropriate
