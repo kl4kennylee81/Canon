@@ -24,6 +24,11 @@ protected:
     
     std::shared_ptr<cugl::Node> _bgnode;
     
+    cugl::Rect _bounds;
+    
+    /* Need to multiply this scale by physics coordinates to get world coordinates */
+    float _physicsScale;
+    
     /** The root of our scene graph. 
      * Example:
      * Child1 : Background scene node
@@ -74,6 +79,10 @@ public:
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
+    }
+    
+    cugl::Rect getRect() {
+        return _bounds;
     }
     
     void addEnemyGameObject(std::shared_ptr<GameObject> obj);

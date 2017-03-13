@@ -76,8 +76,7 @@ bool CollisionController::init() {
 }
     
 bool CollisionController::init(std::shared_ptr<GameState> state){
-    Size size = Application::get()->getDisplaySize();
-    Rect bounds = Rect::Rect(0,0,size.getIWidth(),size.getIHeight());
+    Rect bounds = state->getRect();
     
     // 2nd arguement is setting gravity to 0
     _world = cugl::ObstacleWorld::alloc(bounds,Vec2::ZERO);
@@ -108,7 +107,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     }
     
     Input::activate<Keyboard>();
-    setDebug(false);
+    setDebug(true);
     
     return true;
 }
