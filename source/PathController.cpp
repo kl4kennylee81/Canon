@@ -16,6 +16,11 @@
 
 using namespace cugl;
 
+/*
+ * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
+ * size of the device) but then the path is accumilated in world coordinates ((0,0) is bottom left and bounds are your GAME_WIDTH);
+ * When sending out the path event, the path coordinates are in physics coordinates.
+ */
 PathController::PathController():
 BaseController(){}
 
@@ -106,8 +111,8 @@ bool PathController::getDoubleTouch() {
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
-    std::cout << "screen position:" << position.toString() << "\n";
     Vec2 world_pos = state->getScene()->getCamera()->screenToWorldCoords(position);
+    std::cout << "screen position:" << position.toString() << "\n";
     std::cout << "world position:" << world_pos.toString() << "\n";
     
     // can't start drawing a path before a character is done moving through a previous path
@@ -147,8 +152,9 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
 	if (_wasPressed && !isPressed) {
 		addPathToScene(state);
-		std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
-		notify(pathEvent.get());
+        auto physicsCoordPath = _path->convertToPhysicsCoords(state->getPhysicsScale());
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(physicsCoordPath, state->getActiveCharacter());
+        notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         _is_moving = true;
 	}
