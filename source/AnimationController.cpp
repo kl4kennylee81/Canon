@@ -84,7 +84,6 @@ void AnimationController::eventUpdate(Event* e) {
         }
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
-            std::cout << "return in animationcnotroller\n";
             GameObject* obj = moveEvent->_character.get();
             handleEvent(obj, AnimationEvent::RETURN);
             break;
