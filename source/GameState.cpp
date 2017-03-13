@@ -89,7 +89,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charGirl->setUid(0);
     charGirl->setIsPlayer(true);
     
-    auto charGirlPos = Vec2::Vec2(0,0);
+    auto charGirlPos = Vec2::Vec2(16,9);
     auto charGirlSize = charGirl->getNode()->getSize();
     auto boxGirl = BoxObstacle::alloc(charGirlPos, charGirlSize / _physicsScale);
     std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
@@ -108,7 +108,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charBoy->setUid(1);
     charBoy->setIsPlayer(true);
     
-    auto charBoyPos = Vec2::Vec2(0,0);
+    auto charBoyPos = Vec2::Vec2(15,12);
     auto charBoySize = charBoy->getNode()->getSize();
     auto boxBoy = BoxObstacle::alloc(charBoyPos, charBoySize / _physicsScale);
     std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
