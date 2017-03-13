@@ -23,7 +23,6 @@ protected:
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
     bool _isPlayer;
-    float _physicsScale;
     
 public:
     
@@ -59,8 +58,6 @@ public:
     
     void setNode(std::shared_ptr<cugl::Node> node);
     
-    void setPhysicsScale(float scale) { _physicsScale = scale; }
-    
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
     
     /** get a weak reference to the Scene graph node, don't persist this reference 
@@ -75,7 +72,7 @@ public:
      *  or we will have memory leaks */
     PhysicsComponent* getPhysicsComponent() {return _body.get();}
     
-    void sync();
+    void sync(float scale);
 };
 
 #endif /* GameObject_hpp */

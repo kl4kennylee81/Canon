@@ -42,7 +42,7 @@ void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){
     _body->getBody()->setSensor(true);
 }
 
-void GameObject::sync(){
-    _node->setPosition(_body->getBody()->getPosition() * _physicsScale);
+void GameObject::sync(float scale){
+    _node->setPosition(_body->getBody()->getPosition() * scale);
 }
 

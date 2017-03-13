@@ -81,7 +81,6 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     auto charGirlNode = PolygonNode::allocWithTexture(image);
     charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     std::shared_ptr<GameObject> charGirl = GameObject::alloc(charGirlNode);
-    charGirl->setPhysicsScale(_physicsScale);
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will
@@ -101,7 +100,6 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     auto charBoyNode = PolygonNode::allocWithTexture(image);
     charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     std::shared_ptr<GameObject> charBoy = GameObject::alloc(charBoyNode);
-    charBoy->setPhysicsScale(_physicsScale);
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will

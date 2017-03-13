@@ -85,6 +85,8 @@ public:
         return _bounds;
     }
     
+    float getPhysicsScale() { return _physicsScale; }
+    
     void addEnemyGameObject(std::shared_ptr<GameObject> obj);
     
     std::shared_ptr<cugl::Node> getWorldNode() {
