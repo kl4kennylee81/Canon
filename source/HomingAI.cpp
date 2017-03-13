@@ -24,3 +24,9 @@ void HomingAI::update(std::shared_ptr<GameState> state) {
 bool HomingAI::garbageCollect(GameObject* obj) {
 	return true;;
 }
+
+std::vector<std::shared_ptr<GameObject>> HomingAI::getObjects() {
+	std::vector<std::shared_ptr<GameObject>> objects;
+	objects.push_back(_object);
+	return objects;
+}

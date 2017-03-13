@@ -23,11 +23,7 @@ public:
 
 	bool garbageCollect(GameObject* obj);
 
-	std::vector<std::shared_ptr<GameObject>> getObjects() {
-		std::vector<std::shared_ptr<GameObject>> objects;
-		objects.push_back(_object);
-		return objects;
-	}
+	std::vector<std::shared_ptr<GameObject>> getObjects();
 
 	bool init(std::shared_ptr<GameObject> object) {
 		_object = object;
