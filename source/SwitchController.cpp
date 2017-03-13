@@ -49,6 +49,10 @@ void SwitchController::eventUpdate(Event* e) {
 
 void SwitchController::update(float timestep, std::shared_ptr<GameState> state) {
 	if (switchFlag) {
+        
+        if (state->getActiveCharacter() == nullptr){
+            return;
+        }
         state->getActiveCharacter()->getNode()->setColor(_baseColors[state->getActiveCharacter()]);
 //
 		state->toggleActiveCharacter(); // new active character

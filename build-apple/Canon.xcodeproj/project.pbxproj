@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CCC181E67F57200F218F8 /* SyncController.cpp */; };
+		9FC16A9E1E74E8E80040661D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */; };
+		9FC16A9F1E74E8E80040661D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
@@ -112,6 +114,8 @@
 		9F1CCC191E67F57200F218F8 /* SyncController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncController.hpp; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
+		9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
+		9FC16A9D1E74E8E80040661D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
 		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 				9FFA3FD71E6373470029D648 /* LoadController.hpp */,
 				9FFA3FBF1E636D220029D648 /* World.cpp */,
 				9FFA3FC01E636D220029D648 /* World.hpp */,
+				9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */,
+				9FC16A9D1E74E8E80040661D /* GenericAssetManager.hpp */,
 			);
 			name = load;
 			sourceTree = "<group>";
@@ -781,6 +787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC16A9F1E74E8E80040661D /* GenericAssetManager.cpp in Sources */,
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
@@ -823,6 +830,7 @@
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
+				9FC16A9E1E74E8E80040661D /* GenericAssetManager.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
