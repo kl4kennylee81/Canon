@@ -62,7 +62,7 @@ void AIController::eventUpdate(Event* e){
 		case CollisionEvent::CollisionEventType::OBJECT_GONE:
 			ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
 			removeAI(objectGone->_obj);
-			break;å
+            break;
 		}
 		break;
 	}
