@@ -23,6 +23,7 @@ protected:
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
     bool _isPlayer;
+    float _physicsScale;
     
 public:
     
@@ -57,6 +58,8 @@ public:
     void setUid(int uid) { _uid = uid; }
     
     void setNode(std::shared_ptr<cugl::Node> node);
+    
+    void setPhysicsScale(float scale) { _physicsScale = scale; }
     
     void setPhysicsComponent(std::shared_ptr<PhysicsComponent> body);
     

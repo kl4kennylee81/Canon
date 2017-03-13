@@ -43,6 +43,6 @@ void GameObject::setPhysicsComponent(std::shared_ptr<PhysicsComponent> body){
 }
 
 void GameObject::sync(){
-    _node->setPosition(_body->getBody()->getPosition());
+    _node->setPosition(_body->getBody()->getPosition() * _physicsScale);
 }
 

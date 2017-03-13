@@ -11,7 +11,7 @@
 using namespace cugl;
 
 /** This is adjusted by screen aspect ratio to get the height */
-#define GAME_WIDTH 1920
+#define GAME_WIDTH 1024
 /** This is the aspect ratio for physics */
 #define GAME_ASPECT 9.0/16.0
 
@@ -43,6 +43,8 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     // IMPORTANT: SCALING MUST BE UNIFORM
     // This means that we cannot change the aspect ratio of the physics world
     _physicsScale = size.width / bounds.size.width;
+    
+    std::cout << "physicsScale:" << _physicsScale << "\n";
     
     // Get the space background.  Its size determines all scaling.
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
@@ -78,8 +80,8 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     image = assets->get<Texture>(PLAYER_GIRL_BLUE);
     auto charGirlNode = PolygonNode::allocWithTexture(image);
     charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-    
     std::shared_ptr<GameObject> charGirl = GameObject::alloc(charGirlNode);
+    charGirl->setPhysicsScale(_physicsScale);
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will
@@ -99,6 +101,7 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     auto charBoyNode = PolygonNode::allocWithTexture(image);
     charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     std::shared_ptr<GameObject> charBoy = GameObject::alloc(charBoyNode);
+    charBoy->setPhysicsScale(_physicsScale);
     
     // HACK we should not set uid here we need to set uid from the data file
     // after we are loading the player character from data file as well the uid will
