@@ -22,6 +22,7 @@ BaseController(){}
 
 #define BLUE_COLOR   Color4::BLUE
 #define GOLD_COLOR   Color4::YELLOW
+#define DEBUG_COLOR  Color4::GREEN
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
@@ -114,15 +115,9 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
 
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
-    
-    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
-        obst->setDebugColor(BLUE_COLOR);
-    }
-    if (obj->getPhysicsComponent()->getElementType() == Element::GOLD) {
-        obst->setDebugColor(GOLD_COLOR);
-    }
-    
+    obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
+    
     
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);

@@ -38,11 +38,11 @@ bool GameState::init(const std::shared_ptr<cugl::AssetManager>& assets){
     std::cout << "after:" << size.toString() << "\n";
     
     // magic numbers are okay as long as 16:9
-    Rect bounds = Rect::Rect(0,0,32,18);
+    _bounds = Rect::Rect(0,0,32,18);
     
     // IMPORTANT: SCALING MUST BE UNIFORM
     // This means that we cannot change the aspect ratio of the physics world
-    _physicsScale = size.width / bounds.size.width;
+    _physicsScale = size.width / _bounds.size.width;
     
     std::cout << "physicsScale:" << _physicsScale << "\n";
     

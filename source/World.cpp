@@ -37,8 +37,8 @@ void World::populate(){
     // distribution width and height
     
     std::uniform_int_distribution<std::mt19937::result_type> dist9(1,9);
-    std::uniform_int_distribution<std::mt19937::result_type> distWidth(1,Application::get()->getDisplayWidth());
-    std::uniform_int_distribution<std::mt19937::result_type> distHeight(1,Application::get()->getDisplayHeight());
+    std::uniform_int_distribution<std::mt19937::result_type> distWidth(0,31);
+    std::uniform_int_distribution<std::mt19937::result_type> distHeight(0,17);
     
     for (int i = 0;i < 10;i++){
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng),TIME_BETWEEN_SPAWN);
