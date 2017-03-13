@@ -72,6 +72,7 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
                 enemy->setPhysicsComponent(physics1);
                 */
                 
+                // enemy is added to the game state here
                 state->addEnemyGameObject(enemy);
                 
                 std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(enemy);

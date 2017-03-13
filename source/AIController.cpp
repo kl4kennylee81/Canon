@@ -38,12 +38,21 @@ void AIController::eventUpdate(Event* e){
 	{
 		LevelEvent* levelEvent = (LevelEvent*)e;
 		switch (levelEvent->levelEventType) {
-		case LevelEvent::LevelEventType::OBJECT_SPAWN:
-			ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
-			auto ai = HomingAI::alloc(spawn->object);
-			addAI(ai);
-			break;
+            case LevelEvent::LevelEventType::OBJECT_INIT:
+            {
+                ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
+                std::shared_ptr<HomingAI> ai = HomingAI::alloc(init->object);
+                addAI(ai);
+                break;
+            }
+            case LevelEvent::LevelEventType::OBJECT_SPAWN:
+            {
+                ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
+                std::shared_ptr<ActiveAI> activeAi = _map.at(spawn->object.get());
+                activeAi->toggleActive();
+            }
 		}
+        
 		break;
 	}
 	case Event::EventType::COLLISION: 
@@ -53,7 +62,7 @@ void AIController::eventUpdate(Event* e){
 		case CollisionEvent::CollisionEventType::OBJECT_GONE:
 			ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
 			removeAI(objectGone->_obj);
-			break;
+            break;
 		}
 		break;
 	}
@@ -62,6 +71,7 @@ void AIController::eventUpdate(Event* e){
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {
 	_enemies.insert(ai);
+    ai->getObjects();
 	for (auto it : ai->getObjects()) {
 		_map[it.get()] = ai;
 	}
@@ -76,27 +86,11 @@ void AIController::removeAI(GameObject* obj) {
 }
 
 void AIController::update(float timestep,std::shared_ptr<GameState> state){
-//	for (auto it : _enemies) {
-//		it->update(state);
-//	}
-    
-    for (auto it : state->getEnemyObjects()) {
-        Element e = it->getPhysicsComponent()->getElementType();
-        
-        // HACK we should check the actual active player list
-        // and then iterate through to find closest one
-        // no assumption on only 2
-        int playerIndex = e == Element::BLUE ? 0 : 1;
-        
-        // HACK MUST FIX to keep from null pointering
-        if (state->getPlayerCharacters().size() == 2){
-            auto player = state->getPlayerCharacters().at(playerIndex);
-            Vec2 playerPos = player->getPosition();
-            Vec2 enemyPos = it->getPosition();
-            Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
-            it->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
+	for (auto it : _enemies) {
+        if (it->isActive()){
+            it->update(state);
         }
-    }
+	}
 }
 
 bool AIController::init() {

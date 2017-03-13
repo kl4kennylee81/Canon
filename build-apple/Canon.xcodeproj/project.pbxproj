@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CCC181E67F57200F218F8 /* SyncController.cpp */; };
 		9FC16A9F1E74E8E80040661D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */; };
+		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
+		9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
@@ -92,8 +93,8 @@
 		EBC147391E27F254005494CE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBC147381E27F254005494CE /* CoreMotion.framework */; };
 		EBFE7C051E19B496001007C2 /* json in Resources */ = {isa = PBXBuildFile; fileRef = EBFE7C041E19B496001007C2 /* json */; };
 		EBFE7C091E19B4AC001007C2 /* json in Resources */ = {isa = PBXBuildFile; fileRef = EBFE7C041E19B496001007C2 /* json */; };
-		F134D47B1E766693009EB8E3 /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F134D4791E766693009EB8E3 /* HomingAI.cpp */; };
-		F1D35F061E7685990044A121 /* SyncController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CCC181E67F57200F218F8 /* SyncController.cpp */; };
+		F134D47B1E766693009EB8E3 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		F1D35F061E7685990044A121 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F1D35F071E7685990044A121 /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
 		F1D35F081E7685990044A121 /* AnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */; };
 		F1D35F091E7685990044A121 /* ActiveAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */; };
@@ -129,7 +130,7 @@
 		F1D35F291E7685990044A121 /* Subject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F781E6357D10029D648 /* Subject.cpp */; };
 		F1D35F2A1E7685990044A121 /* Observer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F7B1E6357E00029D648 /* Observer.cpp */; };
 		F1D35F2B1E7685990044A121 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
-		F1D35F2C1E7685BC0044A121 /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F134D4791E766693009EB8E3 /* HomingAI.cpp */; };
+		F1D35F2C1E7685BC0044A121 /* (null) in Sources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,12 +151,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9F1CCC181E67F57200F218F8 /* SyncController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SyncController.cpp; sourceTree = "<group>"; };
-		9F1CCC191E67F57200F218F8 /* SyncController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SyncController.hpp; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
 		9FC16A9D1E74E8E80040661D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
+		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
+		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
+		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
 		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
@@ -231,8 +233,6 @@
 		DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnController.cpp; sourceTree = "<group>"; };
 		DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpawnController.hpp; sourceTree = "<group>"; };
 		DF93BDC81E7660BF00EA6A1D /* SwitchEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SwitchEvent.hpp; sourceTree = "<group>"; };
-		DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HomingAI.cpp; path = "../build-apple/HomingAI.cpp"; sourceTree = "<group>"; };
-		DF93BDD11E76685D00EA6A1D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HomingAI.hpp; path = "../build-apple/HomingAI.hpp"; sourceTree = "<group>"; };
 		DFBD54651E60E4920027FCC1 /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		DFBD54661E60E4920027FCC1 /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayController.cpp; sourceTree = "<group>"; };
@@ -278,8 +278,6 @@
 		EBC147381E27F254005494CE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		EBC1478F1E280C03005494CE /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/AudioUnit.framework; sourceTree = DEVELOPER_DIR; };
 		EBFE7C041E19B496001007C2 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
-		F134D4791E766693009EB8E3 /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
-		F134D47A1E766693009EB8E3 /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,15 +327,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F1CCC151E67F56200F218F8 /* syncing */ = {
-			isa = PBXGroup;
-			children = (
-				9F1CCC181E67F57200F218F8 /* SyncController.cpp */,
-				9F1CCC191E67F57200F218F8 /* SyncController.hpp */,
-			);
-			name = syncing;
-			sourceTree = "<group>";
-		};
 		9F1CCC221E69486300F218F8 /* moveEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,8 +508,6 @@
 				F134D47F1E76669B009EB8E3 /* activeAI */,
 				9FFA3FAE1E636B780029D648 /* AIController.cpp */,
 				9FFA3FAF1E636B780029D648 /* AIController.hpp */,
-				DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */,
-				DF93BDD11E76685D00EA6A1D /* HomingAI.hpp */,
 			);
 			name = enemy;
 			sourceTree = "<group>";
@@ -704,7 +691,6 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9F1CCC151E67F56200F218F8 /* syncing */,
 				9FCE47171E667430002F4A3E /* switching */,
 				9FE8E9E11E6382AF00DBE3BC /* animation */,
 				9FE8E9D51E6381A300DBE3BC /* menu */,
@@ -726,8 +712,9 @@
 		F134D47F1E76669B009EB8E3 /* activeAI */ = {
 			isa = PBXGroup;
 			children = (
-				F134D4791E766693009EB8E3 /* HomingAI.cpp */,
-				F134D47A1E766693009EB8E3 /* HomingAI.hpp */,
+				9FC16AB01E768F7E0040661D /* HomingAI.cpp */,
+				9FC16AB11E768F7E0040661D /* HomingAI.hpp */,
+				9FC16AC81E76E9210040661D /* ActiveAI.hpp */,
 			);
 			name = activeAI;
 			sourceTree = "<group>";
@@ -861,8 +848,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1D35F2C1E7685BC0044A121 /* HomingAI.cpp in Sources */,
-				F1D35F061E7685990044A121 /* SyncController.cpp in Sources */,
+				F1D35F2C1E7685BC0044A121 /* (null) in Sources */,
+				F1D35F061E7685990044A121 /* (null) in Sources */,
 				F1D35F071E7685990044A121 /* SwitchController.cpp in Sources */,
 				F1D35F081E7685990044A121 /* AnimationController.cpp in Sources */,
 				F1D35F091E7685990044A121 /* ActiveAnimation.cpp in Sources */,
@@ -901,6 +888,7 @@
 				F1D35F2B1E7685990044A121 /* GameObject.cpp in Sources */,
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
+				9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 			);
@@ -914,18 +902,18 @@
 				DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
-				F134D47B1E766693009EB8E3 /* HomingAI.cpp in Sources */,
+				F134D47B1E766693009EB8E3 /* (null) in Sources */,
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
-				9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */,
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */,
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
+				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,

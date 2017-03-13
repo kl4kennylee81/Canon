@@ -20,8 +20,6 @@ using namespace cugl;
 /** The name of the space texture */
 // HACK replace with level loading sending event
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
-#define PLAYER_BOY_YELLOW          "player_boy"
-#define PLAYER_GIRL_BLUE         "player_girl"
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
@@ -79,10 +77,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // and then attached to the gameObject
     
     #pragma mark : Player Girl
-    
-    image = assets->get<Texture>(PLAYER_GIRL_BLUE);
-    auto charGirlNode = PolygonNode::allocWithTexture(image);
-    charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     std::shared_ptr<GameObject> charGirl = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
@@ -99,9 +93,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     
     #pragma mark : Player Boy
     
-    image = assets->get<Texture>(PLAYER_BOY_YELLOW);
-    auto charBoyNode = PolygonNode::allocWithTexture(image);
-    charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
     std::shared_ptr<GameObject> charBoy = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
@@ -109,7 +100,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // be unique
     charBoy->setUid(1);
     charBoy->setIsPlayer(true);
-    
 
     auto charBoyPos = Vec2::Vec2(15,12);
     auto charBoySize = Size::Size(50,50);
