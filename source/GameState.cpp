@@ -16,8 +16,6 @@ using namespace cugl;
 /** The name of the space texture */
 // HACK replace with level loading sending event
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
-#define PLAYER_BOY_YELLOW          "player_boy"
-#define PLAYER_GIRL_BLUE         "player_girl"
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
@@ -61,12 +59,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // the box2d Obstacle will be created in the collisionController init
     // and then attached to the gameObject
     
-    Vec2 charGirlPos = Vec2::Vec2(300,300);
-    image = assets->get<Texture>(PLAYER_GIRL_BLUE);
-    auto charGirlNode = PolygonNode::allocWithTexture(image);
-    charGirlNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-    charGirlNode->setPosition(charGirlPos);
-    
     std::shared_ptr<GameObject> charGirl = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
@@ -75,15 +67,10 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charGirl->setUid(0);
     charGirl->setIsPlayer(true);
     
-    auto boxGirl = BoxObstacle::alloc(Vec2::Vec2(300,300), charGirlNode->getSize());
+    auto boxGirl = BoxObstacle::alloc(Vec2::Vec2(300,300), Size::Size(50,50));
     std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
     charGirl->setPhysicsComponent(physicsGirl);
     
-    Vec2 charBoyPos = Vec2::Vec2(150,150);
-    image = assets->get<Texture>(PLAYER_BOY_YELLOW);
-    auto charBoyNode = PolygonNode::allocWithTexture(image);
-    charBoyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-    charBoyNode->setPosition(charBoyPos);
     std::shared_ptr<GameObject> charBoy = GameObject::alloc();
     
     // HACK we should not set uid here we need to set uid from the data file
@@ -92,7 +79,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charBoy->setUid(1);
     charBoy->setIsPlayer(true);
     
-    auto boxBoy = BoxObstacle::alloc(Vec2::Vec2(150,150), charBoyNode->getSize());
+    auto boxBoy = BoxObstacle::alloc(Vec2::Vec2(150,150), Size::Size(50,50));
     std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
     charBoy->setPhysicsComponent(physicsBoy);
     
