@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9F1CCC1A1E67F57200F218F8 /* SyncController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CCC181E67F57200F218F8 /* SyncController.cpp */; };
 		9FC16A9F1E74E8E80040661D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */; };
+		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
+		9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE471A1E667448002F4A3E /* SwitchController.cpp */; };
@@ -47,7 +49,6 @@
 		DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */; };
 		DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */; };
 		DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */; };
-		DF93BDD01E76684700EA6A1D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */; };
 		DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */; };
@@ -119,6 +120,8 @@
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9FC16A9C1E74E8E80040661D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
 		9FC16A9D1E74E8E80040661D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
+		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
+		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FCE470D1E655C79002F4A3E /* WaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveData.cpp; sourceTree = "<group>"; };
 		9FCE470E1E655C79002F4A3E /* WaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveData.hpp; sourceTree = "<group>"; };
 		9FCE47101E655D8B002F4A3E /* LevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelData.cpp; sourceTree = "<group>"; };
@@ -194,8 +197,6 @@
 		DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnController.cpp; sourceTree = "<group>"; };
 		DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpawnController.hpp; sourceTree = "<group>"; };
 		DF93BDC81E7660BF00EA6A1D /* SwitchEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SwitchEvent.hpp; sourceTree = "<group>"; };
-		DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HomingAI.cpp; path = "../build-apple/HomingAI.cpp"; sourceTree = "<group>"; };
-		DF93BDD11E76685D00EA6A1D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HomingAI.hpp; path = "../build-apple/HomingAI.hpp"; sourceTree = "<group>"; };
 		DFBD54651E60E4920027FCC1 /* GameEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameEngine.cpp; sourceTree = "<group>"; };
 		DFBD54661E60E4920027FCC1 /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayController.cpp; sourceTree = "<group>"; };
@@ -480,9 +481,9 @@
 			children = (
 				9FFA3FAE1E636B780029D648 /* AIController.cpp */,
 				9FFA3FAF1E636B780029D648 /* AIController.hpp */,
-				DF93BDCF1E76684700EA6A1D /* HomingAI.cpp */,
-				DF93BDD11E76685D00EA6A1D /* HomingAI.hpp */,
 				F134D4841E766B23009EB8E3 /* ActiveAI.hpp */,
+				9FC16AB01E768F7E0040661D /* HomingAI.cpp */,
+				9FC16AB11E768F7E0040661D /* HomingAI.hpp */,
 			);
 			name = enemy;
 			sourceTree = "<group>";
@@ -817,6 +818,7 @@
 				9FC16A9F1E74E8E80040661D /* GenericAssetManager.cpp in Sources */,
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
+				9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 			);
@@ -841,7 +843,7 @@
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
-				DF93BDD01E76684700EA6A1D /* HomingAI.cpp in Sources */,
+				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,

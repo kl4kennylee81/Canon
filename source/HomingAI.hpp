@@ -16,24 +16,35 @@
 #include "GameObject.hpp"
 
 class HomingAI : public ActiveAI {
+private:
+    bool _isActive;
+    std::shared_ptr<GameObject> _object;
 public:
-	std::shared_ptr<GameObject> _object;
-
-	void update(std::shared_ptr<GameState> state);
-
-	bool garbageCollect(GameObject* obj);
-
-	std::vector<std::shared_ptr<GameObject>> getObjects();
-
-	bool init(std::shared_ptr<GameObject> object) {
-		_object = object;
-		return true;
-	}
-
-	static std::shared_ptr<HomingAI> alloc(std::shared_ptr<GameObject> object) {
-		std::shared_ptr<HomingAI> result = std::make_shared<HomingAI>();
-		return (result->init(object) ? result : nullptr);
-	}
+    
+    void update(std::shared_ptr<GameState> state);
+    
+    bool garbageCollect(GameObject* obj);
+    
+    std::vector<std::shared_ptr<GameObject>> getObjects() {
+        std::vector<std::shared_ptr<GameObject>> objects;
+        objects.push_back(_object);
+        return objects;
+    }
+    
+    bool isActive();
+    
+    void toggleActive();
+    
+    bool init(std::shared_ptr<GameObject> object) {
+        _object = object;
+        _isActive = false;
+        return true;
+    }
+    
+    static std::shared_ptr<HomingAI> alloc(std::shared_ptr<GameObject> object) {
+        std::shared_ptr<HomingAI> result = std::make_shared<HomingAI>();
+        return (result->init(object) ? result : nullptr);
+    }
 };
 
 #endif /* HomingAI_hpp */

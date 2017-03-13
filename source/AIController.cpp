@@ -42,7 +42,6 @@ void AIController::eventUpdate(Event* e){
             {
                 ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
                 std::shared_ptr<HomingAI> ai = HomingAI::alloc(init->object);
-                ai->getObjects();
                 addAI(ai);
                 break;
             }
@@ -63,7 +62,7 @@ void AIController::eventUpdate(Event* e){
 		case CollisionEvent::CollisionEventType::OBJECT_GONE:
 			ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
 			removeAI(objectGone->_obj);
-			break;
+			break;å
 		}
 		break;
 	}
@@ -88,7 +87,9 @@ void AIController::removeAI(GameObject* obj) {
 
 void AIController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : _enemies) {
-		it->update(state);
+        if (it->isActive()){
+            it->update(state);
+        }
 	}
 }
 
