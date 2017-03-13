@@ -69,7 +69,6 @@ public:
 	bool getIsPressed();
 
 	bool getDoubleTouch();
-
 };
 
 #endif /* PathController_hpp */

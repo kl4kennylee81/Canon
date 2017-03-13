@@ -53,7 +53,6 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
                 auto image = _world->getAssetManager()->get<Texture>(ENEMY_SHAPE);
                 auto enemyNode = PolygonNode::allocWithTexture(image);
                 enemyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-                enemyNode->setPosition(it->position);
                 
                 if (od->getElement() == Element::BLUE){
                     enemyNode->setColor(Color4::BLUE);
@@ -61,7 +60,14 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
                     enemyNode->setColor(Color4::YELLOW);
                 }
                 
-                auto box1 = BoxObstacle::alloc(it->position, enemy->getNode()->getSize());
+                std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
+                if (!enemy){
+                    assert(false);
+                }
+                enemy->setIsPlayer(false);
+                
+                auto box1 = BoxObstacle::alloc(it->position, enemy->getNode()->getSize()/state->getPhysicsScale());
+
                 std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, od->getElement());
                 enemy->setPhysicsComponent(physics1);
                 */

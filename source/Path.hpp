@@ -40,6 +40,17 @@ public:
 	cugl::Vec2 get(int i) { return _coordinates->at(i); }
 
 	cugl::Vec2 getLast() { return _coordinates->back(); }
+    
+    /* 
+     * Returns a clone of the current path object but in physics coordinates instead of the world.
+     */
+    std::shared_ptr<Path> convertToPhysicsCoords(float physicsScale) {
+        std::shared_ptr<Path> newPath = Path::alloc();
+        for (auto it = _coordinates->begin(); it != _coordinates->end(); it++) {
+            newPath->add(*it / physicsScale);
+        }
+        return newPath;
+    }
 
 	int size() { return _coordinates->size(); }
 

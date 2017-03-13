@@ -122,7 +122,7 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            anim->getAnimationNode()->setPosition(obj->getPosition());
+            anim->getAnimationNode()->setPosition(obj->getPosition() * GameState::_physicsScale);
         }
     }
 }

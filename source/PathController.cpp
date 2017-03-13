@@ -16,6 +16,11 @@
 
 using namespace cugl;
 
+/*
+ * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
+ * size of the device) but then the path is accumilated in world coordinates ((0,0) is bottom left and bounds are your GAME_WIDTH);
+ * When sending out the path event, the path coordinates are in physics coordinates.
+ */
 PathController::PathController():
 BaseController(){}
 
@@ -116,7 +121,9 @@ bool PathController::getDoubleTouch() {
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
-	position.y = _height - position.y;
+    Vec2 world_pos = state->getScene()->getCamera()->screenToWorldCoords(position);
+    std::cout << "screen position:" << position.toString() << "\n";
+    std::cout << "world position:" << world_pos.toString() << "\n";
     
     // can't start drawing a path before a character is done moving through a previous path
     if (_is_moving) {
@@ -133,10 +140,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     
 	if (!_wasPressed && isPressed) {
 		_path->clear();
-		Vec2 currentLocation = state->getActiveCharacter()->getPosition();
+        Vec2 currentLocation = state->getActiveCharacter()->getPosition() * GameState::_physicsScale;
 		
 		// can't start drawing a path if the touch is far away from the active character
-		if (position.distance(currentLocation) > TOUCH_RADIUS) return;
+		if (world_pos.distance(currentLocation) > TOUCH_RADIUS) return;
 
 		_path->add(currentLocation);
 		resetMinMax();
@@ -144,19 +151,20 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
 	if (isPressed) {
 		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
-		double diffx = position.x - prev.x;
-		double diffy = position.y - prev.y;
+		double diffx = world_pos.x - prev.x;
+		double diffy = world_pos.y - prev.y;
 		double distance = std::sqrt((diffx * diffx) + (diffy * diffy));
 		if (distance > MIN_DISTANCE) {
-			_path->add(position);
-			updateMinMax(position);
+            _path->add(world_pos);
+			updateMinMax(world_pos);
 			addPathToScene(state);
 		}
 	}
 	if (_wasPressed && !isPressed) {
 		addPathToScene(state);
-		std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
-		notify(pathEvent.get());
+        auto physicsCoordPath = _path->convertToPhysicsCoords(GameState::_physicsScale);
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(physicsCoordPath, state->getActiveCharacter());
+        notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         _is_moving = true;
 	}

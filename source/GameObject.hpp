@@ -67,9 +67,10 @@ public:
      *  or we will have memory leaks */
     PhysicsComponent* getPhysicsComponent() {return _body.get();}
     
-    void sync();
-    
+    /* Returns physics coordinates */
     cugl::Vec2 getPosition() {return _body->getBody()->getPosition();};
+
+    void sync(float scale);
 };
 
 #endif /* GameObject_hpp */

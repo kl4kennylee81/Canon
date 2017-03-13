@@ -22,6 +22,7 @@ BaseController(){}
 
 #define BLUE_COLOR   Color4::BLUE
 #define GOLD_COLOR   Color4::YELLOW
+#define DEBUG_COLOR  Color4::GREEN
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
@@ -43,7 +44,7 @@ void CollisionController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize());
+                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
                     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box, objectInit->objectData->getElement());
                     objectInit->object->setPhysicsComponent(physics);
                     break;
@@ -84,8 +85,7 @@ bool CollisionController::init() {
 }
     
 bool CollisionController::init(std::shared_ptr<GameState> state){
-    Size size = Application::get()->getDisplaySize();
-    Rect bounds = Rect::Rect(0,0,size.getIWidth(),size.getIHeight());
+    Rect bounds = state->getRect();
     
     // 2nd arguement is setting gravity to 0
     _world = cugl::ObstacleWorld::alloc(bounds,Vec2::ZERO);
@@ -116,22 +116,16 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     }
     
     Input::activate<Keyboard>();
-    setDebug(false);
+    setDebug(true);
     
     return true;
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
-    
-    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
-        obst->setDebugColor(BLUE_COLOR);
-    }
-    if (obj->getPhysicsComponent()->getElementType() == Element::GOLD) {
-        obst->setDebugColor(GOLD_COLOR);
-    }
-    
+    obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
+    
     
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);
@@ -148,7 +142,7 @@ bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, Game
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     // HACK jon i don't think you need to do this the destructor sets it to the nullptr
-//    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
+    obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
     
     return true;
 }
