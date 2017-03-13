@@ -18,6 +18,7 @@ using namespace cugl;
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
 #define PLAYER_BOY_YELLOW          "player_boy"
 #define PLAYER_GIRL_BLUE         "player_girl"
+#define NUM_PLAYER_CHARS         2
 
 bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     if (assets == nullptr){
@@ -101,6 +102,14 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     _activeCharacterPosition = 0;
     
     return true;
+}
+
+std::shared_ptr<GameObject> GameState::getActiveCharacter()
+{
+    if (_playerCharacters.size() != NUM_PLAYER_CHARS){
+        return nullptr;
+    }
+    return _playerCharacters.at(_activeCharacterPosition);
 }
 
 /**

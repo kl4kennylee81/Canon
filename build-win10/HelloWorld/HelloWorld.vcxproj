@@ -196,9 +196,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\ActiveAI.hpp" />
     <ClInclude Include="..\..\source\GameState.hpp" />
     <ClInclude Include="..\..\source\GameplayController.hpp" />
     <ClInclude Include="..\..\source\GenericAssetManager.hpp" />
+    <ClInclude Include="..\..\source\HomingAI.hpp" />
     <ClInclude Include="..\..\source\MenuScreenData.hpp" />
     <ClInclude Include="..\..\source\SyncController.hpp" />
     <ClInclude Include="..\..\source\Path.hpp" />
@@ -243,6 +245,7 @@
     <ClCompile Include="..\..\source\GameState.cpp" />
     <ClCompile Include="..\..\source\GameplayController.cpp" />
     <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
+    <ClCompile Include="..\..\source\HomingAI.cpp" />
     <ClCompile Include="..\..\source\MenuScreenData.cpp" />
     <ClCompile Include="..\..\source\SyncController.cpp" />
     <ClCompile Include="..\..\source\Path.cpp" />

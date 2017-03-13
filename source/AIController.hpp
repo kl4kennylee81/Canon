@@ -14,11 +14,15 @@
 #include "BaseController.hpp"
 #include "Event.hpp"
 #include "GameState.hpp"
+#include "ActiveAI.hpp"
 
 class AIController : public BaseController {
 
 public:
-    
+	std::unordered_set<std::shared_ptr<ActiveAI>> _enemies;
+
+	std::unordered_map<GameObject*, std::shared_ptr<ActiveAI>> _map;
+
     AIController();
 
 	virtual void attach(std::shared_ptr<Observer> obs);
@@ -35,6 +39,10 @@ public:
     virtual void update(float timestep,std::shared_ptr<GameState> state);
 
 	virtual bool init();
+
+	void addAI(std::shared_ptr<ActiveAI> ai);
+
+	void removeAI(GameObject* obj);
 
 	static std::shared_ptr<AIController> alloc() {
 		std::shared_ptr<AIController> result = std::make_shared<AIController>();

@@ -23,8 +23,6 @@
     </Filter>
     <Filter Include="Source\util">
     </Filter>
-    <Filter Include="Source\menu">
-    </Filter>
     <Filter Include="Source\base">
     </Filter>
     <Filter Include="Source\Syncing">
@@ -34,6 +32,7 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{64fa2de1-f270-404b-b528-a4759813c9bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\menu" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HelloWorld.rc">
@@ -166,6 +165,9 @@
     <ClCompile Include="..\..\source\GenericAssetManager.cpp">
       <Filter>Source\load</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\HomingAI.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Mode.hpp">
@@ -291,6 +293,12 @@
     </ClInclude>
     <ClInclude Include="..\..\source\GenericAssetManager.hpp">
       <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\HomingAI.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveAI.hpp">
+      <Filter>Source\movement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

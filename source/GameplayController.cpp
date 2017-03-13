@@ -82,7 +82,8 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
     _levelController->attach(_collisionController);
     _levelController->attach(_animationController);
     _levelController->attach(_spawnController);
-
+	_levelController->attach(_aiController);
+    
 	_moveController->attach(_switchController);
     _moveController->attach(_pathController);
     _moveController->attach(_animationController);
