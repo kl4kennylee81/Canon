@@ -72,7 +72,6 @@ void AIController::eventUpdate(Event* e){
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {
 	_enemies.insert(ai);
-    std::cout << "hi" <<std::endl;
     ai->getObjects();
 	for (auto it : ai->getObjects()) {
 		_map[it.get()] = ai;

@@ -13,8 +13,8 @@ void HomingAI::update(std::shared_ptr<GameState> state) {
 	// HACK MUST FIX to keep from null pointering
 	if (state->getPlayerCharacters().size() == 2) {
 		auto player = state->getPlayerCharacters().at(playerIndex);
-		cugl::Vec2 playerPos = player->getNode()->getPosition();
-		cugl::Vec2 enemyPos = _object->getNode()->getPosition();
+		cugl::Vec2 playerPos = player->getPosition();
+		cugl::Vec2 enemyPos = _object->getPosition();
 		//We should get speed from object data file
 		cugl::Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED);
 		_object->getPhysicsComponent()->getBody()->setLinearVelocity(direction);	
