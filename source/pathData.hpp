@@ -15,6 +15,8 @@
 
 class PathData : public Data {
 public:
+	std::vector<cugl::Vec2> path;
+
     virtual std::string serialize();
     
     virtual bool preload(const std::string& file);
@@ -22,6 +24,16 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     virtual bool materialize();
+
+	bool init(int uid) {
+		this->_uid = uid;
+		return true;
+	}
+
+	static std::shared_ptr<PathData> alloc(int uid) {
+		std::shared_ptr<PathData> result = std::make_shared<PathData>();
+		return (result->init(uid) ? result : nullptr);
+	}
 };
 
 

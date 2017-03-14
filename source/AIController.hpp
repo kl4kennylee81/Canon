@@ -15,6 +15,8 @@
 #include "Event.hpp"
 #include "GameState.hpp"
 #include "ActiveAI.hpp"
+#include "WaveData.hpp"
+#include "AIData.hpp"
 
 class AIController : public BaseController {
 
@@ -41,6 +43,8 @@ public:
 	virtual bool init();
 
 	void addAI(std::shared_ptr<ActiveAI> ai);
+
+	std::shared_ptr<ActiveAI> getAIFromWaveEntry(std::shared_ptr<WaveEntry> entry, std::shared_ptr<GameObject> object);
 
 	void removeAI(GameObject* obj);
 

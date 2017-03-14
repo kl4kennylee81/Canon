@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="14.0">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -196,6 +196,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\AIData.hpp" />
+    <ClInclude Include="..\..\source\PathAI.hpp" />
+    <ClInclude Include="..\..\source\PathData.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\source\PathEvent.hpp" />
     <ClInclude Include="..\..\source\ActivePath.hpp" />
@@ -237,13 +240,14 @@
     <ClInclude Include="..\..\source\AnimationData.hpp" />
     <ClInclude Include="..\..\source\ObjectData.hpp" />
     <ClInclude Include="..\..\source\ShapeData.hpp" />
-    <ClInclude Include="..\..\source\pathData.hpp" />
     <ClInclude Include="..\..\source\WaveData.hpp" />
     <ClInclude Include="..\..\source\LevelData.hpp" />
     <ClInclude Include="..\..\source\PathController.hpp" />
     <ClInclude Include="..\..\source\SwitchEvent.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\PathAI.cpp" />
+    <ClCompile Include="..\..\source\PathData.cpp" />
     <ClCompile Include="..\..\source\PathEvent.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />
     <ClCompile Include="..\..\source\ActivePath.cpp" />
@@ -282,7 +286,6 @@
     <ClCompile Include="..\..\source\AnimationData.cpp" />
     <ClCompile Include="..\..\source\ObjectData.cpp" />
     <ClCompile Include="..\..\source\ShapeData.cpp" />
-    <ClCompile Include="..\..\source\pathData.cpp" />
     <ClCompile Include="..\..\source\WaveData.cpp" />
     <ClCompile Include="..\..\source\LevelData.cpp" />
     <ClCompile Include="..\..\source\PathController.cpp" />

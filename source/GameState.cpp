@@ -12,11 +12,6 @@ float GameState::_physicsScale;
 
 using namespace cugl;
 
-/** This is adjusted by screen aspect ratio to get the height */
-#define GAME_WIDTH 1024
-/** This is the aspect ratio for physics */
-#define GAME_ASPECT 9.0/16.0
-
 /** The name of the space texture */
 // HACK replace with level loading sending event
 #define BACKGROUND_TEXTURE       "bg_dark_lake"

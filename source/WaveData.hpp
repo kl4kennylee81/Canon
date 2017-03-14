@@ -12,25 +12,29 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "AIData.hpp"
 
 class WaveEntry {
 public:
     int objectKey;
     
     cugl::Vec2 position;
+
+	std::shared_ptr<AIData> aiData;
     
     WaveEntry(){}
     
-    bool init(int oKey, float x, float y){
+    bool init(int oKey, float x, float y, std::shared_ptr<AIData> ai){
         this->objectKey = oKey;
         this->position.x = x;
         this->position.y = y;
+		this->aiData = ai;
         return true;
     }
     
-    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y) {
+    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::shared_ptr<AIData> ai) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey,x,y) ? result : nullptr);
+        return (result->init(objectKey,x,y,ai) ? result : nullptr);
     }
 };
 
@@ -58,6 +62,10 @@ public:
     std::vector<std::shared_ptr<WaveEntry>> getWaveEntries(){
         return _waveEntries;
     }
+
+	std::shared_ptr<WaveEntry> getEntry(int index) {
+		return _waveEntries.at(index);
+	}
     
     
     

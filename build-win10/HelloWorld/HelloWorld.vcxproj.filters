@@ -1,20 +1,34 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ItemGroup>
-    <Filter Include="Resource Files"> </Filter>
-    <Filter Include="Source\load"> </Filter>
-    <Filter Include="Source\pathControls"> </Filter>
-    <Filter Include="Source\physics"> </Filter>
-    <Filter Include="Source\models"> </Filter>
-    <Filter Include="Source\gameplay"> </Filter>
-    <Filter Include="Source\movement"> </Filter>
-    <Filter Include="Source\level"> </Filter>
-    <Filter Include="Source"> </Filter>
-    <Filter Include="Source\animation"> </Filter>
-    <Filter Include="Source\switching"> </Filter>
-    <Filter Include="Source\base"> </Filter>
-    <Filter Include="Source\util"> </Filter>
-    <Filter Include="Source\menu"> </Filter>
+    <Filter Include="Resource Files">
+    </Filter>
+    <Filter Include="Source\load">
+    </Filter>
+    <Filter Include="Source\pathControls">
+    </Filter>
+    <Filter Include="Source\physics">
+    </Filter>
+    <Filter Include="Source\models">
+    </Filter>
+    <Filter Include="Source\gameplay">
+    </Filter>
+    <Filter Include="Source\movement">
+    </Filter>
+    <Filter Include="Source\level">
+    </Filter>
+    <Filter Include="Source">
+    </Filter>
+    <Filter Include="Source\animation">
+    </Filter>
+    <Filter Include="Source\switching">
+    </Filter>
+    <Filter Include="Source\base">
+    </Filter>
+    <Filter Include="Source\util">
+    </Filter>
+    <Filter Include="Source\menu">
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HelloWorld.rc">
@@ -62,9 +76,6 @@
     </ClInclude>
     <ClInclude Include="..\..\source\LevelEvent.hpp">
       <Filter>Source\level</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\pathData.hpp">
-      <Filter>Source\load</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\MenuGraph.hpp">
       <Filter>Source\menu</Filter>
@@ -144,9 +155,6 @@
     <ClInclude Include="..\..\source\MenuController.hpp">
       <Filter>Source\menu</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\SyncController.hpp">
-      <Filter>Source\Syncing</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\Subject.hpp">
       <Filter>Source\util</Filter>
     </ClInclude>
@@ -161,6 +169,17 @@
     </ClInclude>
     <ClInclude Include="..\..\source\Mode.hpp">
       <Filter>Source\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\source\GenericAssetManager.hpp" />
+    <ClInclude Include="..\..\source\PathData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathAI.hpp">
+      <Filter>Source\movement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -380,9 +399,6 @@
     <ClInclude Include="..\..\source\SwitchEvent.hpp">
       <Filter>Source\switching</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\source\pathData.cpp">
-      <Filter>Source\load</Filter>
-    </ClCompile>
     <ClInclude Include="..\..\source\AIController.hpp">
       <Filter>Source\movement</Filter>
     </ClInclude>
@@ -419,13 +435,16 @@
     <ClInclude Include="..\..\source\Mode.hpp">
       <Filter>Source\menu</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
+    <ClCompile Include="..\..\source\PathData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathAI.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\assets\json\assets.json">
-      <Filter>Assets</Filter>
-    </None>
-    <None Include="..\..\assets\json\level.json">
-      <Filter>Assets</Filter>
-    </None>
+    <None Include="..\..\assets\json\assets.json" />
+    <None Include="..\..\assets\json\level.json" />
   </ItemGroup>
 </Project>

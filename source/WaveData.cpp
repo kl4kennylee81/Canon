@@ -25,7 +25,7 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(0);
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
-		auto entry = WaveEntry::alloc(child->getInt("objectKey"), child->getFloat("x"), child->getFloat("y"));
+		auto entry = WaveEntry::alloc(child->getInt("objectKey"), child->getFloat("x"), child->getFloat("y"), nullptr);
 		addWaveEntry(entry);
 	}
     return true;

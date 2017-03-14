@@ -9,6 +9,7 @@
 #include "World.hpp"
 #include "Element.hpp"
 #include <random>
+#include "AIData.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            3
@@ -49,9 +50,14 @@ void World::populate(){
         auto wd = WaveData::alloc(1);
         for (int j = 0;j<NUMBER_SPAWNS;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng));
+			auto ai = AIData::alloc(AIType::HOMING, PathType::NONE);
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng), ai);
             wd->addWaveEntry(we);
         }
+		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
+		auto ai = AIData::alloc(AIType::PATH, PathType::VERTICAL);
+		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
+		wd->addWaveEntry(we);
         _waveData.insert(std::make_pair(i,wd));
     }
     
