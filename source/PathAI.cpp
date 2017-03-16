@@ -44,6 +44,18 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 		_activePath = ActivePath::alloc(newPath);
 		break;
 	}
+	case PathType::HORIZONTAL:
+	{
+		Vec2 position = object->getPosition();
+		float width = GAME_WIDTH;
+		Vec2 top = Vec2::Vec2(width / GameState::_physicsScale, position.y);
+		Vec2 bottom = Vec2::Vec2(0, position.y);
+		auto newPath = Path::alloc();
+		newPath->add(top);
+		newPath->add(bottom);
+		_activePath = ActivePath::alloc(newPath);
+		break;
+	}
 	case PathType::CUSTOM: 
 	{
 		auto newPath = Path::alloc();

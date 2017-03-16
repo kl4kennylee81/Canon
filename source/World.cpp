@@ -55,7 +55,7 @@ void World::populate(){
             wd->addWaveEntry(we);
         }
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-		auto ai = AIData::alloc(AIType::PATH, PathType::VERTICAL);
+		auto ai = AIData::alloc(AIType::PATH, PathType::HORIZONTAL);
 		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
 		wd->addWaveEntry(we);
         _waveData.insert(std::make_pair(i,wd));
