@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "SaveGameData.h"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -43,6 +44,7 @@ void GameEngine::onStartup() {
     _assets = GenericAssetManager::alloc();
     
     // You have to attach the individual loaders for each asset type
+	_assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
 	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
@@ -63,6 +65,7 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/assets.json");
 	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
+	_assets->loadDirectory("json/save.json");
 
     
     // Activate mouse or touch screen input as appropriate

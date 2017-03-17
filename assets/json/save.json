@@ -1,0 +1,20 @@
+{
+	"SaveGameData": [
+		{
+			"menuEntry": "Tutorial",
+			"unlocked": true,
+			"complete": true,
+			"menuKey": "lake_bg",
+			"levelKey": "tut",
+			"highScore": 0
+		},
+		{
+			"menuEntry": "Level 1",
+			"unlocked": true,
+			"complete": false,
+			"menuKey": "lake_bg",
+			"levelKey": "lvl1",
+			"highScore": 0
+		}
+	]
+}

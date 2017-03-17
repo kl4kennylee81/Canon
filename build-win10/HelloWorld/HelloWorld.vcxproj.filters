@@ -29,6 +29,9 @@
     </Filter>
     <Filter Include="Source">
     </Filter>
+    <Filter Include="Source\progressbar">
+      <UniqueIdentifier>{f13842f5-7e40-4c0f-9ee6-d5fdaad1e460}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HelloWorld.rc">
@@ -178,6 +181,13 @@
     <ClInclude Include="..\..\source\GenericAssetManager.hpp" />
     <ClInclude Include="..\..\source\PathAI.hpp">
       <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GenericAssetManager.hpp" />
+    <ClInclude Include="..\..\source\SaveGameData.h">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ProgressBarController.hpp">
+      <Filter>Source\progressbar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +455,13 @@
     <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
     <ClCompile Include="..\..\source\PathAI.cpp">
       <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
+    <ClCompile Include="..\..\source\SaveGameData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ProgressBarController.cpp">
+      <Filter>Source\progressbar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
