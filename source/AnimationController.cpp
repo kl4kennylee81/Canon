@@ -98,7 +98,6 @@ void AnimationController::eventUpdate(Event* e) {
 }
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
-    
     syncAll();
     updateFrames();
 }
@@ -112,6 +111,9 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
     animationMap.insert({obj, anim});
 }
 
+/**
+ * Defers handling to the active animation handleEvent()
+ */
 void AnimationController::handleEvent(GameObject* obj, AnimationEvent event) {
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleEvent(event);
@@ -120,6 +122,10 @@ void AnimationController::handleEvent(GameObject* obj, AnimationEvent event) {
     }
 }
 
+/**
+ * Syncs the location of the animatino node to the world coordinates of
+ * the corresponding location of the node's physics body.
+ */
 void AnimationController::syncAll() {
     for (auto it = animationMap.begin(); it != animationMap.end(); it++) {
         GameObject* obj = it->first;
@@ -130,6 +136,9 @@ void AnimationController::syncAll() {
     }
 }
 
+/**
+ * Removes animations that have been completed to the last frame
+ */
 void AnimationController::updateFrames() {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         std::shared_ptr<ActiveAnimation> anim = it->second;

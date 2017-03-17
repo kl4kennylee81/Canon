@@ -28,6 +28,9 @@ class ActiveAnimation {
     
     int curFrames;
     
+    /**
+     * If this is true, then the active animation is ready to be removed.
+     */
     bool _last;
     
     
