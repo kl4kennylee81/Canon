@@ -33,6 +33,8 @@ public:
     
     int getCurrentWave();
     
+    float getProgress();
+    
     /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
      *  after returning it, it will return -1 again until the next wave */
     int pollWave();
@@ -40,6 +42,8 @@ public:
     void setCurrentWave(int waveNum);
 
     bool isLastWave();
+    
+    bool isSpawningFinished();
     
     void update(float timestep);
     

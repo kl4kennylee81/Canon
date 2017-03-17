@@ -30,6 +30,10 @@ int Level::getCurrentWave(){
     return _currentWave;
 }
 
+float Level::getProgress(){
+    return _timeElapsed/((float)getNextTime());
+}
+
 /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
  *  after returning it will not return the wave key until the next wave. To refer to the
  *  active wave key call getCurrentWaveKey
@@ -52,20 +56,23 @@ bool Level::isLastWave(){
     return _currentWave >= _levelData->getNumberWaves() - 1;
 }
 
+bool Level::isSpawningFinished(){
+    return isLastWave() && (_timeElapsed == getNextTime());
+}
+
 void Level::update(float timestep){
-    _timeElapsed+=1;
-    if (!isLastWave() && _timeElapsed >= getNextTime()){
-        std::cout<< "current wave is:" << _currentWave << std::endl;
-        std::cout << "Number wave is:" << this->_levelData->getNumberWaves() << std::endl;
+    if (_timeElapsed < getNextTime()){
+        _timeElapsed+=1;
+        return;
+    }
+    
+    if (!isLastWave()){
         _timeElapsed = 0;
-        if (_levelData->getNumberWaves() - 1 > _currentWave){
-            _readyToSpawn = true;
-            _currentWave+=1;
-            
-        }
-    };
-};
+        _readyToSpawn = true;
+        _currentWave+=1;
+    }
+}
 
 void Level::reset(){
     init(_levelData);
-};
+}

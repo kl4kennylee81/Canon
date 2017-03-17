@@ -15,12 +15,15 @@
 #include "GameState.hpp"
 #include "World.hpp"
 #include "Level.hpp"
+#include "ProgressBarController.hpp"
 
 class LevelController : BaseController {
 protected:
     std::shared_ptr<World> _world;
     
     Level _level;
+    
+    std::shared_ptr<ProgressBarController> _progressBarController;
 public:
     LevelController();
     
@@ -37,11 +40,11 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
-    virtual bool init(std::shared_ptr<World> world);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
-    static std::shared_ptr<LevelController> alloc(std::shared_ptr<World> world) {
+    static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
-        return (result->init(world) ? result : nullptr);
+        return (result->init(state, world) ? result : nullptr);
     }
 
 	std::shared_ptr<World> getWorld() {
