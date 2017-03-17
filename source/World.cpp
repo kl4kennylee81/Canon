@@ -41,7 +41,7 @@ void World::populate(){
     std::uniform_int_distribution<std::mt19937::result_type> distWidth(0,31);
     std::uniform_int_distribution<std::mt19937::result_type> distHeight(0,17);
     
-    for (int i = 0;i < 5;i++){
+    for (int i = 0;i < 10;i++){
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng),TIME_BETWEEN_SPAWN);
         _levelData->addLevelEntry(e);
     }

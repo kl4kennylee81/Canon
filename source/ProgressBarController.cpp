@@ -65,7 +65,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     // needs to be negative to close the whitespace.
     
     // TODO specify the padding in the UI element data file
-	float INTER_BAR_GAP = -20.f;
+	float INTER_BAR_GAP = -25.f;
 	
 	float barYPos = cameraSize.getIHeight()*PERCENT_HEIGHT;
     
