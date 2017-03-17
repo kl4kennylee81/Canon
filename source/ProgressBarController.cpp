@@ -40,8 +40,8 @@ void ProgressBarController::eventUpdate(Event* e) {
 
 void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 {
-    int index = level.getCurrentWave();
-    std::shared_ptr<cugl::Node> child = _pBarSceneNode->getChildren().at(index);
+    // TODO fix this hack hold onto the main progress bar
+    std::shared_ptr<cugl::Node> child = _pBarSceneNode->getChildren().at(0);
     std::shared_ptr<cugl::ProgressBarModel> waveBar = std::static_pointer_cast<cugl::ProgressBarModel>(child);
     waveBar->toggleActive();
     waveBar->setProgress(level.getProgress());
@@ -52,25 +52,12 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     cugl::Size cameraSize = state->getScene()->getCamera()->getViewport().size;
     
 	// Constants
-	float PERCENT_WIDTH = 0.8f;
+	float PERCENT_WIDTH = 0.7f;
 	float PERCENT_HEIGHT = 0.96f;
 	float BAR_WIDTH = cameraSize.getIWidth() *PERCENT_WIDTH;
     
     // world coordinates are fixed bar will be same height in all screen aspect ratios
 	float BAR_HEIGHT = 64.f;
-    
-    // x coordinate in world coordinate is fixed to 1024 so discrete values is okay
-    
-    // since kelly's assets have blankspace padding on begin cap and final cap the gap
-    // needs to be negative to close the whitespace.
-    
-    // TODO specify the padding in the UI element data file
-	float INTER_BAR_GAP = -25.f;
-	
-	float barYPos = cameraSize.getIHeight()*PERCENT_HEIGHT;
-    
-    // padding for the left side to center the bars
-	float barXPadding = cameraSize.getIWidth() * (1.f- PERCENT_WIDTH) / 2.f;
 	
 	// parent pbar node, child of scenenode
     if (_pBarSceneNode == nullptr){
@@ -98,32 +85,22 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	float levelNetTime = 0.f;
 	for (int i = 0; i < level->getNumberWaves(); i++) { levelNetTime += level->getTime(i); }
 
-	size_t numberWaves = level->getNumberWaves() - 1;
-	float spacePerUnitTime = (BAR_WIDTH - numberWaves*INTER_BAR_GAP) / levelNetTime;
+	float spacePerUnitTime = BAR_WIDTH/ levelNetTime;
 
 	// creation of actual progress bars
-	float nextBarXPos = 0;
-	for (int i = 0; i <= numberWaves; i++)
-	{
-		// make progress bar object
-		Size size = Size(level->getTime(i) * spacePerUnitTime, BAR_HEIGHT);
-        
-        // since progress bar is anchored in the middle add half the width size;
-        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f;
-        
-        std::shared_ptr<ProgressBarModel> progressBar = ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
-                                                                                   barForeground,beginCap_f,finalCap_f,size);
-
-		// anchor and pos
-		float barXPos = nextBarXPos + barXPadding;
-		progressBar->setPosition(barXPos, barYPos);
-
-		// add to parent node
-		_pBarSceneNode->addChild(progressBar, 3);
-
-		// after drawing the bar add the latter half and the gap between bars
-        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f + INTER_BAR_GAP;
-	}
+    Size size = Size(levelNetTime*spacePerUnitTime,BAR_HEIGHT);
+    
+    std::shared_ptr<ProgressBarModel> progressBar =
+    ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
+                                barForeground,beginCap_f,finalCap_f,size);
+    
+    // set the bar to the top center of the screen
+    float barXPos = cameraSize.getIWidth()/2.f;
+    float barYPos = cameraSize.getIHeight()*PERCENT_HEIGHT;
+    progressBar->setPosition(barXPos, barYPos);
+    
+    // add to parent node
+    _pBarSceneNode->addChild(progressBar, 3);
 	return true;
 }
 

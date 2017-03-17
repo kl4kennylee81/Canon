@@ -31,7 +31,17 @@ int Level::getCurrentWave(){
 }
 
 float Level::getProgress(){
-    return _timeElapsed/((float)getNextTime());
+    float allTime = 0;
+    float currentTime = 0;
+    // add up all previous waves times
+    for (int i =0;i<_levelData->getNumberWaves();i++){
+        if (i < getCurrentWave()){
+            currentTime+=_levelData->getTime(i);
+        }
+        allTime+=_levelData->getTime(i);
+    }
+    // time elapsed is how much in the current wave
+    return (currentTime+_timeElapsed)/allTime;
 }
 
 /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
