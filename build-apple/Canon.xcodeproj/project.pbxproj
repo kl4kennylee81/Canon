@@ -18,6 +18,8 @@
 		9FE4FD521E79F2A9007AD880 /* PathAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4FD4F1E79F2A9007AD880 /* PathAI.cpp */; };
 		9FE4FD681E7B7BC0007AD880 /* ProgressBarController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4FD661E7B7BC0007AD880 /* ProgressBarController.cpp */; };
 		9FE4FD691E7B7BC0007AD880 /* ProgressBarController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4FD661E7B7BC0007AD880 /* ProgressBarController.cpp */; };
+		9FE4FD741E7BA623007AD880 /* ProgressBarModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4FD721E7BA623007AD880 /* ProgressBarModel.cpp */; };
+		9FE4FD751E7BA623007AD880 /* ProgressBarModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE4FD721E7BA623007AD880 /* ProgressBarModel.cpp */; };
 		9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */; };
 		9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */; };
 		9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */; };
@@ -174,6 +176,8 @@
 		9FE4FD501E79F2A9007AD880 /* PathAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathAI.hpp; sourceTree = "<group>"; };
 		9FE4FD661E7B7BC0007AD880 /* ProgressBarController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProgressBarController.cpp; sourceTree = "<group>"; };
 		9FE4FD671E7B7BC0007AD880 /* ProgressBarController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ProgressBarController.hpp; sourceTree = "<group>"; };
+		9FE4FD721E7BA623007AD880 /* ProgressBarModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProgressBarModel.cpp; sourceTree = "<group>"; };
+		9FE4FD731E7BA623007AD880 /* ProgressBarModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ProgressBarModel.hpp; sourceTree = "<group>"; };
 		9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuController.cpp; sourceTree = "<group>"; };
 		9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuController.hpp; sourceTree = "<group>"; };
 		9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuGraph.cpp; sourceTree = "<group>"; };
@@ -379,6 +383,8 @@
 			children = (
 				9FE4FD661E7B7BC0007AD880 /* ProgressBarController.cpp */,
 				9FE4FD671E7B7BC0007AD880 /* ProgressBarController.hpp */,
+				9FE4FD721E7BA623007AD880 /* ProgressBarModel.cpp */,
+				9FE4FD731E7BA623007AD880 /* ProgressBarModel.hpp */,
 			);
 			name = progressBar;
 			sourceTree = "<group>";
@@ -870,6 +876,7 @@
 			files = (
 				F1D35F2C1E7685BC0044A121 /* (null) in Sources */,
 				F1D35F061E7685990044A121 /* (null) in Sources */,
+				9FE4FD751E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,
 				F1D35F071E7685990044A121 /* SwitchController.cpp in Sources */,
 				F1D35F081E7685990044A121 /* AnimationController.cpp in Sources */,
 				F1D35F091E7685990044A121 /* ActiveAnimation.cpp in Sources */,
@@ -956,6 +963,7 @@
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
 				DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */,
+				9FE4FD741E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,

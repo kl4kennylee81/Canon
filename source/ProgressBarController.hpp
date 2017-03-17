@@ -19,6 +19,7 @@
 #include "Level.hpp"
 #include "LevelData.hpp"
 #include "GenericAssetManager.hpp"
+#include "ProgressBarModel.hpp"
 
 class ProgressBarController : public BaseController
 {

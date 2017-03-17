@@ -10,11 +10,15 @@
 
 using namespace cugl;
 
-// hacks
-#define BAR_FOREGROUND       "bar_foreground"
-#define BAR_BACKGROUND       "bar_background"
-#define RIGHT_CAP	         "right_cap"
-#define LEFT_CAP             "left_cap"
+// hack progress bar fill
+#define BAR_FOREGROUND           "bar_foreground"
+#define BEGINCAP_FGRD            "beginCap_foreground"
+#define FINALCAP_FGRD            "finalCap_foreground"
+
+// hack progress bar back
+#define BAR_BACKGROUND           "bar_background"
+#define BEGINCAP_BGRD	         "beginCap_background"
+#define FINALCAP_BGRD            "finalCap_background"
 
 ProgressBarController::ProgressBarController():BaseController(){}
 
@@ -50,7 +54,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	float PERCENT_WIDTH = 0.75f;
 	float PERCENT_HEIGHT = 0.95f;
 	float BAR_WIDTH = cameraSize.getIWidth() *PERCENT_WIDTH;
-	float BAR_HEIGHT = 10.f;
+	float BAR_HEIGHT = 64.f;
 	float INTER_BAR_GAP = 20.f;
 	
 	float barYPos = cameraSize.getIHeight()*PERCENT_HEIGHT;
@@ -84,30 +88,19 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 
 		// current problem - cugl not recognizing color of file texture
 		std::shared_ptr<Texture> barForeground = manager->get<Texture>(BAR_FOREGROUND);
+		std::shared_ptr<Texture> beginCap_f = manager->get<Texture>(BEGINCAP_FGRD);
+		std::shared_ptr<Texture> finalCap_f = manager->get<Texture>(FINALCAP_FGRD);
+        
 		std::shared_ptr<Texture> barBackground = manager->get<Texture>(BAR_BACKGROUND);
-		std::shared_ptr<Texture> beginCap = manager->get<Texture>(RIGHT_CAP);
-		std::shared_ptr<Texture> finalCap = manager->get<Texture>(LEFT_CAP);
+		std::shared_ptr<Texture> beginCap_b = manager->get<Texture>(BEGINCAP_BGRD);
+		std::shared_ptr<Texture> finalCap_b = manager->get<Texture>(FINALCAP_BGRD);
 
-        std::shared_ptr<ProgressBar> progressBar = ProgressBar::allocWithCaps(barBackground,barForeground,beginCap,finalCap,size);
-		
-		// temp color fix
-//		const float transparent_gray[] = { 1., 1., 1., 0.25 };
-//		const float less_transparent_gray[] = { 1., 1., 1., 0.75 };
-//		progressBar->setBackgroundColor(transparent_gray);
-//		progressBar->setForegroundColor(less_transparent_gray);
+        std::shared_ptr<ProgressBarModel> progressBar = ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
+                                                                                   barForeground,beginCap_f,finalCap_f,size);
 
 		// anchor and pos
-		progressBar->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 		float barXPos = nextBarXPos + barXPadding;
 		progressBar->setPosition(barXPos, barYPos);
-
-		// set children of progressBar to the same position / anchoring
-		for (int i = 0; i < progressBar->getChildCount(); i++) 
-		{
-			std::shared_ptr<cugl::Node> ch = progressBar->getChildren().at(i);
-			ch->setAnchor(Vec2::ANCHOR_MIDDLE_LEFT);
-			ch->setPosition(Vec2::ZERO);
-		}
 
 		// add to parent node
 		_pBarSceneNode->addChild(progressBar, 3);
