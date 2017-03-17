@@ -85,16 +85,16 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 		// current problem - cugl not recognizing color of file texture
 		std::shared_ptr<Texture> barForeground = manager->get<Texture>(BAR_FOREGROUND);
 		std::shared_ptr<Texture> barBackground = manager->get<Texture>(BAR_BACKGROUND);
-		std::shared_ptr<Texture> rightCap = manager->get<Texture>(RIGHT_CAP);
-		std::shared_ptr<Texture> leftCap = manager->get<Texture>(LEFT_CAP);
+		std::shared_ptr<Texture> beginCap = manager->get<Texture>(RIGHT_CAP);
+		std::shared_ptr<Texture> finalCap = manager->get<Texture>(LEFT_CAP);
 
-		std::shared_ptr<ProgressBar> progressBar = ProgressBar::alloc(size);
+        std::shared_ptr<ProgressBar> progressBar = ProgressBar::allocWithCaps(barBackground,barForeground,beginCap,finalCap,size);
 		
 		// temp color fix
-		const float transparent_gray[] = { 1., 1., 1., 0.25 };
-		const float less_transparent_gray[] = { 1., 1., 1., 0.75 };
-		progressBar->setBackgroundColor(transparent_gray);
-		progressBar->setForegroundColor(less_transparent_gray);
+//		const float transparent_gray[] = { 1., 1., 1., 0.25 };
+//		const float less_transparent_gray[] = { 1., 1., 1., 0.75 };
+//		progressBar->setBackgroundColor(transparent_gray);
+//		progressBar->setForegroundColor(less_transparent_gray);
 
 		// anchor and pos
 		progressBar->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
