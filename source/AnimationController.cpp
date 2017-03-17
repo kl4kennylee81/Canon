@@ -103,6 +103,9 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
     updateFrames();
 }
 
+/**
+ * Adds the animation data to the active animation map.
+ */
 void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
     std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
     anim->setAnimationData(data);
