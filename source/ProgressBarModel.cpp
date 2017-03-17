@@ -192,7 +192,9 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
     // set the position of the final cap to the background bounding box right end
     _finalcap_b->setPosition(_background->getBoundingBox().getMaxX(),0);
     
+    // set state variables
     _progress = 0;
+    _foregroundActive = false;
     _foresize = size;
     
     if (beginCap_f != nullptr) {
@@ -202,7 +204,6 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
         _begincap->setScale(scale);
         _begincap->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         _begincap->setPosition(0,0);
-        addChild(_begincap);
         _foresize.width -= beginCap_f->getSize().width;
     }
     
@@ -217,7 +218,6 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
         } else {
             _finalcap->setPosition(_begincap->getBoundingBox().getMaxX(),0);
         }
-        addChild(_finalcap);
         _foresize.width -= finalCap_f->getSize().width;
     }
     
@@ -246,7 +246,6 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
     } else {
         _foreground->setPosition(_begincap->getBoundingBox().getMaxX(),0);
     }
-    addChild(_foreground);
     return true;
 }
 
@@ -306,5 +305,27 @@ void ProgressBarModel::setForegroundColor(Color4 color) {
     }
     if (_finalcap != nullptr) {
         _finalcap->setColor(color);
+    }
+}
+
+/**
+ * Turns the foreground on in the progressBar
+ *
+ * The foreground is not drawn until it is toggled Active
+ */
+void ProgressBarModel::toggleActive(){
+    if (_foregroundActive){
+        return;
+    }
+    _foregroundActive = true;
+    
+    if (_begincap != nullptr){
+        addChild(_begincap);
+    }
+    if (_finalcap != nullptr){
+        addChild(_finalcap);
+    }
+    if (_foreground != nullptr){
+        addChild(_foreground);
     }
 }

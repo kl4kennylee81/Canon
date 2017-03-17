@@ -29,6 +29,8 @@ namespace cugl {
      */
     class ProgressBarModel: public Node {
     protected:
+        bool _foregroundActive;
+        
         /** The progress percentage of this progress bar (between 0 and 1) */
         float _progress;
         /** The (maximum) size of the foreground texture or node */
@@ -59,7 +61,7 @@ namespace cugl {
          * NEVER USE A CONSTRUCTOR WITH NEW. If you want to allocate a Node on the
          * heap, use one of the static constructors instead.
          */
-        ProgressBarModel() : _progress(1.0f) {}
+        ProgressBarModel() : _progress(1.0f),_foregroundActive(false) {}
         
         /**
          * Deletes this progress bar, disposing all resources
@@ -469,6 +471,8 @@ namespace cugl {
          * @param color The foreground color or tint of the progress bar
          */
         void setForegroundColor(Color4 color);
+        
+        void toggleActive();
     };
     
 }

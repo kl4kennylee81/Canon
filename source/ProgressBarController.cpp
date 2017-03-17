@@ -42,7 +42,8 @@ void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 {
     int index = level.getCurrentWave();
     std::shared_ptr<cugl::Node> child = _pBarSceneNode->getChildren().at(index);
-    std::shared_ptr<cugl::ProgressBar> waveBar = std::static_pointer_cast<cugl::ProgressBar>(child);
+    std::shared_ptr<cugl::ProgressBarModel> waveBar = std::static_pointer_cast<cugl::ProgressBarModel>(child);
+    waveBar->toggleActive();
     waveBar->setProgress(level.getProgress());
 }
 
