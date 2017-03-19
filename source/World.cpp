@@ -12,7 +12,7 @@
 #include "AIData.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            3
+#define NUMBER_SPAWNS            5
 
 
 using namespace cugl;
