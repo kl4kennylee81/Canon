@@ -46,8 +46,7 @@
   "shapes": {
     "shape1": {
       "id": 1,
-      "width": 100,
-      "height": 100
+      "vertices": [0,0,50,0,50,50,0,50]
     }
   }
 }

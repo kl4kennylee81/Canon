@@ -67,8 +67,8 @@ void World::populate(){
     auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD);
     _objectData.insert(std::make_pair(2,od2));
     
-    auto sd = ShapeData::alloc(1,50,50);
-    _shapeData.insert(std::make_pair(1,sd));
+    std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
+    _shapeData.insert({sd->getUID(),sd});
     
     std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
     _animationData.insert({blueEnemy->getUID(),blueEnemy});

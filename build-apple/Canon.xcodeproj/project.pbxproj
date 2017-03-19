@@ -240,6 +240,7 @@
 		9FFA3FDB1E6373770029D648 /* LevelEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEvent.hpp; sourceTree = "<group>"; };
 		9FFA3FE01E6374C90029D648 /* Data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
 		9FFA3FE11E6374C90029D648 /* Data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
+		DF7336C41E7F130D004AFC68 /* AIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AIData.hpp; sourceTree = "<group>"; };
 		DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
 		DF93BDC11E75C20B00EA6A1D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
 		DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnController.cpp; sourceTree = "<group>"; };
@@ -740,6 +741,7 @@
 				9FE4FD501E79F2A9007AD880 /* PathAI.hpp */,
 				9FC16AB01E768F7E0040661D /* HomingAI.cpp */,
 				9FC16AB11E768F7E0040661D /* HomingAI.hpp */,
+				DF7336C41E7F130D004AFC68 /* AIData.hpp */,
 				9FC16AC81E76E9210040661D /* ActiveAI.hpp */,
 			);
 			name = activeAI;

@@ -44,9 +44,7 @@ void CollisionController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
-                    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box, objectInit->objectData->getElement());
-                    objectInit->object->setPhysicsComponent(physics);
+                    initPhysicsComponent(objectInit);
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
@@ -66,6 +64,10 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     if (keys->keyPressed(DEBUG_KEY)) {
         setDebug(!isDebug());
     }
+    
+    //remove duplicates
+    sort(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() );
+    objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
     
     for (auto obj : objsScheduledForRemoval) {
         if(!obj->getIsPlayer()) {
@@ -119,6 +121,22 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     setDebug(true);
     
     return true;
+}
+
+void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
+    Poly2 poly(objectInit->shapeData->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    poly /= GameState::_physicsScale;
+    auto obst = PolygonObstacle::alloc(poly);
+    obst->setPosition(objectInit->waveEntry->position);
+    //auto obst = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
+    
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->objectData->getElement());
+    objectInit->object->setPhysicsComponent(physics);
+    objectInit->object->setUid(10);
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
