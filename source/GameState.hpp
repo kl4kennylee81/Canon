@@ -52,14 +52,17 @@ protected:
     
     /** not sure yet if representing time as an int is the move */
     int time_elapsed;
-
+    
+    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
+    float getSceneToWorldTranslateY();
 public:
+    
+    /* TODO temporary will remove once level loading is done */
+    bool reset;
+    
     /* Need to multiply this scale by physics coordinates to get world coordinates */
     static float _physicsScale;
     
-    bool reset;
-
-
     virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
 
 	static std::shared_ptr<GameState> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
@@ -81,6 +84,8 @@ public:
 	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
+    
+    
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
@@ -112,6 +117,38 @@ public:
             }
         }
     }
+    
+#pragma mark Coordinate Conversions
+    /** Physics Coordinate Conversions **/
+    cugl::Vec2& physicsToWorldCoords(cugl::Vec2& physicsCoords,cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& physicsToSceneCoords(cugl::Vec2& physicsCoords,cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& physicsToScreenCoords(cugl::Vec2& physicsCoords,cugl::Vec2& screenCoords);
+    
+    
+    /** Screen Coordinate Conversions **/
+    cugl::Vec2& screenToWorldCoords(cugl::Vec2& screenCoords, cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords);
+    
+    /** World Coordinate Conversions **/
+    
+    cugl::Vec2& worldToSceneCoords(cugl::Vec2& worldCoords, cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& worldToScreenCoords(cugl::Vec2& worldCoords, cugl::Vec2& screenCoords);
+    
+    cugl::Vec2& worldToPhysicsCoords(cugl::Vec2& worldCoords, cugl::Vec2& physicsCoords);
+    
+    
+    /** Scene Coordinate Conversion **/
+    cugl::Vec2& sceneToWorldCoords(cugl::Vec2& sceneCoords, cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords);
+    
+    cugl::Vec2& sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords);
 };
 
 #endif /* GameState_hpp */

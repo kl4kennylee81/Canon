@@ -122,8 +122,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
     Vec2 world_pos = state->getScene()->getCamera()->screenToWorldCoords(position);
-    // std::cout << "screen position:" << position.toString() << "\n";
-    // std::cout << "world position:" << world_pos.toString() << "\n";
+     std::cout << "screen position:" << position.toString() << "\n";
+     std::cout << "world position:" << world_pos.toString() << "\n";
     
     // can't start drawing a path before a character is done moving through a previous path
     if (_is_moving) {

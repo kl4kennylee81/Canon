@@ -36,7 +36,8 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // This means that we cannot change the aspect ratio of the physics world
     GameState::_physicsScale = size.width / _bounds.size.width;
     
-//    std::cout << "physicsScale:" << _physicsScale << "\n";
+    float world_yPos = (size.height - (_bounds.getMaxY() * _physicsScale))/2;
+    Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
     // Get the space background.  Its size determines all scaling.
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
@@ -46,17 +47,17 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _bgnode->setPosition(Vec2::ZERO);
+    _bgnode->setPosition(world_pos);
     _bgnode->addChild(bkgdTextureNode);
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _worldnode->setPosition(Vec2::ZERO);
+    _worldnode->setPosition(world_pos);
     
     _debugnode = Node::alloc();
     _debugnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _debugnode->setScale(GameState::_physicsScale);
-    _debugnode->setPosition(Vec2::ZERO);
+    _debugnode->setPosition(world_pos);
     
     _scene = Scene::alloc(size);
     _scene->addChild(_bgnode,0);
@@ -127,4 +128,90 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 void GameState::addEnemyGameObject(std::shared_ptr<GameObject> obj){
     _enemyObjects.push_back(obj);
 }
+
+#pragma mark Coordinate Conversions
+
+/** Helper function to calculate the y translate needed to go from scene to world **/
+float GameState::getSceneToWorldTranslateY(){
+    Size size = Application::get()->getDisplaySize();
+    float scene_yPos = (size.height - (_bounds.getMaxY() * _physicsScale))/2;
+    return scene_yPos;
+}
+
+/** Physics Conversion **/
+Vec2& GameState::physicsToWorldCoords(Vec2& physicsCoords,Vec2& worldCoords){
+    Vec2::scale(physicsCoords, _physicsScale, &worldCoords);
+    return worldCoords;
+}
+
+Vec2& GameState::physicsToSceneCoords(Vec2& physicsCoords,Vec2& sceneCoords){
+    physicsToWorldCoords(physicsCoords,sceneCoords);
+    worldToSceneCoords(sceneCoords,sceneCoords);
+    return sceneCoords;
+}
+
+Vec2& GameState::physicsToScreenCoords(Vec2& physicsCoords, Vec2& screenCoords){
+    physicsToSceneCoords(physicsCoords,screenCoords);
+    sceneToScreenCoords(screenCoords,screenCoords);
+    return screenCoords;
+}
+
+/** Screen Conversion **/
+Vec2& GameState::screenToWorldCoords(cugl::Vec2& screenCoords, cugl::Vec2& worldCoords){
+    screenToSceneCoords(screenCoords,worldCoords);
+    sceneToWorldCoords(worldCoords,worldCoords);
+    return worldCoords;
+}
+
+Vec2& GameState::screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords){
+    Vec2 scene_pos = getScene()->getCamera()->screenToWorldCoords(screenCoords);
+    sceneCoords.set(scene_pos);
+    return screenCoords;
+}
+
+Vec2& GameState::screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords){
+    screenToWorldCoords(screenCoords,physicsCoords);
+    worldToPhysicsCoords(physicsCoords, physicsCoords);
+    return physicsCoords;
+}
+
+/** World Conversion **/
+Vec2& GameState::worldToSceneCoords(cugl::Vec2& worldCoords, cugl::Vec2& sceneCoords){
+    sceneCoords.set(worldCoords);
+    sceneCoords.y += getSceneToWorldTranslateY();
+    return sceneCoords;
+}
+
+Vec2& GameState::worldToScreenCoords(cugl::Vec2& worldCoords, cugl::Vec2& screenCoords){
+    worldToSceneCoords(worldCoords,screenCoords);
+    sceneToScreenCoords(screenCoords,screenCoords);
+    return screenCoords;
+}
+
+Vec2& GameState::worldToPhysicsCoords(cugl::Vec2& worldCoords, cugl::Vec2& physicsCoords){
+    Vec2::divide(worldCoords,_physicsScale,&physicsCoords);
+    return physicsCoords;
+}
+
+/** Scene Conversion **/
+Vec2& GameState::sceneToWorldCoords(cugl::Vec2& sceneCoords, cugl::Vec2& worldCoords){
+    worldCoords.set(sceneCoords);
+    worldCoords.y -= getSceneToWorldTranslateY();
+    return worldCoords;
+}
+
+Vec2& GameState::sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords){
+    Vec2 screen_pos = getScene()->getCamera()->worldToScreenCoords(sceneCoords);
+    screenCoords.set(screen_pos);
+    return screenCoords;
+}
+
+Vec2& GameState::sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords){
+    sceneToWorldCoords(sceneCoords,physicsCoords);
+    worldToPhysicsCoords(physicsCoords,physicsCoords);
+    return physicsCoords;
+}
+
+
+
 
