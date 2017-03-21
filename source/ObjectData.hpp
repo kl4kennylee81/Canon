@@ -24,8 +24,6 @@ public:
     
     // key uid to a shape data preloaded into the world
     
-    int object_id;
-    
     int shape_id;
     int animation_id;
     

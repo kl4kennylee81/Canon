@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include <map>
 #include "AnimationData.hpp"
+#include "AnimationAction.hpp"
 
 class ActiveAnimation {
     
@@ -28,6 +29,9 @@ class ActiveAnimation {
     
     int curFrames;
     
+    /**
+     * If this is true, then the active animation is ready to be removed.
+     */
     bool _last;
     
     
@@ -59,15 +63,15 @@ public:
         return _data->getAnimationState(state);
     }
     
-    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationEvent event) {
-        return _data->getAnimationUpdate(event);
+    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationAction action) {
+        return _data->getAnimationUpdate(action);
     }
     
-    bool eventExists(AnimationEvent event) {
-        return _data->eventExists(event);
+    bool eventExists(AnimationAction action) {
+        return _data->actionExists(action);
     }
     
-    void handleEvent(AnimationEvent event);
+    void handleAction(AnimationAction action);
     
     bool nextFrame();
     

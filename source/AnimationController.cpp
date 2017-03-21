@@ -41,7 +41,7 @@ void AnimationController::eventUpdate(Event* e) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
-                    handleEvent(obj, AnimationEvent::DEATH);
+                    handleAction(obj, AnimationAction::DEATH);
                     animationMap.at(obj)->setLastAnimation();
                     break;
             }
@@ -59,13 +59,13 @@ void AnimationController::eventUpdate(Event* e) {
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
-                    handleEvent(obj, AnimationEvent::SPAWNING);
+                    handleAction(obj, AnimationAction::SPAWNING);
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
-                    handleEvent(obj, AnimationEvent::SPAWN);
+                    handleAction(obj, AnimationAction::SPAWN);
                     break;
                 }
             }
@@ -77,7 +77,7 @@ void AnimationController::eventUpdate(Event* e) {
                 case PathEvent::PathEventType::PATH_FINISHED:
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
                     GameObject* obj = pathFinished->_character.get();
-                    handleEvent(obj, AnimationEvent::ATTACK);
+                    handleAction(obj, AnimationAction::ATTACK);
                     break;
             }
             break;
@@ -85,38 +85,47 @@ void AnimationController::eventUpdate(Event* e) {
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
             GameObject* obj = moveEvent->_character.get();
-            handleEvent(obj, AnimationEvent::RETURN);
+            handleAction(obj, AnimationAction::RETURN);
             break;
         }
         case Event::EventType::SWITCH: {
             SwitchEvent* switchEvent = (SwitchEvent*)e;
             GameObject* obj = switchEvent->_character.get();
-            handleEvent(obj, AnimationEvent::ACTIVE);
+            handleAction(obj, AnimationAction::ACTIVE);
             break;
         }
     }
 }
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
-    
     syncAll();
     updateFrames();
 }
 
+/**
+ * Adds the animation data to the active animation map.
+ */
 void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
     std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
     anim->setAnimationData(data);
     animationMap.insert({obj, anim});
 }
 
-void AnimationController::handleEvent(GameObject* obj, AnimationEvent event) {
+/**
+ * Defers handling to the active animation handleEvent()
+ */
+void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
-    anim->handleEvent(event);
+    anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
         _worldnode->addChild(anim->getAnimationNode(),1);
     }
 }
 
+/**
+ * Syncs the location of the animatino node to the world coordinates of
+ * the corresponding location of the node's physics body.
+ */
 void AnimationController::syncAll() {
     for (auto it = animationMap.begin(); it != animationMap.end(); it++) {
         GameObject* obj = it->first;
@@ -127,6 +136,9 @@ void AnimationController::syncAll() {
     }
 }
 
+/**
+ * Removes animations that have been completed to the last frame
+ */
 void AnimationController::updateFrames() {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         std::shared_ptr<ActiveAnimation> anim = it->second;
@@ -156,12 +168,12 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
             std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
             
             addAnimation(it->get(), charGirl);
-            handleEvent(it->get(), AnimationEvent::SPAWN);
+            handleAction(it->get(), AnimationAction::SPAWN);
         } else {
             std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
             
             addAnimation(it->get(), charBoy);
-            handleEvent(it->get(), AnimationEvent::SPAWN);
+            handleAction(it->get(), AnimationAction::SPAWN);
         }
     }
     return true;

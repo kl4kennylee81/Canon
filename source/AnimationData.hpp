@@ -13,17 +13,7 @@
 #include <cugl/cugl.h>
 #include <map>
 #include "Data.hpp"
-
-enum class AnimationEvent : int {
-    SPAWNING,
-    SPAWN,
-    ACTIVE,
-    ATTACK,
-    RETURN,
-    HIT,
-    DEATH,
-    DEFAULT
-};
+#include "AnimationAction.hpp"
 
 class AnimationState {
 public:
@@ -66,7 +56,7 @@ class AnimationData : public Data {
 protected:
     std::map<std::string, std::shared_ptr<AnimationState>> _statemap;
     
-    std::map<AnimationEvent, std::shared_ptr<AnimationUpdate>> _eventmap;
+    std::map<AnimationAction, std::shared_ptr<AnimationUpdate>> _actionmap;
     
 public:
     std::shared_ptr<cugl::Texture> texture;
@@ -90,12 +80,12 @@ public:
         return _statemap.at(state);
     }
     
-    bool eventExists(AnimationEvent event) {
-        return _eventmap.find(event) != _eventmap.end();
+    bool actionExists(AnimationAction action) {
+        return _actionmap.find(action) != _actionmap.end();
     }
     
-    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationEvent event) {
-        return _eventmap.at(event);
+    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationAction action) {
+        return _actionmap.at(action);
     }
     
     virtual std::string serialize();
@@ -106,16 +96,16 @@ public:
     
     virtual bool materialize();
     
-    static AnimationEvent stringToEvent(std::string event){
-        if (event == "SPAWNING") return AnimationEvent::SPAWNING;
-        if (event == "SPAWN") return AnimationEvent::SPAWN;
-        if (event == "ACTIVE") return AnimationEvent::ACTIVE;
-        if (event == "ATTACK") return AnimationEvent::ATTACK;
-        if (event == "RETURN") return AnimationEvent::RETURN;
-        if (event == "HIT") return AnimationEvent::HIT;
-        if (event == "DEATH") return AnimationEvent::DEATH;
-        std::cout << "AnimationData: default event?\n";
-        return AnimationEvent::DEFAULT;
+    static AnimationAction stringToAction(std::string action){
+        if (action == "SPAWNING") return AnimationAction::SPAWNING;
+        if (action == "SPAWN") return AnimationAction::SPAWN;
+        if (action == "ACTIVE") return AnimationAction::ACTIVE;
+        if (action == "ATTACK") return AnimationAction::ATTACK;
+        if (action == "RETURN") return AnimationAction::RETURN;
+        if (action == "HIT") return AnimationAction::HIT;
+        if (action == "DEATH") return AnimationAction::DEATH;
+        std::cout << "AnimationData: default action?\n";
+        return AnimationAction::DEFAULT;
     }
 };
 

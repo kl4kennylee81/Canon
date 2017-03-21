@@ -12,7 +12,7 @@
 #include "AIData.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            3
+#define NUMBER_SPAWNS            5
 
 
 using namespace cugl;
@@ -41,7 +41,7 @@ void World::populate(){
     std::uniform_int_distribution<std::mt19937::result_type> distWidth(0,31);
     std::uniform_int_distribution<std::mt19937::result_type> distHeight(0,17);
     
-    for (int i = 0;i < 5;i++){
+    for (int i = 0;i < 10;i++){
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng),TIME_BETWEEN_SPAWN);
         _levelData->addLevelEntry(e);
     }
@@ -50,12 +50,12 @@ void World::populate(){
         auto wd = WaveData::alloc(1);
         for (int j = 0;j<NUMBER_SPAWNS;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
-			auto ai = AIData::alloc(AIType::HOMING, PathType::NONE);
+			auto ai = _assets->get<AIData>("homing");
             std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng), ai);
             wd->addWaveEntry(we);
         }
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-		auto ai = AIData::alloc(AIType::PATH, PathType::HORIZONTAL);
+		auto ai = _assets->get<AIData>("square");
 		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
 		wd->addWaveEntry(we);
         _waveData.insert(std::make_pair(i,wd));
@@ -67,8 +67,8 @@ void World::populate(){
     auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD);
     _objectData.insert(std::make_pair(2,od2));
     
-    auto sd = ShapeData::alloc(1,50,50);
-    _shapeData.insert(std::make_pair(1,sd));
+    std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
+    _shapeData.insert({sd->getUID(),sd});
     
     std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
     _animationData.insert({blueEnemy->getUID(),blueEnemy});

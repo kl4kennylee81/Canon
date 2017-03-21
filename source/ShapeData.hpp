@@ -15,25 +15,19 @@
 
 class ShapeData : public Data {
 public:
-    int height;
-    int width;
+    std::vector<float> vertices;
     
-    ShapeData(): Data(),height(0),width(0){};
+    ShapeData(): Data(){};
     
-    bool init(int uid,int h,int w){
+    bool init(int uid,std::vector<float> v){
         this->_uid = uid;
-        this->height = h;
-        this->width = w;
+        this->vertices = v;
         return true;
     }
     
-    static std::shared_ptr<ShapeData> alloc(int uid,int height,int width) {
+    static std::shared_ptr<ShapeData> alloc(int uid, std::vector<float> vertices) {
         std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();
-        return (result->init(uid,height,width) ? result : nullptr);
-    }
-    
-    cugl::Size getSize(){
-        return cugl::Size(width, height);
+        return (result->init(uid,vertices) ? result : nullptr);
     }
     
     virtual std::string serialize();

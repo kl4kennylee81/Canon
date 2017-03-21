@@ -38,24 +38,24 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         _statemap.insert({state,animationstate});
     }
     
-    auto eventmapjson = json->get("eventmap");
-    for (int i = 0; i < eventmapjson->size(); i++) {
-        auto eventjson = eventmapjson->get(i);
+    auto actionmapjson = json->get("actionmap");
+    for (int i = 0; i < actionmapjson->size(); i++) {
+        auto actionjson = actionmapjson->get(i);
         
-        std::string eventString = eventjson->key();
-        auto event = stringToEvent(eventString);
+        std::string actionString = actionjson->key();
+        auto action = stringToAction(actionString);
         
         std::string active;
-        if (eventjson->has("active")){
-            active = eventjson->getString("active");
+        if (actionjson->has("active")){
+            active = actionjson->getString("active");
         }
         std::string repeat;
-        if (eventjson->has("repeat")){
-            repeat = eventjson->getString("repeat");
+        if (actionjson->has("repeat")){
+            repeat = actionjson->getString("repeat");
         }
         auto animationupdate = AnimationUpdate::alloc(active, repeat);
         
-        _eventmap.insert({event,animationupdate});
+        _actionmap.insert({action,animationupdate});
     }
     return true;
 }
