@@ -60,7 +60,10 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		auto newPath = Path::alloc();
 		for (auto it : path) {
-			newPath->add(it);
+			float scale = GameState::_physicsScale;
+			Vec2 point = Vec2::Vec2(it.x / scale, it.y / scale);
+			Vec2 translated = point.add(object->getPosition());
+			newPath->add(translated);
 		}
 		_activePath = ActivePath::alloc(newPath);
 		break;
