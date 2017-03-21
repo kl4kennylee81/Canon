@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "ZoneLoader.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -53,6 +54,7 @@ void GameEngine::onStartup() {
 	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
 	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
 	_assets->attach<AIData>(GenericLoader<AIData>::alloc()->getHook());
+    _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
 	//_assets->load<LevelData>("level1", "json/level.json");
