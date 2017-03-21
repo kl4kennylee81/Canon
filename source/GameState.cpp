@@ -52,6 +52,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _worldnode->setScale(GameState::_physicsScale);
     _worldnode->setPosition(world_pos);
     
     _debugnode = Node::alloc();
@@ -78,8 +79,8 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charGirl->setIsPlayer(true);
     
     auto charGirlPos = Vec2::Vec2(16,9);
-    auto charGirlSize = Size::Size(50,50);
-    auto boxGirl = BoxObstacle::alloc(charGirlPos, charGirlSize / GameState::_physicsScale);
+    auto charGirlSize = Size::Size(1.5625,1.5625);
+    auto boxGirl = BoxObstacle::alloc(charGirlPos, charGirlSize);
     std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
     charGirl->setPhysicsComponent(physicsGirl);
     
@@ -94,8 +95,8 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     charBoy->setIsPlayer(true);
 
     auto charBoyPos = Vec2::Vec2(15,12);
-    auto charBoySize = Size::Size(50,50);
-    auto boxBoy = BoxObstacle::alloc(charBoyPos, charBoySize / GameState::_physicsScale);
+    auto charBoySize = Size::Size(1.5625,1.5625);
+    auto boxBoy = BoxObstacle::alloc(charBoyPos, charBoySize);
     std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
     charBoy->setPhysicsComponent(physicsBoy);
     

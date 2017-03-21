@@ -51,7 +51,7 @@ void PathController::eventUpdate(Event* e) {
 
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
-	auto pathNode = PathNode::allocWithPoly(pathPoly, 5, PathJoint::ROUND, PathCap::ROUND);
+	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.15625, PathJoint::ROUND, PathCap::ROUND);
 	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
@@ -121,9 +121,15 @@ bool PathController::getDoubleTouch() {
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
-    Vec2 world_pos = state->getScene()->getCamera()->screenToWorldCoords(position);
+    Vec2 physicsPosition = Vec2::Vec2();
+    state->screenToPhysicsCoords(position,physicsPosition);
+    
+    Vec2 scenePosition = Vec2::Vec2();
+    state->screenToSceneCoords(position, scenePosition);
+    
      std::cout << "screen position:" << position.toString() << "\n";
-     std::cout << "world position:" << world_pos.toString() << "\n";
+     std::cout << "physics position:" << physicsPosition.toString() << "\n";
+     std::cout << "scene position:" << scenePosition.toString() << "\n";
     
     // can't start drawing a path before a character is done moving through a previous path
     if (_is_moving) {
@@ -140,10 +146,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     
 	if (!_wasPressed && isPressed) {
 		_path->clear();
-        Vec2 currentLocation = state->getActiveCharacter()->getPosition() * GameState::_physicsScale;
+        Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
 		// can't start drawing a path if the touch is far away from the active character
-		if (world_pos.distance(currentLocation) > TOUCH_RADIUS) return;
+		if (physicsPosition.distance(currentLocation) > TOUCH_RADIUS) return;
 
 		_path->add(currentLocation);
 		resetMinMax();
@@ -151,19 +157,18 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
 	if (isPressed) {
 		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
-		double diffx = world_pos.x - prev.x;
-		double diffy = world_pos.y - prev.y;
+		double diffx = physicsPosition.x - prev.x;
+		double diffy = physicsPosition.y - prev.y;
 		double distance = std::sqrt((diffx * diffx) + (diffy * diffy));
 		if (distance > MIN_DISTANCE) {
-            _path->add(world_pos);
-			updateMinMax(world_pos);
+            _path->add(physicsPosition);
+			updateMinMax(physicsPosition);
 			addPathToScene(state);
 		}
 	}
 	if (_wasPressed && !isPressed) {
 		addPathToScene(state);
-        auto physicsCoordPath = _path->convertToPhysicsCoords(GameState::_physicsScale);
-        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(physicsCoordPath, state->getActiveCharacter());
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         _is_moving = true;
@@ -175,7 +180,10 @@ bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);
-	state->getScene()->addChild(_pathSceneNode, 2);
+    
+    // attach it to the world so automatically scales and translates
+	state->getWorldNode()->addChild(_pathSceneNode, 2);
+    
 	_height = Application::get()->getDisplayHeight();
 	resetMinMax();
 	_path = Path::alloc();

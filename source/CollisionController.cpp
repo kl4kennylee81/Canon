@@ -44,7 +44,7 @@ void CollisionController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
+                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize());
                     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box, objectInit->objectData->getElement());
                     objectInit->object->setPhysicsComponent(physics);
                     break;

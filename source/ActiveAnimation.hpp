@@ -75,5 +75,9 @@ public:
     bool nextFrame();
     
     void setLastAnimation() {_last = true;};
+    
+    void setScale(float scale){
+        _node->setScale(scale);
+    }
 };
 #endif /* ActiveAnimation_hpp */

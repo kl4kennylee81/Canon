@@ -108,6 +108,7 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
 void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
     std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
     anim->setAnimationData(data);
+    anim->setScale(1.f/GameState::getPhysicsScale());
     animationMap.insert({obj, anim});
 }
 
@@ -131,7 +132,7 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            anim->getAnimationNode()->setPosition(obj->getPosition() * GameState::_physicsScale);
+            anim->getAnimationNode()->setPosition(obj->getPosition());
         }
     }
 }

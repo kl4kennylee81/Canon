@@ -49,12 +49,6 @@ protected:
      * All objects include the player characters and all other objects in the game
      */
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
-    
-    /** not sure yet if representing time as an int is the move */
-    int time_elapsed;
-    
-    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
-    float getSceneToWorldTranslateY();
 public:
     
     /* TODO temporary will remove once level loading is done */
@@ -95,8 +89,6 @@ public:
         return _bounds;
     }
     
-//    static float getPhysicsScale() { return _physicsScale; }
-    
     void addEnemyGameObject(std::shared_ptr<GameObject> obj);
     
     std::shared_ptr<cugl::Node> getWorldNode() {
@@ -117,6 +109,13 @@ public:
             }
         }
     }
+    
+#pragma worldNode Transformation Settings getter
+    /** getter for the physicsScale to transform from physics to World Coordinates */
+    static float getPhysicsScale(){ return GameState::_physicsScale; }
+    
+    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
+    float getSceneToWorldTranslateY();
     
 #pragma mark Coordinate Conversions
     /** Physics Coordinate Conversions **/

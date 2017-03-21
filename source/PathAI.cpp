@@ -10,12 +10,12 @@ void PathAI::update(std::shared_ptr<GameState> state) {
 	int index = _activePath->_pathIndex;
 	Vec2 goal = _activePath->_path->get(index);
 	Vec2 current = _object->getPosition();
-	if (std::abs(current.distance(goal)) <= (RADIUS / GameState::_physicsScale)) {
+	if (std::abs(current.distance(goal)) <= (RADIUS)) {
 		int newIndex = (index + 1) % _activePath->_path->size();
 		_activePath->_pathIndex = newIndex;
 		goal = _activePath->_path->get(newIndex);
 	}
-	Vec2 velocity = MoveController::getVelocityVector(current, goal, AI_SPEED * 60 / GameState::_physicsScale);
+	Vec2 velocity = MoveController::getVelocityVector(current, goal, AI_SPEED * 60);
 	_object->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
 }
 
@@ -36,7 +36,7 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		Vec2 position = object->getPosition();
 		float height = GAME_WIDTH * GAME_ASPECT;
-		Vec2 top = Vec2::Vec2(position.x, height / GameState::_physicsScale);
+		Vec2 top = Vec2::Vec2(position.x, height);
 		Vec2 bottom = Vec2::Vec2(position.x, 0);
 		auto newPath = Path::alloc();
 		newPath->add(top);
@@ -48,7 +48,7 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		Vec2 position = object->getPosition();
 		float width = GAME_WIDTH;
-		Vec2 top = Vec2::Vec2(width / GameState::_physicsScale, position.y);
+		Vec2 top = Vec2::Vec2(width, position.y);
 		Vec2 bottom = Vec2::Vec2(0, position.y);
 		auto newPath = Path::alloc();
 		newPath->add(top);

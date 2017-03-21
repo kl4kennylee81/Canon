@@ -54,7 +54,7 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 		std::shared_ptr<ActivePath> path = it.second;
 		Vec2 goal = path->_path->get(path->_pathIndex);
 		Vec2 current = player->getPosition();
-		Vec2 velocity = getVelocityVector(current, goal,((float) VELOCITY * 60 ) / GameState::_physicsScale);
+		Vec2 velocity = getVelocityVector(current, goal,((float) VELOCITY * 60 ));
 		player->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
 	}
 }
