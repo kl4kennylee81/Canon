@@ -52,6 +52,7 @@ void GameEngine::onStartup() {
 	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
 	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
 	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
+	_assets->attach<AIData>(GenericLoader<AIData>::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
 	//_assets->load<LevelData>("level1", "json/level.json");
@@ -63,6 +64,7 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/assets.json");
 	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
+	_assets->loadDirectory("json/ai.json");
 
     
     // Activate mouse or touch screen input as appropriate

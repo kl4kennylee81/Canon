@@ -50,12 +50,12 @@ void World::populate(){
         auto wd = WaveData::alloc(1);
         for (int j = 0;j<NUMBER_SPAWNS;j++){
             std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
-			auto ai = AIData::alloc(AIType::HOMING, PathType::NONE);
+			auto ai = _assets->get<AIData>("homing");
             std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng), ai);
             wd->addWaveEntry(we);
         }
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-		auto ai = AIData::alloc(AIType::PATH, PathType::HORIZONTAL);
+		auto ai = _assets->get<AIData>("static");
 		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
 		wd->addWaveEntry(we);
         _waveData.insert(std::make_pair(i,wd));

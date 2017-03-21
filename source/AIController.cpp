@@ -14,6 +14,7 @@
 #include "LevelEvent.hpp"
 #include "CollisionEvent.hpp"
 #include "PathAI.hpp"
+#include "StaticAI.hpp"
 
 using namespace cugl;
 
@@ -80,6 +81,8 @@ std::shared_ptr<ActiveAI> AIController::getAIFromWaveEntry(std::shared_ptr<WaveE
 	{
 		return PathAI::alloc(obj, aiData->_pathType, aiData->_path);
 	}
+	case AIType::STATIC:
+		return StaticAI::alloc(obj);
 	}
 	return HomingAI::alloc(obj);
 }

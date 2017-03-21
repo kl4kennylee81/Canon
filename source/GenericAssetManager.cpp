@@ -7,6 +7,7 @@
 #include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
+#include "AIData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -207,6 +208,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ai"){
+			success = readCategory(typeid(AIData).hash_code(), child) && success;
 		}
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());
