@@ -8,11 +8,11 @@
 
 #include "ActiveAnimation.hpp"
 
-void ActiveAnimation::handleEvent(AnimationEvent event) {
-    if (!eventExists(event)) {
+void ActiveAnimation::handleAction(AnimationAction action) {
+    if (!eventExists(action)) {
         return;
     }
-    std::shared_ptr<AnimationUpdate> upd = getAnimationUpdate(event);
+    std::shared_ptr<AnimationUpdate> upd = getAnimationUpdate(action);
     active = upd->active;
     if (!upd->repeat.empty()){
         repeat = upd->repeat;
