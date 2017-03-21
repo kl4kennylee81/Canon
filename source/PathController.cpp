@@ -121,15 +121,19 @@ bool PathController::getDoubleTouch() {
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
+    
     Vec2 physicsPosition = Vec2::Vec2();
-    state->screenToPhysicsCoords(position,physicsPosition);
     
-    Vec2 scenePosition = Vec2::Vec2();
-    state->screenToSceneCoords(position, scenePosition);
-    
-     std::cout << "screen position:" << position.toString() << "\n";
-     std::cout << "physics position:" << physicsPosition.toString() << "\n";
-     std::cout << "scene position:" << scenePosition.toString() << "\n";
+    if (isPressed){
+        state->screenToPhysicsCoords(position,physicsPosition);
+        
+        Vec2 scenePosition = Vec2::Vec2();
+        state->screenToSceneCoords(position, scenePosition);
+        
+        std::cout << "screen position:" << position.toString() << "\n";
+        std::cout << "physics position:" << physicsPosition.toString() << "\n";
+        std::cout << "scene position:" << scenePosition.toString() << "\n";
+    }
     
     // can't start drawing a path before a character is done moving through a previous path
     if (_is_moving) {
