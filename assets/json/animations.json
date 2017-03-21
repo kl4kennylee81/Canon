@@ -38,7 +38,7 @@
           "frames": [15]
         }
       },
-      "eventmap": {
+      "actionmap": {
         "SPAWN": {
           "repeat": "idle"
         },
@@ -96,7 +96,7 @@
           "frames": [15]
         }
       },
-      "eventmap": {
+      "actionmap": {
         "SPAWN": {
           "repeat": "idle"
         },
@@ -139,7 +139,7 @@
           "frames": [15,15]
         }
       },
-      "eventmap": {
+      "actionmap": {
         "SPAWNING": {
           "repeat": "spawning"
         },
@@ -174,7 +174,7 @@
           "frames": [15,15]
         }
       },
-      "eventmap": {
+      "actionmap": {
         "SPAWNING": {
           "repeat": "spawning"
         },

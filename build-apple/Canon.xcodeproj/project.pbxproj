@@ -241,6 +241,7 @@
 		9FFA3FE01E6374C90029D648 /* Data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
 		9FFA3FE11E6374C90029D648 /* Data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
 		DF7336C41E7F130D004AFC68 /* AIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AIData.hpp; sourceTree = "<group>"; };
+		DF909EEE1E80BBD8003BB459 /* AnimationAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationAction.hpp; sourceTree = "<group>"; };
 		DF93BDBD1E75C20300EA6A1D /* GenericAssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericAssetManager.cpp; sourceTree = "<group>"; };
 		DF93BDC11E75C20B00EA6A1D /* GenericAssetManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericAssetManager.hpp; sourceTree = "<group>"; };
 		DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpawnController.cpp; sourceTree = "<group>"; };
@@ -410,6 +411,7 @@
 				9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */,
 				9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */,
 				9FE8E9E61E6382C800DBE3BC /* ActiveAnimation.hpp */,
+				DF909EEE1E80BBD8003BB459 /* AnimationAction.hpp */,
 			);
 			name = animation;
 			sourceTree = "<group>";
