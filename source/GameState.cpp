@@ -134,8 +134,8 @@ void GameState::addEnemyGameObject(std::shared_ptr<GameObject> obj){
 
 /** Helper function to calculate the y translate needed to go from scene to world **/
 float GameState::getSceneToWorldTranslateY(){
-    Size size = Application::get()->getDisplaySize();
-    float scene_yPos = ((_bounds.getMaxY() * _physicsScale) - size.height)/2;
+    float sceneYMax = this->getScene()->getCamera()->getViewport().getMaxY();
+    float scene_yPos = (sceneYMax - (_bounds.getMaxY() * GameState::getPhysicsScale()))/2.f;
     return scene_yPos;
 }
 
