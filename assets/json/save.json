@@ -1,20 +1,22 @@
 {
-	"SaveGameData": [
-		{
-			"menuEntry": "Tutorial",
-			"unlocked": true,
-			"complete": true,
-			"menuKey": "lake_bg",
-			"levelKey": "tut",
-			"highScore": 0
-		},
-		{
-			"menuEntry": "Level 1",
-			"unlocked": true,
-			"complete": false,
-			"menuKey": "lake_bg",
-			"levelKey": "lvl1",
-			"highScore": 0
+	"SaveGameData": {
+		"levels" : {
+			"level0": {
+				"menuEntry": "Tutorial",
+				"unlocked": 1,
+				"complete": 1,
+				"menuKey": "lake_bg",
+				"levelKey": "tut",
+				"highScore": 0
+			},
+			"level1": {
+				"menuEntry": "Level 1",
+				"unlocked": 1,
+				"complete": 0,
+				"menuKey": "lake_bg",
+				"levelKey": "lvl1",
+				"highScore": 0
+			}
 		}
-	]
+	}
 }

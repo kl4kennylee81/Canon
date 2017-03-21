@@ -19,6 +19,15 @@ public:
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
 
 	virtual bool materialize();
+
+	bool init(int uid) {
+		return true;
+	}
+
+	static std::shared_ptr<SaveGameData> alloc(int uid) {
+		std::shared_ptr<SaveGameData> result = std::make_shared<SaveGameData>();
+		return (result->init(uid) ? result : nullptr);
+	}
 };
 
 #endif /* SaveGameData_h */

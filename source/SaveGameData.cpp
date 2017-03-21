@@ -20,10 +20,9 @@ bool SaveGameData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 {
 	if (json->type() == JsonValue::Type::ObjectType) 
 	{
-		std::shared_ptr<JsonValue> levelArray = json->get("SaveGameData");
-		for (int i = 0; i < levelArray->size(); i++)
+		for (int i = 0; i < json->size(); i++)
 		{
-			std::shared_ptr<JsonValue> child = levelArray->get(i);
+			auto child = json->get(i);
 			auto entry = MenuEntry::alloc(
 				child->getString("menuEntry"), 
 				child->getBool("unlocked"), 
