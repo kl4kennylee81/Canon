@@ -10,11 +10,13 @@
 #include "Element.hpp"
 #include <random>
 #include "AIData.hpp"
+#include <iostream>
+#include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            5
 
-
+using std::string;
 using namespace cugl;
 
 World::World() :
@@ -32,6 +34,11 @@ std::shared_ptr<GenericAssetManager> World::getAssetManager(){
 
 /** testing function to populate the world without the data files */
 void World::populate(){
+
+	// later on, a controller will modify what the current level is, and the assetmanager will load its assets appropriately
+	string currentLevel = "level1";
+	//_levelData = _assets->get<LevelData>(currentLevel);
+
     _levelData = LevelData::alloc(1);
     std::mt19937 rng;
     rng.seed(std::random_device()());
@@ -45,21 +52,53 @@ void World::populate(){
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng),TIME_BETWEEN_SPAWN);
         _levelData->addLevelEntry(e);
     }
-    
-    for (int i = 1;i < 10;i++){
+	
+	std::ofstream myfile; // file stuff
+	myfile.open("tempWavesLol.json"); // file stuff
+	myfile << "{";
+
+    for (int i = 1; i < 10; i++) {
+		if (i > 1) myfile << ","; // file stuff
+
+		// write wave json to file (TEMPORARY) for ease
+
+		myfile << "\"wave" << std::to_string(i) << "\":" << "{"; // file stuff
+
         auto wd = WaveData::alloc(1);
         for (int j = 0;j<NUMBER_SPAWNS;j++){
+			
+			if (j > 0) myfile << ","; // file stuff
+
             std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
 			auto ai = _assets->get<AIData>("homing");
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng), ai);
+
+			int dist = dist2(rng); int width = distWidth(rng); int height = distHeight(rng);
+
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist, width, height, ai);
             wd->addWaveEntry(we);
+
+			myfile << "\"object" << std::to_string(j) << "\":" << "{"; // file stuff begin
+			myfile << "\"objectKey\":" << std::to_string(dist) << "," << 
+				"\"x\":" << std::to_string(width) << "," << 
+				"\"y\":" << std::to_string(height) << "," <<
+				"\"aiType\":" << "\"homing\"" << "," <<
+				"\"pathType\":" << "\"none\"" << "}"; // file stuff end
+	
         }
+		myfile << "}"; // file stuff
+		
+
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 		auto ai = _assets->get<AIData>("square");
 		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
+
 		wd->addWaveEntry(we);
         _waveData.insert(std::make_pair(i,wd));
+
     }
+
+	myfile << "}"; // file stuff
+	myfile.close(); // file stuff
     
     auto od1 = ObjectData::alloc(1,1,3,5,5,Element::BLUE);
     _objectData.insert(std::make_pair(1,od1));

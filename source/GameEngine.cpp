@@ -65,11 +65,13 @@ void GameEngine::onStartup() {
     _menuGraph = MenuGraph::MenuGraph();
     
     // This reads the given JSON file and uses it to load all other assets
-    _assets->loadDirectory("json/assets.json");
-	_assets->loadDirectory("json/level.json");
-    _assets->loadDirectory("json/animations.json");
+
+    //_assets->loadDirectory("json/assets.json");
+	//_assets->loadDirectory("json/level.json");
+    //_assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/save.json");
-	_assets->loadDirectory("json/ai.json");
+	_assets->loadDirectory("json/level1assets.json");
+	//_assets->loadDirectory("json/ai.json");
 
     
     // Activate mouse or touch screen input as appropriate

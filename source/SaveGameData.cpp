@@ -1,5 +1,4 @@
 #include "SaveGameData.h"
-#include "LevelData.hpp"
 
 using namespace cugl;
 
@@ -23,12 +22,14 @@ bool SaveGameData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 		for (int i = 0; i < json->size(); i++)
 		{
 			auto child = json->get(i);
-			auto entry = MenuEntry::alloc(
-				child->getString("menuEntry"), 
+			auto entry = SaveLevelEntry::alloc(
+				child->getString("name"), 
 				child->getBool("unlocked"), 
 				child->getBool("complete"), 
-				child->getInt("highScore"));
-			_menuEntries.push_back(entry);
+				child->getInt("highScore"),
+				child->getString("levelKey"),
+				child->getString("levelUrl"));
+			_saveLevelEntries.push_back(entry);
 
 			// todo: have asset manager use the level key to load in that specific level
 			auto levelKey = child->get("levelKey");

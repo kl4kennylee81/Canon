@@ -7,10 +7,37 @@
 #include "MenuScreenData.hpp"
 #include "LevelData.hpp"
 
+class SaveLevelEntry {
+public:
+	string name;
+	boolean unlocked;
+	boolean complete;
+	int highScore;
+	string levelKey;
+	string levelUrl;
+
+	SaveLevelEntry() {}
+
+	bool init(string n, boolean unloc, boolean com, int high, string k, string u) {
+		this->name = n;
+		this->unlocked = unloc;
+		this->complete = com;
+		this->highScore = high;
+		this->levelKey = k;
+		this->levelUrl = u;
+		return true;
+	}
+
+	static std::shared_ptr<SaveLevelEntry> alloc(string n, boolean unloc, boolean com, int high, string k, string u) {
+		std::shared_ptr<SaveLevelEntry> result = std::make_shared<SaveLevelEntry>();
+		return (result->init(n, unloc, com, high, k, u) ? result : nullptr);
+	}
+};
+
+
 class SaveGameData : Data {
 protected:
-	std::vector<std::shared_ptr<MenuEntry>> _menuEntries;
-	std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
+	std::vector<std::shared_ptr<SaveLevelEntry>> _saveLevelEntries;
 public:
 	virtual std::string serialize();
 
