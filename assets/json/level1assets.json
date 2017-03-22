@@ -19,38 +19,38 @@
     "wave1": {
       "object0": {
         "objectKey": 1,
-        "x": 20,
+        "x": 5,
         "y": 9,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object1": {
         "objectKey": 1,
         "x": 30,
         "y": 17,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object2": {
         "objectKey": 2,
-        "x": 13,
+        "x": 9,
         "y": 15,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object3": {
         "objectKey": 1,
-        "x": 16,
+        "x": 20,
         "y": 5,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object4": {
         "objectKey": 2,
-        "x": 11,
+        "x": 7,
         "y": 8,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       }
     },
     "wave2": {
@@ -58,36 +58,36 @@
         "objectKey": 1,
         "x": 21,
         "y": 10,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object1": {
         "objectKey": 2,
         "x": 0,
         "y": 10,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object2": {
         "objectKey": 2,
         "x": 12,
         "y": 9,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object3": {
         "objectKey": 1,
         "x": 14,
         "y": 5,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object4": {
         "objectKey": 1,
         "x": 18,
         "y": 16,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       }
     },
     "wave3": {
@@ -95,36 +95,36 @@
         "objectKey": 2,
         "x": 3,
         "y": 6,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object1": {
         "objectKey": 2,
         "x": 25,
         "y": 3,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object2": {
         "objectKey": 1,
         "x": 2,
         "y": 12,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object3": {
         "objectKey": 1,
         "x": 14,
         "y": 8,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       },
       "object4": {
         "objectKey": 2,
         "x": 25,
         "y": 3,
-        "aiType": "homing",
-        "pathType": "none"
+        "aiType": "HOMING",
+        "pathType": "NONE"
       }
     }
   },
@@ -135,7 +135,7 @@
       "animation_id": 3,
       "speed": 5,
       "acceleration": 5,
-      "Element": "BLUE"
+      "element": "BLUE"
     },
     "object2": {
       "id": 2,
@@ -143,7 +143,7 @@
       "animation_id": 4,
       "speed": 5,
       "acceleration": 5,
-      "Element": "GOLD"
+      "element": "GOLD"
     }
   },
   "shapes": {
@@ -178,7 +178,7 @@
     "static": {
       "type": "STATIC"
     },
-    "homing": {
+    "HOMING": {
       "type": "HOMING"
     },
     "square": {
@@ -328,7 +328,7 @@
         }
       }
     },
-    "blueEnemyAnimation": {
+    "animation3": {
       "id": 3,
       "texture": "./textures/models/enemy_models/enemy_blue.png",
       "rows": 4,
@@ -371,7 +371,7 @@
         }
       }
     },
-    "redEnemyAnimation": {
+    "animation4": {
       "id": 4,
       "texture": "./textures/models/enemy_models/enemy_red.png",
       "rows": 4,

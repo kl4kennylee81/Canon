@@ -197,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\SaveGameData.h" />
+    <ClInclude Include="..\..\source\Util.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\source\Data.hpp" />
     <ClInclude Include="..\..\source\LoadController.hpp" />
@@ -259,6 +260,7 @@
     <ClCompile Include="..\..\source\LoadController.cpp" />
     <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
     <ClCompile Include="..\..\source\SaveGameData.cpp" />
+    <ClCompile Include="..\..\source\Util.cpp" />
     <ClCompile Include="..\..\source\World.cpp" />
     <ClCompile Include="..\..\source\ZoneLoader.cpp" />
     <ClCompile Include="..\..\source\Subject.cpp" />

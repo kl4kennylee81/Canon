@@ -186,6 +186,9 @@
     <ClInclude Include="..\..\source\SaveGameData.h">
       <Filter>Source\load</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\Util.h">
+      <Filter>Source\util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\WaveData.cpp">
@@ -340,6 +343,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\SaveGameData.cpp">
       <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Util.cpp">
+      <Filter>Source\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
