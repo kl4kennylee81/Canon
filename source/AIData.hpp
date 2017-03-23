@@ -12,44 +12,24 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
-
-enum class AIType : int {
-	HOMING, PATH, STATIC
-};
-
-enum class PathType : int {
-	HORIZONTAL, VERTICAL, CUSTOM, NONE
-};
+#include "ActiveAI.hpp"
+#include "GameObject.hpp"
+#include "StaticAI.hpp"
 
 class AIData : public Data {
 public:
 
-	AIType _aiType;
+	AIData() : Data() {}
 
-	PathType _pathType;
+	virtual std::string serialize() { return "";  };
 
-	std::vector<cugl::Vec2> _path;
+	virtual bool preload(const std::string& file) { return true;  }
 
-	AIData() {}
+	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) { return true;  }
 
-	bool init(AIType aiType, PathType pathType , std::vector<cugl::Vec2> path) {
-		_aiType = aiType;
-		_pathType = pathType;
-		_path = path;
-		return true;
-	}
+	virtual bool materialize() { return true;  }
 
-	static std::shared_ptr<AIData> alloc(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path = std::vector<cugl::Vec2>()) {
-		std::shared_ptr<AIData> result = std::make_shared<AIData>();
-		return (result->init(aiType, pathType, path) ? result : nullptr);
-	}
+	virtual std::shared_ptr<ActiveAI> newActiveAI(std::shared_ptr<GameObject> object) { return nullptr;  }
 
-	virtual std::string serialize();
-
-	virtual bool preload(const std::string& file);
-
-	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
-
-	virtual bool materialize();
 };
 #endif /* AIData_hpp */

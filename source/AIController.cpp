@@ -71,8 +71,8 @@ void AIController::eventUpdate(Event* e){
 }
 
 std::shared_ptr<ActiveAI> AIController::getAIFromWaveEntry(std::shared_ptr<WaveEntry> entry, std::shared_ptr<GameObject> obj) {
-	std::shared_ptr<AIData> aiData = entry->aiData;
-	switch (aiData->_aiType) {
+	return entry->aiData->newActiveAI(obj);
+	/*switch (aiData->_aiType) {
 	case AIType::HOMING:
 	{
 		return HomingAI::alloc(obj);
@@ -84,7 +84,7 @@ std::shared_ptr<ActiveAI> AIController::getAIFromWaveEntry(std::shared_ptr<WaveE
 	case AIType::STATIC:
 		return StaticAI::alloc(obj);
 	}
-	return HomingAI::alloc(obj);
+	return HomingAI::alloc(obj);*/
 }
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {

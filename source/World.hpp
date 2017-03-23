@@ -107,6 +107,8 @@ public:
     
     /** testing function to populate the world without the data files */
     void populate();
+
+	void populateFromDataFiles();
 };
 
 #endif /* World_hpp */
