@@ -7,6 +7,7 @@
 #include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
+#include "SaveGameData.h"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 using namespace cugl;
@@ -209,6 +210,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;
+		}
+		else if (child->key() == "SaveGameData") {
+			success = readCategory(typeid(SaveGameData).hash_code(), child) && success;
 		}
 		else if (child->key() == "ai"){
 			success = readCategory(typeid(AIData).hash_code(), child) && success;

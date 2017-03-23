@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "SaveGameData.h"
 #include "ZoneLoader.hpp"
 
 // Add support for simple random number generation
@@ -44,6 +45,7 @@ void GameEngine::onStartup() {
     _assets = GenericAssetManager::alloc();
     
     // You have to attach the individual loaders for each asset type
+	_assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
 	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
@@ -63,10 +65,16 @@ void GameEngine::onStartup() {
     _menuGraph = MenuGraph::MenuGraph();
     
     // This reads the given JSON file and uses it to load all other assets
+
     _assets->loadDirectory("json/assets.json");
 	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
+
+	// populate_singlefile uses only level1assets.json
+	_assets->loadDirectory("json/save.json");
+	_assets->loadDirectory("json/level1assets.json");
+
 
     
     // Activate mouse or touch screen input as appropriate

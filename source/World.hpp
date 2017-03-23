@@ -113,6 +113,8 @@ public:
     
     /** testing function to populate the world without the data files */
     void populate();
+
+	void populate_singlefile();
 };
 
 #endif /* World_hpp */
