@@ -150,8 +150,8 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
     // maximum of boxSize.width/animation.width and boxsize.height/animation.height
     // so that the animationNode is always encapsulating the full physics box with padding.
     // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    float scaleX = boxSize.width/animationSize.width;
-    float scaleY = boxSize.height/animationSize.height;
+    float scaleX = (boxSize.width*1.25)/animationSize.width;
+    float scaleY = (boxSize.height*1.25)/animationSize.height;
     float animationToBoxScale = std::max(scaleX,scaleY);
     anim->setScale(animationToBoxScale);
 }

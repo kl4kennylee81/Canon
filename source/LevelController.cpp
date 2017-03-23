@@ -11,8 +11,6 @@
 
 using namespace cugl;
 
-#define ENEMY_SHAPE         "enemy_shape_rect"
-
 LevelController::LevelController():
 BaseController(),
 _world(nullptr){}
