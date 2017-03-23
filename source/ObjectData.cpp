@@ -39,7 +39,7 @@ bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     int aid = json->getInt("animation_id");
 	float spd = json->getFloat("speed");
 	float acc = json->getFloat("acceleration");
-	auto el = json->getString("element").compare("BLUE") ? Element::BLUE : Element::GOLD;
+	auto el = (json->getString("element") == "BLUE") ? Element::BLUE : Element::GOLD;
     std::vector<int> zids;
     if (json->has("zone_ids")) {
         zids = json->get("zone_ids")->asIntArray();

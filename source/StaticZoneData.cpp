@@ -29,7 +29,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float rel_y = json->getFloat("rel_y");
     int cooldown = json->getInt("cooldown");
     int duration = json->getInt("duration");
-    auto el = json->getString("element").compare("BLUE") ? Element::BLUE : Element::GOLD;
+    auto el = json->getString("Element").compare("BLUE") ? Element::BLUE : Element::GOLD;
     init(id,sid,aid,rel_x,rel_y,cooldown,duration,el);
     return true;
 }

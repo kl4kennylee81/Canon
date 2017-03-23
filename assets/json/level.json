@@ -58,7 +58,8 @@
       "rel_x": 0,
       "rel_y": 0,
       "cooldown": 50,
-      "duration": 50
+      "duration": 50,
+      "element": "BLUE"
     }
   }
 }
