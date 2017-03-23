@@ -50,8 +50,15 @@
     }
   },
   "zones": {
-    "shape1": {
-      "type": "STATIC"
+    "staticZone": {
+      "type": "STATIC",
+      "id": 1,
+      "shape_id": 1,
+      "animation_id": 3,
+      "rel_x": 0,
+      "rel_y": 0,
+      "cooldown": 50,
+      "duration": 50
     }
   }
 }

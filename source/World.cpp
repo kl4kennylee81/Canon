@@ -61,10 +61,10 @@ void World::populate(){
         _waveData.insert(std::make_pair(i,wd));
     }
     
-    auto od1 = ObjectData::alloc(1,1,3,5,5,Element::BLUE);
+    auto od1 = ObjectData::alloc(1,1,3,5,5,Element::BLUE,{1});
     _objectData.insert(std::make_pair(1,od1));
     
-    auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD);
+    auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD,{1});
     _objectData.insert(std::make_pair(2,od2));
     
     std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
@@ -75,6 +75,10 @@ void World::populate(){
     
     std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
     _animationData.insert({yellowEnemy->getUID(),yellowEnemy});
+    
+    std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
+    _zoneData.insert({staticZone->getUID(),staticZone});
+    
     
     
 }

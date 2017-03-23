@@ -10,6 +10,7 @@
 #include "Element.hpp"
 #include "CollisionEvent.hpp"
 #include "LevelEvent.hpp"
+#include "ZoneEvent.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
@@ -56,6 +57,27 @@ void CollisionController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+                    initPhysicsComponent(zoneInit);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    addToWorld(zoneOn->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    removeFromWorld(zoneOff->object);
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
 
@@ -71,7 +93,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     
     for (auto obj : objsScheduledForRemoval) {
         if(!obj->getIsPlayer()) {
-            removeFromWorld(state, obj);
+            removeFromWorld(obj);
         } else {
             state->reset = true;
         }
@@ -132,18 +154,30 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     poly /= GameState::_physicsScale;
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->position);
-    //auto obst = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
     
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->objectData->getElement());
     objectInit->object->setPhysicsComponent(physics);
-    objectInit->object->setUid(10);
+    objectInit->object->setUid(3);
+}
+
+void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
+    Poly2 poly(zoneInit->shapeData->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    poly /= GameState::_physicsScale;
+    auto obst = PolygonObstacle::alloc(poly);
+    obst->setPosition(zoneInit->pos);
+    
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element);
+    zoneInit->object->setPhysicsComponent(physics);
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
     obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
-    
     
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);
@@ -152,11 +186,7 @@ bool CollisionController::addToWorld(GameObject* obj) {
     return true;
 }
 
-bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
-	if (obj->getIsPlayer()) {
-		state->reset = true;
-		return true;
-	}
+bool CollisionController::removeFromWorld(GameObject* obj) {
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     // HACK jon i don't think you need to do this the destructor sets it to the nullptr

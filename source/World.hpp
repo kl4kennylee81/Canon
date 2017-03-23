@@ -18,6 +18,7 @@
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
 #include "LevelData.hpp"
+#include "ZoneData.hpp"
 #include "GenericAssetManager.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
@@ -45,7 +46,8 @@ protected:
 	std::unordered_map<int, std::shared_ptr<PathData>> _pathData;
 	std::unordered_map<int, std::shared_ptr<ShapeData>> _shapeData;
 	std::unordered_map<int, std::shared_ptr<WaveData>> _waveData;
-
+    std::unordered_map<int, std::shared_ptr<ZoneData>> _zoneData;
+    
 public:
     
     World();
@@ -84,6 +86,10 @@ public:
     
     std::shared_ptr<WaveData> getWaveData(int waveKey){
         return _waveData.at(waveKey);
+    }
+    
+    std::shared_ptr<ZoneData> getZoneData(int zoneKey){
+        return _zoneData.at(zoneKey);
     }
 
 	static std::shared_ptr<World> alloc() {
