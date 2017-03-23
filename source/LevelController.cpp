@@ -58,9 +58,12 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
 
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     
+    // send the player spawning event
     if (!_level.hasPlayerSpawned()){
         _level.togglePlayerSpawned();
-        
+        for (auto playerEntry : _level.getPlayerChars()){
+            spawnWaveEntry(playerEntry,true,state);
+        }
     }
     
     // TODO Temporary code to reset level when finished until we have a discrete ending

@@ -37,8 +37,8 @@ public:
 class LevelData : public Data {
 protected:
     
-    std::shared_ptr<WaveEntry> playerChar1;
-    std::shared_ptr<WaveEntry> playerChar2;
+    // wave entries for the initial position of the player characters
+    std::vector<std::shared_ptr<WaveEntry>> _playerChars;
     
     std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
 public:
@@ -54,6 +54,12 @@ public:
     }
     
     void addLevelEntry(std::shared_ptr<LevelEntry> entry);
+    
+    void addPlayerChars(std::shared_ptr<WaveEntry> entry);
+    
+    std::vector<std::shared_ptr<WaveEntry>>& getPlayerChars() {
+        return _playerChars;
+    }
     
     float getTime(int index);
     

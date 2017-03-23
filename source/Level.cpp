@@ -47,6 +47,10 @@ bool Level::hasPlayerSpawned(){
     return this->_playerSpawned;
 }
 
+std::vector<std::shared_ptr<WaveEntry>> Level::getPlayerChars(){
+    return this->_levelData->getPlayerChars();
+}
+
 void Level::togglePlayerSpawned(){
     this->_playerSpawned = !this->_playerSpawned;
 }

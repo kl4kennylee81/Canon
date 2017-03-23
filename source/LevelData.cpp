@@ -15,6 +15,10 @@ void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
     _levelEntries.push_back(entry);
 }
 
+void LevelData::addPlayerChars(std::shared_ptr<WaveEntry> entry){
+    _playerChars.push_back(entry);
+}
+
 float LevelData::getTime(int index){
     return _levelEntries.at(index)->time;
 }
@@ -46,18 +50,14 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		addLevelEntry(entry);
 	}
     // get the blue player character
-    std::shared_ptr<JsonValue> playerChar1Json = json->get("playerChar1");
-    auto entryPlayer1 = WaveEntry::alloc(playerChar1Json->getString("objectKey"),
-                                  playerChar1Json->getFloat("x")/GAME_PHYSICS_SCALE,
-                                  playerChar1Json->getFloat("y")/GAME_PHYSICS_SCALE);
-    this->playerChar1 = entryPlayer1;
-    
-    // get the red player character
-    std::shared_ptr<JsonValue> playerChar2Json = json->get("playerChar2");
-    auto entryPlayer2 = WaveEntry::alloc(playerChar2Json->getString("objectKey"),
-                                  playerChar2Json->getFloat("x")/GAME_PHYSICS_SCALE,
-                                  playerChar2Json->getFloat("y")/GAME_PHYSICS_SCALE);
-    this->playerChar2 = entryPlayer2;
+    std::shared_ptr<JsonValue> playerChars = json->get("playerChars");
+    for (int i = 0; i < playerChars->size(); i++){
+        auto child = playerChars->get(i);
+        auto entry = WaveEntry::alloc(child->getString("objectKey"),
+                                      child->getFloat("x")/GAME_PHYSICS_SCALE,
+                                      child->getFloat("y")/GAME_PHYSICS_SCALE);
+        this->addPlayerChars(entry);
+    }
     
     init();
     return true;

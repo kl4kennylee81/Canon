@@ -44,6 +44,8 @@ public:
     
     void togglePlayerSpawned();
     
+    std::vector<std::shared_ptr<WaveEntry>> getPlayerChars();
+    
     void setCurrentWave(int waveNum);
 
     bool isLastWave();
