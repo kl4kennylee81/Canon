@@ -44,9 +44,11 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     
     if (isPlayer){
         // player is added to the game state here
+        gameOb->setIsPlayer(true);
         state->addPlayerGameObject(gameOb);
     } else {
         // enemy is added to the game state here
+        gameOb->setIsPlayer(false);
         state->addEnemyGameObject(gameOb);
     }
     
@@ -64,13 +66,6 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         for (auto playerEntry : _level.getPlayerChars()){
             spawnWaveEntry(playerEntry,true,state);
         }
-    }
-    
-    // TODO Temporary code to reset level when finished until we have a discrete ending
-    if (_level.isSpawningFinished()){
-        _level.reset();
-        _progressBarController->reset(state,_world);
-        return;
     }
     
     _level.update(timestep);

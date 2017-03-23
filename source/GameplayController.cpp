@@ -33,21 +33,16 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
-	if (_gameState->reset) {
-        std::shared_ptr<World> newWorld = World::alloc(_levelController->getWorld()->getAssetManager());
-        init(newWorld, _touch);
-	}
-	else {
-		_levelController->update(timestep, _gameState);
-        _spawnController->update(timestep);
-        _switchController->update(timestep, _gameState);
-		_pathController->update(timestep, _gameState);
-		_moveController->update(timestep, _gameState);
-		_collisionController->update(timestep, _gameState);
-		_moveController->updateActivePaths(timestep, _gameState);
-		_aiController->update(timestep, _gameState);
-		_animationController->update(timestep, _gameState);
-	}
+
+    _levelController->update(timestep, _gameState);
+    _spawnController->update(timestep);
+    _switchController->update(timestep, _gameState);
+    _pathController->update(timestep, _gameState);
+    _moveController->update(timestep, _gameState);
+    _collisionController->update(timestep, _gameState);
+    _moveController->updateActivePaths(timestep, _gameState);
+    _aiController->update(timestep, _gameState);
+    _animationController->update(timestep, _gameState);
 }
 
 /**

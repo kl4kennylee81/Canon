@@ -39,6 +39,9 @@
         }
       },
       "actionmap": {
+        "SPAWNING": {
+          "repeat": "idle"
+        },
         "SPAWN": {
           "repeat": "idle"
         },
@@ -97,6 +100,9 @@
         }
       },
       "actionmap": {
+        "SPAWNING": {
+          "repeat": "idle"
+        },
         "SPAWN": {
           "repeat": "idle"
         },

@@ -43,14 +43,26 @@ void AIController::eventUpdate(Event* e){
             case LevelEvent::LevelEventType::OBJECT_INIT:
             {
                 ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
-				addAI(getAIFromData(init->aiData, init->object));
+                
+                // the player character does not have an AIData
+                if (init->aiData == nullptr){
+                    return;
+                }
+                addAI(getAIFromData(init->aiData, init->object));
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
             {
                 ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
+                
+                // check existence in hashmap if not init then it was likely the player character
+                if (_map.count(spawn->object.get()) <= 0) {
+                    return;
+                }
+                
                 std::shared_ptr<ActiveAI> activeAi = _map.at(spawn->object.get());
                 activeAi->toggleActive();
+                break;
             }
 		}
         

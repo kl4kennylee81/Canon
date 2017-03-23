@@ -35,15 +35,17 @@
             "time": 300
           }
         },
-        "playerChar1":{
-            "objectKey": "playerChar1",
-            "x": 500,
-            "y": 200
-        },
-        "playerChar2":{
-            "objectKey": "playerChar2",
-            "x": 550,
-            "y": 250
+        "playerChars":{
+            "player1":{
+                "objectKey": "playerChar1",
+                "x": 500,
+                "y": 200
+            },
+            "player2":{
+                "objectKey": "playerChar2",
+                "x": 550,
+                "y": 250
+            }
         }
     }
   },

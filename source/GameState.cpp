@@ -22,8 +22,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
         return false;
     }
     
-    reset = false;
-    
     // Create the scene graph
     Size size = Application::get()->getDisplaySize();
     
@@ -65,44 +63,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     _scene->addChild(_worldnode,1);
     _scene->addChild(_debugnode,2);
     
-    // create the playable character gameObjects
-    // the box2d Obstacle will be created in the collisionController init
-    // and then attached to the gameObject
-    
-    #pragma mark : Player Girl
-    std::shared_ptr<GameObject> charGirl = GameObject::alloc();
-    
-    // HACK we should not set uid here we need to set uid from the data file
-    // after we are loading the player character from data file as well the uid will
-    // be unique
-    charGirl->setUid(0);
-    charGirl->setIsPlayer(true);
-    
-    auto charGirlPos = Vec2::Vec2(16,9);
-    auto charGirlSize = Size::Size(1.5625,1.5625);
-    auto boxGirl = BoxObstacle::alloc(charGirlPos, charGirlSize);
-    std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
-    charGirl->setPhysicsComponent(physicsGirl);
-    
-    #pragma mark : Player Boy
-    
-    std::shared_ptr<GameObject> charBoy = GameObject::alloc();
-    
-    // HACK we should not set uid here we need to set uid from the data file
-    // after we are loading the player character from data file as well the uid will
-    // be unique
-    charBoy->setUid(1);
-    charBoy->setIsPlayer(true);
-
-    auto charBoyPos = Vec2::Vec2(15,12);
-    auto charBoySize = Size::Size(1.5625,1.5625);
-    auto boxBoy = BoxObstacle::alloc(charBoyPos, charBoySize);
-    std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
-    charBoy->setPhysicsComponent(physicsBoy);
-    
-    _playerCharacters.push_back(charBoy);
-    _playerCharacters.push_back(charGirl);
-    
+    // set the initial character position to 0
     _activeCharacterPosition = 0;
     
     return true;

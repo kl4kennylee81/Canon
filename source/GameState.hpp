@@ -39,15 +39,15 @@ protected:
     
     std::shared_ptr<cugl::Node> _bgnode;
     
-    cugl::Rect _bounds;
-    
-    /** The root of our scene graph. 
+    /** The root of our scene graph.
      * Example:
      * Child1 : Background scene node
      * Child2 : is the _worldnode for the physics world root
      * would be used to define a draw order in the z axis for the different layers
      */
     std::shared_ptr<cugl::Scene>  _scene;
+    
+    cugl::Rect _bounds;
     
     std::vector<std::shared_ptr<GameObject>> _playerCharacters;
     
@@ -60,8 +60,13 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
 public:
     
-    /* TODO temporary will remove once level loading is done */
-    bool reset;
+GameState():
+    _worldnode(nullptr),
+    _debugnode(nullptr),
+    _bgnode(nullptr),
+    _scene(nullptr),
+    _bounds(cugl::Rect()),
+    _activeCharacterPosition(0){}
     
     /* Need to multiply this scale by physics coordinates to get world coordinates */
     static float _physicsScale;

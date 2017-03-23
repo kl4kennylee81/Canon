@@ -72,8 +72,6 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     for (auto obj : objsScheduledForRemoval) {
         if(!obj->getIsPlayer()) {
             removeFromWorld(state, obj);
-        } else {
-            state->reset = true;
         }
     }
     objsScheduledForRemoval.clear();
@@ -152,15 +150,9 @@ bool CollisionController::addToWorld(GameObject* obj) {
 }
 
 bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
-	if (obj->getIsPlayer()) {
-		state->reset = true;
-		return true;
-	}
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
-    // HACK jon i don't think you need to do this the destructor sets it to the nullptr
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
-    
     return true;
 }
 

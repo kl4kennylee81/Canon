@@ -190,18 +190,18 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
     // TODO change to load from event
-    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
-        if (it->get()->getUid()==0){
-            std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
-            
-            addAnimation(it->get(), charGirl);
-            handleAction(it->get(), AnimationAction::SPAWN);
-        } else {
-            std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
-            
-            addAnimation(it->get(), charBoy);
-            handleAction(it->get(), AnimationAction::SPAWN);
-        }
-    }
+//    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
+//        if (it->get()->getUid()==0){
+//            std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
+//            
+//            addAnimation(it->get(), charGirl);
+//            handleAction(it->get(), AnimationAction::SPAWN);
+//        } else {
+//            std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
+//            
+//            addAnimation(it->get(), charBoy);
+//            handleAction(it->get(), AnimationAction::SPAWN);
+//        }
+//    }
     return true;
 }
