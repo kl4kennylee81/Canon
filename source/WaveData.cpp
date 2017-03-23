@@ -25,9 +25,9 @@ bool WaveData::preload(const std::string& file){
 
 bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     init();
-	for (int i = 0; i < json->size(); i++) {
-		auto child = json->get(i);
-		auto ai = AIData::alloc(child->getString("aiType"), child->getString("pathType"), child->getString("path"));
+    std::shared_ptr<JsonValue> waveEntries = json->get("waveEntries");
+	for (int i = 0; i < waveEntries->size(); i++) {
+		auto child = waveEntries->get(i);
 		auto entry = WaveEntry::alloc(
             child->getString("objectKey"),
 			child->getFloat("x")/GAME_PHYSICS_SCALE,

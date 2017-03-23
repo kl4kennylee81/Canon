@@ -35,6 +35,10 @@ public:
 
 class LevelData : public Data {
 protected:
+    
+//    std::shared_ptr<WaveEntry> playerChar1;
+//    std::shared_ptr<WaveEntry> playerChar2;
+    
     std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
 public:
     LevelData() : Data(){}

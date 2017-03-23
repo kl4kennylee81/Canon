@@ -1,38 +1,44 @@
 {
   "levels": {
     "level0": {
-      "wave1": {
-        "waveKey": "wave1",
-        "time": 300
-      },
-      "wave2": {
-        "waveKey": "wave1",
-        "time": 300
-      }
+        "levelEntries":{
+            "wave1": {
+                "waveKey": "wave1",
+                "time": 300
+            },
+            "wave2": {
+                "waveKey": "wave1",
+                "time": 300
+            }
+        }
     },
     "level1": {
-      "wave1": {
-        "waveKey": "wave1",
-        "time": 300
-      },
-      "wave2": {
-        "waveKey": "wave1",
-        "time": 300
-      }
+        "levelEntries":{
+          "wave1": {
+            "waveKey": "wave1",
+            "time": 300
+          },
+          "wave2": {
+            "waveKey": "wave1",
+            "time": 300
+          }
+        }
     }
   },
   "waves": {
     "wave1": {
-      "object1": {
-        "objectKey": "object1",
-        "x": 100,
-        "y": 100
-      },
-      "object2": {
-        "objectKey": "object2",
-        "x": 200,
-        "y": 200
-      }
+        "waveEntries":{
+          "object1": {
+            "objectKey": "object1",
+            "x": 100,
+            "y": 100
+          },
+          "object2": {
+            "objectKey": "object2",
+            "x": 200,
+            "y": 200
+          }
+        }
     }
   },
   "objects": {

@@ -38,12 +38,13 @@ bool LevelData::preload(const std::string& file){
 }
 
 bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	for (int i = 0; i < json->size(); i++) {
-		auto child = json->get(i);
+    std::shared_ptr<JsonValue> levelEntries = json->get("levelEntries");
+	for (int i = 0; i < levelEntries->size(); i++) {
+		auto child = levelEntries->get(i);
 		auto entry = LevelEntry::alloc(child->getString("waveKey"), child->getInt("time"));
 		addLevelEntry(entry);
 	}
-	init();
+    init();
     return true;
 }
 

@@ -102,7 +102,7 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>("level0");
     _isSandbox = false;
     
-    populate();
+//    populate();
     return true;
 }
 
