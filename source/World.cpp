@@ -53,20 +53,20 @@ void World::populate() {
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 			auto ai = _assets->get<AIData>("homing");
-			std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {});
 			wd->addWaveEntry(we);
 		}
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 		auto ai = _assets->get<AIData>("square");
-		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
+        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {});
 		wd->addWaveEntry(we);
 		_waveData.insert(std::make_pair(i, wd));
 	}
 
-    auto od1 = ObjectData::alloc(1, 1, 3, 5, 5, Element::BLUE,{});
+    auto od1 = ObjectData::alloc(1, 1, 3, 5, 5, Element::BLUE);
 	_objectData.insert(std::make_pair(1, od1));
 
-    auto od2 = ObjectData::alloc(2, 1, 4, 5, 5, Element::GOLD,{});
+    auto od2 = ObjectData::alloc(2, 1, 4, 5, 5, Element::GOLD);
 	_objectData.insert(std::make_pair(2, od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
