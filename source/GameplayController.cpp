@@ -68,9 +68,9 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc(_gameState);
-	_levelController = LevelController::alloc(_gameState,levelWorld);
     _spawnController = SpawnController::alloc();
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
+	_levelController = LevelController::alloc(_gameState,levelWorld);
 
 	_pathController->attach(_moveController);
     _pathController->attach(_switchController);

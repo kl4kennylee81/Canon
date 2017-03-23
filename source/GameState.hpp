@@ -100,6 +100,8 @@ public:
     
     void addEnemyGameObject(std::shared_ptr<GameObject> obj);
     
+    void addPlayerGameObject(std::shared_ptr<GameObject> obj);
+    
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
     }

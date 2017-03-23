@@ -130,6 +130,10 @@ void GameState::addEnemyGameObject(std::shared_ptr<GameObject> obj){
     _enemyObjects.push_back(obj);
 }
 
+void GameState::addPlayerGameObject(std::shared_ptr<GameObject> obj){
+    _playerCharacters.push_back(obj);
+}
+
 #pragma mark Coordinate Conversions
 
 /** Helper function to calculate the y translate needed to go from scene to world **/

@@ -22,6 +22,7 @@ protected:
     /** time elapsed since last wave */
     float _timeElapsed;
     bool _readyToSpawn;
+    bool _playerSpawned;
 public:
     Level(){}
     
@@ -38,6 +39,10 @@ public:
     bool isReadyToSpawn();
     
     void toggleReadyToSpawn();
+    
+    bool hasPlayerSpawned();
+    
+    void togglePlayerSpawned();
     
     void setCurrentWave(int waveNum);
 
