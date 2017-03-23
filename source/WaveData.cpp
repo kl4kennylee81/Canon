@@ -7,6 +7,7 @@
 //
 
 #include "WaveData.hpp"
+#include "AIData.hpp"
 
 using namespace cugl;
 
@@ -25,7 +26,12 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(0);
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
-		auto entry = WaveEntry::alloc(child->getInt("objectKey"), child->getFloat("x"), child->getFloat("y"), nullptr);
+		std::string aiKey = child->getString("aiKey");
+		auto entry = WaveEntry::alloc(
+			child->getInt("objectKey"), 
+			child->getFloat("x"), 
+			child->getFloat("y"), 
+			aiKey);
 		addWaveEntry(entry);
 	}
     return true;

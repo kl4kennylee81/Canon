@@ -51,11 +51,11 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             std::shared_ptr<ObjectData> od = _world->getObjectData(it->objectKey);
             std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
             std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animation_id);
-            
+			std::shared_ptr<AIData> ai = _world->getAIData(it->aiKey);
             std::shared_ptr<GameObject> enemy = GameObject::alloc();
             enemy->setIsPlayer(false);
             
-            std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(enemy, it, od, ad, sd);
+            std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(enemy, it, od, ad, sd, ai);
             notify(initevent.get());
             
             /*

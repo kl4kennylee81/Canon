@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 2/28/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef AIData_hpp

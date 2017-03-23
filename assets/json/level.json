@@ -1,5 +1,15 @@
 {
   "levels": {
+    "level0": {
+      "wave1": {
+        "waveKey": 1,
+        "time": 1
+      },
+      "wave2": {
+        "waveKey": 1,
+        "time": 2
+      }
+    },
     "level1": {
       "wave1": {
         "waveKey": 1,

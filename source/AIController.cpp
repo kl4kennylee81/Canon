@@ -43,7 +43,7 @@ void AIController::eventUpdate(Event* e){
             case LevelEvent::LevelEventType::OBJECT_INIT:
             {
                 ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
-				addAI(getAIFromWaveEntry(init->waveEntry, init->object));
+				addAI(init->aiData->newActiveAI(init->object));
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
@@ -68,23 +68,6 @@ void AIController::eventUpdate(Event* e){
 		break;
 	}
 	}
-}
-
-std::shared_ptr<ActiveAI> AIController::getAIFromWaveEntry(std::shared_ptr<WaveEntry> entry, std::shared_ptr<GameObject> obj) {
-	return entry->aiData->newActiveAI(obj);
-	/*switch (aiData->_aiType) {
-	case AIType::HOMING:
-	{
-		return HomingAI::alloc(obj);
-	}
-	case AIType::PATH: 
-	{
-		return PathAI::alloc(obj, aiData->_pathType, aiData->_path);
-	}
-	case AIType::STATIC:
-		return StaticAI::alloc(obj);
-	}
-	return HomingAI::alloc(obj);*/
 }
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {

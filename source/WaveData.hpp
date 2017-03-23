@@ -20,19 +20,19 @@ public:
     
     cugl::Vec2 position;
 
-	std::shared_ptr<AIData> aiData;
+	std::string aiKey;
     
     WaveEntry(){}
     
-    bool init(int oKey, float x, float y, std::shared_ptr<AIData> ai){
+    bool init(int oKey, float x, float y, std::string ai){
         this->objectKey = oKey;
         this->position.x = x;
         this->position.y = y;
-		this->aiData = ai;
+		this->aiKey = ai;
         return true;
     }
     
-    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::shared_ptr<AIData> ai) {
+    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::string ai) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(objectKey,x,y,ai) ? result : nullptr);
     }

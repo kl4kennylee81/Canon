@@ -19,6 +19,7 @@
 #include "WaveData.hpp"
 #include "LevelData.hpp"
 #include "GenericAssetManager.hpp"
+#include "AIData.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -66,6 +67,10 @@ public:
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     
+	std::shared_ptr<AIData> getAIData(std::string key) {
+		return _assets->get<AIData>(key);
+	}
+
     std::shared_ptr<ObjectData> getObjectData(int obKey){
         return _objectData.at(obKey);
     }
@@ -108,7 +113,7 @@ public:
     /** testing function to populate the world without the data files */
     void populate();
 
-	void populateFromDataFiles();
+	void populate_singlefile();
 };
 
 #endif /* World_hpp */
