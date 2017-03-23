@@ -34,6 +34,7 @@ std::shared_ptr<GenericAssetManager> World::getAssetManager(){
 
 /** testing function to populate the world without the data files */
 void World::populate() {
+    this->_isSandbox = true;
 	_levelData = LevelData::alloc();
 	std::mt19937 rng;
 	rng.seed(std::random_device()());
@@ -71,7 +72,7 @@ void World::populate() {
 		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
 	}
 
-	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation","square", Element::BLUE);
+	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation","homing", Element::BLUE);
 	_objectData.insert(std::make_pair("object1", od1));
 
     auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation", "homing", Element::GOLD);
@@ -85,6 +86,12 @@ void World::populate() {
 
 	std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
 	_animationData.insert({ "redEnemyAnimation",yellowEnemy });
+    
+	std::shared_ptr<AIData> homingAI = _assets->get<AIData>("homing");
+    _aiData.insert({"homing",homingAI});
+	std::shared_ptr<AIData> squareAI = _assets->get<AIData>("square");
+    _aiData.insert({"square",squareAI});
+    
 
 
 }
@@ -93,9 +100,9 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     _assets = assets;
     // TODO temporary to test if it works
     this->_levelData = assets->get<LevelData>("level0");
-    this->_isSandbox = false;
+    _isSandbox = false;
     
-    //    populate();
+    populate();
     return true;
 }
 
