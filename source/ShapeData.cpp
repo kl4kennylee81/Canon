@@ -7,6 +7,8 @@
 //
 
 #include "ShapeData.hpp"
+// TODO included for the GAME_PHYSICS_SCALE may consider not doing it like this
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -22,7 +24,12 @@ bool ShapeData::preload(const std::string& file){
 }
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init(json->getInt("id"), json->getFloat("height"), json->getFloat("width"));
+	init(json->getInt("id"), json->get("vertices")->asFloatArray());
+    
+    // convert the vertices from world to physics coordinates since our game uses physics Coordinates logically
+    for (int i = 0;i<vertices.size() ;i++){
+        vertices[i] = vertices[i]/GAME_PHYSICS_SCALE;
+    }
 	return true;
 }
 

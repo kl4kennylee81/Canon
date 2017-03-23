@@ -41,7 +41,7 @@ void AnimationController::eventUpdate(Event* e) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
-                    handleEvent(obj, AnimationEvent::DEATH);
+                    handleAction(obj, AnimationAction::DEATH);
                     animationMap.at(obj)->setLastAnimation();
                     break;
             }
@@ -59,13 +59,13 @@ void AnimationController::eventUpdate(Event* e) {
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
-                    handleEvent(obj, AnimationEvent::SPAWNING);
+                    handleAction(obj, AnimationAction::SPAWNING);
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
-                    handleEvent(obj, AnimationEvent::SPAWN);
+                    handleAction(obj, AnimationAction::SPAWN);
                     break;
                 }
             }
@@ -77,7 +77,7 @@ void AnimationController::eventUpdate(Event* e) {
                 case PathEvent::PathEventType::PATH_FINISHED:
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
                     GameObject* obj = pathFinished->_character.get();
-                    handleEvent(obj, AnimationEvent::ATTACK);
+                    handleAction(obj, AnimationAction::ATTACK);
                     break;
             }
             break;
@@ -85,13 +85,13 @@ void AnimationController::eventUpdate(Event* e) {
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
             GameObject* obj = moveEvent->_character.get();
-            handleEvent(obj, AnimationEvent::RETURN);
+            handleAction(obj, AnimationAction::RETURN);
             break;
         }
         case Event::EventType::SWITCH: {
             SwitchEvent* switchEvent = (SwitchEvent*)e;
             GameObject* obj = switchEvent->_character.get();
-            handleEvent(obj, AnimationEvent::ACTIVE);
+            handleAction(obj, AnimationAction::ACTIVE);
             break;
         }
     }
@@ -114,9 +114,9 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
 /**
  * Defers handling to the active animation handleEvent()
  */
-void AnimationController::handleEvent(GameObject* obj, AnimationEvent event) {
+void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
-    anim->handleEvent(event);
+    anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
         syncAnimation(anim->getAnimationNode(),obj);
         _worldnode->addChild(anim->getAnimationNode(),1);
@@ -142,16 +142,23 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
     
     // TODO: switch from boxObstacle to PolygonObstacle
     // sync polygon obstacle size to the texture size.
-    std::shared_ptr<BoxObstacle> box = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
-    Size boxSize = box->getDimension();
-    
+    std::shared_ptr<PolygonObstacle> polyOb = std::dynamic_pointer_cast<PolygonObstacle>(obj->getPhysicsComponent()->getBody());
+    Size polySize;
+    if (polyOb != nullptr){
+        polySize = polyOb->getSize();
+    }
+    std::shared_ptr<BoxObstacle> boxOb = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
+    if ((boxOb) != nullptr){
+        polySize =boxOb->getDimension();
+    }
+
     Size animationSize = anim->getContentSize();
     
     // maximum of boxSize.width/animation.width and boxsize.height/animation.height
     // so that the animationNode is always encapsulating the full physics box with padding.
     // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    float scaleX = (boxSize.width*1.25)/animationSize.width;
-    float scaleY = (boxSize.height*1.25)/animationSize.height;
+    float scaleX = (polySize.width*1.25)/animationSize.width;
+    float scaleY = (polySize.height*1.25)/animationSize.height;
     float animationToBoxScale = std::max(scaleX,scaleY);
     anim->setScale(animationToBoxScale);
 }
@@ -188,12 +195,12 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
             std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
             
             addAnimation(it->get(), charGirl);
-            handleEvent(it->get(), AnimationEvent::SPAWN);
+            handleAction(it->get(), AnimationAction::SPAWN);
         } else {
             std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
             
             addAnimation(it->get(), charBoy);
-            handleEvent(it->get(), AnimationEvent::SPAWN);
+            handleAction(it->get(), AnimationAction::SPAWN);
         }
     }
     return true;

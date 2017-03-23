@@ -21,6 +21,7 @@
 #include "Observer.hpp"
 #include "Event.hpp"
 #include "GameState.hpp"
+#include "LevelEvent.hpp"
 
 class CollisionController : public BaseController {
 protected:
@@ -73,6 +74,8 @@ public:
 	virtual bool init();
 
     virtual bool init(std::shared_ptr<GameState> state);
+    
+    void initPhysicsComponent(ObjectInitEvent* objectInit);
 
     bool addToWorld(GameObject* obj);
     

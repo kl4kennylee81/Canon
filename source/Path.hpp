@@ -52,7 +52,7 @@ public:
         return newPath;
     }
 
-	int size() { return _coordinates->size(); }
+	size_t size() { return _coordinates->size(); }
 
 	void clear() { _coordinates->clear(); }
 

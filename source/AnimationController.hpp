@@ -14,6 +14,7 @@
 #include "BaseController.hpp"
 #include "GameState.hpp"
 #include "ActiveAnimation.hpp"
+#include "AnimationAction.hpp"
 #include "WaveData.hpp"
 #include <map>
 
@@ -48,7 +49,7 @@ public:
     
     void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data);
     
-    void handleEvent(GameObject* obj, AnimationEvent event);
+    void handleAction(GameObject* obj, AnimationAction action);
     
     void syncAll();
     

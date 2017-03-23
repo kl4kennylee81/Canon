@@ -14,14 +14,14 @@
 #include "Data.hpp"
 
 enum class AIType : int {
-	HOMING, PATH
+	HOMING, PATH, STATIC
 };
 
 enum class PathType : int {
 	HORIZONTAL, VERTICAL, CUSTOM, NONE
 };
 
-class AIData {
+class AIData : public Data {
 public:
 
 	AIType _aiType;
@@ -43,5 +43,13 @@ public:
 		std::shared_ptr<AIData> result = std::make_shared<AIData>();
 		return (result->init(aiType, pathType, path) ? result : nullptr);
 	}
+
+	virtual std::string serialize();
+
+	virtual bool preload(const std::string& file);
+
+	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+
+	virtual bool materialize();
 };
 #endif /* AIData_hpp */

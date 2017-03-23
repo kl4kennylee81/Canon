@@ -1,0 +1,23 @@
+{
+  "ai": {
+    "horizontal": {
+      "type": "PATH",
+      "pathType": "HORIZONTAL"
+    },
+    "vertical": {
+      "type": "PATH",
+      "pathType": "VERTICAL"
+    },
+    "static": {
+      "type": "STATIC"
+    },
+    "homing": {
+      "type": "HOMING"
+    },
+    "square": {
+      "type": "PATH",
+      "pathType": "CUSTOM",
+      "path": "(0,0) (100,0) (100,100) (0,100)"
+    }
+  }
+}
