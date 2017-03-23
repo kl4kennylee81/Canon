@@ -27,7 +27,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // Create the scene graph
     Size size = Application::get()->getDisplaySize();
     
-    size *= GAME_WIDTH/size.width; // Lock the game to a reasonable resolution
+    size *= GAME_SCENE_WIDTH/size.width; // Lock the game to a reasonable resolution
     
     // magic numbers are okay as long as 16:9
     _bounds = Rect::Rect(0,0,32,18);

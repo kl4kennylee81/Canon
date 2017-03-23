@@ -108,7 +108,6 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
 void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
     std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
     anim->setAnimationData(data);
-    anim->setScale(1.f/GameState::getPhysicsScale());
     animationMap.insert({obj, anim});
 }
 
@@ -119,6 +118,7 @@ void AnimationController::handleEvent(GameObject* obj, AnimationEvent event) {
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleEvent(event);
     if (anim->getAnimationNode()->getParent() == nullptr){
+        syncAnimation(anim->getAnimationNode(),obj);
         _worldnode->addChild(anim->getAnimationNode(),1);
     }
 }
@@ -132,9 +132,28 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            anim->getAnimationNode()->setPosition(obj->getPosition());
+            syncAnimation(anim->getAnimationNode(),obj);
         }
     }
+}
+
+void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, GameObject* obj){
+    anim->setPosition(obj->getPosition());
+    
+    // TODO: switch from boxObstacle to PolygonObstacle
+    // sync polygon obstacle size to the texture size.
+    std::shared_ptr<BoxObstacle> box = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
+    Size boxSize = box->getDimension();
+    
+    Size animationSize = anim->getContentSize();
+    
+    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+    // so that the animationNode is always encapsulating the full physics box with padding.
+    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+    float scaleX = boxSize.width/animationSize.width;
+    float scaleY = boxSize.height/animationSize.height;
+    float animationToBoxScale = std::max(scaleX,scaleY);
+    anim->setScale(animationToBoxScale);
 }
 
 /**

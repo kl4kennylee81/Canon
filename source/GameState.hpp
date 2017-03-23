@@ -15,9 +15,9 @@
 #include "GenericAssetManager.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
-#define GAME_WIDTH 1024
+#define GAME_SCENE_WIDTH 1024
 /** This is the aspect ratio for physics */
-#define GAME_ASPECT 9.0/16.0
+#define GAME_SCENE_ASPECT 9.0/16.0
 
 class GameState {
 protected:

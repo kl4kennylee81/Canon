@@ -35,7 +35,7 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	case PathType::VERTICAL:
 	{
 		Vec2 position = object->getPosition();
-		float height = GAME_WIDTH * GAME_ASPECT;
+		float height = GAME_SCENE_WIDTH * GAME_SCENE_ASPECT;
 		Vec2 top = Vec2::Vec2(position.x, height);
 		Vec2 bottom = Vec2::Vec2(position.x, 0);
 		auto newPath = Path::alloc();
@@ -47,7 +47,7 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	case PathType::HORIZONTAL:
 	{
 		Vec2 position = object->getPosition();
-		float width = GAME_WIDTH;
+		float width = GAME_SCENE_WIDTH;
 		Vec2 top = Vec2::Vec2(width, position.y);
 		Vec2 bottom = Vec2::Vec2(0, position.y);
 		auto newPath = Path::alloc();
