@@ -52,7 +52,7 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
             std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animation_id);
             std::vector<std::shared_ptr<ZoneData>> zds = {};
-            for(auto zid: od->zone_ids){
+            for(auto zid: it->zone_ids){
                 zds.push_back(_world->getZoneData(zid));
             }
             

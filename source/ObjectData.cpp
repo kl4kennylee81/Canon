@@ -10,14 +10,13 @@
 
 using namespace cugl;
 
-bool ObjectData::init(int uid,int shape_id,int animation_id,int speed,int acceleration,Element element,std::vector<int> zone_ids){
+bool ObjectData::init(int uid,int shape_id,int animation_id,int speed,int acceleration,Element element){
     this->_uid = uid;
     this->shape_id = shape_id;
     this->animation_id = animation_id;
     this->speed = speed;
     this->acceleration = acceleration;
     this->element = element;
-    this->zone_ids = zone_ids;
     return true;
 };
 
@@ -44,7 +43,7 @@ bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if (json->has("zone_ids")) {
         zids = json->get("zone_ids")->asIntArray();
     }
-	init(id, sid, aid, spd, acc, el, zids);
+	init(id, sid, aid, spd, acc, el);
     return true;
 }
 

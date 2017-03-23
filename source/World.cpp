@@ -115,7 +115,6 @@ void World::populate_singlefile(){
 		_shapeData.insert(std::make_pair(sh, _assets->get<ShapeData>(shKey)));
 		_animationData.insert(std::make_pair(anim, _assets->get<AnimationData>(animKey)));
 	}
->>>>>>> 650641954cde579e818b09913d1fdf474a8cb1d7
     
 	// todo: we need to agree on whether or not to use "animation1" instead of "redplayeranimation" as the animation key for consistency
 	// for parsing happiness I have currently referenced the enemies with "animation3" and "animation4" for easier lookup via assetmanager.

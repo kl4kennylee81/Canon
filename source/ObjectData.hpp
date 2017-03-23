@@ -32,8 +32,6 @@ public:
     
     Element element;
     
-    std::vector<int> zone_ids;
-    
     // key uid to animation/texture data preloaded into the world.
     // for example filmstrip texture will be passed
     // to reate the scene graph animationNode
@@ -45,11 +43,11 @@ public:
     
     ObjectData() : Data(){}
     
-    bool init(int uid, int shape_id, int animation_id,int speed,int acceleration, Element element, std::vector<int> zone_ids);
+    bool init(int uid, int shape_id, int animation_id,int speed,int acceleration, Element element);
     
-    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id,int animation_id, int speed,int acceleration, Element element, std::vector<int> zone_ids) {
+    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id,int animation_id, int speed,int acceleration, Element element) {
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(uid,shape_id,animation_id,speed,acceleration,element,zone_ids) ? result : nullptr);
+        return (result->init(uid,shape_id,animation_id,speed,acceleration,element) ? result : nullptr);
     }
 
     virtual std::string serialize();

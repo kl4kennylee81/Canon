@@ -27,11 +27,15 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
 		auto ai = AIData::alloc(child->getString("aiType"), child->getString("pathType"), child->getString("path"));
+        std::vector<int> zids;
+        if (json->has("zone_ids")) {
+            zids = json->get("zone_ids")->asIntArray();
+        }
 		auto entry = WaveEntry::alloc(
 			child->getInt("objectKey"), 
 			child->getFloat("x"), 
 			child->getFloat("y"), 
-			ai);
+			ai,zids);
 		addWaveEntry(entry);
 	}
     return true;
