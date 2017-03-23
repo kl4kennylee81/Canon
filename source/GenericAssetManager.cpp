@@ -7,7 +7,7 @@
 #include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
-#include "SaveGameData.h"
+#include "SaveGameData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 using namespace cugl;

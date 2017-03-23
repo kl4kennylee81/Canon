@@ -1,5 +1,5 @@
-#ifndef SaveGameData_h
-#define SaveGameData_h
+#ifndef SaveGameData_hpp
+#define SaveGameData_hpp
 
 #include <stdio.h>
 #include <cugl/cugl.h>
@@ -10,17 +10,17 @@
 class SaveLevelEntry {
 public:
 	string name;
-	boolean unlocked;
-	boolean complete;
+	bool unlocked;
+	bool complete;
 	int highScore;
 	string levelKey;
 	string levelUrl;
 
 	SaveLevelEntry() {}
 
-	bool init(string n, boolean unloc, boolean com, int high, string k, string u) {
+	bool init(string n, bool unlock, bool com, int high, string k, string u) {
 		this->name = n;
-		this->unlocked = unloc;
+		this->unlocked = unlock;
 		this->complete = com;
 		this->highScore = high;
 		this->levelKey = k;
@@ -28,9 +28,9 @@ public:
 		return true;
 	}
 
-	static std::shared_ptr<SaveLevelEntry> alloc(string n, boolean unloc, boolean com, int high, string k, string u) {
+	static std::shared_ptr<SaveLevelEntry> alloc(string n, bool unlock, bool com, int high, string k, string u) {
 		std::shared_ptr<SaveLevelEntry> result = std::make_shared<SaveLevelEntry>();
-		return (result->init(n, unloc, com, high, k, u) ? result : nullptr);
+		return (result->init(n, unlock, com, high, k, u) ? result : nullptr);
 	}
 };
 
@@ -57,4 +57,4 @@ public:
 	}
 };
 
-#endif /* SaveGameData_h */
+#endif /* SaveGameData_hpp */

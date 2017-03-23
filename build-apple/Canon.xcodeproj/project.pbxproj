@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
+		9F7668331E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
@@ -168,6 +170,9 @@
 /* Begin PBXFileReference section */
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
+		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
+		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
+		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -421,6 +426,8 @@
 		9FE8E9D51E6381A300DBE3BC /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				9F7668301E8384E8003A06E8 /* SaveGameData.cpp */,
+				9F7668351E838641003A06E8 /* SaveGameData.hpp */,
 				9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */,
 				9FE8E9D91E6381B100DBE3BC /* MenuController.hpp */,
 				9FE8E9DB1E6381D400DBE3BC /* MenuGraph.cpp */,
@@ -471,6 +478,7 @@
 			children = (
 				9FFA3FA01E6367590029D648 /* path */,
 				9FFA3F7E1E6357FE0029D648 /* observer */,
+				9F7668361E8388DF003A06E8 /* Util.hpp */,
 			);
 			name = util;
 			sourceTree = "<group>";
@@ -925,6 +933,7 @@
 				F1D35F131E7685990044A121 /* WaveData.cpp in Sources */,
 				DF909EF91E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
 				9FE4FD521E79F2A9007AD880 /* PathAI.cpp in Sources */,
+				9F7668331E8384E8003A06E8 /* SaveGameData.cpp in Sources */,
 				DF98287C1E80E0000026223D /* StaticZoneData.cpp in Sources */,
 				F1D35F141E7685990044A121 /* LevelData.cpp in Sources */,
 				F1D35F151E7685990044A121 /* Data.cpp in Sources */,
@@ -982,6 +991,7 @@
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
 				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
+				9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
