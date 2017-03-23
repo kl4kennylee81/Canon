@@ -59,7 +59,6 @@ void GameEngine::onStartup() {
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
-	//_assets->load<LevelData>("level1", "json/level.json");
 
     
     _menuGraph = MenuGraph::MenuGraph();
@@ -71,9 +70,7 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
 
-	// populate_singlefile uses only level1assets.json
 	_assets->loadDirectory("json/save.json");
-	_assets->loadDirectory("json/level1assets.json");
 
 
     

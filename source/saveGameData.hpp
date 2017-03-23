@@ -47,13 +47,13 @@ public:
 
 	virtual bool materialize();
 
-	bool init(int uid) {
+	bool init() {
 		return true;
 	}
 
-	static std::shared_ptr<SaveGameData> alloc(int uid) {
+	static std::shared_ptr<SaveGameData> alloc() {
 		std::shared_ptr<SaveGameData> result = std::make_shared<SaveGameData>();
-		return (result->init(uid) ? result : nullptr);
+		return (result->init() ? result : nullptr);
 	}
 };
 

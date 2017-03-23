@@ -23,7 +23,7 @@ bool ShapeData::preload(const std::string& file){
 }
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init(json->getInt("id"), json->get("vertices")->asFloatArray());
+	init(json->get("vertices")->asFloatArray());
     
     for (int i = 0;i<vertices.size() ;i++){
         // converting from world coordinate sto physics

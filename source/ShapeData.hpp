@@ -19,15 +19,14 @@ public:
     
     ShapeData(): Data(){};
     
-    bool init(int uid,std::vector<float> v){
-        this->_uid = uid;
+    bool init(std::vector<float> v){
         this->vertices = v;
         return true;
     }
     
-    static std::shared_ptr<ShapeData> alloc(int uid, std::vector<float> vertices) {
+    static std::shared_ptr<ShapeData> alloc(std::vector<float> vertices) {
         std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();
-        return (result->init(uid,vertices) ? result : nullptr);
+        return (result->init(vertices) ? result : nullptr);
     }
     
     virtual std::string serialize();

@@ -10,12 +10,10 @@
 
 using namespace cugl;
 
-bool ObjectData::init(int uid,int shape_id,int animation_id,int speed,int acceleration,Element element){
-    this->_uid = uid;
-    this->shape_id = shape_id;
-    this->animation_id = animation_id;
-    this->speed = speed;
-    this->acceleration = acceleration;
+bool ObjectData::init(std::string shapeKey,std::string animKey,std::string aiKey, Element element){
+    this->shapeKey = shapeKey;
+    this->animationKey = animKey;
+    this->aiKey = aiKey;
     this->element = element;
     return true;
 };
@@ -33,13 +31,11 @@ bool ObjectData::preload(const std::string& file){
 }
 
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-    int id = json->getInt("id");
-	int sid = json->getInt("shape_id");
-    int aid = json->getInt("animation_id");
-	float spd = json->getFloat("speed");
-	float acc = json->getFloat("acceleration");
+    std::string sKey = json->getString("shapeKey");
+    std::string animKey = json->getString("animationKey");
+    std::string aiKey = json->getString("aiKey");
 	auto el = (json->getString("element") == "BLUE") ? Element::BLUE : Element::GOLD;
-	init(id, sid, aid, spd, acc, el);
+    init(sKey,animKey,aiKey,el);
     return true;
 }
 

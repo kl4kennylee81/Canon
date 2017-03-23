@@ -29,15 +29,15 @@ public:
     
     int getNextTime();
     
-    int getCurrentWaveKey();
+    std::string getCurrentWaveKey();
     
     int getCurrentWave();
     
     float getProgress();
     
-    /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
-     *  after returning it, it will return -1 again until the next wave */
-    int pollWave();
+    bool isReadyToSpawn();
+    
+    void toggleReadyToSpawn();
     
     void setCurrentWave(int waveNum);
 

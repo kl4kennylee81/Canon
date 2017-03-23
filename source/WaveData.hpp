@@ -16,25 +16,22 @@
 
 class WaveEntry {
 public:
-    int objectKey;
+    std::string objectKey;
     
     cugl::Vec2 position;
-
-	std::shared_ptr<AIData> aiData;
     
     WaveEntry(){}
     
-    bool init(int oKey, float x, float y, std::shared_ptr<AIData> ai){
-        this->objectKey = oKey;
+    bool init(std::string objectKey, float x, float y){
+        this->objectKey = objectKey;
         this->position.x = x;
         this->position.y = y;
-		this->aiData = ai;
         return true;
     }
     
-    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::shared_ptr<AIData> ai) {
+    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, float x, float y) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey,x,y,ai) ? result : nullptr);
+        return (result->init(objectKey,x,y) ? result : nullptr);
     }
 };
 
@@ -45,14 +42,13 @@ protected:
 public:
     WaveData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
         return true;
     }
     
-    static std::shared_ptr<WaveData> alloc(int uid) {
+    static std::shared_ptr<WaveData> alloc() {
         std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
     
     void addWaveEntry(std::shared_ptr<WaveEntry> w){

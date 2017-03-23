@@ -22,7 +22,7 @@ bool AnimationData::preload(const std::string& file){
 }
 
 bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-    init(json->getInt("id"));
+    init();
     texture = Texture::allocWithFile(json->getString("texture"));
     rows = json->getInt("rows");
     cols = json->getInt("cols");

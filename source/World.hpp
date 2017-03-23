@@ -31,7 +31,6 @@
   */
 
 class World {
-
 protected:
     // the level of the world
     std::shared_ptr<LevelData> _levelData;
@@ -39,12 +38,16 @@ protected:
     /** The asset manager for this game world. */
     std::shared_ptr<GenericAssetManager> _assets;
     
+    /** if this is a sandbox prepopulated instance */
+    bool _isSandbox;
+    
     // static prototypes used to spawn units into the gameState
-	std::unordered_map<int, std::shared_ptr<ObjectData>> _objectData;
-	std::unordered_map<int, std::shared_ptr<AnimationData>> _animationData;
-	std::unordered_map<int, std::shared_ptr<PathData>> _pathData;
-	std::unordered_map<int, std::shared_ptr<ShapeData>> _shapeData;
-	std::unordered_map<int, std::shared_ptr<WaveData>> _waveData;
+    std::unordered_map<std::string, std::shared_ptr<ObjectData>> _objectData;
+    std::unordered_map<std::string, std::shared_ptr<AnimationData>> _animationData;
+    std::unordered_map<std::string, std::shared_ptr<PathData>> _pathData;
+    std::unordered_map<std::string, std::shared_ptr<ShapeData>> _shapeData;
+    std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
+    std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
 
 public:
     
@@ -66,25 +69,17 @@ public:
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     
-    std::shared_ptr<ObjectData> getObjectData(int obKey){
-        return _objectData.at(obKey);
-    }
+    std::shared_ptr<ObjectData> getObjectData(std::string obKey);
     
-    std::shared_ptr<AnimationData> getAnimationData(int aKey){
-        return _animationData.at(aKey);
-    }
+    std::shared_ptr<AnimationData> getAnimationData(std::string aKey);
     
-    std::shared_ptr<PathData> getPathData(int pathKey){
-        return _pathData.at(pathKey);
-    }
+    std::shared_ptr<PathData> getPathData(std::string pathKey);
     
-    std::shared_ptr<ShapeData> getShapeData(int shapeKey){
-        return _shapeData.at(shapeKey);
-    }
+    std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
     
-    std::shared_ptr<WaveData> getWaveData(int waveKey){
-        return _waveData.at(waveKey);
-    }
+    std::shared_ptr<WaveData> getWaveData(std::string waveKey);
+    
+    std::shared_ptr<AIData> getAIData(std::string aiKey);
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();

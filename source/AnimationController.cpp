@@ -189,7 +189,7 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     
     std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
-    //super hacky. change to only be events
+    // TODO change to load from event
     for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
         if (it->get()->getUid()==0){
             std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");

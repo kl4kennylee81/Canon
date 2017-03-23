@@ -23,8 +23,8 @@ enum class ZoneType : int {
 class ZoneData : public Data {
 public:
     
-    int shape_id;
-    int animation_id;
+    std::string shape_key;
+    std::string animation_key;
     Element element;
     ZoneType type;
     int speed;
@@ -33,11 +33,11 @@ public:
     
     ZoneData() : Data(){}
     
-    bool init(int uid, int shape_id, int animation_id);
+    bool init(std::string shape_key, std::string animation_key);
     
-    static std::shared_ptr<ZoneData> alloc(int uid, int shape_id,int animation_id) {
+    static std::shared_ptr<ZoneData> alloc(std::string shape_key,std::string animation_key) {
         std::shared_ptr<ZoneData> result = std::make_shared<ZoneData>();
-        return (result->init(uid,shape_id,animation_id) ? result : nullptr);
+        return (result->init(shape_key,animation_key) ? result : nullptr);
     }
     
     virtual std::string serialize();

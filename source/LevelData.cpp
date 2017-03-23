@@ -18,7 +18,7 @@ float LevelData::getTime(int index){
     return _levelEntries.at(index)->time;
 }
 
-int LevelData::getWaveKey(int index){
+std::string LevelData::getWaveKey(int index){
     return _levelEntries.at(index)->waveKey;
 }
 
@@ -40,10 +40,10 @@ bool LevelData::preload(const std::string& file){
 bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
-		auto entry = LevelEntry::alloc(child->getFloat("waveKey"), child->getInt("time"));
+		auto entry = LevelEntry::alloc(child->getString("waveKey"), child->getInt("time"));
 		addLevelEntry(entry);
 	}
-	init(0);
+	init();
     return true;
 }
 

@@ -2,34 +2,34 @@
   "levels": {
     "level0": {
       "wave1": {
-        "waveKey": 1,
-        "time": 1
+        "waveKey": "wave1",
+        "time": 300
       },
       "wave2": {
-        "waveKey": 1,
-        "time": 2
+        "waveKey": "wave1",
+        "time": 300
       }
     },
     "level1": {
       "wave1": {
-        "waveKey": 1,
-        "time": 1
+        "waveKey": "wave1",
+        "time": 300
       },
       "wave2": {
-        "waveKey": 1,
-        "time": 2
+        "waveKey": "wave1",
+        "time": 300
       }
     }
   },
   "waves": {
     "wave1": {
       "object1": {
-        "objectKey": 1,
+        "objectKey": "object1",
         "x": 100,
         "y": 100
       },
       "object2": {
-        "objectKey": 2,
+        "objectKey": "object2",
         "x": 200,
         "y": 200
       }
@@ -37,20 +37,16 @@
   },
   "objects": {
     "object1": {
-      "id": 1,
-      "shape_id": 1,
-      "animation_id": 3,
-      "speed": 5,
-      "acceleration": 5,
-      "Element": "BLUE"
+      "shapeKey": "shape1",
+      "animationKey": "blueEnemyAnimation",
+      "aiKey": "homing",
+      "element": "BLUE"
     },
     "object2": {
-      "id": 2,
-      "shape_id": 1,
-      "animation_id": 4,
-      "speed": 5,
-      "acceleration": 5,
-      "Element": "GOLD"
+      "shapeKey": "shape1",
+      "animationKey": "redEnemyAnimation",
+      "aiKey": "horizontal",
+      "element": "GOLD"
     }
   },
   "shapes": {

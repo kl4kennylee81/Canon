@@ -8,6 +8,7 @@
 
 #include "WaveData.hpp"
 #include "AIData.hpp"
+#include "GameState.hpp" // for conversion to physicsScale
 
 using namespace cugl;
 
@@ -23,15 +24,14 @@ bool WaveData::preload(const std::string& file){
 }
 
 bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init(0);
+    init();
 	for (int i = 0; i < json->size(); i++) {
 		auto child = json->get(i);
 		auto ai = AIData::alloc(child->getString("aiType"), child->getString("pathType"), child->getString("path"));
 		auto entry = WaveEntry::alloc(
-			child->getInt("objectKey"), 
-			child->getFloat("x"), 
-			child->getFloat("y"), 
-			ai);
+            child->getString("objectKey"),
+			child->getFloat("x")/GAME_PHYSICS_SCALE,
+            child->getFloat("y")/GAME_PHYSICS_SCALE);
 		addWaveEntry(entry);
 	}
     return true;

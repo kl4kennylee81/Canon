@@ -42,24 +42,26 @@ public:
     std::shared_ptr<ObjectData> objectData;
     std::shared_ptr<AnimationData> animationData;
     std::shared_ptr<ShapeData> shapeData;
+    std::shared_ptr<AIData> aiData;
     
     ObjectInitEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_INIT;
     }
     
-    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData){
+    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData){
         this->levelEventType = LevelEventType::OBJECT_INIT;
         this->object = object;
         this->waveEntry = waveEntry;
         this->objectData = objectData;
         this->animationData = animationData;
         this->shapeData = shapeData;
+        this->aiData = aiData;
         return true;
     }
     
-    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData){
+    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData){
         std::shared_ptr<ObjectInitEvent> result = std::make_shared<ObjectInitEvent>();
-        return (result->init(object,waveEntry,objectData,animationData,shapeData) ? result : nullptr);
+        return (result->init(object,waveEntry,objectData,animationData,shapeData,aiData) ? result : nullptr);
     }
 };
 

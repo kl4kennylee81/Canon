@@ -136,7 +136,6 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->objectData->getElement());
     objectInit->object->setPhysicsComponent(physics);
-    objectInit->object->setUid(10);
 }
 
 bool CollisionController::addToWorld(GameObject* obj) {

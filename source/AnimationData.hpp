@@ -66,14 +66,13 @@ public:
     
     AnimationData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
         return true;
     }
     
-    static std::shared_ptr<AnimationData> alloc(int uid) {
+    static std::shared_ptr<AnimationData> alloc() {
         std::shared_ptr<AnimationData> result = std::make_shared<AnimationData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
     
     std::shared_ptr<AnimationState> getAnimationState(std::string state) {

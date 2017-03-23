@@ -22,7 +22,7 @@ int Level::getNextTime(){
     return _levelData->getTime(_currentWave);
 }
 
-int Level::getCurrentWaveKey(){
+std::string Level::getCurrentWaveKey(){
     return _levelData->getWaveKey(_currentWave);
 }
 
@@ -34,17 +34,12 @@ float Level::getProgress(){
     return _timeElapsed/((float)getNextTime());
 }
 
-/** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
- *  after returning it will not return the wave key until the next wave. To refer to the
- *  active wave key call getCurrentWaveKey
- */
-int Level::pollWave() {
-    if (_readyToSpawn){
-        _readyToSpawn = false;
-        return getCurrentWaveKey();
-    } else {
-        return -1;
-    }
+bool Level::isReadyToSpawn(){
+    return _readyToSpawn;
+}
+
+void Level::toggleReadyToSpawn(){
+    this->_readyToSpawn = !this->_readyToSpawn;
 }
 
 void Level::setCurrentWave(int waveNum){
