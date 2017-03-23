@@ -19,10 +19,7 @@ public:
     
     ShapeData(): Data(){};
     
-    bool init(std::vector<float> v){
-        this->vertices = v;
-        return true;
-    }
+    bool init(std::vector<float> v);
     
     static std::shared_ptr<ShapeData> alloc(std::vector<float> vertices) {
         std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();

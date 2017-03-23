@@ -50,12 +50,7 @@ public:
 		return init(type, pathType, path);
 	}
 
-	bool init(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path) {
-		_aiType = aiType;
-		_pathType = pathType;
-		_path = path;
-		return true;
-	}
+    bool init(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path);
 
 	static std::shared_ptr<AIData> alloc(string aiType, string pathType, string path = "") {
 		std::shared_ptr<AIData> result = std::make_shared<AIData>();

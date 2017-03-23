@@ -48,6 +48,25 @@ void World::populate() {
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
+    
+    // create player characters
+    auto player1 = WaveEntry::alloc("playerChar1", 500, 200);
+    _levelData->addPlayerChars(player1);
+    
+    auto player1Obj = _assets->get<ObjectData>("playerChar1");
+    _objectData.insert({"playerChar1",player1Obj});
+    
+    auto player1Anim = _assets->get<AnimationData>("blueCharAnimation");
+    _animationData.insert({ "blueCharAnimation",player1Anim });
+    
+    auto player2Obj = _assets->get<ObjectData>("playerChar2");
+    _objectData.insert({"playerChar2",player2Obj});
+    
+    auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
+    _animationData.insert({ "redCharAnimation",player2Anim });
+    
+    auto player2 = WaveEntry::alloc("playerChar2", 550, 250);
+    _levelData->addPlayerChars(player2);
 
     std::shared_ptr<WaveEntry> we;
 	for (int i = 1; i < 10; i++) {
@@ -75,7 +94,7 @@ void World::populate() {
 	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation","homing", Element::BLUE);
 	_objectData.insert(std::make_pair("object1", od1));
 
-    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation", "homing", Element::GOLD);
+    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation", "horizontal", Element::GOLD);
 	_objectData.insert(std::make_pair("object2", od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
@@ -102,47 +121,48 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>("level0");
     _isSandbox = false;
     
-//    populate();
+    populate();
     return true;
 }
 
 std::shared_ptr<ObjectData> World::getObjectData(std::string obKey){
-    if (_isSandbox){
+    if (_isSandbox && _objectData.count(obKey) > 0){
         return _objectData.at(obKey);
     }
+    // default to the asset if can't find in sandbox
     return _assets->get<ObjectData>(obKey);
 }
 
 std::shared_ptr<AnimationData> World::getAnimationData(std::string aKey){
-    if (_isSandbox){
+    if (_isSandbox && _animationData.count(aKey) > 0){
         return _animationData.at(aKey);
     }
     return _assets->get<AnimationData>(aKey);
 }
 
 std::shared_ptr<PathData> World::getPathData(std::string pathKey){
-    if (_isSandbox){
+    if (_isSandbox && _pathData.count(pathKey) > 0){
         return _pathData.at(pathKey);
     }
     return _assets->get<PathData>(pathKey);
 }
 
 std::shared_ptr<ShapeData> World::getShapeData(std::string shapeKey){
-    if (_isSandbox){
+    if (_isSandbox && _shapeData.count(shapeKey) > 0){
         return _shapeData.at(shapeKey);
     }
     return _assets->get<ShapeData>(shapeKey);
 }
 
 std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
-    if (_isSandbox){
+    if (_isSandbox && _waveData.count(waveKey) > 0){
         return _waveData.at(waveKey);
     }
     return _assets->get<WaveData>(waveKey);
 }
 
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){
-    if (_isSandbox){
+    if (_isSandbox && _aiData.count(aiKey) > 0){
         return _aiData.at(aiKey);
     }
     return _assets->get<AIData>(aiKey);

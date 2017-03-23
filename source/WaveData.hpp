@@ -22,12 +22,7 @@ public:
     
     WaveEntry(){}
     
-    bool init(std::string objectKey, float x, float y){
-        this->objectKey = objectKey;
-        this->position.x = x;
-        this->position.y = y;
-        return true;
-    }
+    bool init(std::string objectKey, float x, float y);
     
     static std::shared_ptr<WaveEntry> alloc(std::string objectKey, float x, float y) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();

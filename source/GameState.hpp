@@ -107,6 +107,10 @@ GameState():
     
     void addPlayerGameObject(std::shared_ptr<GameObject> obj);
     
+    std::shared_ptr<GameObject> getPlayer(int index);
+    
+    size_t getNumberPlayerCharacters();
+    
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
     }

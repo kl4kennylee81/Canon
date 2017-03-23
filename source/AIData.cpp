@@ -57,10 +57,22 @@ std::vector<Vec2> AIData::getPathFromString(const std::string& str) {
     auto strings = Util::split(str, ' ');
 	std::vector<Vec2> path;
 	for (auto it : strings) {
-        // converting from world to physics coordinates
-        path.push_back(getTupleFromString(it)/GAME_PHYSICS_SCALE);
+        path.push_back(getTupleFromString(it));
 	}
 	return path;
+}
+
+bool AIData::init(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path) {
+    _aiType = aiType;
+    _pathType = pathType;
+    _path = path;
+    
+    // scale the coordinates to the physics scale
+    for (auto vertex : _path){
+        vertex = vertex / GAME_PHYSICS_SCALE;
+    }
+    
+    return true;
 }
 
 bool AIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {

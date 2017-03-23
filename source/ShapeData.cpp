@@ -11,6 +11,16 @@
 
 using namespace cugl;
 
+bool ShapeData::init(std::vector<float> v){
+    this->vertices = v;
+    
+    for (int i = 0;i<this->vertices.size() ;i++){
+        // converting from world coordinate sto physics
+        vertices[i] = this->vertices[i]/GAME_PHYSICS_SCALE;
+    }
+    return true;
+}
+
 std::string ShapeData::serialize(){
     return "";
 }
@@ -24,11 +34,6 @@ bool ShapeData::preload(const std::string& file){
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(json->get("vertices")->asFloatArray());
-    
-    for (int i = 0;i<vertices.size() ;i++){
-        // converting from world coordinate sto physics
-        vertices[i] = vertices[i]/GAME_PHYSICS_SCALE;
-    }
 	return true;
 }
 

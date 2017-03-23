@@ -12,6 +12,13 @@
 
 using namespace cugl;
 
+bool WaveEntry::init(std::string objectKey, float x, float y){
+    this->objectKey = objectKey;
+    this->position.x = x / GAME_PHYSICS_SCALE;
+    this->position.y = y / GAME_PHYSICS_SCALE;
+    return true;
+}
+
 std::string WaveData::serialize(){
     return "";
 }
@@ -30,8 +37,8 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto child = waveEntries->get(i);
 		auto entry = WaveEntry::alloc(
             child->getString("objectKey"),
-			child->getFloat("x")/GAME_PHYSICS_SCALE,
-            child->getFloat("y")/GAME_PHYSICS_SCALE);
+			child->getFloat("x"),
+            child->getFloat("y"));
 		addWaveEntry(entry);
 	}
     return true;

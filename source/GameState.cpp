@@ -95,6 +95,17 @@ void GameState::addPlayerGameObject(std::shared_ptr<GameObject> obj){
     _playerCharacters.push_back(obj);
 }
 
+std::shared_ptr<GameObject> GameState::getPlayer(int index){
+    if (_playerCharacters.size() <= index){
+        return nullptr;
+    }
+    return _playerCharacters.at(index);
+}
+
+size_t GameState::getNumberPlayerCharacters(){
+    return _playerCharacters.size();
+}
+
 #pragma mark Coordinate Conversions
 
 /** Helper function to calculate the y translate needed to go from scene to world **/
