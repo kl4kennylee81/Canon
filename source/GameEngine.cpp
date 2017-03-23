@@ -9,7 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
-#include "SaveGameData.h"
+#include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 
 // Add support for simple random number generation
