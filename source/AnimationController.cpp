@@ -16,8 +16,7 @@
 
 using namespace cugl;
 
-#define PLAYER_BOY_YELLOW          "player_boy"
-#define PLAYER_GIRL_BLUE         "player_girl"
+#define ANIMATION_SCALE_BUFFER     1.25 // a constant needed to make the animation a bit bigger than the bounding box.
 
 AnimationController::AnimationController():
 BaseController(){}
@@ -157,9 +156,10 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
     // maximum of boxSize.width/animation.width and boxsize.height/animation.height
     // so that the animationNode is always encapsulating the full physics box with padding.
     // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    float scaleX = (polySize.width*1.25)/animationSize.width;
-    float scaleY = (polySize.height*1.25)/animationSize.height;
-    float animationToBoxScale = std::max(scaleX,scaleY);
+    
+    float scaleX = (polySize.width)/animationSize.width;
+    float scaleY = (polySize.height)/animationSize.height;
+    float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
     anim->setScale(animationToBoxScale);
 }
 

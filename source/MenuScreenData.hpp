@@ -13,6 +13,9 @@
 #include <cugl/cugl.h>
 #include "Data.hpp"
 
+using std::string;
+
+
 class MenuScreenData : Data {
 public:
     virtual std::string serialize();

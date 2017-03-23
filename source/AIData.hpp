@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 2/28/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef AIData_hpp
@@ -12,6 +12,8 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+
+using std::string;
 
 enum class AIType : int {
 	HOMING, PATH, STATIC
@@ -32,11 +34,32 @@ public:
 
 	AIData() {}
 
-	bool init(AIType aiType, PathType pathType , std::vector<cugl::Vec2> path) {
+	PathType getPathTypeFromString(const std::string& str);
+
+	cugl::Vec2 getTupleFromString(const std::string& s);
+
+	AIType getTypeFromString(const std::string& str);
+
+	std::vector<cugl::Vec2> getPathFromString(const std::string& str);
+
+	bool init(string aiType, string pt, string p)
+	{
+		AIType type = getTypeFromString(aiType);
+		PathType pathType = getPathTypeFromString(pt);
+		std::vector<cugl::Vec2> path = getPathFromString(p);
+		return init(type, pathType, path);
+	}
+
+	bool init(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path) {
 		_aiType = aiType;
 		_pathType = pathType;
 		_path = path;
 		return true;
+	}
+
+	static std::shared_ptr<AIData> alloc(string aiType, string pathType, string path = "") {
+		std::shared_ptr<AIData> result = std::make_shared<AIData>();
+		return (result->init(aiType, pathType, path) ? result : nullptr);
 	}
 
 	static std::shared_ptr<AIData> alloc(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path = std::vector<cugl::Vec2>()) {
