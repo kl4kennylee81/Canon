@@ -10,6 +10,16 @@
                 "waveKey": "wave1",
                 "time": 300
             }
+        },
+        "playerChar1":{
+            "objectKey": "playerChar1",
+            "x": 500,
+            "y": 200
+        },
+        "playerChar2":{
+            "objectKey": "playerChar2",
+            "x": 550,
+            "y": 250
         }
     },
     "level1": {
@@ -22,6 +32,16 @@
             "waveKey": "wave1",
             "time": 300
           }
+        },
+        "playerChar1":{
+            "objectKey": "playerChar1",
+            "x": 500,
+            "y": 200
+        },
+        "playerChar2":{
+            "objectKey": "playerChar2",
+            "x": 550,
+            "y": 250
         }
     }
   },
@@ -52,6 +72,18 @@
       "shapeKey": "shape1",
       "animationKey": "redEnemyAnimation",
       "aiKey": "horizontal",
+      "element": "GOLD"
+    },
+    "playerChar1": {
+      "shapeKey": "shape1",
+      "animationKey": "blueCharAnimation",
+      "aiKey": "",
+      "element": "BLUE"
+    },
+    "playerChar2": {
+      "shapeKey": "shape1",
+      "animationKey": "redCharAnimation",
+      "aiKey": "",
       "element": "GOLD"
     }
   },

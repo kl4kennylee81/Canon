@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "WaveData.hpp"
 #include <vector>
 
 class LevelEntry {
@@ -36,8 +37,8 @@ public:
 class LevelData : public Data {
 protected:
     
-//    std::shared_ptr<WaveEntry> playerChar1;
-//    std::shared_ptr<WaveEntry> playerChar2;
+    std::shared_ptr<WaveEntry> playerChar1;
+    std::shared_ptr<WaveEntry> playerChar2;
     
     std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
 public:

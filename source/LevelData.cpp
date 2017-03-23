@@ -7,6 +7,7 @@
 //
 
 #include "LevelData.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -44,6 +45,20 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = LevelEntry::alloc(child->getString("waveKey"), child->getInt("time"));
 		addLevelEntry(entry);
 	}
+    // get the blue player character
+    std::shared_ptr<JsonValue> playerChar1Json = json->get("playerChar1");
+    auto entryPlayer1 = WaveEntry::alloc(playerChar1Json->getString("objectKey"),
+                                  playerChar1Json->getFloat("x")/GAME_PHYSICS_SCALE,
+                                  playerChar1Json->getFloat("y")/GAME_PHYSICS_SCALE);
+    this->playerChar1 = entryPlayer1;
+    
+    // get the red player character
+    std::shared_ptr<JsonValue> playerChar2Json = json->get("playerChar2");
+    auto entryPlayer2 = WaveEntry::alloc(playerChar2Json->getString("objectKey"),
+                                  playerChar2Json->getFloat("x")/GAME_PHYSICS_SCALE,
+                                  playerChar2Json->getFloat("y")/GAME_PHYSICS_SCALE);
+    this->playerChar2 = entryPlayer2;
+    
     init();
     return true;
 }
