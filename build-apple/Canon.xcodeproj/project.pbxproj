@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668331E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
+		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
+		9F7668491E84AE2E003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
+		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
+		9F76684B1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
+		9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */; };
+		9F76684D1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */; };
+		9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F76684F1E84AE63003A06E8 /* AILoader.cpp */; };
+		9F7668521E84AE63003A06E8 /* AILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F76684F1E84AE63003A06E8 /* AILoader.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
@@ -173,6 +181,14 @@
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
+		9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAIData.cpp; sourceTree = "<group>"; };
+		9F7668431E84AE2D003A06E8 /* HomingAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAIData.hpp; sourceTree = "<group>"; };
+		9F7668441E84AE2D003A06E8 /* PathAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathAIData.cpp; sourceTree = "<group>"; };
+		9F7668451E84AE2D003A06E8 /* PathAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathAIData.hpp; sourceTree = "<group>"; };
+		9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticAIData.cpp; sourceTree = "<group>"; };
+		9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticAIData.hpp; sourceTree = "<group>"; };
+		9F76684F1E84AE63003A06E8 /* AILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AILoader.cpp; sourceTree = "<group>"; };
+		9F7668501E84AE63003A06E8 /* AILoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AILoader.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -373,9 +389,43 @@
 			name = moveEvent;
 			sourceTree = "<group>";
 		};
+		9F76683F1E84AE23003A06E8 /* aidata */ = {
+			isa = PBXGroup;
+			children = (
+				9F76684F1E84AE63003A06E8 /* AILoader.cpp */,
+				9F7668501E84AE63003A06E8 /* AILoader.hpp */,
+				9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */,
+				9F7668431E84AE2D003A06E8 /* HomingAIData.hpp */,
+				9F7668441E84AE2D003A06E8 /* PathAIData.cpp */,
+				9F7668451E84AE2D003A06E8 /* PathAIData.hpp */,
+				9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */,
+				9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */,
+			);
+			name = aidata;
+			sourceTree = "<group>";
+		};
+		9F76684E1E84AE35003A06E8 /* zonedata */ = {
+			isa = PBXGroup;
+			children = (
+				DF909EF61E80D77A003BB459 /* ZoneLoader.cpp */,
+				DF909EF71E80D77A003BB459 /* ZoneLoader.hpp */,
+				DF909EF21E80BF54003BB459 /* ZoneData.cpp */,
+				DF909EF31E80BF54003BB459 /* ZoneData.hpp */,
+				DF9828791E80E0000026223D /* StaticZoneData.cpp */,
+				DF98287A1E80E0000026223D /* StaticZoneData.hpp */,
+				DF98287F1E80E0140026223D /* RotateZoneData.cpp */,
+				DF9828801E80E0140026223D /* RotateZoneData.hpp */,
+				DF9828831E80E0250026223D /* PulseZoneData.cpp */,
+				DF9828841E80E0250026223D /* PulseZoneData.hpp */,
+			);
+			name = zonedata;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
+				9F76684E1E84AE35003A06E8 /* zonedata */,
+				9F76683F1E84AE23003A06E8 /* aidata */,
 				9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */,
 				9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */,
 				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
@@ -390,14 +440,6 @@
 				9FCE470E1E655C79002F4A3E /* WaveData.hpp */,
 				9FCE47101E655D8B002F4A3E /* LevelData.cpp */,
 				9FCE47111E655D8B002F4A3E /* LevelData.hpp */,
-				DF909EF21E80BF54003BB459 /* ZoneData.cpp */,
-				DF909EF31E80BF54003BB459 /* ZoneData.hpp */,
-				DF9828791E80E0000026223D /* StaticZoneData.cpp */,
-				DF98287A1E80E0000026223D /* StaticZoneData.hpp */,
-				DF98287F1E80E0140026223D /* RotateZoneData.cpp */,
-				DF9828801E80E0140026223D /* RotateZoneData.hpp */,
-				DF9828831E80E0250026223D /* PulseZoneData.cpp */,
-				DF9828841E80E0250026223D /* PulseZoneData.hpp */,
 			);
 			name = prototypes;
 			sourceTree = "<group>";
@@ -622,8 +664,6 @@
 				DF93BDC11E75C20B00EA6A1D /* GenericAssetManager.hpp */,
 				9FFA3FBF1E636D220029D648 /* World.cpp */,
 				9FFA3FC01E636D220029D648 /* World.hpp */,
-				DF909EF61E80D77A003BB459 /* ZoneLoader.cpp */,
-				DF909EF71E80D77A003BB459 /* ZoneLoader.hpp */,
 			);
 			name = load;
 			sourceTree = "<group>";
@@ -929,6 +969,7 @@
 				F1D35F0F1E7685990044A121 /* AnimationData.cpp in Sources */,
 				F1D35F101E7685990044A121 /* ObjectData.cpp in Sources */,
 				F1D35F111E7685990044A121 /* ShapeData.cpp in Sources */,
+				9F7668521E84AE63003A06E8 /* AILoader.cpp in Sources */,
 				F1D35F121E7685990044A121 /* pathData.cpp in Sources */,
 				F1D35F131E7685990044A121 /* WaveData.cpp in Sources */,
 				DF909EF91E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
@@ -964,8 +1005,11 @@
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */,
+				9F76684D1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
+				9F76684B1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
+				9F7668491E84AE2E003A06E8 /* HomingAIData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +1031,7 @@
 				9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */,
 				9FE4FD681E7B7BC0007AD880 /* ProgressBarController.cpp in Sources */,
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,
+				9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */,
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
 				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
@@ -1022,8 +1067,11 @@
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
 				9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */,
 				9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */,
+				9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */,
 				9FFA3FC11E636D220029D648 /* World.cpp in Sources */,
+				9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				9FFA3F881E635FD10029D648 /* CollisionEvent.cpp in Sources */,
+				9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
