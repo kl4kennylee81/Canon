@@ -116,14 +116,9 @@ float GameState::getSceneToWorldTranslateY(){
 }
 
 /** Physics Conversion **/
-Vec2& GameState::physicsToWorldCoords(Vec2& physicsCoords,Vec2& worldCoords){
-    Vec2::scale(physicsCoords, _physicsScale, &worldCoords);
-    return worldCoords;
-}
-
 Vec2& GameState::physicsToSceneCoords(Vec2& physicsCoords,Vec2& sceneCoords){
-    physicsToWorldCoords(physicsCoords,sceneCoords);
-    worldToSceneCoords(sceneCoords,sceneCoords);
+    Vec2::scale(physicsCoords, _physicsScale, &sceneCoords);
+    sceneCoords.y += getSceneToWorldTranslateY();
     return sceneCoords;
 }
 
@@ -133,13 +128,7 @@ Vec2& GameState::physicsToScreenCoords(Vec2& physicsCoords, Vec2& screenCoords){
     return screenCoords;
 }
 
-/** Screen Conversion **/
-Vec2& GameState::screenToWorldCoords(cugl::Vec2& screenCoords, cugl::Vec2& worldCoords){
-    screenToSceneCoords(screenCoords,worldCoords);
-    sceneToWorldCoords(worldCoords,worldCoords);
-    return worldCoords;
-}
-
+/** Screen conversions */
 Vec2& GameState::screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords){
     Vec2 scene_pos = getScene()->getCamera()->screenToWorldCoords(screenCoords);
     sceneCoords.set(scene_pos);
@@ -147,36 +136,12 @@ Vec2& GameState::screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& scene
 }
 
 Vec2& GameState::screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords){
-    screenToWorldCoords(screenCoords,physicsCoords);
-    worldToPhysicsCoords(physicsCoords, physicsCoords);
+    screenToSceneCoords(screenCoords,physicsCoords);
+    sceneToPhysicsCoords(physicsCoords, physicsCoords);
     return physicsCoords;
 }
 
-/** World Conversion **/
-Vec2& GameState::worldToSceneCoords(cugl::Vec2& worldCoords, cugl::Vec2& sceneCoords){
-    sceneCoords.set(worldCoords);
-    sceneCoords.y += getSceneToWorldTranslateY();
-    return sceneCoords;
-}
-
-Vec2& GameState::worldToScreenCoords(cugl::Vec2& worldCoords, cugl::Vec2& screenCoords){
-    worldToSceneCoords(worldCoords,screenCoords);
-    sceneToScreenCoords(screenCoords,screenCoords);
-    return screenCoords;
-}
-
-Vec2& GameState::worldToPhysicsCoords(cugl::Vec2& worldCoords, cugl::Vec2& physicsCoords){
-    Vec2::divide(worldCoords,_physicsScale,&physicsCoords);
-    return physicsCoords;
-}
-
-/** Scene Conversion **/
-Vec2& GameState::sceneToWorldCoords(cugl::Vec2& sceneCoords, cugl::Vec2& worldCoords){
-    worldCoords.set(sceneCoords);
-    worldCoords.y -= getSceneToWorldTranslateY();
-    return worldCoords;
-}
-
+/** Scene conversions */
 Vec2& GameState::sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords){
     Vec2 screen_pos = getScene()->getCamera()->worldToScreenCoords(sceneCoords);
     screenCoords.set(screen_pos);
@@ -184,8 +149,9 @@ Vec2& GameState::sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screen
 }
 
 Vec2& GameState::sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords){
-    sceneToWorldCoords(sceneCoords,physicsCoords);
-    worldToPhysicsCoords(physicsCoords,physicsCoords);
+    physicsCoords.set(sceneCoords);
+    physicsCoords.y -= getSceneToWorldTranslateY();
+    Vec2::divide(physicsCoords,_physicsScale,&physicsCoords);
     return physicsCoords;
 }
 
