@@ -12,23 +12,19 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
-#include "Element.hpp"
 
 class ObjectData : public Data {
 public:
     std::string shapeKey;
     std::string animationKey;
-    std::string aiKey;
-    
-    Element element;
     
     ObjectData() : Data(){}
     
-    bool init(std::string shape_key,std::string anim_key,std::string ai_key, Element element);
+    bool init(std::string shape_key,std::string anim_key);
     
-    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string animKey,std::string aiKey, Element element){
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string animKey){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(shapeKey,animKey,aiKey,element) ? result : nullptr);
+        return (result->init(shapeKey,animKey) ? result : nullptr);
     }
 
     virtual std::string serialize();
@@ -39,9 +35,6 @@ public:
     
     virtual bool materialize();
     
-    Element getElement(){
-        return element;
-    }
 };
 
 #endif /* ObjectData_hpp */

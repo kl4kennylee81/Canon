@@ -50,7 +50,7 @@ void World::populate() {
 	}
     
     // create player characters
-    auto player1 = WaveEntry::alloc("playerChar1", 500, 200);
+    auto player1 = WaveEntry::alloc("playerChar1", "", 500, 200, Element::BLUE);
     _levelData->addPlayerChars(player1);
     
     auto player1Obj = _assets->get<ObjectData>("playerChar1");
@@ -65,7 +65,7 @@ void World::populate() {
     auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
     _animationData.insert({ "redCharAnimation",player2Anim });
     
-    auto player2 = WaveEntry::alloc("playerChar2", 550, 250);
+    auto player2 = WaveEntry::alloc("playerChar2", "", 550, 250, Element::GOLD);
     _levelData->addPlayerChars(player2);
 
     std::shared_ptr<WaveEntry> we;
@@ -74,27 +74,19 @@ void World::populate() {
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
             if (dist2(rng) == 1){
-                we = WaveEntry::alloc("object1", distWidth(rng), distHeight(rng));
+                we = WaveEntry::alloc("object1", "homing", distWidth(rng), distHeight(rng),Element::BLUE);
             } else {
-                we = WaveEntry::alloc("object2", distWidth(rng), distHeight(rng));
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD);
             }
 			wd->addWaveEntry(we);
 		}
-		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-        std::shared_ptr<WaveEntry> we;
-        if (dist2(rng) == 1){
-            we = WaveEntry::alloc("object1",distWidth(rng), distHeight(rng));
-        } else {
-            we = WaveEntry::alloc("object2", distWidth(rng), distHeight(rng));
-        }
-		wd->addWaveEntry(we);
 		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
 	}
 
-	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation","homing", Element::BLUE);
+	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation");
 	_objectData.insert(std::make_pair("object1", od1));
 
-    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation", "horizontal", Element::GOLD);
+    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
 	_objectData.insert(std::make_pair("object2", od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");

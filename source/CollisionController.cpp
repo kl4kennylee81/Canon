@@ -127,12 +127,10 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     triangulator.set(poly);
     triangulator.calculate();
     poly.setIndices(triangulator.getTriangulation());
-//    poly /= GameState::_physicsScale;
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->position);
-    //auto obst = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
     
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->objectData->getElement());
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->element);
     objectInit->object->setPhysicsComponent(physics);
 }
 

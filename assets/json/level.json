@@ -15,12 +15,14 @@
             "player1":{
                 "objectKey": "playerChar1",
                 "x": 500,
-                "y": 200
+                "y": 200,
+                "element":"BLUE"
             },
             "player2":{
                 "objectKey": "playerChar2",
                 "x": 550,
-                "y": 250
+                "y": 250,
+                "element":"GOLD"
             }
         }
     },
@@ -39,12 +41,14 @@
             "player1":{
                 "objectKey": "playerChar1",
                 "x": 500,
-                "y": 200
+                "y": 200,
+                "element":"BLUE"
             },
             "player2":{
                 "objectKey": "playerChar2",
                 "x": 550,
-                "y": 250
+                "y": 250,
+                "element":"GOLD"
             }
         }
     }
@@ -54,13 +58,17 @@
         "waveEntries":{
           "object1": {
             "objectKey": "object1",
+            "aiKey": "homing",
             "x": 100,
-            "y": 100
+            "y": 100,
+            "element":"BLUE"
           },
           "object2": {
             "objectKey": "object2",
+            "aiKey" : "homing",
             "x": 200,
-            "y": 200
+            "y": 200,
+            "element" : "GOLD"
           }
         }
     }
@@ -68,27 +76,19 @@
   "objects": {
     "object1": {
       "shapeKey": "shape1",
-      "animationKey": "blueEnemyAnimation",
-      "aiKey": "homing",
-      "element": "BLUE"
+      "animationKey": "blueEnemyAnimation"
     },
     "object2": {
       "shapeKey": "shape1",
-      "animationKey": "redEnemyAnimation",
-      "aiKey": "horizontal",
-      "element": "GOLD"
+      "animationKey": "redEnemyAnimation"
     },
     "playerChar1": {
       "shapeKey": "shape1",
-      "animationKey": "blueCharAnimation",
-      "aiKey": "",
-      "element": "BLUE"
+      "animationKey": "blueCharAnimation"
     },
     "playerChar2": {
       "shapeKey": "shape1",
-      "animationKey": "redCharAnimation",
-      "aiKey": "",
-      "element": "GOLD"
+      "animationKey": "redCharAnimation"
     }
   },
   "shapes": {

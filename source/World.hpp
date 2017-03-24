@@ -19,6 +19,7 @@
 #include "WaveData.hpp"
 #include "LevelData.hpp"
 #include "GenericAssetManager.hpp"
+#include "AIData.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -102,8 +103,6 @@ public:
     
     /** testing function to populate the world without the data files */
     void populate();
-
-	void populate_singlefile();
 };
 
 #endif /* World_hpp */

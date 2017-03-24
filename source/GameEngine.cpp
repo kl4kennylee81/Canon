@@ -11,6 +11,7 @@
 #include "MenuScreenData.hpp"
 #include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
+#include "AILoader.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -55,7 +56,7 @@ void GameEngine::onStartup() {
 	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
 	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
 	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
-	_assets->attach<AIData>(GenericLoader<AIData>::alloc()->getHook());
+	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);

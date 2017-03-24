@@ -44,8 +44,6 @@ public:
 
 	void addAI(std::shared_ptr<ActiveAI> ai);
 
-	std::shared_ptr<ActiveAI> getAIFromData(std::shared_ptr<AIData> aiData, std::shared_ptr<GameObject> object);
-
 	void removeAI(GameObject* obj);
 
 	static std::shared_ptr<AIController> alloc() {

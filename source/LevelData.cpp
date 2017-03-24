@@ -53,9 +53,7 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::shared_ptr<JsonValue> playerChars = json->get("playerChars");
     for (int i = 0; i < playerChars->size(); i++){
         auto child = playerChars->get(i);
-        auto entry = WaveEntry::alloc(child->getString("objectKey"),
-                                      child->getFloat("x")/GAME_PHYSICS_SCALE,
-                                      child->getFloat("y")/GAME_PHYSICS_SCALE);
+        auto entry = WaveEntry::alloc(child);
         this->addPlayerChars(entry);
     }
     

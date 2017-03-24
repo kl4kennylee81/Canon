@@ -18,15 +18,27 @@ class WaveEntry {
 public:
     std::string objectKey;
     
+    std::string aiKey;
+    
+    Element element;
+    
     cugl::Vec2 position;
     
     WaveEntry(){}
     
-    bool init(std::string objectKey, float x, float y);
+    bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, float x, float y) {
+    bool init(std::string objectKey, std::string aiKey, float x, float y,Element element);
+    
+    static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey,x,y) ? result : nullptr);
+        return (result->init(json) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, std::string aiKey,
+                                            float x, float y, Element element) {
+        std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
+        return (result->init(objectKey, aiKey,x,y, element) ? result : nullptr);
     }
 };
 

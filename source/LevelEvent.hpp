@@ -17,6 +17,7 @@
 #include "AnimationData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
+#include "AIData.hpp"
 
 class LevelEvent : public Event {
 public:

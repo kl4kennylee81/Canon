@@ -48,7 +48,7 @@ void AIController::eventUpdate(Event* e){
                 if (init->aiData == nullptr){
                     return;
                 }
-                addAI(getAIFromData(init->aiData, init->object));
+				addAI(init->aiData->newActiveAI(init->object));
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
@@ -80,22 +80,6 @@ void AIController::eventUpdate(Event* e){
 		break;
 	}
 	}
-}
-
-std::shared_ptr<ActiveAI> AIController::getAIFromData(std::shared_ptr<AIData> aiData, std::shared_ptr<GameObject> obj) {
-	switch (aiData->_aiType) {
-	case AIType::HOMING:
-	{
-		return HomingAI::alloc(obj);
-	}
-	case AIType::PATH: 
-	{
-		return PathAI::alloc(obj, aiData->_pathType, aiData->_path);
-	}
-	case AIType::STATIC:
-		return StaticAI::alloc(obj);
-	}
-	return HomingAI::alloc(obj);
 }
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {

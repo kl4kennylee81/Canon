@@ -10,11 +10,9 @@
 
 using namespace cugl;
 
-bool ObjectData::init(std::string shapeKey,std::string animKey,std::string aiKey, Element element){
+bool ObjectData::init(std::string shapeKey,std::string animKey){
     this->shapeKey = shapeKey;
     this->animationKey = animKey;
-    this->aiKey = aiKey;
-    this->element = element;
     return true;
 };
 
@@ -33,9 +31,7 @@ bool ObjectData::preload(const std::string& file){
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string sKey = json->getString("shapeKey");
     std::string animKey = json->getString("animationKey");
-    std::string aiKey = json->getString("aiKey");
-	auto el = (json->getString("element") == "BLUE") ? Element::BLUE : Element::GOLD;
-    init(sKey,animKey,aiKey,el);
+    init(sKey,animKey);
     return true;
 }
 

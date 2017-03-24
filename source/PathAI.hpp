@@ -15,6 +15,8 @@
 #include "ActiveAI.hpp"
 #include "GameObject.hpp"
 #include "AIData.hpp"
+#include "PathAI.hpp"
+#include "PathAIData.hpp"
 #include "ActivePath.hpp"
 #include "Path.hpp"
 
