@@ -81,7 +81,6 @@ void World::populate() {
 			wd->addWaveEntry(we);
 		}
 		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
-        _waveData;
 	}
     
     

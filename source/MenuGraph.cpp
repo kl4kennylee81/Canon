@@ -10,8 +10,11 @@
 
 using namespace cugl;
 
-MenuGraph::MenuGraph(){
+MenuGraph::MenuGraph(){}
+
+bool MenuGraph::init(){
     _currentMode = Mode::LOADING;
+    return true;
 }
 
 void MenuGraph::setMode(Mode mode){

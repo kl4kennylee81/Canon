@@ -14,7 +14,6 @@
 #include "BaseController.hpp"
 #include "GameState.hpp"
 #include "Event.hpp"
-//#include "PathEvent.hpp"
 
 
 class SwitchController : public BaseController {

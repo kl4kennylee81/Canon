@@ -60,9 +60,9 @@ void GameEngine::onStartup() {
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
     _loading = LoadController::alloc(_assets);
-
     
-    _menuGraph = MenuGraph::MenuGraph();
+    // have a shell menu controller since it holds the menu graph
+    _menu = MenuController::alloc();
     
     // This reads the given JSON file and uses it to load all other assets
 
@@ -125,15 +125,33 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
-    if (_menuGraph.getMode() == Mode::LOADING && !_loading->isComplete()) {
+    if (_menu->getMode() == Mode::LOADING && !_loading->isComplete()) {
         _loading->update(0.01f);
-    } else if (_menuGraph.getMode() == Mode::LOADING) {
-        _loading->dispose(); // Disables the input listeners in this mode
-        std::shared_ptr<World> levelWorld = World::alloc(_assets);
-        _gameplay = GameplayController::alloc(levelWorld, _touch);
-        _menuGraph.setMode(Mode::GAMEPLAY);
     } else {
-        _gameplay->update(timestep);
+        switch (_menu->getMode()){
+            case Mode::LOADING:
+            {
+                _loading->dispose(); // Disables the input listeners in this mode
+                std::shared_ptr<World> levelWorld = World::alloc(_assets);
+                _gameplay = GameplayController::alloc(levelWorld, _touch);
+                _menu->setMode(Mode::MAIN_MENU);
+                break;
+            }
+            case Mode::GAMEPLAY:
+            {
+                _gameplay->update(timestep);
+                break;
+            }
+            case Mode::MAIN_MENU:
+            {
+                _menu->update(timestep);
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
     }
 }
 
@@ -148,7 +166,7 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
-    switch (_menuGraph.getMode()){
+    switch (_menu->getMode()){
         case Mode::LOADING:
             _loading->draw(_batch);
             break;

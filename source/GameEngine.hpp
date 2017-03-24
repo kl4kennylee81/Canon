@@ -11,7 +11,7 @@
 #include <cugl/cugl.h>
 #include "GameplayController.hpp"
 #include "LoadController.hpp"
-#include "MenuGraph.hpp"
+#include "MenuController.hpp"
 #include "GenericAssetManager.hpp"
 
 /**
@@ -33,13 +33,16 @@ protected:
 	bool _touch;
 
     // Player modes
+    
+    /** the load controller */
+    std::shared_ptr<LoadController> _loading;
+    
+    /** The menu controller */
+    std::shared_ptr<MenuController> _menu;
+    
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
     
-    std::shared_ptr<LoadController> _loading;
-    
-    MenuGraph _menuGraph;
-
 public:
     /**
      * Creates, but does not initialized a new application.

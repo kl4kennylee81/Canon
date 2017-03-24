@@ -19,6 +19,13 @@ protected:
 public:
     MenuGraph();
     
+    bool init();
+    
+    static std::shared_ptr<MenuGraph> alloc() {
+        std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();
+        return (result->init() ? result : nullptr);
+    }
+    
     void setMode(Mode mode);
     
     Mode getMode();

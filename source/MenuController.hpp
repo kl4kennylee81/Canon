@@ -10,5 +10,46 @@
 #define MenuController_hpp
 
 #include <stdio.h>
+#include <cugl/cugl.h>
+#include "BaseController.hpp"
+#include "MenuGraph.hpp"
+#include "Event.hpp"
+#include "Mode.hpp"
+
+
+class MenuController : public BaseController {
+protected:
+    
+    std::shared_ptr<MenuGraph> _menuGraph;
+public:
+    
+    MenuController();
+    
+    virtual void attach(std::shared_ptr<Observer> obs);
+    
+    virtual void detach(Observer* obs);
+    
+    virtual void notify(Event* e);
+    
+    /**
+     * Update the observer state based on an event from the subject
+     */
+    virtual void eventUpdate(Event* e);
+    
+    virtual void update(float timestep);
+    
+    virtual bool init();
+    
+    static std::shared_ptr<MenuController> alloc() {
+        std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
+        return (result->init() ? result : nullptr);
+    }
+    
+    Mode getMode();
+    
+    void setMode(Mode m);
+};
+
+
 
 #endif /* MenuController_hpp */
