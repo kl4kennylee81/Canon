@@ -1,6 +1,5 @@
 #include "PathAIData.hpp"
 #include "PathAI.hpp"
-#include "Util.hpp"
 #include "GameState.hpp"
 
 using namespace cugl;
@@ -41,15 +40,32 @@ PathType getPathTypeFromString(const std::string& str) {
 	return PathType::NONE;
 }
 
+std::vector<std::string> split(const std::string& s, const char& c)
+{
+	std::string buff{ "" };
+	std::vector<std::string> v;
+
+	for (auto n : s)
+	{
+		if (n != c) {
+			buff += n;
+		}
+		else if (n == c && buff != "") {
+			v.push_back(buff); buff = "";
+		}
+	}
+	if (buff != "") v.push_back(buff);
+	return v;
+}
 
 Vec2 getTupleFromString(const std::string& s) {
 	std::string str = s.substr(1, s.size() - 2);
-	auto nums = Util::split(str, ',');
+	auto nums = split(str, ',');
 	return Vec2::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
 }
 
 std::vector<Vec2> getPathFromString(const std::string& str) {
-	auto strings = Util::split(str, ' ');
+	auto strings = split(str, ' ');
 	std::vector<Vec2> path;
 	for (auto it : strings) {
 		path.push_back(getTupleFromString(it));
