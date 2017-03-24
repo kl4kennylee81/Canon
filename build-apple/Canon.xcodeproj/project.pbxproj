@@ -373,6 +373,13 @@
 			name = moveEvent;
 			sourceTree = "<group>";
 		};
+		9F7668571E84AFB4003A06E8 /* aiEvent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = aiEvent;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,7 +554,6 @@
 			isa = PBXGroup;
 			children = (
 				9F1CCC221E69486300F218F8 /* moveEvent */,
-				9FFA3FA31E6367AA0029D648 /* enemy */,
 				9FFA3FA21E6367A00029D648 /* player */,
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,
 				9FFA3FA51E6367C60029D648 /* ActivePath.hpp */,
@@ -568,6 +574,7 @@
 		9FFA3FA31E6367AA0029D648 /* enemy */ = {
 			isa = PBXGroup;
 			children = (
+				9F7668571E84AFB4003A06E8 /* aiEvent */,
 				F134D47F1E76669B009EB8E3 /* activeAI */,
 				9FFA3FAE1E636B780029D648 /* AIController.cpp */,
 				9FFA3FAF1E636B780029D648 /* AIController.hpp */,
@@ -762,6 +769,7 @@
 				9FFA3FB51E636C330029D648 /* level */,
 				9FFA3FB41E636BED0029D648 /* gameplay */,
 				9FFA3FAA1E636B350029D648 /* base */,
+				9FFA3FA31E6367AA0029D648 /* enemy */,
 				9FFA3FA11E6367820029D648 /* movement */,
 				9FFA3F921E6364AB0029D648 /* pathControls */,
 				9FFA3F701E6352B90029D648 /* physics */,
