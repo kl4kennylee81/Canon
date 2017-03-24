@@ -60,6 +60,9 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
 public:
     
+    // TODO temporary reset of the gameState
+    bool reset;
+    
 GameState():
     _worldnode(nullptr),
     _debugnode(nullptr),

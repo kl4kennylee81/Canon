@@ -33,6 +33,12 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
+    
+    // TODO temporary rest until we have a retry screen
+    if (_gameState->reset){
+        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
+        init(_levelController->getWorld(),_touch);
+    }
 
     _levelController->update(timestep, _gameState);
     _spawnController->update(timestep);
