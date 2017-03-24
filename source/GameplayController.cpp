@@ -38,6 +38,8 @@ void GameplayController::update(float timestep) {
     if (_gameState->reset){
         _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
         init(_levelController->getWorld(),_touch);
+        _gameState->reset = false;
+        return;
     }
 
     _levelController->update(timestep, _gameState);
