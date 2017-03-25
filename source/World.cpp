@@ -53,12 +53,12 @@ void World::populate() {
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 			auto ai = _assets->get<AIData>("homing");
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {});
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {1});
 			wd->addWaveEntry(we);
 		}
 		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 		auto ai = _assets->get<AIData>("square");
-        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {});
+        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {1});
 		wd->addWaveEntry(we);
 		_waveData.insert(std::make_pair(i, wd));
 	}
@@ -78,7 +78,9 @@ void World::populate() {
 	std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
 	_animationData.insert({ yellowEnemy->getUID(),yellowEnemy });
 
-
+    std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
+    _zoneData.insert({staticZone->getUID(), staticZone});
+    
 }
 
 void World::populate_singlefile(){

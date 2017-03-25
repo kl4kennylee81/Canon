@@ -54,6 +54,22 @@ void ZoneController::update(float timestep) {
         if (!it->second->spawned){
             continue;
         }
+        for (auto zd : it->second->datas) {
+            switch (zd.first->type) {
+                case ZoneType::STATIC: {
+                    std::shared_ptr<StaticZoneData> data = std::static_pointer_cast<StaticZoneData>(zd.first);
+                    updateStaticZone(it->first, data, zd.second);
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs) {
+    for (auto zobj : zoneObjs) {
+        zobj->getPhysicsComponent()->getBody()->setLinearVelocity(charObj->getPhysicsComponent()->getBody()->getLinearVelocity()*2);
+        //do logic for on cooldown/duration
     }
 }
 

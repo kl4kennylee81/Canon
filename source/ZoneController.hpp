@@ -52,6 +52,8 @@ public:
         return (result->init(state,world) ? result : nullptr);
     }
     
+    void updateStaticZone(GameObject* charObj, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs);
+    
     void addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneData>> datas);
     
     void staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, cugl::Vec2 objPos);
