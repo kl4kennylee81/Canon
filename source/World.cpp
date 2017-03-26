@@ -14,7 +14,7 @@
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            5
+#define NUMBER_SPAWNS            1
 
 using std::string;
 using namespace cugl;
@@ -50,7 +50,7 @@ void World::populate() {
 	}
     
     // create player characters
-    auto player1 = WaveEntry::alloc("playerChar1", "", 500, 200, Element::BLUE);
+    auto player1 = WaveEntry::alloc("playerChar1", "", 500, 200, Element::BLUE, {});
     _levelData->addPlayerChars(player1);
     
     auto player1Obj = _assets->get<ObjectData>("playerChar1");
@@ -65,7 +65,7 @@ void World::populate() {
     auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
     _animationData.insert({ "redCharAnimation",player2Anim });
     
-    auto player2 = WaveEntry::alloc("playerChar2", "", 550, 250, Element::GOLD);
+    auto player2 = WaveEntry::alloc("playerChar2", "", 550, 250, Element::GOLD, {});
     _levelData->addPlayerChars(player2);
 
     std::shared_ptr<WaveEntry> we;
@@ -74,16 +74,14 @@ void World::populate() {
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
             if (dist2(rng) == 1){
-                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE);
+                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
             } else {
-                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD);
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{"staticZone"});
             }
 			wd->addWaveEntry(we);
 		}
 		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
-        _waveData;
 	}
-    
     
 
 	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation");
@@ -107,7 +105,9 @@ void World::populate() {
     _aiData.insert({"square",squareAI});
     
 
-
+    std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
+    _zoneData.insert({"staticZone", staticZone});
+    
 }
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets){
@@ -161,5 +161,12 @@ std::shared_ptr<AIData> World::getAIData(std::string aiKey){
         return _aiData.at(aiKey);
     }
     return _assets->get<AIData>(aiKey);
+}
+
+std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
+    if (_isSandbox && _zoneData.count(zoneKey) > 0){
+        return _zoneData.at(zoneKey);
+    }
+    return _assets->get<ZoneData>(zoneKey);
 }
 

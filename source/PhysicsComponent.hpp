@@ -16,7 +16,7 @@
 
 class PhysicsComponent {
 protected:
-    std::shared_ptr<cugl::Obstacle> _body;
+    std::shared_ptr<cugl::PolygonObstacle> _body;
     float _speed;
     float _acceleration;
     Element _elementType;
@@ -24,11 +24,11 @@ public:
     
     PhysicsComponent();
     
-    std::shared_ptr<cugl::Obstacle> getBody();
+    std::shared_ptr<cugl::PolygonObstacle> getBody();
     
-    virtual bool init(std::shared_ptr<cugl::Obstacle> body, Element element);
+    virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, Element element);
     
-    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::Obstacle> body, Element element) {
+    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::PolygonObstacle> body, Element element) {
         std::shared_ptr<PhysicsComponent> result = std::make_shared<PhysicsComponent>();
         return (result->init(body, element) ? result : nullptr);
     }

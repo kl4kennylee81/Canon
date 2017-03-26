@@ -12,17 +12,47 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "ZoneData.hpp"
+#include "GameState.hpp"
+
+class ZoneEntry {
+public:
+    
+    std::string objectKey;
+    float startingPosition;
+    Element element;
+    
+    bool init(std::string o, float p, Element e) {
+        this->objectKey = o;
+        this->startingPosition = p;
+        this->element = e;
+        return true;
+    }
+    
+    static std::shared_ptr<ZoneEntry> alloc(std::string objectKey, float startingPosition, Element element) {
+        std::shared_ptr<ZoneEntry> result = std::make_shared<ZoneEntry>();
+        return (result->init(objectKey,startingPosition,element) ? result : nullptr);
+    }
+};
 
 class RotateZoneData : public ZoneData {
 public:
     
+    std::vector<std::shared_ptr<ZoneEntry>> zones;
+    float radius;
+    float speed;
+    
     RotateZoneData() : ZoneData(){}
     
-    bool init();
+    bool init(float radius, float speed) {
+        ZoneData::init(ZoneType::ROTATE);
+        this->radius = radius/GAME_PHYSICS_SCALE;
+        this->speed = speed;
+        return true;
+    }
     
-    static std::shared_ptr<RotateZoneData> alloc() {
+    static std::shared_ptr<RotateZoneData> alloc(float radius, float speed) {
         std::shared_ptr<RotateZoneData> result = std::make_shared<RotateZoneData>();
-        return (result->init() ? result : nullptr);
+        return (result->init(radius,speed) ? result : nullptr);
     }
     
     virtual std::string serialize();

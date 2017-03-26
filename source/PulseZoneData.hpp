@@ -16,13 +16,31 @@
 class PulseZoneData : public ZoneData {
 public:
     
+    std::string objectKey;
+    float minSize;
+    int minTime;
+    float maxSize;
+    int maxTime;
+    float speed;
+    Element element;
+    
     PulseZoneData() : ZoneData(){}
     
-    bool init();
+    bool init(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, Element element) {
+        ZoneData::init(ZoneType::PULSE);
+        this->objectKey = objectKey;
+        this->minSize = minSize;
+        this->minTime = minTime;
+        this->maxSize = maxSize;
+        this->maxTime = maxTime;
+        this->speed = speed;
+        this->element = element;
+        return true;
+    }
     
-    static std::shared_ptr<PulseZoneData> alloc() {
+    static std::shared_ptr<PulseZoneData> alloc(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, Element element) {
         std::shared_ptr<PulseZoneData> result = std::make_shared<PulseZoneData>();
-        return (result->init() ? result : nullptr);
+        return (result->init(objectKey,minSize,minTime,maxSize,maxTime,speed,element) ? result : nullptr);
     }
     
     virtual std::string serialize();

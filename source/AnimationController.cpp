@@ -16,7 +16,11 @@
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1.25 // a constant needed to make the animation a bit bigger than the bounding box.
+#define ANIMATION_SCALE_BUFFER     1. // a constant needed to make the animation a bit bigger than the bounding box.
+#define BLUE_COLOR   Color4::BLUE
+#define RED_COLOR   Color4::RED
+#define DEBUG_COLOR  Color4::GREEN
+#define RED_COLOR Color4::RED
 
 AnimationController::AnimationController():
 BaseController(){}
@@ -93,8 +97,45 @@ void AnimationController::eventUpdate(Event* e) {
             handleAction(obj, AnimationAction::ACTIVE);
             break;
         }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+                    addAnimation(zoneInit->object.get(), zoneInit->animationData);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
+                    ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
+                    handleAction(zoneSpawn->object, AnimationAction::SPAWN);
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
+                    if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                        anim->setColor(BLUE_COLOR);
+                    } else {
+                        anim->setColor(RED_COLOR);
+                    }
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_DELETE: {
+                    ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
+                    animationMap.at(zoneDelete->object)->setLastAnimation();
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
+
+
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
     syncAll();
@@ -118,7 +159,15 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
         syncAnimation(anim->getAnimationNode(),obj);
-        _worldnode->addChild(anim->getAnimationNode(),1);
+        int zaxis = 1;
+        if (obj->type == GameObject::ObjectType::ZONE){
+            zaxis = 0;
+        }
+        if (obj->type == GameObject::ObjectType::BULLET){
+            zaxis = 2;
+        }
+        _worldnode->addChild(anim->getAnimationNode(),zaxis);
+        _worldnode->sortZOrder();
     }
 }
 
@@ -138,6 +187,8 @@ void AnimationController::syncAll() {
 
 void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, GameObject* obj){
     anim->setPosition(obj->getPosition());
+    
+    anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
     
     // TODO: switch from boxObstacle to PolygonObstacle
     // sync polygon obstacle size to the texture size.

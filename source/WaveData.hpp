@@ -23,22 +23,23 @@ public:
     Element element;
     
     cugl::Vec2 position;
+
+    std::vector<std::string> zoneKeys;
     
     WaveEntry(){}
     
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-    bool init(std::string objectKey, std::string aiKey, float x, float y,Element element);
+    bool init(std::string objectKey, std::string aiKey, float x, float y,Element element,std::vector<std::string> zoneKeys);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(json) ? result : nullptr);
     }
     
-    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, std::string aiKey,
-                                            float x, float y, Element element) {
+    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, std::string aiKey, float x, float y, Element element, std::vector<std::string> zoneKeys) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey, aiKey,x,y, element) ? result : nullptr);
+        return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
     }
 };
 
