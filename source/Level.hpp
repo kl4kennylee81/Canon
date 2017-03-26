@@ -22,6 +22,7 @@ protected:
     /** time elapsed since last wave */
     float _timeElapsed;
     bool _readyToSpawn;
+    bool _playerSpawned;
 public:
     Level(){}
     
@@ -29,15 +30,21 @@ public:
     
     int getNextTime();
     
-    int getCurrentWaveKey();
+    std::string getCurrentWaveKey();
     
     int getCurrentWave();
     
     float getProgress();
     
-    /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
-     *  after returning it, it will return -1 again until the next wave */
-    int pollWave();
+    bool isReadyToSpawn();
+    
+    void toggleReadyToSpawn();
+    
+    bool hasPlayerSpawned();
+    
+    void togglePlayerSpawned();
+    
+    std::vector<std::shared_ptr<WaveEntry>> getPlayerChars();
     
     void setCurrentWave(int waveNum);
 

@@ -43,14 +43,26 @@ void AIController::eventUpdate(Event* e){
             case LevelEvent::LevelEventType::OBJECT_INIT:
             {
                 ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
-				addAI(getAIFromWaveEntry(init->waveEntry, init->object));
+                
+                // the player character does not have an AIData
+                if (init->aiData == nullptr){
+                    return;
+                }
+				addAI(init->aiData->newActiveAI(init->object));
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
             {
                 ObjectSpawnEvent* spawn = (ObjectSpawnEvent*)levelEvent;
+                
+                // check existence in hashmap if not init then it was likely the player character
+                if (_map.count(spawn->object.get()) <= 0) {
+                    return;
+                }
+                
                 std::shared_ptr<ActiveAI> activeAi = _map.at(spawn->object.get());
                 activeAi->toggleActive();
+                break;
             }
 		}
         
@@ -68,23 +80,6 @@ void AIController::eventUpdate(Event* e){
 		break;
 	}
 	}
-}
-
-std::shared_ptr<ActiveAI> AIController::getAIFromWaveEntry(std::shared_ptr<WaveEntry> entry, std::shared_ptr<GameObject> obj) {
-	std::shared_ptr<AIData> aiData = entry->aiData;
-	switch (aiData->_aiType) {
-	case AIType::HOMING:
-	{
-		return HomingAI::alloc(obj);
-	}
-	case AIType::PATH: 
-	{
-		return PathAI::alloc(obj, aiData->_pathType, aiData->_path);
-	}
-	case AIType::STATIC:
-		return StaticAI::alloc(obj);
-	}
-	return HomingAI::alloc(obj);
 }
 
 void AIController::addAI(std::shared_ptr<ActiveAI> ai) {

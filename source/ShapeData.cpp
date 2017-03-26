@@ -6,9 +6,20 @@
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
-#include "ShapeData.hpp"
+#include "ShapeData.hpp" // GAME_PHYSICS_SCALE for conversion
+#include "GameState.hpp"
 
 using namespace cugl;
+
+bool ShapeData::init(std::vector<float> v){
+    this->vertices = v;
+    
+    for (int i = 0;i<this->vertices.size() ;i++){
+        // converting from world coordinate sto physics
+        vertices[i] = this->vertices[i]/GAME_PHYSICS_SCALE;
+    }
+    return true;
+}
 
 std::string ShapeData::serialize(){
     return "";
@@ -22,7 +33,7 @@ bool ShapeData::preload(const std::string& file){
 }
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init(json->getInt("id"), json->get("vertices")->asFloatArray());
+	init(json->get("vertices")->asFloatArray());
 	return true;
 }
 

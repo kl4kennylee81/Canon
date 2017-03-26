@@ -37,6 +37,8 @@ public:
      * Update the observer state based on an event from the subject
      */
     virtual void eventUpdate(Event* e);
+
+    void spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     

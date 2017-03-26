@@ -24,6 +24,12 @@ public:
     
     bool spawned;
     
+    bool isOn;
+    int curIndex;
+    
+    cugl::Size origSize;
+    float sizeScale;
+    
     bool init() {
         spawned = false;
         return true;

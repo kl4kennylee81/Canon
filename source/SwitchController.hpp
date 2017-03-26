@@ -20,6 +20,7 @@
 class SwitchController : public BaseController {
 public:
     bool switchFlag;
+    bool spawnSwitch;
 
 	std::unordered_map <std::shared_ptr<GameObject>, cugl::Color4> _baseColors;
 

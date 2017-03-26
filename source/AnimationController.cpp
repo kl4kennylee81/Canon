@@ -16,8 +16,11 @@
 
 using namespace cugl;
 
-#define PLAYER_BOY_YELLOW          "player_boy"
-#define PLAYER_GIRL_BLUE         "player_girl"
+#define ANIMATION_SCALE_BUFFER     1. // a constant needed to make the animation a bit bigger than the bounding box.
+#define BLUE_COLOR   Color4::BLUE
+#define RED_COLOR   Color4::RED
+#define DEBUG_COLOR  Color4::GREEN
+#define RED_COLOR Color4::RED
 
 AnimationController::AnimationController():
 BaseController(){}
@@ -94,8 +97,45 @@ void AnimationController::eventUpdate(Event* e) {
             handleAction(obj, AnimationAction::ACTIVE);
             break;
         }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+                    addAnimation(zoneInit->object.get(), zoneInit->animationData);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
+                    ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
+                    handleAction(zoneSpawn->object, AnimationAction::SPAWN);
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
+                    if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                        anim->setColor(BLUE_COLOR);
+                    } else {
+                        anim->setColor(RED_COLOR);
+                    }
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_DELETE: {
+                    ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
+                    animationMap.at(zoneDelete->object)->setLastAnimation();
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
+
+
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
     syncAll();
@@ -118,7 +158,16 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
-        _worldnode->addChild(anim->getAnimationNode(),1);
+        syncAnimation(anim->getAnimationNode(),obj);
+        int zaxis = 1;
+        if (obj->type == GameObject::ObjectType::ZONE){
+            zaxis = 0;
+        }
+        if (obj->type == GameObject::ObjectType::BULLET){
+            zaxis = 2;
+        }
+        _worldnode->addChild(anim->getAnimationNode(),zaxis);
+        _worldnode->sortZOrder();
     }
 }
 
@@ -131,9 +180,38 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            anim->getAnimationNode()->setPosition(obj->getPosition() * GameState::_physicsScale);
+            syncAnimation(anim->getAnimationNode(),obj);
         }
     }
+}
+
+void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, GameObject* obj){
+    anim->setPosition(obj->getPosition());
+    
+    anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
+    
+    // TODO: switch from boxObstacle to PolygonObstacle
+    // sync polygon obstacle size to the texture size.
+    std::shared_ptr<PolygonObstacle> polyOb = std::dynamic_pointer_cast<PolygonObstacle>(obj->getPhysicsComponent()->getBody());
+    Size polySize;
+    if (polyOb != nullptr){
+        polySize = polyOb->getSize();
+    }
+    std::shared_ptr<BoxObstacle> boxOb = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
+    if ((boxOb) != nullptr){
+        polySize =boxOb->getDimension();
+    }
+
+    Size animationSize = anim->getContentSize();
+    
+    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+    // so that the animationNode is always encapsulating the full physics box with padding.
+    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+    
+    float scaleX = (polySize.width)/animationSize.width;
+    float scaleY = (polySize.height)/animationSize.height;
+    float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+    anim->setScale(animationToBoxScale);
 }
 
 /**
@@ -162,19 +240,19 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     
     std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
-    //super hacky. change to only be events
-    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
-        if (it->get()->getUid()==0){
-            std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
-            
-            addAnimation(it->get(), charGirl);
-            handleAction(it->get(), AnimationAction::SPAWN);
-        } else {
-            std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
-            
-            addAnimation(it->get(), charBoy);
-            handleAction(it->get(), AnimationAction::SPAWN);
-        }
-    }
+    // TODO change to load from event
+//    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
+//        if (it->get()->getUid()==0){
+//            std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
+//            
+//            addAnimation(it->get(), charGirl);
+//            handleAction(it->get(), AnimationAction::SPAWN);
+//        } else {
+//            std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
+//            
+//            addAnimation(it->get(), charBoy);
+//            handleAction(it->get(), AnimationAction::SPAWN);
+//        }
+//    }
     return true;
 }

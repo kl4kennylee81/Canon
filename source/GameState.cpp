@@ -22,12 +22,10 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
         return false;
     }
     
-    reset = false;
-    
     // Create the scene graph
     Size size = Application::get()->getDisplaySize();
     
-    size *= GAME_WIDTH/size.width; // Lock the game to a reasonable resolution
+    size *= GAME_SCENE_WIDTH/size.width; // Lock the game to a reasonable resolution
     
     // magic numbers are okay as long as 16:9
     _bounds = Rect::Rect(0,0,32,18);
@@ -36,7 +34,8 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // This means that we cannot change the aspect ratio of the physics world
     GameState::_physicsScale = size.width / _bounds.size.width;
     
-//    std::cout << "physicsScale:" << _physicsScale << "\n";
+    float world_yPos = (size.height - (_bounds.getMaxY() * _physicsScale))/2;
+    Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
     // Get the space background.  Its size determines all scaling.
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
@@ -46,61 +45,25 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _bgnode->setPosition(Vec2::ZERO);
+    _bgnode->setPosition(world_pos);
     _bgnode->addChild(bkgdTextureNode);
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _worldnode->setPosition(Vec2::ZERO);
+    _worldnode->setScale(GameState::_physicsScale);
+    _worldnode->setPosition(world_pos);
     
     _debugnode = Node::alloc();
     _debugnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _debugnode->setScale(GameState::_physicsScale);
-    _debugnode->setPosition(Vec2::ZERO);
+    _debugnode->setPosition(world_pos);
     
     _scene = Scene::alloc(size);
     _scene->addChild(_bgnode,0);
     _scene->addChild(_worldnode,1);
     _scene->addChild(_debugnode,2);
     
-    // create the playable character gameObjects
-    // the box2d Obstacle will be created in the collisionController init
-    // and then attached to the gameObject
-    
-    #pragma mark : Player Girl
-    std::shared_ptr<GameObject> charGirl = GameObject::alloc();
-    
-    // HACK we should not set uid here we need to set uid from the data file
-    // after we are loading the player character from data file as well the uid will
-    // be unique
-    charGirl->setUid(0);
-    charGirl->setIsPlayer(true);
-    
-    auto charGirlPos = Vec2::Vec2(16,9);
-    auto charGirlSize = Size::Size(50,50);
-    auto boxGirl = BoxObstacle::alloc(charGirlPos, charGirlSize / GameState::_physicsScale);
-    std::shared_ptr<PhysicsComponent> physicsGirl = PhysicsComponent::alloc(boxGirl, Element::BLUE);
-    charGirl->setPhysicsComponent(physicsGirl);
-    
-    #pragma mark : Player Boy
-    
-    std::shared_ptr<GameObject> charBoy = GameObject::alloc();
-    
-    // HACK we should not set uid here we need to set uid from the data file
-    // after we are loading the player character from data file as well the uid will
-    // be unique
-    charBoy->setUid(1);
-    charBoy->setIsPlayer(true);
-
-    auto charBoyPos = Vec2::Vec2(15,12);
-    auto charBoySize = Size::Size(50,50);
-    auto boxBoy = BoxObstacle::alloc(charBoyPos, charBoySize / GameState::_physicsScale);
-    std::shared_ptr<PhysicsComponent> physicsBoy = PhysicsComponent::alloc(boxBoy, Element::GOLD);
-    charBoy->setPhysicsComponent(physicsBoy);
-    
-    _playerCharacters.push_back(charBoy);
-    _playerCharacters.push_back(charGirl);
-    
+    // set the initial character position to 0
     _activeCharacterPosition = 0;
     
     return true;
@@ -127,4 +90,71 @@ void GameState::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 void GameState::addEnemyGameObject(std::shared_ptr<GameObject> obj){
     _enemyObjects.push_back(obj);
 }
+
+void GameState::addPlayerGameObject(std::shared_ptr<GameObject> obj){
+    _playerCharacters.push_back(obj);
+}
+
+std::shared_ptr<GameObject> GameState::getPlayer(int index){
+    if (_playerCharacters.size() <= index){
+        return nullptr;
+    }
+    return _playerCharacters.at(index);
+}
+
+size_t GameState::getNumberPlayerCharacters(){
+    return _playerCharacters.size();
+}
+
+#pragma mark Coordinate Conversions
+
+/** Helper function to calculate the y translate needed to go from scene to world **/
+float GameState::getSceneToWorldTranslateY(){
+    float sceneYMax = this->getScene()->getCamera()->getViewport().getMaxY();
+    float scene_yPos = (sceneYMax - (_bounds.getMaxY() * GameState::getPhysicsScale()))/2.f;
+    return scene_yPos;
+}
+
+/** Physics Conversion **/
+Vec2& GameState::physicsToSceneCoords(Vec2& physicsCoords,Vec2& sceneCoords){
+    Vec2::scale(physicsCoords, _physicsScale, &sceneCoords);
+    sceneCoords.y += getSceneToWorldTranslateY();
+    return sceneCoords;
+}
+
+Vec2& GameState::physicsToScreenCoords(Vec2& physicsCoords, Vec2& screenCoords){
+    physicsToSceneCoords(physicsCoords,screenCoords);
+    sceneToScreenCoords(screenCoords,screenCoords);
+    return screenCoords;
+}
+
+/** Screen conversions */
+Vec2& GameState::screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords){
+    Vec2 scene_pos = getScene()->getCamera()->screenToWorldCoords(screenCoords);
+    sceneCoords.set(scene_pos);
+    return screenCoords;
+}
+
+Vec2& GameState::screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords){
+    screenToSceneCoords(screenCoords,physicsCoords);
+    sceneToPhysicsCoords(physicsCoords, physicsCoords);
+    return physicsCoords;
+}
+
+/** Scene conversions */
+Vec2& GameState::sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords){
+    Vec2 screen_pos = getScene()->getCamera()->worldToScreenCoords(sceneCoords);
+    screenCoords.set(screen_pos);
+    return screenCoords;
+}
+
+Vec2& GameState::sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords){
+    physicsCoords.set(sceneCoords);
+    physicsCoords.y -= getSceneToWorldTranslateY();
+    Vec2::divide(physicsCoords,_physicsScale,&physicsCoords);
+    return physicsCoords;
+}
+
+
+
 

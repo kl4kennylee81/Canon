@@ -22,6 +22,16 @@ bool RotateZoneData::preload(const std::string& file){
 }
 
 bool RotateZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    init(json->getFloat("radius"),json->getFloat("speed"));
+    auto zoneentriesjson = json->get("zoneEntries");
+    for (int i = 0; i < zoneentriesjson->size(); i++) {
+        auto zonejson = zoneentriesjson->get(i);
+        std::string oKey = zonejson->getString("objectKey");
+        float startingPos = zonejson->getFloat("startingPosition");
+        auto el = zonejson->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD;
+        std::shared_ptr<ZoneEntry> entry = ZoneEntry::alloc(oKey,startingPos,el);
+        zones.push_back(entry);
+    }
     return true;
 }
 

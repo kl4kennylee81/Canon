@@ -15,9 +15,18 @@
 #include "GenericAssetManager.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
-#define GAME_WIDTH 1024
+#define GAME_SCENE_WIDTH 1024
 /** This is the aspect ratio for physics */
-#define GAME_ASPECT 9.0/16.0
+#define GAME_SCENE_ASPECT (9.0/16.0)
+
+/** This is the logical physics width of the game **/
+#define GAME_PHYSICS_WIDTH 32.f
+
+/** This is the logical physics height of the game **/
+#define GAME_PHYSICS_HEIGHT 18.f
+
+/** The scaling from physics coordinates to the game scene **/
+#define GAME_PHYSICS_SCALE (GAME_SCENE_WIDTH/GAME_PHYSICS_WIDTH)
 
 class GameState {
 protected:
@@ -30,15 +39,15 @@ protected:
     
     std::shared_ptr<cugl::Node> _bgnode;
     
-    cugl::Rect _bounds;
-    
-    /** The root of our scene graph. 
+    /** The root of our scene graph.
      * Example:
      * Child1 : Background scene node
      * Child2 : is the _worldnode for the physics world root
      * would be used to define a draw order in the z axis for the different layers
      */
     std::shared_ptr<cugl::Scene>  _scene;
+    
+    cugl::Rect _bounds;
     
     std::vector<std::shared_ptr<GameObject>> _playerCharacters;
     
@@ -49,17 +58,22 @@ protected:
      * All objects include the player characters and all other objects in the game
      */
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
-    
-    /** not sure yet if representing time as an int is the move */
-    int time_elapsed;
-
 public:
+    
+    // TODO temporary reset of the gameState
+    bool reset;
+    
+GameState():
+    _worldnode(nullptr),
+    _debugnode(nullptr),
+    _bgnode(nullptr),
+    _scene(nullptr),
+    _bounds(cugl::Rect()),
+    _activeCharacterPosition(0){}
+    
     /* Need to multiply this scale by physics coordinates to get world coordinates */
     static float _physicsScale;
     
-    bool reset;
-
-
     virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
 
 	static std::shared_ptr<GameState> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
@@ -82,6 +96,8 @@ public:
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     
+    
+    
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
     }
@@ -90,9 +106,13 @@ public:
         return _bounds;
     }
     
-//    static float getPhysicsScale() { return _physicsScale; }
-    
     void addEnemyGameObject(std::shared_ptr<GameObject> obj);
+    
+    void addPlayerGameObject(std::shared_ptr<GameObject> obj);
+    
+    std::shared_ptr<GameObject> getPlayer(int index);
+    
+    size_t getNumberPlayerCharacters();
     
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
@@ -112,6 +132,45 @@ public:
             }
         }
     }
+    
+#pragma worldNode Transformation Settings getter
+    /** getter for the physicsScale to transform from physics to World Coordinates */
+    static float getPhysicsScale(){ return GameState::_physicsScale; }
+    
+    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
+    float getSceneToWorldTranslateY();
+    
+#pragma mark Coordinate Conversions
+    /** Physics Coordinate Conversions **/
+    cugl::Vec2& physicsToWorldCoords(cugl::Vec2& physicsCoords,cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& physicsToSceneCoords(cugl::Vec2& physicsCoords,cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& physicsToScreenCoords(cugl::Vec2& physicsCoords,cugl::Vec2& screenCoords);
+    
+    
+    /** Screen Coordinate Conversions **/
+    cugl::Vec2& screenToWorldCoords(cugl::Vec2& screenCoords, cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords);
+    
+    /** World Coordinate Conversions **/
+    
+    cugl::Vec2& worldToSceneCoords(cugl::Vec2& worldCoords, cugl::Vec2& sceneCoords);
+    
+    cugl::Vec2& worldToScreenCoords(cugl::Vec2& worldCoords, cugl::Vec2& screenCoords);
+    
+    cugl::Vec2& worldToPhysicsCoords(cugl::Vec2& worldCoords, cugl::Vec2& physicsCoords);
+    
+    
+    /** Scene Coordinate Conversion **/
+    cugl::Vec2& sceneToWorldCoords(cugl::Vec2& sceneCoords, cugl::Vec2& worldCoords);
+    
+    cugl::Vec2& sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords);
+    
+    cugl::Vec2& sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords);
 };
 
 #endif /* GameState_hpp */

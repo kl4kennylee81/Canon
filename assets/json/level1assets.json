@@ -21,36 +21,31 @@
         "objectKey": 1,
         "x": 5,
         "y": 9,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object1": {
         "objectKey": 1,
         "x": 30,
         "y": 17,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object2": {
         "objectKey": 2,
         "x": 9,
         "y": 15,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object3": {
         "objectKey": 1,
         "x": 20,
         "y": 5,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object4": {
         "objectKey": 2,
         "x": 7,
         "y": 8,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       }
     },
     "wave2": {
@@ -58,36 +53,31 @@
         "objectKey": 1,
         "x": 21,
         "y": 10,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object1": {
         "objectKey": 2,
         "x": 0,
         "y": 10,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object2": {
         "objectKey": 2,
         "x": 12,
         "y": 9,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object3": {
         "objectKey": 1,
         "x": 14,
         "y": 5,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object4": {
         "objectKey": 1,
         "x": 18,
         "y": 16,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       }
     },
     "wave3": {
@@ -95,36 +85,31 @@
         "objectKey": 2,
         "x": 3,
         "y": 6,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object1": {
         "objectKey": 2,
         "x": 25,
         "y": 3,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object2": {
         "objectKey": 1,
         "x": 2,
         "y": 12,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object3": {
         "objectKey": 1,
         "x": 14,
         "y": 8,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       },
       "object4": {
         "objectKey": 2,
         "x": 25,
         "y": 3,
-        "aiType": "HOMING",
-        "pathType": "NONE"
+        "aiKey": "homing"
       }
     }
   },

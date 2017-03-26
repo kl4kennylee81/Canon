@@ -14,7 +14,7 @@
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            5
+#define NUMBER_SPAWNS            1
 
 using std::string;
 using namespace cugl;
@@ -34,97 +34,139 @@ std::shared_ptr<GenericAssetManager> World::getAssetManager(){
 
 /** testing function to populate the world without the data files */
 void World::populate() {
-	_levelData = LevelData::alloc(1);
+    this->_isSandbox = true;
+	_levelData = LevelData::alloc();
 	std::mt19937 rng;
 	rng.seed(std::random_device()());
 	// distribution width and height
 
 	std::uniform_int_distribution<std::mt19937::result_type> dist9(1, 9);
-	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, 31);
-	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, 17);
+	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
+	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
 	for (int i = 0; i < 10; i++) {
-		std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng), TIME_BETWEEN_SPAWN);
+        std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
+    
+    // create player characters
+    auto player1 = WaveEntry::alloc("playerChar1", "", 500, 200, Element::BLUE, {});
+    _levelData->addPlayerChars(player1);
+    
+    auto player1Obj = _assets->get<ObjectData>("playerChar1");
+    _objectData.insert({"playerChar1",player1Obj});
+    
+    auto player1Anim = _assets->get<AnimationData>("blueCharAnimation");
+    _animationData.insert({ "blueCharAnimation",player1Anim });
+    
+    auto player2Obj = _assets->get<ObjectData>("playerChar2");
+    _objectData.insert({"playerChar2",player2Obj});
+    
+    auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
+    _animationData.insert({ "redCharAnimation",player2Anim });
+    
+    auto player2 = WaveEntry::alloc("playerChar2", "", 550, 250, Element::GOLD, {});
+    _levelData->addPlayerChars(player2);
 
+    std::shared_ptr<WaveEntry> we;
 	for (int i = 1; i < 10; i++) {
-		auto wd = WaveData::alloc(1);
+		auto wd = WaveData::alloc();
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-			auto ai = _assets->get<AIData>("homing");
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {1});
+            if (dist2(rng) == 1){
+                we = WaveEntry::alloc("object1", "homing", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
+            } else {
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{"staticZone"});
+            }
 			wd->addWaveEntry(we);
 		}
-		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-		auto ai = _assets->get<AIData>("square");
-        std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai, {1});
-		wd->addWaveEntry(we);
-		_waveData.insert(std::make_pair(i, wd));
+		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
 	}
+    
 
-    auto od1 = ObjectData::alloc(1, 1, 3, 5, 5, Element::BLUE);
-	_objectData.insert(std::make_pair(1, od1));
+	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation");
+	_objectData.insert(std::make_pair("object1", od1));
 
-    auto od2 = ObjectData::alloc(2, 1, 4, 5, 5, Element::GOLD);
-	_objectData.insert(std::make_pair(2, od2));
+    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
+	_objectData.insert(std::make_pair("object2", od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
-	_shapeData.insert({ sd->getUID(),sd });
+	_shapeData.insert({"shape1",sd });
 
 	std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
-	_animationData.insert({ blueEnemy->getUID(),blueEnemy });
+	_animationData.insert({ "blueEnemyAnimation",blueEnemy });
 
 	std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
-	_animationData.insert({ yellowEnemy->getUID(),yellowEnemy });
+	_animationData.insert({ "redEnemyAnimation",yellowEnemy });
+    
+	std::shared_ptr<AIData> homingAI = _assets->get<AIData>("homing");
+    _aiData.insert({"homing",homingAI});
+	std::shared_ptr<AIData> squareAI = _assets->get<AIData>("square");
+    _aiData.insert({"square",squareAI});
+    
 
     std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
-    _zoneData.insert({staticZone->getUID(), staticZone});
+    _zoneData.insert({"staticZone", staticZone});
     
-}
-
-void World::populate_singlefile(){
-
-	// later on, a controller can modify what the current level is, and we load in that level's assets
-	string currentLevel = "level1";
-	_levelData = _assets->get<LevelData>(currentLevel);
-
-	// iterate though level waves, load the wave data
-	for (int i = 1; i < _levelData->getNumberWaves() + 1; i++) 
-	{
-		string waveKey = "wave" + std::to_string(i);
-		_waveData.insert(std::make_pair(i, _assets->get<WaveData>(waveKey)));
-	}
-	// iterate through wave data, load in objects
-	for (int i = 1; i < _waveData.size() + 1; i++)
-	{
-		for (int j = 1; j < _waveData.at(i)->getWaveEntries().size(); j++)
-		{
-			int oKey = _waveData.at(i)->getEntry(j)->objectKey;
-			string objKey = "object" + std::to_string(oKey);
-			auto od = _assets->get<ObjectData>(objKey);
-			_objectData.insert(std::make_pair(oKey, od));
-		}
-	}
-
-	// iterate through object data, load in associated shapes and animation
-	for (int i = 1; i < _objectData.size() + 1; i++)
-	{
-		int sh = _objectData.at(i)->shape_id;
-		string shKey = "shape" + std::to_string(sh);
-		int anim = _objectData.at(i)->animation_id;
-		string animKey = "animation" + std::to_string(anim);
-		_shapeData.insert(std::make_pair(sh, _assets->get<ShapeData>(shKey)));
-		_animationData.insert(std::make_pair(anim, _assets->get<AnimationData>(animKey)));
-	}
-    
-	// todo: we need to agree on whether or not to use "animation1" instead of "redplayeranimation" as the animation key for consistency
-	// for parsing happiness I have currently referenced the enemies with "animation3" and "animation4" for easier lookup via assetmanager.
 }
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets){
     _assets = assets;
+    // TODO temporary to test if it works
+    this->_levelData = assets->get<LevelData>("level0");
+    _isSandbox = false;
+    
     populate();
     return true;
+}
+
+std::shared_ptr<ObjectData> World::getObjectData(std::string obKey){
+    if (_isSandbox && _objectData.count(obKey) > 0){
+        return _objectData.at(obKey);
+    }
+    // default to the asset if can't find in sandbox
+    return _assets->get<ObjectData>(obKey);
+}
+
+std::shared_ptr<AnimationData> World::getAnimationData(std::string aKey){
+    if (_isSandbox && _animationData.count(aKey) > 0){
+        return _animationData.at(aKey);
+    }
+    return _assets->get<AnimationData>(aKey);
+}
+
+std::shared_ptr<PathData> World::getPathData(std::string pathKey){
+    if (_isSandbox && _pathData.count(pathKey) > 0){
+        return _pathData.at(pathKey);
+    }
+    return _assets->get<PathData>(pathKey);
+}
+
+std::shared_ptr<ShapeData> World::getShapeData(std::string shapeKey){
+    if (_isSandbox && _shapeData.count(shapeKey) > 0){
+        return _shapeData.at(shapeKey);
+    }
+    return _assets->get<ShapeData>(shapeKey);
+}
+
+std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
+    if (_isSandbox && _waveData.count(waveKey) > 0){
+        return _waveData.at(waveKey);
+    }
+    return _assets->get<WaveData>(waveKey);
+}
+
+std::shared_ptr<AIData> World::getAIData(std::string aiKey){
+    if (_isSandbox && _aiData.count(aiKey) > 0){
+        return _aiData.at(aiKey);
+    }
+    return _assets->get<AIData>(aiKey);
+}
+
+std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
+    if (_isSandbox && _zoneData.count(zoneKey) > 0){
+        return _zoneData.at(zoneKey);
+    }
+    return _assets->get<ZoneData>(zoneKey);
 }
 

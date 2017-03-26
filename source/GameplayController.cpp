@@ -33,22 +33,24 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
-	if (_gameState->reset) {
-        std::shared_ptr<World> newWorld = World::alloc(_levelController->getWorld()->getAssetManager());
-        init(newWorld, _touch);
-	}
-	else {
-		_levelController->update(timestep, _gameState);
-        _spawnController->update(timestep);
-        _switchController->update(timestep, _gameState);
-		_pathController->update(timestep, _gameState);
-		_moveController->update(timestep, _gameState);
-		_moveController->updateActivePaths(timestep, _gameState);
-		_aiController->update(timestep, _gameState);
-        _zoneController->update(timestep);
-        _collisionController->update(timestep, _gameState);
-		_animationController->update(timestep, _gameState);
-	}
+    // TODO temporary rest until we have a retry screen
+    if (_gameState->reset){
+        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
+        init(_levelController->getWorld(),_touch);
+        _gameState->reset = false;
+        return;
+    }
+
+    _levelController->update(timestep, _gameState);
+    _spawnController->update(timestep);
+    _switchController->update(timestep, _gameState);
+    _pathController->update(timestep, _gameState);
+    _moveController->update(timestep, _gameState);
+    _moveController->updateActivePaths(timestep, _gameState);
+    _aiController->update(timestep, _gameState);
+    _zoneController->update(timestep);
+    _collisionController->update(timestep, _gameState);
+    _animationController->update(timestep, _gameState);
 }
 
 /**
@@ -69,10 +71,10 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
     _switchController = SwitchController::alloc(_gameState);
-	_levelController = LevelController::alloc(_gameState,levelWorld);
     _spawnController = SpawnController::alloc();
     _zoneController = ZoneController::alloc(_gameState,levelWorld);
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
+	_levelController = LevelController::alloc(_gameState,levelWorld);
 
 	_pathController->attach(_moveController);
     _pathController->attach(_switchController);
@@ -89,9 +91,11 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
     _moveController->attach(_animationController);
 
     _collisionController->attach(_animationController);
+    _collisionController->attach(_zoneController);
     
     _spawnController->attach(_collisionController);
     _spawnController->attach(_animationController);
+    _spawnController->attach(_switchController);
     _spawnController->attach(_aiController);
     _spawnController->attach(_zoneController);
     

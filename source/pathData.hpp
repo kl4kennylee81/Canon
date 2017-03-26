@@ -25,14 +25,13 @@ public:
     
     virtual bool materialize();
 
-	bool init(int uid) {
-		this->_uid = uid;
+	bool init() {
 		return true;
 	}
 
-	static std::shared_ptr<PathData> alloc(int uid) {
+	static std::shared_ptr<PathData> alloc() {
 		std::shared_ptr<PathData> result = std::make_shared<PathData>();
-		return (result->init(uid) ? result : nullptr);
+		return (result->init() ? result : nullptr);
 	}
 };
 

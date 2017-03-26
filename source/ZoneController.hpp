@@ -25,6 +25,8 @@ protected:
     
     std::map<GameObject*, std::shared_ptr<ActiveZone>> zoneMap;
     
+    std::vector<GameObject*> objsScheduledForRemoval;
+    
 public:
     ZoneController();
     
@@ -52,13 +54,23 @@ public:
         return (result->init(state,world) ? result : nullptr);
     }
     
-    void updateStaticZone(GameObject* charObj, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs);
+    void updateStaticZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs);
+    
+    void updateRotateZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<RotateZoneData> data, std::vector<GameObject*> zoneObjs);
+    
+    void updatePulseZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<PulseZoneData> data, std::vector<GameObject*> zoneObjs);
     
     void addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneData>> datas);
     
     void staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, cugl::Vec2 objPos);
     
+    void rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<RotateZoneData> data, cugl::Vec2 objPos);
+    
+    void pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, cugl::Vec2 objPos);
+    
     void handleObjectSpawn(GameObject* obj);
+    
+    void removeObjectZones(GameObject* obj);
 };
 
 #endif /* ZoneController_hpp */

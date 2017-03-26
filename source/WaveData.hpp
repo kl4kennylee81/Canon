@@ -16,27 +16,30 @@
 
 class WaveEntry {
 public:
-    int objectKey;
+    std::string objectKey;
+    
+    std::string aiKey;
+    
+    Element element;
     
     cugl::Vec2 position;
 
-	std::shared_ptr<AIData> aiData;
-    std::vector<int> zone_ids;
+    std::vector<std::string> zoneKeys;
     
     WaveEntry(){}
     
-    bool init(int oKey, float x, float y, std::shared_ptr<AIData> ai, std::vector<int> zids){
-        this->objectKey = oKey;
-        this->position.x = x;
-        this->position.y = y;
-		this->aiData = ai;
-        this->zone_ids = zids;
-        return true;
+    bool init(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    bool init(std::string objectKey, std::string aiKey, float x, float y,Element element,std::vector<std::string> zoneKeys);
+    
+    static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
+        std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
+        return (result->init(json) ? result : nullptr);
     }
     
-    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::shared_ptr<AIData> ai, std::vector<int> zids) {
+    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, std::string aiKey, float x, float y, Element element, std::vector<std::string> zoneKeys) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey,x,y,ai,zids) ? result : nullptr);
+        return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
     }
 };
 
@@ -47,14 +50,13 @@ protected:
 public:
     WaveData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
         return true;
     }
     
-    static std::shared_ptr<WaveData> alloc(int uid) {
+    static std::shared_ptr<WaveData> alloc() {
         std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
     
     void addWaveEntry(std::shared_ptr<WaveEntry> w){

@@ -32,6 +32,7 @@ protected:
     std::shared_ptr<cugl::Node> _debugnode;
     
     std::vector<GameObject*> objsScheduledForRemoval;
+    std::vector<GameObject*> objsToIgnore;
     
     /** Whether or not debug mode is active */
     bool _debug;

@@ -669,7 +669,7 @@ public:
     /**
      * Sets the untransformed size of the node.
      *
-     * The content size remains the same no matter how the node is scaled or
+     * The content size remains the same no matter hgow the node is scaled or
      * rotated. All nodes must have a size, though it may be degenerate (0,0).
      *
      * Changing the size of a rectangle will not change the position of the

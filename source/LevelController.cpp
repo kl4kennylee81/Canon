@@ -8,10 +8,9 @@
 
 #include "LevelController.hpp"
 #include "LevelEvent.hpp"
+#include <math.h>
 
 using namespace cugl;
-
-#define ENEMY_SHAPE         "enemy_shape_rect"
 
 LevelController::LevelController():
 BaseController(),
@@ -32,66 +31,58 @@ void LevelController::notify(Event* e) {
  */
 void LevelController::eventUpdate(Event* e) {}
 
+void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
+    std::shared_ptr<ObjectData> od = _world->getObjectData(we->objectKey);
+    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
+    std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->animationKey);
+    std::shared_ptr<AIData> aid = _world->getAIData(we->aiKey); // aiKey is in the wave entry
+    std::vector<std::shared_ptr<ZoneData>> zds = {};
+    for(auto zkey: we->zoneKeys){
+        zds.push_back(_world->getZoneData(zkey));
+    }
+    
+    
+    std::shared_ptr<GameObject> gameOb = GameObject::alloc();
+    gameOb->setIsPlayer(isPlayer);
+    
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, aid, zds);
+    notify(initevent.get());
+    
+    if (isPlayer){
+        // player is added to the game state here
+        gameOb->setIsPlayer(true);
+        state->addPlayerGameObject(gameOb);
+    } else {
+        // enemy is added to the game state here
+        gameOb->setIsPlayer(false);
+        state->addEnemyGameObject(gameOb);
+    }
+    
+    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb);
+    
+    // notify the observers of the object that is spawned
+    notify(spawningevent.get());
+}
+
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     
-    // TODO Temporary code to reset level when finished until we have a discrete ending
-    if (_level.isSpawningFinished()){
-        _level.reset();
-        _progressBarController->reset(state,_world);
-        return;
+    // send the player spawning event
+    if (!_level.hasPlayerSpawned()){
+        _level.togglePlayerSpawned();
+        for (auto playerEntry : _level.getPlayerChars()){
+            spawnWaveEntry(playerEntry,true,state);
+        }
     }
     
     _level.update(timestep);
     _progressBarController->update(state,_level);
-    int waveKey = _level.pollWave();
-    if (waveKey != -1){
+    if (_level.isReadyToSpawn()){
+        _level.toggleReadyToSpawn();
+        std::string waveKey = _level.getCurrentWaveKey();
         // spawn the gameObject from the prototypes
         std::shared_ptr<WaveData> wd = _world->getWaveData(waveKey);
         for(auto it: wd->getWaveEntries()) {
-            std::shared_ptr<ObjectData> od = _world->getObjectData(it->objectKey);
-            std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shape_id);
-            std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animation_id);
-            std::vector<std::shared_ptr<ZoneData>> zds = {};
-            for(auto zid: it->zone_ids){
-                zds.push_back(_world->getZoneData(zid));
-            }
-            
-            std::shared_ptr<GameObject> enemy = GameObject::alloc();
-            
-            std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(enemy, it, od, ad, sd, zds);
-            notify(initevent.get());
-            
-            /*
-             auto image = _world->getAssetManager()->get<Texture>(ENEMY_SHAPE);
-             auto enemyNode = PolygonNode::allocWithTexture(image);
-             enemyNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-             
-             if (od->getElement() == Element::BLUE){
-             enemyNode->setColor(Color4::BLUE);
-             } else {
-             enemyNode->setColor(Color4::YELLOW);
-             }
-             
-             std::shared_ptr<GameObject> enemy = GameObject::alloc(enemyNode);
-             if (!enemy){
-             assert(false);
-             }
-             enemy->setIsPlayer(false);
-             
-             auto box1 = BoxObstacle::alloc(it->position, enemy->getNode()->getSize()/state->getPhysicsScale());
-             
-             std::shared_ptr<PhysicsComponent> physics1 = PhysicsComponent::alloc(box1, od->getElement());
-             enemy->setPhysicsComponent(physics1);
-             */
-            
-            // enemy is added to the game state here
-            state->addEnemyGameObject(enemy);
-            
-            std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(enemy);
-            
-            // notify the observers of the object that is spawned
-            notify(spawningevent.get());
-            
+            spawnWaveEntry(it, false, state);
         }
     }
 }

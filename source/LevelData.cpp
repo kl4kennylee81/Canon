@@ -7,6 +7,7 @@
 //
 
 #include "LevelData.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -14,11 +15,15 @@ void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
     _levelEntries.push_back(entry);
 }
 
+void LevelData::addPlayerChars(std::shared_ptr<WaveEntry> entry){
+    _playerChars.push_back(entry);
+}
+
 float LevelData::getTime(int index){
     return _levelEntries.at(index)->time;
 }
 
-int LevelData::getWaveKey(int index){
+std::string LevelData::getWaveKey(int index){
     return _levelEntries.at(index)->waveKey;
 }
 
@@ -38,12 +43,21 @@ bool LevelData::preload(const std::string& file){
 }
 
 bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	for (int i = 0; i < json->size(); i++) {
-		auto child = json->get(i);
-		auto entry = LevelEntry::alloc(child->getFloat("waveKey"), child->getInt("time"));
+    std::shared_ptr<JsonValue> levelEntries = json->get("levelEntries");
+	for (int i = 0; i < levelEntries->size(); i++) {
+		auto child = levelEntries->get(i);
+		auto entry = LevelEntry::alloc(child->getString("waveKey"), child->getInt("time"));
 		addLevelEntry(entry);
 	}
-	init(0);
+    // get the blue player character
+    std::shared_ptr<JsonValue> playerChars = json->get("playerChars");
+    for (int i = 0; i < playerChars->size(); i++){
+        auto child = playerChars->get(i);
+        auto entry = WaveEntry::alloc(child);
+        this->addPlayerChars(entry);
+    }
+    
+    init();
     return true;
 }
 

@@ -251,6 +251,7 @@ void SimpleObstacle::updateDebug() {
         angle = (float)(M_PI*angle/180);
     }
     
+    
     _debug->setPosition(pos);
     _debug->setAngle(angle);
 }
