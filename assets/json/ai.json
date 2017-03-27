@@ -18,6 +18,19 @@
       "type": "PATH",
       "pathType": "CUSTOM",
       "path": "(0,0) (100,0) (100,100) (0,100)"
+    },
+    "composite": {
+      "type": "COMPOSITE",
+      "conditions": [
+        {
+          "condition": "START",
+          "aiKey": "static"
+        },
+        {
+          "condition": "RADIUS 200",
+          "aiKey": "homing"
+        }
+      ]
     }
   }
 }

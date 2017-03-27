@@ -18,20 +18,21 @@
 
 class CompositeAIData : public AIData {
 protected:
-	std::vector<Condition> _conditions;
-	std::vector<std::string> _aiKeys;
-	std::vector<AIData> _aiDatas;
+	std::vector<std::shared_ptr<Condition>> _conditions;
 
 public:
+	std::vector<std::string> _aiKeys;
+	std::vector<std::shared_ptr<AIData>> _aiDatas;
+
 	CompositeAIData() : AIData() {}
 
-	bool init(std::vector<Condition> conditions, std::vector<std::string> aiKeys) { 
+	bool init(std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::string> aiKeys) {
 		_conditions = conditions;
 		_aiKeys = aiKeys;
 		return true;
 	}
 
-	static std::shared_ptr<CompositeAIData> alloc(std::vector<Condition> conditions, std::vector<std::string> aiKeys) {
+	static std::shared_ptr<CompositeAIData> alloc(std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::string> aiKeys) {
 		std::shared_ptr<CompositeAIData> result = std::make_shared<CompositeAIData>();
 		return (result->init(conditions, aiKeys) ? result : nullptr);
 	}

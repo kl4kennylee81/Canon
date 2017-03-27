@@ -10,6 +10,7 @@
 #include "Element.hpp"
 #include <random>
 #include "AIData.hpp"
+#include "CompositeAIData.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -157,10 +158,16 @@ std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
 }
 
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){
-    if (_isSandbox && _aiData.count(aiKey) > 0){
-        return _aiData.at(aiKey);
-    }
-    return _assets->get<AIData>(aiKey);
+	auto data = _isSandbox && _aiData.count(aiKey) > 0 ? _aiData[aiKey] : _assets->get<AIData>(aiKey);
+	if (data != nullptr && data->type == AIType::COMPOSITE) {
+		auto compositeData = std::static_pointer_cast<CompositeAIData>(data);
+		for (int i = 0; i < compositeData->_aiKeys.size(); i++) {
+			std::shared_ptr<AIData> subData = getAIData(compositeData->_aiKeys.at(i));
+			compositeData->_aiDatas.push_back(subData);
+		}
+		return compositeData;
+	}
+	return data;
 }
 
 std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
