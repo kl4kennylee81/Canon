@@ -41,6 +41,8 @@ public:
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
     }
+
+	std::string jsonString();
 };
 
 class WaveData : public Data {

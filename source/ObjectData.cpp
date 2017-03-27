@@ -7,7 +7,6 @@
 //
 
 #include "ObjectData.hpp"
-
 using namespace cugl;
 
 bool ObjectData::init(std::string shapeKey,std::string animKey){
@@ -18,8 +17,10 @@ bool ObjectData::init(std::string shapeKey,std::string animKey){
 
 
 std::string ObjectData::serialize(){
-    return "";
+	std::string serialized_string = "{\n\"shapeKey\": \"" + this->shapeKey + "\",\n\"animationKey" + "\":\"" + this->animationKey + "\"}";
+    return serialized_string;
 }
+
 
 bool ObjectData::preload(const std::string& file){
 	auto reader = JsonReader::allocWithAsset(file.c_str());

@@ -9,6 +9,7 @@
 #include "LevelData.hpp"
 #include "GameState.hpp"
 
+
 using namespace cugl;
 
 void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
@@ -32,7 +33,25 @@ size_t LevelData::getNumberWaves(){
 }
 
 std::string LevelData::serialize(){
-    return "";
+	std::string serialized_string = "{\"levelEntries\":{";
+	for (int i = 0; i < getNumberWaves(); i++)
+	{
+		serialized_string += "\"wave" + std::to_string(i+1) + "\":{"
+			+ "\"waveKey\":\"" + getWaveKey(i) + "\","
+			+ "\"time\":" + std::to_string(getTime(i))
+			+ "}";
+		if (i < getNumberWaves() - 1) serialized_string += ",";
+
+	}
+	serialized_string += "}\n,\"playerChars\":{";
+
+	for (int i = 0; i < getPlayerChars().size(); i++)
+	{
+		serialized_string += "\"player" + std::to_string(i + 1) + "\":{" + getPlayerChars().at(i)->jsonString() + "}\n";
+		if (i < getPlayerChars().size() - 1) serialized_string += ",";
+	}
+	serialized_string += "}\n}";
+    return serialized_string;
 }
 
 bool LevelData::preload(const std::string& file){

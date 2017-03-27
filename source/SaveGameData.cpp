@@ -1,11 +1,27 @@
 #include "SaveGameData.hpp"
-
+//#include <iostream>
+//#include <fstream>
 using namespace cugl;
 
 std::string SaveGameData::serialize() 
 {
-	return "";
+	std::string serialized_string = "{\n";
+	for (int i = 0; i < _saveLevelEntries.size(); i++)
+	{
+		auto child = _saveLevelEntries.at(i);
+		serialized_string += "\"" + child->levelKey + "\": {\n" 
+			+ "\"name\": \"" + child->name + "\",\n"
+			+ "\"unlocked\": " + std::string((child->unlocked) ? "1" : "0") + std::string(",\n") 
+			+ "\"complete\": " + std::string((child->complete) ? "1" : "0") + std::string(",\n") 
+			+ "\"levelKey\": \"" + child->levelKey + "\"" + ",\n"
+			+ "\"levelUrl\": \"" + child->levelUrl + "\"" + ",\n"
+			+ "\"highScore\": " + std::to_string(child->highScore) + std::string("\n")
+			+ "}\n";
+	}
+	serialized_string += "}";
+	return serialized_string;
 }
+
 
 bool SaveGameData::preload(const std::string& file) 
 {
@@ -35,6 +51,16 @@ bool SaveGameData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 			auto levelKey = child->get("levelKey");
 		}
 	}
+	//std::string filename = "test_writer.json";
+	//Pathname path = Pathname(filename);
+	//std::shared_ptr<JsonWriter> writer = JsonWriter::alloc(path);
+	//writer->writeJson(json);
+
+	//std::ofstream myfile;
+	//myfile.open("test_writer2.json");
+	//myfile << this->serialize();
+	//myfile.close();
+
 	return true;
 }
 
