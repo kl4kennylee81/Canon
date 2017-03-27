@@ -16,9 +16,11 @@ bool ObjectData::init(std::string shapeKey,std::string animKey){
 };
 
 
-std::string ObjectData::serialize(){
-	std::string serialized_string = "{\n\"shapeKey\": \"" + this->shapeKey + "\",\n\"animationKey" + "\":\"" + this->animationKey + "\"}";
-    return serialized_string;
+std::string ObjectData::serialize() {
+	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
+	object->appendChild("animationKey", JsonValue::alloc(animationKey));
+	return object->toString();
 }
 
 

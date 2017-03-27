@@ -42,7 +42,7 @@ public:
         return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
     }
 
-	std::string jsonString();
+	std::shared_ptr<cugl::JsonValue> getJsonValue();
 };
 
 class WaveData : public Data {

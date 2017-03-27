@@ -3,23 +3,23 @@
 //#include <fstream>
 using namespace cugl;
 
-std::string SaveGameData::serialize() 
+std::string SaveGameData::serialize()
 {
-	std::string serialized_string = "{\n";
+	std::shared_ptr<JsonValue> levelParent = JsonValue::allocObject();
 	for (int i = 0; i < _saveLevelEntries.size(); i++)
 	{
 		auto child = _saveLevelEntries.at(i);
-		serialized_string += "\"" + child->levelKey + "\": {\n" 
-			+ "\"name\": \"" + child->name + "\",\n"
-			+ "\"unlocked\": " + std::string((child->unlocked) ? "1" : "0") + std::string(",\n") 
-			+ "\"complete\": " + std::string((child->complete) ? "1" : "0") + std::string(",\n") 
-			+ "\"levelKey\": \"" + child->levelKey + "\"" + ",\n"
-			+ "\"levelUrl\": \"" + child->levelUrl + "\"" + ",\n"
-			+ "\"highScore\": " + std::to_string(child->highScore) + std::string("\n")
-			+ "}\n";
+		std::shared_ptr<JsonValue> level = JsonValue::allocObject();
+		level->appendChild("name", JsonValue::alloc(child->name));
+		level->appendChild("unlocked", JsonValue::alloc((child->unlocked) ? 1. : 0.));
+		level->appendChild("complete", JsonValue::alloc((child->complete) ? 1. : 0.));
+		level->appendChild("levelKey", JsonValue::alloc(child->levelKey));
+		level->appendChild("levelUrl", JsonValue::alloc(child->levelUrl));
+		level->appendChild("highScore", JsonValue::alloc(static_cast<double>(child->highScore)));
+		levelParent->appendChild(child->levelKey, level);
+		
 	}
-	serialized_string += "}";
-	return serialized_string;
+	return levelParent->toString();
 }
 
 

@@ -8,6 +8,8 @@
 
 #include "ShapeData.hpp" // GAME_PHYSICS_SCALE for conversion
 #include "GameState.hpp"
+#include <iostream>
+#include <fstream>
 
 using namespace cugl;
 
@@ -22,14 +24,14 @@ bool ShapeData::init(std::vector<float> v){
 }
 
 std::string ShapeData::serialize(){
-	std::string serialized_string = "{\n\"vertices\": [";
+	std::shared_ptr<JsonValue> verticesArray = JsonValue::allocArray();
 	for (int i = 0; i < this->vertices.size(); i++)
 	{
-		serialized_string += std::to_string(this->vertices[i] * GAME_PHYSICS_SCALE) + "\n";
-		if (i < this->vertices.size() - 1) serialized_string += ",";
+		verticesArray->appendValue(this->vertices[i] * GAME_PHYSICS_SCALE);
 	}
-	serialized_string += "]}";
-	return serialized_string;
+	std::shared_ptr<JsonValue> vertices = JsonValue::allocObject();
+	vertices->appendChild("vertices", verticesArray);
+	return vertices->toString();
 }
 
 bool ShapeData::preload(const std::string& file){
@@ -41,6 +43,15 @@ bool ShapeData::preload(const std::string& file){
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(json->get("vertices")->asFloatArray());
+	std::string filename = "test_writer.json";
+	Pathname path = Pathname(filename);
+	std::shared_ptr<JsonWriter> writer = JsonWriter::alloc(path);
+	writer->writeJson(json);
+
+	std::ofstream myfile;
+	myfile.open("test_writer2.json");
+	myfile << this->serialize();
+	myfile.close();
 
 	return true;
 }

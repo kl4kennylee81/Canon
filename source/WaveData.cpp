@@ -10,8 +10,6 @@
 #include "AIData.hpp"
 #include "GameState.hpp" // for conversion to physicsScale
 #include "Element.hpp"
-//#include <iostream>
-//#include <fstream>
 
 using namespace cugl;
 
@@ -39,28 +37,31 @@ bool WaveEntry::init(std::string objectKey, std::string aiKey, float x, float y,
     return true;
 }
 
-std::string WaveEntry::jsonString()
+std::shared_ptr<JsonValue> WaveEntry::getJsonValue()
 {
-	std::string serialized_string = "\"objectKey\":\"" + objectKey + "\",\n"
-		+ "\"aiKey\":" + "\"" + aiKey + "\",\n"
-		+ "\"x\":" + std::to_string(position.x * GAME_PHYSICS_SCALE) + ",\n"
-		+ "\"y\":" + std::to_string(position.y * GAME_PHYSICS_SCALE) + ",\n"
-		+ "\"element\":" + "\"" + std::string((element == Element::BLUE) ? "BLUE" : "GOLD") + "\"\n";
-	return serialized_string;
+	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+	object->appendChild("aiKey", JsonValue::alloc(aiKey));
+	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
+	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
+	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	return object;
 }
 
 std::string WaveData::serialize()
 {
-	std::string serialized_string = "{\n\"waveEntries\":{\n";
+	std::shared_ptr<JsonValue> wave = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> objectList = JsonValue::allocObject();
 	for (int i = 0; i < _waveEntries.size(); i++)
 	{
-		auto object = _waveEntries.at(i);
-		serialized_string += "\"" + object->objectKey + "\":{" + object->jsonString() + "}\n";
-		if (i < _waveEntries.size() - 1) serialized_string += ",";
+		auto child = _waveEntries.at(i);
+		std::shared_ptr<JsonValue> object = child->getJsonValue();
+		object->appendChild("objectKey", JsonValue::alloc(child->objectKey));
+		objectList->appendChild("object" + std::to_string(i + 1), object);		
 	}
-	serialized_string += "}\n}";
-	
-    return serialized_string;
+
+
+	wave->appendChild("waveEntries", objectList);
+	return wave->toString();
 }
 
 bool WaveData::preload(const std::string& file){
@@ -78,15 +79,6 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = WaveEntry::alloc(child);
 		addWaveEntry(entry);
 	}
-	//std::string filename = "test_writer.json";
-	//Pathname path = Pathname(filename);
-	//std::shared_ptr<JsonWriter> writer = JsonWriter::alloc(path);
-	//writer->writeJson(json);
-
-	//std::ofstream myfile;
-	//myfile.open("test_writer2.json");
-	//myfile << this->serialize();
-	//myfile.close();
     return true;
 }
 

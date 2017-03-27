@@ -7,8 +7,6 @@
 //
 
 #include "AnimationData.hpp"
-#include <iostream>
-#include <fstream>
 
 using namespace cugl;
 
@@ -59,17 +57,7 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         _actionmap.insert({action,animationupdate});
     }
-
-	std::string filename = "test_writer.json";
-	Pathname path = Pathname(filename);
-	std::shared_ptr<JsonWriter> writer = JsonWriter::alloc(path);
-	writer->writeJson(json);
-
-	std::ofstream myfile;
-	myfile.open("test_writer2.json");
-	myfile << this->serialize();
-	myfile.close();
-    return true;
+	return true;
 }
 
 bool AnimationData::materialize(){
