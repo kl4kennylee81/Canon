@@ -74,6 +74,7 @@ std::vector<Vec2> getPathFromString(const std::string& str) {
 }
 
 bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
+	type = AIType::PATH;
 	PathType pathType = getPathTypeFromString(json->getString("pathType"));
 	std::vector<Vec2> path = getPathFromString(json->getString("path"));
 	init(pathType, path);

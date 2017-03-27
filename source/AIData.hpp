@@ -16,8 +16,14 @@
 #include "GameObject.hpp"
 #include "StaticAI.hpp"
 
+enum class AIType : int {
+	HOMING, PATH, STATIC, COMPOSITE
+};
+
 class AIData : public Data {
 public:
+
+	AIType type;
 
 	AIData() : Data() {}
 
