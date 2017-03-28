@@ -43,11 +43,16 @@ std::string LevelData::serialize(){
 		levelList->appendChild("wave" + std::to_string(i + 1), waveDetails);
 	}
 
+	std::shared_ptr<JsonValue> playerList = JsonValue::allocObject();
 	for (int i = 0; i < getPlayerChars().size(); i++)
 	{
-		levelList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->getJsonValue());
+		playerList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->getJsonValue());
 	}
-	return levelList->toString();
+
+	std::shared_ptr<JsonValue> finalList = JsonValue::allocObject();
+	finalList->appendChild("levelEntries", levelList);
+	finalList->appendChild("playerChars", playerList);
+	return finalList->toString();
 }
 
 bool LevelData::preload(const std::string& file){

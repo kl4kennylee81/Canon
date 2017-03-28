@@ -16,10 +16,6 @@ bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path) {
     return true;
 }
 
-std::string PathAIData::serialize() {
-	return "";
-}
-
 bool PathAIData::preload(const std::string& file) {
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();
@@ -38,6 +34,14 @@ PathType getPathTypeFromString(const std::string& str) {
 		return PathType::CUSTOM;
 	}
 	return PathType::NONE;
+}
+
+std::string getStringFromPathType(const PathType pt)
+{
+	if (pt == PathType::HORIZONTAL) return "HORIZONTAL";
+	if (pt == PathType::VERTICAL) return "VERTICAL";
+	if (pt == PathType::CUSTOM) return "CUSTOM";
+	return "NONE";
 }
 
 std::vector<std::string> split(const std::string& s, const char& c)
@@ -72,6 +76,26 @@ std::vector<Vec2> getPathFromString(const std::string& str) {
 	}
 	return path;
 }
+
+std::string getStringFromPath(std::vector<Vec2> vecPath)
+{
+	std::string acc = "";
+	for (int i = 0; i < vecPath.size(); i++)
+	{
+		acc += "(" + std::to_string(vecPath.at(i).x) + "," + std::to_string(vecPath.at(i).y) + ")";
+		if (i < vecPath.size() - 1) acc += " ";
+	}
+	return acc;
+}
+
+std::string PathAIData::serialize() {
+	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	data->appendChild("type", JsonValue::alloc("PATH"));
+	data->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_pathType)));
+	data->appendChild("path", JsonValue::alloc(getStringFromPath(_path)));
+	return data->toString();
+}
+
 
 bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::PATH;

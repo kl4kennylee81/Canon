@@ -32,6 +32,8 @@ public:
         std::shared_ptr<ZoneEntry> result = std::make_shared<ZoneEntry>();
         return (result->init(objectKey,startingPosition,element) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> getJsonValue();
 };
 
 class RotateZoneData : public ZoneData {

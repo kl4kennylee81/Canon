@@ -7,7 +7,6 @@
 //
 
 #include "MenuScreenData.hpp"
-
 using namespace cugl;
 
 std::string MenuScreenData::serialize(){

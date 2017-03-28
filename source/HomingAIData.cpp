@@ -1,10 +1,13 @@
 #include "HomingAIData.hpp"
 #include "HomingAI.hpp"
 
+
 using namespace cugl;
 
 std::string HomingAIData::serialize() {
-	return "";
+	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
+	ai->appendChild("type", JsonValue::alloc("HOMING"));
+	return ai->toString();
 }
 
 bool HomingAIData::preload(const std::string& file) {

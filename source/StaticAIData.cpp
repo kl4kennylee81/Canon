@@ -4,7 +4,9 @@
 using namespace cugl;
 
 std::string StaticAIData::serialize() {
-	return "";
+	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
+	ai->appendChild("type", JsonValue::alloc("STATIC"));
+	return ai->toString();
 }
 
 bool StaticAIData::preload(const std::string& file) {

@@ -10,8 +10,50 @@
 
 using namespace cugl;
 
+std::shared_ptr<JsonValue> AnimationUpdate::getJsonValue()
+{
+	std::shared_ptr<JsonValue> update = JsonValue::allocObject();
+	update->appendChild("active", JsonValue::alloc(active));
+	update->appendChild("repeat", JsonValue::alloc(repeat));
+	return update;
+}
+
+std::shared_ptr<JsonValue> AnimationState::getJsonValue()
+{
+	std::shared_ptr<JsonValue> state = JsonValue::allocObject();
+	state->appendChild("first", JsonValue::alloc(static_cast<float>(first)));
+	state->appendChild("total", JsonValue::alloc(static_cast<float>(total)));
+	std::shared_ptr<JsonValue> frameArray = JsonValue::allocArray();
+	for (int i = 0; i < frames.size(); i++)
+	{
+		frameArray->appendValue(static_cast<float>(frames.at(i)));
+	}
+	state->appendChild("frames", frameArray);
+	return state;
+}
+
 std::string AnimationData::serialize(){
-    return "";
+	std::shared_ptr<JsonValue> animData = JsonValue::allocObject();
+	animData->appendChild("texture", JsonValue::alloc(texture->getName()));
+	animData->appendChild("rows", JsonValue::alloc(static_cast<float>(rows)));
+	animData->appendChild("cols", JsonValue::alloc(static_cast<float>(cols)));
+	animData->appendChild("size", JsonValue::alloc(static_cast<float>(size)));
+
+	std::shared_ptr<JsonValue> stateMap = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> actionMap = JsonValue::allocObject();
+	
+	for (auto const& entry : getStateMap())
+	{
+		stateMap->appendChild(entry.first, entry.second->getJsonValue());
+	}
+	for (auto const& entry : getActionMap())
+	{
+		actionMap->appendChild(AnimationData::actionToString(entry.first), entry.second->getJsonValue());
+	}
+
+	animData->appendChild("statemap", stateMap);
+	animData->appendChild("actionmap", actionMap);
+	return animData->toString();
 }
 
 bool AnimationData::preload(const std::string& file){
@@ -24,6 +66,7 @@ bool AnimationData::preload(const std::string& file){
 bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     init();
     texture = Texture::allocWithFile(json->getString("texture"));
+	texture->setName(json->getString("texture")); // a way to preserve the texture path
     rows = json->getInt("rows");
     cols = json->getInt("cols");
     size = json->getInt("size");

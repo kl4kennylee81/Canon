@@ -44,6 +44,7 @@ std::shared_ptr<JsonValue> WaveEntry::getJsonValue()
 	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
 	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
 	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	object->appendChild("objectKey", JsonValue::alloc(objectKey));
 	return object;
 }
 
