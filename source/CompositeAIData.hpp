@@ -23,18 +23,25 @@ protected:
 public:
 	std::vector<std::string> _aiKeys;
 	std::vector<std::shared_ptr<AIData>> _aiDatas;
+	std::string _startKey;
+	std::shared_ptr<AIData> _startData;
 
 	CompositeAIData() : AIData() {}
 
-	bool init(std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::string> aiKeys) {
+	bool init(std::string startKey, std::vector<std::shared_ptr<Condition>> conditions, 
+		std::vector<std::string> aiKeys) 
+	{
 		_conditions = conditions;
 		_aiKeys = aiKeys;
+		_startKey = startKey;
 		return true;
 	}
 
-	static std::shared_ptr<CompositeAIData> alloc(std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::string> aiKeys) {
+	static std::shared_ptr<CompositeAIData> alloc(std::string startKey, std::vector<std::shared_ptr<Condition>> conditions, 
+		std::vector<std::string> aiKeys) 
+	{
 		std::shared_ptr<CompositeAIData> result = std::make_shared<CompositeAIData>();
-		return (result->init(conditions, aiKeys) ? result : nullptr);
+		return (result->init(startKey, conditions, aiKeys) ? result : nullptr);
 	}
 
 	std::string serialize() override;

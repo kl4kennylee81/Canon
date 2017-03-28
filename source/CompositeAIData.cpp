@@ -33,7 +33,8 @@ bool CompositeAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 		conditions.push_back(condition);
 		aiKeys.push_back(conds->get(i)->getString("aiKey"));
 	}
-	init(conditions, aiKeys);
+	std::string startKey = json->getString("startAI");
+	init(startKey, conditions, aiKeys);
 	return true;
 }
 
@@ -42,5 +43,5 @@ bool CompositeAIData::materialize() {
 }
 
 std::shared_ptr<ActiveAI> CompositeAIData::newActiveAI(std::shared_ptr<GameObject> object) {
-	return CompositeAI::alloc(object, _conditions, _aiDatas);
+	return CompositeAI::alloc(object, _startData, _conditions, _aiDatas);
 }

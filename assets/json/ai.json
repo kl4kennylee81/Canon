@@ -21,11 +21,8 @@
     },
     "composite": {
       "type": "COMPOSITE",
+      "startAI": "static",
       "conditions": [
-        {
-          "condition": "START",
-          "aiKey": "static"
-        },
         {
           "condition": "RADIUS 200",
           "aiKey": "homing"

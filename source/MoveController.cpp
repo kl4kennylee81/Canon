@@ -48,6 +48,7 @@ void MoveController::eventUpdate(Event* e) {
 }
 
 void MoveController::update(float timestep,std::shared_ptr<GameState> state){
+	updateActivePaths(timestep, state);
 	std::vector<std::shared_ptr<GameObject>> toDelete;
 	for (auto it : _activePaths) {
 		std::shared_ptr<GameObject> player = it.first;
