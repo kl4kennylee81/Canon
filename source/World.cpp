@@ -15,7 +15,7 @@
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            1
+#define NUMBER_SPAWNS            6
 
 using std::string;
 using namespace cugl;
@@ -75,9 +75,9 @@ void World::populate() {
 		for (int j = 0; j<NUMBER_SPAWNS; j++) {
 			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
             if (dist2(rng) == 1){
-                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
+                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{});
             } else {
-                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{"staticZone"});
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
             }
 			wd->addWaveEntry(we);
 		}

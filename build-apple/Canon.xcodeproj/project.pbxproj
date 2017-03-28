@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
+		9F3BA4F71E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
+		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
+		9F3BA4FD1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
+		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
+		9F3BA5011E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
 		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668331E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
@@ -184,6 +190,12 @@
 /* Begin PBXFileReference section */
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
+		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
+		9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAIData.cpp; sourceTree = "<group>"; };
+		9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAIData.hpp; sourceTree = "<group>"; };
+		9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAI.cpp; sourceTree = "<group>"; };
+		9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Condition.cpp; sourceTree = "<group>"; };
+		9F3BA4FF1E89DBB6003138C0 /* Condition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Condition.hpp; sourceTree = "<group>"; };
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -414,6 +426,8 @@
 				9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */,
 				DF909EEF1E80BEEA003BB459 /* AIData.cpp */,
 				DF7336C41E7F130D004AFC68 /* AIData.hpp */,
+				9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */,
+				9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */,
 			);
 			name = aidata;
 			sourceTree = "<group>";
@@ -842,6 +856,10 @@
 		F134D47F1E76669B009EB8E3 /* activeAI */ = {
 			isa = PBXGroup;
 			children = (
+				9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */,
+				9F3BA4FF1E89DBB6003138C0 /* Condition.hpp */,
+				9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */,
+				9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */,
 				9FE4FD4F1E79F2A9007AD880 /* PathAI.cpp */,
 				9FE4FD501E79F2A9007AD880 /* PathAI.hpp */,
 				9FC16AB01E768F7E0040661D /* HomingAI.cpp */,
@@ -982,11 +1000,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1D35F2C1E7685BC0044A121 /* (null) in Sources */,
+				9F3BA4FD1E89DBA9003138C0 /* CompositeAI.cpp in Sources */,
 				F1D35F061E7685990044A121 /* (null) in Sources */,
 				DF9828821E80E0140026223D /* RotateZoneData.cpp in Sources */,
 				9FE4FD751E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,
 				F1D35F071E7685990044A121 /* SwitchController.cpp in Sources */,
 				DF9828901E8346F30026223D /* ZoneController.cpp in Sources */,
+				9F3BA5011E89DBB6003138C0 /* Condition.cpp in Sources */,
 				F1D35F081E7685990044A121 /* AnimationController.cpp in Sources */,
 				F1D35F091E7685990044A121 /* ActiveAnimation.cpp in Sources */,
 				F1D35F0A1E7685990044A121 /* MenuController.cpp in Sources */,
@@ -1033,6 +1053,7 @@
 				F1D35F2B1E7685990044A121 /* GameObject.cpp in Sources */,
 				DFBD54681E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF93BDC51E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
+				9F3BA4F71E89DB0A003138C0 /* CompositeAIData.cpp in Sources */,
 				9FC16AB31E768F7E0040661D /* HomingAI.cpp in Sources */,
 				9F76684D1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */,
 				EB7454AE1D74D891002FBAE6 /* main.cpp in Sources */,
@@ -1047,11 +1068,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FFA3FDC1E6373770029D648 /* LevelEvent.cpp in Sources */,
+				9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */,
 				DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF9828811E80E0140026223D /* RotateZoneData.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
 				DF98288F1E8346F30026223D /* ZoneController.cpp in Sources */,
+				9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */,
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
@@ -1098,6 +1121,7 @@
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
 				9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */,
+				9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */,
 				9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */,
 				9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */,
 				9FFA3FC11E636D220029D648 /* World.cpp in Sources */,
