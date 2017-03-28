@@ -19,6 +19,7 @@
 
 class MenuController : public BaseController {
 protected:
+    std::shared_ptr<cugl::Scene>  _scene;
     
     std::shared_ptr<MenuGraph> _menuGraph;
 public:
@@ -37,12 +38,14 @@ public:
     virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep);
+
+    void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
     
-    virtual bool init();
+    virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
     
-    static std::shared_ptr<MenuController> alloc() {
+    static std::shared_ptr<MenuController> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
-        return (result->init() ? result : nullptr);
+        return (result->init(assets) ? result : nullptr);
     }
     
     Mode getMode();

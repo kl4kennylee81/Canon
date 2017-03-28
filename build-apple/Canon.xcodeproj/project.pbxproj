@@ -13,6 +13,8 @@
 		9F3BA4FD1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
 		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
 		9F3BA5011E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
+		9F3BA5221E8A261A003138C0 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA5201E8A261A003138C0 /* Menu.cpp */; };
+		9F3BA5231E8A261A003138C0 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA5201E8A261A003138C0 /* Menu.cpp */; };
 		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668331E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
@@ -196,6 +198,8 @@
 		9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAI.cpp; sourceTree = "<group>"; };
 		9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Condition.cpp; sourceTree = "<group>"; };
 		9F3BA4FF1E89DBB6003138C0 /* Condition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Condition.hpp; sourceTree = "<group>"; };
+		9F3BA5201E8A261A003138C0 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		9F3BA5211E8A261A003138C0 /* Menu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -504,6 +508,8 @@
 				9FE8E9DC1E6381D400DBE3BC /* MenuGraph.hpp */,
 				9FCE471D1E6686DF002F4A3E /* Mode.cpp */,
 				9FCE471E1E6686DF002F4A3E /* Mode.hpp */,
+				9F3BA5201E8A261A003138C0 /* Menu.cpp */,
+				9F3BA5211E8A261A003138C0 /* Menu.hpp */,
 			);
 			name = menu;
 			sourceTree = "<group>";
@@ -1033,6 +1039,7 @@
 				F1D35F191E7685990044A121 /* LevelController.cpp in Sources */,
 				F1D35F1A1E7685990044A121 /* Level.cpp in Sources */,
 				9FE4FD691E7B7BC0007AD880 /* ProgressBarController.cpp in Sources */,
+				9F3BA5231E8A261A003138C0 /* Menu.cpp in Sources */,
 				F1D35F1B1E7685990044A121 /* GameState.cpp in Sources */,
 				F1D35F1C1E7685990044A121 /* BaseController.cpp in Sources */,
 				DF9828961E834C210026223D /* ActiveZone.cpp in Sources */,
@@ -1101,6 +1108,7 @@
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
 				9FFA3FA61E6367C60029D648 /* ActivePath.cpp in Sources */,
+				9F3BA5221E8A261A003138C0 /* Menu.cpp in Sources */,
 				9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */,
 				DF909EF01E80BEEA003BB459 /* AIData.cpp in Sources */,
 				DF9828951E834C210026223D /* ActiveZone.cpp in Sources */,

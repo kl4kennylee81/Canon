@@ -10,6 +10,9 @@
 
 using namespace cugl;
 
+/** This is adjusted by screen aspect ratio to get the height */
+#define GAME_WIDTH 1024
+
 MenuController::MenuController() :
 BaseController(),
 _menuGraph(nullptr){}
@@ -32,10 +35,24 @@ void MenuController::eventUpdate(Event* e) {
 }
 
 void MenuController::update(float timestep) {
+    
+    
 }
 
-bool MenuController::init() {
-    _menuGraph = MenuGraph::alloc();
+/**
+ * The method called to draw the application to the screen.
+ *
+ * This method should contain OpenGL and related drawing calls.
+ */
+void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
+    this->_scene->render(_batch);
+}
+
+bool MenuController::init(const std::shared_ptr<GenericAssetManager>& assets) {
+    Size size = Application::get()->getDisplaySize();
+    size *= GAME_WIDTH/size.width;
+    _scene = Scene::alloc(size);
+    _menuGraph = MenuGraph::alloc(_scene, assets);
     return true;
 }
 

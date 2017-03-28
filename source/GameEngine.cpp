@@ -62,7 +62,7 @@ void GameEngine::onStartup() {
     _loading = LoadController::alloc(_assets);
     
     // have a shell menu controller since it holds the menu graph
-    _menu = MenuController::alloc();
+    _menu = MenuController::alloc(_assets);
     
     // This reads the given JSON file and uses it to load all other assets
 
@@ -174,6 +174,7 @@ void GameEngine::draw() {
             _gameplay->draw(_batch);
             break;
         case Mode::MAIN_MENU:
+            _menu->draw(_batch);
             break;
         default:
             break;
