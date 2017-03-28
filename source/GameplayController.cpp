@@ -40,7 +40,9 @@ void GameplayController::update(float timestep) {
         _gameState->reset = false;
         return;
     }
-
+    
+    
+    
     _levelController->update(timestep, _gameState);
     _spawnController->update(timestep);
     _switchController->update(timestep, _gameState);
