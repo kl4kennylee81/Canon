@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include "GameObject.hpp"
 #include "GenericAssetManager.hpp"
+#include "InternalClock.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
 #define GAME_SCENE_WIDTH 1024
@@ -73,6 +74,8 @@ GameState():
     
     /* Need to multiply this scale by physics coordinates to get world coordinates */
     static float _physicsScale;
+    
+    static InternalClock _internalClock;
     
     virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
 

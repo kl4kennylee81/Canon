@@ -10,6 +10,11 @@
 
 using namespace cugl;
 
+/**
+ * The factor that the game slows down by
+ */
+#define SLOW_TIME_DILATION 0.2f
+
 ClockController::ClockController():
 BaseController(){}
 
@@ -36,8 +41,6 @@ void ClockController::update(float timestep) {
 }
 
 bool ClockController::init() {
-    // do initialization here
-    
     return true;
 }
 
