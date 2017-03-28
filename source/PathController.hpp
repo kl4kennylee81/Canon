@@ -33,6 +33,8 @@ public:
 	float _miny;
 	float _maxy;
     
+    float _current_cooldown_frames;
+    
     PathControllerState controllerState;
 
 	std::shared_ptr<Path> _path;

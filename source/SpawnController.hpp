@@ -15,9 +15,17 @@
 #include "BaseController.hpp"
 #include "GameObject.hpp"
 
+/**
+ * The purpose of this controller is to delay spawning for 
+ * SPAWN_FRAMES number of frames.
+ */
 class SpawnController : public BaseController {
 protected:
-    std::map<std::shared_ptr<GameObject>, int> spawnMap;
+    
+    /**
+     * Object that is about to spawn, and the frames that it waited so far
+     */
+    std::map<std::shared_ptr<GameObject>, float> spawnMap;
     
 public:
     SpawnController();

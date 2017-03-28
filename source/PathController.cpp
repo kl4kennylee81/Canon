@@ -16,6 +16,8 @@
 
 using namespace cugl;
 
+#define SWIPE_COOLDOWN_FRAMES 60;
+
 /*
  * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
  * size of the device) but then the path is accumilated in world coordinates ((0,0) is bottom left and bounds are your GAME_WIDTH);
@@ -191,6 +193,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 }
 
 bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
+    _current_cooldown_frames = 0;
+
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);

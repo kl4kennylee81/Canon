@@ -39,7 +39,7 @@ void ClockController::eventUpdate(Event* e) {
                 case PathEvent::PathEventType::DRAWING:
                 {
                     // update the clock to slow time dilation
-                    GameState::_internalClock->setTimeDilation(0.2);
+                    GameState::_internalClock->setTimeDilation(SLOW_TIME_DILATION);
                     break;
                 }
                 case PathEvent::PathEventType::PATH_FINISHED:
@@ -54,8 +54,11 @@ void ClockController::eventUpdate(Event* e) {
     }
 }
 
+/**
+ * Increments the global frame clock for everyone to use
+ */
 void ClockController::update(float timestep) {
-    
+    GameState::_internalClock->incrementTime(GameState::_internalClock->getTimeDilation());
 }
 
 bool ClockController::init() {

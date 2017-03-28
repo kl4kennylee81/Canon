@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include "Observer.hpp"
 #include "Subject.hpp"
+#include "GameState.hpp"
 
 
 class BaseController : public Observer, Subject {

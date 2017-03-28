@@ -19,6 +19,9 @@ void LevelData::addPlayerChars(std::shared_ptr<WaveEntry> entry){
     _playerChars.push_back(entry);
 }
 
+/**
+ * index is the wave number of the level
+ */
 float LevelData::getTime(int index){
     return _levelEntries.at(index)->time;
 }
