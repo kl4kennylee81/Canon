@@ -75,7 +75,7 @@ GameState():
     /* Need to multiply this scale by physics coordinates to get world coordinates */
     static float _physicsScale;
     
-    static InternalClock _internalClock;
+    static std::unique_ptr<InternalClock> _internalClock;
     
     virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
 

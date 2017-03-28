@@ -9,7 +9,7 @@
 #include "GameState.hpp"
 
 float GameState::_physicsScale;
-InternalClock GameState::_internalClock;
+std::unique_ptr<InternalClock> GameState::_internalClock(new InternalClock());
 
 using namespace cugl;
 
@@ -22,8 +22,6 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     if (assets == nullptr){
         return false;
     }
-    
-    GameState::_internalClock = InternalClock();
     
     // Create the scene graph
     Size size = Application::get()->getDisplaySize();
