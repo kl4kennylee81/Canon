@@ -26,7 +26,8 @@ public:
 		PATH,
 		/** Move **/
 		MOVE,
-        SWITCH
+        SWITCH,
+        ZONE
     };
     
     EventType _eventType;

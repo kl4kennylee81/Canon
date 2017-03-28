@@ -17,6 +17,7 @@
 #include "AnimationData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
+#include "ZoneData.hpp"
 #include "AIData.hpp"
 
 class LevelEvent : public Event {
@@ -44,12 +45,13 @@ public:
     std::shared_ptr<AnimationData> animationData;
     std::shared_ptr<ShapeData> shapeData;
     std::shared_ptr<AIData> aiData;
+    std::vector<std::shared_ptr<ZoneData>> zoneDatas;
     
     ObjectInitEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_INIT;
     }
     
-    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData){
+    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas){
         this->levelEventType = LevelEventType::OBJECT_INIT;
         this->object = object;
         this->waveEntry = waveEntry;
@@ -57,12 +59,13 @@ public:
         this->animationData = animationData;
         this->shapeData = shapeData;
         this->aiData = aiData;
+        this->zoneDatas = zoneDatas;
         return true;
     }
     
-    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData){
+    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas){
         std::shared_ptr<ObjectInitEvent> result = std::make_shared<ObjectInitEvent>();
-        return (result->init(object,waveEntry,objectData,animationData,shapeData,aiData) ? result : nullptr);
+        return (result->init(object,waveEntry,objectData,animationData,shapeData,aiData,zoneDatas) ? result : nullptr);
     }
 };
 

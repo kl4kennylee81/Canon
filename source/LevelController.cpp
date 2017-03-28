@@ -8,6 +8,7 @@
 
 #include "LevelController.hpp"
 #include "LevelEvent.hpp"
+#include <math.h>
 
 using namespace cugl;
 
@@ -35,11 +36,16 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->animationKey);
     std::shared_ptr<AIData> aid = _world->getAIData(we->aiKey); // aiKey is in the wave entry
+    std::vector<std::shared_ptr<ZoneData>> zds = {};
+    for(auto zkey: we->zoneKeys){
+        zds.push_back(_world->getZoneData(zkey));
+    }
+    
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     gameOb->setIsPlayer(isPlayer);
     
-    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, aid);
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, aid, zds);
     notify(initevent.get());
     
     if (isPlayer){

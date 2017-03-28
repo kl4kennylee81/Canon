@@ -16,6 +16,7 @@
 #include "StaticAIData.hpp"
 #include "PathAIData.hpp"
 #include "HomingAIData.hpp"
+#include "CompositeAIData.hpp"
 
 class AILoader : public cugl::GenericLoader<AIData> {
 public:
@@ -45,7 +46,9 @@ public:
 		if (json->getString("type") == "PATH") {
 			return readPathAI(json, callback, async, key);
 		}
-
+		if (json->getString("type") == "COMPOSITE") {
+			return readCompositeAI(json, callback, async, key);
+		}
 		return false;
 	}
 
@@ -114,6 +117,32 @@ public:
 		else {
 			_loader->addTask([=](void) {
 				std::shared_ptr<PathAIData> asset = std::make_shared<PathAIData>();
+				if (!asset->preload(json)) {
+					asset = nullptr;
+				}
+				cugl::Application::get()->schedule([=](void) {
+					this->materialize(key, asset, callback);
+					return false;
+				});
+			});
+		}
+
+		return success;
+	}
+
+	bool readCompositeAI(const std::shared_ptr<cugl::JsonValue>& json,
+		cugl::LoaderCallback callback, bool async, std::string key) {
+		bool success = false;
+
+		if (_loader == nullptr || !async) {
+			std::shared_ptr<CompositeAIData> asset = std::make_shared<CompositeAIData>();
+			if (asset->preload(json)) {
+				success = materialize(key, asset, callback);
+			}
+		}
+		else {
+			_loader->addTask([=](void) {
+				std::shared_ptr<CompositeAIData> asset = std::make_shared<CompositeAIData>();
 				if (!asset->preload(json)) {
 					asset = nullptr;
 				}

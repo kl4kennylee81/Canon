@@ -23,21 +23,29 @@ enum class ZoneType : int {
 class ZoneData : public Data {
 public:
     
+    ZoneType type;
+    
+    /*
+    int shape_id;
+    int animation_id;
     std::string shape_key;
     std::string animation_key;
     Element element;
     ZoneType type;
     int speed;
     bool moveWithObject;
-    cugl::Vec2 relativePosition;
+    cugl::Vec2 relativePosition;*/
     
     ZoneData() : Data(){}
     
-    bool init(std::string shape_key, std::string animation_key);
+    bool init(ZoneType type) {
+        this->type = type;
+        return true;
+    }
     
-    static std::shared_ptr<ZoneData> alloc(std::string shape_key,std::string animation_key) {
+    static std::shared_ptr<ZoneData> alloc(ZoneType type) {
         std::shared_ptr<ZoneData> result = std::make_shared<ZoneData>();
-        return (result->init(shape_key,animation_key) ? result : nullptr);
+        return (result->init(type) ? result : nullptr);
     }
     
     virtual std::string serialize();

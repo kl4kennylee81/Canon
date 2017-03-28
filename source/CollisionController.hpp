@@ -22,6 +22,7 @@
 #include "Event.hpp"
 #include "GameState.hpp"
 #include "LevelEvent.hpp"
+#include "ZoneEvent.hpp"
 
 class CollisionController : public BaseController {
 protected:
@@ -31,6 +32,7 @@ protected:
     std::shared_ptr<cugl::Node> _debugnode;
     
     std::vector<GameObject*> objsScheduledForRemoval;
+    std::vector<GameObject*> objsToIgnore;
     
     /** Whether or not debug mode is active */
     bool _debug;
@@ -76,10 +78,12 @@ public:
     virtual bool init(std::shared_ptr<GameState> state);
     
     void initPhysicsComponent(ObjectInitEvent* objectInit);
+    
+    void initPhysicsComponent(ZoneInitEvent* zoneInit);
 
     bool addToWorld(GameObject* obj);
     
-    bool removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj);
+    bool removeFromWorld(GameObject* obj);
     
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();

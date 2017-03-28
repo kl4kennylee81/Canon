@@ -10,6 +10,7 @@
 #include "Element.hpp"
 #include "CollisionEvent.hpp"
 #include "LevelEvent.hpp"
+#include "ZoneEvent.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
@@ -23,6 +24,7 @@ BaseController(){}
 #define BLUE_COLOR   Color4::BLUE
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
+#define DEBUG_OFF_COLOR Color4::RED
 
 void CollisionController::attach(std::shared_ptr<Observer> obs) {
 	BaseController::attach(obs);
@@ -56,6 +58,40 @@ void CollisionController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+                    initPhysicsComponent(zoneInit);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
+                    ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
+                    addToWorld(zoneSpawn->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    zoneOn->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_COLOR);
+                    auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), zoneOn->object);
+                    if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    zoneOff->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_OFF_COLOR);
+                    objsToIgnore.push_back(zoneOff->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_DELETE: {
+                    ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
+                    removeFromWorld(zoneDelete->object);
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
 
@@ -71,7 +107,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     
     for (auto obj : objsScheduledForRemoval) {
         if(!obj->getIsPlayer()) {
-            removeFromWorld(state, obj);
+            removeFromWorld(obj);
         } else {
             // TODO : temporary reset after losing
             state->reset = true;
@@ -137,11 +173,23 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     objectInit->object->setPhysicsComponent(physics);
 }
 
+void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
+    Poly2 poly(zoneInit->shapeData->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    auto obst = PolygonObstacle::alloc(poly);
+    obst->setPosition(zoneInit->pos);
+    
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element);
+    zoneInit->object->setPhysicsComponent(physics);
+}
+
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
     obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
-    
     
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);
@@ -150,7 +198,7 @@ bool CollisionController::addToWorld(GameObject* obj) {
     return true;
 }
 
-bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
+bool CollisionController::removeFromWorld(GameObject* obj) {
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
@@ -162,6 +210,12 @@ void CollisionController::beginContact(b2Contact* contact) {
     b2Body* body2 = contact->GetFixtureB()->GetBody();
     auto obj1 = static_cast<GameObject*>(body1->GetUserData());
     auto obj2 = static_cast<GameObject*>(body2->GetUserData());
+    
+    if (std::find(objsToIgnore.begin(), objsToIgnore.end(), obj1) != objsToIgnore.end() || std::find(objsToIgnore.begin(), objsToIgnore.end(), obj2) != objsToIgnore.end())
+    {
+        return;
+    }
+    
     bool sameElement = (obj1->getPhysicsComponent()->getElementType() ==
                         obj2->getPhysicsComponent()->getElementType());
     int remove = 0;
@@ -182,12 +236,17 @@ void CollisionController::beginContact(b2Contact* contact) {
     }
     
     if (remove == 1) {
+        if (obj1->type == GameObject::ObjectType::ZONE) {
+            return;
+        }
         objsScheduledForRemoval.push_back(obj1);
         std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
         notify(objectGoneEvent.get());
-        
     }
     if (remove == 2) {
+        if (obj2->type == GameObject::ObjectType::ZONE) {
+            return;
+        }
         objsScheduledForRemoval.push_back(obj2);
         std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
         notify(objectGoneEvent.get());

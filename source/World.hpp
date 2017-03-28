@@ -18,6 +18,7 @@
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
 #include "LevelData.hpp"
+#include "ZoneData.hpp"
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
 
@@ -49,6 +50,7 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<ShapeData>> _shapeData;
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
+    std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
 
 public:
     
@@ -77,10 +79,12 @@ public:
     std::shared_ptr<PathData> getPathData(std::string pathKey);
     
     std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
-    
+
     std::shared_ptr<WaveData> getWaveData(std::string waveKey);
     
     std::shared_ptr<AIData> getAIData(std::string aiKey);
+    
+    std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();

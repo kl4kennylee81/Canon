@@ -25,6 +25,13 @@ protected:
     bool _isPlayer;
     
 public:
+    enum class ObjectType : int {
+        CHARACTER,
+        ZONE,
+        BULLET
+    };
+    
+    ObjectType type;
     
     GameObject() :
     _uid(0),
