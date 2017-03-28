@@ -161,9 +161,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		updateMinMax(currentLocation);
         
         // notify that the controller has started drawing
-        controllerState = DRAWING;
         std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc();
         notify(drawEvent.get());
+        
+        controllerState = DRAWING;
 	}
 	if (isPressed) {
 		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
@@ -180,10 +181,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene(state);
         
         // notify that the controller has finished drawing
-        controllerState = IDLE;
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
+        
+        controllerState = MOVING;
 	}
 	_wasPressed = isPressed;
 }
