@@ -158,9 +158,12 @@ std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
 }
 
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){
-	auto data = _isSandbox && _aiData.count(aiKey) > 0 ? _aiData[aiKey] : _assets->get<AIData>(aiKey);
+	bool sandbox = _isSandbox && _aiData.count(aiKey) > 0;
+	auto data = sandbox ? _aiData[aiKey] : _assets->get<AIData>(aiKey);
 	if (data != nullptr && data->type == AIType::COMPOSITE) {
 		auto compositeData = std::static_pointer_cast<CompositeAIData>(data);
+		std::string startKey = compositeData->_startKey;
+		compositeData->_startData = sandbox ? _aiData[startKey] : _assets->get<AIData>(startKey);
 		for (int i = 0; i < compositeData->_aiKeys.size(); i++) {
 			std::shared_ptr<AIData> subData = getAIData(compositeData->_aiKeys.at(i));
 			compositeData->_aiDatas.push_back(subData);

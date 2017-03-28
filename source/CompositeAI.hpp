@@ -42,23 +42,23 @@ public:
 
 	void toggleActive() { _isActive = !_isActive; }
 
-	bool init(std::shared_ptr<GameObject> object, std::vector<std::shared_ptr<Condition>> conditions, 
-		std::vector<std::shared_ptr<AIData>> datas)
+	bool init(std::shared_ptr<GameObject> object, std::shared_ptr<AIData> startData, 
+		std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::shared_ptr<AIData>> datas)
 	{
 		_object = object;
 		_isActive = false;
 		_conditions = conditions;
 		_datas = datas;
-		_activeAI = _datas.at(0)->newActiveAI(object);
-		_index = 1;
+		_activeAI = startData->newActiveAI(object);
+		_index = 0;
 		return true;
 	}
 
-	static std::shared_ptr<CompositeAI> alloc(std::shared_ptr<GameObject> object, 
+	static std::shared_ptr<CompositeAI> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<AIData> startData,
 		std::vector<std::shared_ptr<Condition>> conditions, std::vector<std::shared_ptr<AIData>> datas)
 	{
 		std::shared_ptr<CompositeAI> result = std::make_shared<CompositeAI>();
-		return (result->init(object, conditions, datas) ? result : nullptr);
+		return (result->init(object, startData, conditions, datas) ? result : nullptr);
 	}
 };
 
