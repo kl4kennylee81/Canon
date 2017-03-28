@@ -45,6 +45,7 @@ void PathController::eventUpdate(Event* e) {
         {
             // character is now done moving through the path
             controllerState = IDLE;
+            break;
         }
     }
 }
@@ -122,7 +123,6 @@ bool PathController::getDoubleTouch() {
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
-    
     Vec2 physicsPosition = Vec2::Vec2();
     
     if (isPressed){
@@ -134,14 +134,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 
         Vec2 scenePosition = Vec2::Vec2();
         state->screenToSceneCoords(position, scenePosition);
-        
-//        std::cout << "screen position:" << position.toString() << "\n";
-//        std::cout << "physics position:" << physicsPosition.toString() << "\n";
-//        std::cout << "scene position:" << scenePosition.toString() << "\n";
     }
     
-    // can't start drawing a path before a character is done moving through a previous path or if the player is still drawing
-    if (controllerState != IDLE) {
+    // can't start drawing a path before a character is done moving through a previous path
+    if (controllerState == MOVING) {
         return;
     }
 
@@ -163,6 +159,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		_path->add(currentLocation);
 		resetMinMax();
 		updateMinMax(currentLocation);
+        
+        // notify that the controller has started drawing
+        controllerState = DRAWING;
+        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc();
+        notify(drawEvent.get());
 	}
 	if (isPressed) {
 		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
@@ -177,10 +178,12 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
 	if (_wasPressed && !isPressed) {
 		addPathToScene(state);
+        
+        // notify that the controller has finished drawing
+        controllerState = IDLE;
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
-        controllerState = IDLE;
 	}
 	_wasPressed = isPressed;
 }

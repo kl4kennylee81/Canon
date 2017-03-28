@@ -7,6 +7,8 @@
 //
 
 #include "ClockController.hpp"
+#include "PathEvent.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -30,14 +32,30 @@ void ClockController::notify(Event* e) {
 }
 void ClockController::eventUpdate(Event* e) {
     switch (e->_eventType) {
-        case Event::EventType::LEVEL: {
+        case Event::EventType::PATH:
+        {
+            PathEvent* pathEvent = (PathEvent*)e;
+            switch (pathEvent->_pathType) {
+                case PathEvent::PathEventType::DRAWING:
+                {
+                    // update the clock to slow time dilation
+                    GameState::_internalClock->setTimeDilation(0.2);
+                    break;
+                }
+                case PathEvent::PathEventType::PATH_FINISHED:
+                {
+                    // Player is done drawing
+                    GameState::_internalClock->setTimeDilation(1);
+                    break;
+                }
+            }
             break;
         }
     }
 }
 
 void ClockController::update(float timestep) {
-
+    
 }
 
 bool ClockController::init() {
