@@ -16,6 +16,9 @@
 
 using namespace cugl;
 
+/**
+ * Each character has a cooldown of this much after each swipe
+ */
 #define SWIPE_COOLDOWN_FRAMES 60;
 
 /*
@@ -122,7 +125,13 @@ bool PathController::getDoubleTouch() {
 	}
 }
 
+bool PathController::isOnCooldown() {
+    return _cooldown_frames < SWIPE_COOLDOWN_FRAMES;
+}
+
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
+    _cooldown_frames += GameState::_internalClock->getTimeDilation();
+    
 	bool isPressed = getIsPressed();
 	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
     Vec2 physicsPosition = Vec2::Vec2();
@@ -152,6 +161,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
     
 	if (!_wasPressed && isPressed) {
+        
+        if (isOnCooldown()) {
+            return;
+        }
+        
 		_path->clear();
         Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
@@ -188,12 +202,14 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         _pathSceneNode->removeAllChildren();
         
         controllerState = MOVING;
-	}
+        _cooldown_frames = 0;
+    }
 	_wasPressed = isPressed;
 }
 
 bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
-    _current_cooldown_frames = 0;
+    // this is to indicate the character is not on coooldown
+    _cooldown_frames = SWIPE_COOLDOWN_FRAMES;
 
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);

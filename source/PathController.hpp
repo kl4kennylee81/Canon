@@ -33,7 +33,10 @@ public:
 	float _miny;
 	float _maxy;
     
-    float _current_cooldown_frames;
+    /**
+     * The number of frames progressed so far for cooldown
+     */
+    float _cooldown_frames;
     
     PathControllerState controllerState;
 
@@ -78,6 +81,11 @@ public:
 	bool getIsPressed();
 
 	bool getDoubleTouch();
+    
+    /**
+     * Indicates if the player is able to make a move or must wait longer
+     */
+    bool isOnCooldown();
 };
 
 #endif /* PathController_hpp */
