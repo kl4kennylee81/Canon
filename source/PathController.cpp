@@ -43,7 +43,8 @@ void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
         {
-            _is_moving = false;
+            // character is now done moving through the path
+            controllerState = IDLE;
         }
     }
 }
@@ -139,8 +140,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 //        std::cout << "scene position:" << scenePosition.toString() << "\n";
     }
     
-    // can't start drawing a path before a character is done moving through a previous path
-    if (_is_moving) {
+    // can't start drawing a path before a character is done moving through a previous path or if the player is still drawing
+    if (controllerState != IDLE) {
         return;
     }
 
@@ -179,7 +180,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
-        _is_moving = true;
+        controllerState = IDLE;
 	}
 	_wasPressed = isPressed;
 }
@@ -196,7 +197,7 @@ bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
 	resetMinMax();
 	_path = Path::alloc();
     
-    _is_moving = false;
+    controllerState = IDLE;
     
 	_wasPressed = false;
 	_touch = touch;

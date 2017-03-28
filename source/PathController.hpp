@@ -17,16 +17,23 @@
 #include "GameState.hpp"
 #include "Path.hpp"
 
+enum PathControllerState
+{
+    IDLE = 0,
+    DRAWING,
+    MOVING
+};
+
+
 class PathController : public BaseController {
 public:
-
 	float _height;
 	float _minx;
 	float _maxx;
 	float _miny;
 	float _maxy;
     
-    bool _is_moving;
+    PathControllerState controllerState;
 
 	std::shared_ptr<Path> _path;
 
