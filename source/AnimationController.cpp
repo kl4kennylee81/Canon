@@ -16,7 +16,7 @@
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1.3 // a constant needed to make the animation a bit bigger than the bounding box.
+#define ANIMATION_SCALE_BUFFER     1.0 // a constant needed to make the animation a bit bigger than the bounding box.
 #define BLUE_COLOR   Color4::BLUE
 #define RED_COLOR   Color4::RED
 #define DEBUG_COLOR  Color4::GREEN
