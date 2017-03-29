@@ -158,7 +158,7 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
-        syncAnimation(anim->getAnimationNode(),obj);
+        syncAnimation(anim,obj);
         int zaxis = 1;
         if (obj->type == GameObject::ObjectType::ZONE){
             zaxis = 0;
@@ -198,7 +198,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
     if (polyOb != nullptr){
         polySize = polyOb->getSize();
     }
-    if (anim->non)
+    if (activeAnim->isUniformScaling()){
         Size animationSize = anim->getContentSize();
         
         // maximum of boxSize.width/animation.width and boxsize.height/animation.height
@@ -207,8 +207,20 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
         
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
-        anim->setScale(animationToBoxScale);
+        float animationScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+        anim->setScale(animationScale);
+    } else {
+        Size animationSize = anim->getContentSize();
+        
+        // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+        // so that the animationNode is always encapsulating the full physics box with padding.
+        // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+        
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        anim->setScale(animationScale);
+    }
 }
 
 /**

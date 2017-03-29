@@ -44,5 +44,5 @@ bool ActiveAnimation::nextFrame() {
 }
 
 bool ActiveAnimation::isUniformScaling(){
-    return !_data->nonUniformScale;
+    return !this->_data->nonUniformScale;
 }
