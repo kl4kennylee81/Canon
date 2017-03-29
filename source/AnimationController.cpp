@@ -180,12 +180,13 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            syncAnimation(anim->getAnimationNode(),obj);
+            syncAnimation(anim,obj);
         }
     }
 }
 
-void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, GameObject* obj){
+void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeAnim, GameObject* obj){
+    std::shared_ptr<AnimationNode> anim = activeAnim->getAnimationNode();
     anim->setPosition(obj->getPosition());
     
     anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
@@ -197,21 +198,17 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
     if (polyOb != nullptr){
         polySize = polyOb->getSize();
     }
-    std::shared_ptr<BoxObstacle> boxOb = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
-    if ((boxOb) != nullptr){
-        polySize =boxOb->getDimension();
-    }
-
-    Size animationSize = anim->getContentSize();
-    
-    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
-    // so that the animationNode is always encapsulating the full physics box with padding.
-    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    
-    float scaleX = (polySize.width)/animationSize.width;
-    float scaleY = (polySize.height)/animationSize.height;
-    float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
-    anim->setScale(animationToBoxScale);
+    if (anim->non)
+        Size animationSize = anim->getContentSize();
+        
+        // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+        // so that the animationNode is always encapsulating the full physics box with padding.
+        // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+        
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+        anim->setScale(animationToBoxScale);
 }
 
 /**

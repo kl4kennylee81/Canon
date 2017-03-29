@@ -63,6 +63,7 @@ public:
     int rows;
     int cols;
     int size;
+    bool nonUniformScale;
     
     AnimationData() : Data(){}
     
