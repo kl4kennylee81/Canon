@@ -46,11 +46,12 @@ public:
 
 	bool _wasPressed;
 
-	bool _touch;
-
 	void addPathToScene(std::shared_ptr<GameState> state);
 
 	void updateMinMax(cugl::Vec2 vec);
+    
+    
+    bool isOnCooldown();
 
 	void resetMinMax();
 	
@@ -69,23 +70,12 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
 
-	virtual bool init(std::shared_ptr<GameState> state, bool touch);
+	virtual bool init(std::shared_ptr<GameState> state);
 
-	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state, bool touch) {
+	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state) {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
-		return (result->init(state, touch) ? result : nullptr);
+		return (result->init(state) ? result : nullptr);
     }
-
-	cugl::Vec2 getInputVector();
-
-	bool getIsPressed();
-
-	bool getDoubleTouch();
-    
-    /**
-     * Indicates if the player is able to make a move or must wait longer
-     */
-    bool isOnCooldown();
 };
 
 #endif /* PathController_hpp */

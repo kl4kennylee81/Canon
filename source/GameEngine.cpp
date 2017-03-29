@@ -25,6 +25,8 @@ using namespace cugl;
 // This is adjusted by screen aspect ratio to get the height
 #define GAME_WIDTH 1024
 
+bool GameEngine::_touch;
+
 /**
  * The method called after OpenGL is initialized, but before running the application.
  *
@@ -79,7 +81,8 @@ void GameEngine::onStartup() {
     // We have to do this BEFORE the scene, because the scene has a button
 #if defined (CU_TOUCH_SCREEN)
 	_touch = true;
-    Input::activate<Touchscreen>();
+	InputController::_touch = true;
+	Input::activate<Touchscreen>();
 #else
 	_touch = false;
     Input::activate<Mouse>();
@@ -130,7 +133,7 @@ void GameEngine::update(float timestep) {
     } else if (_menuGraph.getMode() == Mode::LOADING) {
         _loading->dispose(); // Disables the input listeners in this mode
         std::shared_ptr<World> levelWorld = World::alloc(_assets);
-        _gameplay = GameplayController::alloc(levelWorld, _touch);
+        _gameplay = GameplayController::alloc(levelWorld);
         _menuGraph.setMode(Mode::GAMEPLAY);
     } else {
         _gameplay->update(timestep);

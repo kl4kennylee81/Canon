@@ -204,6 +204,7 @@
 		9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAI.cpp; sourceTree = "<group>"; };
 		9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Condition.cpp; sourceTree = "<group>"; };
 		9F3BA4FF1E89DBB6003138C0 /* Condition.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Condition.hpp; sourceTree = "<group>"; };
+		9F3BA5281E8B1481003138C0 /* InputController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputController.hpp; sourceTree = "<group>"; };
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -667,6 +668,7 @@
 		9FFA3FAA1E636B350029D648 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				9F3BA5281E8B1481003138C0 /* InputController.hpp */,
 				DFBD54651E60E4920027FCC1 /* GameEngine.cpp */,
 				DFBD54661E60E4920027FCC1 /* GameEngine.hpp */,
 				9FFA3F8F1E6363030029D648 /* BaseController.cpp */,

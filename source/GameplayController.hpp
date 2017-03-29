@@ -45,8 +45,6 @@ protected:
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;
 
-	bool _touch;
-
 public:
     
     GameplayController();
@@ -59,11 +57,11 @@ public:
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
 
-    virtual bool init(std::shared_ptr<World> levelWorld, bool touch);
+    virtual bool init(std::shared_ptr<World> levelWorld);
 
-	static std::shared_ptr<GameplayController> alloc(std::shared_ptr<World> levelWorld, bool touch) {
+	static std::shared_ptr<GameplayController> alloc(std::shared_ptr<World> levelWorld) {
 		std::shared_ptr<GameplayController> result = std::make_shared<GameplayController>();
-		return (result->init(levelWorld, touch) ? result : nullptr);
+		return (result->init(levelWorld) ? result : nullptr);
 	}
 
 
