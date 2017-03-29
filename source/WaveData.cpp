@@ -40,7 +40,7 @@ bool WaveEntry::init(std::string objectKey, std::string aiKey, float x, float y,
 std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
-	object->appendChild("aiKey", JsonValue::alloc(aiKey));
+	if (aiKey.length() > 0) object->appendChild("aiKey", JsonValue::alloc(aiKey));
 	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
 	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
 	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
@@ -58,8 +58,6 @@ std::shared_ptr<JsonValue> WaveData::toJsonValue()
 		std::shared_ptr<JsonValue> object = child->toJsonValue();
 		objectList->appendChild("object" + std::to_string(i + 1), object);		
 	}
-
-
 	wave->appendChild("waveEntries", objectList);
 	return wave;
 }

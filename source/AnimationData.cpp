@@ -13,8 +13,8 @@ using namespace cugl;
 std::shared_ptr<JsonValue> AnimationUpdate::toJsonValue()
 {
 	std::shared_ptr<JsonValue> update = JsonValue::allocObject();
-	update->appendChild("active", JsonValue::alloc(active));
-	update->appendChild("repeat", JsonValue::alloc(repeat));
+	if (active.length() > 0) update->appendChild("active", JsonValue::alloc(active));
+	if (repeat.length() > 0) update->appendChild("repeat", JsonValue::alloc(repeat));
 	return update;
 }
 
