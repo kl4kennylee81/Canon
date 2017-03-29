@@ -26,7 +26,14 @@ protected:
 public:
     MenuGraph();
     
+    bool init();
+    
     bool init(std::shared_ptr<cugl::Scene> scene,const std::shared_ptr<GenericAssetManager>& assets);
+    
+    static std::shared_ptr<MenuGraph> alloc() {
+        std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();
+        return (result->init() ? result : nullptr);
+    }
     
     static std::shared_ptr<MenuGraph> alloc(std::shared_ptr<cugl::Scene> scene,const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();

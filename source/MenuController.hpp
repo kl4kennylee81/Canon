@@ -41,11 +41,18 @@ public:
 
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
     
-    virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene);
     
-    static std::shared_ptr<MenuController> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
+    
+    static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene) {
         std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
-        return (result->init(assets) ? result : nullptr);
+        return (result->init(scene) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
+        std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
+        return (result->init(scene, assets) ? result : nullptr);
     }
     
     Mode getMode();

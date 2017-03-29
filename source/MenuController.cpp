@@ -48,10 +48,14 @@ void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     this->_scene->render(_batch);
 }
 
-bool MenuController::init(const std::shared_ptr<GenericAssetManager>& assets) {
-    Size size = Application::get()->getDisplaySize();
-    size *= GAME_WIDTH/size.width;
-    _scene = Scene::alloc(size);
+bool MenuController::init(std::shared_ptr<cugl::Scene> scene){
+    _scene = scene;
+    _menuGraph = MenuGraph::alloc();
+    return true;
+}
+
+bool MenuController::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
+    _scene = scene;
     _menuGraph = MenuGraph::alloc(_scene, assets);
     return true;
 }

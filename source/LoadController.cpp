@@ -7,6 +7,7 @@
 //
 
 #include "LoadController.hpp"
+#include "InputController.hpp"
 
 using namespace cugl;
 
@@ -47,22 +48,22 @@ float RGHT_RECT[] = {0.96f, 1.00f, 0.5625f, 0.9375f};
  *
  * @return true if the controller is initialized properly, false otherwise.
  */
-bool LoadController::init(const std::shared_ptr<GenericAssetManager>& assets) {
+bool LoadController::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericAssetManager>& assets) {
     // IMMEDIATELY load three assets
     _assets = assets;
     assets->load<Texture>(PLAY_KEY,PLAY_TEXTURE);
     assets->load<Texture>(PROGRESS_KEY,PROGRESS_TEXTURE);
     
-    Size size = Application::get()->getDisplaySize();
-    size *= GAME_WIDTH/size.width;
-    _scene = Scene::alloc(size);
+    _scene = scene;
+    
+    Rect size = _scene->getCamera()->getViewport();
     
     // The play button
     auto play = PolygonNode::allocWithTexture(assets->get<Texture>(PLAY_KEY));
     _button = Button::alloc(play);
     _button->setName(PLAY_KEY);
     _button->setAnchor(Vec2::ANCHOR_MIDDLE);
-    _button->setPosition(Vec2(size.width/2.0f,size.height*PLAY_VOFF));
+    _button->setPosition(Vec2(size.getMaxX()/2.0f,size.getMaxY()*PLAY_VOFF));
     _button->setScale(PLAY_SCALE);
     _button->setListener([=](const std::string& name, bool down) {
         this->_completed = !down;
@@ -78,10 +79,16 @@ bool LoadController::init(const std::shared_ptr<GenericAssetManager>& assets) {
     
     _bar = ProgressBar::allocWithCaps(background,foreground,begincap,finalcap);
     _bar->setAnchor(Vec2::ANCHOR_MIDDLE);
-    _bar->setPosition(Vec2(size.width/2.0f,size.height*PROGRESS_VOFF));
+    _bar->setPosition(Vec2(size.getMaxX()/2.0f,size.getMaxY()*PROGRESS_VOFF));
     
-    _scene->addChild(_button);
-    _scene->addChild(_bar);
+    
+    _loadNode = Node::alloc();
+    _loadNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    
+    _loadNode->addChild(_bar);
+    _loadNode->addChild(_button);
+    
+    _scene->addChild(_loadNode);
     
     Application::get()->setClearColor(Color4(192,192,192,255));
     return true;
@@ -97,9 +104,11 @@ void LoadController::dispose() {
     if (isPending()) {
         _button->deactivate();
     }
+//    _scene->removeChild(_loadNode);
     _button = nullptr;
     _bar = nullptr;
     _scene = nullptr;
+    _loadNode = nullptr;
     _assets = nullptr;
     _progress = 0.0f;
     _completed = false;
@@ -125,6 +134,15 @@ void LoadController::update(float progress) {
         }
         _bar->setProgress(_progress);
     }
+    
+    Vec2 v = InputController::getInputVector();
+    std::cout << "Input vector: "<<v.toString() << std::endl;
+    
+    std::cout << "in scene coordinates" << _scene->screenToWorldCoords(v).toString() << std::endl;
+    std::cout << "in load coordinates" << _loadNode->screenToNodeCoords(v).toString() << std::endl;
+    std::cout << "in node coordinates" << _button->screenToNodeCoords(v).toString() << std::endl;
+    std::cout << "content size of button" << _button->getContentSize().toString() << std::endl;
+    std::cout << _button->containsScreen(InputController::getInputVector())<< std::endl;
 }
 
 /**

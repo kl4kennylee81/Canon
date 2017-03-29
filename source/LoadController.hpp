@@ -24,6 +24,8 @@ protected:
     // VIEW
     /** The root of our scene graph. */
     std::shared_ptr<cugl::Scene>  _scene;
+    
+    std::shared_ptr<cugl::Node> _loadNode;
     /** The animated progress bar */
     std::shared_ptr<cugl::ProgressBar>  _bar;
     /** The "play" button */
@@ -69,11 +71,12 @@ public:
      *
      * @return true if the controller is initialized properly, false otherwise.
      */
-    bool init(const std::shared_ptr<GenericAssetManager>& assets);
+    bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
     
-    static std::shared_ptr<LoadController> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
+    static std::shared_ptr<LoadController> alloc(std::shared_ptr<cugl::Scene> scene,
+                                                 const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<LoadController> result = std::make_shared<LoadController>();
-        return (result->init(assets) ? result : nullptr);
+        return (result->init(scene, assets) ? result : nullptr);
     }
     
     

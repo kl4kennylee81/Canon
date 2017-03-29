@@ -12,9 +12,14 @@ using namespace cugl;
 
 MenuGraph::MenuGraph(){}
 
-bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericAssetManager>& assets){
+bool MenuGraph::init(){
     _currentMode = Mode::LOADING;
     _activeMenu = nullptr;
+    return true;
+}
+
+bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericAssetManager>& assets){
+    init();
     
     // TODO prepopulate the menu graph
     

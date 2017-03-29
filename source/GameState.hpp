@@ -71,14 +71,11 @@ GameState():
     _bounds(cugl::Rect()),
     _activeCharacterPosition(0){}
     
-    /* Need to multiply this scale by physics coordinates to get world coordinates */
-    static float _physicsScale;
-    
-    virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
 
-	static std::shared_ptr<GameState> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
+    static std::shared_ptr<GameState> alloc(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
 		std::shared_ptr<GameState> result = std::make_shared<GameState>();
-		return (result->init(assets) ? result : nullptr);
+		return (result->init(scene, assets) ? result : nullptr);
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
@@ -134,8 +131,7 @@ GameState():
     }
     
 #pragma worldNode Transformation Settings getter
-    /** getter for the physicsScale to transform from physics to World Coordinates */
-    static float getPhysicsScale(){ return GameState::_physicsScale; }
+    float getPhysicsScale();
     
     /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
     float getSceneToWorldTranslateY();

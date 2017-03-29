@@ -8,8 +8,6 @@
 
 #include "GameState.hpp"
 
-float GameState::_physicsScale;
-
 using namespace cugl;
 
 /** The name of the space texture */
@@ -17,24 +15,17 @@ using namespace cugl;
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
 #define NUM_PLAYER_CHARS         2
 
-bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
+bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets){
     if (assets == nullptr){
         return false;
     }
     
-    // Create the scene graph
-    Size size = Application::get()->getDisplaySize();
-    
-    size *= GAME_SCENE_WIDTH/size.width; // Lock the game to a reasonable resolution
+    Rect size = scene->getCamera()->getViewport();
     
     // magic numbers are okay as long as 16:9
-    _bounds = Rect::Rect(0,0,32,18);
+    _bounds = Rect::Rect(0,0,GAME_PHYSICS_WIDTH,GAME_PHYSICS_HEIGHT);
     
-    // IMPORTANT: SCALING MUST BE UNIFORM
-    // This means that we cannot change the aspect ratio of the physics world
-    GameState::_physicsScale = size.width / _bounds.size.width;
-    
-    float world_yPos = (size.height - (_bounds.getMaxY() * _physicsScale))/2;
+    float world_yPos = (size.getMaxY() - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2;
     Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
     // Get the space background.  Its size determines all scaling.
@@ -50,15 +41,15 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _worldnode->setScale(GameState::_physicsScale);
+    _worldnode->setScale(GAME_PHYSICS_SCALE);
     _worldnode->setPosition(world_pos);
     
     _debugnode = Node::alloc();
     _debugnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _debugnode->setScale(GameState::_physicsScale);
+    _debugnode->setScale(GAME_PHYSICS_SCALE);
     _debugnode->setPosition(world_pos);
     
-    _scene = Scene::alloc(size);
+    _scene = scene;
     _scene->addChild(_bgnode,0);
     _scene->addChild(_worldnode,1);
     _scene->addChild(_debugnode,2);
@@ -108,16 +99,20 @@ size_t GameState::getNumberPlayerCharacters(){
 
 #pragma mark Coordinate Conversions
 
+float GameState::getPhysicsScale(){
+    return GAME_PHYSICS_SCALE;
+}
+
 /** Helper function to calculate the y translate needed to go from scene to world **/
 float GameState::getSceneToWorldTranslateY(){
     float sceneYMax = this->getScene()->getCamera()->getViewport().getMaxY();
-    float scene_yPos = (sceneYMax - (_bounds.getMaxY() * GameState::getPhysicsScale()))/2.f;
+    float scene_yPos = (sceneYMax - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2.f;
     return scene_yPos;
 }
 
 /** Physics Conversion **/
 Vec2& GameState::physicsToSceneCoords(Vec2& physicsCoords,Vec2& sceneCoords){
-    Vec2::scale(physicsCoords, _physicsScale, &sceneCoords);
+    Vec2::scale(physicsCoords, GAME_PHYSICS_SCALE, &sceneCoords);
     sceneCoords.y += getSceneToWorldTranslateY();
     return sceneCoords;
 }
@@ -151,7 +146,7 @@ Vec2& GameState::sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screen
 Vec2& GameState::sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords){
     physicsCoords.set(sceneCoords);
     physicsCoords.y -= getSceneToWorldTranslateY();
-    Vec2::divide(physicsCoords,_physicsScale,&physicsCoords);
+    Vec2::divide(physicsCoords,GAME_PHYSICS_SCALE,&physicsCoords);
     return physicsCoords;
 }
 

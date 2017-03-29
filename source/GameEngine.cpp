@@ -25,6 +25,8 @@ using namespace cugl;
 // This is adjusted by screen aspect ratio to get the height
 #define GAME_WIDTH 1024
 
+bool GameEngine::_touch;
+
 /**
  * The method called after OpenGL is initialized, but before running the application.
  *
@@ -38,6 +40,8 @@ using namespace cugl;
 void GameEngine::onStartup() {
     Size size = getDisplaySize();
     size *= GAME_WIDTH/size.width;
+    
+    _scene = Scene::alloc(size);
     
     // Create a sprite batch (and background color) to render the scene
     _batch = SpriteBatch::alloc();
@@ -59,10 +63,10 @@ void GameEngine::onStartup() {
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
-    _loading = LoadController::alloc(_assets);
+    _loading = LoadController::alloc(_scene,_assets);
     
     // have a shell menu controller since it holds the menu graph
-    _menu = MenuController::alloc(_assets);
+    _menu = MenuController::alloc(_scene);
     
     // This reads the given JSON file and uses it to load all other assets
 
@@ -79,7 +83,8 @@ void GameEngine::onStartup() {
     // We have to do this BEFORE the scene, because the scene has a button
 #if defined (CU_TOUCH_SCREEN)
 	_touch = true;
-    Input::activate<Touchscreen>();
+	InputController::_touch = true;
+	Input::activate<Touchscreen>();
 #else
 	_touch = false;
     Input::activate<Mouse>();
@@ -125,32 +130,35 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
-    if (_menu->getMode() == Mode::LOADING && !_loading->isComplete()) {
-        _loading->update(0.01f);
-    } else {
-        switch (_menu->getMode()){
-            case Mode::LOADING:
-            {
+    switch (_menu->getMode()){
+        case Mode::LOADING:
+        {
+            if (!_loading->isComplete()){
+                _loading->update(0.01f);
+            } else {
                 _loading->dispose(); // Disables the input listeners in this mode
                 std::shared_ptr<World> levelWorld = World::alloc(_assets);
-                _gameplay = GameplayController::alloc(levelWorld, _touch);
-                _menu->setMode(Mode::MAIN_MENU);
-                break;
+                _gameplay = GameplayController::alloc(_scene, levelWorld);
+                
+                // initialize the menu with the assets
+                _menu->init(_scene,_assets);
+                _menu->setMode(Mode::GAMEPLAY);
             }
-            case Mode::GAMEPLAY:
-            {
-                _gameplay->update(timestep);
-                break;
-            }
-            case Mode::MAIN_MENU:
-            {
-                _menu->update(timestep);
-                break;
-            }
-            default:
-            {
-                break;
-            }
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            _gameplay->update(timestep);
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu->update(timestep);
+            break;
+        }
+        default:
+        {
+            break;
         }
     }
 }
