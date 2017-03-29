@@ -67,6 +67,7 @@ bool GameState::init(const std::shared_ptr<GenericAssetManager>& assets){
     // set the initial character position to 0
     _activeCharacterPosition = 0;
     
+    GameState::_internalClock->init();
     return true;
 }
 
