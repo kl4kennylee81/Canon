@@ -155,7 +155,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     }
     
     Input::activate<Keyboard>();
-    setDebug(true);
+    setDebug(false);
     
     return true;
 }

@@ -107,6 +107,11 @@ public:
     
     /** testing function to populate the world without the data files */
     void populate();
+    
+    /**
+     * Hong test
+     */
+    void populate2();
 };
 
 #endif /* World_hpp */
