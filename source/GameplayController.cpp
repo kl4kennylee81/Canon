@@ -36,7 +36,7 @@ void GameplayController::update(float timestep) {
     // TODO temporary rest until we have a retry screen
     if (_gameState->reset){
         _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
-        init(_levelController->getWorld(),_touch);
+        init(_levelController->getWorld());
         _gameState->reset = false;
         return;
     }
@@ -46,11 +46,11 @@ void GameplayController::update(float timestep) {
     _switchController->update(timestep, _gameState);
     _pathController->update(timestep, _gameState);
     _moveController->update(timestep, _gameState);
-    _moveController->updateActivePaths(timestep, _gameState);
     _aiController->update(timestep, _gameState);
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
+
 }
 
 /**
@@ -63,10 +63,9 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 }
 
 
-bool GameplayController::init(std::shared_ptr<World> levelWorld, bool touch) {
-	_touch = touch;
+bool GameplayController::init(std::shared_ptr<World> levelWorld) {
 	_gameState = GameState::alloc(levelWorld->getAssetManager());
-	_pathController = PathController::alloc(_gameState, touch);
+	_pathController = PathController::alloc(_gameState);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();

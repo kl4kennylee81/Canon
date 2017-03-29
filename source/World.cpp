@@ -10,11 +10,12 @@
 #include "Element.hpp"
 #include <random>
 #include "AIData.hpp"
+#include "CompositeAIData.hpp"
 #include <iostream>
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            1
+#define NUMBER_SPAWNS            6
 
 using std::string;
 using namespace cugl;
@@ -76,7 +77,7 @@ void World::populate() {
             if (dist2(rng) == 1){
                 we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
             } else {
-                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{"staticZone"});
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
             }
 			wd->addWaveEntry(we);
 		}
@@ -157,10 +158,19 @@ std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
 }
 
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){
-    if (_isSandbox && _aiData.count(aiKey) > 0){
-        return _aiData.at(aiKey);
-    }
-    return _assets->get<AIData>(aiKey);
+	bool sandbox = _isSandbox && _aiData.count(aiKey) > 0;
+	auto data = sandbox ? _aiData[aiKey] : _assets->get<AIData>(aiKey);
+	if (data != nullptr && data->type == AIType::COMPOSITE) {
+		auto compositeData = std::static_pointer_cast<CompositeAIData>(data);
+		std::string startKey = compositeData->_startKey;
+		compositeData->_startData = sandbox ? _aiData[startKey] : _assets->get<AIData>(startKey);
+		for (int i = 0; i < compositeData->_aiKeys.size(); i++) {
+			std::shared_ptr<AIData> subData = getAIData(compositeData->_aiKeys.at(i));
+			compositeData->_aiDatas.push_back(subData);
+		}
+		return compositeData;
+	}
+	return data;
 }
 
 std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){

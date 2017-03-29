@@ -13,6 +13,7 @@
 #include <cugl/base/CUBase.h>
 #include <cugl/2d/CUPathNode.h>
 #include "MoveEvent.hpp"
+#include "InputController.hpp"
 
 using namespace cugl;
 
@@ -89,38 +90,9 @@ void PathController::updateMinMax(Vec2 vec) {
 	_maxy = std::max(_maxy, vec.y);
 }
 
-Vec2 PathController::getInputVector() {
-	if (_touch) {
-		auto set = Input::get<Touchscreen>()->touchSet();
-		return set.size() > 0 ? Input::get<Touchscreen>()->touchPosition(set.at(0)) : Vec2::Vec2();
-	}
-	else {
-		return Input::get<Mouse>()->pointerPosition();
-	}
-}
-
-bool PathController::getIsPressed() {
-	if (_touch) {
-		return Input::get<Touchscreen>()->touchSet().size() > 0;
-	}
-	else {
-		return Input::get<Mouse>()->buttonDown().hasLeft();
-	}
-}
-
-bool PathController::getDoubleTouch() {
-	if (_touch) {
-		return Input::get<Touchscreen>()->touchSet().size() > 1;
-	}
-	else {
-		return Input::get<Mouse>()->buttonDown().hasLeft() &&
-			Input::get<Mouse>()->buttonDown().hasRight();
-	}
-}
-
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
-	bool isPressed = getIsPressed();
-	Vec2 position = isPressed ? getInputVector() : Vec2::Vec2();
+	bool isPressed = InputController::getIsPressed();
+	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
     
     Vec2 physicsPosition = Vec2::Vec2();
     
@@ -145,7 +117,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     }
 
 	// clear path on two finger touch
-	if (getDoubleTouch()) {
+	if (InputController::getDoubleTouch()) {
 		_path->clear();
 		_wasPressed = false;
 		_pathSceneNode->removeAllChildren();
@@ -184,7 +156,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	_wasPressed = isPressed;
 }
 
-bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
+bool PathController::init(std::shared_ptr<GameState> state) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);
@@ -196,9 +168,8 @@ bool PathController::init(std::shared_ptr<GameState> state, bool touch) {
 	resetMinMax();
 	_path = Path::alloc();
     
-    _is_moving = false;
-    
+    _is_moving = false;    
 	_wasPressed = false;
-	_touch = touch;
+
 	return true;
 }

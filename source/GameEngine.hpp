@@ -29,8 +29,7 @@ protected:
     /** A 3152 style SpriteBatch to render the scene */
     std::shared_ptr<cugl::SpriteBatch>  _batch;
     
-	/** Represents whether we are using touch screen or not */
-	bool _touch;
+
 
     // Player modes
     /** The primary controller for the game world */
@@ -41,6 +40,9 @@ protected:
     MenuGraph _menuGraph;
 
 public:
+	/** Represents whether we are using touch screen or not */
+	static bool _touch;
+
     /**
      * Creates, but does not initialized a new application.
      *
