@@ -100,7 +100,7 @@
     },
     "bar": {
       "shapeKey": "bar",
-      "animationKey": "whiteSector"
+      "animationKey": "whiteBar"
     }
   },
   "shapes": {
