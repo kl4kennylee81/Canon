@@ -11,7 +11,7 @@
 
 using namespace cugl;
 
-#define SPAWN_FRAMES 30
+#define SPAWN_FRAMES 30.0f
 
 SpawnController::SpawnController():
 BaseController(){}
@@ -32,7 +32,7 @@ void SpawnController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
                     ObjectSpawningEvent* objectSpawning = (ObjectSpawningEvent*)levelEvent;
-                    spawnMap.insert({objectSpawning->object,0});
+                    spawnMap.insert({objectSpawning->object,0.0f});
                     break;
                 }
             }
@@ -45,12 +45,12 @@ void SpawnController::update(float timestep) {
     for (auto it = spawnMap.begin(); it != spawnMap.end();) {
         auto obj = it->first;
         auto frames = it->second;
-        if (frames == SPAWN_FRAMES){
+        if (frames >= SPAWN_FRAMES){
             std::shared_ptr<ObjectSpawnEvent> objectSpawn = ObjectSpawnEvent::alloc(obj);
             notify(objectSpawn.get());
             spawnMap.erase(it++);
         } else {
-            it->second = frames + 1;
+            it->second = frames + GameState::_internalClock->getTimeDilation();
             it++;
         }
     }

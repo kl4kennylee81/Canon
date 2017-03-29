@@ -9,6 +9,7 @@
 #include "GameState.hpp"
 
 float GameState::_physicsScale;
+std::unique_ptr<InternalClock> GameState::_internalClock(new InternalClock());
 
 using namespace cugl;
 

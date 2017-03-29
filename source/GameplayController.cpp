@@ -18,7 +18,8 @@ _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
 _switchController(nullptr),
-_levelController(nullptr)
+_levelController(nullptr),
+_clockController(nullptr)
 {}
 
 void GameplayController::attach(std::shared_ptr<Observer> obs) {
@@ -40,7 +41,8 @@ void GameplayController::update(float timestep) {
         _gameState->reset = false;
         return;
     }
-
+    
+    _clockController->update(timestep);
     _levelController->update(timestep, _gameState);
     _spawnController->update(timestep);
     _switchController->update(timestep, _gameState);
@@ -74,10 +76,12 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _zoneController = ZoneController::alloc(_gameState,levelWorld);
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
+    _clockController = ClockController::alloc();
 
 	_pathController->attach(_moveController);
     _pathController->attach(_switchController);
     _pathController->attach(_animationController);
+    _pathController->attach(_clockController);
     
     _levelController->attach(_collisionController);
     _levelController->attach(_animationController);
