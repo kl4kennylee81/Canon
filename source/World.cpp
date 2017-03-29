@@ -124,7 +124,6 @@ void World::populateLevel1() {
 
 	auto zone = std::static_pointer_cast<StaticZoneData>(columnZone);
 	std::string el = zone->element == Element::BLUE ? "BLUE" : "GOLD";
-	std::cout << el << std::endl;
 
 	_zoneData.insert({ "columnZone", columnZone });
 }
