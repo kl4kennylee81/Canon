@@ -142,17 +142,17 @@
         "zone1": {
           "objectKey": "sector",
           "startingPosition": 0,
-          "element": "BLUE"
+          "element": "GOLD"
         },
         "zone2": {
           "objectKey": "sector",
           "startingPosition": 0.33,
-          "element": "BLUE"
+          "element": "GOLD"
         },
         "zone3": {
           "objectKey": "sector",
           "startingPosition": 0.67,
-          "element": "BLUE"
+          "element": "GOLD"
         }
       },
       "radius": 50,
@@ -166,7 +166,7 @@
       "maxSize": 1,
       "maxTime": 180,
       "speed": 0.004,
-      "element": "BLUE"
+      "element": "GOLD"
     }
   }
 }

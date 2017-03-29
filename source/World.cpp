@@ -88,9 +88,9 @@ void World::populateLevel1() {
 
 	wd = WaveData::alloc();
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 100, 100, Element::BLUE, {}));
-	wd->addWaveEntry(WaveEntry::alloc("object2", "composite", 100, 500, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 100, 500, Element::GOLD, {"pulseZone"}));
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 900, 500, Element::BLUE, {}));
-	wd->addWaveEntry(WaveEntry::alloc("object2", "composite", 900, 100, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 900, 100, Element::GOLD, {"rotateZone"}));
 	_waveData.insert(std::make_pair("wave3", wd));
 
 
