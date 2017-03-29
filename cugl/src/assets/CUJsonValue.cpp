@@ -556,7 +556,7 @@ std::vector<std::string> JsonValue::asStringArray(const std::string& defaultValu
                 }
                 break;
             case Type::StringType:
-                value = _stringValue;
+                value = (*it)->_stringValue;
                 break;
             default:
                 value = defaultValue;

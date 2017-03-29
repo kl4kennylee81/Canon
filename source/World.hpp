@@ -69,6 +69,10 @@ public:
         _levelData = levelData;
         return true;
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	std::string serialize();
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     

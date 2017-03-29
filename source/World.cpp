@@ -14,9 +14,13 @@
 #include <iostream>
 #include <fstream>
 #include "StaticZoneData.hpp"
+#include <iostream>
+#include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            6
+
+std::string LEVEL_NAME = "worldSerialize";
 
 using std::string;
 using namespace cugl;
@@ -32,6 +36,38 @@ World::~World()
 
 std::shared_ptr<GenericAssetManager> World::getAssetManager(){
     return _assets;
+}
+
+std::shared_ptr<JsonValue> World::toJsonValue()
+{
+	
+
+	std::shared_ptr<JsonValue> completeJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> levelDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> waveDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> objectDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> shapeDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> zoneDataJson = JsonValue::allocObject();
+
+	for (auto const& x : _waveData) { waveDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _objectData) { objectDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _shapeData) { shapeDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _zoneData) { zoneDataJson->appendChild(x.first, x.second->toJsonValue()); }
+
+	levelDataJson->appendChild(LEVEL_NAME, _levelData->toJsonValue());
+	
+	completeJson->appendChild("levels", levelDataJson);
+	completeJson->appendChild("waves", waveDataJson);
+	completeJson->appendChild("objects", objectDataJson);
+	completeJson->appendChild("shapes", shapeDataJson);
+	completeJson->appendChild("zones", zoneDataJson);
+	
+	return completeJson;
+}
+
+std::string World::serialize()
+{
+	return toJsonValue()->toString();
 }
 
 void World::populateLevel1() {
@@ -121,6 +157,13 @@ void World::populateLevel1() {
 	std::cout << el << std::endl;
 
 	_zoneData.insert({ "columnZone", columnZone });
+
+	//temp, writes file
+	std::ofstream myfile;
+	myfile.open("json/" + LEVEL_NAME + ".json");
+	std::string s = serialize();
+	myfile << s;
+	myfile.close();
 }
 
 
@@ -206,10 +249,11 @@ void World::populate() {
 bool World::init(std::shared_ptr<GenericAssetManager> assets){
     _assets = assets;
     // TODO temporary to test if it works
-    this->_levelData = assets->get<LevelData>("level0");
+    //this->_levelData = assets->get<LevelData>("level0");
+	this->_levelData = assets->get<LevelData>("worldSerialize");
     _isSandbox = false;
     
-    populateLevel1();
+    //populateLevel1();
     return true;
 }
 
