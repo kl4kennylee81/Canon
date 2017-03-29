@@ -45,7 +45,7 @@ void World::populateLevel1() {
 	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
@@ -86,6 +86,12 @@ void World::populateLevel1() {
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 100, Element::GOLD, {}));
 	_waveData.insert(std::make_pair("wave2", wd));
 
+	wd = WaveData::alloc();
+	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 100, 100, Element::BLUE, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "composite", 100, 500, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 900, 500, Element::BLUE, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "composite", 900, 100, Element::GOLD, {}));
+	_waveData.insert(std::make_pair("wave3", wd));
 
 
 
