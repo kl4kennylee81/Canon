@@ -139,7 +139,6 @@ void World::populateLevel1() {
     _zoneData.insert({"redBigCircleZone", redBigCircleZone });
     
     std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave3", TIME_BETWEEN_SPAWN);
-    _levelData->addLevelEntry(e);
     
     // add wave entries here
     auto we1 = WaveEntry::alloc("object1", "horizontal", 0, 100,Element::BLUE,{"staticZoneBig"});
