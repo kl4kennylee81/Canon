@@ -16,7 +16,7 @@
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1. // a constant needed to make the animation a bit bigger than the bounding box.
+#define ANIMATION_SCALE_BUFFER     1.3 // a constant needed to make the animation a bit bigger than the bounding box.
 #define BLUE_COLOR   Color4::BLUE
 #define RED_COLOR   Color4::RED
 #define DEBUG_COLOR  Color4::GREEN
@@ -109,10 +109,12 @@ void AnimationController::eventUpdate(Event* e) {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
                     handleAction(zoneSpawn->object, AnimationAction::SPAWN);
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
-						anim->setColor(0x0EAAEB);
+						anim->setColor(Color4f(0x0EAAEB)*Color4f(1,1,1,0.5));
                     } else {
-                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.4));
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.5));
                     }
                     break;
                 }

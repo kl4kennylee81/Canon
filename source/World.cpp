@@ -14,6 +14,8 @@
 #include <iostream>
 #include <fstream>
 #include "StaticZoneData.hpp"
+#include "PathAIData.hpp"
+#include "AIData.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            6
@@ -45,13 +47,13 @@ void World::populateLevel1() {
 	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 4; i++) {
 		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
 
 	// create player characters
-	auto player1 = WaveEntry::alloc("playerChar1", "", 950, 300, Element::BLUE, {});
+	auto player1 = WaveEntry::alloc("playerChar1", "", 500, 300, Element::BLUE, {});
 	_levelData->addPlayerChars(player1);
 
 	auto player1Obj = _assets->get<ObjectData>("playerChar1");
@@ -66,7 +68,7 @@ void World::populateLevel1() {
 	auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
 	_animationData.insert({ "redCharAnimation",player2Anim });
 
-	auto player2 = WaveEntry::alloc("playerChar2", "", 100, 300, Element::GOLD, {});
+	auto player2 = WaveEntry::alloc("playerChar2", "", 400, 300, Element::GOLD, {});
 	_levelData->addPlayerChars(player2);
 
 	std::shared_ptr<WaveEntry> we;
@@ -77,14 +79,20 @@ void World::populateLevel1() {
 	}
 	we = WaveEntry::alloc("object2", "horizontal", 500, 300, Element::GOLD, {"columnZone"});
 	wd->addWaveEntry(we);
-	_waveData.insert(std::make_pair("wave1", wd));
+    
+    auto horizontalAILeft = PathAIData::alloc(PathType::HORIZONTAL,{},PathDirection::LEFT);
+    _aiData.insert(std::make_pair("horizontalLeft",horizontalAILeft));
+    
+    we = WaveEntry::alloc("object2","horizontalLeft", 500, 300, Element::GOLD, {"columnZone"});
+    wd->addWaveEntry(we);
+	_waveData.insert(std::make_pair("wave2", wd));
 
 	wd = WaveData::alloc();
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 100, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 500, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 500, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 100, Element::GOLD, {}));
-	_waveData.insert(std::make_pair("wave2", wd));
+	_waveData.insert(std::make_pair("wave3", wd));
 
 	wd = WaveData::alloc();
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 100, 100, Element::BLUE, {}));
@@ -92,8 +100,6 @@ void World::populateLevel1() {
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 900, 500, Element::BLUE, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 900, 100, Element::GOLD, {"rotateZone"}));
 	_waveData.insert(std::make_pair("wave4", wd));
-
-
 
 	auto od1 = ObjectData::alloc("shape1", "blueEnemyAnimation");
 	_objectData.insert(std::make_pair("object1", od1));
@@ -143,7 +149,8 @@ void World::populateLevel1() {
     auto we3 = WaveEntry::alloc("object2", "vertical", 0, 100,Element::GOLD,{"redBigCircleZone"});
     
     auto we4 = WaveEntry::alloc("object1", "vertical", 940, 440,Element::BLUE,{"staticZoneBig"});
-    
+
+    wd = WaveData::alloc();
     wd->addWaveEntry(we1);
     wd->addWaveEntry(we2);
     wd->addWaveEntry(we3);
@@ -161,7 +168,7 @@ void World::populateLevel1() {
     }
     
     // add the wave entry to the wave data
-    _waveData.insert(std::make_pair("wave3", wd));
+    _waveData.insert(std::make_pair("wave1", wd));
 }
 
 

@@ -193,20 +193,26 @@
             }
         },
         "whiteCircle": {
-            "texture": "./textures/test/circle.png",
-            "rows": 1,
-            "cols": 1,
-            "size": 1,
+            "texture": "./textures/models/zones/circle_zone.png",
+            "rows": 2,
+            "cols": 3,
+            "size": 6,
             "statemap": {
-                "idle": {
+                "spawning":{
                     "first": 0,
+                    "total": 3,
+                    "frames": [10,10,10]
+                },
+                "idle": {
+                    "first": 2,
                     "total": 1,
                     "frames": [10]
                 }
             },
             "actionmap": {
                 "SPAWN": {
-                    "repeat": "idle"
+                    "repeat": "idle",
+                    "active": "spawning"
                 }
             }
         },
