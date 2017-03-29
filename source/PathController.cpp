@@ -20,7 +20,7 @@ using namespace cugl;
 /**
  * Each character has a cooldown of this much after each swipe
  */
-#define SWIPE_COOLDOWN_FRAMES 30;
+#define SWIPE_COOLDOWN_FRAMES 10;
 
 /*
  * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
@@ -179,7 +179,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     }
 	_wasPressed = isPressed;
 }
-
+    
 bool PathController::init(std::shared_ptr<GameState> state) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);

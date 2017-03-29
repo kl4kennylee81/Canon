@@ -54,7 +54,6 @@ public:
 
 	bool init(std::string radius) { 
 		_radius = std::stof(radius) / GAME_PHYSICS_SCALE;
-		std::cout << GAME_PHYSICS_SCALE << std::endl;
 		return true; 
 	}
 

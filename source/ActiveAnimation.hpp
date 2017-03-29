@@ -56,6 +56,8 @@ public:
         return _node;
     }
     
+    bool isUniformScaling();
+    
     std::shared_ptr<AnimationState> getAnimationState() {
         std::string state = repeat;
         if (!active.empty()){

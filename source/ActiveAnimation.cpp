@@ -42,3 +42,7 @@ bool ActiveAnimation::nextFrame() {
     _node->setFrame(getAnimationState()->first+curIndex);
     return true;
 }
+
+bool ActiveAnimation::isUniformScaling(){
+    return !this->_data->nonUniformScale;
+}
