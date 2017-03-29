@@ -393,12 +393,8 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
 	this->_levelData = assets->get<LevelData>("worldSerialize");
     _isSandbox = false;
     
-<<<<<<< HEAD
     //populateLevel1();
-=======
 //    populate2();
-    populateLevel1();
->>>>>>> origin
     return true;
 }
 

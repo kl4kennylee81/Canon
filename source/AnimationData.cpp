@@ -7,6 +7,8 @@
 //
 
 #include "AnimationData.hpp"
+#include <iostream>
+#include <fstream>
 
 using namespace cugl;
 
@@ -38,6 +40,7 @@ std::shared_ptr<JsonValue> AnimationData::toJsonValue(){
 	animData->appendChild("rows", JsonValue::alloc(static_cast<float>(rows)));
 	animData->appendChild("cols", JsonValue::alloc(static_cast<float>(cols)));
 	animData->appendChild("size", JsonValue::alloc(static_cast<float>(size)));
+	animData->appendChild("nonUniformScale", nonUniformScale ? JsonValue::alloc(1.) : JsonValue::alloc(0.));
 
 	std::shared_ptr<JsonValue> stateMap = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> actionMap = JsonValue::allocObject();
@@ -101,6 +104,15 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         _actionmap.insert({action,animationupdate});
     }
+	std::string filename = "test_writer.json";
+	Pathname path = Pathname(filename);
+	std::shared_ptr<JsonWriter> writer = JsonWriter::alloc(path);
+	writer->writeJson(json);
+
+	std::ofstream myfile;
+	myfile.open("test_writer2.json");
+	myfile << this->serialize();
+	myfile.close();
 	return true;
 }
 
