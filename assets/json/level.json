@@ -125,7 +125,7 @@
       "relY": 0,
       "cooldown": 0,
       "duration": 100,
-      "element": "GOLD"
+      "element": "RED"
     },
     "staticZone": {
       "type": "STATIC",

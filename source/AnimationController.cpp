@@ -110,9 +110,9 @@ void AnimationController::eventUpdate(Event* e) {
                     handleAction(zoneSpawn->object, AnimationAction::SPAWN);
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
-						anim->setColor(Color4::BLUE);
+						anim->setColor(0x0EAAEB);
                     } else {
-                        anim->setColor(Color4::RED);
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.4));
                     }
                     break;
                 }
