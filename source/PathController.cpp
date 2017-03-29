@@ -179,7 +179,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     }
 	_wasPressed = isPressed;
 }
-
+    
 bool PathController::init(std::shared_ptr<GameState> state) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
