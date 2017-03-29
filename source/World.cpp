@@ -206,6 +206,15 @@ void World::populate() {
 void World::populate2() {
     this->_isSandbox = true;
     
+    std::mt19937 rng;
+    rng.seed(std::random_device()());
+    // distribution width and height
+    
+    std::uniform_int_distribution<std::mt19937::result_type> dist9(1, 9);
+    std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
+    std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
+
+    
     _levelData = LevelData::alloc();
     
     // level data for players
@@ -252,8 +261,14 @@ void World::populate2() {
     
     std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
     
+    
+    
     _zoneData.insert({"staticZone", staticZone});
     
+    
+    
+    auto redBigCircleZone = StaticZoneData::alloc("big_circle", 0, 0,  0, 100, Element::GOLD);
+    _zoneData.insert({"redBigCircleZone", redBigCircleZone });
     
     std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave0", TIME_BETWEEN_SPAWN);
     _levelData->addLevelEntry(e);
@@ -261,9 +276,29 @@ void World::populate2() {
     auto wd = WaveData::alloc();
     
     // add wave entries here
-    auto we = WaveEntry::alloc("object1", "horizontal", 0, 250,Element::BLUE,{"staticZone"});
+    auto we = WaveEntry::alloc("object1", "horizontal", 0, 100,Element::BLUE,{"staticZoneBig"});
+    
+    auto we2 = WaveEntry::alloc("object2", "horizontal", 940, 440,Element::GOLD,{"redBigCircleZone"});
+    
+    auto we3 = WaveEntry::alloc("object2", "vertical", 0, 100,Element::GOLD,{"redBigCircleZone"});
+    
+    auto we4 = WaveEntry::alloc("object1", "vertical", 940, 440,Element::BLUE,{"staticZoneBig"});
 
     wd->addWaveEntry(we);
+    wd->addWaveEntry(we2);
+    wd->addWaveEntry(we3);
+    wd->addWaveEntry(we4);
+    
+    std::shared_ptr<WaveEntry> we5;
+    for (int j = 0; j<NUMBER_SPAWNS; j++) {
+        std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
+        if (dist2(rng) == 1){
+            we5 = WaveEntry::alloc("object1", "homing", distWidth(rng), distHeight(rng),Element::BLUE,{});
+        } else {
+            we5 = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
+        }
+        wd->addWaveEntry(we5);
+    }
     
     // add the wave entry to the wave data
     _waveData.insert(std::make_pair("wave0", wd));

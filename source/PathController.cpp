@@ -20,7 +20,7 @@ using namespace cugl;
 /**
  * Each character has a cooldown of this much after each swipe
  */
-#define SWIPE_COOLDOWN_FRAMES 30;
+#define SWIPE_COOLDOWN_FRAMES 10;
 
 /*
  * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
