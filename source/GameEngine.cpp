@@ -12,6 +12,7 @@
 #include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
+#include "InputController.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -81,7 +82,7 @@ void GameEngine::onStartup() {
     // We have to do this BEFORE the scene, because the scene has a button
 #if defined (CU_TOUCH_SCREEN)
 	_touch = true;
-	InputController::_touch = true;
+    InputController::setTouch(true);
 	Input::activate<Touchscreen>();
 #else
 	_touch = false;
