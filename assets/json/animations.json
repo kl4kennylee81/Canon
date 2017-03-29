@@ -131,8 +131,8 @@
             "statemap": {
                 "spawning": {
                     "first": 0,
-                    "total": 2,
-                    "frames": [15,15]
+                    "total": 3,
+                    "frames": [10,10,30]
                 },
                 "idle": {
                     "first": 2,
@@ -166,8 +166,8 @@
             "statemap": {
                 "spawning": {
                     "first": 0,
-                    "total": 2,
-                    "frames": [15,15]
+                    "total": 3,
+                    "frames": [10,10,30]
                 },
                 "idle": {
                     "first": 2,
@@ -193,18 +193,18 @@
             }
         },
         "whiteCircle": {
-            "texture": "./textures/models/zones/circle_zone.png",
-            "rows": 2,
-            "cols": 3,
-            "size": 6,
+            "texture": "./textures/test/circle.png",
+            "rows": 1,
+            "cols": 1,
+            "size": 1,
             "statemap": {
                 "spawning":{
                     "first": 0,
-                    "total": 3,
-                    "frames": [10,10,10]
+                    "total": 1,
+                    "frames": [10]
                 },
                 "idle": {
-                    "first": 2,
+                    "first": 0,
                     "total": 1,
                     "frames": [10]
                 }
