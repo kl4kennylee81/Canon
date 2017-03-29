@@ -2,7 +2,8 @@
   "ai": {
     "horizontal": {
       "type": "PATH",
-      "pathType": "HORIZONTAL"
+      "pathType": "HORIZONTAL",
+      "direction": "RIGHT"
     },
     "vertical": {
       "type": "PATH",

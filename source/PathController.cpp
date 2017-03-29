@@ -20,7 +20,7 @@ using namespace cugl;
 /**
  * Each character has a cooldown of this much after each swipe
  */
-#define SWIPE_COOLDOWN_FRAMES 60;
+#define SWIPE_COOLDOWN_FRAMES 30;
 
 /*
  * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
@@ -99,6 +99,7 @@ void PathController::updateMinMax(Vec2 vec) {
 
 bool PathController::isOnCooldown() {
     return _cooldown_frames < SWIPE_COOLDOWN_FRAMES;
+
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
@@ -192,6 +193,7 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_path = Path::alloc();
     controllerState = IDLE;
 	_wasPressed = false;
+	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
 
 	return true;
 }
