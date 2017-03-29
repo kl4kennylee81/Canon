@@ -17,6 +17,11 @@
 
 using namespace cugl;
 
+/**
+ * Each character has a cooldown of this much after each swipe
+ */
+#define SWIPE_COOLDOWN_FRAMES 30;
+
 /*
  * Note: When a click event is received, the coordinates are taken in as screen coordinates ((0,0) at top left and bounds are
  * size of the device) but then the path is accumilated in world coordinates ((0,0) is bottom left and bounds are your GAME_WIDTH);
@@ -44,7 +49,9 @@ void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
         {
-            _is_moving = false;
+            // character is now done moving through the path
+            controllerState = IDLE;
+            break;
         }
     }
 }
@@ -90,7 +97,13 @@ void PathController::updateMinMax(Vec2 vec) {
 	_maxy = std::max(_maxy, vec.y);
 }
 
+bool PathController::isOnCooldown() {
+    return _cooldown_frames < SWIPE_COOLDOWN_FRAMES;
+
+}
+
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
+    _cooldown_frames += GameState::_internalClock->getTimeDilation();
 	bool isPressed = InputController::getIsPressed();
 	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
     
@@ -105,14 +118,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 
         Vec2 scenePosition = Vec2::Vec2();
         state->screenToSceneCoords(position, scenePosition);
-        
-//        std::cout << "screen position:" << position.toString() << "\n";
-//        std::cout << "physics position:" << physicsPosition.toString() << "\n";
-//        std::cout << "scene position:" << scenePosition.toString() << "\n";
     }
     
     // can't start drawing a path before a character is done moving through a previous path
-    if (_is_moving) {
+    if (controllerState == MOVING) {
         return;
     }
 
@@ -125,6 +134,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
     
 	if (!_wasPressed && isPressed) {
+        
+        if (isOnCooldown()) {
+            return;
+        }
+        
 		_path->clear();
         Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
@@ -134,6 +148,12 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		_path->add(currentLocation);
 		resetMinMax();
 		updateMinMax(currentLocation);
+        
+        // notify that the controller has started drawing
+        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc();
+        notify(drawEvent.get());
+        
+        controllerState = DRAWING;
 	}
 	if (isPressed) {
 		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
@@ -148,11 +168,15 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	}
 	if (_wasPressed && !isPressed) {
 		addPathToScene(state);
+        
+        // notify that the controller has finished drawing
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
-        _is_moving = true;
-	}
+        
+        controllerState = MOVING;
+        _cooldown_frames = 0;
+    }
 	_wasPressed = isPressed;
 }
 
@@ -167,9 +191,9 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_height = Application::get()->getDisplayHeight();
 	resetMinMax();
 	_path = Path::alloc();
-    
-    _is_moving = false;    
+    controllerState = IDLE;
 	_wasPressed = false;
+	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
 
 	return true;
 }

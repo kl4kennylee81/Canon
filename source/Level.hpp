@@ -14,13 +14,17 @@
 #include <list>
 #include "LevelData.hpp"
 
+
+/**
+ * Abstracts away the spawning and keeping track of total time
+ */
 class Level {
 protected:
     std::shared_ptr<LevelData> _levelData;
     /** current index of the wave */
     int _currentWave;
     /** time elapsed since last wave */
-    float _timeElapsed;
+    float _framesElapsed;
     bool _readyToSpawn;
     bool _playerSpawned;
 public:

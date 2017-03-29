@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		829314B11E8A552C00CFA733 /* InternalClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314AF1E8A552C00CFA733 /* InternalClock.cpp */; };
+		829314B21E8A552C00CFA733 /* InternalClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314AF1E8A552C00CFA733 /* InternalClock.cpp */; };
+		829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314B31E8A554B00CFA733 /* ClockController.cpp */; };
+		829314B61E8A554B00CFA733 /* ClockController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314B31E8A554B00CFA733 /* ClockController.cpp */; };
 		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4F71E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
@@ -188,6 +192,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		829314AF1E8A552C00CFA733 /* InternalClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InternalClock.cpp; sourceTree = "<group>"; };
+		829314B01E8A552C00CFA733 /* InternalClock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InternalClock.hpp; sourceTree = "<group>"; };
+		829314B31E8A554B00CFA733 /* ClockController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockController.cpp; sourceTree = "<group>"; };
+		829314B41E8A554B00CFA733 /* ClockController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ClockController.hpp; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
@@ -406,6 +414,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		829314A81E8A54EA00CFA733 /* time */ = {
+			isa = PBXGroup;
+			children = (
+				829314AF1E8A552C00CFA733 /* InternalClock.cpp */,
+				829314B01E8A552C00CFA733 /* InternalClock.hpp */,
+				829314B31E8A554B00CFA733 /* ClockController.cpp */,
+				829314B41E8A554B00CFA733 /* ClockController.hpp */,
+			);
+			name = time;
+			sourceTree = "<group>";
+		};
 		9F1CCC221E69486300F218F8 /* moveEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +865,7 @@
 				9FFA3FAA1E636B350029D648 /* base */,
 				9FFA3FA11E6367820029D648 /* movement */,
 				9FFA3F921E6364AB0029D648 /* pathControls */,
+				829314A81E8A54EA00CFA733 /* time */,
 				9FFA3F701E6352B90029D648 /* physics */,
 				9FFA3F771E6357AE0029D648 /* util */,
 				9FFA3F631E625E490029D648 /* models */,
@@ -1050,6 +1070,7 @@
 				F1D35F261E7685990044A121 /* Element.cpp in Sources */,
 				F1D35F271E7685990044A121 /* Path.cpp in Sources */,
 				F1D35F281E7685990044A121 /* Event.cpp in Sources */,
+				829314B61E8A554B00CFA733 /* ClockController.cpp in Sources */,
 				F1D35F291E7685990044A121 /* Subject.cpp in Sources */,
 				F1D35F2A1E7685990044A121 /* Observer.cpp in Sources */,
 				F1D35F2B1E7685990044A121 /* GameObject.cpp in Sources */,
@@ -1062,6 +1083,7 @@
 				9F76684B1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				DFBD54701E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
 				9F7668491E84AE2E003A06E8 /* HomingAIData.cpp in Sources */,
+				829314B21E8A552C00CFA733 /* InternalClock.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,6 +1140,7 @@
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
 				DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */,
 				9FE4FD741E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,
+				829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,
@@ -1130,6 +1153,7 @@
 				9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				9FFA3F881E635FD10029D648 /* CollisionEvent.cpp in Sources */,
 				9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */,
+				829314B11E8A552C00CFA733 /* InternalClock.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,10 +4,11 @@
 
 using namespace cugl;
 
-bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path) {
+bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path, PathDirection direction) {
     _pathType = pathType;
     _path = path;
-    
+	_direction = direction;
+
     // scale to physics coordinates
     for (auto vec : _path){
         vec = vec / (GAME_PHYSICS_SCALE);
@@ -98,11 +99,28 @@ std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
 }
 
 
+PathDirection getDirectionFromString(const std::string& str) {
+	if (str.compare("UP") == 0) {
+		return PathDirection::UP;
+	}
+	if (str.compare("DOWN") == 0) {
+		return PathDirection::DOWN;
+	}
+	if (str.compare("LEFT") == 0) {
+		return PathDirection::LEFT;
+	}
+	if (str.compare("RIGHT") == 0) {
+		return PathDirection::RIGHT;
+	}
+	return PathDirection::RANDOM;
+}
+
 bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::PATH;
 	PathType pathType = getPathTypeFromString(json->getString("pathType"));
 	std::vector<Vec2> path = getPathFromString(json->getString("path"));
-	init(pathType, path);
+	PathDirection direction = getDirectionFromString(json->getString("direction"));
+	init(pathType, path, direction);
 	return true;
 }
 
@@ -111,5 +129,5 @@ bool PathAIData::materialize() {
 }
 
 std::shared_ptr<ActiveAI> PathAIData::newActiveAI(std::shared_ptr<GameObject> object) {
-	return PathAI::alloc(object, _pathType, _path);
+	return PathAI::alloc(object, _pathType, _path, _direction);
 }

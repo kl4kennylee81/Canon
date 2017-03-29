@@ -55,7 +55,7 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 		std::shared_ptr<ActivePath> path = it.second;
 		Vec2 goal = path->_path->get(path->_pathIndex);
 		Vec2 current = player->getPosition();
-		Vec2 velocity = getVelocityVector(current, goal,((float) VELOCITY * 60 ));
+        Vec2 velocity = getVelocityVector(current, goal,((float) VELOCITY * 60));
 		player->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
 	}
 }
@@ -87,9 +87,12 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
 	return true;
 }
 
+/**
+ * Return velocity vector with current time dilation applied
+ */
 cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
 {
 	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
-	direction.normalize().scale(velocity);
+	direction.normalize().scale(velocity * GameState::_internalClock->getTimeDilation());
 	return direction;
 }

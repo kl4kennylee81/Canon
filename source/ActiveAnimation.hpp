@@ -14,6 +14,7 @@
 #include <map>
 #include "AnimationData.hpp"
 #include "AnimationAction.hpp"
+#include "GameState.hpp"
 
 class ActiveAnimation {
     
@@ -27,7 +28,7 @@ class ActiveAnimation {
     
     int curIndex;
     
-    int curFrames;
+    float curFrames;
     
     /**
      * If this is true, then the active animation is ready to be removed.
