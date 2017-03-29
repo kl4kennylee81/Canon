@@ -19,20 +19,26 @@ enum class PathType : int {
 	HORIZONTAL, VERTICAL, CUSTOM, NONE
 };
 
+enum class PathDirection : int {
+	LEFT, RIGHT, UP, DOWN, RANDOM
+};
+
 class PathAIData : public AIData {
 public:
 
 	PathType _pathType;
 
+	PathDirection _direction;
+
 	std::vector<cugl::Vec2> _path;
 
 	PathAIData() : AIData() {}
 
-    bool init(PathType pathType, std::vector<cugl::Vec2> path);
+    bool init(PathType pathType, std::vector<cugl::Vec2> path, PathDirection direction);
 
-	static std::shared_ptr<PathAIData> alloc(PathType pathType, std::vector<cugl::Vec2> path) {
+	static std::shared_ptr<PathAIData> alloc(PathType pathType, std::vector<cugl::Vec2> path, PathDirection direction) {
 		std::shared_ptr<PathAIData> result = std::make_shared<PathAIData>();
-		return (result->init(pathType, path) ? result : nullptr);
+		return (result->init(pathType, path, direction) ? result : nullptr);
 	}
 
 	std::string serialize() override;

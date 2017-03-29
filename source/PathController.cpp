@@ -99,6 +99,7 @@ void PathController::updateMinMax(Vec2 vec) {
 
 bool PathController::isOnCooldown() {
     return _cooldown_frames < SWIPE_COOLDOWN_FRAMES;
+
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
@@ -178,7 +179,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     }
 	_wasPressed = isPressed;
 }
-
+    
 bool PathController::init(std::shared_ptr<GameState> state) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
@@ -192,6 +193,7 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_path = Path::alloc();
     controllerState = IDLE;
 	_wasPressed = false;
+	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
 
 	return true;
 }

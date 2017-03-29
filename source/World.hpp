@@ -112,6 +112,8 @@ public:
      * Hong test
      */
     void populate2();
+
+	void populateLevel1();
 };
 
 #endif /* World_hpp */
