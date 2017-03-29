@@ -13,6 +13,7 @@
 #include "CompositeAIData.hpp"
 #include <iostream>
 #include <fstream>
+#include "StaticZoneData.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            6
@@ -32,6 +33,97 @@ World::~World()
 std::shared_ptr<GenericAssetManager> World::getAssetManager(){
     return _assets;
 }
+
+void World::populateLevel1() {
+	this->_isSandbox = true;
+	_levelData = LevelData::alloc();
+	std::mt19937 rng;
+	rng.seed(std::random_device()());
+	// distribution width and height
+
+	std::uniform_int_distribution<std::mt19937::result_type> dist9(1, 9);
+	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
+	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
+
+	for (int i = 0; i < 2; i++) {
+		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
+		_levelData->addLevelEntry(e);
+	}
+
+	// create player characters
+	auto player1 = WaveEntry::alloc("playerChar1", "", 950, 300, Element::BLUE, {});
+	_levelData->addPlayerChars(player1);
+
+	auto player1Obj = _assets->get<ObjectData>("playerChar1");
+	_objectData.insert({ "playerChar1",player1Obj });
+
+	auto player1Anim = _assets->get<AnimationData>("blueCharAnimation");
+	_animationData.insert({ "blueCharAnimation",player1Anim });
+
+	auto player2Obj = _assets->get<ObjectData>("playerChar2");
+	_objectData.insert({ "playerChar2",player2Obj });
+
+	auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
+	_animationData.insert({ "redCharAnimation",player2Anim });
+
+	auto player2 = WaveEntry::alloc("playerChar2", "", 100, 300, Element::GOLD, {});
+	_levelData->addPlayerChars(player2);
+
+	std::shared_ptr<WaveEntry> we;
+	auto wd = WaveData::alloc();
+	for (int j = 0; j < 8; j++) {
+		we = WaveEntry::alloc("object1", "vertical", 200 + (j * 75), distHeight(rng), Element::BLUE, {});
+		wd->addWaveEntry(we);
+	}
+	we = WaveEntry::alloc("object2", "horizontal", 500, 300, Element::GOLD, {"columnZone"});
+	wd->addWaveEntry(we);
+	_waveData.insert(std::make_pair("wave1", wd));
+
+	wd = WaveData::alloc();
+	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 100, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 500, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 500, Element::GOLD, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 100, Element::GOLD, {}));
+	_waveData.insert(std::make_pair("wave2", wd));
+
+
+
+
+	auto od1 = ObjectData::alloc("shape1", "blueEnemyAnimation");
+	_objectData.insert(std::make_pair("object1", od1));
+
+	auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
+	_objectData.insert(std::make_pair("object2", od2));
+
+	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
+	_shapeData.insert({ "shape1",sd });
+
+	std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
+	_animationData.insert({ "blueEnemyAnimation",blueEnemy });
+
+	std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
+	_animationData.insert({ "redEnemyAnimation",yellowEnemy });
+
+	std::shared_ptr<AIData> homingAI = _assets->get<AIData>("homing");
+	_aiData.insert({ "homing",homingAI });
+	std::shared_ptr<AIData> squareAI = _assets->get<AIData>("square");
+	_aiData.insert({ "square",squareAI });
+	std::shared_ptr<AIData> verticalAI = _assets->get<AIData>("vertical");
+	_aiData.insert({ "vertical",verticalAI });
+
+
+	std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
+	_zoneData.insert({ "staticZone", staticZone });
+	std::shared_ptr<ZoneData> columnZone = _assets->get<ZoneData>("columnZone");
+
+	auto zone = std::static_pointer_cast<StaticZoneData>(columnZone);
+	std::string el = zone->element == Element::BLUE ? "BLUE" : "GOLD";
+	std::cout << el << std::endl;
+
+	_zoneData.insert({ "columnZone", columnZone });
+}
+
+
 
 /** testing function to populate the world without the data files */
 void World::populate() {
@@ -117,7 +209,7 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>("level0");
     _isSandbox = false;
     
-    populate();
+    populateLevel1();
     return true;
 }
 

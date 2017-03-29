@@ -3,6 +3,7 @@
 #include "GameState.hpp"
 #include "MoveController.hpp"
 #include "PathParameters.h"
+#include <random>
 
 using namespace cugl;
 
@@ -27,10 +28,14 @@ bool PathAI::isActive() {
 	return _isActive;
 }
 
-bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector<cugl::Vec2> path) {
+bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector<cugl::Vec2> path, PathDirection direction) {
 	_object = object;
 	_isActive = false;
 	_type = type;
+	_direction = direction;
+	std::mt19937 rng;
+	rng.seed(std::random_device()());
+	std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
 	switch (type) {
 	case PathType::VERTICAL:
 	{
@@ -39,8 +44,14 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 		Vec2 top = Vec2::Vec2(position.x, height);
 		Vec2 bottom = Vec2::Vec2(position.x, 0);
 		auto newPath = Path::alloc();
-		newPath->add(top);
-		newPath->add(bottom);
+		if (_direction == PathDirection::UP || (_direction == PathDirection::RANDOM && dist2(rng) == 1)) {
+			newPath->add(top);
+			newPath->add(bottom);
+		}
+		else {
+			newPath->add(bottom);
+			newPath->add(top);
+		}
 		_activePath = ActivePath::alloc(newPath);
 		break;
 	}
@@ -48,11 +59,17 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		Vec2 position = object->getPosition();
         float width = GAME_PHYSICS_WIDTH;
-		Vec2 top = Vec2::Vec2(width, position.y);
-		Vec2 bottom = Vec2::Vec2(0, position.y);
+		Vec2 right = Vec2::Vec2(width, position.y);
+		Vec2 left = Vec2::Vec2(0, position.y);
 		auto newPath = Path::alloc();
-		newPath->add(top);
-		newPath->add(bottom);
+		if (_direction == PathDirection::RIGHT || (_direction == PathDirection::RANDOM && dist2(rng) == 1)) {
+			newPath->add(right);
+			newPath->add(left);
+		}
+		else {
+			newPath->add(left);
+			newPath->add(right);
+		}
 		_activePath = ActivePath::alloc(newPath);
 		break;
 	}

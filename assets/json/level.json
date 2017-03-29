@@ -97,6 +97,10 @@
     "sector": {
       "shapeKey": "sector",
       "animationKey": "whiteSector"
+    },
+    "bar": {
+      "shapeKey": "bar",
+      "animationKey": "whiteSector"
     }
   },
   "shapes": {
@@ -107,10 +111,22 @@
       "vertices": [0, -100, 50.0, -86.6025403784, 86.6025403784, -50.0, 100, 0, 86.6025403784, 50.0, 50.0, 86.6025403784, 0, 100, -50.0, 86.6025403784, -86.6025403784, 50.0, -100, 0, -86.6025403784, -50.0, -50.0, -86.6025403784]
     },
     "sector": {
-      "vertices": [10,0,50,0,70,45,30,55,-10,45]
+      "vertices": [ 10, 0, 50, 0, 70, 45, 30, 55, -10, 45 ]
+    },
+    "bar": {
+      "vertices": [-20,400,20,400,20,-400,-20,-400]
     }
   },
   "zones": {
+    "columnZone": {
+      "type": "STATIC",
+      "objectKey": "bar",
+      "relX": 0,
+      "relY": 0,
+      "cooldown": 0,
+      "duration": 100,
+      "element": "GOLD"
+    },
     "staticZone": {
       "type": "STATIC",
       "objectKey": "circle",
