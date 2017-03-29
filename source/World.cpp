@@ -45,7 +45,7 @@ void World::populateLevel1() {
 	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
@@ -86,6 +86,12 @@ void World::populateLevel1() {
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 100, Element::GOLD, {}));
 	_waveData.insert(std::make_pair("wave2", wd));
 
+	wd = WaveData::alloc();
+	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 100, 100, Element::BLUE, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 100, 500, Element::GOLD, {"pulseZone"}));
+	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 900, 500, Element::BLUE, {}));
+	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 900, 100, Element::GOLD, {"rotateZone"}));
+	_waveData.insert(std::make_pair("wave4", wd));
 
 
 
@@ -118,9 +124,44 @@ void World::populateLevel1() {
 
 	auto zone = std::static_pointer_cast<StaticZoneData>(columnZone);
 	std::string el = zone->element == Element::BLUE ? "BLUE" : "GOLD";
-	std::cout << el << std::endl;
 
 	_zoneData.insert({ "columnZone", columnZone });
+    
+
+    // hong stuff
+    auto redBigCircleZone = StaticZoneData::alloc("big_circle", 0, 0,  0, 100, Element::GOLD);
+    _zoneData.insert({"redBigCircleZone", redBigCircleZone });
+    
+    std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave3", TIME_BETWEEN_SPAWN);
+    _levelData->addLevelEntry(e);
+    
+    // add wave entries here
+    auto we1 = WaveEntry::alloc("object1", "horizontal", 0, 100,Element::BLUE,{"staticZoneBig"});
+    
+    auto we2 = WaveEntry::alloc("object2", "horizontal", 940, 440,Element::GOLD,{"redBigCircleZone"});
+    
+    auto we3 = WaveEntry::alloc("object2", "vertical", 0, 100,Element::GOLD,{"redBigCircleZone"});
+    
+    auto we4 = WaveEntry::alloc("object1", "vertical", 940, 440,Element::BLUE,{"staticZoneBig"});
+    
+    wd->addWaveEntry(we1);
+    wd->addWaveEntry(we2);
+    wd->addWaveEntry(we3);
+    wd->addWaveEntry(we4);
+    
+    std::shared_ptr<WaveEntry> we5;
+    for (int j = 0; j<NUMBER_SPAWNS; j++) {
+        std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
+        if (dist2(rng) == 1){
+            we5 = WaveEntry::alloc("object1", "homing", distWidth(rng), distHeight(rng),Element::BLUE,{});
+        } else {
+            we5 = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
+        }
+        wd->addWaveEntry(we5);
+    }
+    
+    // add the wave entry to the wave data
+    _waveData.insert(std::make_pair("wave3", wd));
 }
 
 
@@ -310,8 +351,8 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>("level0");
     _isSandbox = false;
     
-    populate2();
-//    populateLevel1();
+//    populate2();
+    populateLevel1();
     return true;
 }
 

@@ -28,7 +28,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float maxSize = json->getFloat("maxSize");
     int maxTime = json->getInt("maxTime");
     float speed = json->getFloat("speed");
-    auto el = json->getString("Element").compare("BLUE") ? Element::BLUE : Element::GOLD;
+    auto el = json->getString("element").compare("BLUE") == 0 ? Element::BLUE : Element::GOLD;
     init(oid,minSize,minTime,maxSize,maxTime,speed,el);
     return true;
 }
