@@ -66,8 +66,8 @@ public:
     std::string getWaveKey(int index);
     
     size_t getNumberWaves();
-    
-    virtual std::string serialize();
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
     virtual bool preload(const std::string& file);
     

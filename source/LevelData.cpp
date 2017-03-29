@@ -32,7 +32,7 @@ size_t LevelData::getNumberWaves(){
     return _levelEntries.size();
 }
 
-std::string LevelData::serialize(){
+std::shared_ptr<JsonValue> LevelData::toJsonValue(){
 
 	std::shared_ptr<JsonValue> levelList = JsonValue::allocObject();
 	for (int i = 0; i < getNumberWaves(); i++)
@@ -46,13 +46,13 @@ std::string LevelData::serialize(){
 	std::shared_ptr<JsonValue> playerList = JsonValue::allocObject();
 	for (int i = 0; i < getPlayerChars().size(); i++)
 	{
-		playerList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->getJsonValue());
+		playerList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->toJsonValue());
 	}
 
 	std::shared_ptr<JsonValue> finalList = JsonValue::allocObject();
 	finalList->appendChild("levelEntries", levelList);
 	finalList->appendChild("playerChars", playerList);
-	return finalList->toString();
+	return finalList;
 }
 
 bool LevelData::preload(const std::string& file){

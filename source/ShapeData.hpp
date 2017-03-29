@@ -25,8 +25,8 @@ public:
         std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();
         return (result->init(vertices) ? result : nullptr);
     }
-    
-    virtual std::string serialize();
+
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
     virtual bool preload(const std::string& file);
     

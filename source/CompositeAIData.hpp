@@ -44,7 +44,12 @@ public:
 		return (result->init(startKey, conditions, aiKeys) ? result : nullptr);
 	}
 
-	std::string serialize() override;
+	std::vector<std::shared_ptr<Condition>> getConditions()
+	{
+		return _conditions;
+	}
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
 
 	bool preload(const std::string& file) override;
 

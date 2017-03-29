@@ -16,8 +16,6 @@
 class PathData : public Data {
 public:
 	std::vector<cugl::Vec2> path;
-
-    virtual std::string serialize();
     
     virtual bool preload(const std::string& file);
     

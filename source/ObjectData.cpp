@@ -15,14 +15,13 @@ bool ObjectData::init(std::string shapeKey,std::string animKey){
     return true;
 };
 
-
-std::string ObjectData::serialize() {
+std::shared_ptr<JsonValue> ObjectData::toJsonValue()
+{
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
 	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
 	object->appendChild("animationKey", JsonValue::alloc(animationKey));
-	return object->toString();
+	return object;
 }
-
 
 bool ObjectData::preload(const std::string& file){
 	auto reader = JsonReader::allocWithAsset(file.c_str());

@@ -21,7 +21,8 @@ bool ShapeData::init(std::vector<float> v){
     return true;
 }
 
-std::string ShapeData::serialize(){
+std::shared_ptr<JsonValue> ShapeData::toJsonValue()
+{
 	std::shared_ptr<JsonValue> verticesArray = JsonValue::allocArray();
 	for (int i = 0; i < this->vertices.size(); i++)
 	{
@@ -29,7 +30,7 @@ std::string ShapeData::serialize(){
 	}
 	std::shared_ptr<JsonValue> vertices = JsonValue::allocObject();
 	vertices->appendChild("vertices", verticesArray);
-	return vertices->toString();
+	return vertices;
 }
 
 bool ShapeData::preload(const std::string& file){

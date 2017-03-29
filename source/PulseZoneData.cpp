@@ -10,7 +10,7 @@
 
 using namespace cugl;
 
-std::string PulseZoneData::serialize(){
+std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
 	std::shared_ptr<JsonValue> pz = JsonValue::allocObject();
 	pz->appendChild("type", JsonValue::alloc("PULSE"));
 	pz->appendChild("objectKey", JsonValue::alloc(objectKey));
@@ -20,7 +20,7 @@ std::string PulseZoneData::serialize(){
 	pz->appendChild("maxTime", JsonValue::alloc(static_cast<float>(maxTime)));
 	pz->appendChild("speed", JsonValue::alloc(speed));
 	pz->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
-	return pz->toString();
+	return pz;
 }
 
 

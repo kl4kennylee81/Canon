@@ -88,12 +88,13 @@ std::string getStringFromPath(std::vector<Vec2> vecPath)
 	return acc;
 }
 
-std::string PathAIData::serialize() {
+std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
 	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
 	data->appendChild("type", JsonValue::alloc("PATH"));
 	data->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_pathType)));
 	data->appendChild("path", JsonValue::alloc(getStringFromPath(_path)));
-	return data->toString();
+
+	return data;
 }
 
 

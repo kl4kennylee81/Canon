@@ -10,7 +10,7 @@
 
 using namespace cugl;
 
-std::shared_ptr<JsonValue> AnimationUpdate::getJsonValue()
+std::shared_ptr<JsonValue> AnimationUpdate::toJsonValue()
 {
 	std::shared_ptr<JsonValue> update = JsonValue::allocObject();
 	update->appendChild("active", JsonValue::alloc(active));
@@ -18,7 +18,7 @@ std::shared_ptr<JsonValue> AnimationUpdate::getJsonValue()
 	return update;
 }
 
-std::shared_ptr<JsonValue> AnimationState::getJsonValue()
+std::shared_ptr<JsonValue> AnimationState::toJsonValue()
 {
 	std::shared_ptr<JsonValue> state = JsonValue::allocObject();
 	state->appendChild("first", JsonValue::alloc(static_cast<float>(first)));
@@ -32,7 +32,7 @@ std::shared_ptr<JsonValue> AnimationState::getJsonValue()
 	return state;
 }
 
-std::string AnimationData::serialize(){
+std::shared_ptr<JsonValue> AnimationData::toJsonValue(){
 	std::shared_ptr<JsonValue> animData = JsonValue::allocObject();
 	animData->appendChild("texture", JsonValue::alloc(texture->getName()));
 	animData->appendChild("rows", JsonValue::alloc(static_cast<float>(rows)));
@@ -44,16 +44,16 @@ std::string AnimationData::serialize(){
 	
 	for (auto const& entry : getStateMap())
 	{
-		stateMap->appendChild(entry.first, entry.second->getJsonValue());
+		stateMap->appendChild(entry.first, entry.second->toJsonValue());
 	}
 	for (auto const& entry : getActionMap())
 	{
-		actionMap->appendChild(AnimationData::actionToString(entry.first), entry.second->getJsonValue());
+		actionMap->appendChild(AnimationData::actionToString(entry.first), entry.second->toJsonValue());
 	}
 
 	animData->appendChild("statemap", stateMap);
 	animData->appendChild("actionmap", actionMap);
-	return animData->toString();
+	return animData;
 }
 
 bool AnimationData::preload(const std::string& file){

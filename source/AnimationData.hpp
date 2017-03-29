@@ -33,7 +33,7 @@ public:
         return (result->init(f,t,fs) ? result : nullptr);
     }
 
-	std::shared_ptr<cugl::JsonValue> AnimationState::getJsonValue();
+	std::shared_ptr<cugl::JsonValue> AnimationState::toJsonValue();
 };
 
 class AnimationUpdate {
@@ -53,7 +53,7 @@ public:
         return (result->init(active, repeat) ? result : nullptr);
     }
 
-	std::shared_ptr<cugl::JsonValue> AnimationUpdate::getJsonValue();
+	std::shared_ptr<cugl::JsonValue> AnimationUpdate::toJsonValue();
 };
 
 class AnimationData : public Data {
@@ -101,7 +101,7 @@ public:
 		return _actionmap;
 	}
 
-    virtual std::string serialize();
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
     virtual bool preload(const std::string& file);
     

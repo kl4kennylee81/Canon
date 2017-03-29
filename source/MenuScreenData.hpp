@@ -17,9 +17,7 @@ using std::string;
 
 
 class MenuScreenData : Data {
-public:
-    virtual std::string serialize();
-    
+public:    
     virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);

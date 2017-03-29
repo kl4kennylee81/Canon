@@ -27,7 +27,7 @@ public:
         return (result->init(shapeKey,animKey) ? result : nullptr);
     }
 
-    virtual std::string serialize();
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     virtual bool preload(const std::string& file);
     

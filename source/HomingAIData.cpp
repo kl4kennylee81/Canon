@@ -4,10 +4,10 @@
 
 using namespace cugl;
 
-std::string HomingAIData::serialize() {
+std::shared_ptr<JsonValue> HomingAIData::toJsonValue() {
 	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
 	ai->appendChild("type", JsonValue::alloc("HOMING"));
-	return ai->toString();
+	return ai;
 }
 
 bool HomingAIData::preload(const std::string& file) {

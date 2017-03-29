@@ -42,7 +42,7 @@ public:
         return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
     }
 
-	std::shared_ptr<cugl::JsonValue> getJsonValue();
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class WaveData : public Data {
@@ -75,7 +75,7 @@ public:
     
     
     
-    virtual std::string serialize();
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     virtual bool preload(const std::string& file);
     

@@ -27,7 +27,7 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-	std::string serialize() override;
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
 
 	bool preload(const std::string& file) override;
 

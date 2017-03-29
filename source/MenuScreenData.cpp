@@ -9,10 +9,6 @@
 #include "MenuScreenData.hpp"
 using namespace cugl;
 
-std::string MenuScreenData::serialize(){
-    return "";
-}
-
 bool MenuScreenData::preload(const std::string& file){
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();

@@ -37,7 +37,7 @@ bool WaveEntry::init(std::string objectKey, std::string aiKey, float x, float y,
     return true;
 }
 
-std::shared_ptr<JsonValue> WaveEntry::getJsonValue()
+std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
 	object->appendChild("aiKey", JsonValue::alloc(aiKey));
@@ -48,21 +48,20 @@ std::shared_ptr<JsonValue> WaveEntry::getJsonValue()
 	return object;
 }
 
-std::string WaveData::serialize()
+std::shared_ptr<JsonValue> WaveData::toJsonValue()
 {
 	std::shared_ptr<JsonValue> wave = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> objectList = JsonValue::allocObject();
 	for (int i = 0; i < _waveEntries.size(); i++)
 	{
 		auto child = _waveEntries.at(i);
-		std::shared_ptr<JsonValue> object = child->getJsonValue();
-		object->appendChild("objectKey", JsonValue::alloc(child->objectKey));
+		std::shared_ptr<JsonValue> object = child->toJsonValue();
 		objectList->appendChild("object" + std::to_string(i + 1), object);		
 	}
 
 
 	wave->appendChild("waveEntries", objectList);
-	return wave->toString();
+	return wave;
 }
 
 bool WaveData::preload(const std::string& file){
