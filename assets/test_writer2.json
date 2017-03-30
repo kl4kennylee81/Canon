@@ -1,0 +1,19 @@
+{
+	"texture":	"./textures/test/square.png",
+	"rows":	1,
+	"cols":	1,
+	"size":	1,
+	"nonUniformScale":	1,
+	"statemap":	{
+		"idle":	{
+			"first":	0,
+			"total":	1,
+			"frames":	[10]
+		}
+	},
+	"actionmap":	{
+		"SPAWN":	{
+			"repeat":	"idle"
+		}
+	}
+}

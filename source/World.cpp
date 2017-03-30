@@ -385,10 +385,10 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>(LEVEL_NAME);
     _isSandbox = false;
     
-    //populateLevel0();
+    //populateLevel1();
 
 	//std::ofstream myfile;
-	//myfile.open("json/kylelevel0a.json");
+	//myfile.open("json/kylelevel1.json");
 	//myfile << this->serialize();
 	//myfile.close();
     return true;
