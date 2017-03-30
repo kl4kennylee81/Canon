@@ -54,6 +54,10 @@ public:
     virtual void update(float timestep);
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
+    
+    void activate();
+    
+    void deactivate();
 
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
 

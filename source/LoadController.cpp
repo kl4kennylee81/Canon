@@ -134,15 +134,6 @@ void LoadController::update(float progress) {
         }
         _bar->setProgress(_progress);
     }
-    
-    Vec2 v = InputController::getInputVector();
-    std::cout << "Input vector: "<<v.toString() << std::endl;
-    
-    std::cout << "in scene coordinates" << _scene->screenToWorldCoords(v).toString() << std::endl;
-//    std::cout << "in load coordinates" << _loadNode->screenToNodeCoords(v).toString() << std::endl;
-    std::cout << "in node coordinates" << _button->screenToNodeCoords(v).toString() << std::endl;
-    std::cout << "content size of button" << _button->getContentSize().toString() << std::endl;
-    std::cout << _button->containsScreen(InputController::getInputVector())<< std::endl;
 }
 
 /**

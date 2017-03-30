@@ -62,6 +62,14 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _gameState->draw(_batch);
 }
 
+void GameplayController::activate(){
+    _gameState->attachToScene();
+}
+
+void GameplayController::deactivate(){
+    _gameState->detachFromScene();
+}
+
 
 bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld) {
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());

@@ -39,6 +39,7 @@ bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericA
         setActiveMenu(this->_menuMap.at("levelMenu"));
     });
     button1->setVisible(true);
+    button1->activate(1);
     mainMenu->addUIElement(button1);
     
     _menuMap.insert(std::make_pair("mainMenu",mainMenu));
@@ -53,13 +54,12 @@ bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericA
     play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
     std::shared_ptr<Button> button2 = Button::alloc(play);
     button2->setAnchor(Vec2::ANCHOR_MIDDLE);
-    button2->setPosition(Vec2(size.width/2.0f,200));
+    button2->setPosition(Vec2(size.width/2.0f,300));
     button2->setListener([=](const std::string& name, bool down) {
         setActiveMenu(this->_menuMap.at("mainMenu"));
     });
     button2->setVisible(true);
-    mainMenu->addUIElement(button2);
-    
+    button2->activate(2);
     levelMenu->addUIElement(button2);
     
     _menuMap.insert(std::make_pair("levelMenu",levelMenu));
@@ -91,7 +91,7 @@ void MenuGraph::setMode(Mode mode){
         case Mode::MAIN_MENU:
         {
             // TODO this is a little hacky rn to switch back to the main menu
-            this->setActiveMenu(_menuMap.at("mainMenu"));
+            this->setActiveMenu(_menuMap.at("levelMenu"));
             break;
         }
         default:

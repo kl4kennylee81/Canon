@@ -47,6 +47,8 @@ protected:
      */
     std::shared_ptr<cugl::Scene>  _scene;
     
+    std::shared_ptr<cugl::Node>   _gameplayNode;
+    
     cugl::Rect _bounds;
     
     std::vector<std::shared_ptr<GameObject>> _playerCharacters;
@@ -72,6 +74,10 @@ GameState():
     _activeCharacterPosition(0){}
     
     virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
+
+    void attachToScene();
+    
+    void detachFromScene();
 
     static std::shared_ptr<GameState> alloc(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
 		std::shared_ptr<GameState> result = std::make_shared<GameState>();
