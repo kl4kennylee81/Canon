@@ -50,6 +50,7 @@ bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericA
     
     levelMenu->addUIElement(label2);
     
+    play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
     std::shared_ptr<Button> button2 = Button::alloc(play);
     button2->setAnchor(Vec2::ANCHOR_MIDDLE);
     button2->setPosition(Vec2(size.width/2.0f,200));
@@ -63,21 +64,41 @@ bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericA
     
     _menuMap.insert(std::make_pair("levelMenu",levelMenu));
     
-    // set the active menu
-    setActiveMenu(mainMenu);
-    
     return true;
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
-    // detach old screen from scene
-    _activeMenu->detachFromScene();
+    if (_activeMenu != nullptr){
+        // detach old screen from scene
+        _activeMenu->detachFromScene();
+    }
     _activeMenu = menu;
+
     // add new screen to scene
     _activeMenu->attachToScene();
 }
 
 void MenuGraph::setMode(Mode mode){
+    switch (mode){
+        case Mode::LOADING:
+        {
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            // TODO this is a little hacky rn to switch back to the main menu
+            this->setActiveMenu(_menuMap.at("mainMenu"));
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
     _currentMode = mode;
 }
 

@@ -85,10 +85,10 @@ bool LoadController::init(std::shared_ptr<Scene> scene,const std::shared_ptr<Gen
     _loadNode = Node::alloc();
     _loadNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     
+    _scene->addChild(_loadNode);
+    
     _loadNode->addChild(_bar);
     _loadNode->addChild(_button);
-    
-    _scene->addChild(_loadNode);
     
     Application::get()->setClearColor(Color4(192,192,192,255));
     return true;
@@ -104,7 +104,7 @@ void LoadController::dispose() {
     if (isPending()) {
         _button->deactivate();
     }
-//    _scene->removeChild(_loadNode);
+    _scene->removeChild(_loadNode);
     _button = nullptr;
     _bar = nullptr;
     _scene = nullptr;
@@ -139,7 +139,7 @@ void LoadController::update(float progress) {
     std::cout << "Input vector: "<<v.toString() << std::endl;
     
     std::cout << "in scene coordinates" << _scene->screenToWorldCoords(v).toString() << std::endl;
-    std::cout << "in load coordinates" << _loadNode->screenToNodeCoords(v).toString() << std::endl;
+//    std::cout << "in load coordinates" << _loadNode->screenToNodeCoords(v).toString() << std::endl;
     std::cout << "in node coordinates" << _button->screenToNodeCoords(v).toString() << std::endl;
     std::cout << "content size of button" << _button->getContentSize().toString() << std::endl;
     std::cout << _button->containsScreen(InputController::getInputVector())<< std::endl;

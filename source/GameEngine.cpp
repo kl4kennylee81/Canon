@@ -142,7 +142,7 @@ void GameEngine::update(float timestep) {
                 
                 // initialize the menu with the assets
                 _menu->init(_scene,_assets);
-                _menu->setMode(Mode::GAMEPLAY);
+                _menu->setMode(Mode::MAIN_MENU);
             }
             break;
         }
