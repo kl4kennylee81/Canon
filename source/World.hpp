@@ -108,16 +108,17 @@ public:
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
     }
-    
+
+	void populateLevel0();
+
     /** testing function to populate the world without the data files */
-    void populate();
+    void populateLevel1();
     
     /**
      * Hong test
      */
-    void populate2();
-
-	void populateLevel1();
+    void populateLevel2();
+	
 };
 
 #endif /* World_hpp */

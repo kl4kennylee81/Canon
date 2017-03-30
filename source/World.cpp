@@ -40,8 +40,6 @@ std::shared_ptr<GenericAssetManager> World::getAssetManager(){
 
 std::shared_ptr<JsonValue> World::toJsonValue()
 {
-	
-
 	std::shared_ptr<JsonValue> completeJson = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> levelDataJson = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> waveDataJson = JsonValue::allocObject();
@@ -70,7 +68,7 @@ std::string World::serialize()
 	return toJsonValue()->toString();
 }
 
-void World::populateLevel1() {
+void World::populateLevel0() {
 	this->_isSandbox = true;
 	_levelData = LevelData::alloc();
 	std::mt19937 rng;
@@ -82,7 +80,7 @@ void World::populateLevel1() {
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
 	for (int i = 0; i < 4; i++) {
-		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
+		std::shared_ptr<LevelEntry> e = LevelEntry::alloc("kylewave"+std::to_string(i+1), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
 
@@ -119,21 +117,21 @@ void World::populateLevel1() {
     
     we = WaveEntry::alloc("object2","horizontalLeft", 500, 300, Element::GOLD, {"columnZone"});
     wd->addWaveEntry(we);
-	_waveData.insert(std::make_pair("wave2", wd));
+	_waveData.insert(std::make_pair("kylewave2", wd));
 
 	wd = WaveData::alloc();
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 100, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 100, 500, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 500, Element::GOLD, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "homing", 900, 100, Element::GOLD, {}));
-	_waveData.insert(std::make_pair("wave3", wd));
+	_waveData.insert(std::make_pair("kylewave3", wd));
 
 	wd = WaveData::alloc();
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 100, 100, Element::BLUE, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 100, 500, Element::GOLD, {"pulseZone"}));
 	wd->addWaveEntry(WaveEntry::alloc("object1", "composite", 900, 500, Element::BLUE, {}));
 	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 900, 100, Element::GOLD, {"rotateZone"}));
-	_waveData.insert(std::make_pair("wave4", wd));
+	_waveData.insert(std::make_pair("kylewave4", wd));
 
 	auto od1 = ObjectData::alloc("shape1", "blueEnemyAnimation");
 	_objectData.insert(std::make_pair("object1", od1));
@@ -171,7 +169,7 @@ void World::populateLevel1() {
     auto redBigCircleZone = StaticZoneData::alloc("big_circle", 0, 0,  0, 100, Element::GOLD);
     _zoneData.insert({"redBigCircleZone", redBigCircleZone });
     
-    std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave3", TIME_BETWEEN_SPAWN);
+    std::shared_ptr<LevelEntry> e = LevelEntry::alloc("kylewave3", TIME_BETWEEN_SPAWN);
     _levelData->addLevelEntry(e);
     
     // add wave entries here
@@ -201,14 +199,11 @@ void World::populateLevel1() {
     }
     
     // add the wave entry to the wave data
-    _waveData.insert(std::make_pair("wave1", wd));
+    _waveData.insert(std::make_pair("kylewave1", wd));
 
 }
 
-
-
-/** testing function to populate the world without the data files */
-void World::populate() {
+void World::populateLevel1() {
     this->_isSandbox = true;
 	_levelData = LevelData::alloc();
 	std::mt19937 rng;
@@ -220,7 +215,7 @@ void World::populate() {
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
 	for (int i = 0; i < 10; i++) {
-        std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
+        std::shared_ptr<LevelEntry> e = LevelEntry::alloc("level1wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
     
@@ -255,7 +250,7 @@ void World::populate() {
             }
 			wd->addWaveEntry(we);
 		}
-		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
+		_waveData.insert(std::make_pair("level1wave"+std::to_string(i), wd));
 	}
     
 
@@ -285,7 +280,7 @@ void World::populate() {
     
 }
 
-void World::populate2() {
+void World::populateLevel2() {
     this->_isSandbox = true;
     
     std::mt19937 rng;
@@ -343,16 +338,12 @@ void World::populate2() {
     
     std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
     
-    
-    
     _zoneData.insert({"staticZone", staticZone});
-    
-    
     
     auto redBigCircleZone = StaticZoneData::alloc("big_circle", 0, 0,  0, 100, Element::GOLD);
     _zoneData.insert({"redBigCircleZone", redBigCircleZone });
     
-    std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave0", TIME_BETWEEN_SPAWN);
+    std::shared_ptr<LevelEntry> e = LevelEntry::alloc(LEVEL_NAME + "wave0", TIME_BETWEEN_SPAWN);
     _levelData->addLevelEntry(e);
     
     auto wd = WaveData::alloc();
@@ -383,18 +374,23 @@ void World::populate2() {
     }
     
     // add the wave entry to the wave data
-    _waveData.insert(std::make_pair("wave0", wd));
+    _waveData.insert(std::make_pair(LEVEL_NAME + "wave0", wd));
 }
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets){
     _assets = assets;
     // TODO temporary to test if it works
-    //this->_levelData = assets->get<LevelData>("level0");
-	this->_levelData = assets->get<LevelData>("worldSerialize");
+	LEVEL_NAME = "level0";
+
+    this->_levelData = assets->get<LevelData>(LEVEL_NAME);
     _isSandbox = false;
     
-    //populateLevel1();
-//    populate2();
+    //populateLevel0();
+
+	//std::ofstream myfile;
+	//myfile.open("json/kylelevel0a.json");
+	//myfile << this->serialize();
+	//myfile.close();
     return true;
 }
 

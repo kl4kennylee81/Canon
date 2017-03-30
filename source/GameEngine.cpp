@@ -70,9 +70,12 @@ void GameEngine::onStartup() {
 
     _assets->loadDirectory("json/assets.json");
 	//_assets->loadDirectory("json/level.json");
+	_assets->loadDirectory("json/kylelevel0a.json");
+	//_assets->loadDirectory("json/kylelevel1.json");
+	//_assets->loadDirectory("json/kylelevel2.json");
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
-	_assets->loadDirectory("json/worldSerialize.json");
+	//_assets->loadDirectory("json/worldSerialize.json");
 
 	_assets->loadDirectory("json/save.json");
 
