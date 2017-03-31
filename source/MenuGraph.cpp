@@ -37,6 +37,9 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     button1->setAnchor(Vec2::ANCHOR_MIDDLE);
     button1->setPosition(Vec2(size.width/2.0f,200));
     button1->setListener([=](const std::string& name, bool down) {
+        if (down){
+            return;
+        }
         setActiveMenu(this->_menuMap.at("levelMenu"));
     });
     button1->setVisible(true);
@@ -57,6 +60,9 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     button2->setAnchor(Vec2::ANCHOR_MIDDLE);
     button2->setPosition(Vec2(size.width/2.0f,300));
     button2->setListener([=](const std::string& name, bool down) {
+        if (down){
+            return;
+        }
         setActiveMenu(this->_menuMap.at("mainMenu"));
     });
     button2->setVisible(true);
