@@ -37,7 +37,6 @@ void GameplayController::update(float timestep) {
     if (_gameState->reset){
         _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
         init(_gameState->getScene(),_levelController->getWorld());
-        _gameState->reset = false;
         return;
     }
 

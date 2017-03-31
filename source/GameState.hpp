@@ -71,9 +71,20 @@ GameState():
     _bgnode(nullptr),
     _scene(nullptr),
     _bounds(cugl::Rect()),
+    _reset(false),
     _activeCharacterPosition(0){}
     
+    /**
+     * Disposes of all (non-static) resources allocated to this mode.
+     *
+     * This method is different from dispose() in that it ALSO shuts off any
+     * static resources, like the input controller.
+     */
+    ~GameState() { dispose(); }
+    
     virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
+    
+    void dispose();
 
     void attachToScene();
     

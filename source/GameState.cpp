@@ -60,7 +60,24 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     // set the initial character position to 0
     _activeCharacterPosition = 0;
     
+    // set reset to false
+    _reset = false;
+    
     return true;
+}
+
+void GameState::dispose(){
+    detachFromScene();
+    _scene = nullptr;
+    _gameplayNode = nullptr;
+    _worldnode = nullptr;
+    _debugnode = nullptr;
+    _bgnode = nullptr;
+    _bounds = Rect();
+    _reset = false;
+    _activeCharacterPosition = 0;
+    _playerCharacters.clear();
+    _enemyObjects.clear();
 }
 
 void GameState::attachToScene(){
