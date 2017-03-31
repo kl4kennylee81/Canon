@@ -119,6 +119,13 @@ public:
     virtual void detach(Observer* obs);
     virtual void notify(Event* e);
     virtual void eventUpdate(Event* e);
+    
+
+#pragma mark -
+#pragma mark GameEngine attach load screen to scene graph
+    
+    void activate();
+    void deactivate();
 };
 
 #endif /* LoadController_hpp */

@@ -52,6 +52,11 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     _scene = scene;
     _gameplayNode = Node::alloc();
     
+    // we don't attach to scene directly have the game engine handle when to attach
+    _gameplayNode->addChild(_bgnode,0);
+    _gameplayNode->addChild(_worldnode,1);
+    _gameplayNode->addChild(_debugnode,2);
+    
     // set the initial character position to 0
     _activeCharacterPosition = 0;
     
@@ -60,16 +65,10 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
 
 void GameState::attachToScene(){
     _scene->addChild(_gameplayNode);
-    _gameplayNode->addChild(_bgnode,0);
-    _gameplayNode->addChild(_worldnode,1);
-    _gameplayNode->addChild(_debugnode,2);
 }
 
 void GameState::detachFromScene(){
     _scene->removeChild(_gameplayNode);
-    _gameplayNode->removeChild(_bgnode);
-    _gameplayNode->removeChild(_worldnode);
-    _gameplayNode->removeChild(_debugnode);
 }
 
 std::shared_ptr<GameObject> GameState::getActiveCharacter()

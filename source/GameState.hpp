@@ -30,7 +30,17 @@
 
 class GameState {
 protected:
-    /** Reference to the physics world root of the scene graph 
+    /** Reference to the root of our scene graph.
+     * Example:
+     * Child1 : _gameplayNode
+     * Child2 : _menuNode
+     */
+    std::shared_ptr<cugl::Scene>  _scene;
+    
+    /** the root node to all nodes in the gameState **/
+    std::shared_ptr<cugl::Node>   _gameplayNode;
+    
+    /** Reference to the physics world root of the scene graph
      *  All physics objects are in this
      */
     std::shared_ptr<cugl::Node> _worldnode;
@@ -38,16 +48,6 @@ protected:
     std::shared_ptr<cugl::Node> _debugnode;
     
     std::shared_ptr<cugl::Node> _bgnode;
-    
-    /** The root of our scene graph.
-     * Example:
-     * Child1 : Background scene node
-     * Child2 : is the _worldnode for the physics world root
-     * would be used to define a draw order in the z axis for the different layers
-     */
-    std::shared_ptr<cugl::Scene>  _scene;
-    
-    std::shared_ptr<cugl::Node>   _gameplayNode;
     
     cugl::Rect _bounds;
     

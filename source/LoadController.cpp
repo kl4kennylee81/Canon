@@ -85,8 +85,6 @@ bool LoadController::init(std::shared_ptr<Scene> scene,const std::shared_ptr<Gen
     _loadNode = Node::alloc();
     _loadNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     
-    _scene->addChild(_loadNode);
-    
     _loadNode->addChild(_bar);
     _loadNode->addChild(_button);
     
