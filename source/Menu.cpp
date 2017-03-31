@@ -13,25 +13,18 @@ using namespace cugl;
 
 void Menu::addUIElement(std::shared_ptr<cugl::Node> element){
     this->_uiElements.push_back(element);
+    this->_menu->addChild(element);
 }
 
-void Menu::attachToScene(){
-    _scene->addChild(this->_menu);
-    
-    for (auto element : _uiElements){
-        this->_menu->addChild(element);
-    }
+void Menu::attachToScene(std::shared_ptr<Node> parent){
+    parent->addChild(this->_menu);
 }
 
 void Menu::detachFromScene(){
-    for (auto element : _uiElements){
-        this->_menu->removeChild(element);
-    }
-    _scene->removeChild(this->_menu);
+    this->_menu->removeFromParent();
 }
 
-bool Menu::init(std::shared_ptr<cugl::Scene> scene, bool touch){
-    this->_scene = scene;
+bool Menu::init(bool touch){
     this->_menu = Node::alloc();
     return true;
 }

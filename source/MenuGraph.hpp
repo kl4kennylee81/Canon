@@ -18,9 +18,11 @@
 
 class MenuGraph {
 protected:
-    Mode _currentMode;
+    std::shared_ptr<cugl::Node> _menuNode;
     
+    Mode _currentMode;
     std::shared_ptr<Menu> _activeMenu;
+    
     std::unordered_map<std::string, std::shared_ptr<Menu>> _menuMap;
     
 public:
@@ -28,16 +30,16 @@ public:
     
     bool init();
     
-    bool init(std::shared_ptr<cugl::Scene> scene,const std::shared_ptr<GenericAssetManager>& assets);
+    bool init(const std::shared_ptr<GenericAssetManager>& assets);
     
     static std::shared_ptr<MenuGraph> alloc() {
         std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();
         return (result->init() ? result : nullptr);
     }
     
-    static std::shared_ptr<MenuGraph> alloc(std::shared_ptr<cugl::Scene> scene,const std::shared_ptr<GenericAssetManager>& assets) {
+    static std::shared_ptr<MenuGraph> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();
-        return (result->init(scene,assets) ? result : nullptr);
+        return (result->init(assets) ? result : nullptr);
     }
     
     void setActiveMenu(std::shared_ptr<Menu> menu);
@@ -45,6 +47,10 @@ public:
     void setMode(Mode mode);
     
     Mode getMode();
+    
+    void attachToScene(std::shared_ptr<cugl::Scene> scene);
+    
+    void detachFromScene();
 };
 
 #endif /* MenuGraph_hpp */

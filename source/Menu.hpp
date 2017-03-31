@@ -14,7 +14,6 @@
 
 class Menu {
 private:
-    std::shared_ptr<cugl::Scene> _scene;
     std::shared_ptr<cugl::Node> _menu;
     
     std::vector<std::shared_ptr<cugl::Node>> _uiElements;
@@ -22,15 +21,15 @@ public:
     
     void addUIElement(std::shared_ptr<cugl::Node> element);
     
-    void attachToScene();
+    void attachToScene(std::shared_ptr<cugl::Node> parent);
     
     void detachFromScene();
     
-    virtual bool init(std::shared_ptr<cugl::Scene> scene, bool touch);
+    virtual bool init(bool touch);
     
-    static std::shared_ptr<Menu> alloc(std::shared_ptr<cugl::Scene> scene, bool touch){
+    static std::shared_ptr<Menu> alloc(bool touch){
         std::shared_ptr<Menu> result = std::make_shared<Menu>();
-        return (result->init(scene,touch) ? result : nullptr);
+        return (result->init(touch) ? result : nullptr);
     }
 
 };

@@ -14,18 +14,19 @@ MenuGraph::MenuGraph(){}
 
 bool MenuGraph::init(){
     _currentMode = Mode::LOADING;
+    _menuNode = Node::alloc();
     _activeMenu = nullptr;
     return true;
 }
 
-bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericAssetManager>& assets){
+bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     init();
     
     // TODO prepopulate the menu graph
     
     Size size = Application::get()->getDisplaySize();
     
-    std::shared_ptr<Menu> mainMenu = Menu::alloc(scene,false);
+    std::shared_ptr<Menu> mainMenu = Menu::alloc(false);
     
     std::shared_ptr<Label> label1 = Label::alloc("main menu", assets->get<Font>("Charlemagne"));
     label1->setPosition(Vec2(size.width/2.0f,400));
@@ -44,7 +45,7 @@ bool MenuGraph::init(std::shared_ptr<Scene> scene,const std::shared_ptr<GenericA
     
     _menuMap.insert(std::make_pair("mainMenu",mainMenu));
     
-    std::shared_ptr<Menu> levelMenu = Menu::alloc(scene,false);
+    std::shared_ptr<Menu> levelMenu = Menu::alloc(false);
     
     std::shared_ptr<Label> label2 = Label::alloc("level menu", assets->get<Font>("Charlemagne"));
     label2->setPosition(Vec2(size.width/2.0f,400));
@@ -73,9 +74,13 @@ void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
         _activeMenu->detachFromScene();
     }
     _activeMenu = menu;
+    
+    if (menu == nullptr){
+        return;
+    }
 
     // add new screen to scene
-    _activeMenu->attachToScene();
+    _activeMenu->attachToScene(_menuNode);
 }
 
 void MenuGraph::setMode(Mode mode){
@@ -104,4 +109,12 @@ void MenuGraph::setMode(Mode mode){
 
 Mode MenuGraph::getMode(){
     return _currentMode;
+}
+
+void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
+    scene->addChild(_menuNode);
+}
+
+void MenuGraph::detachFromScene(){
+    _menuNode->removeFromParent();
 }

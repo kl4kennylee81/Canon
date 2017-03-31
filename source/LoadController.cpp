@@ -112,7 +112,6 @@ void LoadController::dispose() {
     _completed = false;
 }
 
-
 #pragma mark -
 #pragma mark Progress Monitoring
 /**
@@ -152,6 +151,8 @@ bool LoadController::isPending( ) const {
     return _button != nullptr && _button->isVisible();
 }
 
+#pragma mark -
+#pragma mark Observer virtual method overload
 void LoadController::attach(std::shared_ptr<Observer> obs) {
     BaseController::attach(obs);
 }
@@ -163,4 +164,13 @@ void LoadController::notify(Event* e) {
     BaseController::notify(e);
 }
 void LoadController::eventUpdate(Event* e) {}
+
+#pragma mark -
+#pragma mark GameEngine attach load screen to scene graph
+void LoadController::activate(){
+    _scene->addChild(_loadNode);
+}
+void LoadController::deactivate(){
+    _scene->removeChild(_loadNode);
+}
 

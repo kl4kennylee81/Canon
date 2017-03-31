@@ -56,7 +56,7 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene){
 
 bool MenuController::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
     _scene = scene;
-    _menuGraph = MenuGraph::alloc(_scene, assets);
+    _menuGraph = MenuGraph::alloc(assets);
     return true;
 }
 
@@ -66,4 +66,12 @@ Mode MenuController::getMode(){
 
 void MenuController::setMode(Mode m){
     _menuGraph->setMode(m);
+}
+
+void MenuController::activate(){
+    _menuGraph->attachToScene(_scene);
+}
+
+void MenuController::deactivate(){
+    _menuGraph->detachFromScene();
 }

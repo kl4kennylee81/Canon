@@ -58,6 +58,10 @@ public:
     Mode getMode();
     
     void setMode(Mode m);
+    
+    void activate();
+    
+    void deactivate();
 };
 
 
