@@ -17,7 +17,7 @@ MenuController::MenuController() :
 BaseController(),
 _menuGraph(nullptr){}
 
-void MenuController::attach(std::shared_ptr<Observer> obs) {
+void MenuController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void MenuController::detach(Observer* obs) {

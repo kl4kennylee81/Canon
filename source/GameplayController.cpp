@@ -21,7 +21,7 @@ _switchController(nullptr),
 _levelController(nullptr)
 {}
 
-void GameplayController::attach(std::shared_ptr<Observer> obs) {
+void GameplayController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void GameplayController::detach(Observer* obs) {
@@ -37,7 +37,10 @@ void GameplayController::update(float timestep) {
     if (_gameState->getReset()){
         // repopulate the randomly generated level
         _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
-        init(_gameState->getScene(),_levelController->getWorld());
+        std::shared_ptr<Scene> s = _gameState->getScene();
+        std::shared_ptr<World> w = _levelController->getWorld();
+        dispose();
+        init(s,w);
         return;
     }
 
@@ -82,33 +85,33 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
 
-	_pathController->attach(_moveController);
-    _pathController->attach(_switchController);
-    _pathController->attach(_animationController);
+	_pathController->attach(_moveController.get());
+    _pathController->attach(_switchController.get());
+    _pathController->attach(_animationController.get());
     
-    _levelController->attach(_collisionController);
-    _levelController->attach(_animationController);
-    _levelController->attach(_spawnController);
-	_levelController->attach(_aiController);
-    _levelController->attach(_zoneController);
+    _levelController->attach(_collisionController.get());
+    _levelController->attach(_animationController.get());
+    _levelController->attach(_spawnController.get());
+	_levelController->attach(_aiController.get());
+    _levelController->attach(_zoneController.get());
     
-	_moveController->attach(_switchController);
-    _moveController->attach(_pathController);
-    _moveController->attach(_animationController);
+	_moveController->attach(_switchController.get());
+    _moveController->attach(_pathController.get());
+    _moveController->attach(_animationController.get());
 
-    _collisionController->attach(_animationController);
-    _collisionController->attach(_zoneController);
+    _collisionController->attach(_animationController.get());
+    _collisionController->attach(_zoneController.get());
     
-    _spawnController->attach(_collisionController);
-    _spawnController->attach(_animationController);
-    _spawnController->attach(_switchController);
-    _spawnController->attach(_aiController);
-    _spawnController->attach(_zoneController);
+    _spawnController->attach(_collisionController.get());
+    _spawnController->attach(_animationController.get());
+    _spawnController->attach(_switchController.get());
+    _spawnController->attach(_aiController.get());
+    _spawnController->attach(_zoneController.get());
     
-    _switchController->attach(_animationController);
+    _switchController->attach(_animationController.get());
     
-    _zoneController->attach(_collisionController);
-    _zoneController->attach(_animationController);
+    _zoneController->attach(_collisionController.get());
+    _zoneController->attach(_animationController.get());
     
     activate();
     
@@ -116,14 +119,15 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 }
 
 void GameplayController::dispose(){
-    _gameState = nullptr;
     _levelController = nullptr;
     _spawnController = nullptr;
     _switchController = nullptr;
     _pathController = nullptr;
     _moveController = nullptr;
     _aiController = nullptr;
-    _zoneController = nullptr;
     _collisionController = nullptr;
     _animationController = nullptr;
+    _zoneController = nullptr;
+
+    _gameState = nullptr;
 }

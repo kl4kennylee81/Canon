@@ -26,7 +26,7 @@ BaseController(){}
 #define DEBUG_COLOR  Color4::GREEN
 #define DEBUG_OFF_COLOR Color4::RED
 
-void CollisionController::attach(std::shared_ptr<Observer> obs) {
+void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void CollisionController::detach(Observer* obs) {

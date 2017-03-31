@@ -16,7 +16,7 @@ LevelController::LevelController():
 BaseController(),
 _world(nullptr){}
 
-void LevelController::attach(std::shared_ptr<Observer> obs) {
+void LevelController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void LevelController::detach(Observer* obs) {

@@ -22,7 +22,7 @@ using namespace cugl;
 
 ProgressBarController::ProgressBarController():BaseController(){}
 
-void ProgressBarController::attach(std::shared_ptr<Observer> obs) {
+void ProgressBarController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 

@@ -25,7 +25,7 @@ using namespace cugl;
 AnimationController::AnimationController():
 BaseController(){}
 
-void AnimationController::attach(std::shared_ptr<Observer> obs) {
+void AnimationController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void AnimationController::detach(Observer* obs) {
@@ -155,7 +155,6 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
  * Defers handling to the active animation handleEvent()
  */
 void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
-    std::cout << animationMap.count(obj) << std::endl;
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){

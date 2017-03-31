@@ -21,7 +21,7 @@ using namespace cugl;
 AIController::AIController():
 BaseController(){}
 
-void AIController::attach(std::shared_ptr<Observer> obs) {
+void AIController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void AIController::detach(Observer* obs) {

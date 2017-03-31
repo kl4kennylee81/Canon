@@ -153,7 +153,7 @@ bool LoadController::isPending( ) const {
 
 #pragma mark -
 #pragma mark Observer virtual method overload
-void LoadController::attach(std::shared_ptr<Observer> obs) {
+void LoadController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 

@@ -43,7 +43,7 @@ public:
 
 	void resetMinMax();
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 

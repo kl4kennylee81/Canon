@@ -15,7 +15,7 @@ using namespace cugl;
 SwitchController::SwitchController() :
 	BaseController() {}
 
-void SwitchController::attach(std::shared_ptr<Observer> obs) {
+void SwitchController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void SwitchController::detach(Observer* obs) {

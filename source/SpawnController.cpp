@@ -16,7 +16,7 @@ using namespace cugl;
 SpawnController::SpawnController():
 BaseController(){}
 
-void SpawnController::attach(std::shared_ptr<Observer> obs) {
+void SpawnController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void SpawnController::detach(Observer* obs) {

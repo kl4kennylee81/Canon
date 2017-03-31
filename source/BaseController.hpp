@@ -17,15 +17,15 @@
 
 class BaseController : public Observer, Subject {
 protected:   
-	std::vector<std::shared_ptr<Observer>> _observers;
+	std::vector<Observer*> _observers;
     
 public:
     
     BaseController();
     
-    ~BaseController();
+    virtual ~BaseController();
     
-    virtual void attach (std::shared_ptr<Observer> obs);
+    virtual void attach (Observer* obs);
     
     virtual void detach (Observer* obs);
     

@@ -14,15 +14,16 @@ BaseController::BaseController(){
 }
 
 BaseController::~BaseController(){
+    
 }
 
-void BaseController::attach(std::shared_ptr<Observer> obs) {
+void BaseController::attach(Observer* obs) {
 	_observers.push_back(obs);
 }
 
 void BaseController::detach(Observer* obs) {
     for(auto it = _observers.begin(); it != _observers.end(); ++it) {
-        if (it->get() == obs) {
+        if ((*it) == obs) {
             _observers.erase(it);
             return;
         }
@@ -31,6 +32,6 @@ void BaseController::detach(Observer* obs) {
 
 void BaseController::notify(Event* e) {
 	for (auto it = _observers.begin(); it != _observers.end(); ++it) {
-		it->get()->eventUpdate(e);
+		(*it)->eventUpdate(e);
 	}
 }

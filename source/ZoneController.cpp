@@ -17,7 +17,7 @@ using namespace cugl;
 ZoneController::ZoneController():
 BaseController(){}
 
-void ZoneController::attach(std::shared_ptr<Observer> obs) {
+void ZoneController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void ZoneController::detach(Observer* obs) {

@@ -15,7 +15,7 @@
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            6
+#define NUMBER_SPAWNS            2
 
 using std::string;
 using namespace cugl;
@@ -45,7 +45,7 @@ void World::populate() {
 	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
 	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
 
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 10; i++) {
         std::shared_ptr<LevelEntry> e = LevelEntry::alloc("wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
 		_levelData->addLevelEntry(e);
 	}
@@ -72,15 +72,15 @@ void World::populate() {
     std::shared_ptr<WaveEntry> we;
 	for (int i = 1; i < 10; i++) {
 		auto wd = WaveData::alloc();
-//		for (int j = 0; j<NUMBER_SPAWNS; j++) {
-//			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-//            if (dist2(rng) == 1){
-//                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
-//            } else {
-//                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
-//            }
-//			wd->addWaveEntry(we);
-//		}
+		for (int j = 0; j<NUMBER_SPAWNS; j++) {
+			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
+            if (dist2(rng) == 1){
+                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{"staticZone"});
+            } else {
+                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
+            }
+			wd->addWaveEntry(we);
+		}
 		_waveData.insert(std::make_pair("wave"+std::to_string(i), wd));
 	}
     
