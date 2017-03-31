@@ -24,7 +24,9 @@ public:
     
     PhysicsComponent();
     
-    std::shared_ptr<cugl::PolygonObstacle> getBody();
+    ~PhysicsComponent(){ dispose(); }
+    
+    void dispose();
     
     virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, Element element);
     
@@ -32,6 +34,7 @@ public:
         std::shared_ptr<PhysicsComponent> result = std::make_shared<PhysicsComponent>();
         return (result->init(body, element) ? result : nullptr);
     }
+    std::shared_ptr<cugl::PolygonObstacle> getBody();
     
     Element getElementType() { return _elementType; };
     

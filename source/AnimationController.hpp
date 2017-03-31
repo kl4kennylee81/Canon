@@ -59,7 +59,7 @@ public:
     
     void syncAnimation(std::shared_ptr<cugl::AnimationNode> anim, GameObject* obj);
     
-    void updateFrames();
+    void updateFrames(std::shared_ptr<GameState> state);
 };
 
 #endif /* AnimationController_hpp */
