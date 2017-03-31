@@ -12,12 +12,57 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "UIData.hpp"
 
 using std::string;
+
+class MenuEntry {
+public:
+	string menuKey;
+	string menuBackgroundKey;
+	std::vector<string> _uiEntryKeys;
+
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	bool init(const std::shared_ptr<cugl::JsonValue>& json);
+
+	static std::shared_ptr<MenuEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
+		std::shared_ptr<MenuEntry> result = std::make_shared<MenuEntry>();
+		return (result->init(json) ? result : nullptr);
+	}
+};
+
 
 
 class MenuScreenData : Data {
 public:
+	std::vector<std::shared_ptr<MenuEntry>> _menuEntries;
+
+	MenuScreenData() : Data() {}
+
+	bool init() {
+		return true;
+	}
+
+	static std::shared_ptr<MenuScreenData> alloc() {
+		std::shared_ptr<MenuScreenData> result = std::make_shared<MenuScreenData>();
+		return (result->init() ? result : nullptr);
+	}
+
+	void addMenuEntry(std::shared_ptr<MenuEntry> w) {
+		_menuEntries.push_back(w);
+	}
+
+	std::vector<std::shared_ptr<MenuEntry>> getMenuEntries() {
+		return _menuEntries;
+	}
+
+	std::shared_ptr<MenuEntry> getEntry(int index) {
+		return _menuEntries.at(index);
+	}
+
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+
     virtual std::string serialize();
     
     virtual bool preload(const std::string& file);

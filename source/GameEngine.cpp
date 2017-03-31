@@ -13,6 +13,8 @@
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
 #include "InputController.hpp"
+#include "UIData.hpp"
+#include "UIDataLoader.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -59,6 +61,7 @@ void GameEngine::onStartup() {
 	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
 	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
 	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
+	_assets->attach<UIData>(UIDataLoader::alloc()->getHook());
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
@@ -73,7 +76,7 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
-
+	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
 
 
