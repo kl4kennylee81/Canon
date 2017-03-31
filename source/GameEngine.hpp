@@ -39,6 +39,9 @@ protected:
     /** The menu controller */
     std::shared_ptr<MenuController> _menu;
     
+    /** menu graph **/
+    std::shared_ptr<MenuGraph> _menuGraph;
+    
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
     

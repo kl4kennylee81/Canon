@@ -60,18 +60,17 @@ protected:
      * All objects include the player characters and all other objects in the game
      */
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
+    
+    bool _reset;
 public:
     
-    // TODO temporary reset of the gameState
-    bool reset;
-    
 GameState():
+    _reset(false),
     _worldnode(nullptr),
     _debugnode(nullptr),
     _bgnode(nullptr),
     _scene(nullptr),
     _bounds(cugl::Rect()),
-    _reset(false),
     _activeCharacterPosition(0){}
     
     /**
@@ -108,6 +107,10 @@ GameState():
 
     std::shared_ptr<GameObject> getActiveCharacter();
 
+    bool getReset();
+    
+    void toggleReset();
+    
 	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }

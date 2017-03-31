@@ -14,6 +14,7 @@ MenuGraph::MenuGraph(){}
 
 bool MenuGraph::init(){
     _currentMode = Mode::LOADING;
+    _nextMode = Mode::LOADING;
     _menuNode = Node::alloc();
     _activeMenu = nullptr;
     return true;
@@ -21,9 +22,12 @@ bool MenuGraph::init(){
 
 bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     init();
-    
     // TODO prepopulate the menu graph
-    
+    this->populate(assets);
+    return true;
+}
+
+void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
     Size size = Application::get()->getDisplaySize();
     
     std::shared_ptr<Menu> mainMenu = Menu::alloc(false);
@@ -63,15 +67,13 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
         if (down){
             return;
         }
-        setActiveMenu(this->_menuMap.at("mainMenu"));
+        setNextMode(Mode::GAMEPLAY);
     });
     button2->setVisible(true);
     button2->activate(2);
     levelMenu->addUIElement(button2);
     
     _menuMap.insert(std::make_pair("levelMenu",levelMenu));
-    
-    return true;
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
@@ -113,8 +115,24 @@ void MenuGraph::setMode(Mode mode){
     _currentMode = mode;
 }
 
+void MenuGraph::setNextMode(Mode mode){
+    _nextMode = mode;
+}
+
+void MenuGraph::updateToNextMode(){
+    setMode(_nextMode);
+}
+
 Mode MenuGraph::getMode(){
     return _currentMode;
+}
+
+Mode MenuGraph::getNextMode(){
+    return _nextMode;
+}
+
+bool MenuGraph::needsUpdate(){
+    return _currentMode != _nextMode;
 }
 
 void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){

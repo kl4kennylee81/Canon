@@ -37,6 +37,12 @@ class ActiveAnimation {
     
 public:
     
+    ActiveAnimation(){}
+    
+    ~ActiveAnimation(){ dispose(); }
+    
+    void dispose();
+    
     bool init() {
         return true;
     }

@@ -64,6 +64,11 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     notify(spawningevent.get());
 }
 
+void LevelController::dispose(){
+    _world = nullptr;
+    _progressBarController = nullptr;
+}
+
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     
     // send the player spawning event

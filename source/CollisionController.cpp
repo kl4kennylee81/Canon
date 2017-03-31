@@ -110,12 +110,17 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
             removeFromWorld(obj);
         } else {
             // TODO : temporary reset after losing
-            state->reset = true;
+            state->toggleReset();
         }
     }
     objsScheduledForRemoval.clear();
     
     _world->update(timestep);
+}
+
+void CollisionController::dispose(){
+    _world = nullptr;
+    _debugnode = nullptr;
 }
 
 

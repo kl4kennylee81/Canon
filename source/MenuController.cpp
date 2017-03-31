@@ -48,24 +48,18 @@ void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     this->_scene->render(_batch);
 }
 
-bool MenuController::init(std::shared_ptr<cugl::Scene> scene){
+bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
+                          std::shared_ptr<MenuGraph> menuGraph){
     _scene = scene;
-    _menuGraph = MenuGraph::alloc();
+    _menuGraph = menuGraph;
+    this->activate();
     return true;
 }
 
-bool MenuController::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
-    _scene = scene;
-    _menuGraph = MenuGraph::alloc(assets);
-    return true;
-}
-
-Mode MenuController::getMode(){
-    return _menuGraph->getMode();
-}
-
-void MenuController::setMode(Mode m){
-    _menuGraph->setMode(m);
+void MenuController::dispose(){
+    deactivate();
+    _scene = nullptr;
+    _menuGraph = nullptr;
 }
 
 void MenuController::activate(){

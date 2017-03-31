@@ -68,13 +68,13 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
 
 void GameState::dispose(){
     detachFromScene();
+    _reset = false;
     _scene = nullptr;
     _gameplayNode = nullptr;
     _worldnode = nullptr;
     _debugnode = nullptr;
     _bgnode = nullptr;
     _bounds = Rect();
-    _reset = false;
     _activeCharacterPosition = 0;
     _playerCharacters.clear();
     _enemyObjects.clear();
@@ -94,6 +94,14 @@ std::shared_ptr<GameObject> GameState::getActiveCharacter()
         return nullptr;
     }
     return _playerCharacters.at(_activeCharacterPosition);
+}
+
+bool GameState::getReset(){
+    return _reset;
+}
+
+void GameState::toggleReset(){
+    _reset = !_reset;
 }
 
 /**

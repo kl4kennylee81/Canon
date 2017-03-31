@@ -58,6 +58,8 @@ public:
     void activate();
     
     void deactivate();
+    
+    void dispose();
 
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
 

@@ -27,6 +27,13 @@ private:
 	PathType _type;
 	std::shared_ptr<ActivePath> _activePath;
 public:
+    
+    PathAI(){}
+    
+    ~PathAI(){
+        _object = nullptr;
+        _activePath = nullptr;
+    }
 
 	void update(std::shared_ptr<GameState> state);
 

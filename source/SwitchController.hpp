@@ -24,6 +24,8 @@ public:
 	std::unordered_map <std::shared_ptr<GameObject>, cugl::Color4> _baseColors;
 
 	SwitchController();
+    
+    ~SwitchController(){};
 
 	virtual void attach(std::shared_ptr<Observer> obs);
 

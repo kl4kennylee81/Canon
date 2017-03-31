@@ -235,6 +235,10 @@ void AnimationController::updateFrames() {
     }
 }
 
+void AnimationController::dispose(){
+    _worldnode = nullptr;
+}
+
 bool AnimationController::init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
     _worldnode = state->getWorldNode();
     

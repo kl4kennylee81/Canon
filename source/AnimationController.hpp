@@ -27,6 +27,8 @@ protected:
 public:
     AnimationController();
     
+    ~AnimationController(){ dispose(); }
+    
     virtual void attach(std::shared_ptr<Observer> obs);
     
     virtual void detach(Observer* obs);
@@ -39,6 +41,8 @@ public:
     virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets);
     

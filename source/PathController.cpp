@@ -173,3 +173,8 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 
 	return true;
 }
+
+void PathController::dispose(){
+    _path = nullptr;
+    _pathSceneNode = nullptr;
+}

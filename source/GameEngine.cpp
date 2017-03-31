@@ -66,8 +66,8 @@ void GameEngine::onStartup() {
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
     
-    // have a shell menu controller since it holds the menu graph
-    _menu = MenuController::alloc(_scene);
+    // create the menuGraph
+    _menuGraph = MenuGraph::alloc();
     
     // This reads the given JSON file and uses it to load all other assets
 
@@ -131,20 +131,66 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
-    switch (_menu->getMode()){
+    if (_menuGraph->needsUpdate()){
+        // clean up resources in previous mode
+        switch(_menuGraph->getMode()){
+            case Mode::LOADING:
+            {
+                _loading->dispose();
+                break;
+            }
+            case Mode::GAMEPLAY:
+            {
+                break;
+            }
+            case Mode::MAIN_MENU:
+            {
+                _menu->dispose();
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+        // initialize resources for next mode
+        switch(_menuGraph->getNextMode()){
+            case Mode::LOADING:
+            {
+                
+                break;
+            }
+            case Mode::GAMEPLAY:
+            {
+                std::shared_ptr<World> levelWorld = World::alloc(_assets);
+                _gameplay = GameplayController::alloc(_scene, levelWorld);
+                break;
+            }
+            case Mode::MAIN_MENU:
+            {
+                _menu = MenuController::alloc(_scene,_menuGraph);
+                //TODO replace hard coded populate with menus loaded from data file
+                _menuGraph->populate(_assets);
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+        _menuGraph->updateToNextMode();
+    }
+    // update the game
+    switch(_menuGraph->getMode()){
         case Mode::LOADING:
         {
             if (!_loading->isComplete()){
                 _loading->update(0.01f);
             } else {
-                _loading->dispose(); // Disables the input listeners in this mode
-                std::shared_ptr<World> levelWorld = World::alloc(_assets);
-                _gameplay = GameplayController::alloc(_scene, levelWorld);
-                
-                // initialize the menu with the assets
-                _menu->init(_scene,_assets);
-                _menu->setMode(Mode::MAIN_MENU);
-                _menu->activate();
+                // TODO loadController should also holds onto the next mode
+                // so it can transition after loading to other screens when needed
+                // ex. useful in loading before a level
+                _menuGraph->setNextMode(Mode::MAIN_MENU);
             }
             break;
         }
@@ -176,18 +222,6 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
-    switch (_menu->getMode()){
-        case Mode::LOADING:
-            _loading->draw(_batch);
-            break;
-        case Mode::GAMEPLAY:
-            _gameplay->draw(_batch);
-            break;
-        case Mode::MAIN_MENU:
-            _menu->draw(_batch);
-            break;
-        default:
-            break;
-    }
+    _scene->render(_batch);
 }
 

@@ -26,6 +26,10 @@ public:
     
     MenuController();
     
+    ~MenuController() { dispose(); };
+    
+    void dispose();
+    
     virtual void attach(std::shared_ptr<Observer> obs);
     
     virtual void detach(Observer* obs);
@@ -41,23 +45,15 @@ public:
 
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
     
-    virtual bool init(std::shared_ptr<cugl::Scene> scene);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<MenuGraph> menuGraph);
     
-    virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
-    
-    static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene) {
+    static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene,
+                                                 std::shared_ptr<MenuGraph> menuGraph) {
         std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
-        return (result->init(scene) ? result : nullptr);
+        return (result->init(scene,menuGraph) ? result : nullptr);
     }
     
-    static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
-        std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
-        return (result->init(scene, assets) ? result : nullptr);
-    }
-    
-    Mode getMode();
-    
-    void setMode(Mode m);
+    std::shared_ptr<MenuGraph> getMenuGraph() { return _menuGraph; };
     
     void activate();
     

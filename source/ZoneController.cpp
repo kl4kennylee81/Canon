@@ -91,6 +91,11 @@ void ZoneController::update(float timestep) {
     }
 }
 
+void ZoneController::dispose(){
+    _world = nullptr;
+    state = nullptr;
+}
+
 void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs) {
 
     for (auto zobj : zoneObjs) {

@@ -34,7 +34,8 @@ void GameplayController::eventUpdate(Event* e) {}
 
 void GameplayController::update(float timestep) {
     // TODO temporary rest until we have a retry screen
-    if (_gameState->reset){
+    if (_gameState->getReset()){
+        // repopulate the randomly generated level
         _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
         init(_gameState->getScene(),_levelController->getWorld());
         return;
@@ -49,7 +50,6 @@ void GameplayController::update(float timestep) {
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
-
 }
 
 /**
@@ -110,5 +110,20 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _zoneController->attach(_collisionController);
     _zoneController->attach(_animationController);
     
+    activate();
+    
 	return true;
+}
+
+void GameplayController::dispose(){
+    _gameState = nullptr;
+    _levelController = nullptr;
+    _spawnController = nullptr;
+    _switchController = nullptr;
+    _pathController = nullptr;
+    _moveController = nullptr;
+    _aiController = nullptr;
+    _zoneController = nullptr;
+    _collisionController = nullptr;
+    _animationController = nullptr;
 }

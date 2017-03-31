@@ -21,10 +21,12 @@ protected:
     std::shared_ptr<cugl::Node> _menuNode;
     
     Mode _currentMode;
+    Mode _nextMode;
     std::shared_ptr<Menu> _activeMenu;
     
     std::unordered_map<std::string, std::shared_ptr<Menu>> _menuMap;
     
+    void setMode(Mode mode);
 public:
     MenuGraph();
     
@@ -42,11 +44,19 @@ public:
         return (result->init(assets) ? result : nullptr);
     }
     
+    void populate(const std::shared_ptr<GenericAssetManager>& assets);
+    
     void setActiveMenu(std::shared_ptr<Menu> menu);
     
-    void setMode(Mode mode);
+    void setNextMode(Mode mode);
+    
+    void updateToNextMode();
     
     Mode getMode();
+    
+    Mode getNextMode();
+    
+    bool needsUpdate();
     
     void attachToScene(std::shared_ptr<cugl::Scene> scene);
     
