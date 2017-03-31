@@ -73,5 +73,5 @@ void MenuController::activate(){
 }
 
 void MenuController::deactivate(){
-    _menuGraph->detachFromScene();
+    _menuGraph->detachFromScene(_scene);
 }

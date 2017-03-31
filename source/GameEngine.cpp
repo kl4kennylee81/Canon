@@ -64,6 +64,7 @@ void GameEngine::onStartup() {
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
     _loading = LoadController::alloc(_scene,_assets);
+    _loading->activate();
     
     // have a shell menu controller since it holds the menu graph
     _menu = MenuController::alloc(_scene);
@@ -143,6 +144,7 @@ void GameEngine::update(float timestep) {
                 // initialize the menu with the assets
                 _menu->init(_scene,_assets);
                 _menu->setMode(Mode::MAIN_MENU);
+                _menu->activate();
             }
             break;
         }

@@ -50,7 +50,7 @@ public:
     
     void attachToScene(std::shared_ptr<cugl::Scene> scene);
     
-    void detachFromScene();
+    void detachFromScene(std::shared_ptr<cugl::Scene> scene);
 };
 
 #endif /* MenuGraph_hpp */

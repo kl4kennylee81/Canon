@@ -115,6 +115,6 @@ void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
     scene->addChild(_menuNode);
 }
 
-void MenuGraph::detachFromScene(){
-    _menuNode->removeFromParent();
+void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){
+    scene->removeChild(_menuNode);
 }
