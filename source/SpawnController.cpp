@@ -41,7 +41,7 @@ void SpawnController::eventUpdate(Event* e) {
     }
 }
 
-void SpawnController::update(float timestep) {
+void SpawnController::update(float timestep,std::shared_ptr<GameState> state) {
     for (auto it = spawnMap.begin(); it != spawnMap.end();) {
         auto obj = it->first;
         auto frames = it->second;

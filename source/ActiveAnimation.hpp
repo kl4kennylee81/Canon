@@ -16,7 +16,7 @@
 #include "AnimationAction.hpp"
 
 class ActiveAnimation {
-    
+private:
     std::shared_ptr<cugl::AnimationNode> _node;
     
     std::shared_ptr<AnimationData> _data;
@@ -37,13 +37,20 @@ class ActiveAnimation {
     
 public:
     
-    ActiveAnimation(){}
+    ActiveAnimation():_node(nullptr),_data(nullptr),_last(false),curIndex(0),curFrames(0){}
     
     ~ActiveAnimation(){ dispose(); }
     
     void dispose();
     
     bool init() {
+        _last = false;
+        _node = nullptr;
+        _data = nullptr;
+        active = std::string();
+        repeat = std::string();
+        curIndex = 0;
+        curFrames = 0;
         return true;
     }
     

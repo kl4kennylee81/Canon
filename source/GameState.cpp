@@ -67,7 +67,6 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
 }
 
 void GameState::dispose(){
-    detachFromScene();
     _reset = false;
     _scene = nullptr;
     _gameplayNode = nullptr;
@@ -76,8 +75,6 @@ void GameState::dispose(){
     _bgnode = nullptr;
     _bounds = Rect();
     _activeCharacterPosition = 0;
-    _playerCharacters.clear();
-    _enemyObjects.clear();
 }
 
 void GameState::attachToScene(){

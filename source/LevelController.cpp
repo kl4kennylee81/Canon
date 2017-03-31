@@ -90,6 +90,10 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
             spawnWaveEntry(it, false, state);
         }
     }
+    
+    if (_level.isSpawningFinished()){
+        state->toggleReset();
+    }
 }
 
 bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {

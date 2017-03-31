@@ -14,6 +14,7 @@
 #include <map>
 #include "BaseController.hpp"
 #include "GameObject.hpp"
+#include "GameState.hpp"
 
 class SpawnController : public BaseController {
 protected:
@@ -35,7 +36,7 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
     
     void dispose() {};
     
