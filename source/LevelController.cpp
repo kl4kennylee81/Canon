@@ -50,11 +50,9 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     
     if (isPlayer){
         // player is added to the game state here
-        gameOb->setIsPlayer(true);
         state->addPlayerGameObject(gameOb);
     } else {
         // enemy is added to the game state here
-        gameOb->setIsPlayer(false);
         state->addEnemyGameObject(gameOb);
     }
     

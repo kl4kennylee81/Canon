@@ -91,7 +91,11 @@ void AIController::addAI(std::shared_ptr<ActiveAI> ai) {
 }
 
 void AIController::removeAI(GameObject* obj) {
-	auto ai = _map[obj];
+    // duplicate removeAI events are called there are cases where the AI is already removed
+    if (_map.find(obj) == _map.end()) {
+        return;
+    }
+    auto ai = _map.at(obj);
 	if (ai->garbageCollect(obj)) {
 		_enemies.erase(ai);
 	}
