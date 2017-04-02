@@ -30,10 +30,11 @@ void ActiveAnimation::handleAction(AnimationAction action) {
 }
 
 bool ActiveAnimation::nextFrame() {
-    curFrames++;
+    curFrames += GameState::_internalClock->getTimeDilation();
+    
     std::shared_ptr<AnimationState> animState = getAnimationState();
     int totNumFrames = animState->frames.at(curIndex);
-    if (curFrames == totNumFrames){
+    if (curFrames >= totNumFrames){
         curFrames = 0;
         curIndex++;
     }
@@ -48,4 +49,8 @@ bool ActiveAnimation::nextFrame() {
     }
     _node->setFrame(getAnimationState()->first+curIndex);
     return true;
+}
+
+bool ActiveAnimation::isUniformScaling(){
+    return !this->_data->nonUniformScale;
 }

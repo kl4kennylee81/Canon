@@ -8,6 +8,8 @@
 
 #include "GameState.hpp"
 
+std::unique_ptr<InternalClock> GameState::_internalClock(new InternalClock());
+
 using namespace cugl;
 
 /** The name of the space texture */
@@ -19,6 +21,10 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     if (assets == nullptr){
         return false;
     }
+    // reinitialize the static clock
+    GameState::_internalClock->init();
+    _reset = false;
+    _activeCharacterPosition = 0;
     
     Rect size = scene->getCamera()->getViewport();
     
@@ -56,12 +62,6 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     _gameplayNode->addChild(_bgnode,0);
     _gameplayNode->addChild(_worldnode,1);
     _gameplayNode->addChild(_debugnode,2);
-    
-    // set the initial character position to 0
-    _activeCharacterPosition = 0;
-    
-    // set reset to false
-    _reset = false;
     
     return true;
 }

@@ -16,7 +16,7 @@
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1. // a constant needed to make the animation a bit bigger than the bounding box.
+#define ANIMATION_SCALE_BUFFER     1.0 // a constant needed to make the animation a bit bigger than the bounding box.
 #define BLUE_COLOR   Color4::BLUE
 #define RED_COLOR   Color4::RED
 #define DEBUG_COLOR  Color4::GREEN
@@ -109,10 +109,12 @@ void AnimationController::eventUpdate(Event* e) {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
                     handleAction(zoneSpawn->object, AnimationAction::SPAWN);
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
-                        anim->setColor(BLUE_COLOR);
+                        anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.3));
                     } else {
-                        anim->setColor(RED_COLOR);
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.3));
                     }
                     break;
                 }
@@ -158,7 +160,7 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
-        syncAnimation(anim->getAnimationNode(),obj);
+        syncAnimation(anim,obj);
         int zaxis = 1;
         if (obj->type == GameObject::ObjectType::ZONE){
             zaxis = 0;
@@ -180,12 +182,13 @@ void AnimationController::syncAll() {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
-            syncAnimation(anim->getAnimationNode(),obj);
+            syncAnimation(anim,obj);
         }
     }
 }
 
-void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, GameObject* obj){
+void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeAnim, GameObject* obj){
+    std::shared_ptr<AnimationNode> anim = activeAnim->getAnimationNode();
     anim->setPosition(obj->getPosition());
     
     anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
@@ -197,21 +200,29 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
     if (polyOb != nullptr){
         polySize = polyOb->getSize();
     }
-    std::shared_ptr<BoxObstacle> boxOb = std::dynamic_pointer_cast<BoxObstacle>(obj->getPhysicsComponent()->getBody());
-    if ((boxOb) != nullptr){
-        polySize =boxOb->getDimension();
+    if (activeAnim->isUniformScaling()){
+        Size animationSize = anim->getContentSize();
+        
+        // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+        // so that the animationNode is always encapsulating the full physics box with padding.
+        // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+        
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        float animationScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+        anim->setScale(animationScale);
+    } else {
+        Size animationSize = anim->getContentSize();
+        
+        // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+        // so that the animationNode is always encapsulating the full physics box with padding.
+        // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+        
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        anim->setScale(animationScale);
     }
-
-    Size animationSize = anim->getContentSize();
-    
-    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
-    // so that the animationNode is always encapsulating the full physics box with padding.
-    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    
-    float scaleX = (polySize.width)/animationSize.width;
-    float scaleY = (polySize.height)/animationSize.height;
-    float animationToBoxScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
-    anim->setScale(animationToBoxScale);
 }
 
 /**

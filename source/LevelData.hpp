@@ -18,7 +18,7 @@
 class LevelEntry {
 public:
     std::string waveKey;
-    float time;
+    float time; // frames
     
     LevelEntry(){}
     

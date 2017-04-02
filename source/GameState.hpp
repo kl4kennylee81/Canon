@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include "GameObject.hpp"
 #include "GenericAssetManager.hpp"
+#include "InternalClock.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
 #define GAME_SCENE_WIDTH 1024
@@ -63,6 +64,8 @@ protected:
     
     bool _reset;
 public:
+    
+    static std::unique_ptr<InternalClock> _internalClock;
     
 GameState():
     _reset(false),

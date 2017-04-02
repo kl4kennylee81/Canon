@@ -26,6 +26,8 @@ private:
 	std::shared_ptr<GameObject> _object;
 	PathType _type;
 	std::shared_ptr<ActivePath> _activePath;
+	PathDirection _direction;
+
 public:
     
     PathAI(){}
@@ -49,13 +51,13 @@ public:
 
 	void toggleActive();
 
-	bool init(std::shared_ptr<GameObject> object, PathType type, std::vector<cugl::Vec2> path);
+	bool init(std::shared_ptr<GameObject> object, PathType type, std::vector<cugl::Vec2> path, PathDirection direction);
 
 	static std::shared_ptr<PathAI> alloc(std::shared_ptr<GameObject> object, PathType type, 
-		std::vector<cugl::Vec2> path = std::vector<cugl::Vec2>()) 
+		std::vector<cugl::Vec2> path = std::vector<cugl::Vec2>(), PathDirection direction = PathDirection::RANDOM) 
 	{
 		std::shared_ptr<PathAI> result = std::make_shared<PathAI>();
-		return (result->init(object, type, path) ? result : nullptr);
+		return (result->init(object, type, path, direction) ? result : nullptr);
 	}
 };
 

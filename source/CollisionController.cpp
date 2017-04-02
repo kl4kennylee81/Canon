@@ -142,6 +142,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     };
     
     // keep the world update to 60 fps without lockstep it simulates up until it is called again
+    // which is not garunteed to be within our set timeframe for example when using the debugger.
     _world->setLockStep(true);
     _world->setStepsize(1.f/Application::get()->getFPS());
     
@@ -164,7 +165,7 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     }
     
     Input::activate<Keyboard>();
-    setDebug(true);
+    setDebug(false);
     
     return true;
 }

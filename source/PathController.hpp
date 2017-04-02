@@ -17,6 +17,14 @@
 #include "GameState.hpp"
 #include "Path.hpp"
 
+enum PathControllerState
+{
+    IDLE = 0,
+    DRAWING,
+    MOVING
+};
+
+
 class PathController : public BaseController {
 public:
     PathController();
@@ -29,7 +37,12 @@ public:
 	float _miny;
 	float _maxy;
     
-    bool _is_moving;
+    /**
+     * The number of frames progressed so far for cooldown
+     */
+    float _cooldown_frames;
+    
+    PathControllerState controllerState;
 
 	std::shared_ptr<Path> _path;
 
@@ -40,6 +53,9 @@ public:
 	void addPathToScene(std::shared_ptr<GameState> state);
 
 	void updateMinMax(cugl::Vec2 vec);
+    
+    
+    bool isOnCooldown();
 
 	void resetMinMax();
 

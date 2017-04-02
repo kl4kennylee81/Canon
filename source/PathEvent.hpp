@@ -20,7 +20,10 @@ class PathEvent : public Event {
 public:
 	enum class PathEventType : int {
         /** Signal that a path is done */
-        PATH_FINISHED
+        PATH_FINISHED,
+        
+        /** User is currently drawing */
+        DRAWING
     };
 
 	PathEventType _pathType;
@@ -37,6 +40,22 @@ public:
 	}
 
 	PathEvent() : Event(){}
+};
+
+class PathDrawing : public PathEvent {
+public:
+    PathDrawing() : PathEvent(){}
+    
+    bool init() {
+        PathEvent::init();
+        _pathType = PathEventType::DRAWING;
+        return true;
+    }
+    
+    static std::shared_ptr<PathDrawing> alloc() {
+        std::shared_ptr<PathDrawing> result = std::make_shared<PathDrawing>();
+        return (result->init() ? result : nullptr);
+    }
 };
 
 class PathFinished : public PathEvent {

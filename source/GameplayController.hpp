@@ -23,6 +23,7 @@
 #include "AnimationController.hpp"
 #include "SpawnController.hpp"
 #include "ZoneController.hpp"
+#include "ClockController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -38,6 +39,7 @@ protected:
     std::shared_ptr<SpawnController> _spawnController;
     std::shared_ptr<ZoneController> _zoneController;
     std::shared_ptr<AnimationController> _animationController;
+    std::shared_ptr<ClockController> _clockController;
 
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */

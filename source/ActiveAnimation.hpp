@@ -14,6 +14,7 @@
 #include <map>
 #include "AnimationData.hpp"
 #include "AnimationAction.hpp"
+#include "GameState.hpp"
 
 class ActiveAnimation {
 private:
@@ -27,7 +28,7 @@ private:
     
     int curIndex;
     
-    int curFrames;
+    float curFrames;
     
     /**
      * If this is true, then the active animation is ready to be removed.
@@ -67,6 +68,8 @@ public:
     std::shared_ptr<cugl::AnimationNode> getAnimationNode() {
         return _node;
     }
+    
+    bool isUniformScaling();
     
     std::shared_ptr<AnimationState> getAnimationState() {
         std::string state = repeat;
