@@ -96,6 +96,7 @@ void AIController::removeAI(GameObject* obj) {
 		_enemies.erase(ai);
 	}
 	_map.erase(obj);
+    
 }
 
 void AIController::update(float timestep,std::shared_ptr<GameState> state){
