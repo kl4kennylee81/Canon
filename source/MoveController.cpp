@@ -78,6 +78,8 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			}
 		}
 	}
+    
+    // TODO replace with iterator delete and break
 	for (auto it : toDelete) {
 		_activePaths.erase(it);
 	}

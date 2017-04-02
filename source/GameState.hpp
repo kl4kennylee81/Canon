@@ -146,6 +146,7 @@ GameState():
         }
         for(auto it = _enemyObjects.begin() ; it != _enemyObjects.end(); ++it) {
             if (it->get() == obj){
+                std::cout << "reference left:" << it->use_count() << std::endl;
                 it = _enemyObjects.erase(it);
                 break;
             }
