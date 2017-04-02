@@ -546,17 +546,17 @@ std::vector<std::string> JsonValue::asStringArray(const std::string& defaultValu
                 value = "NULL";
                 break;
             case Type::BoolType:
-                value = _longValue ? "true" : "false";
+                value = (*it)->_longValue ? "true" : "false";
                 break;
             case Type::NumberType:
-                if (_longValue == _doubleValue) {
-                    value = cugl::to_string((Uint64)_longValue);
+                if ((*it)->_longValue == (*it)->_doubleValue) {
+                    value = cugl::to_string((Uint64)(*it)->_longValue);
                 } else {
-                    value = cugl::to_string(_doubleValue);
+                    value = cugl::to_string((*it)->_doubleValue);
                 }
                 break;
             case Type::StringType:
-                value = _stringValue;
+                value = (*it)->_stringValue;
                 break;
             default:
                 value = defaultValue;

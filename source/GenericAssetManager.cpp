@@ -10,6 +10,7 @@
 #include "SaveGameData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
+#include "UIData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -210,6 +211,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;
+		}
+		else if (child->key() == "UIData") {
+			success = readCategory(typeid(UIData).hash_code(), child) && success;
 		}
 		else if (child->key() == "SaveGameData") {
 			success = readCategory(typeid(SaveGameData).hash_code(), child) && success;

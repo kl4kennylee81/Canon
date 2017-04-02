@@ -1,0 +1,81 @@
+{
+    "MenuScreenData": {
+        "menus": {
+            "startMenu": {
+                "menuKey": "startMenu",
+                "menuBackgroundKey": "bg_dark_lake",
+                "UIEntries": [
+                    "openOptions",
+                    "startGame",
+                    "gameTitle",
+                    "startMenuIcon"
+                ]
+            },
+            "optionsMenu": {
+                "menuKey": "optionsMenu",
+                "UIEntries": [
+                    "closeOptions",
+                    "optionsTitle"
+                ]
+            }
+        }
+    },
+    "UIData": {
+        "openOptions": {
+            "type": "BUTTON",
+            "buttonAction": "uiChange",
+            "buttonTarget": "optionsMenu",
+            "buttonLabel": "Open Options",
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+        },
+        "startGame": {
+            "type": "BUTTON",
+            "buttonAction": "modeChange",
+            "buttonTarget": "gameInit",
+            "buttonLabel": "Play Game",
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+        },
+        "gameTitle": {
+            "type": "TEXT",
+            "textValue": "Canon",
+            "x": 20,
+            "y": 20,
+            "width": 100,
+            "height": 100,
+            "fontKey": "Charlemagne"
+        },
+        "startMenuIcon": {
+            "type": "IMAGE",
+            "x": 30,
+            "y": 30,
+            "width": 50,
+            "height": 50,
+            "textureKey": "bg_dark_lake"
+        },
+        "closeOptions": {
+            "type": "BUTTON",
+            "buttonLabel": "Close Options",
+            "buttonAction": "uiChange",
+            "buttonTarget": "optionsMenu",
+            "x": 10,
+            "y": 10,
+            "width": 100,
+            "height": 100
+        },
+        "optionsTitle": {
+            "type": "TEXT",
+            "textValue": "Game Options",
+            "x": 20,
+            "y": 20,
+            "width": 100,
+            "height": 100,
+            "fontKey": "Charlemagne"
+        }
+    }
+}
