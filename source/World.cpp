@@ -15,7 +15,7 @@
 #include <fstream>
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            2
+#define NUMBER_SPAWNS            4
 
 using std::string;
 using namespace cugl;
