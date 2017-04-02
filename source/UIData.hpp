@@ -30,6 +30,7 @@ public:
 		this->y = y;
 		width = w;
 		height = h;
+        return true;
 	}
 
 	UIData() : Data() {}
