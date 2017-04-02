@@ -69,6 +69,10 @@ public:
         _levelData = levelData;
         return true;
     }
+
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
+
+	std::string serialize(std::string levelName);
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     
@@ -104,16 +108,12 @@ public:
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
     }
-    
-    /** testing function to populate the world without the data files */
-    void populate();
-    
-    /**
-     * Hong test
-     */
-    void populate2();
 
-	void populateLevel1();
+    void populate();
+
+    /** testing function to populate the world without the data files */
+    void populateKyleLevel();
+	
 };
 
 #endif /* World_hpp */

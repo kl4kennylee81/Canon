@@ -21,8 +21,16 @@ bool ShapeData::init(std::vector<float> v){
     return true;
 }
 
-std::string ShapeData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> ShapeData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> verticesArray = JsonValue::allocArray();
+	for (int i = 0; i < this->vertices.size(); i++)
+	{
+		verticesArray->appendValue(this->vertices[i] * GAME_PHYSICS_SCALE);
+	}
+	std::shared_ptr<JsonValue> vertices = JsonValue::allocObject();
+	vertices->appendChild("vertices", verticesArray);
+	return vertices;
 }
 
 bool ShapeData::preload(const std::string& file){
@@ -34,6 +42,7 @@ bool ShapeData::preload(const std::string& file){
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(json->get("vertices")->asFloatArray());
+
 	return true;
 }
 

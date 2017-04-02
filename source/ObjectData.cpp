@@ -7,7 +7,6 @@
 //
 
 #include "ObjectData.hpp"
-
 using namespace cugl;
 
 bool ObjectData::init(std::string shapeKey,std::string animKey){
@@ -16,9 +15,12 @@ bool ObjectData::init(std::string shapeKey,std::string animKey){
     return true;
 };
 
-
-std::string ObjectData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> ObjectData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
+	object->appendChild("animationKey", JsonValue::alloc(animationKey));
+	return object;
 }
 
 bool ObjectData::preload(const std::string& file){

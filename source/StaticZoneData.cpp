@@ -10,8 +10,17 @@
 
 using namespace cugl;
 
-std::string StaticZoneData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> StaticZoneData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	data->appendChild("type", JsonValue::alloc("STATIC"));
+	data->appendChild("objectKey", JsonValue::alloc(objectKey));
+	data->appendChild("relX", JsonValue::alloc(relPos.x));
+	data->appendChild("relY", JsonValue::alloc(relPos.y));
+	data->appendChild("cooldown", JsonValue::alloc(static_cast<float>(cooldown)));
+	data->appendChild("duration", JsonValue::alloc(static_cast<float>(duration)));
+	data->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	return data;
 }
 
 bool StaticZoneData::preload(const std::string& file){
@@ -29,6 +38,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     int duration = json->getInt("duration");
     auto el = json->getString("element").compare("BLUE") == 0 ? Element::BLUE : Element::GOLD;
     init(oid,rel_x,rel_y,cooldown,duration,el);
+
     return true;
 }
 

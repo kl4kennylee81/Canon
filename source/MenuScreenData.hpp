@@ -35,8 +35,9 @@ public:
 
 
 class MenuScreenData : Data {
+private:
+    std::vector<std::shared_ptr<MenuEntry>> _menuEntries;
 public:
-	std::vector<std::shared_ptr<MenuEntry>> _menuEntries;
 
 	MenuScreenData() : Data() {}
 

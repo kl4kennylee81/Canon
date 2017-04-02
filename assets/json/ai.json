@@ -3,7 +3,16 @@
     "horizontal": {
       "type": "PATH",
       "pathType": "HORIZONTAL",
+    },
+    "horizontalRight": {
+      "type": "PATH",
+      "pathType": "HORIZONTAL",
       "direction": "RIGHT"
+    },
+    "horizontalLeft": {
+      "type": "PATH",
+      "pathType": "HORIZONTAL",
+      "direction": "LEFT"
     },
     "vertical": {
       "type": "PATH",

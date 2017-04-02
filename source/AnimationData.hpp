@@ -32,6 +32,8 @@ public:
         std::shared_ptr<AnimationState> result = std::make_shared<AnimationState>();
         return (result->init(f,t,fs) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class AnimationUpdate {
@@ -50,6 +52,8 @@ public:
         std::shared_ptr<AnimationUpdate> result = std::make_shared<AnimationUpdate>();
         return (result->init(active, repeat) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class AnimationData : public Data {
@@ -87,8 +91,18 @@ public:
     std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationAction action) {
         return _actionmap.at(action);
     }
+
+	std::map<std::string, std::shared_ptr<AnimationState>> getStateMap()
+	{
+		return _statemap;
+	}
     
-    virtual std::string serialize();
+	std::map<AnimationAction, std::shared_ptr<AnimationUpdate>> getActionMap()
+	{
+		return _actionmap;
+	}
+
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
     virtual bool preload(const std::string& file);
     
@@ -104,9 +118,22 @@ public:
         if (action == "RETURN") return AnimationAction::RETURN;
         if (action == "HIT") return AnimationAction::HIT;
         if (action == "DEATH") return AnimationAction::DEATH;
-        std::cout << "AnimationData: default action?\n";
+        std::cout << "stringToAction: AnimationData: default action?\n";
         return AnimationAction::DEFAULT;
     }
+
+	static std::string actionToString(AnimationAction action)
+	{
+		if (action == AnimationAction::SPAWNING) return "SPAWNING";
+		if (action == AnimationAction::SPAWN) return "SPAWN";
+		if (action == AnimationAction::ACTIVE) return "ACTIVE";
+		if (action == AnimationAction::ATTACK) return "ATTACK";
+		if (action == AnimationAction::RETURN) return "RETURN";
+		if (action == AnimationAction::HIT) return "HIT";
+		if (action == AnimationAction::DEATH) return "DEATH";
+		std::cout << "actionToString: AnimationData: default action?\n";
+		return "DEFAULT";
+	}
 };
 
 #endif /* AnimationData_hpp */

@@ -1,11 +1,25 @@
 #include "SaveGameData.hpp"
-
 using namespace cugl;
 
-std::string SaveGameData::serialize() 
+std::shared_ptr<JsonValue> SaveGameData::toJsonValue()
 {
-	return "";
+	std::shared_ptr<JsonValue> levelParent = JsonValue::allocObject();
+	for (int i = 0; i < _saveLevelEntries.size(); i++)
+	{
+		auto child = _saveLevelEntries.at(i);
+		std::shared_ptr<JsonValue> level = JsonValue::allocObject();
+		level->appendChild("name", JsonValue::alloc(child->name));
+		level->appendChild("unlocked", JsonValue::alloc((child->unlocked) ? 1. : 0.));
+		level->appendChild("complete", JsonValue::alloc((child->complete) ? 1. : 0.));
+		level->appendChild("levelKey", JsonValue::alloc(child->levelKey));
+		level->appendChild("levelUrl", JsonValue::alloc(child->levelUrl));
+		level->appendChild("highScore", JsonValue::alloc(static_cast<double>(child->highScore)));
+		levelParent->appendChild(child->levelKey, level);
+		
+	}
+	return levelParent;
 }
+
 
 bool SaveGameData::preload(const std::string& file) 
 {
@@ -35,6 +49,7 @@ bool SaveGameData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 			auto levelKey = child->get("levelKey");
 		}
 	}
+
 	return true;
 }
 

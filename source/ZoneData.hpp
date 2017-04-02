@@ -48,8 +48,6 @@ public:
         return (result->init(type) ? result : nullptr);
     }
     
-    virtual std::string serialize();
-    
     virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);

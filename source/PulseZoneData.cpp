@@ -10,9 +10,19 @@
 
 using namespace cugl;
 
-std::string PulseZoneData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
+	std::shared_ptr<JsonValue> pz = JsonValue::allocObject();
+	pz->appendChild("type", JsonValue::alloc("PULSE"));
+	pz->appendChild("objectKey", JsonValue::alloc(objectKey));
+	pz->appendChild("minSize", JsonValue::alloc(minSize));
+	pz->appendChild("minTime", JsonValue::alloc(static_cast<float>(minTime)));
+	pz->appendChild("maxSize", JsonValue::alloc(maxSize));
+	pz->appendChild("maxTime", JsonValue::alloc(static_cast<float>(maxTime)));
+	pz->appendChild("speed", JsonValue::alloc(speed));
+	pz->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	return pz;
 }
+
 
 bool PulseZoneData::preload(const std::string& file){
     auto reader = JsonReader::allocWithAsset(file.c_str());
@@ -30,6 +40,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float speed = json->getFloat("speed");
     auto el = json->getString("element").compare("BLUE") == 0 ? Element::BLUE : Element::GOLD;
     init(oid,minSize,minTime,maxSize,maxTime,speed,el);
+
     return true;
 }
 

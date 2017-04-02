@@ -76,11 +76,13 @@ void GameEngine::onStartup() {
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
-	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
+    
+    // test for loading from a data file
+    _assets->loadDirectory("json/kyleLevel0a.json");
 
 
     
