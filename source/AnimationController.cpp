@@ -218,6 +218,7 @@ void AnimationController::syncAnimation(std::shared_ptr<AnimationNode> anim, Gam
  * Removes animations that have been completed to the last frame
  */
 void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
+    std::vector<GameObject*> remove = std::vector<GameObject*>();
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         std::shared_ptr<ActiveAnimation> anim = it->second;
         
@@ -228,11 +229,15 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
         
         if (!anim->nextFrame()){
             anim->getAnimationNode()->removeFromParent();
-            state->removeObject(it->first);
-            animationMap.erase(it++);
+            remove.push_back(it->first);
+            it++;
         } else {
             it++;
         }
+    }
+    for (GameObject* obj : remove){
+        animationMap.erase(obj);
+        state->removeObject(obj);
     }
 }
 

@@ -141,6 +141,10 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
         beforeSolve(contact,oldManifold);
     };
     
+    // keep the world update to 60 fps without lockstep it simulates up until it is called again
+    _world->setLockStep(true);
+    _world->setStepsize(1.f/Application::get()->getFPS());
+    
     _debugnode = state->getDebugNode();
     
     std::vector<std::shared_ptr<GameObject>> enemyObjects = state->getEnemyObjects();
