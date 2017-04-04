@@ -118,6 +118,10 @@ public:
      */
     virtual void draw() override;
     
+    void cleanPreviousMode();
+    
+    void initializeNextMode();
+    
 };
 
 #endif /* GameEngine_hpp */

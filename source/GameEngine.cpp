@@ -125,6 +125,66 @@ void GameEngine::onShutdown() {
     Application::onShutdown();
 }
 
+void GameEngine::cleanPreviousMode(){
+    // clean up resources in previous mode
+    switch(_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            _loading->dispose();
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu->dispose();
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void GameEngine::initializeNextMode(){
+    // initialize resources for next mode
+    switch(_menuGraph->getNextMode()){
+        case Mode::LOADING:
+        {
+            
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            std::shared_ptr<World> levelWorld = World::alloc(_assets);
+            _gameplay = GameplayController::alloc(_scene, levelWorld);
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu = MenuController::alloc(_scene,_menuGraph);
+            //TODO replace hard coded populate with menus loaded from data file
+            _menuGraph->populate(_assets);
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
 /**
  * The method called to update the application data.
  *
@@ -138,52 +198,8 @@ void GameEngine::onShutdown() {
  */
 void GameEngine::update(float timestep) {
     if (_menuGraph->needsUpdate()){
-        // clean up resources in previous mode
-        switch(_menuGraph->getMode()){
-            case Mode::LOADING:
-            {
-                _loading->dispose();
-                break;
-            }
-            case Mode::GAMEPLAY:
-            {
-                break;
-            }
-            case Mode::MAIN_MENU:
-            {
-                _menu->dispose();
-                break;
-            }
-            default:
-            {
-                break;
-            }
-        }
-        // initialize resources for next mode
-        switch(_menuGraph->getNextMode()){
-            case Mode::LOADING:
-            {
-                
-                break;
-            }
-            case Mode::GAMEPLAY:
-            {
-                std::shared_ptr<World> levelWorld = World::alloc(_assets);
-                _gameplay = GameplayController::alloc(_scene, levelWorld);
-                break;
-            }
-            case Mode::MAIN_MENU:
-            {
-                _menu = MenuController::alloc(_scene,_menuGraph);
-                //TODO replace hard coded populate with menus loaded from data file
-                _menuGraph->populate(_assets);
-                break;
-            }
-            default:
-            {
-                break;
-            }
-        }
+        cleanPreviousMode();
+        initializeNextMode();
         _menuGraph->updateToNextMode();
     }
     // update the game
@@ -208,6 +224,10 @@ void GameEngine::update(float timestep) {
         case Mode::MAIN_MENU:
         {
             _menu->update(timestep);
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
             break;
         }
         default:
