@@ -13,6 +13,7 @@
 #include "BaseController.hpp"
 #include "MenuGraph.hpp"
 #include "World.hpp"
+#include "Scene.hpp"
 
 class LevelEditorController : public BaseController {
 private:
@@ -32,7 +33,7 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<MenuGraph> menuGraph);
     
-    virtual bool init(std::shared_ptr<GenericAssetManager> assets);
+    virtual bool init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets);
     
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();

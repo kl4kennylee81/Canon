@@ -13,6 +13,7 @@
 #include "LoadController.hpp"
 #include "MenuController.hpp"
 #include "GenericAssetManager.hpp"
+#include "LevelEditorController.hpp"
 
 /**
  * Class for a simple Hello World style application
@@ -44,6 +45,9 @@ protected:
     
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
+    
+    /** level editor controller */
+    std::shared_ptr<LevelEditorController> _levelEditor;
     
 public:
 	/** Represents whether we are using touch screen or not */

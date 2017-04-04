@@ -176,6 +176,7 @@ void GameEngine::initializeNextMode(){
         }
         case Mode::LEVEL_EDIT:
         {
+            _levelEditor = LevelEditor::alloc(_scene, _assets);
             break;
         }
         default:
@@ -228,6 +229,7 @@ void GameEngine::update(float timestep) {
         }
         case Mode::LEVEL_EDIT:
         {
+            _levelEditor->update(_timestep);
             break;
         }
         default:
