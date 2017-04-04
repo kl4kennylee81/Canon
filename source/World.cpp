@@ -44,12 +44,14 @@ std::shared_ptr<JsonValue> World::toJsonValue(std::string levelName)
 	std::shared_ptr<JsonValue> objectDataJson = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> shapeDataJson = JsonValue::allocObject();
 	std::shared_ptr<JsonValue> zoneDataJson = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> animationDataJson = JsonValue::allocObject();
 
 	for (auto const& x : _waveData) { waveDataJson->appendChild(x.first, x.second->toJsonValue()); }
 	for (auto const& x : _objectData) { objectDataJson->appendChild(x.first, x.second->toJsonValue()); }
 	for (auto const& x : _shapeData) { shapeDataJson->appendChild(x.first, x.second->toJsonValue()); }
 	for (auto const& x : _zoneData) { zoneDataJson->appendChild(x.first, x.second->toJsonValue()); }
-
+	for (auto const& x : _animationData) { animationDataJson->appendChild(x.first, x.second->toJsonValue()); }
+    
 	levelDataJson->appendChild(levelName, _levelData->toJsonValue());
 	
 	completeJson->appendChild("levels", levelDataJson);
@@ -57,6 +59,7 @@ std::shared_ptr<JsonValue> World::toJsonValue(std::string levelName)
 	completeJson->appendChild("objects", objectDataJson);
 	completeJson->appendChild("shapes", shapeDataJson);
 	completeJson->appendChild("zones", zoneDataJson);
+    completeJson->appendChild("animations", animationDataJson);
 	
 	return completeJson;
 }
@@ -195,7 +198,6 @@ void World::populateKyleLevel() {
         }
         wd->addWaveEntry(we5);
     }
-    
     // add the wave entry to the wave data
     _waveData.insert(std::make_pair("kylewave1", wd));
 
@@ -286,7 +288,7 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>(levelName);
     _isSandbox = false;
     
-//    populateKyleLevel();
+    populateKyleLevel();
     return true;
 }
 
