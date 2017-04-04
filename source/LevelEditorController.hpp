@@ -20,7 +20,7 @@ private:
     
     /** the main node for the level editor
       * connect all related nodes to this node not the scene */
-    std::shared_ptr<Node> _levelEditNode;
+    std::shared_ptr<cugl::Node> _levelEditNode;
 
 public:
     virtual void attach(Observer* obs);
