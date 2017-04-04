@@ -229,7 +229,7 @@ void GameEngine::update(float timestep) {
         }
         case Mode::LEVEL_EDIT:
         {
-            _levelEditor->update(_timestep);
+            _levelEditor->update(timestep);
             break;
         }
         default:
