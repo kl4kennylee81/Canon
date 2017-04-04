@@ -84,6 +84,8 @@
 		9F3BA6441E90CAB1003138C0 /* UIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6411E90CAB1003138C0 /* UIData.cpp */; };
 		9F3BA6471E90CAC9003138C0 /* UIDataLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */; };
 		9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */; };
+		9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */; };
+		9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */; };
 		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
 		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
@@ -221,6 +223,8 @@
 		9F3BA6421E90CAB1003138C0 /* UIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIData.hpp; sourceTree = "<group>"; };
 		9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDataLoader.cpp; sourceTree = "<group>"; };
 		9F3BA6461E90CAC9003138C0 /* UIDataLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIDataLoader.hpp; sourceTree = "<group>"; };
+		9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorController.cpp; sourceTree = "<group>"; };
+		9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorController.hpp; sourceTree = "<group>"; };
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -484,6 +488,15 @@
 				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
 			);
 			name = object;
+			sourceTree = "<group>";
+		};
+		9F3BA64C1E932849003138C0 /* levelEditor */ = {
+			isa = PBXGroup;
+			children = (
+				9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */,
+				9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */,
+			);
+			name = levelEditor;
 			sourceTree = "<group>";
 		};
 		9F76683F1E84AE23003A06E8 /* aidata */ = {
@@ -901,6 +914,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9F3BA64C1E932849003138C0 /* levelEditor */,
 				9FFA3FA31E6367AA0029D648 /* ai */,
 				9FE8E9E11E6382AF00DBE3BC /* animation */,
 				9FFA3FAA1E636B350029D648 /* base */,
@@ -1124,6 +1138,7 @@
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9F3BA60C1E8BA575003138C0 /* PathController.cpp in Sources */,
 				9F3BA60D1E8BA575003138C0 /* InternalClock.cpp in Sources */,
+				9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
 				9F3BA60F1E8BA575003138C0 /* CollisionEvent.cpp in Sources */,
 				9F3BA6101E8BA575003138C0 /* PhysicsComponent.cpp in Sources */,
@@ -1168,6 +1183,7 @@
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
 				9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
+				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,

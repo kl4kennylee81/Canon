@@ -212,7 +212,7 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::MAIN_MENU);
+                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
             }
             break;
         }
