@@ -13,11 +13,14 @@
 #include "BaseController.hpp"
 #include "MenuGraph.hpp"
 #include "World.hpp"
-#include "Scene.hpp"
 
 class LevelEditorController : public BaseController {
 private:
     std::shared_ptr<World> _world;
+    
+    /** the main node for the level editor
+      * connect all related nodes to this node not the scene */
+    std::shared_ptr<Node> _levelEditNode;
 
 public:
     virtual void attach(Observer* obs);
@@ -33,11 +36,11 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<MenuGraph> menuGraph);
     
-    virtual bool init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets);
     
-    static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<GenericAssetManager> assets) {
+    static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();
-        return (result->init(assets) ? result : nullptr);
+        return (result->init(scene,assets) ? result : nullptr);
     }
 
 };

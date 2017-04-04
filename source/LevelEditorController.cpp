@@ -33,6 +33,6 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 
 }
 
-bool LevelEditorController::init(std::shared_ptr<GenericAssetManager> assets){
+bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets){
     return true;
 }
