@@ -97,6 +97,7 @@ void GameEngine::onStartup() {
     Input::activate<Mouse>();
 	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
+	Input::activate<Keyboard>();
     Application::onStartup();
 }
 
@@ -122,6 +123,7 @@ void GameEngine::onShutdown() {
 #else
     Input::deactivate<Mouse>();
 #endif
+	Input::deactivate<Keyboard>();
     Application::onShutdown();
 }
 

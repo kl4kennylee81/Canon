@@ -13,6 +13,12 @@
 #include "BaseController.hpp"
 #include "MenuGraph.hpp"
 #include "World.hpp"
+#include "WaveEditorController.hpp"
+
+enum class LevelEditorState : int {
+	MAIN,
+	WAVE,
+};
 
 class LevelEditorController : public BaseController {
 private:
@@ -21,6 +27,10 @@ private:
     /** the main node for the level editor
       * connect all related nodes to this node not the scene */
     std::shared_ptr<cugl::Node> _levelEditNode;
+
+	LevelEditorState _state;
+
+	std::shared_ptr<WaveEditorController> _waveEditorController;
 
 public:
     virtual void attach(Observer* obs);

@@ -30,7 +30,16 @@ void LevelEditorController::eventUpdate(Event* e){
 }
 
 void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> menuGraph){
-
+	switch (_state) {
+	case LevelEditorState::MAIN: {
+		//Look for clicks so we can enter wave editor
+	}
+	case LevelEditorState::WAVE: {
+		if (_waveEditorController->update(timestep, menuGraph)) {
+			_state = LevelEditorState::MAIN;
+		}
+	}
+	}
 }
 
 bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets){
