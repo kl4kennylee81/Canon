@@ -15,6 +15,7 @@
 #include "World.hpp"
 #include "WaveData.hpp"
 #include "TemplateEditorController.hpp"
+#include "TemplateWaveEntry.hpp"
 
 enum class WaveEditorState : int {
 	START,
@@ -23,7 +24,8 @@ enum class WaveEditorState : int {
 	DRAG,
 	REMOVE,
 	DONE,
-	TEMPLATE_EDIT
+	TEMPLATE_EDIT,
+	NEW_TEMPLATE
 };
 
 class WaveEditorController : public BaseController {
@@ -42,6 +44,8 @@ private:
 
 	std::shared_ptr<GenericAssetManager> _assets;
 
+	std::vector<std::shared_ptr<TemplateWaveEntry>> _templates;
+
 public:
 	virtual void attach(Observer* obs);
 
@@ -56,9 +60,15 @@ public:
 
 	virtual bool update(float timestep, std::shared_ptr<MenuGraph> menuGraph);
 
+	void clearTemplateNodes();
+
 	void clearNodes();
 
 	void setWave(std::shared_ptr<WaveData> wave);
+
+	void updateTemplateNodes();
+
+	void setSceneGraph();
 
 	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets);
 

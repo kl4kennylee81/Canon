@@ -13,6 +13,7 @@
 
 class Util {
 public:
+
     static std::vector<std::string> split(const std::string& s, const char& c)
     {
         std::string buff{ "" };
@@ -40,6 +41,7 @@ public:
 		button->setPosition(cugl::Vec2::Vec2(x, y));
 		return button;
 	}
+
 };
 
 

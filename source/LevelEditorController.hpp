@@ -19,6 +19,7 @@
 enum class LevelEditorState : int {
 	MAIN,
 	SWITCH_TO_WAVE,
+	ADD_NEW_WAVE,
 	WAVE,
 };
 

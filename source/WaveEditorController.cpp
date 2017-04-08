@@ -37,18 +37,14 @@ void WaveEditorController::eventUpdate(Event* e) {
 bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> menuGraph) {
 	switch (_state) {
 	case WaveEditorState::START: {
-		clearNodes();
-		auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
-		backButton->activate(1);
-		backButton->setListener(
-			[=](const std::string& name, bool down) {
-			if (down) {
-				_state = WaveEditorState::DONE;
-			}
-		}
-		);
-
-		_levelEditNode->addChildWithName(backButton, "back");
+		setSceneGraph();
+		_state = WaveEditorState::SELECT;
+		break;
+	}
+	case WaveEditorState::NEW_TEMPLATE: {
+		auto newTemplate = TemplateWaveEntry::alloc("kyle", "a", "b", {});
+		_templates.push_back(newTemplate);
+		updateTemplateNodes();
 		_state = WaveEditorState::SELECT;
 		break;
 	}
@@ -83,18 +79,74 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	return false;
 }
 
-void WaveEditorController::clearNodes() {
-	auto backNode = _levelEditNode->getChildByName("back");
-	if (backNode != nullptr) {
-		auto backButton = std::static_pointer_cast<Button>(backNode);
-		backButton->deactivate();
+void WaveEditorController::clearTemplateNodes() {
+	auto templateNode = _levelEditNode->getChildByName("templates");
+	if (templateNode == nullptr) return;
+
+	for (auto node : templateNode->getChildren()) {
+		auto buttonNode = std::static_pointer_cast<Button>(node);
+		buttonNode->deactivate();
 	}
+
+	templateNode->removeAllChildren();
+}
+
+void WaveEditorController::clearNodes() {
+	deactivateButton(_levelEditNode, "back");
+	deactivateButton(_levelEditNode, "add");
+	clearTemplateNodes();
 	_levelEditNode->removeAllChildren();
 }
 
 void WaveEditorController::setWave(std::shared_ptr<WaveData> wave) {
 	_currentWave = wave;
 	_state = WaveEditorState::START;
+}
+
+void WaveEditorController::updateTemplateNodes() {
+	clearTemplateNodes();
+	auto templateNode = _levelEditNode->getChildByName("templates");
+	for (int i = 0; i < _templates.size(); i++) {
+		auto templateButton = Util::makeBoxButton(30, 500 - (i * 40), 30, 30, Color4::BLACK, Color4::PAPYRUS);
+		templateButton->setListener(
+			[=](const std::string& name, bool down) {
+			auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(i));
+			if (buttonNode->isDown()) {
+
+			}
+		}
+		);
+		templateButton->activate(getUid());
+		templateNode->addChildWithTag(templateButton, i);
+	}
+}
+
+void WaveEditorController::setSceneGraph() {
+	clearNodes();
+
+	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
+	backButton->setListener(
+		[=](const std::string& name, bool down) {
+		if (down) {
+			_state = WaveEditorState::DONE;
+		}
+	}
+	);
+
+	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
+	addButton->setListener(
+		[=](const std::string& name, bool down) {
+		if (down) {
+			_state = WaveEditorState::NEW_TEMPLATE;
+		}
+	}
+	);
+
+	backButton->activate(getUid());
+	addButton->activate(getUid());
+	_levelEditNode->addChildWithName(backButton, "back");
+	_levelEditNode->addChildWithName(addButton, "add");
+	_levelEditNode->addChildWithName(Node::alloc(), "templates");
 }
 
 bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<GenericAssetManager> assets) {

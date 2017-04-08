@@ -219,6 +219,9 @@
     <ClInclude Include="..\..\source\WaveEditorController.hpp">
       <Filter>Source\levelEditor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\TemplateWaveEntry.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\InputController.hpp">
@@ -658,6 +661,9 @@
       <Filter>Source\levelEditor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\WaveEditorController.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\TemplateWaveEntry.cpp">
       <Filter>Source\levelEditor</Filter>
     </ClCompile>
   </ItemGroup>

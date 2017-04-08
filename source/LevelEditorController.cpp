@@ -41,6 +41,12 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 		_state = LevelEditorState::WAVE;
 		break;
 	}
+	case LevelEditorState::ADD_NEW_WAVE: {
+		addNewWave();
+		updateWaveNodes();
+		_state = LevelEditorState::MAIN;
+		break;
+	}
 	case LevelEditorState::WAVE: {
 		if (_waveEditorController->update(timestep, menuGraph)) {
 			_state = LevelEditorState::MAIN;
@@ -54,20 +60,20 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 
 void LevelEditorController::setSceneGraph() {
 	clearNodes();
+
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
-	backButton->activate(1);
+	backButton->activate(getUid());
 
 	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
 	addButton->setListener(
 		[=](const std::string& name, bool down) {
 		if (down) {
-			addNewWave();
-			updateWaveNodes();
+			_state = LevelEditorState::ADD_NEW_WAVE;
 		}
 		}
 	);
 
-	addButton->activate(2);
+	addButton->activate(getUid());
 
 	_levelEditNode->addChildWithName(addButton, "add");
 	_levelEditNode->addChildWithName(backButton, "back");
@@ -77,9 +83,8 @@ void LevelEditorController::setSceneGraph() {
 }
 
 void LevelEditorController::addNewWave() {
-	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc("wave1", 2);
+	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc("wave"+_levelData->getNumberWaves(), 2);
 	_levelData->addLevelEntry(entry);
-	updateWaveNodes();
 }
 
 void LevelEditorController::clearWaveNodes() {
@@ -90,22 +95,14 @@ void LevelEditorController::clearWaveNodes() {
 		auto buttonNode = std::static_pointer_cast<Button>(node);
 		buttonNode->deactivate();
 	}
+
 	waveNode->removeAllChildren();
 }
 
 //Necessary to deactivate all buttons before clearing
 void LevelEditorController::clearNodes() {
-	auto addNode = _levelEditNode->getChildByName("add");
-	if (addNode != nullptr) {
-		auto addButton = std::static_pointer_cast<Button>(addNode);
-		addButton->deactivate();
-	}
-	auto backNode = _levelEditNode->getChildByName("back");
-	if (backNode != nullptr) {
-		auto backButton = std::static_pointer_cast<Button>(backNode);
-		backButton->deactivate();
-	}
-
+	deactivateButton(_levelEditNode, "add");
+	deactivateButton(_levelEditNode, "back");
 	clearWaveNodes();
 	_levelEditNode->removeAllChildren();
 }
@@ -125,7 +122,7 @@ void LevelEditorController::updateWaveNodes() {
 			}
 		}
 		);
-		waveButton->activate(i + 3);
+		waveButton->activate(getUid());
 		waveNode->addChildWithTag(waveButton, i);
 	}
 }

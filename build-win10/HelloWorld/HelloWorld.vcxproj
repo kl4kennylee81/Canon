@@ -198,6 +198,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\source\MenuScreenData.hpp" />
     <ClInclude Include="..\..\source\TemplateEditorController.hpp" />
+    <ClInclude Include="..\..\source\TemplateWaveEntry.hpp" />
     <ClInclude Include="..\..\source\UIData.hpp" />
     <ClInclude Include="..\..\source\UIDataLoader.hpp" />
     <ClInclude Include="..\..\source\WaveEditorController.hpp" />
@@ -291,6 +292,7 @@
     <ClCompile Include="..\..\source\LoadController.cpp" />
     <ClCompile Include="..\..\source\GenericAssetManager.cpp" />
     <ClCompile Include="..\..\source\TemplateEditorController.cpp" />
+    <ClCompile Include="..\..\source\TemplateWaveEntry.cpp" />
     <ClCompile Include="..\..\source\UIData.cpp" />
     <ClCompile Include="..\..\source\UIDataLoader.cpp" />
     <ClCompile Include="..\..\source\WaveEditorController.cpp" />

@@ -17,6 +17,9 @@
 
 
 class BaseController : public Observer, Subject {
+private:
+	int _uid = 0;
+
 protected:   
 	std::vector<Observer*> _observers;
     
@@ -36,5 +39,13 @@ public:
      * Update the observer state based on an event from the subject
      */
     virtual void eventUpdate(Event* e) = 0;
+
+	int getUid() {
+		return _uid++;
+	}
+
+	void deactivateButton(std::shared_ptr<cugl::Node> node, int tag);
+
+	void deactivateButton(std::shared_ptr<cugl::Node> node, std::string name);
 };
 #endif /* BaseController_hpp */
