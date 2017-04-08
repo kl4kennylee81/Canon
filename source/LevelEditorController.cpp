@@ -37,7 +37,7 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case LevelEditorState::SWITCH_TO_WAVE: {
-		clearNodes();
+		deactivateAndClear(_levelEditNode);
 		_state = LevelEditorState::WAVE;
 		break;
 	}
@@ -59,8 +59,7 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 }
 
 void LevelEditorController::setSceneGraph() {
-	clearNodes();
-
+	deactivateAndClear(_levelEditNode);
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 	backButton->activate(getUid());
 
@@ -87,29 +86,10 @@ void LevelEditorController::addNewWave() {
 	_levelData->addLevelEntry(entry);
 }
 
-void LevelEditorController::clearWaveNodes() {
-	auto waveNode = _levelEditNode->getChildByName("waves");
-	if (waveNode == nullptr) return;
-
-	for (auto node : waveNode->getChildren()) {
-		auto buttonNode = std::static_pointer_cast<Button>(node);
-		buttonNode->deactivate();
-	}
-
-	waveNode->removeAllChildren();
-}
-
-//Necessary to deactivate all buttons before clearing
-void LevelEditorController::clearNodes() {
-	deactivateButton(_levelEditNode, "add");
-	deactivateButton(_levelEditNode, "back");
-	clearWaveNodes();
-	_levelEditNode->removeAllChildren();
-}
 
 void LevelEditorController::updateWaveNodes() {
-	clearWaveNodes();
 	auto waveNode = _levelEditNode->getChildByName("waves");
+	deactivateAndClear(waveNode);
 	for (int i = 0; i < _levelData->getNumberWaves(); i++) {
 		auto waveButton = Util::makeBoxButton(200 + 40 * i, 200, 30, 30, Color4::BLACK, Color4::PAPYRUS);
 		waveButton->setListener(

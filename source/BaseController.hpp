@@ -47,5 +47,8 @@ public:
 	void deactivateButton(std::shared_ptr<cugl::Node> node, int tag);
 
 	void deactivateButton(std::shared_ptr<cugl::Node> node, std::string name);
+	bool instanceOfButton(std::shared_ptr<cugl::Node> node);
+	void deactivateAllButtons(std::shared_ptr<cugl::Node> node);
+	void deactivateAndClear(std::shared_ptr<cugl::Node> node);
 };
 #endif /* BaseController_hpp */

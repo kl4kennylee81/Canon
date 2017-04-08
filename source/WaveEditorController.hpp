@@ -60,10 +60,6 @@ public:
 
 	virtual bool update(float timestep, std::shared_ptr<MenuGraph> menuGraph);
 
-	void clearTemplateNodes();
-
-	void clearNodes();
-
 	void setWave(std::shared_ptr<WaveData> wave);
 
 	void updateTemplateNodes();

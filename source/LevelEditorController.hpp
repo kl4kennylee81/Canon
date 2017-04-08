@@ -59,10 +59,6 @@ public:
 
 	void addNewWave();
 
-	void clearWaveNodes();
-
-	void clearNodes();
-
 	void updateWaveNodes();
 
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
