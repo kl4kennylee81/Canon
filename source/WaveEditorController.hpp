@@ -17,10 +17,12 @@
 #include "TemplateEditorController.hpp"
 
 enum class WaveEditorState : int {
+	START,
 	SELECT,
 	EDIT,
 	DRAG,
 	REMOVE,
+	DONE,
 	TEMPLATE_EDIT
 };
 
@@ -38,6 +40,8 @@ private:
 
 	std::shared_ptr<TemplateEditorController> _templateEditorController;
 
+	std::shared_ptr<GenericAssetManager> _assets;
+
 public:
 	virtual void attach(Observer* obs);
 
@@ -51,6 +55,8 @@ public:
 	virtual void eventUpdate(Event* e);
 
 	virtual bool update(float timestep, std::shared_ptr<MenuGraph> menuGraph);
+
+	void clearNodes();
 
 	void setWave(std::shared_ptr<WaveData> wave);
 

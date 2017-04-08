@@ -14,9 +14,11 @@
 #include "MenuGraph.hpp"
 #include "World.hpp"
 #include "WaveEditorController.hpp"
+#include "LevelData.hpp"
 
 enum class LevelEditorState : int {
 	MAIN,
+	SWITCH_TO_WAVE,
 	WAVE,
 };
 
@@ -31,6 +33,10 @@ private:
 	LevelEditorState _state;
 
 	std::shared_ptr<WaveEditorController> _waveEditorController;
+
+	std::shared_ptr<LevelData> _levelData;
+
+	std::shared_ptr<GenericAssetManager> _assets;
 
 public:
     virtual void attach(Observer* obs);
@@ -48,6 +54,16 @@ public:
     
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets);
     
+	void setSceneGraph();
+
+	void addNewWave();
+
+	void clearWaveNodes();
+
+	void clearNodes();
+
+	void updateWaveNodes();
+
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();
         return (result->init(scene,assets) ? result : nullptr);
