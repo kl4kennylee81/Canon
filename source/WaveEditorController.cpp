@@ -38,6 +38,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	switch (_state) {
 	case WaveEditorState::START: {
 		setSceneGraph();
+		updateTemplateNodes();
 		_state = WaveEditorState::SELECT;
 		break;
 	}
