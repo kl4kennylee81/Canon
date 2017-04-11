@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 4/4/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef WaveEditorController_hpp
@@ -35,16 +35,26 @@ private:
 	/** the main node for the level editor
 	* connect all related nodes to this node not the scene */
 	std::shared_ptr<cugl::Node> _levelEditNode;
+    
+    /** The child of this node is the node being dragged */
+    std::shared_ptr<cugl::Node> _dragNode;
+    
+    int _dragIndex;
+    
+    bool _dragStart;
+    
+    bool _wasPressed;
 
 	std::shared_ptr<WaveData> _currentWave;
 
 	WaveEditorState _state;
 
 	std::shared_ptr<TemplateEditorController> _templateEditorController;
-
+    
 	std::shared_ptr<GenericAssetManager> _assets;
 
 	std::vector<std::shared_ptr<TemplateWaveEntry>> _templates;
+    
 
 public:
 	virtual void attach(Observer* obs);
@@ -65,6 +75,12 @@ public:
 	void updateTemplateNodes();
 
 	void setSceneGraph();
+    
+    void checkKeyboardInput();
+    
+    void updateDragAndDrop();
+    
+    void templateButtonListenerFunction(const std::string& name, bool down, int index);
 
 	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets);
 

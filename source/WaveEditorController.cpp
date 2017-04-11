@@ -3,11 +3,12 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 4/4/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #include "WaveEditorController.hpp"
 #include "Util.hpp"
+#include "InputController.hpp"
 
 using namespace cugl;
 
@@ -35,7 +36,8 @@ void WaveEditorController::eventUpdate(Event* e) {
 * Returns false otherwise.
 */
 bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> menuGraph) {
-	switch (_state) {
+    checkKeyboardInput();
+    switch (_state) {
 	case WaveEditorState::START: {
 		setSceneGraph();
 		updateTemplateNodes();
@@ -55,7 +57,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case WaveEditorState::DRAG: {
-		//click on item to start dragging, click again to drop
+        updateDragAndDrop();
 		break;
 	}
 	case WaveEditorState::EDIT: {
@@ -77,12 +79,73 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		return true;
 	}
 	}
+    _wasPressed = InputController::getIsPressed();
 	return false;
+}
+
+void WaveEditorController::updateDragAndDrop(){
+    if(_dragIndex == -1) return;
+    if(_dragStart){
+        auto poly = PolygonNode::alloc(Rect::Rect(0,0,30,30));
+        poly->setColor(Color4::BLUE);
+        _dragNode->addChildWithTag(poly, 1);
+        _dragStart = false;
+    }
+    
+    bool isPressed = InputController::getIsPressed();
+    Vec2 position = InputController::getInputVector();
+    Vec2 scene_pos = _levelEditNode->getScene()->getCamera()->screenToWorldCoords(position);
+    
+    if(!isPressed && _wasPressed){
+        //TODO: Either create wave entry based on dragIndex and location, or update existing wave entry's position
+        _dragNode->removeAllChildren();
+        _dragIndex = -1;
+        return;
+    }
+    
+    auto node = _dragNode->getChildByTag(1);
+    node->setPosition(scene_pos);
+}
+
+void WaveEditorController::checkKeyboardInput() {
+    auto keys = Input::get<Keyboard>()->keySet();
+    for(auto key: keys){
+        if(key == KeyCode::D){
+            _state = WaveEditorState::DRAG;
+            return;
+        }
+        if(key == KeyCode::E){
+            _state = WaveEditorState::EDIT;
+            return;
+        }
+    }
+
 }
 
 void WaveEditorController::setWave(std::shared_ptr<WaveData> wave) {
 	_currentWave = wave;
 	_state = WaveEditorState::START;
+}
+
+void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
+    auto templateNode = _levelEditNode->getChildByName("templates");
+    auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(index));
+    if (buttonNode->isDown()) {
+        switch(_state) {
+        case WaveEditorState::DRAG: {
+            _dragIndex = index;
+            _dragStart = true;
+            break;
+        }
+        case WaveEditorState::EDIT: {
+            break;
+        }
+        default:{
+            break;
+        }
+        }
+        
+    }
 }
 
 void WaveEditorController::updateTemplateNodes() {
@@ -92,11 +155,8 @@ void WaveEditorController::updateTemplateNodes() {
 		auto templateButton = Util::makeBoxButton(30, 500 - (i * 40), 30, 30, Color4::BLACK, Color4::PAPYRUS);
 		templateButton->setListener(
 			[=](const std::string& name, bool down) {
-			auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(i));
-			if (buttonNode->isDown()) {
-
-			}
-		}
+                templateButtonListenerFunction(name, down, i);
+            }
 		);
 		templateButton->activate(getUid());
 		templateNode->addChildWithTag(templateButton, i);
@@ -129,6 +189,9 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(backButton, "back");
 	_levelEditNode->addChildWithName(addButton, "add");
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
+    _dragNode = Node::alloc();
+    _levelEditNode->addChildWithName(_dragNode, "drag");
+    _dragIndex = -1;
 }
 
 bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<GenericAssetManager> assets) {
