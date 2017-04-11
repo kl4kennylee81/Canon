@@ -39,7 +39,8 @@ protected:
     
     /** The asset manager for this game world. */
     std::shared_ptr<GenericAssetManager> _assets;
-    
+
+public:
     /** if this is a sandbox prepopulated instance */
     bool _isSandbox;
     
@@ -52,8 +53,6 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
 
-public:
-    
     World();
     
     ~World();

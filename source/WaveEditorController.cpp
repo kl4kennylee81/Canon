@@ -41,6 +41,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	case WaveEditorState::START: {
 		setSceneGraph();
 		updateTemplateNodes();
+        updateWaveEntryNodes();
 		_state = WaveEditorState::SELECT;
 		break;
 	}
@@ -99,6 +100,17 @@ void WaveEditorController::updateDragAndDrop(){
     if(!isPressed && _wasPressed){
         //TODO: Either create wave entry based on dragIndex and location, or update existing wave entry's position
         _dragNode->removeAllChildren();
+        if(_newEntry){
+            auto templ = _templates.at(_dragIndex);
+            auto entry = WaveEntry::alloc(templ->objectKey, templ->aiKey, 0, 0, Element::BLUE, templ->zoneKeys);
+            entry->position = scene_pos;
+            _currentWave->addWaveEntry(entry);
+        }
+        else{
+            auto entry = _currentWave->getEntry(_dragIndex);
+            entry->position = scene_pos;
+        }
+        updateWaveEntryNodes();
         _dragIndex = -1;
         return;
     }
@@ -134,6 +146,7 @@ void WaveEditorController::templateButtonListenerFunction(const std::string& nam
         switch(_state) {
         case WaveEditorState::DRAG: {
             _dragIndex = index;
+            _newEntry = true;
             _dragStart = true;
             break;
         }
@@ -147,6 +160,47 @@ void WaveEditorController::templateButtonListenerFunction(const std::string& nam
         
     }
 }
+
+
+void WaveEditorController::waveEntryButtonListenerFunction(const std::string& name, bool down, int index) {
+    auto entryNode = _levelEditNode->getChildByName("entries");
+    auto buttonNode = std::static_pointer_cast<Button>(entryNode->getChildByTag(index));
+    if(buttonNode->isDown()){
+        switch(_state) {
+            case WaveEditorState::DRAG: {
+                _dragIndex = index;
+                _newEntry = false;
+                _dragStart = true;
+                break;
+            }
+            case WaveEditorState::EDIT: {
+                break;
+            }
+            default:{
+                break;
+            }
+        }
+    }
+}
+
+void WaveEditorController::updateWaveEntryNodes(){
+    auto entryNode = _levelEditNode->getChildByName("entries");
+    deactivateAndClear(entryNode);
+    auto waveEntries = _currentWave->getWaveEntries();
+    for(int i = 0; i < waveEntries.size(); i++){
+        auto entry = waveEntries.at(i);
+        Vec2 pos = entry->position;
+        auto waveEntryButton = Util::makeBoxButton(pos.x, pos.y, 30, 30, Color4::MAGENTA, Color4::PAPYRUS);
+        waveEntryButton->setListener(
+            [=](const std::string& name, bool down) {
+                waveEntryButtonListenerFunction(name, down, i);
+            }
+        );
+        waveEntryButton->activate(getUid());
+        entryNode->addChildWithTag(waveEntryButton, i);
+    }
+}
+
 
 void WaveEditorController::updateTemplateNodes() {
 	auto templateNode = _levelEditNode->getChildByName("templates");
@@ -189,6 +243,8 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(backButton, "back");
 	_levelEditNode->addChildWithName(addButton, "add");
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
+    _levelEditNode->addChildWithName(Node::alloc(), "entries");
+    
     _dragNode = Node::alloc();
     _levelEditNode->addChildWithName(_dragNode, "drag");
     _dragIndex = -1;

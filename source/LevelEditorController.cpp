@@ -82,7 +82,9 @@ void LevelEditorController::setSceneGraph() {
 }
 
 void LevelEditorController::addNewWave() {
-	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc("wave"+_levelData->getNumberWaves(), 2);
+    std::string waveName = "wave"+ std::to_string(_levelData->getNumberWaves());
+	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 2);
+    _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
 
@@ -96,7 +98,7 @@ void LevelEditorController::updateWaveNodes() {
 			[=](const std::string& name, bool down) {
 			auto buttonNode = std::static_pointer_cast<Button>(waveNode->getChildByTag(i));
 			if (buttonNode->isDown()) {
-				auto waveData = _assets->get<WaveData>(_levelData->getWaveKey(i));
+				auto waveData = _world->getWaveData(_levelData->getWaveKey(i));
 				_waveEditorController->setWave(waveData);
 				_state = LevelEditorState::SWITCH_TO_WAVE;
 			}
@@ -112,6 +114,8 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
 	_levelEditNode = Node::alloc();
 	_levelData = LevelData::alloc();
 	_waveEditorController = WaveEditorController::alloc(_levelEditNode, assets);
+    _world = World::alloc();
+    _world->_isSandbox = true;
 	scene->addChild(_levelEditNode);
 	setSceneGraph();
 	_assets = assets;

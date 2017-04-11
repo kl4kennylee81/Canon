@@ -44,6 +44,8 @@ private:
     bool _dragStart;
     
     bool _wasPressed;
+    
+    bool _newEntry;
 
 	std::shared_ptr<WaveData> _currentWave;
 
@@ -79,6 +81,10 @@ public:
     void checkKeyboardInput();
     
     void updateDragAndDrop();
+    
+    void updateWaveEntryNodes();
+    
+    void waveEntryButtonListenerFunction(const std::string& name, bool down, int index);
     
     void templateButtonListenerFunction(const std::string& name, bool down, int index);
 
