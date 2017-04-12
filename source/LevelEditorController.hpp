@@ -37,8 +37,6 @@ private:
 
 	std::shared_ptr<LevelData> _levelData;
 
-	std::shared_ptr<GenericAssetManager> _assets;
-
 public:
     virtual void attach(Observer* obs);
     

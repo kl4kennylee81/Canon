@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 4/4/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #include "TemplateEditorController.hpp"
@@ -41,6 +41,6 @@ void TemplateEditorController::setTemplate(std::shared_ptr<WaveEntry> entry) {
 
 }
 
-bool TemplateEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<GenericAssetManager> assets) {
+bool TemplateEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<World> world) {
 	return true;
 }

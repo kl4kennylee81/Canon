@@ -21,7 +21,6 @@ enum class WaveEditorState : int {
 	START,
 	SELECT,
 	EDIT,
-    START_DRAG,
 	DRAG,
 	REMOVE,
     COLOR_TOGGLE,
@@ -41,6 +40,8 @@ private:
     /** The child of this node is the node being dragged */
     std::shared_ptr<cugl::Node> _dragNode;
     
+    std::shared_ptr<cugl::Label> _labelNode;
+    
     int _dragIndex;
     
     bool _dragStart;
@@ -57,8 +58,6 @@ private:
 
 	std::shared_ptr<TemplateEditorController> _templateEditorController;
     
-	std::shared_ptr<GenericAssetManager> _assets;
-
 	std::vector<std::shared_ptr<TemplateWaveEntry>> _templates;
     
 
@@ -88,15 +87,17 @@ public:
     
     void updateWaveEntryNodes();
     
+    std::string getStateAsString();
+    
     void waveEntryButtonListenerFunction(const std::string& name, bool down, int index);
     
     void templateButtonListenerFunction(const std::string& name, bool down, int index);
 
-	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets);
+	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world);
 
-	static std::shared_ptr<WaveEditorController> alloc(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets) {
+	static std::shared_ptr<WaveEditorController> alloc(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world) {
 		std::shared_ptr<WaveEditorController> result = std::make_shared<WaveEditorController>();
-		return (result->init(node, assets) ? result : nullptr);
+		return (result->init(node, world) ? result : nullptr);
 	}
 
 };

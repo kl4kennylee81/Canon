@@ -42,14 +42,14 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		setSceneGraph();
 		updateTemplateNodes();
         updateWaveEntryNodes();
-		_state = WaveEditorState::SELECT;
+		_state = WaveEditorState::DRAG;
 		break;
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
-		auto newTemplate = TemplateWaveEntry::alloc("kyle", "a", "b", {});
+		auto newTemplate = TemplateWaveEntry::alloc("kyle", "object1", "object2", "static", {});
 		_templates.push_back(newTemplate);
 		updateTemplateNodes();
-		_state = WaveEditorState::SELECT;
+		_state = WaveEditorState::DRAG;
 		break;
 	}
 	case WaveEditorState::SELECT: {
@@ -88,6 +88,12 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	}
 	}
     _wasPressed = InputController::getIsPressed();
+    
+    _levelEditNode->removeChildByName("label");
+    std::string str = getStateAsString();
+    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("kyle"));
+    label->setPosition(400,20);
+    _levelEditNode->addChildWithName(label, "label");
 	return false;
 }
 
@@ -113,7 +119,8 @@ void WaveEditorController::updateDragAndDrop(){
         _dragNode->removeAllChildren();
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
-            auto entry = WaveEntry::alloc(templ->objectKey, templ->aiKey, 0, 0, Element::BLUE, templ->zoneKeys);
+            auto entry = WaveEntry::alloc(templ->blueObjectKey, templ->aiKey, 0, 0, Element::BLUE, templ->zoneKeys);
+            entry->templateIndex = _dragIndex;
             entry->position = scene_pos;
             _currentWave->addWaveEntry(entry);
         }
@@ -196,7 +203,8 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
             }
             case WaveEditorState::COLOR_TOGGLE: {
                 auto waveEntry = _currentWave->getEntry(index);
-                waveEntry->element = waveEntry->element == Element::BLUE ? Element::GOLD : Element::BLUE;
+                auto templateEntry = _templates.at(waveEntry->templateIndex);
+                waveEntry->switchElement(templateEntry->blueObjectKey, templateEntry->goldObjectKey);
                 _colorChanged = true;
                 break;
             }
@@ -242,6 +250,21 @@ void WaveEditorController::updateTemplateNodes() {
 	}
 }
 
+std::string WaveEditorController::getStateAsString(){
+    switch(_state){
+        case WaveEditorState::DRAG: {
+            return "DRAG";
+        }
+        case WaveEditorState::COLOR_TOGGLE: {
+            return "COLOR TOGGLE";
+        }
+        case WaveEditorState::EDIT: {
+            return "EDIT";
+        }
+    }
+    return "";
+}
+
 void WaveEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 
@@ -275,11 +298,11 @@ void WaveEditorController::setSceneGraph() {
     _dragIndex = -1;
 }
 
-bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<GenericAssetManager> assets) {
+bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<World> world) {
 	_state = WaveEditorState::START;
-	_templateEditorController = TemplateEditorController::alloc(node, assets);
+	_templateEditorController = TemplateEditorController::alloc(node, world);
 	_levelEditNode = node;
-	_assets = assets;
+	_world = world;
     _colorChanged = false;
 	return true;
 }

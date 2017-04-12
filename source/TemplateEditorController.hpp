@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 4/4/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef TemplateEditorController_hpp
@@ -45,11 +45,11 @@ public:
 
 	void setTemplate(std::shared_ptr<WaveEntry> entry);
 
-	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets);
+	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world);
 
-	static std::shared_ptr<TemplateEditorController> alloc(std::shared_ptr<cugl::Node> node, std::shared_ptr<GenericAssetManager> assets) {
+	static std::shared_ptr<TemplateEditorController> alloc(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world) {
 		std::shared_ptr<TemplateEditorController> result = std::make_shared<TemplateEditorController>();
-		return (result->init(node, assets) ? result : nullptr);
+		return (result->init(node, world) ? result : nullptr);
 	}
 
 };

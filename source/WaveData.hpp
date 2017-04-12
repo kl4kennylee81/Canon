@@ -26,7 +26,15 @@ public:
 
     std::vector<std::string> zoneKeys;
     
+    /* used only in the level editor */
+    int templateIndex;
+    
     WaveEntry(){}
+    
+    void switchElement(std::string blueObjectKey, std::string goldObjectKey) {
+        element = element == Element::BLUE ? Element::GOLD : Element::BLUE;
+        objectKey = element == Element::BLUE ? blueObjectKey : goldObjectKey;
+    }
     
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     

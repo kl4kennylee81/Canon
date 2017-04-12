@@ -14,9 +14,12 @@ bool TemplateWaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 
-bool TemplateWaveEntry::init(std::string name, std::string objectKey, std::string aiKey, std::vector<std::string> zoneKeys) {
+bool TemplateWaveEntry::init(std::string name, std::string blue, std::string gold ,
+    std::string aiKey, std::vector<std::string> zoneKeys)
+{
 	this->name = name;
-	this->objectKey = objectKey;
+	this->blueObjectKey = blue;
+    this->goldObjectKey = gold;
 	this->aiKey = aiKey;
 	this->zoneKeys = zoneKeys;
 	return true;

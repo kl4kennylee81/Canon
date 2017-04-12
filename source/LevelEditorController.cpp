@@ -112,12 +112,11 @@ void LevelEditorController::updateWaveNodes() {
 bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets){
 	_state = LevelEditorState::MAIN;
 	_levelEditNode = Node::alloc();
+    scene->addChild(_levelEditNode);
 	_levelData = LevelData::alloc();
-	_waveEditorController = WaveEditorController::alloc(_levelEditNode, assets);
-    _world = World::alloc();
+    _world = World::alloc(assets);
     _world->_isSandbox = true;
-	scene->addChild(_levelEditNode);
+    _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
 	setSceneGraph();
-	_assets = assets;
     return true;
 }

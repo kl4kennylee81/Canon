@@ -3,8 +3,12 @@
         "Charlemagne": {
             "file": "./fonts/Charlemagne.ttf", 
             "size": 64
+        },
+        "kyle": {
+            "file": "./fonts/Charlemagne.ttf",
+            "size": 20
         }
-    }, 
+    },
     "textures": {
         "bar_background": {
             "file": "./textures/gameScreen/progressBar/bar_background.png", 
