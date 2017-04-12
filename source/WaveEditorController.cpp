@@ -69,6 +69,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		//click on item to remove
 		break;
 	}
+    case WaveEditorState::COLOR_TOGGLE: {
+        if(_colorChanged) {
+            updateWaveEntryNodes();
+            _colorChanged = false;
+        }
+        break;
+    }
 	case WaveEditorState::TEMPLATE_EDIT: {
 		if (_templateEditorController->update(timestep, menuGraph)) {
 			_state = WaveEditorState::SELECT;
@@ -86,9 +93,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 
 void WaveEditorController::updateDragAndDrop(){
     if(_dragIndex == -1) return;
+    auto templateNode = _levelEditNode->getChildByName("templates");
     if(_dragStart){
+        for(auto it: templateNode->getChildren()){
+            it->setVisible(false);
+        }
         auto poly = PolygonNode::alloc(Rect::Rect(0,0,30,30));
-        poly->setColor(Color4::BLUE);
+        poly->setColor(Color4::MAGENTA);
         _dragNode->addChildWithTag(poly, 1);
         _dragStart = false;
     }
@@ -110,6 +121,9 @@ void WaveEditorController::updateDragAndDrop(){
             auto entry = _currentWave->getEntry(_dragIndex);
             entry->position = scene_pos;
         }
+        for(auto it: templateNode->getChildren()){
+            it->setVisible(true);
+        }
         updateWaveEntryNodes();
         _dragIndex = -1;
         return;
@@ -128,6 +142,10 @@ void WaveEditorController::checkKeyboardInput() {
         }
         if(key == KeyCode::E){
             _state = WaveEditorState::EDIT;
+            return;
+        }
+        if(key == KeyCode::T){
+            _state = WaveEditorState::COLOR_TOGGLE;
             return;
         }
     }
@@ -176,6 +194,12 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
             case WaveEditorState::EDIT: {
                 break;
             }
+            case WaveEditorState::COLOR_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                waveEntry->element = waveEntry->element == Element::BLUE ? Element::GOLD : Element::BLUE;
+                _colorChanged = true;
+                break;
+            }
             default:{
                 break;
             }
@@ -190,7 +214,8 @@ void WaveEditorController::updateWaveEntryNodes(){
     for(int i = 0; i < waveEntries.size(); i++){
         auto entry = waveEntries.at(i);
         Vec2 pos = entry->position;
-        auto waveEntryButton = Util::makeBoxButton(pos.x, pos.y, 30, 30, Color4::MAGENTA, Color4::PAPYRUS);
+        Color4 color = entry->element == Element::BLUE ? Color4::BLUE : Color4::YELLOW;
+        auto waveEntryButton = Util::makeBoxButton(pos.x, pos.y, 30, 30, color, Color4::PAPYRUS);
         waveEntryButton->setListener(
             [=](const std::string& name, bool down) {
                 waveEntryButtonListenerFunction(name, down, i);
@@ -255,5 +280,6 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Gene
 	_templateEditorController = TemplateEditorController::alloc(node, assets);
 	_levelEditNode = node;
 	_assets = assets;
+    _colorChanged = false;
 	return true;
 }

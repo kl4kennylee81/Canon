@@ -21,8 +21,10 @@ enum class WaveEditorState : int {
 	START,
 	SELECT,
 	EDIT,
+    START_DRAG,
 	DRAG,
 	REMOVE,
+    COLOR_TOGGLE,
 	DONE,
 	TEMPLATE_EDIT,
 	NEW_TEMPLATE
@@ -46,6 +48,8 @@ private:
     bool _wasPressed;
     
     bool _newEntry;
+    
+    bool _colorChanged;
 
 	std::shared_ptr<WaveData> _currentWave;
 
