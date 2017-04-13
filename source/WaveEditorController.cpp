@@ -49,6 +49,8 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		auto newTemplate = TemplateWaveEntry::alloc("kyle", "object1", "object2", "static", {});
 		_templates.push_back(newTemplate);
 		updateTemplateNodes();
+        createTemplateFile(newTemplate);
+        //TODO: Make new file for template
 		_state = WaveEditorState::DRAG;
 		break;
 	}
@@ -95,6 +97,11 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     label->setPosition(400,20);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
+}
+
+void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ) {
+    std::shared_ptr<JsonValue> json = templ->toJsonValue();
+    
 }
 
 void WaveEditorController::updateDragAndDrop(){

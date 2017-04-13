@@ -89,6 +89,8 @@ public:
     
     std::string getStateAsString();
     
+    void createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ);
+    
     void waveEntryButtonListenerFunction(const std::string& name, bool down, int index);
     
     void templateButtonListenerFunction(const std::string& name, bool down, int index);

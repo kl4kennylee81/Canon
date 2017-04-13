@@ -26,7 +26,9 @@ public:
 
     std::vector<std::string> zoneKeys;
     
-    /* used only in the level editor */
+    std::string templateKey;
+    
+    /*only used by level editor*/
     int templateIndex;
     
     WaveEntry(){}

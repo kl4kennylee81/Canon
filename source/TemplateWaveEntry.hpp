@@ -14,8 +14,11 @@
 #include "Data.hpp"
 #include "AIData.hpp"
 
-class TemplateWaveEntry {
+class TemplateWaveEntry : public Data {
 public:
+    
+    TemplateWaveEntry() : Data(){}
+
 	std::string name;
 
 	std::string blueObjectKey;
@@ -25,8 +28,6 @@ public:
 	std::string aiKey;
 
 	std::vector<std::string> zoneKeys;
-
-	TemplateWaveEntry() {}
 
 	/* update the data file which corresponds to this template*/
 	bool updateFile();
@@ -46,5 +47,13 @@ public:
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
 		return (result->init(name, blue, gold, aiKey, zoneKeys) ? result : nullptr);
 	}
+    
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+    
+    virtual bool preload(const std::string& file);
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    virtual bool materialize();
 };
 #endif /* TemplateWaveData_hpp */

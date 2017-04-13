@@ -83,7 +83,7 @@ void LevelEditorController::setSceneGraph() {
 
 void LevelEditorController::addNewWave() {
     std::string waveName = "wave"+ std::to_string(_levelData->getNumberWaves());
-	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 2);
+	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
