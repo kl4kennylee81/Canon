@@ -2,9 +2,9 @@
 
 using namespace cugl;
 
+
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
-	buttonAction = json->getString("buttonAction");
-	buttonTarget = json->getString("buttonTarget");
+	buttonAction = ButtonAction::getButtonAction(json->get("buttonAction"));	
 	buttonLabel = json->getString("buttonLabel");
 	UIData::preload(json); // call to super
 	return true;
@@ -22,7 +22,6 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	UIData::preload(json);
 	return true;
 }
-
 
 
 std::shared_ptr<JsonValue> UIData::toJsonValue()

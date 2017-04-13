@@ -15,7 +15,8 @@
                 "menuKey": "optionsMenu",
                 "UIEntries": [
                     "closeOptions",
-                    "optionsTitle"
+                    "optionsTitle",
+                    "volumeToggle"
                 ]
             }
         }
@@ -23,8 +24,10 @@
     "UIData": {
         "openOptions": {
             "type": "BUTTON",
-            "buttonAction": "uiChange",
-            "buttonTarget": "optionsMenu",
+            "buttonAction": {
+                "type": "uiChange",
+                "buttonTarget": "optionsMenu"
+            },
             "buttonLabel": "Open Options",
             "x": 10,
             "y": 10,
@@ -33,8 +36,10 @@
         },
         "startGame": {
             "type": "BUTTON",
-            "buttonAction": "modeChange",
-            "buttonTarget": "gameInit",
+            "buttonAction": {
+                "type": "modeChange",
+                "buttonTarget": "gameInit"
+            },
             "buttonLabel": "Play Game",
             "x": 10,
             "y": 10,
@@ -58,15 +63,40 @@
             "height": 50,
             "textureKey": "bg_dark_lake"
         },
+        "volumeIcon": {
+            "type": "IMAGE",
+            "x": 0,
+            "y": 0,
+            "width": 20,
+            "height": 20,
+            "textureKey": "volume_icon"
+        },
         "closeOptions": {
             "type": "BUTTON",
             "buttonLabel": "Close Options",
-            "buttonAction": "uiChange",
-            "buttonTarget": "optionsMenu",
+            "buttonAction": {
+                "type": "uiChange",
+                "buttonTarget": "optionsMenu"
+            },
             "x": 10,
             "y": 10,
             "width": 100,
             "height": 100
+        },
+        "volumeToggle": {
+            "type": "BUTTON",
+            "buttonLabel": "",
+            "buttonContent": [
+                "volumeIcon"
+            ],
+            "buttonAction": {
+                "type": "fxTrigger",
+                "fxKey": "volumeToggle"
+            },
+            "x": 100,
+            "y": 100,
+            "width": 40,
+            "height": 40
         },
         "optionsTitle": {
             "type": "TEXT",

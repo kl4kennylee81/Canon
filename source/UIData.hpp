@@ -12,6 +12,35 @@ enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
 };
 
+class ButtonAction {
+public:
+
+	string type;
+	string buttonTarget;
+
+	bool init(string t, string bt)
+	{
+		type = t;
+		buttonTarget = bt;
+		return true;
+	}
+
+	ButtonAction() {}
+
+	static std::shared_ptr<ButtonAction> alloc(string t, string bt) {
+		std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
+		return (result->init(t, bt) ? result : nullptr);
+	}
+
+	static ButtonAction getButtonAction(const std::shared_ptr<cugl::JsonValue> & json)
+	{
+		ButtonAction result = ButtonAction();
+		result.init(json->getString("type"), json->getString("buttonTarget"));
+		return result;
+	}
+};
+
+
 class UIData : Data {
 public:
 
@@ -52,20 +81,18 @@ public:
 
 class ButtonUIData : public UIData {
 public:
-	string buttonAction;
-	string buttonTarget;
+	ButtonAction buttonAction;
 	string buttonLabel;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
-	static std::shared_ptr<ButtonUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, string bAction, string bTarget, string bLabel) {
+	static std::shared_ptr<ButtonUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, string bLabel) {
 		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
-		return (result->init( uiKey,  t,  x,  y,  w,  h,  bAction,  bTarget,  bLabel) ? result : nullptr);
+		return (result->init( uiKey,  t,  x,  y,  w,  h,  ba,  bLabel) ? result : nullptr);
 	}
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, string bAction, string bTarget, string bLabel)
+	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, string bLabel)
 	{
 		UIData::alloc(uiKey, t, x, y, w, h);
-		buttonAction = bAction;
-		buttonTarget = bTarget;
+		buttonAction = ba;
 		buttonLabel = bLabel;
 		return true;
 	}
