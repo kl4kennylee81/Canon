@@ -16,6 +16,10 @@ void Menu::addUIElement(std::shared_ptr<cugl::Node> element){
     this->_menu->addChild(element);
 }
 
+std::vector<std::shared_ptr<cugl::Node>>& Menu::getUIElements(){
+    return _uiElements;
+}
+
 void Menu::attachToScene(std::shared_ptr<Node> parent){
     parent->addChild(this->_menu);
 }

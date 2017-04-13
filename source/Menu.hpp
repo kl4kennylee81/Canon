@@ -21,6 +21,8 @@ public:
     
     void addUIElement(std::shared_ptr<cugl::Node> element);
     
+    std::vector<std::shared_ptr<cugl::Node>>& getUIElements();
+    
     void attachToScene(std::shared_ptr<cugl::Node> parent);
     
     void detachFromScene();
