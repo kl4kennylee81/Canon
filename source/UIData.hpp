@@ -4,42 +4,13 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "ButtonAction.hpp"
 
 using std::string;
-
 
 enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
 };
-
-class ButtonAction {
-public:
-
-	string type;
-	string buttonTarget;
-
-	bool init(string t, string bt)
-	{
-		type = t;
-		buttonTarget = bt;
-		return true;
-	}
-
-	ButtonAction() {}
-
-	static std::shared_ptr<ButtonAction> alloc(string t, string bt) {
-		std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
-		return (result->init(t, bt) ? result : nullptr);
-	}
-
-	static ButtonAction getButtonAction(const std::shared_ptr<cugl::JsonValue> & json)
-	{
-		ButtonAction result = ButtonAction();
-		result.init(json->getString("type"), json->getString("buttonTarget"));
-		return result;
-	}
-};
-
 
 class UIData : Data {
 public:
@@ -82,21 +53,23 @@ public:
 
 class ButtonUIData : public UIData {
 public:
-	ButtonAction buttonAction;
+	std::shared_ptr<ButtonAction> buttonAction;
 	string buttonLabel;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
-	static std::shared_ptr<ButtonUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, string bLabel) {
+	static std::shared_ptr<ButtonUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, string bLabel) {
 		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
 		return (result->init( uiKey,  t,  x,  y,  w,  h,  ba,  bLabel) ? result : nullptr);
 	}
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, string bLabel)
+	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, string bLabel)
 	{
 		UIData::alloc(uiKey, t, x, y, w, h);
 		buttonAction = ba;
 		buttonLabel = bLabel;
 		return true;
 	}
+
+	ButtonUIData() : UIData() {}
 };
 
 class TextUIData : public UIData {
@@ -116,6 +89,8 @@ public:
 		fontKey = fKey;
 		return true;
 	}
+
+	TextUIData() : UIData() {}
 };
 
 class ImageUIData : public UIData {
@@ -133,6 +108,8 @@ public:
 		textureKey = tKey;
 		return true;
 	}
+
+	ImageUIData() : UIData() {}
 };
 
 

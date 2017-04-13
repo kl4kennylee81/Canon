@@ -4,7 +4,15 @@ using namespace cugl;
 
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
-	buttonAction = ButtonAction::getButtonAction(json->get("buttonAction"));	
+	string type = json->get("buttonAction")->getString("type");
+	buttonAction = ButtonAction::alloc(type);
+	if (type == "uiChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		UIChangeButtonAction::alloc(type, json->get("buttonAction")->getString("buttonTarget"))); }
+	else if (type == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		MenuChangeButtonAction::alloc(type, json->get("buttonAction")->getString("buttonTarget"))); }
+	else if (type == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		FxTriggerButtonAction::alloc(type, json->getString("fxKey"))); }
+
 	buttonLabel = json->getString("buttonLabel");
 	UIData::preload(json); // call to super
 	return true;

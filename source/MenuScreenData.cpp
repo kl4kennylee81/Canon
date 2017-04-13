@@ -42,11 +42,17 @@ bool MenuScreenData::preload(const std::string& file){
 bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init();
 	for (int i = 0; i < json->size(); i++) {
+		
 		auto child = json->get(i);
+		if (child->key() == "startMenuKey")
+		{
+			_startMenuKey = child->asString();
+			continue;
+		}
 		auto entry = MenuEntry::alloc(child);
 		addMenuEntry(entry);
 	}
-    _startMenuKey = json->getString("startMenuKey");
+    
 	return true;
 }
 

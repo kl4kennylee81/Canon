@@ -1,6 +1,7 @@
 {
     "MenuScreenData": {
         "menus": {
+            "startMenuKey": "startMenu",
             "startMenu": {
                 "menuKey": "startMenu",
                 "menuBackgroundKey": "bg_dark_lake",
