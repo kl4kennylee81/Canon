@@ -25,7 +25,7 @@ using namespace cugl;
 AnimationController::AnimationController():
 BaseController(){}
 
-void AnimationController::attach(std::shared_ptr<Observer> obs) {
+void AnimationController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void AnimationController::detach(Observer* obs) {
@@ -141,7 +141,7 @@ void AnimationController::eventUpdate(Event* e) {
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
     syncAll();
-    updateFrames();
+    updateFrames(state);
 }
 
 /**
@@ -228,7 +228,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
 /**
  * Removes animations that have been completed to the last frame
  */
-void AnimationController::updateFrames() {
+void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         std::shared_ptr<ActiveAnimation> anim = it->second;
         
@@ -239,11 +239,17 @@ void AnimationController::updateFrames() {
         
         if (!anim->nextFrame()){
             anim->getAnimationNode()->removeFromParent();
-            animationMap.erase(it++);
+            animationMap.erase(it);
+            state->removeObject(it->first);
+            break;
         } else {
             it++;
         }
     }
+}
+
+void AnimationController::dispose(){
+    _worldnode = nullptr;
 }
 
 bool AnimationController::init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
@@ -251,19 +257,5 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     
     std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
-    // TODO change to load from event
-//    for(auto it = playerObjects.begin() ; it != playerObjects.end(); ++it) {
-//        if (it->get()->getUid()==0){
-//            std::shared_ptr<AnimationData> charGirl = assets->get<AnimationData>("blueCharAnimation");
-//            
-//            addAnimation(it->get(), charGirl);
-//            handleAction(it->get(), AnimationAction::SPAWN);
-//        } else {
-//            std::shared_ptr<AnimationData> charBoy = assets->get<AnimationData>("redCharAnimation");
-//            
-//            addAnimation(it->get(), charBoy);
-//            handleAction(it->get(), AnimationAction::SPAWN);
-//        }
-//    }
     return true;
 }

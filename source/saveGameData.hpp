@@ -39,7 +39,7 @@ class SaveGameData : Data {
 protected:
 	std::vector<std::shared_ptr<SaveLevelEntry>> _saveLevelEntries;
 public:
-	virtual std::string serialize();
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
 
 	virtual bool preload(const std::string& file);
 

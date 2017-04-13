@@ -9,6 +9,7 @@
 #include "WaveData.hpp"
 #include "AIData.hpp"
 #include "GameState.hpp" // for conversion to physicsScale
+#include "Element.hpp"
 
 using namespace cugl;
 
@@ -36,8 +37,36 @@ bool WaveEntry::init(std::string objectKey, std::string aiKey, float x, float y,
     return true;
 }
 
-std::string WaveData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
+{
+	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+	if (aiKey.length() > 0) object->appendChild("aiKey", JsonValue::alloc(aiKey));
+	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
+	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
+	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	object->appendChild("objectKey", JsonValue::alloc(objectKey));
+	
+	std::shared_ptr<JsonValue> zones = JsonValue::allocArray();
+	for (int i = 0; i < zoneKeys.size(); i++)
+	{
+		zones->appendChild(JsonValue::alloc(zoneKeys.at(i)));
+	}
+	if (zoneKeys.size() > 0) object->appendChild("zoneKeys", zones);
+	return object;
+}
+
+std::shared_ptr<JsonValue> WaveData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> wave = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> objectList = JsonValue::allocObject();
+	for (int i = 0; i < _waveEntries.size(); i++)
+	{
+		auto child = _waveEntries.at(i);
+		std::shared_ptr<JsonValue> object = child->toJsonValue();
+		objectList->appendChild("object" + std::to_string(i + 1), object);		
+	}
+	wave->appendChild("waveEntries", objectList);
+	return wave;
 }
 
 bool WaveData::preload(const std::string& file){

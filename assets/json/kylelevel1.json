@@ -1,0 +1,544 @@
+{
+	"levels":	{
+		"level1":	{
+			"levelEntries":	{
+				"wave1":	{
+					"waveKey":	"level1wave6",
+					"time":	500
+				},
+				"wave2":	{
+					"waveKey":	"level1wave2",
+					"time":	500
+				},
+				"wave3":	{
+					"waveKey":	"level1wave1",
+					"time":	500
+				},
+				"wave4":	{
+					"waveKey":	"level1wave9",
+					"time":	500
+				},
+				"wave5":	{
+					"waveKey":	"level1wave1",
+					"time":	500
+				},
+				"wave6":	{
+					"waveKey":	"level1wave8",
+					"time":	500
+				},
+				"wave7":	{
+					"waveKey":	"level1wave5",
+					"time":	500
+				},
+				"wave8":	{
+					"waveKey":	"level1wave6",
+					"time":	500
+				},
+				"wave9":	{
+					"waveKey":	"level1wave3",
+					"time":	500
+				},
+				"wave10":	{
+					"waveKey":	"level1wave9",
+					"time":	500
+				}
+			},
+			"playerChars":	{
+				"player1":	{
+					"x":	500,
+					"y":	200,
+					"element":	"BLUE",
+					"objectKey":	"playerChar1"
+				},
+				"player2":	{
+					"x":	550,
+					"y":	250,
+					"element":	"GOLD",
+					"objectKey":	"playerChar2"
+				}
+			}
+		}
+	},
+	"waves":	{
+		"level1wave9":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"vertical",
+					"x":	63,
+					"y":	2,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object2":	{
+					"aiKey":	"homing",
+					"x":	244,
+					"y":	245,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object3":	{
+					"aiKey":	"vertical",
+					"x":	267,
+					"y":	176,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object4":	{
+					"aiKey":	"homing",
+					"x":	486,
+					"y":	212,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	389,
+					"y":	303,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	67,
+					"y":	543,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave1":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"vertical",
+					"x":	347,
+					"y":	459,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object2":	{
+					"aiKey":	"homing",
+					"x":	15,
+					"y":	12,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	977,
+					"y":	152,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"homing",
+					"x":	737,
+					"y":	306,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object5":	{
+					"aiKey":	"homing",
+					"x":	854,
+					"y":	34,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	702,
+					"y":	466,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave2":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"vertical",
+					"x":	292,
+					"y":	433,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object2":	{
+					"aiKey":	"vertical",
+					"x":	980,
+					"y":	321,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	579,
+					"y":	284,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"homing",
+					"x":	478,
+					"y":	140,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	939,
+					"y":	120,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	778,
+					"y":	422,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave3":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"homing",
+					"x":	204,
+					"y":	281,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object2":	{
+					"aiKey":	"vertical",
+					"x":	355,
+					"y":	246,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object3":	{
+					"aiKey":	"vertical",
+					"x":	133,
+					"y":	313,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object4":	{
+					"aiKey":	"vertical",
+					"x":	726,
+					"y":	3,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	961,
+					"y":	310,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	1000,
+					"y":	402,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave4":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"homing",
+					"x":	667,
+					"y":	479,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object2":	{
+					"aiKey":	"vertical",
+					"x":	397,
+					"y":	152,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	133,
+					"y":	383,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"vertical",
+					"x":	158,
+					"y":	377,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	213,
+					"y":	473,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"vertical",
+					"x":	772,
+					"y":	412,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				}
+			}
+		},
+		"level1wave5":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"vertical",
+					"x":	519,
+					"y":	481,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object2":	{
+					"aiKey":	"vertical",
+					"x":	684,
+					"y":	165,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	215,
+					"y":	241,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"homing",
+					"x":	541,
+					"y":	328,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	302,
+					"y":	384,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"vertical",
+					"x":	539,
+					"y":	90,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				}
+			}
+		},
+		"level1wave6":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"homing",
+					"x":	52,
+					"y":	47,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object2":	{
+					"aiKey":	"homing",
+					"x":	230,
+					"y":	155,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	955,
+					"y":	507,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"vertical",
+					"x":	1010,
+					"y":	101,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	672,
+					"y":	188,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	287,
+					"y":	361,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave7":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"homing",
+					"x":	101,
+					"y":	417,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object2":	{
+					"aiKey":	"homing",
+					"x":	351,
+					"y":	133,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object3":	{
+					"aiKey":	"vertical",
+					"x":	235,
+					"y":	417,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object4":	{
+					"aiKey":	"homing",
+					"x":	596,
+					"y":	64,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object5":	{
+					"aiKey":	"vertical",
+					"x":	454,
+					"y":	249,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	457,
+					"y":	432,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		},
+		"level1wave8":	{
+			"waveEntries":	{
+				"object1":	{
+					"aiKey":	"vertical",
+					"x":	61,
+					"y":	84,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object2":	{
+					"aiKey":	"homing",
+					"x":	832,
+					"y":	38,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object3":	{
+					"aiKey":	"homing",
+					"x":	794,
+					"y":	29,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object4":	{
+					"aiKey":	"vertical",
+					"x":	562,
+					"y":	434,
+					"element":	"BLUE",
+					"objectKey":	"object1",
+					"zoneKeys":	["staticZone"]
+				},
+				"object5":	{
+					"aiKey":	"homing",
+					"x":	476,
+					"y":	543,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				},
+				"object6":	{
+					"aiKey":	"homing",
+					"x":	368,
+					"y":	419,
+					"element":	"GOLD",
+					"objectKey":	"object2"
+				}
+			}
+		}
+	},
+	"objects":	{
+		"playerChar1":	{
+			"shapeKey":	"shape1",
+			"animationKey":	"blueCharAnimation"
+		},
+		"playerChar2":	{
+			"shapeKey":	"shape1",
+			"animationKey":	"redCharAnimation"
+		},
+		"object1":	{
+			"shapeKey":	"shape1",
+			"animationKey":	"blueEnemyAnimation"
+		},
+		"object2":	{
+			"shapeKey":	"shape1",
+			"animationKey":	"redEnemyAnimation"
+		},
+		    "circle": {
+      "shapeKey": "circle",
+      "animationKey": "whiteCircle"
+    }
+	},
+	"shapes":	{
+		    "circle": {
+      "vertices": [0, -100, 50.0, -86.6025403784, 86.6025403784, -50.0, 100, 0, 86.6025403784, 50.0, 50.0, 86.6025403784, 0, 100, -50.0, 86.6025403784, -86.6025403784, 50.0, -100, 0, -86.6025403784, -50.0, -50.0, -86.6025403784]
+    },
+		"shape1":	{
+			"vertices":	[0, 0, 50, 0, 50, 50, 0, 50]
+		}
+	},
+	"zones":	{
+		"staticZone":	{
+			"type":	"STATIC",
+			"objectKey":	"circle",
+			"relX":	0,
+			"relY":	0,
+			"cooldown":	50,
+			"duration":	50,
+			"element":	"BLUE"
+		}
+	}
+}

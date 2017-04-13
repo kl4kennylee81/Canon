@@ -31,7 +31,17 @@
 
 class GameState {
 protected:
-    /** Reference to the physics world root of the scene graph 
+    /** Reference to the root of our scene graph.
+     * Example:
+     * Child1 : _gameplayNode
+     * Child2 : _menuNode
+     */
+    std::shared_ptr<cugl::Scene>  _scene;
+    
+    /** the root node to all nodes in the gameState **/
+    std::shared_ptr<cugl::Node>   _gameplayNode;
+    
+    /** Reference to the physics world root of the scene graph
      *  All physics objects are in this
      */
     std::shared_ptr<cugl::Node> _worldnode;
@@ -39,14 +49,6 @@ protected:
     std::shared_ptr<cugl::Node> _debugnode;
     
     std::shared_ptr<cugl::Node> _bgnode;
-    
-    /** The root of our scene graph.
-     * Example:
-     * Child1 : Background scene node
-     * Child2 : is the _worldnode for the physics world root
-     * would be used to define a draw order in the z axis for the different layers
-     */
-    std::shared_ptr<cugl::Scene>  _scene;
     
     cugl::Rect _bounds;
     
@@ -59,12 +61,14 @@ protected:
      * All objects include the player characters and all other objects in the game
      */
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
+    
+    bool _reset;
 public:
     
-    // TODO temporary reset of the gameState
-    bool reset;
+    static std::unique_ptr<InternalClock> _internalClock;
     
 GameState():
+    _reset(false),
     _worldnode(nullptr),
     _debugnode(nullptr),
     _bgnode(nullptr),
@@ -72,16 +76,25 @@ GameState():
     _bounds(cugl::Rect()),
     _activeCharacterPosition(0){}
     
-    /* Need to multiply this scale by physics coordinates to get world coordinates */
-    static float _physicsScale;
+    /**
+     * Disposes of all (non-static) resources allocated to this mode.
+     *
+     * This method is different from dispose() in that it ALSO shuts off any
+     * static resources, like the input controller.
+     */
+    ~GameState() { dispose(); }
     
-    static std::unique_ptr<InternalClock> _internalClock;
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets);
     
-    virtual bool init(const std::shared_ptr<GenericAssetManager>& assets);
+    void dispose();
 
-	static std::shared_ptr<GameState> alloc(const std::shared_ptr<GenericAssetManager>& assets) {
+    void attachToScene();
+    
+    void detachFromScene();
+
+    static std::shared_ptr<GameState> alloc(std::shared_ptr<cugl::Scene> scene, const std::shared_ptr<GenericAssetManager>& assets) {
 		std::shared_ptr<GameState> result = std::make_shared<GameState>();
-		return (result->init(assets) ? result : nullptr);
+		return (result->init(scene, assets) ? result : nullptr);
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
@@ -92,9 +105,15 @@ GameState():
     std::vector<std::shared_ptr<GameObject>>& getPlayerCharacters() { return _playerCharacters; }
 
 	std::shared_ptr<cugl::Scene>& getScene() { return _scene; }
+    
+    std::shared_ptr<cugl::Node>& getGameplayNode() { return _gameplayNode; };
 
     std::shared_ptr<GameObject> getActiveCharacter();
 
+    bool getReset();
+    
+    void toggleReset();
+    
 	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
@@ -137,8 +156,7 @@ GameState():
     }
     
 #pragma worldNode Transformation Settings getter
-    /** getter for the physicsScale to transform from physics to World Coordinates */
-    static float getPhysicsScale(){ return GameState::_physicsScale; }
+    float getPhysicsScale();
     
     /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
     float getSceneToWorldTranslateY();

@@ -617,7 +617,7 @@ void Node::removeAllChildren() {
 void Node::pushScene(Scene* scene) {
     setScene(scene);
     for(auto it = _children.begin(); it != _children.end(); ++it) {
-        (*it)->pushScene(nullptr);
+        (*it)->pushScene(scene);
     }
 }
 

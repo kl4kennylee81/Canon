@@ -41,7 +41,7 @@ public:
         return (result->init(objectKey,relX,relY,cooldown,duration,element) ? result : nullptr);
     }
     
-    virtual std::string serialize();
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     virtual bool preload(const std::string& file);
     

@@ -27,7 +27,9 @@ protected:
 public:
     LevelController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~LevelController() { dispose(); };
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -41,6 +43,8 @@ public:
     void spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     

@@ -26,7 +26,7 @@ BaseController(){}
 #define DEBUG_COLOR  Color4::GREEN
 #define DEBUG_OFF_COLOR Color4::RED
 
-void CollisionController::attach(std::shared_ptr<Observer> obs) {
+void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void CollisionController::detach(Observer* obs) {
@@ -110,12 +110,17 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
             removeFromWorld(obj);
         } else {
             // TODO : temporary reset after losing
-            state->reset = true;
+            state->toggleReset();
         }
     }
     objsScheduledForRemoval.clear();
     
     _world->update(timestep);
+}
+
+void CollisionController::dispose(){
+    _world = nullptr;
+    _debugnode = nullptr;
 }
 
 
@@ -135,6 +140,11 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     _world->beforeSolve = [this](b2Contact* contact, const b2Manifold* oldManifold) {
         beforeSolve(contact,oldManifold);
     };
+    
+    // keep the world update to 60 fps without lockstep it simulates up until it is called again
+    // which is not garunteed to be within our set timeframe for example when using the debugger.
+    _world->setLockStep(true);
+    _world->setStepsize(1.f/Application::get()->getFPS());
     
     _debugnode = state->getDebugNode();
     

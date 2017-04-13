@@ -3,8 +3,10 @@
 
 using namespace cugl;
 
-std::string StaticAIData::serialize() {
-	return "";
+std::shared_ptr<JsonValue> StaticAIData::toJsonValue() {
+	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
+	ai->appendChild("type", JsonValue::alloc("STATIC"));
+	return ai;
 }
 
 bool StaticAIData::preload(const std::string& file) {
@@ -17,6 +19,7 @@ bool StaticAIData::preload(const std::string& file) {
 bool StaticAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::STATIC;
 	init();
+
 	return true;
 }
 

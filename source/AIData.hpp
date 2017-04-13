@@ -27,8 +27,6 @@ public:
 
 	AIData() : Data() {}
 
-	virtual std::string serialize() { return "";  };
-
 	virtual bool preload(const std::string& file) { return true;  }
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) { return true;  }

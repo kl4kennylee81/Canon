@@ -15,7 +15,8 @@
 enum class Mode : int {
     MAIN_MENU,
     GAMEPLAY,
-    LOADING
+    LOADING,
+    LEVEL_EDIT
 };
 
 #endif /* Mode_hpp */

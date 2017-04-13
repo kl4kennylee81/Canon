@@ -36,9 +36,11 @@ public:
 
 
 class MenuScreenData : Data {
-public:
+private:
 	std::map<string, std::shared_ptr<MenuEntry>> _menuEntries;
-	string startMenuKey = "startMenu"; // use this as key inside _menuEntries to get the initial menu
+    
+	string _startMenuKey; // use this as key inside _menuEntries to get the initial menu
+public:
 
 	MenuScreenData() : Data() {}
 
@@ -51,17 +53,11 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-	void addMenuEntry(std::shared_ptr<MenuEntry> w) {
-		_menuEntries[w->menuKey] = w;
-	}
+    void addMenuEntry(std::shared_ptr<MenuEntry> w);
 
-	std::map<string, std::shared_ptr<MenuEntry>> getMenuEntries() {
-		return _menuEntries;
-	}
+    std::map<string, std::shared_ptr<MenuEntry>> getMenuEntries();
 
-	std::shared_ptr<MenuEntry> getEntry(string key) {
-		return _menuEntries[key];
-	}
+    std::shared_ptr<MenuEntry> getEntry(string key);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 

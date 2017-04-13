@@ -30,7 +30,7 @@ using namespace cugl;
 PathController::PathController():
 BaseController(){}
 
-void PathController::attach(std::shared_ptr<Observer> obs) {
+void PathController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 
@@ -196,4 +196,9 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
 
 	return true;
+}
+
+void PathController::dispose(){
+    _path = nullptr;
+    _pathSceneNode = nullptr;
 }

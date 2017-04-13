@@ -14,6 +14,7 @@
 #include <map>
 #include "BaseController.hpp"
 #include "GameObject.hpp"
+#include "GameState.hpp"
 
 /**
  * The purpose of this controller is to delay spawning for 
@@ -30,7 +31,9 @@ protected:
 public:
     SpawnController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~SpawnController(){ dispose(); }
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -41,7 +44,9 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose() {};
     
     virtual bool init();
     

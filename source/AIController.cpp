@@ -21,7 +21,7 @@ using namespace cugl;
 AIController::AIController():
 BaseController(){}
 
-void AIController::attach(std::shared_ptr<Observer> obs) {
+void AIController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void AIController::detach(Observer* obs) {
@@ -91,11 +91,16 @@ void AIController::addAI(std::shared_ptr<ActiveAI> ai) {
 }
 
 void AIController::removeAI(GameObject* obj) {
-	auto ai = _map[obj];
+    // duplicate removeAI events are called there are cases where the AI is already removed
+    if (_map.find(obj) == _map.end()) {
+        return;
+    }
+    auto ai = _map.at(obj);
 	if (ai->garbageCollect(obj)) {
 		_enemies.erase(ai);
 	}
 	_map.erase(obj);
+    
 }
 
 void AIController::update(float timestep,std::shared_ptr<GameState> state){

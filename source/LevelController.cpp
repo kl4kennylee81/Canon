@@ -16,7 +16,7 @@ LevelController::LevelController():
 BaseController(),
 _world(nullptr){}
 
-void LevelController::attach(std::shared_ptr<Observer> obs) {
+void LevelController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void LevelController::detach(Observer* obs) {
@@ -50,11 +50,9 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     
     if (isPlayer){
         // player is added to the game state here
-        gameOb->setIsPlayer(true);
         state->addPlayerGameObject(gameOb);
     } else {
         // enemy is added to the game state here
-        gameOb->setIsPlayer(false);
         state->addEnemyGameObject(gameOb);
     }
     
@@ -62,6 +60,11 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     
     // notify the observers of the object that is spawned
     notify(spawningevent.get());
+}
+
+void LevelController::dispose(){
+    _world = nullptr;
+    _progressBarController = nullptr;
 }
 
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
@@ -84,6 +87,10 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         for(auto it: wd->getWaveEntries()) {
             spawnWaveEntry(it, false, state);
         }
+    }
+    
+    if (_level.isSpawningFinished()){
+        state->toggleReset();
     }
 }
 

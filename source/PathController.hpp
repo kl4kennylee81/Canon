@@ -27,6 +27,10 @@ enum PathControllerState
 
 class PathController : public BaseController {
 public:
+    PathController();
+    
+    ~PathController() { dispose(); };
+
 	float _height;
 	float _minx;
 	float _maxx;
@@ -54,14 +58,13 @@ public:
     bool isOnCooldown();
 
 	void resetMinMax();
-	
-    PathController();
-    
-	virtual void attach(std::shared_ptr<Observer> obs);
+
+	virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 
 	virtual void notify(Event* e);
+    
     
     /**
      * Update the observer state based on an event from the subject
@@ -69,6 +72,8 @@ public:
     virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose();
 
 	virtual bool init(std::shared_ptr<GameState> state);
 

@@ -16,7 +16,7 @@ using namespace cugl;
 SpawnController::SpawnController():
 BaseController(){}
 
-void SpawnController::attach(std::shared_ptr<Observer> obs) {
+void SpawnController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void SpawnController::detach(Observer* obs) {
@@ -41,7 +41,7 @@ void SpawnController::eventUpdate(Event* e) {
     }
 }
 
-void SpawnController::update(float timestep) {
+void SpawnController::update(float timestep,std::shared_ptr<GameState> state) {
     for (auto it = spawnMap.begin(); it != spawnMap.end();) {
         auto obj = it->first;
         auto frames = it->second;

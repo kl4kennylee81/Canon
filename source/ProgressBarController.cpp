@@ -22,7 +22,7 @@ using namespace cugl;
 
 ProgressBarController::ProgressBarController():BaseController(){}
 
-void ProgressBarController::attach(std::shared_ptr<Observer> obs) {
+void ProgressBarController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 
@@ -77,7 +77,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
         _pBarSceneNode = Node::alloc();
         _pBarSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         _pBarSceneNode->setPosition(Vec2::ZERO);
-        state->getScene()->addChild(_pBarSceneNode, 3);
+        state->getGameplayNode()->addChild(_pBarSceneNode, 3);
     }
     
     auto manager = world->getAssetManager();

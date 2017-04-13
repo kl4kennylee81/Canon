@@ -30,7 +30,9 @@ protected:
 public:
     ZoneController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~ZoneController(){ dispose(); }
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -42,6 +44,8 @@ public:
     virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep);
+    
+    void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state,std::shared_ptr<World> world) {
         this->state = state;

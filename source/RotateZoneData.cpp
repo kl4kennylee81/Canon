@@ -10,8 +10,29 @@
 
 using namespace cugl;
 
-std::string RotateZoneData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> ZoneEntry::toJsonValue()
+{
+	std::shared_ptr<JsonValue> z = JsonValue::allocObject();
+	z->appendChild("objectKey", JsonValue::alloc(objectKey));
+	z->appendChild("startingPosition", JsonValue::alloc(startingPosition));
+	z->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	return z;
+}
+
+std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
+	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	data->appendChild("type", JsonValue::alloc("ROTATE"));
+	std::shared_ptr<JsonValue> zoneEntries = JsonValue::allocObject();
+
+	for (int i = 0; i < zones.size(); i++)
+	{
+		zoneEntries->appendChild("zone" + std::to_string(i + 1), zones.at(i)->toJsonValue());
+	}
+
+	data->appendChild("zoneEntries", zoneEntries);
+	data->appendChild("radius", JsonValue::alloc(radius*GAME_PHYSICS_SCALE));
+	data->appendChild("speed", JsonValue::alloc(speed));
+	return data;
 }
 
 bool RotateZoneData::preload(const std::string& file){
@@ -32,6 +53,7 @@ bool RotateZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<ZoneEntry> entry = ZoneEntry::alloc(oKey,startingPos,el);
         zones.push_back(entry);
     }
+
     return true;
 }
 

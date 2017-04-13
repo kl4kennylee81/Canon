@@ -7,7 +7,6 @@
 //
 
 #include "MenuScreenData.hpp"
-
 using namespace cugl;
 using std::string;
 
@@ -47,10 +46,23 @@ bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = MenuEntry::alloc(child);
 		addMenuEntry(entry);
 	}
+    _startMenuKey = json->getString("startMenuKey");
 	return true;
 }
 
 bool MenuScreenData::materialize(){
     return true;
+}
+
+void MenuScreenData::addMenuEntry(std::shared_ptr<MenuEntry> w) {
+    _menuEntries[w->menuKey] = w;
+}
+
+std::map<string, std::shared_ptr<MenuEntry>> MenuScreenData::getMenuEntries() {
+    return _menuEntries;
+}
+
+std::shared_ptr<MenuEntry> MenuScreenData::getEntry(string key) {
+    return _menuEntries[key];
 }
 

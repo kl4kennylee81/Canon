@@ -44,6 +44,8 @@ void GameEngine::onStartup() {
     Size size = getDisplaySize();
     size *= GAME_WIDTH/size.width;
     
+    _scene = Scene::alloc(size);
+    
     // Create a sprite batch (and background color) to render the scene
     _batch = SpriteBatch::alloc();
     
@@ -65,19 +67,22 @@ void GameEngine::onStartup() {
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     
-    _loading = LoadController::alloc(_assets);
-
+    _loading = LoadController::alloc(_scene,_assets);
+    _loading->activate();
     
-    _menuGraph = MenuGraph::MenuGraph();
+    // create the menuGraph
+    _menuGraph = MenuGraph::alloc();
     
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
-	_assets->loadDirectory("json/level.json");
     _assets->loadDirectory("json/animations.json");
 	_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
+    
+    // test for loading from a data file
+    _assets->loadDirectory("json/kyleLevel0a.json");
 
 
     
@@ -120,6 +125,67 @@ void GameEngine::onShutdown() {
     Application::onShutdown();
 }
 
+void GameEngine::cleanPreviousMode(){
+    // clean up resources in previous mode
+    switch(_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            _loading->dispose();
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu->dispose();
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void GameEngine::initializeNextMode(){
+    // initialize resources for next mode
+    switch(_menuGraph->getNextMode()){
+        case Mode::LOADING:
+        {
+            
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            std::shared_ptr<World> levelWorld = World::alloc(_assets);
+            _gameplay = GameplayController::alloc(_scene, levelWorld);
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu = MenuController::alloc(_scene,_menuGraph);
+            //TODO replace hard coded populate with menus loaded from data file
+            _menuGraph->populate(_assets);
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            _levelEditor = LevelEditorController::alloc(_scene, _assets);
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
 /**
  * The method called to update the application data.
  *
@@ -132,15 +198,44 @@ void GameEngine::onShutdown() {
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
-    if (_menuGraph.getMode() == Mode::LOADING && !_loading->isComplete()) {
-        _loading->update(0.01f);
-    } else if (_menuGraph.getMode() == Mode::LOADING) {
-        _loading->dispose(); // Disables the input listeners in this mode
-        std::shared_ptr<World> levelWorld = World::alloc(_assets);
-        _gameplay = GameplayController::alloc(levelWorld);
-        _menuGraph.setMode(Mode::GAMEPLAY);
-    } else {
-        _gameplay->update(timestep);
+    if (_menuGraph->needsUpdate()){
+        cleanPreviousMode();
+        initializeNextMode();
+        _menuGraph->updateToNextMode();
+    }
+    // update the game
+    switch(_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            if (!_loading->isComplete()){
+                _loading->update(0.01f);
+            } else {
+                // TODO loadController should also holds onto the next mode
+                // so it can transition after loading to other screens when needed
+                // ex. useful in loading before a level
+                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+            }
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            _gameplay->update(timestep);
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu->update(timestep);
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            _levelEditor->update(timestep,_menuGraph);
+            break;
+        }
+        default:
+        {
+            break;
+        }
     }
 }
 
@@ -155,17 +250,6 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
-    switch (_menuGraph.getMode()){
-        case Mode::LOADING:
-            _loading->draw(_batch);
-            break;
-        case Mode::GAMEPLAY:
-            _gameplay->draw(_batch);
-            break;
-        case Mode::MAIN_MENU:
-            break;
-        default:
-            break;
-    }
+    _scene->render(_batch);
 }
 

@@ -27,6 +27,8 @@ public:
 		std::shared_ptr<Condition> result = std::make_shared<Condition>();
 		return (result->init() ? result : nullptr);
 	}
+
+	virtual std::string getJsonString() { return ""; }
 };
 
 class RadiusCondition : public Condition {
@@ -59,6 +61,8 @@ public:
 		std::shared_ptr<RadiusCondition> result = std::make_shared<RadiusCondition>();
 		return (result->init(radius) ? result : nullptr);
 	}
+
+	virtual std::string getJsonString() { return "RADIUS " + std::to_string(_radius*GAME_PHYSICS_SCALE); }
 };
 
 #endif /* Condition_hpp */

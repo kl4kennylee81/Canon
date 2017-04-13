@@ -10,10 +10,6 @@
 
 using namespace cugl;
 
-std::string ZoneData::serialize(){
-    return "";
-}
-
 bool ZoneData::preload(const std::string& file){
     auto reader = JsonReader::allocWithAsset(file.c_str());
     auto json = reader->readJson();

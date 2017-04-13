@@ -10,6 +10,13 @@
 
 using namespace cugl;
 
+void GameObject::dispose(){
+    _uid = 0;
+    _body = nullptr;
+    _node = nullptr;
+    _isPlayer = false;
+}
+
 bool GameObject::init(){
     _isPlayer = false;
     type = ObjectType::CHARACTER;

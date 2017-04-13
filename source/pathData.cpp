@@ -10,10 +10,6 @@
 
 using namespace cugl;
 
-std::string PathData::serialize(){
-    return "";
-}
-
 bool PathData::preload(const std::string& file){
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();

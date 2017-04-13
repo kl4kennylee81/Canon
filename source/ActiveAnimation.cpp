@@ -8,6 +8,14 @@
 
 #include "ActiveAnimation.hpp"
 
+void ActiveAnimation::dispose(){
+    _node = nullptr;
+    _data = nullptr;
+    _last = false;
+    curFrames = 0;
+    curIndex = 0;
+}
+
 void ActiveAnimation::handleAction(AnimationAction action) {
     if (!eventExists(action)) {
         return;

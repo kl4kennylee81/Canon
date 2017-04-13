@@ -32,6 +32,8 @@ public:
         std::shared_ptr<ZoneEntry> result = std::make_shared<ZoneEntry>();
         return (result->init(objectKey,startingPosition,element) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class RotateZoneData : public ZoneData {
@@ -55,9 +57,9 @@ public:
         return (result->init(radius,speed) ? result : nullptr);
     }
     
-    virtual std::string serialize();
-    
-    virtual bool preload(const std::string& file);
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     

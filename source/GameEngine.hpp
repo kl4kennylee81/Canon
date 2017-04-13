@@ -11,8 +11,9 @@
 #include <cugl/cugl.h>
 #include "GameplayController.hpp"
 #include "LoadController.hpp"
-#include "MenuGraph.hpp"
+#include "MenuController.hpp"
 #include "GenericAssetManager.hpp"
+#include "LevelEditorController.hpp"
 
 /**
  * Class for a simple Hello World style application
@@ -32,13 +33,22 @@ protected:
 
 
     // Player modes
+    
+    /** the load controller */
+    std::shared_ptr<LoadController> _loading;
+    
+    /** The menu controller */
+    std::shared_ptr<MenuController> _menu;
+    
+    /** menu graph **/
+    std::shared_ptr<MenuGraph> _menuGraph;
+    
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
     
-    std::shared_ptr<LoadController> _loading;
+    /** level editor controller */
+    std::shared_ptr<LevelEditorController> _levelEditor;
     
-    MenuGraph _menuGraph;
-
 public:
 	/** Represents whether we are using touch screen or not */
 	static bool _touch;
@@ -111,6 +121,10 @@ public:
      * at all. The default implmentation does nothing.
      */
     virtual void draw() override;
+    
+    void cleanPreviousMode();
+    
+    void initializeNextMode();
     
 };
 

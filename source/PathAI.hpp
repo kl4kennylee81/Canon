@@ -29,6 +29,13 @@ private:
 	PathDirection _direction;
 
 public:
+    
+    PathAI(){}
+    
+    ~PathAI(){
+        _object = nullptr;
+        _activePath = nullptr;
+    }
 
 	void update(std::shared_ptr<GameState> state);
 

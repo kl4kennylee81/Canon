@@ -49,19 +49,25 @@ public:
     
     GameplayController();
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 	virtual void eventUpdate(Event* e);
     virtual void update(float timestep);
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
+    
+    void activate();
+    
+    void deactivate();
+    
+    void dispose();
 
-    virtual bool init(std::shared_ptr<World> levelWorld);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
 
-	static std::shared_ptr<GameplayController> alloc(std::shared_ptr<World> levelWorld) {
+    static std::shared_ptr<GameplayController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld) {
 		std::shared_ptr<GameplayController> result = std::make_shared<GameplayController>();
-		return (result->init(levelWorld) ? result : nullptr);
+		return (result->init(scene,levelWorld) ? result : nullptr);
 	}
 
 

@@ -17,7 +17,7 @@ using namespace cugl;
 MoveController::MoveController():
 BaseController(){}
 
-void MoveController::attach(std::shared_ptr<Observer> obs) {
+void MoveController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 
@@ -78,6 +78,8 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			}
 		}
 	}
+    
+    // TODO replace with iterator delete and break
 	for (auto it : toDelete) {
 		_activePaths.erase(it);
 	}
