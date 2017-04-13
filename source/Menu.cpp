@@ -11,12 +11,12 @@
 using namespace cugl;
 
 
-void Menu::addUIElement(std::shared_ptr<cugl::Node> element){
+void Menu::addUIElement(std::shared_ptr<UIComponent> element){
     this->_uiElements.push_back(element);
-    this->_menu->addChild(element);
+    this->_menu->addChild(element->getNode());
 }
 
-std::vector<std::shared_ptr<cugl::Node>>& Menu::getUIElements(){
+std::vector<std::shared_ptr<UIComponent>>& Menu::getUIElements(){
     return _uiElements;
 }
 

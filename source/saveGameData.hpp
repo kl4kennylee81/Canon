@@ -9,16 +9,16 @@
 
 class SaveLevelEntry {
 public:
-	string name;
+    std::string name;
 	bool unlocked;
 	bool complete;
 	int highScore;
-	string levelKey;
-	string levelUrl;
+    std::string levelKey;
+    std::string levelUrl;
 
 	SaveLevelEntry() {}
 
-	bool init(string n, bool unlock, bool com, int high, string k, string u) {
+    bool init(std::string n, bool unlock, bool com, int high, std::string k, std::string u) {
 		this->name = n;
 		this->unlocked = unlock;
 		this->complete = com;
@@ -28,7 +28,7 @@ public:
 		return true;
 	}
 
-	static std::shared_ptr<SaveLevelEntry> alloc(string n, bool unlock, bool com, int high, string k, string u) {
+    static std::shared_ptr<SaveLevelEntry> alloc(std::string n, bool unlock, bool com, int high, std::string k, std::string u) {
 		std::shared_ptr<SaveLevelEntry> result = std::make_shared<SaveLevelEntry>();
 		return (result->init(n, unlock, com, high, k, u) ? result : nullptr);
 	}
@@ -41,11 +41,11 @@ protected:
 public:
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
 
-	virtual bool preload(const std::string& file);
+	virtual bool preload(const std::string& file) override;
 
-	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
 
-	virtual bool materialize();
+	virtual bool materialize() override;
 
 	bool init() {
 		return true;

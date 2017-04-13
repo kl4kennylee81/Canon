@@ -23,6 +23,24 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	return true;
 }
 
+std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+    return Node::alloc();
+}
+
+std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+    std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
+    label->setPosition(Vec2(this->x,this->y));
+//    label->setContentSize(this->width, this->height);
+    return label;
+}
+
+std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+    std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(this->textureKey));
+    imageNode->setPosition(Vec2(this->x,this->y));
+//    imageNode->setContentSize(this->width, this->height);
+    return imageNode;
+}
+
 
 std::shared_ptr<JsonValue> UIData::toJsonValue()
 {
@@ -51,4 +69,8 @@ bool UIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 
 bool UIData::materialize() {
 	return true;
+}
+
+std::shared_ptr<cugl::Node> UIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+    return Node::alloc();
 }

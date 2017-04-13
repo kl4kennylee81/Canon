@@ -15,13 +15,15 @@
 #include "Data.hpp"
 #include "UIData.hpp"
 
-using std::string;
-
 class MenuEntry {
 public:
-	string menuKey;
-	string menuBackgroundKey;
-	std::vector<string> _uiEntryKeys;
+	std::string menuKey;
+	std::string menuBackgroundKey;
+	std::vector<std::string> _uiEntryKeys;
+    
+    std::vector<std::string> getUIEntryKeys(){
+        return _uiEntryKeys;
+    }
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 
@@ -37,9 +39,9 @@ public:
 
 class MenuScreenData : Data {
 private:
-	std::map<string, std::shared_ptr<MenuEntry>> _menuEntries;
+	std::map<std::string, std::shared_ptr<MenuEntry>> _menuEntries;
     
-	string _startMenuKey; // use this as key inside _menuEntries to get the initial menu
+	std::string _startMenuKey; // use this as key inside _menuEntries to get the initial menu
 public:
 
 	MenuScreenData() : Data() {}
@@ -55,9 +57,9 @@ public:
 
     void addMenuEntry(std::shared_ptr<MenuEntry> w);
 
-    std::map<string, std::shared_ptr<MenuEntry>> getMenuEntries();
+    std::map<std::string, std::shared_ptr<MenuEntry>> getMenuEntries();
 
-    std::shared_ptr<MenuEntry> getEntry(string key);
+    std::shared_ptr<MenuEntry> getEntry(std::string key);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 

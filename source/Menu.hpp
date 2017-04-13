@@ -11,17 +11,18 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include "UIComponent.hpp"
 
 class Menu {
 private:
     std::shared_ptr<cugl::Node> _menu;
     
-    std::vector<std::shared_ptr<cugl::Node>> _uiElements;
+    std::vector<std::shared_ptr<UIComponent>> _uiElements;
 public:
     
-    void addUIElement(std::shared_ptr<cugl::Node> element);
+    void addUIElement(std::shared_ptr<UIComponent> element);
     
-    std::vector<std::shared_ptr<cugl::Node>>& getUIElements();
+    std::vector<std::shared_ptr<UIComponent>>& getUIElements();
     
     void attachToScene(std::shared_ptr<cugl::Node> parent);
     
