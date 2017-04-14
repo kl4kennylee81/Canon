@@ -1,4 +1,5 @@
 #include "UIData.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -42,6 +43,7 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
     label->setPosition(Vec2(this->x,this->y));
+
     
     // scale to width and height
     return label;
@@ -49,9 +51,12 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
 
 std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(this->textureKey));
-    imageNode->setPosition(Vec2(this->x,this->y));
-    
+	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    imageNode->setPosition(Vec2(this->x * GAME_SCENE_WIDTH , this->y * GameState::getGameSceneHeight()));
+
     // scale to width and height
+	cugl::Size size = imageNode->getSize();
+	imageNode->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
     return imageNode;
 }
 
@@ -74,10 +79,10 @@ bool UIData::preload(const std::string& file) {
 
 bool UIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	UIKey = json->key();
-	x = json->getInt("x");
-	y = json->getInt("y");
-	width = json->getInt("width");
-	height = json->getInt("height");
+	x = json->getFloat("x");
+	y = json->getFloat("y");
+	width = json->getFloat("width");
+	height = json->getFloat("height");
 	return true;
 }
 
