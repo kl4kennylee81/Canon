@@ -36,22 +36,28 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
 std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>& assets){
     std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
     std::shared_ptr<Menu> menu = Menu::alloc(false);
+
+	// temporary: hardcode background image
+	std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>("lakebg"));
+	cugl::Size imageSize = imageNode->getSize();
+	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+	imageNode->setPosition(Vec2::ZERO);
+	menu->setBackground(imageNode);
+
     int i = 0;
     for(auto entry : saveGame->getSaveLevelEntries()){
         std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY,entry->levelKey);
         
         // TODO hacky setting of the uiKey
         // TODO create a template for the level entry button
-        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",0.5,0.6,0.2,0.2,action,"");
-        //std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
-        
-        std::shared_ptr<Node> playButton = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-        std::shared_ptr<Button> buttonNode = Button::alloc(playButton);
-        buttonNode->setPosition(512,400-(i*100));
+        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",0.25 + 0.3*i,0.6,0.15,0.2,action,"");
+        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
         std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
         menu->addUIElement(uiComponent);
         i++;
     }
+
     return menu;
 };
 
