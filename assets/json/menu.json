@@ -6,7 +6,8 @@
                 "menuKey": "startMenu",
                 "menuBackgroundKey": "bg_dark_lake",
                 "UIEntries": [
-                    "gameTitle"
+                    "gameTitle",
+                    "startGame"
                 ]
             },
             "optionsMenu": {
@@ -19,7 +20,7 @@
     "UIData": {
         "openOptions": {
             "type": "BUTTON",
-            "uiBackgroundKey": "stub",
+            "uiBackgroundKey": "play",
             "buttonAction": {
                 "type": "menuChange",
                 "buttonTarget": "optionsMenu"
@@ -32,10 +33,10 @@
         },
         "startGame": {
             "type": "BUTTON",
-            "uiBackgroundKey": "stub2",
+            "uiBackgroundKey": "play",
             "buttonAction": {
                 "type": "modeChange",
-                "buttonTarget": "gameInit"
+                "buttonTarget": "GAMEPLAY"
             },
             "buttonLabel": "Play Game",
             "x": 10,
@@ -70,7 +71,7 @@
         },
         "closeOptions": {
             "type": "BUTTON",
-            "uiBackgroundKey": "stub3",
+            "uiBackgroundKey": "play",
             "buttonLabel": "Close Options",
             "buttonAction": {
                 "type": "menuChange",

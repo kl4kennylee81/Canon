@@ -7,11 +7,11 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     std::string buttonType = json->get("buttonAction")->getString("type");
 
 	if (buttonType == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		MenuChangeButtonAction::alloc(ButtonActionType::MENUCHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+		MenuChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"))); }
 	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		ModeChangeButtonAction::alloc(ButtonActionType::MODECHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+		ModeChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"))); }
 	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(ButtonActionType::FXTRIGGER, json->getString("fxKey"))); }
+		FxTriggerButtonAction::alloc(json->getString("fxKey"))); }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
