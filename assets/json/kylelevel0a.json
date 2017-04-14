@@ -37,7 +37,30 @@
           "objectKey": "playerChar2"
         }
       }
+    },
+    "level1": {
+      "levelEntries": {
+        "wave5": {
+          "waveKey": "kylewave3",
+          "time": 500
+        }
+      },
+      "playerChars": {
+        "player1": {
+          "x": 500,
+          "y": 300,
+          "element": "BLUE",
+          "objectKey": "playerChar1"
+        },
+        "player2": {
+          "x": 400,
+          "y": 300,
+          "element": "GOLD",
+          "objectKey": "playerChar2"
+        }
+      }
     }
+
   },
   "waves": {
     "kylewave2": {
