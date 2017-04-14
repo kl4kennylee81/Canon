@@ -47,48 +47,6 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         }
         _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
     }
-    
-//    std::shared_ptr<Label> label1 = Label::alloc("main menu", assets->get<Font>("Charlemagne"));
-//    label1->setPosition(Vec2(size.width/2.0f,400));
-//    std::shared_ptr<UIComponent> label1Component = UIComponent::alloc(label1);
-//    mainMenu->addUIElement(label1);
-//    
-//    auto play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-//    std::shared_ptr<Button> button1 = Button::alloc(play);
-//    button1->setAnchor(Vec2::ANCHOR_MIDDLE);
-//    button1->setPosition(Vec2(size.width/2.0f,200));
-//    button1->setListener([=](const std::string& name, bool down) {
-//        if (down){
-//            return;
-//        }
-//        setActiveMenu(this->_menuMap.at("levelMenu"));
-//    });
-//    button1->setVisible(true);
-//    button1->activate(1);
-//    mainMenu->addUIElement(button1);
-    
-//    std::shared_ptr<Menu> levelMenu = Menu::alloc(false);
-//    
-//    std::shared_ptr<Label> label2 = Label::alloc("level menu", assets->get<Font>("Charlemagne"));
-//    label2->setPosition(Vec2(size.width/2.0f,400));
-//    
-//    levelMenu->addUIElement(label2);
-//    
-//    play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-//    std::shared_ptr<Button> button2 = Button::alloc(play);
-//    button2->setAnchor(Vec2::ANCHOR_MIDDLE);
-//    button2->setPosition(Vec2(size.width/2.0f,300));
-//    button2->setListener([=](const std::string& name, bool down) {
-//        if (down){
-//            return;
-//        }
-//        setNextMode(Mode::GAMEPLAY);
-//    });
-//    button2->setVisible(true);
-//    button2->activate(2);
-//    levelMenu->addUIElement(button2);
-//    
-//    _menuMap.insert(std::make_pair("levelMenu",levelMenu));
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){

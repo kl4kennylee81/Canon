@@ -158,6 +158,9 @@ GameState():
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();
     
+    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
+    float getSceneToWorldTranslateY();
+    
 #pragma mark Coordinate Conversions
     /** Physics Coordinate Conversions **/
     cugl::Vec2& physicsToWorldCoords(cugl::Vec2& physicsCoords,cugl::Vec2& worldCoords);
