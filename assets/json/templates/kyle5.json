@@ -1,0 +1,10 @@
+{
+	"templates":	{
+		"kyle5_template":	{
+			"name":	"kyle5",
+			"aiKey":	"static",
+			"blueOobjectKey":	"object1",
+			"goldObjectKey":	"object2"
+		}
+	}
+}

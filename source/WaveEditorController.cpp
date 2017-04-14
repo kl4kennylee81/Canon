@@ -6,9 +6,12 @@
 //  Copyright � 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
+#include <iostream>
+#include <fstream>
 #include "WaveEditorController.hpp"
 #include "Util.hpp"
 #include "InputController.hpp"
+#include "GameEngine.hpp"
 
 using namespace cugl;
 
@@ -46,7 +49,8 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
-		auto newTemplate = TemplateWaveEntry::alloc("kyle", "object1", "object2", "static", {});
+        std::string name = "kyle" + std::to_string(_templates.size());
+		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "object2", "static", {});
 		_templates.push_back(newTemplate);
 		updateTemplateNodes();
         createTemplateFile(newTemplate);
@@ -100,8 +104,16 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 }
 
 void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ) {
-    std::shared_ptr<JsonValue> json = templ->toJsonValue();
+    auto templates = JsonValue::allocObject();
+    templates->appendChild(templ->name + "_template", templ->toJsonValue());
     
+    auto json = JsonValue::allocObject();
+    json->appendChild("templates", templates);
+    
+    std::ofstream newFile;
+    newFile.open(TEMPLATE_PATH+templ->name+".json");
+    newFile << json->toString();
+    newFile.close();
 }
 
 void WaveEditorController::updateDragAndDrop(){
@@ -311,5 +323,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
+    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0"));
+    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1"));
 	return true;
 }

@@ -66,6 +66,7 @@ void GameEngine::onStartup() {
 	_assets->attach<UIData>(UIDataLoader::alloc()->getHook());
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
+    _assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
     
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
@@ -81,6 +82,19 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
     
+    //load all template wave entries
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir (TEMPLATE_PATH)) != NULL) {
+        /* print all the files and directories within directory */
+        while ((ent = readdir (dir)) != NULL) {
+            if(ent->d_name[0] != '.'){
+                _assets->loadDirectory("json/templates/"+std::string(ent->d_name));
+            }
+        }
+        closedir (dir);
+    }
+
     // test for loading from a data file
     _assets->loadDirectory("json/kyleLevel0a.json");
 
