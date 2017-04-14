@@ -77,6 +77,22 @@ void MenuController::update(float timestep) {
             {
                 std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
                 getMenuGraph()->setNextMode(action->modeTarget);
+                switch(action->modeTarget){
+                    case Mode::GAMEPLAY:
+                    {
+                        _selectedLevel = action->nextScreen;
+                        break;
+                    }
+                    case Mode::MAIN_MENU:
+                    {
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                
                 break;
             }
             case ButtonActionType::FXTRIGGER:
@@ -102,6 +118,7 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
                           std::shared_ptr<MenuGraph> menuGraph){
     _scene = scene;
     _menuGraph = menuGraph;
+    _selectedLevel = "";
     this->activate();
     return true;
 }
@@ -118,4 +135,8 @@ void MenuController::activate(){
 
 void MenuController::deactivate(){
     _menuGraph->detachFromScene(_scene);
+}
+
+std::string MenuController::getSelectedLevel(){
+    return _selectedLevel;
 }

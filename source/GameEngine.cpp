@@ -163,7 +163,7 @@ void GameEngine::initializeNextMode(){
         }
         case Mode::GAMEPLAY:
         {
-            std::shared_ptr<World> levelWorld = World::alloc(_assets);
+            std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
             break;
         }
@@ -184,6 +184,62 @@ void GameEngine::initializeNextMode(){
             break;
         }
     }
+}
+
+std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
+    switch (_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            return nullptr;
+        }
+        case Mode::GAMEPLAY:
+        {
+            return _gameplay->getCurrentLevel();
+        }
+        case Mode::MAIN_MENU:
+        {
+            std::shared_ptr<LevelData> level = _assets->get<LevelData>(_menu->getSelectedLevel());
+            return level;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    return nullptr;
+}
+
+std::shared_ptr<World> GameEngine::getNextWorld(){
+    switch (_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            return nullptr;
+        }
+        case Mode::GAMEPLAY:
+        {
+            return _gameplay->getWorld();
+        }
+        case Mode::MAIN_MENU:
+        {
+            std::shared_ptr<LevelData> level = getNextLevelData();
+            std::shared_ptr<World> levelWorld = World::alloc(_assets,level);
+            return levelWorld;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            // this is where we can pass the world to the gameplay controller
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    return nullptr;
 }
 
 /**

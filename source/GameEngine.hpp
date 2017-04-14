@@ -126,6 +126,10 @@ public:
     
     void initializeNextMode();
     
+    std::shared_ptr<LevelData> getNextLevelData();
+    
+    std::shared_ptr<World> getNextWorld();
+    
 };
 
 #endif /* GameEngine_hpp */
