@@ -4,17 +4,18 @@ using namespace cugl;
 
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
-    std::string type = json->get("buttonAction")->getString("type");
-	buttonAction = ButtonAction::alloc(type);
-	if (type == "uiChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		UIChangeButtonAction::alloc(type, json->get("buttonAction")->getString("buttonTarget"))); }
-	else if (type == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		MenuChangeButtonAction::alloc(type, json->get("buttonAction")->getString("buttonTarget"))); }
-	else if (type == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(type, json->getString("fxKey"))); }
+    std::string buttonType = json->get("buttonAction")->getString("type");
 
+	if (buttonType == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		MenuChangeButtonAction::alloc(ButtonActionType::MENUCHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		ModeChangeButtonAction::alloc(ButtonActionType::MODECHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
+		FxTriggerButtonAction::alloc(ButtonActionType::FXTRIGGER, json->getString("fxKey"))); }
+
+	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
-    this->type = UIDataType::BUTTON;
+    type = UIDataType::BUTTON;
 	UIData::preload(json); // call to super
 	return true;
 }
@@ -22,14 +23,14 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 bool TextUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	textValue = json->getString("textValue");
 	fontKey = json->getString("fontKey");
-    this->type = UIDataType::TEXT;
+    type = UIDataType::TEXT;
 	UIData::preload(json);
 	return true;
 }
 
 bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	textureKey = json->getString("textureKey");
-    this->type = UIDataType::IMAGE;
+    type = UIDataType::IMAGE;
 	UIData::preload(json);
 	return true;
 }
