@@ -146,6 +146,10 @@ Mode MenuGraph::getNextMode(){
     return _nextMode;
 }
 
+std::shared_ptr<Menu>& MenuGraph::getActiveMenu(){
+    return _activeMenu;
+}
+
 bool MenuGraph::needsUpdate(){
     return _currentMode != _nextMode;
 }

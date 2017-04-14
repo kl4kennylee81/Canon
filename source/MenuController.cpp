@@ -7,6 +7,7 @@
 //
 
 #include "MenuController.hpp"
+#include "InputController.hpp"
 
 using namespace cugl;
 
@@ -36,6 +37,39 @@ void MenuController::eventUpdate(Event* e) {
 
 void MenuController::update(float timestep) {
     
+    std::shared_ptr<Menu> activeMenu = this->getMenuGraph()->getActiveMenu();
+    if (activeMenu == nullptr){
+        return;
+    }
+    
+    // check that a press has been made
+    if (!InputController::getIsPressed()){
+        return;
+    }
+    
+    for (auto uiElement : activeMenu->getUIElements()){
+        // check has an action
+        if (uiElement->getAction() == nullptr){
+            continue;
+        }
+        
+        // check if the uiElement is a button
+        if (std::dynamic_pointer_cast<Button>(uiElement->getNode()) == nullptr){
+            continue;
+        }
+        
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getAction());
+        
+        // check if this button was clicked
+        if (!button->containsScreen(InputController::getInputVector())){
+            continue;
+        }
+        
+        // execute the appropriate action
+        switch(action->type){
+            case
+        }
+    }
     
 }
 

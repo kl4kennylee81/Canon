@@ -56,6 +56,8 @@ public:
     
     Mode getNextMode();
     
+    std::shared_ptr<Menu>& getActiveMenu();
+    
     bool needsUpdate();
     
     void attachToScene(std::shared_ptr<cugl::Scene> scene);
