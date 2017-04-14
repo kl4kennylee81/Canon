@@ -10,10 +10,17 @@
 
 using namespace cugl;
 
+std::shared_ptr<cugl::Node> Menu::getBackground() { return _menuBackground; }
+
+void Menu::setBackground(std::shared_ptr<cugl::Node> node)
+{ 
+	_menuBackground = node;
+	this->_menu->addChild(node, 0);
+}
 
 void Menu::addUIElement(std::shared_ptr<UIComponent> element){
     this->_uiElements.push_back(element);
-    this->_menu->addChild(element->getNode());
+    this->_menu->addChild(element->getNode(), 1);
 }
 
 std::vector<std::shared_ptr<UIComponent>>& Menu::getUIElements(){

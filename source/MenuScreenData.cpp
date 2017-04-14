@@ -13,7 +13,7 @@ using std::string;
 bool MenuEntry::init(const std::shared_ptr<cugl::JsonValue>& json)
 {
 	menuKey = json->getString("menuKey");
-	menuBackgroundKey = json->getString("backgroundKey");
+	menuBackgroundKey = json->getString("menuBackgroundKey");
 	_uiEntryKeys = (json->get("UIEntries")->asStringArray());
 	return true;
 }

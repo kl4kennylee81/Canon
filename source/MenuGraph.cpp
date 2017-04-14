@@ -9,6 +9,7 @@
 #include "MenuGraph.hpp"
 #include "MenuScreenData.hpp"
 #include "UIComponent.hpp"
+#include "GameState.hpp"
 #include "SaveGameData.hpp"
 
 #define SAVE_GAME_FILE "saveFile"
@@ -57,13 +58,24 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         std::string menuKey = entry.first;
         std::shared_ptr<MenuEntry> menuEntry = entry.second;
         std::shared_ptr<Menu> menu = Menu::alloc(false);
+
+		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
+		cugl::Size imageSize = imageNode->getSize();
+		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+		imageNode->setPosition(Vec2::ZERO);
+		
+		menu->setBackground(imageNode);
         
         for (std::string uiKey : menuEntry->getUIEntryKeys()){
             auto uiData = assets->get<UIData>(uiKey);
             std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
             std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData,uiNode);
             menu->addUIElement(uiComponent);
+			
         }
+
         _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
     }
     

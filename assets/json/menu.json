@@ -4,41 +4,69 @@
             "startMenuKey": "startMenu",
             "startMenu": {
                 "menuKey": "startMenu",
-                "menuBackgroundKey": "bg_dark_lake",
+                "menuBackgroundKey": "lakebg",
                 "UIEntries": [
-                    "gameTitle",
-                    "startGame"
-                ]
-            },
-            "optionsMenu": {
-                "menuKey": "optionsMenu",
-                "UIEntries": [
+                    "infoButton",
+                    "settingsButton",
+                    "title",
+                    "playButton"
                 ]
             }
         }
     },
     "UIData": {
+        "infoButton": {
+            "type": "BUTTON",
+            "uiBackgroundKey": "infosymbol",
+            "buttonAction": {
+                "type": "menuChange",
+                "buttonTarget": ""
+            },
+            "x": 0.900,
+            "y": 0.008,
+            "width": 0.096,
+            "height": 0.171
+        },
+        "settingsButton": {
+            "type": "BUTTON",
+            "uiBackgroundKey": "settingsymbol",
+            "buttonAction": {
+                "type": "menuChange",
+                "buttonTarget": ""
+            },
+            "x": 0.005,
+            "y": 0.008,
+            "width": 0.096,
+            "height": 0.171
+        },
+        "title": {
+            "type": "IMAGE",
+            "textureKey": "title",
+            "x": 0.104,
+            "y": 0.330,
+            "width": 0.796,
+            "height": 0.545
+        },
+        "playButton": {
+            "type": "BUTTON",
+            "uiBackgroundKey": "swipetoplay",
+            "buttonAction": {
+                "type": "modeChange",
+                "buttonTarget": "GAMEPLAY"
+            },
+            "x": 0.339,
+            "y": 0.217,
+            "width": 0.339,
+            "height": 0.157
+        },
         "openOptions": {
             "type": "BUTTON",
-            "uiBackgroundKey": "play",
+            "uiBackgroundKey": "stub",
             "buttonAction": {
                 "type": "menuChange",
                 "buttonTarget": "optionsMenu"
             },
             "buttonLabel": "Open Options",
-            "x": 10,
-            "y": 10,
-            "width": 100,
-            "height": 100
-        },
-        "startGame": {
-            "type": "BUTTON",
-            "uiBackgroundKey": "play",
-            "buttonAction": {
-                "type": "menuChange",
-                "buttonTarget": "levelSelect"
-            },
-            "buttonLabel": "Play Game",
             "x": 10,
             "y": 10,
             "width": 100,
