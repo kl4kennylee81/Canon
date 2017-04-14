@@ -35,9 +35,8 @@
             "type": "BUTTON",
             "uiBackgroundKey": "play",
             "buttonAction": {
-                "type": "modeChange",
-                "buttonTarget": "GAMEPLAY",
-                "nextScreen": "level1"
+                "type": "menuChange",
+                "buttonTarget": "levelSelect"
             },
             "buttonLabel": "Play Game",
             "x": 10,
