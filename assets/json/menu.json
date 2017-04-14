@@ -51,8 +51,8 @@
             "type": "BUTTON",
             "uiBackgroundKey": "swipetoplay",
             "buttonAction": {
-                "type": "modeChange",
-                "buttonTarget": "GAMEPLAY"
+                "type": "menuChange",
+                "buttonTarget": "levelSelect"
             },
             "x": 0.339,
             "y": 0.217,
