@@ -50,6 +50,8 @@ public:
 	bool init() {
 		return true;
 	}
+    
+    std::vector<std::shared_ptr<SaveLevelEntry>> getSaveLevelEntries();
 
 	static std::shared_ptr<SaveGameData> alloc() {
 		std::shared_ptr<SaveGameData> result = std::make_shared<SaveGameData>();

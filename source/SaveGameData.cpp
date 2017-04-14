@@ -53,7 +53,12 @@ bool SaveGameData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 	return true;
 }
 
-bool SaveGameData::materialize() 
+std::vector<std::shared_ptr<SaveLevelEntry>> SaveGameData::getSaveLevelEntries()
+{
+    return _saveLevelEntries;
+}
+
+bool SaveGameData::materialize()
 {
 	return true;
 }

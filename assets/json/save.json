@@ -1,6 +1,6 @@
 {
 	"SaveGameData": {
-		"levels" : {
+		"saveFile" : {
 			"level1": {
 				"name": "Level 1",
 				"unlocked": 1,

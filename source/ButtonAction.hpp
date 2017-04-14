@@ -44,16 +44,30 @@ public:
 class ModeChangeButtonAction : public ButtonAction {
 public:
     Mode modeTarget;
-    virtual bool init(std::string tar)
-	{
+    std::string nextScreen; // key to the next screen/next level handled differently depending on the mode
+    
+    virtual bool init(Mode mode,std::string nextScreen){
         ButtonAction::init(ButtonActionType::MODECHANGE);
-        modeTarget = stringToMode(tar);
-		return true;
+        modeTarget = mode;
+        nextScreen = nextScreen;
+        return true;
+    }
+    
+    virtual bool init(std::string mode,std::string nextScreen)
+	{
+        return init(stringToMode(mode),nextScreen);
 	}
+    
 	ModeChangeButtonAction() : ButtonAction() {}
-    static std::shared_ptr<ModeChangeButtonAction> alloc(std::string tar) {
+    
+    static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode,std::string nextScreen) {
+        std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
+        return (result->init(mode,nextScreen) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<ModeChangeButtonAction> alloc(std::string mode,std::string nextScreen) {
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-		return (result->init(tar) ? result : nullptr);
+		return (result->init(mode,nextScreen) ? result : nullptr);
 	}
 };
 

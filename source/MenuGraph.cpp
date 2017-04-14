@@ -9,6 +9,9 @@
 #include "MenuGraph.hpp"
 #include "MenuScreenData.hpp"
 #include "UIComponent.hpp"
+#include "SaveGameData.hpp"
+
+#define SAVE_GAME_FILE "saveFile"
 
 using namespace cugl;
 
@@ -29,6 +32,23 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
+std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>& assets){
+    std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
+    std::shared_ptr<Menu> menu = Menu::alloc(false);
+    int i = 0;
+    for(auto entry : saveGame->getSaveLevelEntries()){
+        std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY,entry->levelKey);
+        
+        // TODO hacky setting of the uiKey
+        // TODO create a template for the level entry button
+        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",512,400-50*i,100,100,action,"");
+        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+        std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
+        menu->addUIElement(uiComponent);
+    }
+    return menu;
+};
+
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
     Size size = Application::get()->getDisplaySize();
     
@@ -47,6 +67,10 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         }
         _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
     }
+    
+    std::shared_ptr<Menu> levelMenu = createLevelMenu(assets);
+    _menuMap.insert(std::make_pair("levelSelect",levelMenu));
+    
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
