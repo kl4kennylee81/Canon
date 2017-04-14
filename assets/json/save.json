@@ -1,15 +1,24 @@
 {
-	"SaveGameData": {
-		"saveFile" : {
-			"level0": {
-				"name": "Level 0",
-				"unlocked": 1,
-				"complete": 0,
-				"menuKey": "lake_bg",
-				"levelKey": "level0",
-				"levelUrl": "level1assets.json",
-				"highScore": 0
-			}
-		}
-	}
+    "SaveGameData": {
+        "saveFile": {
+            "level0": {
+                "name": "Level 0",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "level0",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "level1": {
+                "name": "Level 1",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "level1",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            }
+        }
+    }
 }
