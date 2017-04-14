@@ -70,15 +70,13 @@ void MenuController::update(float timestep) {
             case ButtonActionType::MENUCHANGE:
             {
                 std::shared_ptr<MenuChangeButtonAction> action = std::dynamic_pointer_cast<MenuChangeButtonAction>(uiElement->getAction());
-                
-                
-                getMenuGraph()->setNextMode(action->menuTarget)
-                
+                getMenuGraph()->setActiveMenu(action->menuTarget);
                 break;
             }
             case ButtonActionType::MODECHANGE:
             {
                 std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
+                getMenuGraph()->setNextMode(action->modeTarget);
                 break;
             }
             case ButtonActionType::FXTRIGGER:

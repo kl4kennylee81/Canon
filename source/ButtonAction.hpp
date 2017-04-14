@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include "Mode.hpp"
 
 enum class ButtonActionType : int {
 	MENUCHANGE, MODECHANGE, FXTRIGGER
@@ -42,11 +43,11 @@ public:
 
 class ModeChangeButtonAction : public ButtonAction {
 public:
-    std::string modeTarget;
+    Mode modeTarget;
     virtual bool init(ButtonActionType t, std::string tar)
 	{
 		ButtonAction::alloc(t);
-		modeTarget = tar;
+        modeTarget = stringToMode(tar);
 		return true;
 	}
 	ModeChangeButtonAction() : ButtonAction() {}

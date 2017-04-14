@@ -135,7 +135,11 @@ void MenuGraph::setNextMode(Mode mode){
 }
 
 void MenuGraph::setActiveMenu(std::string nextTarget){
-    
+    std::shared_ptr<Menu> targetMenu = _menuMap.at(nextTarget);
+    if (targetMenu == nullptr){
+        return;
+    }
+    setActiveMenu(targetMenu);
 }
 
 void MenuGraph::updateToNextMode(){
