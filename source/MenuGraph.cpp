@@ -43,8 +43,10 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
 		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
 		cugl::Size imageSize = imageNode->getSize();
-		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
 		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+		imageNode->setPosition(Vec2::ZERO);
+		
 		menu->setBackground(imageNode);
         
         for (std::string uiKey : menuEntry->getUIEntryKeys()){
