@@ -88,6 +88,8 @@
 		9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */; };
 		9F3BA6631E9F48BA003138C0 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */; };
 		9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */; };
+		9F3BA6671EA074E1003138C0 /* ButtonAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6651EA074E1003138C0 /* ButtonAction.cpp */; };
+		9F3BA6681EA074E1003138C0 /* ButtonAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6651EA074E1003138C0 /* ButtonAction.cpp */; };
 		9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668301E8384E8003A06E8 /* SaveGameData.cpp */; };
 		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
 		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
@@ -229,6 +231,8 @@
 		9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorController.hpp; sourceTree = "<group>"; };
 		9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent.cpp; sourceTree = "<group>"; };
 		9F3BA6621E9F48BA003138C0 /* UIComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIComponent.hpp; sourceTree = "<group>"; };
+		9F3BA6651EA074E1003138C0 /* ButtonAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ButtonAction.cpp; sourceTree = "<group>"; };
+		9F3BA6661EA074E1003138C0 /* ButtonAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ButtonAction.hpp; sourceTree = "<group>"; };
 		9F7668301E8384E8003A06E8 /* SaveGameData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveGameData.cpp; sourceTree = "<group>"; };
 		9F7668351E838641003A06E8 /* SaveGameData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveGameData.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -464,6 +468,8 @@
 				9FE8E9DF1E63820E00DBE3BC /* MenuScreenData.hpp */,
 				9F3BA6411E90CAB1003138C0 /* UIData.cpp */,
 				9F3BA6421E90CAB1003138C0 /* UIData.hpp */,
+				9F3BA6651EA074E1003138C0 /* ButtonAction.cpp */,
+				9F3BA6661EA074E1003138C0 /* ButtonAction.hpp */,
 				9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */,
 				9F3BA6461E90CAC9003138C0 /* UIDataLoader.hpp */,
 			);
@@ -1102,6 +1108,7 @@
 				9F3BA5E31E8BA575003138C0 /* RotateZoneData.cpp in Sources */,
 				9F3BA5E41E8BA575003138C0 /* PulseZoneData.cpp in Sources */,
 				9F3BA5E51E8BA575003138C0 /* AILoader.cpp in Sources */,
+				9F3BA6681EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F3BA5E61E8BA575003138C0 /* HomingAIData.cpp in Sources */,
 				9F3BA5E71E8BA575003138C0 /* PathAIData.cpp in Sources */,
 				9F3BA5E81E8BA575003138C0 /* StaticAIData.cpp in Sources */,
@@ -1230,6 +1237,7 @@
 				9FCE471C1E667448002F4A3E /* SwitchController.cpp in Sources */,
 				9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */,
 				9FFA3FC11E636D220029D648 /* World.cpp in Sources */,
+				9F3BA6671EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				9FFA3F881E635FD10029D648 /* CollisionEvent.cpp in Sources */,
 				9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */,

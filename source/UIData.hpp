@@ -5,41 +5,12 @@
 #include <cugl/cugl.h>
 #include "Data.hpp"
 #include "GenericAssetManager.hpp"
+#include "ButtonAction.hpp"
+
 
 enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
 };
-
-class ButtonAction {
-public:
-
-	std::string type;
-	std::string buttonTarget;
-
-	bool init(std::string t, std::string bt)
-	{
-		type = t;
-		buttonTarget = bt;
-		return true;
-	}
-    
-    bool init(const std::shared_ptr<cugl::JsonValue> & json){
-		return init(json->getString("type"), json->getString("buttonTarget"));
-    }
-
-	ButtonAction() {}
-
-	static std::shared_ptr<ButtonAction> alloc(std::string t, std::string bt) {
-		std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
-		return (result->init(t, bt) ? result : nullptr);
-	}
-    
-    static std::shared_ptr<ButtonAction> alloc(const std::shared_ptr<cugl::JsonValue> & json){
-        std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
-        return (result->init(json) ? result : nullptr);
-    }
-};
-
 
 class UIData : Data {
 public:
@@ -102,6 +73,8 @@ public:
 		buttonLabel = bLabel;
 		return true;
 	}
+
+	ButtonUIData() : UIData() {}
 };
 
 class TextUIData : public UIData {
@@ -124,6 +97,8 @@ public:
 		fontKey = fKey;
 		return true;
 	}
+
+	TextUIData() : UIData() {}
 };
 
 class ImageUIData : public UIData {
@@ -144,6 +119,8 @@ public:
 		textureKey = tKey;
 		return true;
 	}
+
+	ImageUIData() : UIData() {}
 };
 
 
