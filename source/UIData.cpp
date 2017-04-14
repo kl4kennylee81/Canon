@@ -36,8 +36,13 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-    std::shared_ptr<Button> button = Button::alloc(assets->get<Texture>());
-    return Node::alloc();
+    auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
+    std::shared_ptr<Button> button = Button::alloc(buttonTexture);
+    
+    button->setPosition(Vec2(this->x,this->y));
+    
+    // scale to width and height
+    return button;
 }
 
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
