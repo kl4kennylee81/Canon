@@ -134,6 +134,10 @@ void MenuGraph::setNextMode(Mode mode){
     _nextMode = mode;
 }
 
+void MenuGraph::setActiveMenu(std::string nextTarget){
+    
+}
+
 void MenuGraph::updateToNextMode(){
     setMode(_nextMode);
 }

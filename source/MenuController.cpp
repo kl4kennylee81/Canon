@@ -58,7 +58,7 @@ void MenuController::update(float timestep) {
             continue;
         }
         
-        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getAction());
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
         
         // check if this button was clicked
         if (!button->containsScreen(InputController::getInputVector())){
@@ -66,8 +66,26 @@ void MenuController::update(float timestep) {
         }
         
         // execute the appropriate action
-        switch(action->type){
-            case
+        switch(uiElement->getAction()->type){
+            case ButtonActionType::MENUCHANGE:
+            {
+                std::shared_ptr<MenuChangeButtonAction> action = std::dynamic_pointer_cast<MenuChangeButtonAction>(uiElement->getAction());
+                
+                
+                getMenuGraph()->setNextMode(action->menuTarget)
+                
+                break;
+            }
+            case ButtonActionType::MODECHANGE:
+            {
+                std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
+                break;
+            }
+            case ButtonActionType::FXTRIGGER:
+            {
+                std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
+                break;
+            }
         }
     }
     
