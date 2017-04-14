@@ -22,6 +22,10 @@ public:
 		buttonTarget = bt;
 		return true;
 	}
+    
+    bool init(const std::shared_ptr<cugl::JsonValue> & json){
+		return init(json->getString("type"), json->getString("buttonTarget"));
+    }
 
 	ButtonAction() {}
 
@@ -29,14 +33,11 @@ public:
 		std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
 		return (result->init(t, bt) ? result : nullptr);
 	}
-
-	static ButtonAction getButtonAction(const std::shared_ptr<cugl::JsonValue> & json)
-	{
-		ButtonAction result = ButtonAction();
-		result.init(json->getString("type"), json->getString("buttonTarget"));
-		return result;
-	}
     
+    static std::shared_ptr<ButtonAction> alloc(const std::shared_ptr<cugl::JsonValue> & json){
+        std::shared_ptr<ButtonAction> result = std::make_shared<ButtonAction>();
+        return (result->init(json) ? result : nullptr);
+    }
 };
 
 
@@ -83,18 +84,18 @@ public:
 
 class ButtonUIData : public UIData {
 public:
-	ButtonAction buttonAction;
+    std::shared_ptr<ButtonAction> buttonAction;
 	std::string buttonLabel;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
     virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
     
-	static std::shared_ptr<ButtonUIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, std::string bLabel) {
+    static std::shared_ptr<ButtonUIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel) {
 		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
 		return (result->init( uiKey,  t,  x,  y,  w,  h,  ba,  bLabel) ? result : nullptr);
 	}
-	bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h, ButtonAction ba, std::string bLabel)
+    bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
 	{
 		UIData::alloc(uiKey, t, x, y, w, h);
 		buttonAction = ba;

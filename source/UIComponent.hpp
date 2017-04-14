@@ -14,12 +14,12 @@
 
 class UIComponent {
 private:
-    std::shared_ptr<UIData> _uiData; // stores the static info needed for the uiComponent
+    std::shared_ptr<ButtonAction> _action; // stores the static info ONLY for buttons otherwise nullptr
     std::shared_ptr<cugl::Node> _node; // the active on screen button/label/image scene graph node
 public:
     
-    std::shared_ptr<UIData> getUIData(){
-        return _uiData;
+    std::shared_ptr<ButtonAction> getAction(){
+        return _action;
     }
     
     std::shared_ptr<cugl::Node> getNode(){
@@ -27,8 +27,12 @@ public:
     }
     
     bool init(std::shared_ptr<UIData> uiData,std::shared_ptr<cugl::Node> node){
-        _uiData = uiData;
         _node = node;
+        _action = nullptr;
+        if (uiData->type == UIDataType::BUTTON){
+            std::shared_ptr<ButtonUIData> buttonData = std::dynamic_pointer_cast<ButtonUIData>(uiData);
+            _action = buttonData->buttonAction;
+        }
         return true;
     }
     

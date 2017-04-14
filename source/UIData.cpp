@@ -4,7 +4,7 @@ using namespace cugl;
 
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
-	buttonAction = ButtonAction::getButtonAction(json->get("buttonAction"));	
+	buttonAction = ButtonAction::alloc(json->get("buttonAction"));
 	buttonLabel = json->getString("buttonLabel");
 	UIData::preload(json); // call to super
 	return true;
@@ -30,14 +30,16 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
     label->setPosition(Vec2(this->x,this->y));
-//    label->setContentSize(this->width, this->height);
+    
+    // scale to width and height
     return label;
 }
 
 std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(this->textureKey));
     imageNode->setPosition(Vec2(this->x,this->y));
-//    imageNode->setContentSize(this->width, this->height);
+    
+    // scale to width and height
     return imageNode;
 }
 
