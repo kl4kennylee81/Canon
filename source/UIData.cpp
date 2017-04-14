@@ -8,11 +8,11 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     std::string buttonType = json->get("buttonAction")->getString("type");
 
 	if (buttonType == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		MenuChangeButtonAction::alloc(ButtonActionType::MENUCHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+		MenuChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"))); }
 	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		ModeChangeButtonAction::alloc(ButtonActionType::MODECHANGE, json->get("buttonAction")->getString("buttonTarget"))); }
+		ModeChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"),json->get("buttonAction")->getString("nextScreen"))); }
 	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(ButtonActionType::FXTRIGGER, json->getString("fxKey"))); }
+		FxTriggerButtonAction::alloc(json->getString("fxKey"))); }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
@@ -37,7 +37,16 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-    return Node::alloc();
+    auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
+    std::shared_ptr<Button> button = Button::alloc(buttonTexture);
+	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
+
+	// scale to width and height
+	cugl::Size size = button->getSize();
+	button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
+
+    return button;
 }
 
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){

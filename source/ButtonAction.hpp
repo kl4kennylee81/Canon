@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include "Mode.hpp"
 
 enum class ButtonActionType : int {
 	MENUCHANGE, MODECHANGE, FXTRIGGER
@@ -27,47 +28,61 @@ public:
 class MenuChangeButtonAction : public ButtonAction {
 public:
     std::string menuTarget;
-    virtual bool init(ButtonActionType t, std::string tar)
+    virtual bool init(std::string tar)
 	{
-		ButtonAction::alloc(t);
+        ButtonAction::init(ButtonActionType::MENUCHANGE);
 		menuTarget = tar;
 		return true;
 	}
 	MenuChangeButtonAction() : ButtonAction() {}
-    static std::shared_ptr<MenuChangeButtonAction> alloc(ButtonActionType t, std::string tar) {
+    static std::shared_ptr<MenuChangeButtonAction> alloc(std::string tar) {
 		std::shared_ptr<MenuChangeButtonAction> result = std::make_shared<MenuChangeButtonAction>();
-		return (result->init(t, tar) ? result : nullptr);
+		return (result->init(tar) ? result : nullptr);
 	}
 };
 
 class ModeChangeButtonAction : public ButtonAction {
 public:
-    std::string modeTarget;
-    virtual bool init(ButtonActionType t, std::string tar)
+    Mode modeTarget;
+    std::string nextScreen; // key to the next screen/next level handled differently depending on the mode
+    
+    virtual bool init(Mode mode,std::string nextScreen){
+        ButtonAction::init(ButtonActionType::MODECHANGE);
+        modeTarget = mode;
+        nextScreen = nextScreen;
+        return true;
+    }
+    
+    virtual bool init(std::string mode,std::string nextScreen)
 	{
-		ButtonAction::alloc(t);
-		modeTarget = tar;
-		return true;
+        return init(stringToMode(mode),nextScreen);
 	}
+    
 	ModeChangeButtonAction() : ButtonAction() {}
-    static std::shared_ptr<ModeChangeButtonAction> alloc(ButtonActionType t, std::string tar) {
+    
+    static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode,std::string nextScreen) {
+        std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
+        return (result->init(mode,nextScreen) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<ModeChangeButtonAction> alloc(std::string mode,std::string nextScreen) {
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-		return (result->init(t, tar) ? result : nullptr);
+		return (result->init(mode,nextScreen) ? result : nullptr);
 	}
 };
 
 class FxTriggerButtonAction : public ButtonAction {
 public:
     std::string fxKey;
-    virtual bool init(ButtonActionType t, std::string fx)
+    virtual bool init(std::string fx)
 	{
-		ButtonAction::alloc(t);
+        ButtonAction::init(ButtonActionType::FXTRIGGER);
 		fxKey = fx;
 		return true;
 	}
 	FxTriggerButtonAction() : ButtonAction() {}
-    static std::shared_ptr<FxTriggerButtonAction> alloc(ButtonActionType t, std::string fx) {
+    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx) {
 		std::shared_ptr<FxTriggerButtonAction> result = std::make_shared<FxTriggerButtonAction>();
-		return (result->init(t, fx) ? result : nullptr);
+		return (result->init(fx) ? result : nullptr);
 	}
 };

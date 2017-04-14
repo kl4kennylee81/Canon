@@ -22,10 +22,10 @@
                 "type": "menuChange",
                 "buttonTarget": ""
             },
-            "x": 0.027,
-            "y": 0.973,
-            "width": 0.032,
-            "height": 0.055
+            "x": 0.900,
+            "y": 0.008,
+            "width": 0.096,
+            "height": 0.171
         },
         "settingsButton": {
             "type": "BUTTON",
@@ -34,10 +34,10 @@
                 "type": "menuChange",
                 "buttonTarget": ""
             },
-            "x": 0.027,
-            "y": 0.047,
-            "width": 0.032,
-            "height": 0.055
+            "x": 0.005,
+            "y": 0.008,
+            "width": 0.096,
+            "height": 0.171
         },
         "title": {
             "type": "IMAGE",
@@ -54,8 +54,8 @@
                 "type": "modeChange",
                 "buttonTarget": "GAMEPLAY"
             },
-            "x": 0.217,
-            "y": 0.339,
+            "x": 0.339,
+            "y": 0.217,
             "width": 0.339,
             "height": 0.157
         },
@@ -99,7 +99,7 @@
         },
         "closeOptions": {
             "type": "BUTTON",
-            "uiBackgroundKey": "stub3",
+            "uiBackgroundKey": "play",
             "buttonLabel": "Close Options",
             "buttonAction": {
                 "type": "menuChange",

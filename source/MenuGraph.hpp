@@ -48,6 +48,8 @@ public:
     
     void setActiveMenu(std::shared_ptr<Menu> menu);
     
+    void setActiveMenu(std::string nextTarget);
+    
     void setNextMode(Mode mode);
     
     void updateToNextMode();
@@ -55,6 +57,8 @@ public:
     Mode getMode();
     
     Mode getNextMode();
+    
+    std::shared_ptr<Menu>& getActiveMenu();
     
     bool needsUpdate();
     

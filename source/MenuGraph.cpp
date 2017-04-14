@@ -10,6 +10,9 @@
 #include "MenuScreenData.hpp"
 #include "UIComponent.hpp"
 #include "GameState.hpp"
+#include "SaveGameData.hpp"
+
+#define SAVE_GAME_FILE "saveFile"
 
 using namespace cugl;
 
@@ -30,8 +33,24 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
+std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>& assets){
+    std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
+    std::shared_ptr<Menu> menu = Menu::alloc(false);
+    int i = 0;
+    for(auto entry : saveGame->getSaveLevelEntries()){
+        std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY,entry->levelKey);
+        
+        // TODO hacky setting of the uiKey
+        // TODO create a template for the level entry button
+        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",512,400-50*i,100,100,action,"");
+        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+        std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
+        menu->addUIElement(uiComponent);
+    }
+    return menu;
+};
+
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-    Size size = Application::get()->getDisplaySize();
     
     std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
     
@@ -60,47 +79,9 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
     }
     
-//    std::shared_ptr<Label> label1 = Label::alloc("main menu", assets->get<Font>("Charlemagne"));
-//    label1->setPosition(Vec2(size.width/2.0f,400));
-//    std::shared_ptr<UIComponent> label1Component = UIComponent::alloc(label1);
-//    mainMenu->addUIElement(label1);
-//    
-//    auto play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-//    std::shared_ptr<Button> button1 = Button::alloc(play);
-//    button1->setAnchor(Vec2::ANCHOR_MIDDLE);
-//    button1->setPosition(Vec2(size.width/2.0f,200));
-//    button1->setListener([=](const std::string& name, bool down) {
-//        if (down){
-//            return;
-//        }
-//        setActiveMenu(this->_menuMap.at("levelMenu"));
-//    });
-//    button1->setVisible(true);
-//    button1->activate(1);
-//    mainMenu->addUIElement(button1);
+    std::shared_ptr<Menu> levelMenu = createLevelMenu(assets);
+    _menuMap.insert(std::make_pair("levelSelect",levelMenu));
     
-//    std::shared_ptr<Menu> levelMenu = Menu::alloc(false);
-//    
-//    std::shared_ptr<Label> label2 = Label::alloc("level menu", assets->get<Font>("Charlemagne"));
-//    label2->setPosition(Vec2(size.width/2.0f,400));
-//    
-//    levelMenu->addUIElement(label2);
-//    
-//    play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-//    std::shared_ptr<Button> button2 = Button::alloc(play);
-//    button2->setAnchor(Vec2::ANCHOR_MIDDLE);
-//    button2->setPosition(Vec2(size.width/2.0f,300));
-//    button2->setListener([=](const std::string& name, bool down) {
-//        if (down){
-//            return;
-//        }
-//        setNextMode(Mode::GAMEPLAY);
-//    });
-//    button2->setVisible(true);
-//    button2->activate(2);
-//    levelMenu->addUIElement(button2);
-//    
-//    _menuMap.insert(std::make_pair("levelMenu",levelMenu));
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
@@ -146,6 +127,14 @@ void MenuGraph::setNextMode(Mode mode){
     _nextMode = mode;
 }
 
+void MenuGraph::setActiveMenu(std::string nextTarget){
+    std::shared_ptr<Menu> targetMenu = _menuMap.at(nextTarget);
+    if (targetMenu == nullptr){
+        return;
+    }
+    setActiveMenu(targetMenu);
+}
+
 void MenuGraph::updateToNextMode(){
     setMode(_nextMode);
 }
@@ -156,6 +145,10 @@ Mode MenuGraph::getMode(){
 
 Mode MenuGraph::getNextMode(){
     return _nextMode;
+}
+
+std::shared_ptr<Menu>& MenuGraph::getActiveMenu(){
+    return _activeMenu;
 }
 
 bool MenuGraph::needsUpdate(){
