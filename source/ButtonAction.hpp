@@ -48,8 +48,8 @@ public:
     
     virtual bool init(Mode mode,std::string nextScreen){
         ButtonAction::init(ButtonActionType::MODECHANGE);
-        modeTarget = mode;
-        nextScreen = nextScreen;
+        this->modeTarget = mode;
+        this->nextScreen = nextScreen;
         return true;
     }
     
