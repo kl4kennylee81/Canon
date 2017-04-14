@@ -50,7 +50,6 @@ std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>
 };
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-    Size size = Application::get()->getDisplaySize();
     
     std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
     

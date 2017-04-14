@@ -66,7 +66,7 @@ public:
     
     bool init(std::string uiKey, std::string bg, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
     {
-        UIData::alloc(uiKey, bg, UIDataType::BUTTON, x, y, w, h);
+        UIData::init(uiKey, bg, UIDataType::BUTTON, x, y, w, h);
         buttonAction = ba;
         buttonLabel = bLabel;
         return true;
@@ -91,11 +91,11 @@ public:
     
 	static std::shared_ptr<TextUIData> alloc(std::string uiKey, std::string bg, int x, int y, int w, int h, std::string tv, std::string fKey) {
 		std::shared_ptr<TextUIData> result = std::make_shared<TextUIData>();
-		return (result->init(uiKey, bg, t, x, y, w, h, tv, fKey) ? result : nullptr);
+		return (result->init(uiKey, bg, x, y, w, h, tv, fKey) ? result : nullptr);
 	}
 	bool init(std::string uiKey, std::string bg, int x, int y, int w, int h, std::string tv, std::string fKey)
 	{
-        UIData::alloc(uiKey, bg, UIDataType::TEXT, x, y, w, h);
+        UIData::init(uiKey, bg, UIDataType::TEXT, x, y, w, h);
 		textValue = tv;
 		fontKey = fKey;
 		return true;
@@ -114,11 +114,11 @@ public:
     
 	static std::shared_ptr<ImageUIData> alloc(std::string uiKey, std::string bg, int x, int y, int w, int h, std::string tKey) {
 		std::shared_ptr<ImageUIData> result = std::make_shared<ImageUIData>();
-		return (result->init(uiKey, bg, t, x, y, w, h, tKey) ? result : nullptr);
+		return (result->init(uiKey, bg, x, y, w, h, tKey) ? result : nullptr);
 	}
 	bool init(std::string uiKey, std::string bg, int x, int y, int w, int h, std::string tKey)
 	{
-        UIData::alloc(uiKey, bg,UIDataType::IMAGE, x, y, w, h);
+        UIData::init(uiKey, bg,UIDataType::IMAGE, x, y, w, h);
 		textureKey = tKey;
 		return true;
 	}
