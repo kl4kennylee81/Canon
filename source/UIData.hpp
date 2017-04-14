@@ -16,15 +16,17 @@ class UIData : Data {
 public:
 
 	std::string UIKey;
+	std::string uiBackgroundKey;
 	UIDataType type;
 	int x;
 	int y;
 	int width;
 	int height;
 
-	bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h)
+	bool init(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h)
 	{
 		this->UIKey = uiKey;
+		this->uiBackgroundKey = bg;
 		this->type = t;
 		this->x = x;
 		this->y = y;
@@ -35,9 +37,9 @@ public:
 
 	UIData() : Data() {}
 
-	static std::shared_ptr<UIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h) {
+	static std::shared_ptr<UIData> alloc(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h) {
 		std::shared_ptr<UIData> result = std::make_shared<UIData>();
-		return (result->init(uiKey, t, x, y, w, h) ? result : nullptr);
+		return (result->init(uiKey, bg, t, x, y, w, h) ? result : nullptr);
 	}
     
     virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);
@@ -62,13 +64,13 @@ public:
     
     virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
     
-    static std::shared_ptr<ButtonUIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel) {
+    static std::shared_ptr<ButtonUIData> alloc(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel) {
 		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
-		return (result->init( uiKey,  t,  x,  y,  w,  h,  ba,  bLabel) ? result : nullptr);
+		return (result->init( uiKey, bg,  t,  x,  y,  w,  h,  ba,  bLabel) ? result : nullptr);
 	}
-    bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
+    bool init(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
+		UIData::alloc(uiKey, bg, t, x, y, w, h);
 		buttonAction = ba;
 		buttonLabel = bLabel;
 		return true;
@@ -86,13 +88,13 @@ public:
     
     virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
     
-	static std::shared_ptr<TextUIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::string tv, std::string fKey) {
+	static std::shared_ptr<TextUIData> alloc(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::string tv, std::string fKey) {
 		std::shared_ptr<TextUIData> result = std::make_shared<TextUIData>();
-		return (result->init(uiKey, t, x, y, w, h, tv, fKey) ? result : nullptr);
+		return (result->init(uiKey, bg, t, x, y, w, h, tv, fKey) ? result : nullptr);
 	}
-	bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::string tv, std::string fKey)
+	bool init(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::string tv, std::string fKey)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
+		UIData::alloc(uiKey, bg, t, x, y, w, h);
 		textValue = tv;
 		fontKey = fKey;
 		return true;
@@ -109,13 +111,13 @@ public:
     
     virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
     
-	static std::shared_ptr<ImageUIData> alloc(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::string tKey) {
+	static std::shared_ptr<ImageUIData> alloc(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::string tKey) {
 		std::shared_ptr<ImageUIData> result = std::make_shared<ImageUIData>();
-		return (result->init(uiKey, t, x, y, w, h, tKey) ? result : nullptr);
+		return (result->init(uiKey, bg, t, x, y, w, h, tKey) ? result : nullptr);
 	}
-	bool init(std::string uiKey, UIDataType t, int x, int y, int w, int h, std::string tKey)
+	bool init(std::string uiKey, std::string bg, UIDataType t, int x, int y, int w, int h, std::string tKey)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
+		UIData::alloc(uiKey, bg, t, x, y, w, h);
 		textureKey = tKey;
 		return true;
 	}

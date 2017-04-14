@@ -19,8 +19,9 @@
     "UIData": {
         "openOptions": {
             "type": "BUTTON",
+            "uiBackgroundKey": "stub",
             "buttonAction": {
-                "type": "uiChange",
+                "type": "menuChange",
                 "buttonTarget": "optionsMenu"
             },
             "buttonLabel": "Open Options",
@@ -31,6 +32,7 @@
         },
         "startGame": {
             "type": "BUTTON",
+            "uiBackgroundKey": "stub2",
             "buttonAction": {
                 "type": "modeChange",
                 "buttonTarget": "gameInit"
@@ -68,9 +70,10 @@
         },
         "closeOptions": {
             "type": "BUTTON",
+            "uiBackgroundKey": "stub3",
             "buttonLabel": "Close Options",
             "buttonAction": {
-                "type": "uiChange",
+                "type": "menuChange",
                 "buttonTarget": "optionsMenu"
             },
             "x": 10,
