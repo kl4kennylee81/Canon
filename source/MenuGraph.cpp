@@ -42,10 +42,15 @@ std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>
         
         // TODO hacky setting of the uiKey
         // TODO create a template for the level entry button
-        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",512,400-50*i,100,100,action,"");
-        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",0.5,0.6,0.2,0.2,action,"");
+        //std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+        
+        std::shared_ptr<Node> playButton = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
+        std::shared_ptr<Button> buttonNode = Button::alloc(playButton);
+        buttonNode->setPosition(512,400-(i*100));
         std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
         menu->addUIElement(uiComponent);
+        i++;
     }
     return menu;
 };
@@ -80,6 +85,8 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
     }
     
     std::shared_ptr<Menu> levelMenu = createLevelMenu(assets);
+    
+    // TODO replace the hardcoded name
     _menuMap.insert(std::make_pair("levelSelect",levelMenu));
     
 }
