@@ -85,7 +85,7 @@ void GameEngine::onStartup() {
     std::string templateDir = Application::get()->getAssetDirectory();
     templateDir.append(TEMPLATE_PATH);
     
-    std::cout << templateDir << std::endl;
+    std::cout << "save directory: "<< Application::get()->getSaveDirectory() << std::endl;
     
     //load all template wave entries
     DIR *dir;
@@ -94,7 +94,7 @@ void GameEngine::onStartup() {
         /* print all the files and directories within directory */
         while ((ent = readdir (dir)) != NULL) {
             if(ent->d_name[0] != '.'){
-                std::string templatePath = "json/templates/";
+                std::string templatePath = TEMPLATE_PATH;
                 templatePath.append(ent->d_name);
                 _assets->loadDirectory(templatePath);
             }
