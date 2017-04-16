@@ -71,8 +71,14 @@ std::string TemplateWaveEntry::getName(){
     return name;
 }
 
-std::string TemplateWaveEntry::getObjectKey(){
-    return blueObjectKey;
+std::string TemplateWaveEntry::getObjectKey(Element element){
+    
+    // TODO replace when objectData is both gold and blue
+    if (element == Element::BLUE){
+        return blueObjectKey;
+    } else {
+        return goldObjectKey;
+    }
 }
 
 std::string TemplateWaveEntry::getAIKey(){

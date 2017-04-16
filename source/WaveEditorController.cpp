@@ -138,7 +138,7 @@ void WaveEditorController::updateDragAndDrop(){
         _dragNode->removeAllChildren();
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
-            auto entry = WaveEntry::alloc(templ->blueObjectKey, templ->aiKey, 0, 0, Element::BLUE, templ->zoneKeys);
+            auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
             
             // TODO replace with just allocing it and setting template name directly
             entry->setTemplateKey(templ->name);
@@ -236,7 +236,7 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
             case WaveEditorState::COLOR_TOGGLE: {
                 auto waveEntry = _currentWave->getEntry(index);
                 auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
-                waveEntry->switchElement(templateEntry->blueObjectKey, templateEntry->goldObjectKey);
+                waveEntry->switchElement();
                 _colorChanged = true;
                 break;
             }

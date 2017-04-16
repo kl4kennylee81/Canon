@@ -57,7 +57,7 @@ public:
     
     std::string getName();
     
-    std::string getObjectKey();
+    std::string getObjectKey(Element element);
     
     std::string getAIKey();
     
