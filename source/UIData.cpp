@@ -51,11 +51,29 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
-    label->setPosition(Vec2(this->x,this->y));
+	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
 
+	cugl::Size size = label->getSize();
+	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
     
     // scale to width and height
     return label;
+}
+
+std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets, std::string text) {
+	std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
+	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
+
+	label->setText(text, true);
+	// todo: have the color be part of the uidata files?
+	label->setForeground(Color4::WHITE);
+	cugl::Size size = label->getSize();
+	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
+
+	// scale to width and height
+	return label;
 }
 
 std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){

@@ -11,10 +11,31 @@
                     "title",
                     "playButton"
                 ]
+            },
+            "levelSelect": {
+                "menuKey": "levelSelect",
+                "menuBackgroundKey": "levelSelectBgFlat",
+                "UIEntries": [
+                    "levelSelectTextImg"
+                ]
             }
         }
     },
     "UIData": {
+        "levelBoxBorder": {
+            "type": "IMAGE",
+            "textureKey": "levelBoxBorder",
+            "width": 0.250,
+            "height": 0.100
+        },
+        "levelSelectTextImg": {
+            "type": "IMAGE",
+            "textureKey": "levelSelectTextImg",
+            "x": 0.257,
+            "y": 0.675,
+            "width": 0.476,
+            "height": 0.261
+        },
         "infoButton": {
             "type": "BUTTON",
             "uiBackgroundKey": "infosymbol",
@@ -59,6 +80,13 @@
             "width": 0.339,
             "height": 0.157
         },
+        "levelLabelText": {
+            "type": "TEXT",
+            "textValue": "",
+            "width": 0.360,
+            "height": 0.170,
+            "fontKey": "Charlemagne"
+        },
         "openOptions": {
             "type": "BUTTON",
             "uiBackgroundKey": "stub",
@@ -75,10 +103,10 @@
         "gameTitle": {
             "type": "TEXT",
             "textValue": "Canon",
-            "x": 500,
-            "y": 400,
-            "width": 100,
-            "height": 100,
+            "x": 0.257,
+            "y": 0.275,
+            "width": 0.476,
+            "height": 0.261,
             "fontKey": "Charlemagne"
         },
         "startMenuIcon": {

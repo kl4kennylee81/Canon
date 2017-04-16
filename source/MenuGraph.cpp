@@ -33,33 +33,38 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
-std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>& assets){
-    std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
-    std::shared_ptr<Menu> menu = Menu::alloc(false);
+void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map)
+{
+	std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
+	// TODO replace the hardcoded name
+	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
 
-	// temporary: hardcode background image
-	std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>("lakebg"));
-	cugl::Size imageSize = imageNode->getSize();
-	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
-	imageNode->setPosition(Vec2::ZERO);
-	menu->setBackground(imageNode);
+	int i = 0;
+	for (auto entry : saveGame->getSaveLevelEntries())
+	{
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, entry->levelKey);
+		// TODO hacky setting of the uiKey
 
-    int i = 0;
-    for(auto entry : saveGame->getSaveLevelEntries()){
-        std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY,entry->levelKey);
-        
-        // TODO hacky setting of the uiKey
-        // TODO create a template for the level entry button
-        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",0.25 + 0.3*i,0.6,0.15,0.2,action,"");
-        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
-        std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
-        menu->addUIElement(uiComponent);
-        i++;
-    }
+		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", 0.240 + 0.270*i, 0.5, boxData->width, boxData->height, action, "");
+		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
 
-    return menu;
-};
+		// make label for level entry
+		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
+		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
+
+		std::shared_ptr<Node> labelNode = textData->dataToNode(assets, entry->name);
+
+		// the getsize function needs a parent's bounding box
+		buttonNode->addChild(labelNode, 3);
+
+		//std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
+		std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button, buttonNode);
+		selectMenu->addUIElement(uiComponent);
+		//selectMenu->addUIElement(labelComponent);
+		i++;
+	}
+}
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
     
@@ -70,14 +75,16 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         std::shared_ptr<MenuEntry> menuEntry = entry.second;
         std::shared_ptr<Menu> menu = Menu::alloc(false);
 
-		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
-		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
-		cugl::Size imageSize = imageNode->getSize();
-		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
-		imageNode->setPosition(Vec2::ZERO);
-		
-		menu->setBackground(imageNode);
+		if (entry.second->menuBackgroundKey != "") {
+			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
+			cugl::Size imageSize = imageNode->getSize();
+			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+			imageNode->setPosition(Vec2::ZERO);
+
+			menu->setBackground(imageNode);
+		}
         
         for (std::string uiKey : menuEntry->getUIEntryKeys()){
             auto uiData = assets->get<UIData>(uiKey);
@@ -90,11 +97,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
     }
     
-    std::shared_ptr<Menu> levelMenu = createLevelMenu(assets);
-    
-    // TODO replace the hardcoded name
-    _menuMap.insert(std::make_pair("levelSelect",levelMenu));
-    
+	augmentLevelMenu(assets, _menuMap);
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
