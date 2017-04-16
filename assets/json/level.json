@@ -74,7 +74,6 @@
   "templates":	{
       "playerChar":	{
           "name":	"playerChar",
-          "aiKey":	"static",
           "objectKey":	"playerChar"
       },
       "object1": {
@@ -85,7 +84,7 @@
   },
   "objects": {
     "object1": {
-      "blueShapeKey": "shape1",
+      "shapeKey": "shape1",
       "blueAnimationKey": "blueEnemyAnimation",
       "goldAnimationKey": "redEnemyAnimation"
     },
