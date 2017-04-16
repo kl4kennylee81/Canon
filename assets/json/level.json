@@ -13,13 +13,13 @@
         },
         "playerChars":{
             "player1":{
-                "objectKey": "playerChar1",
+                "objectKey": "playerChar",
                 "x": 500,
                 "y": 200,
                 "element":"BLUE"
             },
             "player2":{
-                "objectKey": "playerChar2",
+                "objectKey": "playerChar",
                 "x": 550,
                 "y": 250,
                 "element":"GOLD"
@@ -39,13 +39,13 @@
         },
         "playerChars":{
             "player1":{
-                "objectKey": "playerChar1",
+                "objectKey": "playerChar",
                 "x": 500,
                 "y": 200,
                 "element":"BLUE"
             },
             "player2":{
-                "objectKey": "playerChar2",
+                "objectKey": "playerChar",
                 "x": 550,
                 "y": 250,
                 "element":"GOLD"
@@ -64,7 +64,7 @@
             "element":"BLUE"
           },
           "object2": {
-            "objectKey": "object2",
+            "objectKey": "object1",
             "aiKey" : "homing",
             "x": 200,
             "y": 200,
