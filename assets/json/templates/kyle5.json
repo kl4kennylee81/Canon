@@ -3,8 +3,7 @@
 		"kyle5_template":	{
 			"name":	"kyle5",
 			"aiKey":	"static",
-			"blueObjectKey":	"object1",
-			"goldObjectKey":	"object2"
+			"objectKey":	"object1"
 		}
 	}
 }

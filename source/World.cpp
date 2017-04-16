@@ -207,7 +207,7 @@ std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
     if (templData == nullptr) {
         return nullptr;
     }
-    return getObjectData(templData->getObjectKey(we->getElement()));
+    return getObjectData(templData->getObjectKey());
 }
 
 std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){

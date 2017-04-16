@@ -14,12 +14,11 @@ bool TemplateWaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 
-bool TemplateWaveEntry::init(std::string name, std::string blue, std::string gold ,
+bool TemplateWaveEntry::init(std::string name, std::string obKey,
     std::string aiKey, std::vector<std::string> zoneKeys)
 {
 	this->name = name;
-	this->blueObjectKey = blue;
-    this->goldObjectKey = gold;
+    this->objectKey = obKey;
 	this->aiKey = aiKey;
 	this->zoneKeys = zoneKeys;
 	return true;
@@ -30,8 +29,7 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
     std::shared_ptr<JsonValue> object = JsonValue::allocObject();
     object->appendChild("name", JsonValue::alloc(name));
     object->appendChild("aiKey", JsonValue::alloc(aiKey));
-    object->appendChild("blueOobjectKey", JsonValue::alloc(blueObjectKey));
-    object->appendChild("goldObjectKey", JsonValue::alloc(goldObjectKey));
+    object->appendChild("objectKey", JsonValue::alloc(objectKey));
 
     std::shared_ptr<JsonValue> zones = JsonValue::allocArray();
     for (int i = 0; i < zoneKeys.size(); i++)
@@ -53,13 +51,12 @@ bool TemplateWaveEntry::preload(const std::string& file){
 bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string name = json->getString("name");
     std::string ai = json->getString("aiKey");
-    std::string blue = json->getString("blueObjectKey");
-    std::string gold = json->getString("goldObjectKey");
+    std::string ob = json->getString("objectKey");
     std::vector<std::string> zones = {};
     if (json->has("zoneKeys")) {
         zones = json->get("zoneKeys")->asStringArray();
     }
-    init(name, blue, gold, ai, zones);
+    init(name, ob, ai, zones);
     return true;
 }
 
@@ -71,14 +68,8 @@ std::string TemplateWaveEntry::getName(){
     return name;
 }
 
-std::string TemplateWaveEntry::getObjectKey(Element element){
-    
-    // TODO replace when objectData is both gold and blue
-    if (element == Element::BLUE){
-        return blueObjectKey;
-    } else {
-        return goldObjectKey;
-    }
+std::string TemplateWaveEntry::getObjectKey(){
+    return objectKey;
 }
 
 std::string TemplateWaveEntry::getAIKey(){

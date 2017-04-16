@@ -75,36 +75,35 @@
   },
   "objects": {
     "object1": {
+      "blueShapeKey": "shape1",
+      "blueAnimationKey": "blueEnemyAnimation",
+      "goldAnimationKey": "redEnemyAnimation"
+    }
+    "playerChar": {
       "shapeKey": "shape1",
-      "animationKey": "blueEnemyAnimation"
-    },
-    "object2": {
-      "shapeKey": "shape1",
-      "animationKey": "redEnemyAnimation"
-    },
-    "playerChar1": {
-      "shapeKey": "shape1",
-      "animationKey": "blueCharAnimation"
-    },
-    "playerChar2": {
-      "shapeKey": "shape1",
-      "animationKey": "redCharAnimation"
+      "blueAnimationKey": "blueCharAnimation",
+      "goldAnimationKey": "redCharAnimation"
     },
     "circle": {
       "shapeKey": "circle",
-      "animationKey": "whiteCircle"
+      "blueAnimationKey": "whiteCircle",
+      "goldAnimationKey": "whiteCircle"
     },
     "sector": {
       "shapeKey": "sector",
-      "animationKey": "whiteSector"
+      "blueAnimationKey": "whiteSector",
+      "goldAnimationKey": "whiteSector"
+
     },
     "bar": {
       "shapeKey": "bar",
-      "animationKey": "whiteBar"
+      "blueAnimationKey": "whiteBar",
+      "goldAnimationKey": "whiteBar"
     },
     "big_circle": {
       "shapeKey": "big_circle",
-      "animationKey": "whiteCircle"
+      "blueAnimationKey": "whiteCircle",
+      "goldAnimationKey": "whiteCircle"
     }
   },
   "shapes": {

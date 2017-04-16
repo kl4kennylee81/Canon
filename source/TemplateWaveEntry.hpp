@@ -15,12 +15,10 @@
 #include "AIData.hpp"
 
 class TemplateWaveEntry : public Data {
+private:
+    std::string objectKey;
 public:
     std::string name;
-    
-    std::string blueObjectKey;
-    
-    std::string goldObjectKey;
     
     std::string aiKey;
     
@@ -38,13 +36,13 @@ public:
 		return (result->init(json) ? result : nullptr);
 	}
 
-    bool init(std::string name, std::string blue, std::string gold, std::string aiKey, std::vector<std::string> zoneKeys);
-
-    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string blue, std::string gold,
-        std::string aiKey, std::vector<std::string> zoneKeys)
+    bool init(std::string name, std::string obKey, std::string aiKey, std::vector<std::string> zoneKeys);
+    
+    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
+                                                    std::string aiKey, std::vector<std::string> zoneKeys)
 	{
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
-		return (result->init(name, blue, gold, aiKey, zoneKeys) ? result : nullptr);
+		return (result->init(name, obKey, aiKey, zoneKeys) ? result : nullptr);
 	}
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
@@ -57,7 +55,7 @@ public:
     
     std::string getName();
     
-    std::string getObjectKey(Element element);
+    std::string getObjectKey();
     
     std::string getAIKey();
     
