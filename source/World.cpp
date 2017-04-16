@@ -340,23 +340,23 @@ std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
     if (templData == nullptr) {
         return nullptr;
     }
-    return getObjectData(templData->objectKey);
+    return getObjectData(templData->getObjectKey());
 }
 
-std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we){
+std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
     std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
     if (templData == nullptr) {
         return nullptr;
     }
-    return getAIData(templData->objectKey);
+    return getAIData(templData->getAIKey());
 }
 
-std::vector<std::shared_ptr<ZoneData>> getZoneDatas(std::shared_ptr<WaveEntry> we){
+std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
     std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
     if (templData == nullptr) {
-        return nullptr;
+        return {};
     }
-    return getAIData(templData->objectKey);
+    return templData->getZoneKeys();
 }
 
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){

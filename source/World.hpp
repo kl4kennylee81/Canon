@@ -97,7 +97,7 @@ public:
     
     std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
     
-    std::vector<std::shared_ptr<ZoneData>> getZoneDatas(std::shared_ptr<WaveEntry> we);
+    std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();

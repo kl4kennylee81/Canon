@@ -36,8 +36,11 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->animationKey);
     std::shared_ptr<AIData> aid = _world->getAIData(we); // aiKey is in the wave entry
-    std::vector<std::shared_ptr<ZoneData>> zds = getZoneData(we);
-    
+    std::vector<std::shared_ptr<ZoneData>> zds = {};
+    for (std::string zoneKey:_world->getZoneKeys(we)){
+        zds.push_back(_world->getZoneData(zoneKey));
+    }
+
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     gameOb->setIsPlayer(isPlayer);
