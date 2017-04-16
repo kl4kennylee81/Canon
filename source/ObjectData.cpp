@@ -9,17 +9,37 @@
 #include "ObjectData.hpp"
 using namespace cugl;
 
-bool ObjectData::init(std::string shapeKey,std::string animKey){
-    this->shapeKey = shapeKey;
-    this->animationKey = animKey;
+std::string ObjectData::getShapeKey(Element e){
+    if (e == Element::BLUE){
+        return this->blueShapeKey;
+    } else {
+        return this->goldShapeKey;
+    }
+}
+
+std::string ObjectData::getAnimationKey(Element e){
+    if (e == Element::BLUE){
+        return this->blueAnimationKey;
+    } else {
+        return this->goldAnimationKey;
+    }
+}
+
+bool ObjectData::init(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey){
+    this->blueShapeKey = blueShapeKey;
+    this->blueAnimationKey = blueAnimKey;
+    this->goldShapeKey = goldShapeKey;
+    this->goldAnimationKey = goldAnimKey;
     return true;
 };
 
 std::shared_ptr<JsonValue> ObjectData::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
-	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
-	object->appendChild("animationKey", JsonValue::alloc(animationKey));
+	object->appendChild("blueShapeKey", JsonValue::alloc(blueShapeKey));
+	object->appendChild("blueAnimationKey", JsonValue::alloc(blueAnimationKey));
+    object->appendChild("goldShapeKey", JsonValue::alloc(goldShapeKey));
+    object->appendChild("goldAnimationKey", JsonValue::alloc(goldAnimationKey));
 	return object;
 }
 
@@ -31,9 +51,11 @@ bool ObjectData::preload(const std::string& file){
 }
 
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-    std::string sKey = json->getString("shapeKey");
-    std::string animKey = json->getString("animationKey");
-    init(sKey,animKey);
+    std::string bsKey = json->getString("blueShapeKey");
+    std::string banimKey = json->getString("blueAnimationKey");
+    std::string gsKey = json->getString("goldShapeKey");
+    std::string ganimKey = json->getString("goldAnimationKey");
+    init(bsKey,banimKey,gsKey,ganimKey);
     return true;
 }
 

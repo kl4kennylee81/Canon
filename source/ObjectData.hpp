@@ -12,19 +12,28 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "Element.hpp"
 
 class ObjectData : public Data {
+private:
+    std::string blueShapeKey;
+    std::string blueAnimationKey;
+    
+    std::string goldShapeKey;
+    std::string goldAnimationKey;
 public:
-    std::string shapeKey;
-    std::string animationKey;
     
     ObjectData() : Data(){}
     
-    bool init(std::string shape_key,std::string anim_key);
+    std::string getShapeKey(Element e);
     
-    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string animKey){
+    std::string getAnimationKey(Element e);
+    
+    bool init(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey);
+    
+    static std::shared_ptr<ObjectData> alloc(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(shapeKey,animKey) ? result : nullptr);
+        return (result->init(blueShapeKey,blueAnimKey,goldShapeKey,goldAnimKey) ? result : nullptr);
     }
 
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
