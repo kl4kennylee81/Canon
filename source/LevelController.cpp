@@ -32,14 +32,11 @@ void LevelController::notify(Event* e) {
 void LevelController::eventUpdate(Event* e) {}
 
 void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
-    std::shared_ptr<ObjectData> od = _world->getObjectData(we->objectKey);
+    std::shared_ptr<ObjectData> od = _world->getObjectData(we);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->animationKey);
-    std::shared_ptr<AIData> aid = _world->getAIData(we->aiKey); // aiKey is in the wave entry
-    std::vector<std::shared_ptr<ZoneData>> zds = {};
-    for(auto zkey: we->zoneKeys){
-        zds.push_back(_world->getZoneData(zkey));
-    }
+    std::shared_ptr<AIData> aid = _world->getAIData(we); // aiKey is in the wave entry
+    std::vector<std::shared_ptr<ZoneData>> zds = getZoneData(we);
     
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();

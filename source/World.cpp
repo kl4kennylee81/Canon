@@ -328,6 +328,37 @@ std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
     return _assets->get<WaveData>(waveKey);
 }
 
+std::shared_ptr<TemplateWaveEntry> World::getTemplate(std::string templateKey){
+    if (_isSandbox && _templateData.count(templateKey) > 0){
+        return _templateData.at(templateKey);
+    }
+    return _assets->get<TemplateWaveEntry>(templateKey);
+}
+
+std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if (templData == nullptr) {
+        return nullptr;
+    }
+    return getObjectData(templData->objectKey);
+}
+
+std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if (templData == nullptr) {
+        return nullptr;
+    }
+    return getAIData(templData->objectKey);
+}
+
+std::vector<std::shared_ptr<ZoneData>> getZoneDatas(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if (templData == nullptr) {
+        return nullptr;
+    }
+    return getAIData(templData->objectKey);
+}
+
 std::shared_ptr<AIData> World::getAIData(std::string aiKey){
 	bool sandbox = _isSandbox && _aiData.count(aiKey) > 0;
 	auto data = sandbox ? _aiData[aiKey] : _assets->get<AIData>(aiKey);

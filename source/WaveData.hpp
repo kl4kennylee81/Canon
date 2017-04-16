@@ -15,7 +15,7 @@
 #include "AIData.hpp"
 
 class WaveEntry {
-public:
+private:
     std::string objectKey;
     
     std::string aiKey;
@@ -28,7 +28,21 @@ public:
     
     std::string templateKey;
     
+public:
+    
     WaveEntry(){}
+    
+    std::string getObjectKey();
+    
+    std::string getAIKey();
+    
+    Element getElement();
+    
+    cugl::Vec2 getPosition();
+    
+    std::vector<std::string> getZoneKeys();
+    
+    std::string getTemplateKey();
     
     void switchElement(std::string blueObjectKey, std::string goldObjectKey) {
         element = element == Element::BLUE ? Element::GOLD : Element::BLUE;

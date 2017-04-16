@@ -96,3 +96,28 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 bool WaveData::materialize(){
     return true;
 }
+
+std::string WaveEntry::getObjectKey(){
+    return objectKey;
+}
+
+std::string WaveEntry::getAIKey(){
+    return aiKey;
+}
+
+Element WaveEntry::getElement(){
+    return element;
+}
+
+cugl::Vec2 WaveEntry::getPosition(){
+    return position;
+}
+
+std::vector<std::string> WaveEntry::getZoneKeys(){
+    return zoneKeys;
+}
+
+std::string WaveEntry::getTemplateKey(){
+    return templateKey;
+}
+

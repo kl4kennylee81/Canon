@@ -21,6 +21,7 @@
 #include "ZoneData.hpp"
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
+#include "TemplateWaveEntry.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -52,6 +53,7 @@ public:
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
+    std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
 
     World();
     
@@ -88,6 +90,14 @@ public:
     std::shared_ptr<AIData> getAIData(std::string aiKey);
     
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
+    
+    std::shared_ptr<TemplateWaveEntry> getTemplate(std::string templateKey);
+    
+    std::shared_ptr<ObjectData> getObjectData(std::shared_ptr<WaveEntry> we);
+    
+    std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
+    
+    std::vector<std::shared_ptr<ZoneData>> getZoneDatas(std::shared_ptr<WaveEntry> we);
 
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();

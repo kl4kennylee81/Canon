@@ -15,19 +15,19 @@
 #include "AIData.hpp"
 
 class TemplateWaveEntry : public Data {
+private:
+    std::string name;
+    
+    std::string blueObjectKey;
+    
+    std::string goldObjectKey;
+    
+    std::string aiKey;
+    
+    std::vector<std::string> zoneKeys;
 public:
     
     TemplateWaveEntry() : Data(){}
-
-	std::string name;
-
-	std::string blueObjectKey;
-    
-    std::string goldObjectKey;
-
-	std::string aiKey;
-
-	std::vector<std::string> zoneKeys;
 
 	/* update the data file which corresponds to this template*/
 	bool updateFile();
@@ -55,5 +55,13 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     virtual bool materialize();
+    
+    std::string getName();
+    
+    std::string getObjectKey();
+    
+    std::string getAIKey();
+    
+    std::vector<std::string> getZoneKeys();
 };
 #endif /* TemplateWaveData_hpp */

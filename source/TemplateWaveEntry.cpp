@@ -67,3 +67,18 @@ bool TemplateWaveEntry::materialize(){
     return true;
 }
 
+std::string TemplateWaveEntry::getName(){
+    return name;
+}
+
+std::string TemplateWaveEntry::getObjectKey(){
+    return blueObjectKey;
+}
+
+std::string TemplateWaveEntry::getAIKey(){
+    return aiKey;
+}
+
+std::vector<std::string> TemplateWaveEntry::getZoneKeys(){
+    return zoneKeys;
+}
