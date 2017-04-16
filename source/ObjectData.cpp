@@ -9,12 +9,8 @@
 #include "ObjectData.hpp"
 using namespace cugl;
 
-std::string ObjectData::getShapeKey(Element e){
-    if (e == Element::BLUE){
-        return this->blueShapeKey;
-    } else {
-        return this->goldShapeKey;
-    }
+std::string ObjectData::getShapeKey(){
+    return this->shapeKey;
 }
 
 std::string ObjectData::getAnimationKey(Element e){
@@ -25,10 +21,9 @@ std::string ObjectData::getAnimationKey(Element e){
     }
 }
 
-bool ObjectData::init(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey){
-    this->blueShapeKey = blueShapeKey;
+bool ObjectData::init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey){
+    this->shapeKey = shapeKey;
     this->blueAnimationKey = blueAnimKey;
-    this->goldShapeKey = goldShapeKey;
     this->goldAnimationKey = goldAnimKey;
     return true;
 };
@@ -36,9 +31,8 @@ bool ObjectData::init(std::string blueShapeKey,std::string blueAnimKey,std::stri
 std::shared_ptr<JsonValue> ObjectData::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
-	object->appendChild("blueShapeKey", JsonValue::alloc(blueShapeKey));
+	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
 	object->appendChild("blueAnimationKey", JsonValue::alloc(blueAnimationKey));
-    object->appendChild("goldShapeKey", JsonValue::alloc(goldShapeKey));
     object->appendChild("goldAnimationKey", JsonValue::alloc(goldAnimationKey));
 	return object;
 }
@@ -51,11 +45,10 @@ bool ObjectData::preload(const std::string& file){
 }
 
 bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-    std::string bsKey = json->getString("blueShapeKey");
+    std::string sKey = json->getString("shapeKey");
     std::string banimKey = json->getString("blueAnimationKey");
-    std::string gsKey = json->getString("goldShapeKey");
     std::string ganimKey = json->getString("goldAnimationKey");
-    init(bsKey,banimKey,gsKey,ganimKey);
+    init(sKey,banimKey,ganimKey);
     return true;
 }
 

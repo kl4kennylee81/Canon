@@ -16,24 +16,22 @@
 
 class ObjectData : public Data {
 private:
-    std::string blueShapeKey;
+    std::string shapeKey;
     std::string blueAnimationKey;
-    
-    std::string goldShapeKey;
     std::string goldAnimationKey;
 public:
     
     ObjectData() : Data(){}
     
-    std::string getShapeKey(Element e);
+    std::string getShapeKey();
     
     std::string getAnimationKey(Element e);
     
-    bool init(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey);
+    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey);
     
-    static std::shared_ptr<ObjectData> alloc(std::string blueShapeKey,std::string blueAnimKey,std::string goldShapeKey, std::string goldAnimKey){
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(blueShapeKey,blueAnimKey,goldShapeKey,goldAnimKey) ? result : nullptr);
+        return (result->init(shapeKey,blueAnimKey, goldAnimKey) ? result : nullptr);
     }
 
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
