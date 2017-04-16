@@ -148,10 +148,8 @@ void World::populate() {
     
 }
 
-bool World::init(std::shared_ptr<GenericAssetManager> assets){
+bool World::init(std::shared_ptr<GenericAssetManager> assets, std::string levelName){
     _assets = assets;
-    // TODO temporary to test if it works
-    std::string levelName = "level0";
 
     this->_levelData = assets->get<LevelData>(levelName);
     _isSandbox = false;

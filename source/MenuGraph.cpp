@@ -7,6 +7,12 @@
 //
 
 #include "MenuGraph.hpp"
+#include "MenuScreenData.hpp"
+#include "UIComponent.hpp"
+#include "GameState.hpp"
+#include "SaveGameData.hpp"
+
+#define SAVE_GAME_FILE "saveFile"
 
 using namespace cugl;
 
@@ -27,53 +33,68 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
+std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>& assets){
+    std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
+    std::shared_ptr<Menu> menu = Menu::alloc(false);
+
+	// temporary: hardcode background image
+	std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>("lakebg"));
+	cugl::Size imageSize = imageNode->getSize();
+	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+	imageNode->setPosition(Vec2::ZERO);
+	menu->setBackground(imageNode);
+
+    int i = 0;
+    for(auto entry : saveGame->getSaveLevelEntries()){
+        std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY,entry->levelKey);
+        
+        // TODO hacky setting of the uiKey
+        // TODO create a template for the level entry button
+        std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry"+std::to_string(i+1),"play",0.25 + 0.3*i,0.6,0.15,0.2,action,"");
+        std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+        std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button,buttonNode);
+        menu->addUIElement(uiComponent);
+        i++;
+    }
+
+    return menu;
+};
+
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-    Size size = Application::get()->getDisplaySize();
     
-    std::shared_ptr<Menu> mainMenu = Menu::alloc(false);
+    std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
     
-    std::shared_ptr<Label> label1 = Label::alloc("main menu", assets->get<Font>("Charlemagne"));
-    label1->setPosition(Vec2(size.width/2.0f,400));
-    mainMenu->addUIElement(label1);
-    
-    auto play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-    std::shared_ptr<Button> button1 = Button::alloc(play);
-    button1->setAnchor(Vec2::ANCHOR_MIDDLE);
-    button1->setPosition(Vec2(size.width/2.0f,200));
-    button1->setListener([=](const std::string& name, bool down) {
-        if (down){
-            return;
+    for (auto entry : menuScreens->getMenuEntries() ){
+        std::string menuKey = entry.first;
+        std::shared_ptr<MenuEntry> menuEntry = entry.second;
+        std::shared_ptr<Menu> menu = Menu::alloc(false);
+
+		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
+		cugl::Size imageSize = imageNode->getSize();
+		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+		imageNode->setPosition(Vec2::ZERO);
+		
+		menu->setBackground(imageNode);
+        
+        for (std::string uiKey : menuEntry->getUIEntryKeys()){
+            auto uiData = assets->get<UIData>(uiKey);
+            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
+            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData,uiNode);
+            menu->addUIElement(uiComponent);
+			
         }
-        setActiveMenu(this->_menuMap.at("levelMenu"));
-    });
-    button1->setVisible(true);
-    button1->activate(1);
-    mainMenu->addUIElement(button1);
+
+        _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
+    }
     
-    _menuMap.insert(std::make_pair("mainMenu",mainMenu));
+    std::shared_ptr<Menu> levelMenu = createLevelMenu(assets);
     
-    std::shared_ptr<Menu> levelMenu = Menu::alloc(false);
+    // TODO replace the hardcoded name
+    _menuMap.insert(std::make_pair("levelSelect",levelMenu));
     
-    std::shared_ptr<Label> label2 = Label::alloc("level menu", assets->get<Font>("Charlemagne"));
-    label2->setPosition(Vec2(size.width/2.0f,400));
-    
-    levelMenu->addUIElement(label2);
-    
-    play = PolygonNode::allocWithTexture(assets->get<Texture>("play"));
-    std::shared_ptr<Button> button2 = Button::alloc(play);
-    button2->setAnchor(Vec2::ANCHOR_MIDDLE);
-    button2->setPosition(Vec2(size.width/2.0f,300));
-    button2->setListener([=](const std::string& name, bool down) {
-        if (down){
-            return;
-        }
-        setNextMode(Mode::GAMEPLAY);
-    });
-    button2->setVisible(true);
-    button2->activate(2);
-    levelMenu->addUIElement(button2);
-    
-    _menuMap.insert(std::make_pair("levelMenu",levelMenu));
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
@@ -104,7 +125,7 @@ void MenuGraph::setMode(Mode mode){
         case Mode::MAIN_MENU:
         {
             // TODO this is a little hacky rn to switch back to the main menu
-            this->setActiveMenu(_menuMap.at("levelMenu"));
+            this->setActiveMenu(_menuMap.at("startMenu"));
             break;
         }
         default:
@@ -119,6 +140,14 @@ void MenuGraph::setNextMode(Mode mode){
     _nextMode = mode;
 }
 
+void MenuGraph::setActiveMenu(std::string nextTarget){
+    std::shared_ptr<Menu> targetMenu = _menuMap.at(nextTarget);
+    if (targetMenu == nullptr){
+        return;
+    }
+    setActiveMenu(targetMenu);
+}
+
 void MenuGraph::updateToNextMode(){
     setMode(_nextMode);
 }
@@ -129,6 +158,10 @@ Mode MenuGraph::getMode(){
 
 Mode MenuGraph::getNextMode(){
     return _nextMode;
+}
+
+std::shared_ptr<Menu>& MenuGraph::getActiveMenu(){
+    return _activeMenu;
 }
 
 bool MenuGraph::needsUpdate(){

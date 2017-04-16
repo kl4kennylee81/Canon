@@ -22,6 +22,8 @@ protected:
     std::shared_ptr<cugl::Scene>  _scene;
     
     std::shared_ptr<MenuGraph> _menuGraph;
+    
+    std::string _selectedLevel;
 public:
     
     MenuController();
@@ -58,6 +60,8 @@ public:
     void activate();
     
     void deactivate();
+    
+    std::string getSelectedLevel();
 };
 
 

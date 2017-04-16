@@ -62,6 +62,10 @@ public:
     void deactivate();
     
     void dispose();
+    
+    std::shared_ptr<LevelData> getCurrentLevel();
+    
+    std::shared_ptr<World> getWorld();
 
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
 

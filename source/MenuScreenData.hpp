@@ -11,16 +11,19 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include <map>
 #include "Data.hpp"
 #include "UIData.hpp"
 
-using std::string;
-
 class MenuEntry {
 public:
-	string menuKey;
-	string menuBackgroundKey;
-	std::vector<string> _uiEntryKeys;
+	std::string menuKey;
+	std::string menuBackgroundKey;
+	std::vector<std::string> _uiEntryKeys;
+    
+    std::vector<std::string> getUIEntryKeys(){
+        return _uiEntryKeys;
+    }
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 
@@ -36,7 +39,9 @@ public:
 
 class MenuScreenData : Data {
 private:
-    std::vector<std::shared_ptr<MenuEntry>> _menuEntries;
+	std::map<std::string, std::shared_ptr<MenuEntry>> _menuEntries;
+    
+	std::string _startMenuKey; // use this as key inside _menuEntries to get the initial menu
 public:
 
 	MenuScreenData() : Data() {}
@@ -50,17 +55,11 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-	void addMenuEntry(std::shared_ptr<MenuEntry> w) {
-		_menuEntries.push_back(w);
-	}
+    void addMenuEntry(std::shared_ptr<MenuEntry> w);
 
-	std::vector<std::shared_ptr<MenuEntry>> getMenuEntries() {
-		return _menuEntries;
-	}
+    std::map<std::string, std::shared_ptr<MenuEntry>> getMenuEntries();
 
-	std::shared_ptr<MenuEntry> getEntry(int index) {
-		return _menuEntries.at(index);
-	}
+    std::shared_ptr<MenuEntry> getEntry(std::string key);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 

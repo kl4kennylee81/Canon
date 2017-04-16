@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
-
-using std::string;
+#include "GenericAssetManager.hpp"
+#include "ButtonAction.hpp"
 
 
 enum class UIDataType : int {
@@ -15,30 +15,34 @@ enum class UIDataType : int {
 class UIData : Data {
 public:
 
-	string UIKey;
+	std::string UIKey;
+	std::string uiBackgroundKey;
 	UIDataType type;
-	int x;
-	int y;
-	int width;
-	int height;
+	float x;
+	float y;
+	float width;
+	float height;
 
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h)
+	bool init(std::string uiKey, std::string bg, UIDataType t, float x, float y, float w, float h)
 	{
-		UIKey = uiKey;
-		type = t;
+		this->UIKey = uiKey;
+		this->uiBackgroundKey = bg;
+		this->type = t;
 		this->x = x;
 		this->y = y;
-		width = w;
-		height = h;
-        return true;
+		this->width = w;
+		this->height = h;
+		return true;
 	}
 
 	UIData() : Data() {}
 
-	static std::shared_ptr<UIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h) {
+	static std::shared_ptr<UIData> alloc(std::string uiKey, std::string bg, UIDataType t, float x, float y, float w, float h) {
 		std::shared_ptr<UIData> result = std::make_shared<UIData>();
-		return (result->init(uiKey, t, x, y, w, h) ? result : nullptr);
+		return (result->init(uiKey, bg, t, x, y, w, h) ? result : nullptr);
 	}
+
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 
@@ -53,59 +57,73 @@ public:
 
 class ButtonUIData : public UIData {
 public:
-	string buttonAction;
-	string buttonTarget;
-	string buttonLabel;
+	std::shared_ptr<ButtonAction> buttonAction;
+	std::string buttonLabel;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
-	static std::shared_ptr<ButtonUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, string bAction, string bTarget, string bLabel) {
-		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
-		return (result->init( uiKey,  t,  x,  y,  w,  h,  bAction,  bTarget,  bLabel) ? result : nullptr);
-	}
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, string bAction, string bTarget, string bLabel)
+
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+
+	bool init(std::string uiKey, std::string bg, float x, float y, float w, float h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
-		buttonAction = bAction;
-		buttonTarget = bTarget;
+		UIData::init(uiKey, bg, UIDataType::BUTTON, x, y, w, h);
+		buttonAction = ba;
 		buttonLabel = bLabel;
 		return true;
 	}
+
+	static std::shared_ptr<ButtonUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::shared_ptr<ButtonAction> ba, std::string bLabel) {
+		std::shared_ptr<ButtonUIData> result = std::make_shared<ButtonUIData>();
+		return (result->init(uiKey, bg, x, y, w, h, ba, bLabel) ? result : nullptr);
+	}
+
+	ButtonUIData() : UIData() {}
 };
 
 class TextUIData : public UIData {
 public:
-	string textValue;
-	string fontKey;
+	std::string textValue;
+	std::string fontKey;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
-	static std::shared_ptr<TextUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, string tv, string fKey) {
+
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+
+	static std::shared_ptr<TextUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tv, std::string fKey) {
 		std::shared_ptr<TextUIData> result = std::make_shared<TextUIData>();
-		return (result->init(uiKey, t, x, y, w, h, tv, fKey) ? result : nullptr);
+		return (result->init(uiKey, bg, x, y, w, h, tv, fKey) ? result : nullptr);
 	}
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, string tv, string fKey)
+	bool init(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tv, std::string fKey)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
+		UIData::init(uiKey, bg, UIDataType::TEXT, x, y, w, h);
 		textValue = tv;
 		fontKey = fKey;
 		return true;
 	}
+
+	TextUIData() : UIData() {}
 };
 
 class ImageUIData : public UIData {
 public:
-	string textureKey;
+	std::string textureKey;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
-	static std::shared_ptr<ImageUIData> alloc(string uiKey, UIDataType t, int x, int y, int w, int h, string tKey) {
+
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+
+	static std::shared_ptr<ImageUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tKey) {
 		std::shared_ptr<ImageUIData> result = std::make_shared<ImageUIData>();
-		return (result->init(uiKey, t, x, y, w, h, tKey) ? result : nullptr);
+		return (result->init(uiKey, bg, x, y, w, h, tKey) ? result : nullptr);
 	}
-	bool init(string uiKey, UIDataType t, int x, int y, int w, int h, string tKey)
+	bool init(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tKey)
 	{
-		UIData::alloc(uiKey, t, x, y, w, h);
+		UIData::init(uiKey, bg, UIDataType::IMAGE, x, y, w, h);
 		textureKey = tKey;
 		return true;
 	}
+
+	ImageUIData() : UIData() {}
 };
 
 

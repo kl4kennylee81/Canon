@@ -63,7 +63,7 @@ public:
         return true;
     }
 
-    virtual bool init(std::shared_ptr<GenericAssetManager> assets);
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets, std::string levelName);
     
     virtual bool init(std::shared_ptr<GenericAssetManager> assets, std::shared_ptr<LevelData> levelData){
         _assets = assets;
@@ -104,9 +104,9 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::string levelName) {
         std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(assets) ? result : nullptr);
+        return (result->init(assets,levelName) ? result : nullptr);
     }
     
     static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {

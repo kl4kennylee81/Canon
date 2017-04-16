@@ -7,6 +7,7 @@
 //
 
 #include "MenuController.hpp"
+#include "InputController.hpp"
 
 using namespace cugl;
 
@@ -36,6 +37,71 @@ void MenuController::eventUpdate(Event* e) {
 
 void MenuController::update(float timestep) {
     
+    std::shared_ptr<Menu> activeMenu = this->getMenuGraph()->getActiveMenu();
+    if (activeMenu == nullptr){
+        return;
+    }
+    
+    // check that a press has been made
+    if (!InputController::getIsPressed()){
+        return;
+    }
+    
+    for (auto uiElement : activeMenu->getUIElements()){
+        // check has an action
+        if (uiElement->getAction() == nullptr){
+            continue;
+        }
+        
+        // check if the uiElement is a button
+        if (std::dynamic_pointer_cast<Button>(uiElement->getNode()) == nullptr){
+            continue;
+        }
+        
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        
+        // check if this button was clicked
+        if (!button->containsScreen(InputController::getInputVector())){
+            continue;
+        }
+        
+        // execute the appropriate action
+        switch(uiElement->getAction()->type){
+            case ButtonActionType::MENUCHANGE:
+            {
+                std::shared_ptr<MenuChangeButtonAction> action = std::dynamic_pointer_cast<MenuChangeButtonAction>(uiElement->getAction());
+                getMenuGraph()->setActiveMenu(action->menuTarget);
+                break;
+            }
+            case ButtonActionType::MODECHANGE:
+            {
+                std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
+                getMenuGraph()->setNextMode(action->modeTarget);
+                switch(action->modeTarget){
+                    case Mode::GAMEPLAY:
+                    {
+                        _selectedLevel = action->nextScreen;
+                        break;
+                    }
+                    case Mode::MAIN_MENU:
+                    {
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                
+                break;
+            }
+            case ButtonActionType::FXTRIGGER:
+            {
+                std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
+                break;
+            }
+        }
+    }
     
 }
 
@@ -52,6 +118,7 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
                           std::shared_ptr<MenuGraph> menuGraph){
     _scene = scene;
     _menuGraph = menuGraph;
+    _selectedLevel = "";
     this->activate();
     return true;
 }
@@ -68,4 +135,8 @@ void MenuController::activate(){
 
 void MenuController::deactivate(){
     _menuGraph->detachFromScene(_scene);
+}
+
+std::string MenuController::getSelectedLevel(){
+    return _selectedLevel;
 }

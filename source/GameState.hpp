@@ -66,6 +66,12 @@ protected:
 public:
     
     static std::unique_ptr<InternalClock> _internalClock;
+
+	static float getGameSceneHeight()
+	{
+		cugl::Size size = cugl::Application::get()->getDisplaySize();
+		return size.height / size.width * GAME_SCENE_WIDTH;
+	}
     
 GameState():
     _reset(false),

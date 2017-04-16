@@ -59,6 +59,20 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "circle": {
+            "file": "./textures/test/circle.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "circle_zone": {
+            "file": "./textures/models/zones/circle_zone.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "enemy_blue": {
             "file": "./textures/models/enemy_models/enemy_blue.png", 
             "magfilter": "linear", 
@@ -87,6 +101,20 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "infosymbol": {
+            "file": "./textures/menus/startMenu/infosymbol.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "lakebg": {
+            "file": "./textures/menus/startMenu/lakebg.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "play": {
             "file": "./textures/menus/loading/play.png", 
             "magfilter": "linear", 
@@ -96,6 +124,41 @@
         }, 
         "progressbar": {
             "file": "./textures/menus/loading/progressbar.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "sector": {
+            "file": "./textures/test/sector.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "settingsymbol": {
+            "file": "./textures/menus/startMenu/settingsymbol.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "square": {
+            "file": "./textures/test/square.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "swipetoplay": {
+            "file": "./textures/menus/startMenu/swipetoplay.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "title": {
+            "file": "./textures/menus/startMenu/title.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

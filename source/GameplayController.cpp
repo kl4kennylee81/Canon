@@ -37,7 +37,7 @@ void GameplayController::update(float timestep) {
     // TODO temporary rest until we have a retry screen
     if (_gameState->getReset()){
         // repopulate the randomly generated level
-        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
+        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager(),_levelController->getWorld()->getLevelData());
         std::shared_ptr<Scene> s = _gameState->getScene();
         std::shared_ptr<World> w = _levelController->getWorld();
         dispose();
@@ -135,4 +135,12 @@ void GameplayController::dispose(){
     _zoneController = nullptr;
 
     _gameState = nullptr;
+}
+
+std::shared_ptr<LevelData> GameplayController::getCurrentLevel(){
+    return _levelController->getWorld()->getLevelData();
+}
+
+std::shared_ptr<World> GameplayController::getWorld(){
+    return _levelController->getWorld();
 }
