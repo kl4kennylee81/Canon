@@ -8,6 +8,7 @@
 
 #include "MenuController.hpp"
 #include "InputController.hpp"
+#include "LevelEditorEvent.hpp"
 
 using namespace cugl;
 
@@ -30,6 +31,17 @@ void MenuController::notify(Event* e) {
 
 void MenuController::eventUpdate(Event* e) {
     switch (e->_eventType) {
+        case Event::EventType::LEVEL_EDITOR:
+        {
+            LevelEditorEvent* levelEditorEvent = (LevelEditorEvent*) e;
+            switch (levelEditorEvent->_levelEditType){
+                case LevelEditorEvent::LevelEditorEventType::SIMULATE_LEVEL:
+                {
+                    _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                    break;
+                }
+            }
+        }
         default:
             break;
     }
