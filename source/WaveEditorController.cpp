@@ -140,12 +140,16 @@ void WaveEditorController::updateDragAndDrop(){
             auto templ = _templates.at(_dragIndex);
             auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
             
-            entry->setPosition(scene_pos);
+            Vec2 physicsCoord;
+            Util::sceneToPhysicsCoords(scene_pos,physicsCoord);
+            entry->setPosition(physicsCoord);
             _currentWave->addWaveEntry(entry);
         }
         else{
             auto entry = _currentWave->getEntry(_dragIndex);
-            entry->setPosition(scene_pos);
+            Vec2 physicsCoord;
+            Util::sceneToPhysicsCoords(scene_pos,physicsCoord);
+            entry->setPosition(physicsCoord);
         }
         for(auto it: templateNode->getChildren()){
             it->setVisible(true);
@@ -251,7 +255,8 @@ void WaveEditorController::updateWaveEntryNodes(){
     auto waveEntries = _currentWave->getWaveEntries();
     for(int i = 0; i < waveEntries.size(); i++){
         auto entry = waveEntries.at(i);
-        Vec2 pos = entry->getPosition();
+        Vec2 pos;
+        Util::physicsToSceneCoords(entry->getPosition(),pos);
         Color4 color = entry->getElement() == Element::BLUE ? Color4::BLUE : Color4::YELLOW;
         auto waveEntryButton = Util::makeBoxButton(pos.x, pos.y, 30, 30, color, Color4::PAPYRUS);
         waveEntryButton->setListener(
