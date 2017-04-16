@@ -545,7 +545,6 @@ public:
 	*/
 	template<typename T>
 	bool load(const char* key, const char* source) {
-		std::cout << key << " " << source << std::endl;
 		return load<T>(std::string(key), std::string(source));
 	}
 

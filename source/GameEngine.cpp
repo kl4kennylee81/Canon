@@ -82,14 +82,17 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
+    _assets->loadDirectory("json/level.json");
+    
+    /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
     
     std::string templateDir = Application::get()->getAssetDirectory();
     templateDir.append(TEMPLATE_PATH);
     
-    std::cout << "current file directory: "<< __FILE__ << std::endl;
+    // std::cout << "current file directory: "<< __FILE__ << std::endl;
     std::vector<std::string> vec = Util::split(__FILE__, '/');
     
-    std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
+    // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
     //load all template wave entries
     DIR *dir;
@@ -105,9 +108,8 @@ void GameEngine::onStartup() {
         }
         closedir (dir);
     }
-
-    // test for loading from a data file
-    _assets->loadDirectory("json/kyleLevel0a.json");
+    
+    /** END OF TEMPORARY CODE TO WIPE **/
 
 
     
@@ -240,7 +242,7 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                _menuGraph->setNextMode(Mode::GAMEPLAY);
             }
             break;
         }

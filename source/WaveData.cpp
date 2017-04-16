@@ -14,17 +14,12 @@
 using namespace cugl;
 
 bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
-    std::vector<std::string> zKeys;
-    if (json->has("zoneKeys")) {
-        zKeys = json->get("zoneKeys")->asStringArray();
-    }
+    std::string tempKey = json->getString("templateKey");
+    
     init(json->getFloat("x"),
         json->getFloat("y"),
         json->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD,
         json->getString("templateKey"));
-    if(json->has("templateKey")) {
-        templateKey = json->getString("templateKey");
-    }
     return true;
 }
 
