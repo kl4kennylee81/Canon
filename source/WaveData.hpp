@@ -28,9 +28,6 @@ public:
     
     std::string templateKey;
     
-    /*only used by level editor*/
-    int templateIndex;
-    
     WaveEntry(){}
     
     void switchElement(std::string blueObjectKey, std::string goldObjectKey) {

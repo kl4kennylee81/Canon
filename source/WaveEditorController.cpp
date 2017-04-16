@@ -139,7 +139,7 @@ void WaveEditorController::updateDragAndDrop(){
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
             auto entry = WaveEntry::alloc(templ->blueObjectKey, templ->aiKey, 0, 0, Element::BLUE, templ->zoneKeys);
-            entry->templateIndex = _dragIndex;
+            entry->templateKey = templ->name;
             entry->position = scene_pos;
             _currentWave->addWaveEntry(entry);
         }
@@ -183,6 +183,17 @@ void WaveEditorController::setWave(std::shared_ptr<WaveData> wave) {
 	_state = WaveEditorState::START;
 }
 
+std::shared_ptr<TemplateWaveEntry> WaveEditorController::getTemplateWaveEntry(std::string templateKey){
+    for (auto t : _templates){
+        if (templateKey == t->name) {
+            return t;
+        }
+    }
+    
+    // the template is not found
+    return nullptr;
+}
+
 void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
     auto templateNode = _levelEditNode->getChildByName("templates");
     auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(index));
@@ -222,7 +233,7 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
             }
             case WaveEditorState::COLOR_TOGGLE: {
                 auto waveEntry = _currentWave->getEntry(index);
-                auto templateEntry = _templates.at(waveEntry->templateIndex);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->templateKey);
                 waveEntry->switchElement(templateEntry->blueObjectKey, templateEntry->goldObjectKey);
                 _colorChanged = true;
                 break;
