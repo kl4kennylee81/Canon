@@ -12,6 +12,8 @@
 #include "Util.hpp"
 #include "InputController.hpp"
 #include "GameEngine.hpp"
+#include "ActiveAnimation.hpp"
+#include "AnimationData.hpp"
 
 using namespace cugl;
 
@@ -52,6 +54,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
         std::string name = "kyle" + std::to_string(_templates.size());
 		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "static", {});
 		_templates.push_back(newTemplate);
+        _world->addTemplate(name, newTemplate);
 		updateTemplateNodes();
         createTemplateFile(newTemplate);
         //TODO: Make new file for template
@@ -105,7 +108,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 
 void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ) {
     auto templates = JsonValue::allocObject();
-    templates->appendChild(templ->name + "_template", templ->toJsonValue());
+    templates->appendChild(templ->name, templ->toJsonValue());
     
     auto json = JsonValue::allocObject();
     json->appendChild("templates", templates);
@@ -138,6 +141,7 @@ void WaveEditorController::updateDragAndDrop(){
         _dragNode->removeAllChildren();
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
+            std::cout << templ->name << std::endl;
             auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
             
             Vec2 physicsCoord;
@@ -196,6 +200,18 @@ std::shared_ptr<TemplateWaveEntry> WaveEditorController::getTemplateWaveEntry(st
     
     // the template is not found
     return nullptr;
+}
+
+std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, float y,
+    std::shared_ptr<TemplateWaveEntry> templ, Element color)
+{
+    auto activeAnim = ActiveAnimation::alloc();
+    auto objectData = _world->getObjectData(templ->getObjectKey());
+    activeAnim->setAnimationData(_world->getAnimationData(objectData->getAnimationKey(color)));
+    auto button = Button::alloc(activeAnim->getAnimationNode());
+    button->setPosition(x, y);
+    button->setScale(0.5);
+    return button;
 }
 
 void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
@@ -257,31 +273,33 @@ void WaveEditorController::updateWaveEntryNodes(){
         auto entry = waveEntries.at(i);
         Vec2 pos;
         Util::physicsToSceneCoords(entry->getPosition(),pos);
-        Color4 color = entry->getElement() == Element::BLUE ? Color4::BLUE : Color4::YELLOW;
-        auto waveEntryButton = Util::makeBoxButton(pos.x, pos.y, 30, 30, color, Color4::PAPYRUS);
-        waveEntryButton->setListener(
+        
+        auto activeAnim = ActiveAnimation::alloc();
+        auto templateData = _world->getTemplate(entry->getTemplateKey());
+        auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
+        button->setListener(
             [=](const std::string& name, bool down) {
                 waveEntryButtonListenerFunction(name, down, i);
             }
         );
-        waveEntryButton->activate(getUid());
-        entryNode->addChildWithTag(waveEntryButton, i);
+        button->activate(getUid());
+        entryNode->addChildWithTag(button, i);
     }
 }
-
 
 void WaveEditorController::updateTemplateNodes() {
 	auto templateNode = _levelEditNode->getChildByName("templates");
 	deactivateAndClear(templateNode);
+    std::cout << _templates.size() << std::endl;
 	for (int i = 0; i < _templates.size(); i++) {
-		auto templateButton = Util::makeBoxButton(30, 500 - (i * 40), 30, 30, Color4::BLACK, Color4::PAPYRUS);
-		templateButton->setListener(
-			[=](const std::string& name, bool down) {
+        auto button = getButtonFromTemplate(30, 500 - (i * 40), _templates.at(i), Element::BLUE);
+        button->setListener(
+            [=](const std::string& name, bool down) {
                 templateButtonListenerFunction(name, down, i);
             }
-		);
-		templateButton->activate(getUid());
-		templateNode->addChildWithTag(templateButton, i);
+        );
+        button->activate(getUid());
+        templateNode->addChildWithTag(button, i);
 	}
 }
 
@@ -339,8 +357,8 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
-    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
-    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
+    //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
+    //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
 	return true;
 }
 
