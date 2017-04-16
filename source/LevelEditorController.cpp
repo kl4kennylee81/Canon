@@ -7,6 +7,7 @@
 //
 
 #include "LevelEditorController.hpp"
+#include "LevelEditorEvent.hpp"
 #include "Util.hpp"
 
 using namespace cugl;
@@ -58,17 +59,35 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 	}
 }
 
+/** to add it to the scene graph node */
+void LevelEditorController::activate(std::shared_ptr<Scene> scene){
+    scene->addChild(this->_levelEditNode);
+}
+
+/** to remove it from hte scene graph node */
+void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
+    scene->removeChild(this->_levelEditNode);
+}
+
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 	backButton->activate(getUid());
+    backButton->setListener(
+        [=](const std::string& name, bool down) {
+            if (down) {
+                std::shared_ptr<Event> slEvent = SimulateLevelEvent::alloc();
+                this->notify(slEvent.get());
+            }
+        }
+    );
 
 	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
 	addButton->setListener(
 		[=](const std::string& name, bool down) {
-		if (down) {
-			_state = LevelEditorState::ADD_NEW_WAVE;
-		}
+            if (down) {
+                _state = LevelEditorState::ADD_NEW_WAVE;
+            }
 		}
 	);
 
@@ -112,11 +131,21 @@ void LevelEditorController::updateWaveNodes() {
 bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets){
 	_state = LevelEditorState::MAIN;
 	_levelEditNode = Node::alloc();
-    scene->addChild(_levelEditNode);
+    this->activate(scene);
+    
+    // TODO need to refresh and hold a list of levelData that are already made
+    
 	_levelData = LevelData::alloc();
-    _world = World::alloc(assets);
+    _world = World::alloc(assets,_levelData);
     _world->_isSandbox = true;
     _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
 	setSceneGraph();
     return true;
+}
+
+void LevelEditorController::dispose(){
+    _world = nullptr;
+    _levelEditNode = nullptr;
+    _waveEditorController = nullptr;
+    _levelData = nullptr;
 }

@@ -160,6 +160,7 @@ void GameEngine::cleanPreviousMode(){
         case Mode::LOADING:
         {
             _loading->dispose();
+            _loading = nullptr;
             break;
         }
         case Mode::GAMEPLAY:
@@ -168,11 +169,13 @@ void GameEngine::cleanPreviousMode(){
         }
         case Mode::MAIN_MENU:
         {
-            _menu->dispose();
+            _menu = nullptr;
             break;
         }
         case Mode::LEVEL_EDIT:
         {
+            _menu = nullptr;
+            _levelEditor = nullptr;
             break;
         }
         default:
@@ -205,7 +208,11 @@ void GameEngine::initializeNextMode(){
         }
         case Mode::LEVEL_EDIT:
         {
+            // TODO likely have menuController always active but initialize it with
+            // the menus when it is in that mode otherwise it is just there.
+            _menu = MenuController::alloc(_scene,_menuGraph);
             _levelEditor = LevelEditorController::alloc(_scene, _assets);
+            _levelEditor->attach(_menu.get());
             break;
         }
         default:
@@ -232,7 +239,8 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
         }
         case Mode::LEVEL_EDIT:
         {
-            break;
+            std::shared_ptr<LevelData> level = _levelEditor->getCurrentLevelData();
+            return level;
         }
         default:
         {
@@ -260,7 +268,8 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         }
         case Mode::LEVEL_EDIT:
         {
-            // this is where we can pass the world to the gameplay controller
+            std::shared_ptr<World> levelWorld = _levelEditor->getWorld();
+            return levelWorld;
             break;
         }
         default:
@@ -284,8 +293,8 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
  */
 void GameEngine::update(float timestep) {
     if (_menuGraph->needsUpdate()){
-        cleanPreviousMode();
         initializeNextMode();
+        cleanPreviousMode();
         _menuGraph->updateToNextMode();
     }
     // update the game

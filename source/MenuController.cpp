@@ -114,6 +114,12 @@ void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     this->_scene->render(_batch);
 }
 
+bool MenuController::init(std::shared_ptr<MenuGraph> menuGraph){
+    _menuGraph = menuGraph;
+    _selectedLevel = "";
+    return true;
+}
+
 bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
                           std::shared_ptr<MenuGraph> menuGraph){
     _scene = scene;

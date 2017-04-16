@@ -59,7 +59,8 @@ public:
     
     ~World();
     
-    virtual bool init(){
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets){
+        _assets = assets;
         return true;
     }
 
@@ -71,9 +72,24 @@ public:
         return true;
     }
 
-    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
+		std::shared_ptr<World> result = std::make_shared<World>();
+		return (result->init(assets) ? result : nullptr);
+	}
 
-	std::string serialize(std::string levelName);
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::string levelName) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(assets,levelName) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(assets,levelData) ? result : nullptr);
+    }
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
+    
+    std::string serialize(std::string levelName);
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     
@@ -84,7 +100,7 @@ public:
     std::shared_ptr<PathData> getPathData(std::string pathKey);
     
     std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
-
+    
     std::shared_ptr<WaveData> getWaveData(std::string waveKey);
     
     std::shared_ptr<AIData> getAIData(std::string aiKey);
@@ -98,24 +114,17 @@ public:
     std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
     
     std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
-
-	static std::shared_ptr<World> alloc() {
-		std::shared_ptr<World> result = std::make_shared<World>();
-		return (result->init() ? result : nullptr);
-	}
-
-    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::string levelName) {
-        std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(assets,levelName) ? result : nullptr);
-    }
-    
-    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {
-        std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(assets,levelData) ? result : nullptr);
-    }
     
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
+    }
+    
+    void setLevelData(std::shared_ptr<LevelData> levelData){
+        _levelData = levelData;
+    }
+    
+    void setLevelData(std::string levelName){
+        _levelData = _assets->get<LevelData>(levelName);
     }
 
     void populate();

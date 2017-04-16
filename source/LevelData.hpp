@@ -69,11 +69,11 @@ public:
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
-    virtual bool preload(const std::string& file);
+    virtual bool preload(const std::string& file) override;
     
-    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
-    virtual bool materialize();
+    virtual bool materialize() override;
 };
 
 #endif /* LevelData_hpp */

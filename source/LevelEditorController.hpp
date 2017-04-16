@@ -38,6 +38,12 @@ private:
 	std::shared_ptr<LevelData> _levelData;
 
 public:
+    
+    LevelEditorController(): BaseController() {}
+    
+    ~LevelEditorController() { dispose(); };
+    
+    
     virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
@@ -53,7 +59,15 @@ public:
     
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets);
     
+    virtual void dispose();
+    
 	void setSceneGraph();
+    
+    /** to add it to the scene graph node */
+    void activate(std::shared_ptr<cugl::Scene> scene);
+    
+    /** to remove it from hte scene graph node */
+    void deactivate(std::shared_ptr<cugl::Scene> scene);
 
 	void addNewWave();
 
@@ -62,6 +76,14 @@ public:
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();
         return (result->init(scene,assets) ? result : nullptr);
+    }
+    
+    std::shared_ptr<World> getWorld(){
+        return _world;
+    }
+    
+    std::shared_ptr<LevelData> getCurrentLevelData(){
+        return _levelData;
     }
 
 };

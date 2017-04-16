@@ -27,7 +27,8 @@ public:
 		/** Move **/
 		MOVE,
         SWITCH,
-        ZONE
+        ZONE,
+        LEVEL_EDITOR
     };
     
     EventType _eventType;
