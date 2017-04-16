@@ -15,6 +15,7 @@
 #include "InputController.hpp"
 #include "UIData.hpp"
 #include "UIDataLoader.hpp"
+#include "Util.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -85,7 +86,10 @@ void GameEngine::onStartup() {
     std::string templateDir = Application::get()->getAssetDirectory();
     templateDir.append(TEMPLATE_PATH);
     
-    std::cout << "save directory: "<< Application::get()->getSaveDirectory() << std::endl;
+    std::cout << "current file directory: "<< __FILE__ << std::endl;
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    
+    std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
     //load all template wave entries
     DIR *dir;

@@ -10,6 +10,8 @@
 #define Util_hpp
 
 #include <cugl/cugl.h>
+#include <algorithm>
+#include <typeinfo>
 
 class Util {
 public:
@@ -30,6 +32,20 @@ public:
         }
         if (buff != "") v.push_back(buff);
         return v;
+    }
+    
+    static std::string join(const std::vector<std::string>& v,size_t n, const char& c)
+    {
+        std::stringstream ss;
+        
+        for(size_t i = 0; i < std::min(n,v.size()); ++i)
+        {
+            if(i != 0)
+            ss << c;
+            ss << v[i];
+        }
+        std::string s = ss.str();
+        return s;
     }
 
 	static std::shared_ptr<cugl::Button> makeBoxButton(int x, int y, int width, int height, cugl::Color4 upColor, cugl::Color4 downColor) {
