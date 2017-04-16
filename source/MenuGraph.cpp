@@ -11,6 +11,7 @@
 #include "UIComponent.hpp"
 #include "GameState.hpp"
 #include "SaveGameData.hpp"
+#include "Util.hpp"
 
 #define SAVE_GAME_FILE "saveFile"
 
@@ -41,7 +42,7 @@ std::shared_ptr<Menu> createLevelMenu(const std::shared_ptr<GenericAssetManager>
 	std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>("lakebg"));
 	cugl::Size imageSize = imageNode->getSize();
 	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+	imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
 	imageNode->setPosition(Vec2::ZERO);
 	menu->setBackground(imageNode);
 
@@ -74,7 +75,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
 		cugl::Size imageSize = imageNode->getSize();
 		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
 		imageNode->setPosition(Vec2::ZERO);
 		
 		menu->setBackground(imageNode);

@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <typeinfo>
 
+
 class Util {
 public:
 
@@ -57,6 +58,65 @@ public:
 		button->setPosition(cugl::Vec2::Vec2(x, y));
 		return button;
 	}
+    
+    #pragma mark Coordinate Conversions
+    
+    static float getGameSceneHeight()
+    {
+        cugl::Size size = cugl::Application::get()->getDisplaySize();
+        return size.height / size.width * GAME_SCENE_WIDTH;
+    }
+    
+    static float getScreenToSceneScale()
+    {
+        cugl::Size size = cugl::Application::get()->getDisplaySize();
+        return GAME_SCENE_WIDTH/size.width;
+    }
+    
+    /** Helper function to calculate the y translate needed to go from scene to world **/
+    static float getSceneToWorldTranslateY(){
+        float sceneYMax = getGameSceneHeight();
+        float scene_yPos = (sceneYMax - (GAME_PHYSICS_HEIGHT * GAME_PHYSICS_SCALE))/2.f;
+        return scene_yPos;
+    }
+    
+    /** Physics Conversion **/
+    static cugl::Vec2& physicsToSceneCoords(cugl::Vec2& physicsCoords,Vec2& sceneCoords){
+        cugl::Vec2::scale(physicsCoords, GAME_PHYSICS_SCALE, &sceneCoords);
+        sceneCoords.y += getSceneToWorldTranslateY();
+        return sceneCoords;
+    }
+    
+    static cugl::Vec2& physicsToScreenCoords(cugl::Vec2& physicsCoords, Vec2& screenCoords){
+        physicsToSceneCoords(physicsCoords,screenCoords);
+        sceneToScreenCoords(screenCoords,screenCoords);
+        return screenCoords;
+    }
+    
+    /** Screen conversions */
+    static cugl::Vec2& screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords){
+        cugl::Vec2::scale(screenCoords,getScreenToSceneScale(),&sceneCoords);
+        return screenCoords;
+    }
+    
+    static cugl::Vec2& screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords){
+        screenToSceneCoords(screenCoords,physicsCoords);
+        sceneToPhysicsCoords(physicsCoords, physicsCoords);
+        return physicsCoords;
+    }
+    
+    /** Scene conversions */
+    static cugl::Vec2& sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords){
+        cugl::Vec2::divide(sceneCoords,getScreenToSceneScale(),&screenCoords);
+        return screenCoords;
+    }
+    
+    static cugl::Vec2& sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords){
+        physicsCoords.set(sceneCoords);
+        physicsCoords.y -= getSceneToWorldTranslateY();
+        cugl::Vec2::divide(physicsCoords,GAME_PHYSICS_SCALE,&physicsCoords);
+        return physicsCoords;
+    }
 
 };
 

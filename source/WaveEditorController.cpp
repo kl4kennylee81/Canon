@@ -140,7 +140,6 @@ void WaveEditorController::updateDragAndDrop(){
             auto templ = _templates.at(_dragIndex);
             auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
             
-            Vec2 physics_pos = GameState::
             entry->setPosition(scene_pos);
             _currentWave->addWaveEntry(entry);
         }
