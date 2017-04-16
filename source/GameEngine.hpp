@@ -20,7 +20,7 @@
 #include "GenericAssetManager.hpp"
 #include "LevelEditorController.hpp"
 
-#define TEMPLATE_PATH "/Users/kyle/Canon/assets/json/templates/"
+#define TEMPLATE_PATH "json/templates/"
 
 
 /**

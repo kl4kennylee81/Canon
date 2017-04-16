@@ -323,7 +323,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
-    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0"));
-    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1"));
+    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
+    _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
 	return true;
 }

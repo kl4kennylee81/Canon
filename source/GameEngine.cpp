@@ -82,14 +82,21 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
     
+    std::string templateDir = Application::get()->getAssetDirectory();
+    templateDir.append(TEMPLATE_PATH);
+    
+    std::cout << templateDir << std::endl;
+    
     //load all template wave entries
     DIR *dir;
     struct dirent *ent;
-    if ((dir = opendir (TEMPLATE_PATH)) != NULL) {
+    if ((dir = opendir(templateDir.c_str())) != NULL) {
         /* print all the files and directories within directory */
         while ((ent = readdir (dir)) != NULL) {
             if(ent->d_name[0] != '.'){
-                _assets->loadDirectory("json/templates/"+std::string(ent->d_name));
+                std::string templatePath = "json/templates/";
+                templatePath.append(ent->d_name);
+                _assets->loadDirectory(templatePath);
             }
         }
         closedir (dir);
