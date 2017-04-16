@@ -121,3 +121,11 @@ std::string WaveEntry::getTemplateKey(){
     return templateKey;
 }
 
+void WaveEntry::setTemplateKey(std::string tKey){
+    this->templateKey = tKey;
+}
+
+void WaveEntry::setPosition(cugl::Vec2 pos){
+    this->position = pos;
+}
+

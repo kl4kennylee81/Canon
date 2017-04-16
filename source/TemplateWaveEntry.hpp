@@ -15,7 +15,7 @@
 #include "AIData.hpp"
 
 class TemplateWaveEntry : public Data {
-private:
+public:
     std::string name;
     
     std::string blueObjectKey;
@@ -25,7 +25,6 @@ private:
     std::string aiKey;
     
     std::vector<std::string> zoneKeys;
-public:
     
     TemplateWaveEntry() : Data(){}
 

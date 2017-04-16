@@ -44,6 +44,10 @@ public:
     
     std::string getTemplateKey();
     
+    void setTemplateKey(std::string tKey);
+    
+    void setPosition(cugl::Vec2 pos);
+    
     void switchElement(std::string blueObjectKey, std::string goldObjectKey) {
         element = element == Element::BLUE ? Element::GOLD : Element::BLUE;
         objectKey = element == Element::BLUE ? blueObjectKey : goldObjectKey;
