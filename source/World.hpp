@@ -119,9 +119,6 @@ public:
     }
 
     void populate();
-
-    /** testing function to populate the world without the data files */
-    void populateKyleLevel();
 	
 };
 

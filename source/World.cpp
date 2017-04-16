@@ -156,7 +156,6 @@ bool World::init(std::shared_ptr<GenericAssetManager> assets){
     this->_levelData = assets->get<LevelData>(levelName);
     _isSandbox = false;
     
-    populateKyleLevel();
     return true;
 }
 
