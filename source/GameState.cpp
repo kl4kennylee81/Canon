@@ -138,8 +138,8 @@ float GameState::getPhysicsScale(){
 
 /** Helper function to calculate the y translate needed to go from scene to world **/
 float GameState::getSceneToWorldTranslateY(){
-    float sceneYMax = this->getScene()->getCamera()->getViewport().getMaxY();
-    float scene_yPos = (sceneYMax - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2.f;
+    float sceneYMax = getGameSceneHeight();
+    float scene_yPos = (sceneYMax - (GAME_PHYSICS_HEIGHT * GAME_PHYSICS_SCALE))/2.f;
     return scene_yPos;
 }
 

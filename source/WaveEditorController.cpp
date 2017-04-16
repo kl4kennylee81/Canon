@@ -140,8 +140,7 @@ void WaveEditorController::updateDragAndDrop(){
             auto templ = _templates.at(_dragIndex);
             auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
             
-            // TODO replace with just allocing it and setting template name directly
-            entry->setTemplateKey(templ->name);
+            Vec2 physics_pos = GameState::
             entry->setPosition(scene_pos);
             _currentWave->addWaveEntry(entry);
         }
@@ -339,4 +338,10 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
     _templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
 	return true;
+}
+
+void WaveEditorController::updateWorld(std::shared_ptr<World> world){
+    for (auto templateWaveEntry : _templates){
+        world->addTemplate(templateWaveEntry->name,templateWaveEntry);
+    }
 }

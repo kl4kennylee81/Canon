@@ -159,7 +159,6 @@ void GameEngine::cleanPreviousMode(){
     switch(_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            _loading->dispose();
             _loading = nullptr;
             break;
         }
@@ -269,6 +268,8 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         case Mode::LEVEL_EDIT:
         {
             std::shared_ptr<World> levelWorld = _levelEditor->getWorld();
+            // TODO will replace once we give a default value to the levelStubs
+            levelWorld->presetPlayerCharacters();
             return levelWorld;
             break;
         }
@@ -307,7 +308,7 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::MAIN_MENU);
+                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
             }
             break;
         }

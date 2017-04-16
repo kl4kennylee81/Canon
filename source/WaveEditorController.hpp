@@ -103,6 +103,8 @@ public:
 		std::shared_ptr<WaveEditorController> result = std::make_shared<WaveEditorController>();
 		return (result->init(node, world) ? result : nullptr);
 	}
+    
+    void updateWorld(std::shared_ptr<World> world);
 
 };
 

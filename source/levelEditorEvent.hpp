@@ -47,7 +47,7 @@ public:
     }
     
     static std::shared_ptr<SimulateLevelEvent> alloc() {
-        std::shared_ptr<ObjectGoneEvent> result = std::make_shared<SimulateLevelEvent>();
+        std::shared_ptr<SimulateLevelEvent> result = std::make_shared<SimulateLevelEvent>();
         return (result->init() ? result : nullptr);
     }
     

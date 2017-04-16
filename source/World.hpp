@@ -126,8 +126,14 @@ public:
     void setLevelData(std::string levelName){
         _levelData = _assets->get<LevelData>(levelName);
     }
+    
+    void addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry>);
 
     void populate();
+    
+    bool isValid();
+    
+    void presetPlayerCharacters();
 	
 };
 

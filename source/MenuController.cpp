@@ -37,7 +37,7 @@ void MenuController::eventUpdate(Event* e) {
             switch (levelEditorEvent->_levelEditType){
                 case LevelEditorEvent::LevelEditorEventType::SIMULATE_LEVEL:
                 {
-                    _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                    _menuGraph->setNextMode(Mode::GAMEPLAY);
                     break;
                 }
             }

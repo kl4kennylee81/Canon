@@ -74,6 +74,8 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
     virtual bool materialize() override;
+    
+    bool isValid();
 };
 
 #endif /* LevelData_hpp */

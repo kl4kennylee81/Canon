@@ -247,3 +247,36 @@ std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
     return _assets->get<ZoneData>(zoneKey);
 }
 
+void World::addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry> twe){
+    _templateData.insert(std::make_pair(templateKey,twe));
+}
+
+bool World::isValid(){
+    if (_levelData == nullptr){
+        return false;
+    }
+    
+    if (_assets == nullptr) {
+        return false;
+    }
+    
+    return _levelData->isValid();
+}
+
+void World::presetPlayerCharacters(){
+    if(isValid()){
+        return;
+    }
+    // TODO hacky function need to remove when a better solution comes up
+    // better solution will be when initialize level stub give default value for the player characters
+    
+    // add two player characters
+    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(500,250,Element::BLUE,"playerChar");
+    _levelData->addPlayerChars(playerChar1);
+    
+    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(500,250,Element::GOLD,"playerChar");
+    _levelData->addPlayerChars(playerChar2);
+    
+    return;
+}
+

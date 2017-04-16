@@ -76,11 +76,14 @@ void LevelEditorController::setSceneGraph() {
     backButton->setListener(
         [=](const std::string& name, bool down) {
             if (down) {
+                _waveEditorController->updateWorld(_world);
                 std::shared_ptr<Event> slEvent = SimulateLevelEvent::alloc();
                 this->notify(slEvent.get());
             }
         }
     );
+    
+    backButton->activate(getUid());
 
 	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
 	addButton->setListener(

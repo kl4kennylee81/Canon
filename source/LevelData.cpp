@@ -87,3 +87,11 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 bool LevelData::materialize(){
     return true;
 }
+
+bool LevelData::isValid(){
+    // check that there are two player characters
+    if (!(_playerChars.size() == 2)){
+        return false;
+    }
+    return true;
+}
