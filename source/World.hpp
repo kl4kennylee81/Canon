@@ -19,6 +19,7 @@
 #include "WaveData.hpp"
 #include "LevelData.hpp"
 #include "ZoneData.hpp"
+#include "SoundData.hpp"
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
 
@@ -51,6 +52,7 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
+    std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
 
 public:
     
@@ -90,6 +92,8 @@ public:
     
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
+    std::shared_ptr<SoundData> getSoundData(std::string soundKey);
+    
 	static std::shared_ptr<World> alloc() {
 		std::shared_ptr<World> result = std::make_shared<World>();
 		return (result->init() ? result : nullptr);
@@ -108,7 +112,7 @@ public:
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
     }
-
+    
     void populate();
 
     /** testing function to populate the world without the data files */

@@ -11,6 +11,7 @@
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 #include "UIData.hpp"
+#include "SoundData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -223,6 +224,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
         else if (child->key() == "zones"){
             success = readCategory(typeid(ZoneData).hash_code(), child) && success;
+        }
+        else if (child->key() == "sounds"){
+            success = readCategory(typeid(SoundData).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

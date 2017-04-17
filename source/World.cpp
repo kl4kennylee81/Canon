@@ -134,10 +134,10 @@ void World::populateKyleLevel() {
 	wd->addWaveEntry(WaveEntry::alloc("object2", "static", 900, 100, Element::GOLD, {"rotateZone"}));
 	_waveData.insert(std::make_pair("kylewave4", wd));
 
-	auto od1 = ObjectData::alloc("shape1", "blueEnemyAnimation");
+	auto od1 = ObjectData::alloc("shape1", "blueEnemyAnimation", "baseEnemySound");
 	_objectData.insert(std::make_pair("object1", od1));
 
-	auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
+	auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation", "baseEnemySound");
 	_objectData.insert(std::make_pair("object2", od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
@@ -254,10 +254,10 @@ void World::populate() {
 	}
     
 
-	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation");
+	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation","baseEnemySound");
 	_objectData.insert(std::make_pair("object1", od1));
 
-    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
+    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation","baseEnemySound");
 	_objectData.insert(std::make_pair("object2", od2));
 
 	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
@@ -348,4 +348,12 @@ std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
     }
     return _assets->get<ZoneData>(zoneKey);
 }
+
+std::shared_ptr<SoundData> World::getSoundData(std::string soundKey){
+    if (_isSandbox && _soundData.count(soundKey) > 0){
+        return _soundData.at(soundKey);
+    }
+    return _assets->get<SoundData>(soundKey);
+}
+
 

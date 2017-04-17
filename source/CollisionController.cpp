@@ -69,6 +69,8 @@ void CollisionController::eventUpdate(Event* e) {
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
                     addToWorld(zoneSpawn->object);
+                    zoneSpawn->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_OFF_COLOR);
+                    objsToIgnore.push_back(zoneSpawn->object);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_ON: {
@@ -106,11 +108,17 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
     
     for (auto obj : objsScheduledForRemoval) {
+        if (obj->getIsPlayer()){
+            // TODO check if we actually need this inGame flag
+            inGame = false;
+        }
         removeFromWorld(obj);
     }
     objsScheduledForRemoval.clear();
     
-    _world->update(timestep);
+    if (inGame) {
+        _world->update(timestep);
+    }
 }
 
 void CollisionController::dispose(){
@@ -161,6 +169,8 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     
     Input::activate<Keyboard>();
     setDebug(false);
+    
+    inGame = true;
     
     return true;
 }

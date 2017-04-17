@@ -295,11 +295,13 @@
     },
     "playerChar1": {
       "shapeKey": "shape1",
-      "animationKey": "blueCharAnimation"
+      "animationKey": "blueCharAnimation",
+      "soundKey": "female"
     },
     "playerChar2": {
       "shapeKey": "shape1",
-      "animationKey": "redCharAnimation"
+      "animationKey": "redCharAnimation",
+      "soundKey": "male"
     },
     "circle": {
       "shapeKey": "circle",
@@ -438,8 +440,8 @@
       "objectKey": "big_circle",
       "relX": 0,
       "relY": 0,
-      "cooldown": 50,
-      "duration": 50,
+      "cooldown": 150,
+      "duration": 150,
       "element": "BLUE"
     },
     "rotateZone": {

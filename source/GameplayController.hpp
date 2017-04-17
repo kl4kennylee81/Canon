@@ -24,7 +24,11 @@
 #include "SpawnController.hpp"
 #include "ZoneController.hpp"
 #include "ClockController.hpp"
+<<<<<<< HEAD
 #include "FinishController.hpp"
+=======
+#include "SoundController.hpp"
+>>>>>>> master
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -42,6 +46,7 @@ protected:
     std::shared_ptr<AnimationController> _animationController;
     std::shared_ptr<ClockController> _clockController;
     std::shared_ptr<FinishController> _finishController;
+    std::shared_ptr<SoundController> _soundController;
 
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */

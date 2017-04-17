@@ -35,7 +35,7 @@
                 "death": {
                     "first": 5,
                     "total": 1,
-                    "frames": [15]
+                    "frames": [30]
                 }
             },
             "actionmap": {

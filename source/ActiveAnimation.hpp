@@ -35,8 +35,11 @@ private:
      */
     bool _last;
     
+    bool flash;
     
 public:
+    bool lit;
+    float flashIndex;
     
     ActiveAnimation():_node(nullptr),_data(nullptr),_last(false),curIndex(0),curFrames(0){}
     
@@ -52,6 +55,7 @@ public:
         repeat = std::string();
         curIndex = 0;
         curFrames = 0;
+        flash = false;
         return true;
     }
     
@@ -93,8 +97,18 @@ public:
     
     void setLastAnimation() {_last = true;};
     
+    bool isLastAnimation() { return _last;};
+    
     void setScale(float scale){
         _node->setScale(scale);
     }
+    
+    void setFlash(bool f) {
+        flash = f;
+        lit = false;
+        flashIndex = 0;
+    }
+    
+    bool getFlash() {return flash;};
 };
 #endif /* ActiveAnimation_hpp */

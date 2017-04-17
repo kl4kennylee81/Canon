@@ -26,6 +26,7 @@
 
 class CollisionController : public BaseController {
 protected:
+    bool inGame;
     /** The Box2D world */
     std::shared_ptr<cugl::ObstacleWorld> _world;
     

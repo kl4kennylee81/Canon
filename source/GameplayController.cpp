@@ -12,6 +12,8 @@
 
 using namespace cugl;
 
+#define RUSTLING_LEAVES "./sounds/rustlingleaves.mp3"
+
 GameplayController::GameplayController() :
 BaseController(),
 _gameState(nullptr),
@@ -22,7 +24,8 @@ _aiController(nullptr),
 _switchController(nullptr),
 _levelController(nullptr),
 _clockController(nullptr),
-_finishController(nullptr)
+_finishController(nullptr),
+_soundController(nullptr)
 {}
 
 void GameplayController::attach(Observer* obs) {
@@ -108,6 +111,7 @@ void GameplayController::update(float timestep) {
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
     _finishController->update(timestep, _gameState);
+    _soundController->update(timestep, _gameState);
 }
 
 /**
@@ -141,11 +145,13 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
     _finishController = FinishController::alloc();
+    _soundController = SoundController::alloc(levelWorld);
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());
     _pathController->attach(_animationController.get());
     _pathController->attach(_clockController.get());
+    _pathController->attach(_soundController.get());
     
     _levelController->attach(_collisionController.get());
     _levelController->attach(_animationController.get());
@@ -153,6 +159,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_levelController->attach(_aiController.get());
     _levelController->attach(_zoneController.get());
     _levelController->attach(_finishController.get());
+    _levelController->attach(_soundController.get());
     
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
@@ -161,12 +168,15 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _collisionController->attach(_animationController.get());
     _collisionController->attach(_zoneController.get());
     _collisionController->attach(_aiController.get());
+    _collisionController->attach(_soundController.get());
     
     _spawnController->attach(_collisionController.get());
     _spawnController->attach(_animationController.get());
     _spawnController->attach(_switchController.get());
     _spawnController->attach(_aiController.get());
     _spawnController->attach(_zoneController.get());
+    _spawnController->attach(_soundController.get());
+    _spawnController->attach(_pathController.get());
     
     _switchController->attach(_animationController.get());
     
@@ -182,6 +192,8 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 
     activate();
     
+    AudioEngine::get()->playMusic(levelWorld->getAssetManager()->get<Music>("rustling_leaves"),true);
+    
 	return true;
 }
 
@@ -195,6 +207,7 @@ void GameplayController::dispose(){
     _collisionController = nullptr;
     _animationController = nullptr;
     _zoneController = nullptr;
+    _soundController = nullptr;
 
     _gameState = nullptr;
 }

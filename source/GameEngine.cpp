@@ -56,6 +56,8 @@ void GameEngine::onStartup() {
 	_assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
+    _assets->attach<Sound>(SoundLoader::alloc()->getHook());
+    _assets->attach<Music>(MusicLoader::alloc()->getHook());
 	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
 	_assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
 	_assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
@@ -66,6 +68,7 @@ void GameEngine::onStartup() {
 	_assets->attach<UIData>(UIDataLoader::alloc()->getHook());
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
+    _assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
     
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
@@ -73,10 +76,15 @@ void GameEngine::onStartup() {
     // create the menuGraph
     _menuGraph = MenuGraph::alloc();
     
+    // Initialize Audio Engine
+    AudioEngine::start();
+    
+    
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
     _assets->loadDirectory("json/animations.json");
+    _assets->loadDirectory("json/sounds.json");
 	_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
@@ -97,6 +105,7 @@ void GameEngine::onStartup() {
     Input::activate<Mouse>();
 	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
+    
     Application::onStartup();
 }
 
@@ -122,7 +131,38 @@ void GameEngine::onShutdown() {
 #else
     Input::deactivate<Mouse>();
 #endif
+    
+    AudioEngine::stop();
     Application::onShutdown();
+}
+
+/**
+ * The method called when the application is suspended and put in the background.
+ *
+ * When this method is called, you should store any state that you do not
+ * want to be lost.  There is no guarantee that an application will return
+ * from the background; it may be terminated instead.
+ *
+ * If you are using audio, it is critical that you pause it on suspension.
+ * Otherwise, the audio thread may persist while the application is in
+ * the background.
+ */
+void GameEngine::onSuspend() {
+    AudioEngine::get()->pauseAll();
+}
+
+/**
+ * The method called when the application resumes and put in the foreground.
+ *
+ * If you saved any state before going into the background, now is the time
+ * to restore it. This guarantees that the application looks the same as
+ * when it was suspended.
+ *
+ * If you are using audio, you should use this method to resume any audio
+ * paused before app suspension.
+ */
+void GameEngine::onResume() {
+    AudioEngine::get()->resumeAll();
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
