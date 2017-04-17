@@ -31,6 +31,32 @@ using namespace cugl;
 
 bool GameEngine::_touch;
 
+
+
+void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets) {
+#ifdef __APPLE__
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir(templateDir.c_str())) != NULL) {
+		/* print all the files and directories within directory */
+		while ((ent = readdir(dir)) != NULL) {
+			if (ent->d_name[0] != '.') {
+				std::string templatePath = TEMPLATE_PATH;
+				templatePath.append(ent->d_name);
+				assets->loadDirectory(templatePath);
+			}
+		}
+		closedir(dir);
+	}
+#endif
+}
+
+void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets) {
+
+}
+
+
+
 /**
  * The method called after OpenGL is initialized, but before running the application.
  *
@@ -103,21 +129,13 @@ void GameEngine::onStartup() {
     // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
     //load all template wave entries
-	if (CURRENT_OS == "apple") {
-		DIR *dir;
-		struct dirent *ent;
-		if ((dir = opendir(templateDir.c_str())) != NULL) {
-			/* print all the files and directories within directory */
-			while ((ent = readdir(dir)) != NULL) {
-				if (ent->d_name[0] != '.') {
-					std::string templatePath = TEMPLATE_PATH;
-					templatePath.append(ent->d_name);
-					_assets->loadDirectory(templatePath);
-				}
-			}
-			closedir(dir);
-		}
-	}
+
+	#ifdef _WIN32
+	loadTemplateFilesWindows(_assets);
+	#elif __APPLE__
+	loadTemplateFilesApple(_assets);
+	#endif
+
     
     /** END OF TEMPORARY CODE TO WIPE **/
 
@@ -407,4 +425,3 @@ void GameEngine::draw() {
     _scene->sortZOrder();
     _scene->render(_batch);
 }
-
