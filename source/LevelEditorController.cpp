@@ -33,6 +33,13 @@ void LevelEditorController::eventUpdate(Event* e){
 
 void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> menuGraph){
 	switch (_state) {
+    case LevelEditorState::START: {
+        // need to activate the button during the update loop after it is garunteed that
+        // all previous button have been deactivated which happens after initialization.
+        setSceneGraph();
+        _state = LevelEditorState::MAIN;
+        break;
+    }
 	case LevelEditorState::MAIN: {
 		//Look for clicks so we can enter wave editor
 		break;
@@ -159,7 +166,7 @@ void LevelEditorController::updateWaveNodes() {
 }
 
 bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<GenericAssetManager> assets){
-	_state = LevelEditorState::MAIN;
+	_state = LevelEditorState::START;
 	_levelEditNode = Node::alloc();
     this->activate(scene);
     
@@ -169,7 +176,6 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
     _world = World::alloc(assets,_levelData);
     _world->_isSandbox = true;
     _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
-	setSceneGraph();
     return true;
 }
 

@@ -17,6 +17,7 @@
 #include "LevelData.hpp"
 
 enum class LevelEditorState : int {
+    START,
 	MAIN,
     SAVE,
 	SWITCH_TO_WAVE,

@@ -89,9 +89,11 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         }
     }
     
-    if (_level.isSpawningFinished()){
-        state->toggleReset();
-    }
+//    TODO send a signal to the finishController which will check on multiple condition
+//    to determine if the game is over
+//    if (_level.isSpawningFinished()){
+//        state->toggleReset();
+//    }
 }
 
 bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
