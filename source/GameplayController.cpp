@@ -7,6 +7,7 @@
 //
 
 #include "GameplayController.hpp"
+#include "MenuEvent.hpp"
 
 using namespace cugl;
 
@@ -31,9 +32,25 @@ void GameplayController::detach(Observer* obs) {
 void GameplayController::notify(Event* e) {
     BaseController::notify(e);
 }
-void GameplayController::eventUpdate(Event* e) {}
+void GameplayController::eventUpdate(Event* e) {
+	switch (e->_eventType) {
+		case Event::EventType::MENU:
+			MenuEvent* menuEvent = static_cast<MenuEvent*>(e);
+
+			switch (menuEvent->_menuEventType) {
+				case MenuEvent::MenuEventType::PAUSEGAME:
+					PauseGame* pg = static_cast<PauseGame*>(menuEvent);
+					if (pg->pause) _paused = true;
+					else _paused = false;
+
+			}
+			break;
+	}
+}
 
 void GameplayController::update(float timestep) {
+	if (_paused) return;
+
     // TODO temporary rest until we have a retry screen
     if (_gameState->getReset()){
         // repopulate the randomly generated level
@@ -118,6 +135,8 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _zoneController->attach(_collisionController.get());
     _zoneController->attach(_animationController.get());
     
+	_paused = false;
+
     activate();
     
 	return true;

@@ -44,6 +44,7 @@ protected:
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;
+	bool _paused;
 
 public:
     

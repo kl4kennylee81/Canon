@@ -37,8 +37,26 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-    auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
-    std::shared_ptr<Button> button = Button::alloc(buttonTexture);
+
+
+	std::shared_ptr<Button> button;
+	std::shared_ptr<Label> label;
+
+	if (uiBackgroundKey != "") {
+		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
+		button = Button::alloc(buttonTexture);
+	}
+	else if (buttonLabel != "") {
+		label = Label::alloc(buttonLabel, assets->get<Font>("Charlemagne"));
+		label->setForeground(Color4::WHITE);
+		button = Button::alloc(label);
+	}
+	else {
+		label = Label::alloc("stub button", assets->get<Font>("Charlemagne"));
+		label->setForeground(Color4::WHITE);
+		button = Button::alloc(label);
+	}
+
 	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
 

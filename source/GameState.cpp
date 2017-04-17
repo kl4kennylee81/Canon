@@ -15,6 +15,7 @@ using namespace cugl;
 /** The name of the space texture */
 // HACK replace with level loading sending event
 #define BACKGROUND_TEXTURE       "bg_dark_lake"
+#define PAUSE_BUTTON             "pauseButton"
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets){
@@ -54,7 +55,7 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     _debugnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     _debugnode->setScale(GAME_PHYSICS_SCALE);
     _debugnode->setPosition(world_pos);
-    
+
     _scene = scene;
     _gameplayNode = Node::alloc();
     

@@ -13,6 +13,13 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "Paused": {
+            "file": ".\\textures\\menus\\pause\\Paused.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "bar_background": {
             "file": ".\\textures\\gameScreen\\progressBar\\bar_background.png", 
             "magfilter": "linear", 
@@ -99,6 +106,13 @@
         }, 
         "finalCap_foreground": {
             "file": ".\\textures\\gameScreen\\progressBar\\finalCap_foreground.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "gameover": {
+            "file": ".\\textures\\menus\\gameover\\gameover.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
@@ -239,6 +253,13 @@
         }, 
         "title": {
             "file": ".\\textures\\menus\\startMenu\\title.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "uglyPause": {
+            "file": ".\\textures\\gameScreen\\uglyPause.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

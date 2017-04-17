@@ -8,6 +8,8 @@
 
 #include "MenuController.hpp"
 #include "InputController.hpp"
+#include "UIData.hpp"
+#include "MenuEvent.hpp"
 
 using namespace cugl;
 
@@ -80,7 +82,8 @@ void MenuController::update(float timestep) {
                 switch(action->modeTarget){
                     case Mode::GAMEPLAY:
                     {
-                        _selectedLevel = action->nextScreen;
+                        _selectedLevel = action->nextLevel;
+						getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
                     case Mode::MAIN_MENU:
@@ -98,6 +101,16 @@ void MenuController::update(float timestep) {
             case ButtonActionType::FXTRIGGER:
             {
                 std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
+
+				switch (UIData::stringToFXType(action->fxKey)) {
+					case FXType::PAUSE:
+						notify(PauseGame::alloc(true).get());
+						break;
+					
+					case FXType::RESUME:
+						notify(PauseGame::alloc(false).get());
+						break;
+				}
                 break;
             }
         }
