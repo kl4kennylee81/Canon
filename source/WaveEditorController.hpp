@@ -51,6 +51,10 @@ private:
     bool _newEntry;
     
     bool _colorChanged;
+    
+    int _removeIndex;
+    
+    bool _entryRemoved;
 
 	std::shared_ptr<WaveData> _currentWave;
 

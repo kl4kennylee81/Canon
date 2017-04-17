@@ -85,6 +85,16 @@ public:
 		return _waveEntries.at(index);
 	}
     
+    void removeEntry(int index) {
+        std::vector<std::shared_ptr<WaveEntry>> newEntries;
+        for(int i = 0; i < _waveEntries.size(); i++) {
+            if(i != index){
+                newEntries.push_back(_waveEntries.at(i));
+            }
+        }
+        _waveEntries = newEntries;
+    }
+    
     
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();

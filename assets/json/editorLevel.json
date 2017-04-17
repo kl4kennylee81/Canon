@@ -17,6 +17,14 @@
 			"wave4":	{
 				"waveKey":	"wave3",
 				"time":	180
+			},
+			"wave5":	{
+				"waveKey":	"wave4",
+				"time":	180
+			},
+			"wave6":	{
+				"waveKey":	"wave5",
+				"time":	180
 			}
 		},
 		"playerChars":	{
@@ -36,19 +44,99 @@
 					"y":	443.733337,
 					"element":	"BLUE",
 					"templateKey":	"kyle3"
+				},
+				"object3":	{
+					"x":	635.733337,
+					"y":	293.333344,
+					"element":	"GOLD",
+					"templateKey":	"kyle0"
 				}
 			}
 		},
 		"wave1":	{
 			"waveEntries":	{
+				"object1":	{
+					"x":	485.333344,
+					"y":	358.400024,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				},
+				"object2":	{
+					"x":	493.866669,
+					"y":	156.800003,
+					"element":	"BLUE",
+					"templateKey":	"kyle0"
+				},
+				"object3":	{
+					"x":	650.666687,
+					"y":	182.399994,
+					"element":	"BLUE",
+					"templateKey":	"kyle2"
+				}
 			}
 		},
 		"wave2":	{
 			"waveEntries":	{
+				"object1":	{
+					"x":	144,
+					"y":	164.266663,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				},
+				"object2":	{
+					"x":	405.333344,
+					"y":	478.933319,
+					"element":	"BLUE",
+					"templateKey":	"kyle2"
+				},
+				"object3":	{
+					"x":	723.200012,
+					"y":	156.800003,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				}
 			}
 		},
 		"wave3":	{
 			"waveEntries":	{
+				"object1":	{
+					"x":	92.799988,
+					"y":	158.933334,
+					"element":	"BLUE",
+					"templateKey":	"kyle0"
+				},
+				"object2":	{
+					"x":	747.733337,
+					"y":	488.533325,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				},
+				"object3":	{
+					"x":	745.599976,
+					"y":	104.533325,
+					"element":	"BLUE",
+					"templateKey":	"kyle2"
+				},
+				"object4":	{
+					"x":	196.266663,
+					"y":	531.199951,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				}
+			}
+		},
+		"wave4":	{
+			"waveEntries":	{
+			}
+		},
+		"wave5":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	709.333313,
+					"y":	359.466675,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				}
 			}
 		}
 	}

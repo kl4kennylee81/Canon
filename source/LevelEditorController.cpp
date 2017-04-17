@@ -73,6 +73,9 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 }
 
 void LevelEditorController::loadLevel(std::string file){
+    _levelData = LevelData::alloc();
+    _world->setLevelData(_levelData);
+    
     std::vector<std::string> vec = Util::split(__FILE__, '/');
     std::string canonDir = Util::join(vec,vec.size()-2,'/');
     auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/"+file);
@@ -82,7 +85,6 @@ void LevelEditorController::loadLevel(std::string file){
     auto templates = json->get("templates");
     _waveEditorController->setTemplates(templates->asStringArray());
     
-    _levelData = LevelData::alloc();
     _levelData->preload(json->get("level"));
     
     std::shared_ptr<JsonValue> waves = json->get("waves");
@@ -175,7 +177,7 @@ void LevelEditorController::updateWaveNodes() {
 	auto waveNode = _levelEditNode->getChildByName("waves");
 	deactivateAndClear(waveNode);
 	for (int i = 0; i < _levelData->getNumberWaves(); i++) {
-		auto waveButton = Util::makeBoxButton(200 + 40 * i, 200, 30, 30, Color4::BLACK, Color4::PAPYRUS);
+		auto waveButton = Util::makeBoxButton(200 + 55 * i, 200, 45, 30, Color4::BLACK, Color4::PAPYRUS);
 		waveButton->setListener(
 			[=](const std::string& name, bool down) {
 			auto buttonNode = std::static_pointer_cast<Button>(waveNode->getChildByTag(i));
@@ -187,7 +189,20 @@ void LevelEditorController::updateWaveNodes() {
 		}
 		);
 		waveButton->activate(getUid());
+        
+        auto label = Label::alloc(std::to_string(i), _world->getAssetManager()->get<Font>("Charlemagne"));
+        label->setScale(0.25);
+        label->setPosition(200 + 55 * i, 230);
+        
+        int time = int(_levelData->getTime(i));
+        auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne"));
+        timeLabel->setScale(0.2);
+        timeLabel->setForeground(Color4::PAPYRUS);
+        timeLabel->setPosition(200 + 55 * i, 200);
+        
 		waveNode->addChildWithTag(waveButton, i);
+        waveNode->addChild(label);
+        waveNode->addChild(timeLabel);
 	}
 }
 
@@ -198,8 +213,7 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
     
     // TODO need to refresh and hold a list of levelData that are already made
     
-	_levelData = LevelData::alloc();
-    _world = World::alloc(assets,_levelData);
+    _world = World::alloc(assets);
     _world->_isSandbox = true;
     _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
     return true;

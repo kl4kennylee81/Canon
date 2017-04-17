@@ -75,8 +75,12 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case WaveEditorState::REMOVE: {
-		//click on item to remove
-		break;
+        if(_entryRemoved){
+            _currentWave->removeEntry(_removeIndex);
+            updateWaveEntryNodes();
+            _entryRemoved = false;
+        }
+        break;
 	}
     case WaveEditorState::COLOR_TOGGLE: {
         if(_colorChanged) {
@@ -176,11 +180,11 @@ void WaveEditorController::checkKeyboardInput() {
             _state = WaveEditorState::DRAG;
             return;
         }
-        if(key == KeyCode::E){
-            _state = WaveEditorState::EDIT;
+        if(key == KeyCode::BACKSPACE){
+            _state = WaveEditorState::REMOVE;
             return;
         }
-        if(key == KeyCode::T){
+        if(key == KeyCode::C){
             _state = WaveEditorState::COLOR_TOGGLE;
             return;
         }
@@ -250,7 +254,9 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
                 _dragStart = true;
                 break;
             }
-            case WaveEditorState::EDIT: {
+            case WaveEditorState::REMOVE: {
+                _entryRemoved = true;
+                _removeIndex = index;
                 break;
             }
             case WaveEditorState::COLOR_TOGGLE: {
@@ -279,6 +285,9 @@ void WaveEditorController::updateWaveEntryNodes(){
         auto activeAnim = ActiveAnimation::alloc();
         auto templateData = _world->getTemplate(entry->getTemplateKey());
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
+        auto label = Label::alloc(entry->getTemplateKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
+        label->setScale(0.18);
+        label->setPosition(pos.x, pos.y);
         button->setListener(
             [=](const std::string& name, bool down) {
                 waveEntryButtonListenerFunction(name, down, i);
@@ -286,6 +295,7 @@ void WaveEditorController::updateWaveEntryNodes(){
         );
         button->activate(getUid());
         entryNode->addChildWithTag(button, i);
+        entryNode->addChild(label);
     }
 }
 
@@ -295,6 +305,9 @@ void WaveEditorController::updateTemplateNodes() {
     std::cout << _templates.size() << std::endl;
 	for (int i = 0; i < _templates.size(); i++) {
         auto button = getButtonFromTemplate(30, 500 - (i * 40), _templates.at(i), Element::BLUE);
+        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
+        label->setScale(0.3);
+        label->setPosition(90, 500 - (i * 40));
         button->setListener(
             [=](const std::string& name, bool down) {
                 templateButtonListenerFunction(name, down, i);
@@ -302,6 +315,7 @@ void WaveEditorController::updateTemplateNodes() {
         );
         button->activate(getUid());
         templateNode->addChildWithTag(button, i);
+        templateNode->addChild(label);
 	}
 }
 
@@ -320,8 +334,8 @@ std::string WaveEditorController::getStateAsString(){
         case WaveEditorState::COLOR_TOGGLE: {
             return "COLOR TOGGLE";
         }
-        case WaveEditorState::EDIT: {
-            return "EDIT";
+        case WaveEditorState::REMOVE: {
+            return "DELETE";
         }
     }
     return "";
@@ -366,6 +380,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
+    _entryRemoved = false;
     //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
     //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
 	return true;

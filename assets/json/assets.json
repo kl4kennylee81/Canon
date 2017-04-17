@@ -7,7 +7,12 @@
         "kyle": {
             "file": "./fonts/Charlemagne.ttf",
             "size": 20
+        },
+        "small": {
+            "file": "./fonts/Charlemagne.ttf",
+            "size": 12
         }
+
     },
     "textures": {
         "bar_background": {
