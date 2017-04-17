@@ -107,12 +107,14 @@ void MenuController::update(float timestep) {
                     {
                         std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
 						notify(pauseEvent.get());
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
                     }
 					case FxTriggerButtonAction::FXType::RESUME:
                     {
                         std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(false);
 						notify(pauseEvent.get());
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
                     }
 				}
