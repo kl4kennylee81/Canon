@@ -130,6 +130,10 @@ size_t GameState::getNumberPlayerCharacters(){
     return _playerCharacters.size();
 }
 
+size_t GameState::getNumberEnemyCharacters(){
+    return _enemyObjects.size();
+}
+
 #pragma mark Coordinate Conversions
 
 float GameState::getPhysicsScale(){

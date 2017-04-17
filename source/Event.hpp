@@ -27,7 +27,9 @@ public:
 		/** Move **/
 		MOVE,
         SWITCH,
-        ZONE
+        ZONE,
+        FINISH,
+        ANIMATION
     };
     
     EventType _eventType;

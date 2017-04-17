@@ -142,6 +142,8 @@ GameState():
     
     size_t getNumberPlayerCharacters();
     
+    size_t getNumberEnemyCharacters();
+    
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
     }

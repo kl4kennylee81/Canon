@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
+#include "GameObject.hpp"
 #include "ActiveAnimation.hpp"
 #include "AnimationAction.hpp"
 #include "WaveData.hpp"
@@ -60,6 +61,8 @@ public:
     void syncAnimation(std::shared_ptr<ActiveAnimation> activeAnim, GameObject* obj);
     
     void updateFrames(std::shared_ptr<GameState> state);
+    
+    void removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim);
 };
 
 #endif /* AnimationController_hpp */

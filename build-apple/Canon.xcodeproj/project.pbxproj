@@ -95,6 +95,12 @@
 		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
 		9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */; };
 		9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F76684F1E84AE63003A06E8 /* AILoader.cpp */; };
+		9F82210A1EA47EDB000EFCD0 /* FinishController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221081EA47EDB000EFCD0 /* FinishController.cpp */; };
+		9F82210B1EA47EDB000EFCD0 /* FinishController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221081EA47EDB000EFCD0 /* FinishController.cpp */; };
+		9F82210F1EA48049000EFCD0 /* FinishEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */; };
+		9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */; };
+		9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
+		9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
@@ -244,6 +250,12 @@
 		9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticAIData.hpp; sourceTree = "<group>"; };
 		9F76684F1E84AE63003A06E8 /* AILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AILoader.cpp; sourceTree = "<group>"; };
 		9F7668501E84AE63003A06E8 /* AILoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AILoader.hpp; sourceTree = "<group>"; };
+		9F8221081EA47EDB000EFCD0 /* FinishController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FinishController.cpp; sourceTree = "<group>"; };
+		9F8221091EA47EDB000EFCD0 /* FinishController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FinishController.hpp; sourceTree = "<group>"; };
+		9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FinishEvent.cpp; sourceTree = "<group>"; };
+		9F82210E1EA48049000EFCD0 /* FinishEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FinishEvent.hpp; sourceTree = "<group>"; };
+		9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationEvent.cpp; sourceTree = "<group>"; };
+		9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -545,6 +557,34 @@
 			name = zonedata;
 			sourceTree = "<group>";
 		};
+		9F8221051EA47EC3000EFCD0 /* finish */ = {
+			isa = PBXGroup;
+			children = (
+				9F82210C1EA48023000EFCD0 /* FinishEvent */,
+				9F8221081EA47EDB000EFCD0 /* FinishController.cpp */,
+				9F8221091EA47EDB000EFCD0 /* FinishController.hpp */,
+			);
+			name = finish;
+			sourceTree = "<group>";
+		};
+		9F82210C1EA48023000EFCD0 /* FinishEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */,
+				9F82210E1EA48049000EFCD0 /* FinishEvent.hpp */,
+			);
+			name = FinishEvent;
+			sourceTree = "<group>";
+		};
+		9F8221111EA48AE6000EFCD0 /* AnimationEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */,
+				9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */,
+			);
+			name = AnimationEvent;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +642,7 @@
 		9FE8E9E11E6382AF00DBE3BC /* animation */ = {
 			isa = PBXGroup;
 			children = (
+				9F8221111EA48AE6000EFCD0 /* AnimationEvent */,
 				9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */,
 				9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */,
 				9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */,
@@ -926,6 +967,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9F8221051EA47EC3000EFCD0 /* finish */,
 				9F3BA64C1E932849003138C0 /* levelEditor */,
 				9FFA3FA31E6367AA0029D648 /* ai */,
 				9FE8E9E11E6382AF00DBE3BC /* animation */,
@@ -1111,6 +1153,7 @@
 				9F3BA6681EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F3BA5E61E8BA575003138C0 /* HomingAIData.cpp in Sources */,
 				9F3BA5E71E8BA575003138C0 /* PathAIData.cpp in Sources */,
+				9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9F3BA5E81E8BA575003138C0 /* StaticAIData.cpp in Sources */,
 				9F3BA5E91E8BA575003138C0 /* AIData.cpp in Sources */,
 				9F3BA5EA1E8BA575003138C0 /* CompositeAIData.cpp in Sources */,
@@ -1152,6 +1195,7 @@
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9F3BA60C1E8BA575003138C0 /* PathController.cpp in Sources */,
 				9F3BA60D1E8BA575003138C0 /* InternalClock.cpp in Sources */,
+				9F82210B1EA47EDB000EFCD0 /* FinishController.cpp in Sources */,
 				9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
 				9F3BA60F1E8BA575003138C0 /* CollisionEvent.cpp in Sources */,
@@ -1161,6 +1205,7 @@
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
 				9F3BA6401E90C902003138C0 /* Menu.cpp in Sources */,
 				9F3BA6141E8BA575003138C0 /* Event.cpp in Sources */,
+				9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9F3BA6151E8BA575003138C0 /* Subject.cpp in Sources */,
 				9F3BA6161E8BA575003138C0 /* Observer.cpp in Sources */,
 				9F3BA6171E8BA575003138C0 /* GameObject.cpp in Sources */,
@@ -1200,6 +1245,7 @@
 				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
+				9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,
 				9FFA3FB81E636C540029D648 /* LevelController.cpp in Sources */,
 				9FFA3FAD1E636B430029D648 /* GameState.cpp in Sources */,
@@ -1207,6 +1253,7 @@
 				DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
+				9F82210F1EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9FFA3FA61E6367C60029D648 /* ActivePath.cpp in Sources */,
 				9F3BA61F1E8BA9D9003138C0 /* InputController.cpp in Sources */,
 				9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */,
@@ -1240,6 +1287,7 @@
 				9F3BA6671EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */,
 				9FFA3F881E635FD10029D648 /* CollisionEvent.cpp in Sources */,
+				9F82210A1EA47EDB000EFCD0 /* FinishController.cpp in Sources */,
 				9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */,
 				829314B11E8A552C00CFA733 /* InternalClock.cpp in Sources */,
 			);

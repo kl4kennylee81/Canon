@@ -12,6 +12,7 @@
 #include "PathEvent.hpp"
 #include "MoveEvent.hpp"
 #include "SwitchEvent.hpp"
+#include "AnimationEvent.hpp"
 #include <cugl/cugl.h>
 
 using namespace cugl;
@@ -238,14 +239,23 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
         }
         
         if (!anim->nextFrame()){
-            anim->getAnimationNode()->removeFromParent();
-            state->removeObject(it->first);
 			animationMap.erase(it);
             break;
         } else {
             it++;
         }
     }
+}
+
+void AnimationController::removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim){
+    if (obj->getIsPlayer()){
+        // send the event to notify that the player character is dead
+        std::shared_ptr<Event> prEvent = PlayerRemovedEvent::alloc();
+        this->notify(prEvent.get());
+    }
+    
+    anim->getAnimationNode()->removeFromParent();
+    state->removeObject(obj);
 }
 
 void AnimationController::dispose(){
