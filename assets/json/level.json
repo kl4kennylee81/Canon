@@ -13,13 +13,13 @@
         },
         "playerChars":{
             "player1":{
-                "templateKey": "playerChar",
+                "templateKey": "playerCharFemale",
                 "x": 500,
                 "y": 200,
                 "element":"BLUE"
             },
             "player2":{
-                "templateKey": "playerChar",
+                "templateKey": "playerCharMale",
                 "x": 550,
                 "y": 250,
                 "element":"GOLD"
