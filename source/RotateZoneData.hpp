@@ -19,16 +19,16 @@ public:
     
     std::string objectKey;
     float startingPosition;
-    Element element;
+    ElementDataType elementType;
     
-    bool init(std::string o, float p, Element e) {
+    bool init(std::string o, float p, ElementDataType e) {
         this->objectKey = o;
         this->startingPosition = p;
-        this->element = e;
+        this->elementType = e;
         return true;
     }
     
-    static std::shared_ptr<ZoneEntry> alloc(std::string objectKey, float startingPosition, Element element) {
+    static std::shared_ptr<ZoneEntry> alloc(std::string objectKey, float startingPosition, ElementDataType element) {
         std::shared_ptr<ZoneEntry> result = std::make_shared<ZoneEntry>();
         return (result->init(objectKey,startingPosition,element) ? result : nullptr);
     }

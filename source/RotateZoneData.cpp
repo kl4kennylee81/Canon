@@ -15,7 +15,7 @@ std::shared_ptr<JsonValue> ZoneEntry::toJsonValue()
 	std::shared_ptr<JsonValue> z = JsonValue::allocObject();
 	z->appendChild("objectKey", JsonValue::alloc(objectKey));
 	z->appendChild("startingPosition", JsonValue::alloc(startingPosition));
-	z->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+    z->appendChild("element", JsonValue::alloc(elementDataTypeToString(this->elementType)));
 	return z;
 }
 
@@ -49,7 +49,7 @@ bool RotateZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         auto zonejson = zoneentriesjson->get(i);
         std::string oKey = zonejson->getString("objectKey");
         float startingPos = zonejson->getFloat("startingPosition");
-        auto el = zonejson->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD;
+        ElementDataType el = stringToElementDataType(zonejson->getString("element"));
         std::shared_ptr<ZoneEntry> entry = ZoneEntry::alloc(oKey,startingPos,el);
         zones.push_back(entry);
     }

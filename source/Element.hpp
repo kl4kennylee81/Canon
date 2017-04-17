@@ -16,4 +16,29 @@ enum class Element : int {
     GOLD
 };
 
+enum class ElementDataType : int {
+    MATCH,
+    OPPOSITE
+};
+
+static std::string elementDataTypeToString(ElementDataType elementData){
+    if (elementData == ElementDataType::MATCH){
+        return "MATCH";
+    }
+    if (elementData == ElementDataType::OPPOSITE){
+        return "OPPOSITE";
+    }
+    return "MATCH";
+}
+
+static ElementDataType stringToElementDataType(std::string element){
+    if (element == "MATCH"){
+        return ElementDataType::MATCH;
+    }
+    if (element == "OPPOSITE"){
+        return ElementDataType::OPPOSITE;
+    }
+    return ElementDataType::MATCH;
+}
+
 #endif /* Element_hpp */

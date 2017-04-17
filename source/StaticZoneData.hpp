@@ -21,22 +21,22 @@ public:
     cugl::Vec2 relPos;
     int cooldown;
     int duration;
-    Element element;
+    ElementDataType elementType;
     
     StaticZoneData() : ZoneData(){}
     
-    bool init(std::string objectKey, float relX, float relY, int cooldown, int duration, Element element) {
+    bool init(std::string objectKey, float relX, float relY, int cooldown, int duration, ElementDataType element) {
         ZoneData::init(ZoneType::STATIC);
         this->objectKey = objectKey;
         this->relPos.x = relX/GAME_PHYSICS_SCALE;
         this->relPos.y = relY/GAME_PHYSICS_SCALE;
         this->cooldown = cooldown;
         this->duration = duration;
-        this->element = element;
+        this->elementType = element;
         return true;
     }
     
-    static std::shared_ptr<StaticZoneData> alloc(std::string objectKey, float relX, float relY, int cooldown, int duration, Element element) {
+    static std::shared_ptr<StaticZoneData> alloc(std::string objectKey, float relX, float relY, int cooldown, int duration, ElementDataType element) {
         std::shared_ptr<StaticZoneData> result = std::make_shared<StaticZoneData>();
         return (result->init(objectKey,relX,relY,cooldown,duration,element) ? result : nullptr);
     }

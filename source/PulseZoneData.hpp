@@ -22,11 +22,11 @@ public:
     float maxSize;
     int maxTime;
     float speed;
-    Element element;
+    ElementDataType elementType;
     
     PulseZoneData() : ZoneData(){}
     
-    bool init(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, Element element) {
+    bool init(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, ElementDataType element) {
         ZoneData::init(ZoneType::PULSE);
         this->objectKey = objectKey;
         this->minSize = minSize;
@@ -34,11 +34,11 @@ public:
         this->maxSize = maxSize;
         this->maxTime = maxTime;
         this->speed = speed;
-        this->element = element;
+        this->elementType = element;
         return true;
     }
     
-    static std::shared_ptr<PulseZoneData> alloc(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, Element element) {
+    static std::shared_ptr<PulseZoneData> alloc(std::string objectKey, float minSize, int minTime, float maxSize, int maxTime, float speed, ElementDataType element) {
         std::shared_ptr<PulseZoneData> result = std::make_shared<PulseZoneData>();
         return (result->init(objectKey,minSize,minTime,maxSize,maxTime,speed,element) ? result : nullptr);
     }
