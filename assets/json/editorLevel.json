@@ -1,6 +1,6 @@
 {
 	"counter":	1,
-	"templates":	["birb", "blobo", "grump", "fesh"],
+	"templates":	["birb", "blobo", "grump", "fesh","horizontal"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
