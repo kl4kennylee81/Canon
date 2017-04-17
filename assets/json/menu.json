@@ -47,6 +47,7 @@
         "pauseButton": {
            "type": "BUTTON",
             "uiBackgroundKey": "pauseButton",
+            "buttonLabel": "hello",
             "buttonAction": {
                 "type": "fxTrigger",
                 "fxKey": "PAUSE"

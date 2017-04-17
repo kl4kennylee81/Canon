@@ -81,11 +81,23 @@ public:
 
 class FxTriggerButtonAction : public ButtonAction {
 public:
-    std::string fxKey;
+    
+    enum class FXType : int {
+        PAUSE, RESUME, NONE
+    };
+
+    FXType fxKey;
+    
+    static FXType stringToFXType(std::string event) {
+        if (event == "PAUSE") return FXType::PAUSE;
+        if (event == "RESUME") return FXType::RESUME;
+        return FXType::NONE;
+    }
+    
     virtual bool init(std::string fx)
 	{
         ButtonAction::init(ButtonActionType::FXTRIGGER);
-		fxKey = fx;
+		fxKey = stringToFXType(fx);
 		return true;
 	}
 	FxTriggerButtonAction() : ButtonAction() {}

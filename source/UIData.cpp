@@ -12,7 +12,7 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
 		ModeChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"),json->get("buttonAction")->getString("nextScreen"))); }
 	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(json->getString("fxKey"))); }
+		FxTriggerButtonAction::alloc(json->get("buttonAction")->getString("fxKey"))); }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");

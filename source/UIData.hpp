@@ -7,10 +7,6 @@
 #include "GenericAssetManager.hpp"
 #include "ButtonAction.hpp"
 
-enum class FXType : int {
-	PAUSE, RESUME, NONE
-};
-
 enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
 };
@@ -43,12 +39,6 @@ public:
 	static std::shared_ptr<UIData> alloc(std::string uiKey, std::string bg, UIDataType t, float x, float y, float w, float h) {
 		std::shared_ptr<UIData> result = std::make_shared<UIData>();
 		return (result->init(uiKey, bg, t, x, y, w, h) ? result : nullptr);
-	}
-
-	static FXType stringToFXType(std::string event) {
-		if (event == "PAUSE") return FXType::PAUSE;
-		if (event == "RESUME") return FXType::RESUME;
-        return FXType::NONE;
 	}
 
 	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);

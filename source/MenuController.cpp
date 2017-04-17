@@ -102,14 +102,14 @@ void MenuController::update(float timestep) {
             {
                 std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
 
-				switch (UIData::stringToFXType(action->fxKey)) {
-					case FXType::PAUSE:
+				switch (action->fxKey) {
+                    case FxTriggerButtonAction::FXType::PAUSE:
                     {
                         std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
 						notify(pauseEvent.get());
 						break;
                     }
-					case FXType::RESUME:
+					case FxTriggerButtonAction::FXType::RESUME:
                     {
                         std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(false);
 						notify(pauseEvent.get());
