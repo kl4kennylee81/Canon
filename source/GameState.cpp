@@ -14,7 +14,7 @@ using namespace cugl;
 
 /** The name of the space texture */
 // HACK replace with level loading sending event
-#define BACKGROUND_TEXTURE       "bg_dark_lake"
+#define BACKGROUND_TEXTURE       "bg_blue_sky"
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets){
