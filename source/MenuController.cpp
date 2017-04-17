@@ -40,12 +40,15 @@ void MenuController::eventUpdate(Event* e) {
                 case FinishEvent::FinishEventType::GAME_WON:
                 {
                     this->getMenuGraph()->setActiveMenu("gameover");
+                    break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
                 {
                     this->getMenuGraph()->setActiveMenu("gameover");
+                    break;
                 }
             }
+            break;
         }
     }
 }
@@ -135,6 +138,7 @@ void MenuController::update(float timestep) {
                         std::shared_ptr<Event> resetEvent = ResetGameEvent::alloc();
                         notify(resetEvent.get());
                         getMenuGraph()->setActiveMenu(action->nextScreen);
+                        break;
                     }
 				}
                 break;

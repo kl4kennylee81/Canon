@@ -9,6 +9,7 @@
 #include "FinishController.hpp"
 #include "AnimationEvent.hpp"
 #include "FinishEvent.hpp"
+#include "LevelEvent.hpp"
 
 using namespace cugl;
 
@@ -36,8 +37,22 @@ void FinishController::eventUpdate(Event* e) {
                 case AnimationEvent::AnimationEventType::PLAYER_REMOVED:
                 {
                     playerDead = true;
+                    break;
                 }
             }
+            break;
+        }
+        case Event::EventType::LEVEL:
+        {
+            LevelEvent* levelEvent = (LevelEvent*) e;
+            switch (levelEvent->levelEventType){
+                case LevelEvent::LevelEventType::LEVEL_FINISHED:
+                {
+                    wavesFinished = true;
+                    break;
+                }
+            }
+            break;
         }
     }
 }

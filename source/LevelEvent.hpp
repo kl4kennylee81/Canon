@@ -26,7 +26,8 @@ public:
         /** Signal that a path is done */
         OBJECT_INIT,
         OBJECT_SPAWNING,
-        OBJECT_SPAWN
+        OBJECT_SPAWN,
+        LEVEL_FINISHED
     };
     
     LevelEventType levelEventType;
@@ -111,4 +112,21 @@ public:
     }
 };
 
+class LevelFinishedEvent : public LevelEvent {
+public:
+    
+    LevelFinishedEvent() : LevelEvent() {
+        levelEventType = LevelEventType::LEVEL_FINISHED;
+    }
+    
+    bool init(){
+        this->levelEventType = LevelEventType::LEVEL_FINISHED;
+        return true;
+    }
+    
+    static std::shared_ptr<LevelFinishedEvent> alloc(){
+        std::shared_ptr<LevelFinishedEvent> result = std::make_shared<LevelFinishedEvent>();
+        return (result->init() ? result : nullptr);
+    }
+};
 #endif /* LevelEvent_hpp */

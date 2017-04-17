@@ -66,6 +66,7 @@ void GameplayController::eventUpdate(Event* e) {
                     // which is the menu controller
                     this->notify(e);
                     _paused = true;
+                    break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
                 {
@@ -73,8 +74,10 @@ void GameplayController::eventUpdate(Event* e) {
                     // which is the menu controller
                     this->notify(e);
                     _paused = true;
+                    break;
                 }
             }
+            break;
         }
 	}
 }
