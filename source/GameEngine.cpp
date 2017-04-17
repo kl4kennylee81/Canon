@@ -141,7 +141,6 @@ void GameEngine::cleanPreviousMode(){
         }
         case Mode::MAIN_MENU:
         {
-			_menu = nullptr;
             break;
         }
         case Mode::LEVEL_EDIT:

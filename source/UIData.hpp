@@ -47,6 +47,7 @@ public:
 
 	static FXType stringToFXType(std::string event) {
 		if (event == "PAUSE") return FXType::PAUSE;
+		if (event == "RESUME") return FXType::RESUME;
 	}
 
 	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);
