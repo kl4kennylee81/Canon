@@ -103,6 +103,14 @@
 		9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
 		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
+		9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
+		9FA275F41EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
+		9FA275F51EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */; };
+		9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */; };
+		9FA275FB1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */; };
+		9FA275FC1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */; };
+		9FA276001EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */; };
+		9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
@@ -266,6 +274,14 @@
 		9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationEvent.hpp; sourceTree = "<group>"; };
 		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
 		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
+		9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateWaveEntry.cpp; sourceTree = "<group>"; };
+		9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemplateWaveEntry.hpp; sourceTree = "<group>"; };
+		9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveEditorController.cpp; sourceTree = "<group>"; };
+		9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveEditorController.hpp; sourceTree = "<group>"; };
+		9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateEditorController.cpp; sourceTree = "<group>"; };
+		9FA275FA1EA4D7F0003D8C03 /* TemplateEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemplateEditorController.hpp; sourceTree = "<group>"; };
+		9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorEvent.cpp; sourceTree = "<group>"; };
+		9FA275FF1EA4D80A003D8C03 /* LevelEditorEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -533,8 +549,15 @@
 		9F3BA64C1E932849003138C0 /* levelEditor */ = {
 			isa = PBXGroup;
 			children = (
+				9FA275FD1EA4D7F4003D8C03 /* LevelEditorEvent */,
 				9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */,
 				9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */,
+				9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */,
+				9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */,
+				9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */,
+				9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */,
+				9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */,
+				9FA275FA1EA4D7F0003D8C03 /* TemplateEditorController.hpp */,
 			);
 			name = levelEditor;
 			sourceTree = "<group>";
@@ -610,6 +633,15 @@
 				9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */,
 			);
 			name = menuEvent;
+			sourceTree = "<group>";
+		};
+		9FA275FD1EA4D7F4003D8C03 /* LevelEditorEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */,
+				9FA275FF1EA4D80A003D8C03 /* LevelEditorEvent.hpp */,
+			);
+			name = LevelEditorEvent;
 			sourceTree = "<group>";
 		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
@@ -1215,6 +1247,7 @@
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
 				DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */,
 				9F3BA5F71E8BA575003138C0 /* ProgressBarModel.cpp in Sources */,
+				9FA275F41EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */,
 				9F3BA5F81E8BA575003138C0 /* LevelEvent.cpp in Sources */,
 				9F3BA5F91E8BA575003138C0 /* LevelController.cpp in Sources */,
 				9F3BA5FA1E8BA575003138C0 /* Level.cpp in Sources */,
@@ -1236,14 +1269,17 @@
 				9F3BA6091E8BA575003138C0 /* MoveController.cpp in Sources */,
 				9F3BA60A1E8BA575003138C0 /* ActivePath.cpp in Sources */,
 				9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */,
+				9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9F3BA60C1E8BA575003138C0 /* PathController.cpp in Sources */,
+				9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
 				9F3BA60D1E8BA575003138C0 /* InternalClock.cpp in Sources */,
 				9F82210B1EA47EDB000EFCD0 /* FinishController.cpp in Sources */,
 				9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
 				9F3BA60F1E8BA575003138C0 /* CollisionEvent.cpp in Sources */,
 				9F3BA6101E8BA575003138C0 /* PhysicsComponent.cpp in Sources */,
+				9FA275FC1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */,
 				9F3BA6111E8BA575003138C0 /* CollisionController.cpp in Sources */,
 				9F3BA6121E8BA575003138C0 /* Element.cpp in Sources */,
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
@@ -1284,6 +1320,7 @@
 				9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */,
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
+				9FA276001EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
 				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
 				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
@@ -1297,6 +1334,7 @@
 				9FFA3FB81E636C540029D648 /* LevelController.cpp in Sources */,
 				9FFA3FAD1E636B430029D648 /* GameState.cpp in Sources */,
 				9FE8E9E41E6382BC00DBE3BC /* AnimationController.cpp in Sources */,
+				9FA275F51EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
 				DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
@@ -1314,6 +1352,7 @@
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,
 				9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
+				9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */,
 				DF909EF81E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
 				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
@@ -1324,6 +1363,7 @@
 				829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
+				9FA275FB1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
 				9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */,

@@ -15,6 +15,7 @@
 #include "InputController.hpp"
 #include "UIData.hpp"
 #include "UIDataLoader.hpp"
+#include "Util.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -69,6 +70,7 @@ void GameEngine::onStartup() {
 	_assets->attach<AIData>(AILoader::alloc()->getHook());
     _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     _assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
+    _assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
     
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
@@ -88,9 +90,34 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
+    _assets->loadDirectory("json/level.json");
     
-    // test for loading from a data file
-    _assets->loadDirectory("json/kyleLevel0a.json");
+    /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
+    
+    std::string templateDir = Application::get()->getAssetDirectory();
+    templateDir.append(TEMPLATE_PATH);
+    
+    // std::cout << "current file directory: "<< __FILE__ << std::endl;
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    
+    // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
+    
+    //load all template wave entries
+    DIR *dir;
+    struct dirent *ent;
+    if ((dir = opendir(templateDir.c_str())) != NULL) {
+        /* print all the files and directories within directory */
+        while ((ent = readdir (dir)) != NULL) {
+            if(ent->d_name[0] != '.'){
+                std::string templatePath = TEMPLATE_PATH;
+                templatePath.append(ent->d_name);
+                _assets->loadDirectory(templatePath);
+            }
+        }
+        closedir (dir);
+    }
+    
+    /** END OF TEMPORARY CODE TO WIPE **/
 
 
     
@@ -105,7 +132,7 @@ void GameEngine::onStartup() {
     Input::activate<Mouse>();
 	Input::get<Mouse>()->setPointerAwareness(Mouse::PointerAwareness::DRAG);
 #endif
-    
+	Input::activate<Keyboard>();
     Application::onStartup();
 }
 
@@ -131,8 +158,8 @@ void GameEngine::onShutdown() {
 #else
     Input::deactivate<Mouse>();
 #endif
-    
     AudioEngine::stop();
+	Input::deactivate<Keyboard>();
     Application::onShutdown();
 }
 
@@ -169,7 +196,8 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
     switch (_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            return nullptr;
+            // TODO replace hardcoding it's just for now
+            std::shared_ptr<LevelData> level = _assets->get<LevelData>("level0");
         }
         case Mode::GAMEPLAY:
         {
@@ -182,7 +210,8 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
         }
         case Mode::LEVEL_EDIT:
         {
-            break;
+            std::shared_ptr<LevelData> level = _levelEditor->getCurrentLevelData();
+            return level;
         }
         default:
         {
@@ -196,7 +225,9 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
     switch (_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            return nullptr;
+            std::shared_ptr<LevelData> level = getNextLevelData();
+            std::shared_ptr<World> levelWorld = World::alloc(_assets,level);
+            return levelWorld;
         }
         case Mode::GAMEPLAY:
         {
@@ -210,7 +241,10 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         }
         case Mode::LEVEL_EDIT:
         {
-            // this is where we can pass the world to the gameplay controller
+            std::shared_ptr<World> levelWorld = _levelEditor->getWorld();
+            // TODO will replace once we give a default value to the levelStubs
+            levelWorld->presetPlayerCharacters();
+            return levelWorld;
             break;
         }
         default:
@@ -237,10 +271,13 @@ void GameEngine::cleanPreviousMode(){
         }
         case Mode::MAIN_MENU:
         {
+            _menu = nullptr;
             break;
         }
         case Mode::LEVEL_EDIT:
         {
+            _menu = nullptr;
+            _levelEditor = nullptr;
             break;
         }
         default:
@@ -262,6 +299,8 @@ void GameEngine::initializeNextMode(){
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
+            
+            // this is so that the menu can interact with the game screen
             _menu->attach(_gameplay.get());
             _gameplay->attach(_menu.get());
             break;
@@ -275,7 +314,11 @@ void GameEngine::initializeNextMode(){
         }
         case Mode::LEVEL_EDIT:
         {
+            // TODO likely have menuController always active but initialize it with
+            // the menus when it is in that mode otherwise it is just there.
+            _menu = MenuController::alloc(_scene,_menuGraph);
             _levelEditor = LevelEditorController::alloc(_scene, _assets);
+            _levelEditor->attach(_menu.get());
             break;
         }
         default:
@@ -284,6 +327,8 @@ void GameEngine::initializeNextMode(){
         }
     }
 }
+
+
 
 /**
  * The method called to update the application data.
@@ -298,8 +343,8 @@ void GameEngine::initializeNextMode(){
  */
 void GameEngine::update(float timestep) {
     if (_menuGraph->needsUpdate()){
-        cleanPreviousMode();
         initializeNextMode();
+        cleanPreviousMode();
         _menuGraph->updateToNextMode();
     }
     // update the game
@@ -312,7 +357,7 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::MAIN_MENU);
+                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
             }
             break;
         }

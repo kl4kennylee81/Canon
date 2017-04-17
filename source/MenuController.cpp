@@ -11,6 +11,7 @@
 #include "UIData.hpp"
 #include "MenuEvent.hpp"
 #include "FinishEvent.hpp"
+#include "LevelEditorEvent.hpp"
 
 using namespace cugl;
 
@@ -50,6 +51,20 @@ void MenuController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::LEVEL_EDITOR:
+        {
+            LevelEditorEvent* levelEditorEvent = (LevelEditorEvent*) e;
+            switch (levelEditorEvent->_levelEditType){
+                case LevelEditorEvent::LevelEditorEventType::SIMULATE_LEVEL:
+                {
+                    _menuGraph->setNextMode(Mode::GAMEPLAY);
+                    break;
+                }
+            }
+            break;
+        }
+        default:
+            break;
     }
 }
 
@@ -155,6 +170,12 @@ void MenuController::update(float timestep) {
  */
 void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     this->_scene->render(_batch);
+}
+
+bool MenuController::init(std::shared_ptr<MenuGraph> menuGraph){
+    _menuGraph = menuGraph;
+    _selectedLevel = "";
+    return true;
 }
 
 bool MenuController::init(std::shared_ptr<cugl::Scene> scene,

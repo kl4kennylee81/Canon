@@ -22,6 +22,7 @@
 #include "SoundData.hpp"
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
+#include "TemplateWaveEntry.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -40,7 +41,8 @@ protected:
     
     /** The asset manager for this game world. */
     std::shared_ptr<GenericAssetManager> _assets;
-    
+
+public:
     /** if this is a sandbox prepopulated instance */
     bool _isSandbox;
     
@@ -53,14 +55,14 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
     std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
+    std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
 
-public:
-    
     World();
     
     ~World();
     
-    virtual bool init(){
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets){
+        _assets = assets;
         return true;
     }
 
@@ -72,31 +74,9 @@ public:
         return true;
     }
 
-    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
-
-	std::string serialize(std::string levelName);
-    
-    std::shared_ptr<GenericAssetManager> getAssetManager();
-    
-    std::shared_ptr<ObjectData> getObjectData(std::string obKey);
-    
-    std::shared_ptr<AnimationData> getAnimationData(std::string aKey);
-    
-    std::shared_ptr<PathData> getPathData(std::string pathKey);
-    
-    std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
-
-    std::shared_ptr<WaveData> getWaveData(std::string waveKey);
-    
-    std::shared_ptr<AIData> getAIData(std::string aiKey);
-    
-    std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
-
-    std::shared_ptr<SoundData> getSoundData(std::string soundKey);
-    
-	static std::shared_ptr<World> alloc() {
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
 		std::shared_ptr<World> result = std::make_shared<World>();
-		return (result->init() ? result : nullptr);
+		return (result->init(assets) ? result : nullptr);
 	}
 
     static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::string levelName) {
@@ -109,14 +89,55 @@ public:
         return (result->init(assets,levelData) ? result : nullptr);
     }
     
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
+    
+    std::string serialize(std::string levelName);
+    
+    std::shared_ptr<GenericAssetManager> getAssetManager();
+    
+    std::shared_ptr<ObjectData> getObjectData(std::string obKey);
+    
+    std::shared_ptr<AnimationData> getAnimationData(std::string aKey);
+    
+    std::shared_ptr<PathData> getPathData(std::string pathKey);
+    
+    std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
+    
+    std::shared_ptr<WaveData> getWaveData(std::string waveKey);
+    
+    std::shared_ptr<AIData> getAIData(std::string aiKey);
+    
+    std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
+
+    std::shared_ptr<SoundData> getSoundData(std::string soundKey);
+    
+    std::shared_ptr<TemplateWaveEntry> getTemplate(std::string templateKey);
+    
+    std::shared_ptr<ObjectData> getObjectData(std::shared_ptr<WaveEntry> we);
+    
+    std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
+    
+    std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
+    
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
     }
     
-    void populate();
+    void setLevelData(std::shared_ptr<LevelData> levelData){
+        _levelData = levelData;
+    }
+    
+    void setLevelData(std::string levelName){
+        _levelData = _assets->get<LevelData>(levelName);
+    }
+    
+    void addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry>);
 
-    /** testing function to populate the world without the data files */
-    void populateKyleLevel();
+    void populate();
+    
+    bool isValid();
+    
+    void presetPlayerCharacters();
 	
 };
 

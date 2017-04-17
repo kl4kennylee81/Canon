@@ -64,14 +64,7 @@ protected:
     
     bool _reset;
 public:
-    
     static std::unique_ptr<InternalClock> _internalClock;
-
-	static float getGameSceneHeight()
-	{
-		cugl::Size size = cugl::Application::get()->getDisplaySize();
-		return size.height / size.width * GAME_SCENE_WIDTH;
-	}
     
 GameState():
     _reset(false),
@@ -165,41 +158,6 @@ GameState():
     
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();
-    
-    /** the y translate from the scene coordinates bottom left (0,0) to the world coordinates bottom left (0,0) */
-    float getSceneToWorldTranslateY();
-    
-#pragma mark Coordinate Conversions
-    /** Physics Coordinate Conversions **/
-    cugl::Vec2& physicsToWorldCoords(cugl::Vec2& physicsCoords,cugl::Vec2& worldCoords);
-    
-    cugl::Vec2& physicsToSceneCoords(cugl::Vec2& physicsCoords,cugl::Vec2& sceneCoords);
-    
-    cugl::Vec2& physicsToScreenCoords(cugl::Vec2& physicsCoords,cugl::Vec2& screenCoords);
-    
-    
-    /** Screen Coordinate Conversions **/
-    cugl::Vec2& screenToWorldCoords(cugl::Vec2& screenCoords, cugl::Vec2& worldCoords);
-    
-    cugl::Vec2& screenToSceneCoords(cugl::Vec2& screenCoords, cugl::Vec2& sceneCoords);
-    
-    cugl::Vec2& screenToPhysicsCoords(cugl::Vec2& screenCoords, cugl::Vec2& physicsCoords);
-    
-    /** World Coordinate Conversions **/
-    
-    cugl::Vec2& worldToSceneCoords(cugl::Vec2& worldCoords, cugl::Vec2& sceneCoords);
-    
-    cugl::Vec2& worldToScreenCoords(cugl::Vec2& worldCoords, cugl::Vec2& screenCoords);
-    
-    cugl::Vec2& worldToPhysicsCoords(cugl::Vec2& worldCoords, cugl::Vec2& physicsCoords);
-    
-    
-    /** Scene Coordinate Conversion **/
-    cugl::Vec2& sceneToWorldCoords(cugl::Vec2& sceneCoords, cugl::Vec2& worldCoords);
-    
-    cugl::Vec2& sceneToScreenCoords(cugl::Vec2& sceneCoords, cugl::Vec2& screenCoords);
-    
-    cugl::Vec2& sceneToPhysicsCoords(cugl::Vec2& sceneCoords, cugl::Vec2& physicsCoords);
 };
 
 #endif /* GameState_hpp */

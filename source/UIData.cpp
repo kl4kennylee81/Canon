@@ -1,5 +1,6 @@
 #include "UIData.hpp"
 #include "GameState.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 
@@ -68,11 +69,11 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 	}
 
 	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
+	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
 
 	// scale to width and height
 	cugl::Size size = button->getSize();
-	button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
+	button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
 
     return button;
 }
@@ -94,11 +95,11 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
 std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(this->textureKey));
 	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    imageNode->setPosition(Vec2(this->x * GAME_SCENE_WIDTH , this->y * GameState::getGameSceneHeight()));
+    imageNode->setPosition(Vec2(this->x * GAME_SCENE_WIDTH , this->y * Util::getGameSceneHeight()));
 
     // scale to width and height
 	cugl::Size size = imageNode->getSize();
-	imageNode->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
+	imageNode->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
     return imageNode;
 }
 

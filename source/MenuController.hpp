@@ -47,7 +47,15 @@ public:
 
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
     
+    /** this is to initialize a container for the menuGraph to receive events. Does not attach to the scene */
+    virtual bool init(std::shared_ptr<MenuGraph> menuGraph);
+    
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<MenuGraph> menuGraph);
+    
+    static std::shared_ptr<MenuController> alloc(std::shared_ptr<MenuGraph> menuGraph) {
+        std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
+        return (result->init(menuGraph) ? result : nullptr);
+    }
     
     static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene,
                                                  std::shared_ptr<MenuGraph> menuGraph) {

@@ -9,11 +9,19 @@
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
 #include <cugl/cugl.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
+#include <vector>
+#include <string>
 #include "GameplayController.hpp"
 #include "LoadController.hpp"
 #include "MenuController.hpp"
 #include "GenericAssetManager.hpp"
 #include "LevelEditorController.hpp"
+
+#define TEMPLATE_PATH "json/templates/"
+
 
 /**
  * Class for a simple Hello World style application

@@ -14,44 +14,34 @@
 using namespace cugl;
 
 bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
-    std::vector<std::string> zKeys;
-    if (json->has("zoneKeys")) {
-        zKeys = json->get("zoneKeys")->asStringArray();
-    }
-    init(json->getString("objectKey"),
-        json->getString("aiKey"),
-        json->getFloat("x"),
+    std::string tempKey = json->getString("templateKey");
+    
+    init(json->getFloat("x"),
         json->getFloat("y"),
         json->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD,
-        zKeys);
+        json->getString("templateKey"));
     return true;
 }
 
-bool WaveEntry::init(std::string objectKey, std::string aiKey, float x, float y,Element element,std::vector<std::string> zoneKeys){
-    this->objectKey = objectKey;
-    this->aiKey = aiKey;
+bool WaveEntry::init(float x, float y,Element element,std::string templateKey){
     this->position.x = x / GAME_PHYSICS_SCALE;
     this->position.y = y / GAME_PHYSICS_SCALE;
     this->element = element;
-    this->zoneKeys = zoneKeys;
+    this->templateKey = templateKey;
     return true;
 }
 
 std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
-	if (aiKey.length() > 0) object->appendChild("aiKey", JsonValue::alloc(aiKey));
 	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
 	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
 	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
-	object->appendChild("objectKey", JsonValue::alloc(objectKey));
+    if(templateKey != ""){
+        object->appendChild("templateKey", JsonValue::alloc(templateKey));
+    }
 	
 	std::shared_ptr<JsonValue> zones = JsonValue::allocArray();
-	for (int i = 0; i < zoneKeys.size(); i++)
-	{
-		zones->appendChild(JsonValue::alloc(zoneKeys.at(i)));
-	}
-	if (zoneKeys.size() > 0) object->appendChild("zoneKeys", zones);
 	return object;
 }
 
@@ -90,3 +80,24 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 bool WaveData::materialize(){
     return true;
 }
+
+Element WaveEntry::getElement(){
+    return element;
+}
+
+cugl::Vec2 WaveEntry::getPosition(){
+    return position;
+}
+
+std::string WaveEntry::getTemplateKey(){
+    return templateKey;
+}
+
+void WaveEntry::setTemplateKey(std::string tKey){
+    this->templateKey = tKey;
+}
+
+void WaveEntry::setPosition(cugl::Vec2 pos){
+    this->position = pos;
+}
+

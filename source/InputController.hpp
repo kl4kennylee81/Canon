@@ -23,6 +23,8 @@ public:
     static bool getIsPressed();
 
     static bool getDoubleTouch();
+
+	static std::vector<cugl::KeyCode> getPressedKeys();
 };
 
 #endif /* InputController_hpp */

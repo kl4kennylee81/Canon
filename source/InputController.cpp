@@ -47,3 +47,8 @@ bool InputController::getDoubleTouch(){
         }
     }
 }
+
+std::vector<cugl::KeyCode> InputController::getPressedKeys() {
+	return Input::get<Keyboard>()->keySet();
+}
+

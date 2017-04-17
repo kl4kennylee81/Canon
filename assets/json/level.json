@@ -13,13 +13,13 @@
         },
         "playerChars":{
             "player1":{
-                "objectKey": "playerChar1",
+                "templateKey": "playerChar",
                 "x": 500,
                 "y": 200,
                 "element":"BLUE"
             },
             "player2":{
-                "objectKey": "playerChar2",
+                "templateKey": "playerChar",
                 "x": 550,
                 "y": 250,
                 "element":"GOLD"
@@ -39,13 +39,13 @@
         },
         "playerChars":{
             "player1":{
-                "objectKey": "playerChar1",
+                "templateKey": "playerChar",
                 "x": 500,
                 "y": 200,
                 "element":"BLUE"
             },
             "player2":{
-                "objectKey": "playerChar2",
+                "templateKey": "playerChar",
                 "x": 550,
                 "y": 250,
                 "element":"GOLD"
@@ -57,15 +57,13 @@
     "wave1": {
         "waveEntries":{
           "object1": {
-            "objectKey": "object1",
-            "aiKey": "homing",
+            "templateKey": "object1",
             "x": 100,
             "y": 100,
             "element":"BLUE"
           },
           "object2": {
-            "objectKey": "object2",
-            "aiKey" : "homing",
+            "templateKey": "object1",
             "x": 200,
             "y": 200,
             "element" : "GOLD"
@@ -73,38 +71,56 @@
         }
     }
   },
+  "templates":	{
+      "playerChar":	{
+          "name":	"playerChar",
+          "objectKey":	"playerChar"
+      },
+      "object1": {
+          "name": "object1",
+          "aiKey":  "homing",
+          "objectKey":  "object1"
+      }
+  },
   "objects": {
     "object1": {
       "shapeKey": "shape1",
-      "animationKey": "blueEnemyAnimation"
+      "blueAnimationKey": "blueEnemyAnimation",
+      "goldAnimationKey": "redEnemyAnimation",
+      "soundKey": "baseEnemySound"
     },
-    "object2": {
+    "playerCharMale":{
       "shapeKey": "shape1",
-      "animationKey": "redEnemyAnimation"
+      "blueAnimationKey": "blueCharAnimation",
+      "goldAnimationKey": "redCharAnimation",
+      "soundKey": "male"
     },
-    "playerChar1": {
+    "playerCharFemale":{
       "shapeKey": "shape1",
-      "animationKey": "blueCharAnimation"
-    },
-    "playerChar2": {
-      "shapeKey": "shape1",
-      "animationKey": "redCharAnimation"
+      "blueAnimationKey": "blueCharAnimation",
+      "goldAnimationKey": "redCharAnimation",
+      "soundKey": "female"
     },
     "circle": {
       "shapeKey": "circle",
-      "animationKey": "whiteCircle"
+      "blueAnimationKey": "whiteCircle",
+      "goldAnimationKey": "whiteCircle"
     },
     "sector": {
       "shapeKey": "sector",
-      "animationKey": "whiteSector"
+      "blueAnimationKey": "whiteSector",
+      "goldAnimationKey": "whiteSector"
+
     },
     "bar": {
       "shapeKey": "bar",
-      "animationKey": "whiteBar"
+      "blueAnimationKey": "whiteBar",
+      "goldAnimationKey": "whiteBar"
     },
     "big_circle": {
       "shapeKey": "big_circle",
-      "animationKey": "whiteCircle"
+      "blueAnimationKey": "whiteCircle",
+      "goldAnimationKey": "whiteCircle"
     }
   },
   "shapes": {

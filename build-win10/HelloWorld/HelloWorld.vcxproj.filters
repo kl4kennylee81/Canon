@@ -3,6 +3,11 @@
   <ItemGroup>
     <Filter Include="Resource Files">
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Source\physics">
+    </Filter>
+    <Filter Include="Source\time">
+=======
     <Filter Include="Source\load\prototypes\menu">
     </Filter>
     <Filter Include="Source\load\prototypes\zonedata">
@@ -24,25 +29,47 @@
     <Filter Include="Source\movement\moveEvent">
     </Filter>
     <Filter Include="Source\pathControls">
-    </Filter>
-    <Filter Include="Source\level">
-    </Filter>
-    <Filter Include="Source\movement\player">
-    </Filter>
-    <Filter Include="Source\movement">
+>>>>>>> menu
     </Filter>
     <Filter Include="Source\gameplay">
     </Filter>
+    <Filter Include="Source\zones">
+    </Filter>
+    <Filter Include="Source\movement\player">
+    </Filter>
+    <Filter Include="Source\pathControls">
+    </Filter>
+    <Filter Include="Source\ai">
+    </Filter>
+<<<<<<< HEAD
+    <Filter Include="Source\animation">
+=======
     <Filter Include="Source\level\progressBar">
+>>>>>>> menu
     </Filter>
-    <Filter Include="Source\switching">
+    <Filter Include="Source\level">
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Source\base">
+    </Filter>
+    <Filter Include="Source\movement">
+    </Filter>
+    <Filter Include="Source\levelEditor">
+=======
     <Filter Include="Source\levelEditor">
     </Filter>
     <Filter Include="Source\util\path">
+>>>>>>> menu
     </Filter>
-    <Filter Include="Source\base">
+    <Filter Include="Source\load">
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Source\models">
+    </Filter>
+    <Filter Include="Source\switching">
+    </Filter>
+    <Filter Include="Source\util">
+=======
     <Filter Include="Source\load\prototypes\object">
     </Filter>
     <Filter Include="Source\util\observer\event">
@@ -70,6 +97,7 @@
     <Filter Include="Source\zones">
     </Filter>
     <Filter Include="Source\menu">
+>>>>>>> menu
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,11 +114,16 @@
     <ClInclude Include="..\..\source\ActivePath.hpp">
       <Filter>Source\movement</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\..\source\LoadController.hpp">
+      <Filter>Source\load</Filter>
+=======
     <ClInclude Include="..\..\source\LevelData.hpp">
       <Filter>Source\load\prototypes\levels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\PathAIData.hpp">
       <Filter>Source\load\prototypes\aidata</Filter>
+>>>>>>> menu
     </ClInclude>
     <ClInclude Include="..\..\source\LevelController.hpp">
       <Filter>Source\level</Filter>
@@ -122,6 +155,10 @@
     <ClInclude Include="..\..\source\Level.hpp">
       <Filter>Source\level</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\..\source\SpawnController.hpp">
+      <Filter>Source\level</Filter>
+=======
     <ClInclude Include="..\..\source\PathAI.hpp">
       <Filter>Source\ai\activeAI</Filter>
     </ClInclude>
@@ -133,6 +170,7 @@
     </ClInclude>
     <ClInclude Include="..\..\source\PhysicsComponent.hpp">
       <Filter>Source\physics</Filter>
+>>>>>>> menu
     </ClInclude>
     <ClInclude Include="..\..\source\AILoader.hpp">
       <Filter>Source\load\prototypes\aidata</Filter>
@@ -236,11 +274,16 @@
     <ClInclude Include="..\..\source\UIDataLoader.hpp">
       <Filter>Source\load\prototypes\menu</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\..\source\Subject.hpp">
+      <Filter>Source\util</Filter>
+=======
     <ClInclude Include="..\..\source\ClockController.hpp">
       <Filter>Source\time</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\PulseZoneData.hpp">
       <Filter>Source\load\prototypes\zonedata</Filter>
+>>>>>>> menu
     </ClInclude>
     <ClInclude Include="..\..\source\HomingAI.hpp">
       <Filter>Source\ai\activeAI</Filter>
@@ -251,6 +294,12 @@
     <ClInclude Include="..\..\source\Condition.hpp">
       <Filter>Source\ai\activeAI</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\source\GenericAssetManager.hpp" />
+    <ClInclude Include="..\..\source\PathData.hpp">
+      <Filter>Source\load</Filter>
+=======
     <ClInclude Include="..\..\source\ProgressBarController.hpp">
       <Filter>Source\level\progressBar</Filter>
     </ClInclude>
@@ -268,6 +317,7 @@
     </ClInclude>
     <ClInclude Include="..\..\source\Observer.hpp">
       <Filter>Source\util\observer</Filter>
+>>>>>>> menu
     </ClInclude>
     <ClInclude Include="..\..\source\AIController.hpp">
       <Filter>Source\ai</Filter>
@@ -299,6 +349,274 @@
     <ClInclude Include="..\..\source\CompositeAI.hpp">
       <Filter>Source\ai\activeAI</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\..\source\MenuController.hpp" />
+    <ClInclude Include="..\..\source\MenuGraph.hpp" />
+    <ClInclude Include="..\..\source\Mode.hpp" />
+    <ClInclude Include="..\..\source\UIData.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\UIDataLoader.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MenuScreenData.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\TemplateEditorController.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\WaveEditorController.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\TemplateWaveEntry.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\InputController.hpp">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelEvent.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PulseZoneData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MoveEvent.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\HomingAIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SpawnController.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelController.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\World.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Level.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ProgressBarModel.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MoveController.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathController.hpp">
+      <Filter>Source\pathControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Subject.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Mode.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AnimationController.hpp">
+      <Filter>Source\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\RotateZoneData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\InternalClock.hpp">
+      <Filter>Source\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ShapeData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameObject.hpp">
+      <Filter>Source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CollisionEvent.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AnimationAction.hpp">
+      <Filter>Source\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\WaveData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActivePath.hpp">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Element.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelEditorController.hpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ClockController.hpp">
+      <Filter>Source\time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ZoneController.hpp">
+      <Filter>Source\zones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathAIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathEvent.hpp">
+      <Filter>Source\pathControls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MenuGraph.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\StaticAI.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\HomingAI.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Condition.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Path.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SwitchController.hpp">
+      <Filter>Source\switching</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ZoneLoader.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PhysicsComponent.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SwitchEvent.hpp">
+      <Filter>Source\switching</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ZoneData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveZone.hpp">
+      <Filter>Source\zones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AIController.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\StaticAIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CollisionController.hpp">
+      <Filter>Source\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\MenuController.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Util.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\StaticZoneData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ZoneEvent.hpp">
+      <Filter>Source\zones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ObjectData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Data.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameplayController.hpp">
+      <Filter>Source\gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Observer.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Menu.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GenericAssetManager.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CompositeAI.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathAI.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameState.hpp">
+      <Filter>Source\gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Event.hpp">
+      <Filter>Source\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LoadController.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ProgressBarController.hpp">
+      <Filter>Source\level</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\CompositeAIData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\SaveGameData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveAnimation.hpp">
+      <Filter>Source\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AnimationData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\AILoader.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\GameEngine.hpp">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\PathParameters.h">
+      <Filter>Source\movement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\pathData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\BaseController.hpp">
+      <Filter>Source\base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\LevelData.hpp">
+      <Filter>Source\load</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\ActiveAI.hpp">
+      <Filter>Source\ai</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\assets\json\assets.json" />
+    <None Include="..\..\assets\json\level.json" />
+    <None Include="..\..\assets\json\ai.json" />
+    <None Include="..\..\assets\json\level1assets.json" />
+    <None Include="..\..\assets\json\animations.json" />
+    <None Include="..\..\assets\json\kylelevel1.json" />
+    <None Include="..\..\assets\json\kylelevel2.json" />
+    <None Include="..\..\assets\json\menu.json" />
+    <None Include="..\..\assets\json\save.json" />
+    <None Include="..\..\assets\json\worldSerialize.json" />
+    <None Include="..\..\assets\json\kylelevel0.json" />
+    <None Include="..\..\assets\json\kylelevel0a.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\LevelData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Path.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\RotateZoneData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SaveGameData.cpp">
+      <Filter>Source\load</Filter>
+=======
     <ClInclude Include="..\..\source\ObjectData.hpp">
       <Filter>Source\load\prototypes\object</Filter>
     </ClInclude>
@@ -445,22 +763,54 @@
     </ClCompile>
     <ClCompile Include="..\..\source\ZoneController.cpp">
       <Filter>Source\zones</Filter>
+>>>>>>> menu
     </ClCompile>
     <ClCompile Include="..\..\source\AIController.cpp">
       <Filter>Source\ai</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\..\source\HomingAI.cpp">
+      <Filter>Source\ai</Filter>
+=======
     <ClCompile Include="..\..\source\ActivePath.cpp">
       <Filter>Source\movement</Filter>
+>>>>>>> menu
     </ClCompile>
-    <ClCompile Include="..\..\source\Level.cpp">
-      <Filter>Source\level</Filter>
+    <ClCompile Include="..\..\source\ActiveZone.cpp">
+      <Filter>Source\zones</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\..\source\AnimationData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathController.cpp">
+      <Filter>Source\pathControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LoadController.cpp">
+=======
     <ClCompile Include="..\..\source\World.cpp">
+>>>>>>> menu
       <Filter>Source\load</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Menu.cpp">
       <Filter>Source\menu</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\..\source\CompositeAI.cpp">
+      <Filter>Source\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathAI.cpp">
+      <Filter>Source\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AnimationController.cpp">
+      <Filter>Source\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Mode.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LevelEvent.cpp">
+      <Filter>Source\level</Filter>
+=======
     <ClCompile Include="..\..\source\PathAI.cpp">
       <Filter>Source\ai\activeAI</Filter>
     </ClCompile>
@@ -490,10 +840,172 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Event.cpp">
       <Filter>Source\util\observer\event</Filter>
+>>>>>>> menu
     </ClCompile>
     <ClCompile Include="..\..\source\PulseZoneData.cpp">
       <Filter>Source\load\prototypes\zonedata</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\..\source\AILoader.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ZoneEvent.cpp">
+      <Filter>Source\zones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathEvent.cpp">
+      <Filter>Source\pathControls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SpawnController.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PhysicsComponent.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ActiveAnimation.cpp">
+      <Filter>Source\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Menu.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ShapeData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LevelController.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ZoneController.cpp">
+      <Filter>Source\zones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\CompositeAIData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\LevelEditorController.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ActivePath.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\StaticAIData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MenuGraph.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ProgressBarModel.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AIData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameplayController.cpp">
+      <Filter>Source\gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ProgressBarController.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PathAIData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MoveController.cpp">
+      <Filter>Source\movement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\StaticZoneData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Level.cpp">
+      <Filter>Source\level</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Condition.cpp">
+      <Filter>Source\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\SwitchController.cpp">
+      <Filter>Source\switching</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ObjectData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Element.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameEngine.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Event.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ZoneData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\pathData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\CollisionController.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\InternalClock.cpp">
+      <Filter>Source\time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\WaveData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\CollisionEvent.cpp">
+      <Filter>Source\physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GenericAssetManager.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\AIController.cpp">
+      <Filter>Source\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MenuController.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\PulseZoneData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\GameObject.cpp">
+      <Filter>Source\models</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\World.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\BaseController.cpp">
+      <Filter>Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Observer.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\ZoneLoader.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Data.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\HomingAIData.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\UIData.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\UIDataLoader.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\MenuScreenData.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\InputController.cpp">
+      <Filter>Source\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\TemplateEditorController.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\WaveEditorController.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\TemplateWaveEntry.cpp">
+      <Filter>Source\levelEditor</Filter>
+    </ClCompile>
+=======
     <ClCompile Include="..\..\source\ActiveZone.cpp">
       <Filter>Source\zones</Filter>
     </ClCompile>
@@ -525,5 +1037,6 @@
     <None Include="..\..\assets\json\ai.json" />
     <None Include="..\..\assets\json\level1assets.json" />
     <None Include="..\..\assets\json\animations.json" />
+>>>>>>> menu
   </ItemGroup>
 </Project>

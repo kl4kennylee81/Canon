@@ -182,9 +182,9 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     triangulator.calculate();
     poly.setIndices(triangulator.getTriangulation());
     auto obst = PolygonObstacle::alloc(poly);
-    obst->setPosition(objectInit->waveEntry->position);
+    obst->setPosition(objectInit->waveEntry->getPosition());
     
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->element);
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement());
     objectInit->object->setPhysicsComponent(physics);
 }
 

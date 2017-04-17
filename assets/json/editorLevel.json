@@ -1,0 +1,28 @@
+{
+	"counter":	2,
+	"templates":	["homing", "horizontal", "vertical", "kyle3", "kyle4"],
+	"level":	{
+		"levelEntries":	{
+			"wave1":	{
+				"waveKey":	"wave 1",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 2",
+				"time":	180
+			}
+		},
+		"playerChars":	{
+		}
+	},
+	"waves":	{
+		"wave 1":	{
+			"waveEntries":	{
+			}
+		},
+		"wave 2":	{
+			"waveEntries":	{
+			}
+		}
+	}
+}

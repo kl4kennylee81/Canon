@@ -219,8 +219,8 @@ void ZoneController::addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneD
 
 void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, cugl::Vec2 objPos) {
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
-    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
-    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animationKey);
+    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(data->element));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     
@@ -239,8 +239,8 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     std::vector<GameObject*> objs = {};
     for (auto zEntry : data->zones) {
         std::shared_ptr<ObjectData> od = _world->getObjectData(zEntry->objectKey);
-        std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
-        std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animationKey);
+        std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+        std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zEntry->element));
         std::shared_ptr<GameObject> zone = GameObject::alloc();
         zone->type = GameObject::ObjectType::ZONE;
         
@@ -267,8 +267,8 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
 
 void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, cugl::Vec2 objPos) {
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
-    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
-    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->animationKey);
+    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(data->element));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     

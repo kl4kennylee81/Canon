@@ -7,6 +7,7 @@
 #include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
+#include "TemplateWaveEntry.hpp"
 #include "SaveGameData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
@@ -227,6 +228,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
         }
         else if (child->key() == "sounds"){
             success = readCategory(typeid(SoundData).hash_code(), child) && success;
+        }
+        else if (child->key() == "templates") {
+            success = readCategory(typeid(TemplateWaveEntry).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

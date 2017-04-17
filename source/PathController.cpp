@@ -15,6 +15,7 @@
 #include "MoveEvent.hpp"
 #include "LevelEvent.hpp"
 #include "InputController.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 
@@ -122,14 +123,14 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     Vec2 physicsPosition = Vec2::Vec2();
     
     if (isPressed){
-        state->screenToPhysicsCoords(position,physicsPosition);
+        Util::screenToPhysicsCoords(position,physicsPosition);
 		float buffer = GAME_PHYSICS_WIDTH * 0.02;
 		float x2 = GAME_PHYSICS_WIDTH - buffer;
 		float y2 = GAME_PHYSICS_HEIGHT - buffer;
 		physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
 
         Vec2 scenePosition = Vec2::Vec2();
-        state->screenToSceneCoords(position, scenePosition);
+        Util::screenToSceneCoords(position, scenePosition);
     }
     
     // can't start drawing a path before a character is done moving through a previous path

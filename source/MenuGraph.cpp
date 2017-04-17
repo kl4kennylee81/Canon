@@ -11,6 +11,7 @@
 #include "UIComponent.hpp"
 #include "GameState.hpp"
 #include "SaveGameData.hpp"
+#include "Util.hpp"
 
 #define SAVE_GAME_FILE "saveFile"
 
@@ -43,7 +44,6 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 	for (auto entry : saveGame->getSaveLevelEntries())
 	{
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
-        
 		// TODO hacky setting of the uiKey
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
 		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", 0.240 + 0.270*i, 0.5, boxData->width, boxData->height, action, "");
@@ -79,7 +79,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
 			cugl::Size imageSize = imageNode->getSize();
 			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, GameState::getGameSceneHeight() / imageSize.height));
+			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
 			imageNode->setPosition(Vec2::ZERO);
 
 			menu->setBackground(imageNode);

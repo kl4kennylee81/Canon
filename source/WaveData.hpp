@@ -15,31 +15,43 @@
 #include "AIData.hpp"
 
 class WaveEntry {
-public:
-    std::string objectKey;
-    
-    std::string aiKey;
-    
+private:
     Element element;
     
     cugl::Vec2 position;
-
-    std::vector<std::string> zoneKeys;
+    
+    std::string templateKey;
+    
+public:
     
     WaveEntry(){}
     
+    Element getElement();
+    
+    cugl::Vec2 getPosition();
+    
+    std::string getTemplateKey();
+    
+    void setTemplateKey(std::string tKey);
+    
+    void setPosition(cugl::Vec2 pos);
+    
+    void switchElement() {
+        element = element == Element::BLUE ? Element::GOLD : Element::BLUE;
+    }
+    
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-    bool init(std::string objectKey, std::string aiKey, float x, float y,Element element,std::vector<std::string> zoneKeys);
+    bool init(float x, float y,Element element,std::string templateKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(json) ? result : nullptr);
     }
     
-    static std::shared_ptr<WaveEntry> alloc(std::string objectKey, std::string aiKey, float x, float y, Element element, std::vector<std::string> zoneKeys) {
+    static std::shared_ptr<WaveEntry> alloc(float x, float y,Element element,std::string templateKey) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey, aiKey,x,y, element,zoneKeys) ? result : nullptr);
+        return (result->init(x,y,element,templateKey) ? result : nullptr);
     }
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
@@ -72,6 +84,16 @@ public:
 	std::shared_ptr<WaveEntry> getEntry(int index) {
 		return _waveEntries.at(index);
 	}
+    
+    void removeEntry(int index) {
+        std::vector<std::shared_ptr<WaveEntry>> newEntries;
+        for(int i = 0; i < _waveEntries.size(); i++) {
+            if(i != index){
+                newEntries.push_back(_waveEntries.at(i));
+            }
+        }
+        _waveEntries = newEntries;
+    }
     
     
     

@@ -3,8 +3,17 @@
         "Charlemagne": {
             "file": "./fonts/Charlemagne.ttf", 
             "size": 64
+        },
+        "kyle": {
+            "file": "./fonts/Charlemagne.ttf",
+            "size": 20
+        },
+        "small": {
+            "file": "./fonts/Charlemagne.ttf",
+            "size": 12
         }
-    }, 
+
+    },
     "textures": {
         "Color Fill 1": {
             "file": "./textures/menus/levelSelect/Color Fill 1.png", 

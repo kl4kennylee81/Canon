@@ -13,6 +13,17 @@
 #include "BaseController.hpp"
 #include "MenuGraph.hpp"
 #include "World.hpp"
+#include "WaveEditorController.hpp"
+#include "LevelData.hpp"
+
+enum class LevelEditorState : int {
+    START,
+	MAIN,
+    DELETE,
+	SWITCH_TO_WAVE,
+	ADD_NEW_WAVE,
+	WAVE
+};
 
 class LevelEditorController : public BaseController {
 private:
@@ -22,7 +33,23 @@ private:
       * connect all related nodes to this node not the scene */
     std::shared_ptr<cugl::Node> _levelEditNode;
 
+	LevelEditorState _state;
+
+	std::shared_ptr<WaveEditorController> _waveEditorController;
+
+	std::shared_ptr<LevelData> _levelData;
+    
+    int _removeIndex;
+    
+    int _waveCounter;
+    
 public:
+    
+    LevelEditorController(): BaseController() {}
+    
+    ~LevelEditorController() { dispose(); };
+    
+    
     virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
@@ -38,9 +65,44 @@ public:
     
     virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets);
     
+    virtual void dispose();
+    
+	void setSceneGraph();
+    
+    /** to add it to the scene graph node */
+    void activate(std::shared_ptr<cugl::Scene> scene);
+    
+    /** to remove it from hte scene graph node */
+    void deactivate(std::shared_ptr<cugl::Scene> scene);
+
+	void addNewWave();
+
+	void updateWaveNodes();
+    
+    void saveLevel();
+    
+    int increment(){
+        _waveCounter = _waveCounter + 1;
+        return _waveCounter;
+    }
+
+    void loadLevel(std::string file);
+    
+    void deleteButtonListenerFunction(const std::string& name, bool down, int index);
+    
+    void waveButtonListenerFunction(const std::string& name, bool down, int index);
+
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();
         return (result->init(scene,assets) ? result : nullptr);
+    }
+    
+    std::shared_ptr<World> getWorld(){
+        return _world;
+    }
+    
+    std::shared_ptr<LevelData> getCurrentLevelData(){
+        return _levelData;
     }
 
 };
