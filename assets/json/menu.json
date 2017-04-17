@@ -103,7 +103,8 @@
             "buttonLabel": "home",
             "buttonAction": {
                 "type": "modeChange",
-                "buttonTarget": "MAIN_MENU"
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "startMenu"
             },
             "x": 0.375,
             "y": 0.375,

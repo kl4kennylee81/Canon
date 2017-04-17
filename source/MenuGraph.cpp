@@ -42,7 +42,7 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 	int i = 0;
 	for (auto entry : saveGame->getSaveLevelEntries())
 	{
-		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, entry->levelKey, "gameScreen");
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
 		// TODO hacky setting of the uiKey
 
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");

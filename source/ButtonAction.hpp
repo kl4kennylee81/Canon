@@ -52,7 +52,7 @@ public:
 	std::string nextLevel;
     std::string nextScreen;
     
-    virtual bool init(Mode mode, std::string nextLevel = "", std::string nextScreen = ""){
+    virtual bool init(Mode mode, std::string nextScreen = "",std::string nextLevel = ""){
         ButtonAction::init(ButtonActionType::MODECHANGE);
         this->modeTarget = mode;
         this->nextScreen = nextScreen;
@@ -60,7 +60,7 @@ public:
         return true;
     }
     
-    virtual bool init(std::string mode,std::string nextScreen)
+    virtual bool init(std::string mode,std::string nextScreen = "",std::string nextLevel = "")
 	{
         return init(stringToMode(mode),nextScreen);
 	}

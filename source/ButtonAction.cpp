@@ -16,7 +16,7 @@ bool ModeChangeButtonAction::preload(const std::shared_ptr<cugl::JsonValue>& jso
     std::string bt = json->getString("buttonTarget");
     std::string nScreen = json->getString("nextScreen");
     std::string nLevel = json->getString("nextLevel");
-    init(stringToMode(bt),nScreen,nLevel);
+    init(stringToMode(bt),nLevel,nScreen);
     return true;
 }
 
