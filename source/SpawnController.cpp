@@ -11,7 +11,7 @@
 
 using namespace cugl;
 
-#define SPAWN_FRAMES 30.0f
+#define SPAWN_FRAMES 90.0f
 
 SpawnController::SpawnController():
 BaseController(){}
