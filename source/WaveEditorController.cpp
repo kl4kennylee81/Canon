@@ -14,6 +14,7 @@
 #include "GameEngine.hpp"
 #include "ActiveAnimation.hpp"
 #include "AnimationData.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -218,7 +219,7 @@ std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, flo
     activeAnim->setAnimationData(_world->getAnimationData(objectData->getAnimationKey(color)));
     auto button = Button::alloc(activeAnim->getAnimationNode());
     button->setPosition(x, y);
-    button->setScale(0.5);
+    button->setScale(getTemplateAnimationScale(templ));
     return button;
 }
 
@@ -275,6 +276,38 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
     }
 }
 
+float WaveEditorController::getTemplateAnimationScale(std::shared_ptr<TemplateWaveEntry> entry) {
+    std::shared_ptr<ObjectData> obj = _world->getObjectData(entry->getObjectKey());
+    std::shared_ptr<ShapeData> shape = _world->getShapeData(obj->getShapeKey());
+    Poly2 poly(shape->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    std::shared_ptr<PolygonObstacle> obst = PolygonObstacle::alloc(poly);
+    
+    // TODO replace this hacky multiply by physics scale
+    Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
+    
+    auto activeAnim = ActiveAnimation::alloc();
+    auto animData = _world->getAnimationData(obj->getAnimationKey(Element::GOLD));
+    activeAnim->setAnimationData(animData);
+
+    auto anim = activeAnim->getAnimationNode();
+    
+    Size animationSize = anim->getContentSize();
+    
+    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+    // so that the animationNode is always encapsulating the full physics box with padding.
+    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+    
+    float scaleX = (polySize.width)/animationSize.width;
+    float scaleY = (polySize.height)/animationSize.height;
+    float animationScale = std::max(scaleX,scaleY);
+    return animationScale;
+}
+
+
 void WaveEditorController::updateWaveEntryNodes(){
     auto entryNode = _levelEditNode->getChildByName("entries");
     deactivateAndClear(entryNode);
@@ -284,7 +317,6 @@ void WaveEditorController::updateWaveEntryNodes(){
         Vec2 pos;
         Util::physicsToSceneCoords(entry->getPosition(),pos);
         
-        auto activeAnim = ActiveAnimation::alloc();
         auto templateData = _world->getTemplate(entry->getTemplateKey());
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
         auto label = Label::alloc(entry->getTemplateKey(), _world->getAssetManager()->get<Font>("Charlemagne"));

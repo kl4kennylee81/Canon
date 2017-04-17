@@ -10,37 +10,36 @@
     "birb_object":{
       "shapeKey": "birb_shape",
       "blueAnimationKey": "blue_birb_animation",
-      "goldAnimationKey": "blue_birb_animation",
+      "goldAnimationKey": "yellow_birb_animation",
       "soundKey": "baseEnemySound"
     }
   },
   "shapes":{
     "birb_shape": {
-      "vertices": [0,0,50,0,50,50,0,50]
+      "vertices": [0,0,100,0,100,100,0,100]
     }
   },
   "animations":{
     "blue_birb_animation": {
-      "id": 3,
-      "texture": "./textures/models/enemy_models/enemy_blue.png",
-      "rows": 4,
-      "cols": 2,
-      "size": 8,
+      "texture": "./textures/models/enemy_models/birb/birb_blue.png",
+      "rows": 1,
+      "cols": 1,
+      "size": 1,
       "statemap": {
           "spawning": {
             "first": 0,
-            "total": 3,
-            "frames": [10,10,30]
+            "total": 1,
+            "frames": [10]
           },
           "idle": {
-            "first": 2,
+            "first": 0,
             "total": 1,
-            "frames": [5]
+            "frames": [10]
           },
           "death": {
-            "first": 4,
-            "total": 2,
-            "frames": [15,15]
+            "first": 0,
+            "total": 1,
+            "frames": [10]
           }
       },
       "actionmap": {
@@ -55,27 +54,26 @@
           }
       }
     },
-    "gold_birb_animation": {
-      "id": 3,
-      "texture": "./textures/models/enemy_models/enemy_red.png",
-      "rows": 4,
-      "cols": 2,
-      "size": 8,
+    "yellow_birb_animation": {
+      "texture": "./textures/models/enemy_models/birb/birb_yellow.png",
+      "rows": 1,
+      "cols": 1,
+      "size": 1,
       "statemap": {
           "spawning": {
             "first": 0,
-            "total": 3,
-            "frames": [10,10,30]
+            "total": 1,
+            "frames": [10]
           },
           "idle": {
-            "first": 2,
+            "first": 0,
             "total": 1,
-            "frames": [5]
+            "frames": [10]
           },
           "death": {
-            "first": 4,
-            "total": 2,
-            "frames": [15,15]
+            "first": 0,
+            "total": 1,
+            "frames": [10]
           }
       },
       "actionmap": {

@@ -93,6 +93,8 @@ public:
 
 	void setSceneGraph();
     
+    float getTemplateAnimationScale(std::shared_ptr<TemplateWaveEntry> entry);
+    
     void checkKeyboardInput();
     
     void updateDragAndDrop();
