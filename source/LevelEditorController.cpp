@@ -44,6 +44,13 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
         _state = LevelEditorState::MAIN;
         break;
     }
+    case LevelEditorState::DELETE: {
+        _levelData->removeWave(_removeIndex);
+        updateWaveNodes();
+        saveLevel();
+        _state = LevelEditorState::MAIN;
+        break;
+    }
 	case LevelEditorState::MAIN: {
 		//Look for clicks so we can enter wave editor
 		break;
@@ -79,8 +86,13 @@ void LevelEditorController::loadLevel(std::string file){
     std::vector<std::string> vec = Util::split(__FILE__, '/');
     std::string canonDir = Util::join(vec,vec.size()-2,'/');
     auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/"+file);
-    if(reader == nullptr) return;
+    if(reader == nullptr) {
+        _waveEditorController->setTemplates({"homing","horizontal","vertical"});
+        return;
+    }
     auto json = reader->readJson();
+    
+    _waveCounter = json->getInt("counter");
     
     auto templates = json->get("templates");
     _waveEditorController->setTemplates(templates->asStringArray());
@@ -103,6 +115,8 @@ void LevelEditorController::saveLevel() {
     for(auto it: _waveEditorController->getTemplates()){
         templates->appendValue(it->getName());
     }
+    json->appendValue("counter", long(_waveCounter));
+                      
     json->appendChild("templates", templates);
     
     json->appendChild("level", _levelData->toJsonValue());
@@ -161,46 +175,75 @@ void LevelEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(addButton, "add");
     _levelEditNode->addChildWithName(backButton, "back");
 
-	auto waves = Node::alloc();
-	_levelEditNode->addChildWithName(waves, "waves");
+    _levelEditNode->addChildWithName(Node::alloc(), "waves");
+    _levelEditNode->addChildWithName(Node::alloc(), "delete");
+    
 }
 
 void LevelEditorController::addNewWave() {
-    std::string waveName = "wave"+ std::to_string(_levelData->getNumberWaves());
+    std::string waveName = "wave "+ std::to_string(increment());
 	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
 
 
+void LevelEditorController::deleteButtonListenerFunction(const std::string& name, bool down, int index) {
+    auto deleteNode = _levelEditNode->getChildByName("delete");
+    auto buttonNode = std::static_pointer_cast<Button>(deleteNode->getChildByTag(index));
+    if (buttonNode->isDown()) {
+        _removeIndex = index;
+        _state = LevelEditorState::DELETE;
+    }
+
+}
+
+void LevelEditorController::waveButtonListenerFunction(const std::string& name, bool down, int index) {
+    auto waveNode = _levelEditNode->getChildByName("waves");
+    auto buttonNode = std::static_pointer_cast<Button>(waveNode->getChildByTag(index));
+    if (buttonNode->isDown()) {
+        std::string key = _levelData->getWaveKey(index);
+        auto waveData = _world->getWaveData(key);
+        _waveEditorController->setWave(key, waveData);
+        _state = LevelEditorState::SWITCH_TO_WAVE;
+    }
+}
+
 void LevelEditorController::updateWaveNodes() {
 	auto waveNode = _levelEditNode->getChildByName("waves");
 	deactivateAndClear(waveNode);
+    auto deleteNode = _levelEditNode->getChildByName("delete");
+    deactivateAndClear(deleteNode);
+    
 	for (int i = 0; i < _levelData->getNumberWaves(); i++) {
-		auto waveButton = Util::makeBoxButton(200 + 55 * i, 200, 45, 30, Color4::BLACK, Color4::PAPYRUS);
+		auto waveButton = Util::makeBoxButton(200 + 60 * i, 200, 45, 30, Color4::BLACK, Color4::PAPYRUS);
 		waveButton->setListener(
 			[=](const std::string& name, bool down) {
-			auto buttonNode = std::static_pointer_cast<Button>(waveNode->getChildByTag(i));
-			if (buttonNode->isDown()) {
-				auto waveData = _world->getWaveData(_levelData->getWaveKey(i));
-				_waveEditorController->setWave(waveData);
-				_state = LevelEditorState::SWITCH_TO_WAVE;
-			}
-		}
+                waveButtonListenerFunction(name, down, i);
+            }
 		);
 		waveButton->activate(getUid());
         
-        auto label = Label::alloc(std::to_string(i), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.25);
-        label->setPosition(200 + 55 * i, 230);
+        auto deleteButton = Util::makeBoxButton(200 + 60 * i, 160, 25, 25, Color4::RED, Color4::PAPYRUS);
+        deleteButton->setListener(
+            [=](const std::string& name, bool down) {
+                deleteButtonListenerFunction(name, down, i);
+            }
+        );
+        deleteButton->activate(getUid());
+        
+        auto label = Label::alloc(_levelData->getWaveKey(i), _world->getAssetManager()->get<Font>("Charlemagne"));
+        label->setScale(0.17);
+        label->setPosition(200 + 60 * i, 230);
         
         int time = int(_levelData->getTime(i));
         auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne"));
         timeLabel->setScale(0.2);
         timeLabel->setForeground(Color4::PAPYRUS);
-        timeLabel->setPosition(200 + 55 * i, 200);
+        timeLabel->setPosition(200 + 60 * i, 200);
         
 		waveNode->addChildWithTag(waveButton, i);
+        deleteNode->addChildWithTag(deleteButton, i);
         waveNode->addChild(label);
         waveNode->addChild(timeLabel);
 	}
@@ -215,6 +258,7 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
     
     _world = World::alloc(assets);
     _world->_isSandbox = true;
+    _waveCounter = 0;
     _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
     return true;
 }

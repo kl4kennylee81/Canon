@@ -44,6 +44,8 @@ private:
     
     int _dragIndex;
     
+    std::string _waveKey;
+    
     bool _dragStart;
     
     bool _wasPressed;
@@ -83,7 +85,7 @@ public:
         return _templates;
     }
     
-	void setWave(std::shared_ptr<WaveData> wave);
+    void setWave(std::string key, std::shared_ptr<WaveData> wave);
     
     std::shared_ptr<TemplateWaveEntry> getTemplateWaveEntry(std::string templateKey);
 

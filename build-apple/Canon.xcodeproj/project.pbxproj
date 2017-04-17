@@ -101,8 +101,8 @@
 		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
 		9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */; };
 		9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F76684F1E84AE63003A06E8 /* AILoader.cpp */; };
-		9F8220F01EA38B68000EFCD0 /* levelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8220EE1EA38B68000EFCD0 /* levelEditorEvent.cpp */; };
-		9F8220F11EA38B68000EFCD0 /* levelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8220EE1EA38B68000EFCD0 /* levelEditorEvent.cpp */; };
+		9F8220F01EA38B68000EFCD0 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8220EE1EA38B68000EFCD0 /* LevelEditorEvent.cpp */; };
+		9F8220F11EA38B68000EFCD0 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8220EE1EA38B68000EFCD0 /* LevelEditorEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
@@ -258,8 +258,8 @@
 		9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticAIData.hpp; sourceTree = "<group>"; };
 		9F76684F1E84AE63003A06E8 /* AILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AILoader.cpp; sourceTree = "<group>"; };
 		9F7668501E84AE63003A06E8 /* AILoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AILoader.hpp; sourceTree = "<group>"; };
-		9F8220EE1EA38B68000EFCD0 /* levelEditorEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = levelEditorEvent.cpp; sourceTree = "<group>"; };
-		9F8220EF1EA38B68000EFCD0 /* levelEditorEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = levelEditorEvent.hpp; sourceTree = "<group>"; };
+		9F8220EE1EA38B68000EFCD0 /* LevelEditorEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorEvent.cpp; sourceTree = "<group>"; };
+		9F8220EF1EA38B68000EFCD0 /* LevelEditorEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -571,8 +571,8 @@
 		9F8220F41EA38B82000EFCD0 /* levelEditorEvent */ = {
 			isa = PBXGroup;
 			children = (
-				9F8220EE1EA38B68000EFCD0 /* levelEditorEvent.cpp */,
-				9F8220EF1EA38B68000EFCD0 /* levelEditorEvent.hpp */,
+				9F8220EE1EA38B68000EFCD0 /* LevelEditorEvent.cpp */,
+				9F8220EF1EA38B68000EFCD0 /* LevelEditorEvent.hpp */,
 			);
 			name = levelEditorEvent;
 			sourceTree = "<group>";
@@ -1157,7 +1157,7 @@
 				9F3BA5F31E8BA575003138C0 /* LoadController.cpp in Sources */,
 				9F3BA5F41E8BA575003138C0 /* GenericAssetManager.cpp in Sources */,
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
-				9F8220F11EA38B68000EFCD0 /* levelEditorEvent.cpp in Sources */,
+				9F8220F11EA38B68000EFCD0 /* LevelEditorEvent.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
 				9F3BA5F71E8BA575003138C0 /* ProgressBarModel.cpp in Sources */,
@@ -1240,7 +1240,7 @@
 				9FFA3FB81E636C540029D648 /* LevelController.cpp in Sources */,
 				9FFA3FAD1E636B430029D648 /* GameState.cpp in Sources */,
 				9FE8E9E41E6382BC00DBE3BC /* AnimationController.cpp in Sources */,
-				9F8220F01EA38B68000EFCD0 /* levelEditorEvent.cpp in Sources */,
+				9F8220F01EA38B68000EFCD0 /* LevelEditorEvent.cpp in Sources */,
 				27F81A6C1E9C43D200192BF1 /* WaveEditorController.cpp in Sources */,
 				DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,

@@ -1,0 +1,9 @@
+{
+	"templates":	{
+		"horizontal":	{
+			"name":	"horizontal",
+			"aiKey":	"horizontal",
+			"objectKey":	"object1"
+		}
+	}
+}

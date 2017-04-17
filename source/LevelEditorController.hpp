@@ -19,9 +19,10 @@
 enum class LevelEditorState : int {
     START,
 	MAIN,
+    DELETE,
 	SWITCH_TO_WAVE,
 	ADD_NEW_WAVE,
-	WAVE,
+	WAVE
 };
 
 class LevelEditorController : public BaseController {
@@ -37,7 +38,11 @@ private:
 	std::shared_ptr<WaveEditorController> _waveEditorController;
 
 	std::shared_ptr<LevelData> _levelData;
-
+    
+    int _removeIndex;
+    
+    int _waveCounter;
+    
 public:
     
     LevelEditorController(): BaseController() {}
@@ -76,7 +81,16 @@ public:
     
     void saveLevel();
     
+    int increment(){
+        _waveCounter = _waveCounter + 1;
+        return _waveCounter;
+    }
+
     void loadLevel(std::string file);
+    
+    void deleteButtonListenerFunction(const std::string& name, bool down, int index);
+    
+    void waveButtonListenerFunction(const std::string& name, bool down, int index);
 
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();

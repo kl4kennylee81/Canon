@@ -192,8 +192,9 @@ void WaveEditorController::checkKeyboardInput() {
 
 }
 
-void WaveEditorController::setWave(std::shared_ptr<WaveData> wave) {
+void WaveEditorController::setWave(std::string key, std::shared_ptr<WaveData> wave) {
 	_currentWave = wave;
+    _waveKey = key;
 	_state = WaveEditorState::START;
 }
 
@@ -368,6 +369,11 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(addButton, "add");
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
+    
+    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne"));
+    label->setScale(0.4);
+    label->setPosition(500,550);
+    _levelEditNode->addChild(label);
     
     _dragNode = Node::alloc();
     _levelEditNode->addChildWithName(_dragNode, "drag");

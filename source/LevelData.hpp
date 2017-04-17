@@ -61,6 +61,16 @@ public:
         return _playerChars;
     }
     
+    void removeWave(int index){
+        std::vector<std::shared_ptr<LevelEntry>> newEntries;
+        for(int i = 0; i < _levelEntries.size(); i++){
+            if(i != index){
+                newEntries.push_back(_levelEntries.at(i));
+            }
+        }
+        _levelEntries = newEntries;
+    }
+    
     float getTime(int index);
     
     std::string getWaveKey(int index);

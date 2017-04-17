@@ -1,0 +1,9 @@
+{
+	"templates":	{
+		"vertical":	{
+			"name":	"vertical",
+			"aiKey":	"vertical",
+			"objectKey":	"object1"
+		}
+	}
+}

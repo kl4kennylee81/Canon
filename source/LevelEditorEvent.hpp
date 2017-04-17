@@ -6,8 +6,8 @@
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
-#ifndef levelEditorEvent_hpp
-#define levelEditorEvent_hpp
+#ifndef LevelEditorEvent_hpp
+#define LevelEditorEvent_hpp
 
 #include <stdio.h>
 #include "Event.hpp"
@@ -54,4 +54,4 @@ public:
     SimulateLevelEvent() : LevelEditorEvent(){}
 };
 
-#endif /* levelEditorEvent_hpp */
+#endif /* LevelEditorEvent_hpp */
