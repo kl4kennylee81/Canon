@@ -1,6 +1,6 @@
 {
 	"counter":	1,
-	"templates":	["birb"],
+	"templates":	["birb", "blobo", "grump", "fesh"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
@@ -17,7 +17,7 @@
 				"object1":	{
 					"x":	224,
 					"y":	178.133331,
-					"element":	"BLUE",
+					"element":	"GOLD",
 					"templateKey":	"birb"
 				},
 				"object2":	{
@@ -25,6 +25,24 @@
 					"y":	480,
 					"element":	"GOLD",
 					"templateKey":	"birb"
+				},
+				"object3":	{
+					"x":	908.799988,
+					"y":	136.533325,
+					"element":	"GOLD",
+					"templateKey":	"fesh"
+				},
+				"object4":	{
+					"x":	229.333313,
+					"y":	464,
+					"element":	"BLUE",
+					"templateKey":	"grump"
+				},
+				"object5":	{
+					"x":	727.466675,
+					"y":	88.533325,
+					"element":	"BLUE",
+					"templateKey":	"blobo"
 				}
 			}
 		}

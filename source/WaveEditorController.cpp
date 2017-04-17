@@ -338,10 +338,10 @@ void WaveEditorController::updateTemplateNodes() {
 	deactivateAndClear(templateNode);
     std::cout << _templates.size() << std::endl;
 	for (int i = 0; i < _templates.size(); i++) {
-        auto button = getButtonFromTemplate(30, 500 - (i * 40), _templates.at(i), Element::BLUE);
+        auto button = getButtonFromTemplate(30, 500 - (i * 100), _templates.at(i), Element::BLUE);
         auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.3);
-        label->setPosition(90, 500 - (i * 40));
+        label->setPosition(90, 500 - (i * 100));
         button->setListener(
             [=](const std::string& name, bool down) {
                 templateButtonListenerFunction(name, down, i);
