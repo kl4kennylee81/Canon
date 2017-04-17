@@ -41,7 +41,6 @@ public:
     virtual void eventUpdate(Event* e) = 0;
 
 	int getUid() {
-        std::cout << "UID: " << _uid << std::endl;
 		return _uid++;
 	}
 

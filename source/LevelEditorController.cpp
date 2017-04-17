@@ -6,6 +6,8 @@
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
+#include <iostream>
+#include <fstream>
 #include "LevelEditorController.hpp"
 #include "LevelEditorEvent.hpp"
 #include "Util.hpp"
@@ -37,11 +39,6 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 		//Look for clicks so we can enter wave editor
 		break;
 	}
-    case LevelEditorState::SAVE: {
-        saveLevel();
-        _state = LevelEditorState::MAIN;
-        break;
-    }
 	case LevelEditorState::SWITCH_TO_WAVE: {
 		deactivateAndClear(_levelEditNode);
 		_state = LevelEditorState::WAVE;
@@ -50,6 +47,7 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 	case LevelEditorState::ADD_NEW_WAVE: {
 		addNewWave();
 		updateWaveNodes();
+        saveLevel();
 		_state = LevelEditorState::MAIN;
 		break;
 	}
@@ -58,10 +56,33 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 			_state = LevelEditorState::MAIN;
 			setSceneGraph();
 			updateWaveNodes();
+            saveLevel();
 		}
 		break;
 	}
 	}
+}
+
+void LevelEditorController::loadLevel(std::string file){
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string canonDir = Util::join(vec,vec.size()-2,'/');
+    auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/"+file);
+    if(reader == nullptr) return;
+    auto json = reader->readJson();
+    
+    auto templates = json->get("templates");
+    _waveEditorController->setTemplates(templates->asStringArray());
+    
+    _levelData = LevelData::alloc();
+    _levelData->preload(json->get("level"));
+    
+    std::shared_ptr<JsonValue> waves = json->get("waves");
+    for(int i = 0; i < _levelData->getNumberWaves(); i++){
+        auto waveData = WaveData::alloc();
+        waveData->preload(waves->get(i));
+        _world->_waveData[_levelData->getWaveKey(i)] = waveData;
+    }
+    
 }
 
 void LevelEditorController::saveLevel() {
@@ -74,7 +95,20 @@ void LevelEditorController::saveLevel() {
     json->appendChild("templates", templates);
     
     json->appendChild("level", _levelData->toJsonValue());
-
+    
+    auto waves = JsonValue::allocObject();
+    for(int i = 0; i < _levelData->getNumberWaves(); i++){
+        std::string key = _levelData->getWaveKey(i);
+        waves->appendChild(key, _world->getWaveData(key)->toJsonValue());
+    }
+    json->appendChild("waves", waves);
+    
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string assetDir = Util::join(vec,vec.size()-2,'/');
+    std::ofstream newFile;
+    newFile.open("/"+assetDir+"/assets/json/editorLevel.json");
+    newFile << json->toString();
+    newFile.close();
 }
 
 /** to add it to the scene graph node */
@@ -111,20 +145,10 @@ void LevelEditorController::setSceneGraph() {
 		}
 	);
     addButton->activate(getUid());
-    
-    auto saveButton = Util::makeBoxButton(110, 30, 30, 30, Color4::BLUE, Color4::PAPYRUS);
-    saveButton->setListener(
-       [=](const std::string& name, bool down) {
-           if (down) {
-               _state = LevelEditorState::SAVE;
-           }
-       }
-    );
-    saveButton->activate(getUid());
+
 
 	_levelEditNode->addChildWithName(addButton, "add");
     _levelEditNode->addChildWithName(backButton, "back");
-    _levelEditNode->addChildWithName(saveButton, "save");
 
 	auto waves = Node::alloc();
 	_levelEditNode->addChildWithName(waves, "waves");
@@ -170,6 +194,8 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
     _world->_isSandbox = true;
     _waveEditorController = WaveEditorController::alloc(_levelEditNode, _world);
 	setSceneGraph();
+    loadLevel("editorLevel.json");
+    updateWaveNodes();
     return true;
 }
 

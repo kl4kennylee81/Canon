@@ -113,8 +113,10 @@ void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry>
     auto json = JsonValue::allocObject();
     json->appendChild("templates", templates);
     
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string assetDir = Util::join(vec,vec.size()-2,'/');
     std::ofstream newFile;
-    newFile.open(TEMPLATE_PATH+templ->name+".json");
+    newFile.open("/"+assetDir+"/assets/json/templates/"+templ->name+".json");
     newFile << json->toString();
     newFile.close();
 }
@@ -301,6 +303,13 @@ void WaveEditorController::updateTemplateNodes() {
         button->activate(getUid());
         templateNode->addChildWithTag(button, i);
 	}
+}
+
+void WaveEditorController::setTemplates(std::vector<std::string> templates){
+    _templates.clear();
+    for(auto str: templates){
+        _templates.push_back(_world->getTemplate(str));
+    }
 }
 
 std::string WaveEditorController::getStateAsString(){

@@ -1,0 +1,55 @@
+{
+	"templates":	["kyle0", "kyle1", "kyle2", "kyle3"],
+	"level":	{
+		"levelEntries":	{
+			"wave1":	{
+				"waveKey":	"wave0",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave1",
+				"time":	180
+			},
+			"wave3":	{
+				"waveKey":	"wave2",
+				"time":	180
+			},
+			"wave4":	{
+				"waveKey":	"wave3",
+				"time":	180
+			}
+		},
+		"playerChars":	{
+		}
+	},
+	"waves":	{
+		"wave0":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	355.200012,
+					"y":	389.333313,
+					"element":	"BLUE",
+					"templateKey":	"kyle2"
+				},
+				"object2":	{
+					"x":	338.133331,
+					"y":	443.733337,
+					"element":	"BLUE",
+					"templateKey":	"kyle3"
+				}
+			}
+		},
+		"wave1":	{
+			"waveEntries":	{
+			}
+		},
+		"wave2":	{
+			"waveEntries":	{
+			}
+		},
+		"wave3":	{
+			"waveEntries":	{
+			}
+		}
+	}
+}
