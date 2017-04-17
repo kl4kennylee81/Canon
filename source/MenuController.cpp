@@ -130,6 +130,12 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
                     }
+                    case FxTriggerButtonAction::FXType::RETRY:
+                    {
+                        std::shared_ptr<Event> resetEvent = ResetGameEvent::alloc();
+                        notify(resetEvent.get());
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
+                    }
 				}
                 break;
             }

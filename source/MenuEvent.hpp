@@ -8,7 +8,7 @@
 class MenuEvent : public Event {
 public:
 	enum class MenuEventType : int {
-		PAUSEGAME
+		PAUSEGAME,RESETGAME
 	};
 
 	MenuEventType _menuEventType;
@@ -43,6 +43,22 @@ public:
 		std::shared_ptr<PauseGameEvent> result = std::make_shared<PauseGameEvent>();
 		return (result->init(p) ? result : nullptr);
 	}
+};
+
+class ResetGameEvent : public MenuEvent {
+public:
+    ResetGameEvent() : MenuEvent() {}
+    
+    bool init() {
+        MenuEvent::init();
+        _menuEventType = MenuEventType::RESETGAME;
+        return true;
+    }
+    
+    static std::shared_ptr<ResetGameEvent> alloc() {
+        std::shared_ptr<ResetGameEvent> result = std::make_shared<ResetGameEvent>();
+        return (result->init() ? result : nullptr);
+    }
 };
 
 

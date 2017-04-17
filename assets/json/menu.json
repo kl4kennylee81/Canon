@@ -71,7 +71,7 @@
             "buttonAction": {
                 "type": "fxTrigger",
                 "fxKey": "RETRY",
-                "nextScreen": "pauseScreen"
+                "nextScreen": "gameScreen"
             },
             "x": 0.375,
             "y": 0.500,

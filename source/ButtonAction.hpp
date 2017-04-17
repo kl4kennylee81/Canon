@@ -90,7 +90,7 @@ class FxTriggerButtonAction : public ButtonAction {
 public:
     
     enum class FXType : int {
-        PAUSE, RESUME, NONE
+        PAUSE, RESUME, RETRY, NONE
     };
 
     FXType fxKey;
@@ -99,6 +99,7 @@ public:
     static FXType stringToFXType(std::string event) {
         if (event == "PAUSE") return FXType::PAUSE;
         if (event == "RESUME") return FXType::RESUME;
+        if (event == "RETRY") return FXType::RETRY;
         return FXType::NONE;
     }
     

@@ -42,8 +42,16 @@ void GameplayController::eventUpdate(Event* e) {
 
 			switch (menuEvent->_menuEventType) {
 				case MenuEvent::MenuEventType::PAUSEGAME:
+                {
 					PauseGameEvent* pg = static_cast<PauseGameEvent*>(menuEvent);
                     _paused = pg->pause;
+                    break;
+                }
+                case MenuEvent::MenuEventType::RESETGAME:
+                {
+                    _gameState->toggleReset();
+                    break;
+                }
 
 			}
 			break;
@@ -57,12 +65,14 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
+                    _paused = true;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
                 {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
+                    _paused = true;
                 }
             }
         }
@@ -70,7 +80,6 @@ void GameplayController::eventUpdate(Event* e) {
 }
 
 void GameplayController::update(float timestep) {
-	if (_paused) return;
 
     // TODO temporary rest until we have a retry screen
     if (_gameState->getReset()){
@@ -82,6 +91,8 @@ void GameplayController::update(float timestep) {
         init(s,w);
         return;
     }
+    // TODO hacky way to pause the game
+	if (_paused) return;
     
     _clockController->update(timestep);
     _levelController->update(timestep, _gameState);
