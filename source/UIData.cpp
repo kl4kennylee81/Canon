@@ -48,6 +48,7 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
 
 
+    // TODO cleanup this function
 	std::shared_ptr<Button> button;
 	std::shared_ptr<Label> label;
 
