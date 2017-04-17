@@ -1,6 +1,6 @@
 {
 	"counter":	1,
-	"templates":	["birb", "blobo", "grump", "fesh","horizontal"],
+	"templates":	["birb", "blobo", "grump", "fesh", "horizontal", "vertical"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
@@ -43,6 +43,18 @@
 					"y":	88.533325,
 					"element":	"BLUE",
 					"templateKey":	"blobo"
+				},
+				"object6":	{
+					"x":	856.533325,
+					"y":	341.333344,
+					"element":	"BLUE",
+					"templateKey":	"horizontal"
+				},
+				"object7":	{
+					"x":	221.866669,
+					"y":	80,
+					"element":	"BLUE",
+					"templateKey":	"vertical"
 				}
 			}
 		}
