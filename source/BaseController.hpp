@@ -17,11 +17,11 @@
 
 
 class BaseController : public Observer, Subject {
-private:
-	int _uid = 0;
 
 protected:   
 	std::vector<Observer*> _observers;
+    int _uid;
+
     
 public:
     
@@ -41,6 +41,7 @@ public:
     virtual void eventUpdate(Event* e) = 0;
 
 	int getUid() {
+        std::cout << "UID: " << _uid << std::endl;
 		return _uid++;
 	}
 

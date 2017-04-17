@@ -12,6 +12,7 @@
 using namespace cugl;
 
 BaseController::BaseController(){
+    _uid = 100000;
 }
 
 BaseController::~BaseController(){

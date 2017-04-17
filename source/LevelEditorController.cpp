@@ -37,6 +37,11 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 		//Look for clicks so we can enter wave editor
 		break;
 	}
+    case LevelEditorState::SAVE: {
+        saveLevel();
+        _state = LevelEditorState::MAIN;
+        break;
+    }
 	case LevelEditorState::SWITCH_TO_WAVE: {
 		deactivateAndClear(_levelEditNode);
 		_state = LevelEditorState::WAVE;
@@ -59,6 +64,19 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 	}
 }
 
+void LevelEditorController::saveLevel() {
+    auto json = JsonValue::allocObject();
+    
+    auto templates = JsonValue::allocArray();
+    for(auto it: _waveEditorController->getTemplates()){
+        templates->appendValue(it->getName());
+    }
+    json->appendChild("templates", templates);
+    
+    json->appendChild("level", _levelData->toJsonValue());
+
+}
+
 /** to add it to the scene graph node */
 void LevelEditorController::activate(std::shared_ptr<Scene> scene){
     scene->addChild(this->_levelEditNode);
@@ -72,7 +90,7 @@ void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
-	backButton->activate(getUid());
+
     backButton->setListener(
         [=](const std::string& name, bool down) {
             if (down) {
@@ -82,22 +100,31 @@ void LevelEditorController::setSceneGraph() {
             }
         }
     );
-    
     backButton->activate(getUid());
 
 	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
-	addButton->setListener(
+    addButton->setListener(
 		[=](const std::string& name, bool down) {
             if (down) {
                 _state = LevelEditorState::ADD_NEW_WAVE;
             }
 		}
 	);
-
-	addButton->activate(getUid());
+    addButton->activate(getUid());
+    
+    auto saveButton = Util::makeBoxButton(110, 30, 30, 30, Color4::BLUE, Color4::PAPYRUS);
+    saveButton->setListener(
+       [=](const std::string& name, bool down) {
+           if (down) {
+               _state = LevelEditorState::SAVE;
+           }
+       }
+    );
+    saveButton->activate(getUid());
 
 	_levelEditNode->addChildWithName(addButton, "add");
-	_levelEditNode->addChildWithName(backButton, "back");
+    _levelEditNode->addChildWithName(backButton, "back");
+    _levelEditNode->addChildWithName(saveButton, "save");
 
 	auto waves = Node::alloc();
 	_levelEditNode->addChildWithName(waves, "waves");

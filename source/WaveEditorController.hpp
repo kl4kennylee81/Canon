@@ -75,6 +75,10 @@ public:
 
 	virtual bool update(float timestep, std::shared_ptr<MenuGraph> menuGraph);
 
+    std::vector<std::shared_ptr<TemplateWaveEntry>> getTemplates() {
+        return _templates;
+    }
+    
 	void setWave(std::shared_ptr<WaveData> wave);
     
     std::shared_ptr<TemplateWaveEntry> getTemplateWaveEntry(std::string templateKey);

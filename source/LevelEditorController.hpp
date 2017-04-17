@@ -18,6 +18,7 @@
 
 enum class LevelEditorState : int {
 	MAIN,
+    SAVE,
 	SWITCH_TO_WAVE,
 	ADD_NEW_WAVE,
 	WAVE,
@@ -72,6 +73,8 @@ public:
 	void addNewWave();
 
 	void updateWaveNodes();
+    
+    void saveLevel();
 
     static std::shared_ptr<LevelEditorController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<LevelEditorController> result = std::make_shared<LevelEditorController>();
