@@ -42,6 +42,9 @@ public:
      */
     float _cooldown_frames;
     
+    //Do not start looking for input until player object has spawned
+    bool _spawnStart;
+    
     PathControllerState controllerState;
 
 	std::shared_ptr<Path> _path;

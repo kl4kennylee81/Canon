@@ -13,6 +13,7 @@
 #include <cugl/base/CUBase.h>
 #include <cugl/2d/CUPathNode.h>
 #include "MoveEvent.hpp"
+#include "LevelEvent.hpp"
 #include "InputController.hpp"
 
 using namespace cugl;
@@ -51,6 +52,16 @@ void PathController::eventUpdate(Event* e) {
         {
             // character is now done moving through the path
             controllerState = IDLE;
+            break;
+        }
+        case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    _spawnStart = true;
+                    break;
+                }
+            }
             break;
         }
     }
@@ -103,6 +114,7 @@ bool PathController::isOnCooldown() {
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
+    if (!_spawnStart) return;
     _cooldown_frames += GameState::_internalClock->getTimeDilation();
 	bool isPressed = InputController::getIsPressed();
 	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
@@ -194,6 +206,8 @@ bool PathController::init(std::shared_ptr<GameState> state) {
     controllerState = IDLE;
 	_wasPressed = false;
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
+    
+    _spawnStart = false;
 
 	return true;
 }
