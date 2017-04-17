@@ -336,7 +336,7 @@ void WaveEditorController::setSceneGraph() {
 		if (down) {
 			_state = WaveEditorState::DONE;
 		}
-	}
+    }
 	);
 
 	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);

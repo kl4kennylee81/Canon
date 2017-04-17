@@ -36,6 +36,7 @@ public:
     
     std::string getCurrentWaveKey();
     
+    /** returns the current wave and -1 if there are no waves */
     int getCurrentWave();
     
     float getProgress();

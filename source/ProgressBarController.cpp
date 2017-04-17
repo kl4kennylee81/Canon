@@ -41,6 +41,14 @@ void ProgressBarController::eventUpdate(Event* e) {
 void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 {
     int index = level.getCurrentWave();
+    // it is -1 when the level has no waves
+    if (index < 0){
+        return;
+    }
+    
+    if (level.isSpawningFinished()){
+        return;
+    }
     std::shared_ptr<cugl::Node> child = _pBarSceneNode->getChildren().at(index);
     std::shared_ptr<cugl::ProgressBarModel> waveBar = std::static_pointer_cast<cugl::ProgressBarModel>(child);
     waveBar->toggleActive();
@@ -98,12 +106,14 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	float levelNetTime = 0.f;
 	for (int i = 0; i < level->getNumberWaves(); i++) { levelNetTime += level->getTime(i); }
 
-	size_t numberWaves = level->getNumberWaves() - 1;
+    std::cout << level->getNumberWaves() << std::endl;
+    
+    size_t numberWaves = level->getNumberWaves();
 	float spacePerUnitTime = (BAR_WIDTH - numberWaves*INTER_BAR_GAP) / levelNetTime;
 
 	// creation of actual progress bars
 	float nextBarXPos = 0;
-	for (int i = 0; i <= numberWaves; i++)
+	for (int i = 0; i < numberWaves; i++)
 	{
 		// make progress bar object
 		Size size = Size(level->getTime(i) * spacePerUnitTime, BAR_HEIGHT);

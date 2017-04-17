@@ -225,7 +225,8 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
     switch (_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            return nullptr;
+            // TODO replace hardcoding it's just for now
+            std::shared_ptr<LevelData> level = _assets->get<LevelData>("level0");
         }
         case Mode::GAMEPLAY:
         {
@@ -253,7 +254,9 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
     switch (_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            return nullptr;
+            std::shared_ptr<LevelData> level = getNextLevelData();
+            std::shared_ptr<World> levelWorld = World::alloc(_assets,level);
+            return levelWorld;
         }
         case Mode::GAMEPLAY:
         {
@@ -308,7 +311,7 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                _menuGraph->setNextMode(Mode::MAIN_MENU);
             }
             break;
         }
