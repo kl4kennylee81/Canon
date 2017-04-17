@@ -104,8 +104,9 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     
     _levelEditNode->removeChildByName("label");
     std::string str = getStateAsString();
-    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("kyle"));
+    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne"));
     label->setPosition(400,20);
+    label->setScale(0.5);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
 }

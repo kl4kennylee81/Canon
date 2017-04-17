@@ -69,15 +69,15 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
-        "charatemp_red": {
-            "file": "./textures/models/player_models/charatemp_red.png", 
+        "charatemp_gold": {
+            "file": "./textures/models/player_models/charatemp_gold.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
-        "chartemp_gold": {
-            "file": "./textures/models/player_models/chartemp_gold.png", 
+        "charatemp_red": {
+            "file": "./textures/models/player_models/charatemp_red.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
