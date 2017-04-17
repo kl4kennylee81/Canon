@@ -1,0 +1,95 @@
+{
+  "templates":  {
+    "fesh": {
+      "name": "fesh",
+      "aiKey":  "homing",
+      "objectKey":  "fesh_object"
+    }
+  },
+  "objects":{
+    "fesh_object":{
+      "shapeKey": "fesh_shape",
+      "blueAnimationKey": "blue_fesh_animation",
+      "goldAnimationKey": "blue_fesh_animation",
+      "soundKey": "baseEnemySound"
+    }
+  },
+  "shapes":{
+    "fesh_shape": {
+      "vertices": [0,0,50,0,50,50,0,50]
+    }
+  },
+  "animations":{
+    "blue_fesh_animation": {
+      "id": 3,
+      "texture": "./textures/models/enemy_models/enemy_blue.png",
+      "rows": 4,
+      "cols": 2,
+      "size": 8,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 3,
+            "frames": [10,10,30]
+          },
+          "idle": {
+            "first": 2,
+            "total": 1,
+            "frames": [5]
+          },
+          "death": {
+            "first": 4,
+            "total": 2,
+            "frames": [15,15]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+      }
+    },
+    "gold_fesh_animation": {
+      "id": 3,
+      "texture": "./textures/models/enemy_models/enemy_red.png",
+      "rows": 4,
+      "cols": 2,
+      "size": 8,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 3,
+            "frames": [10,10,30]
+          },
+          "idle": {
+            "first": 2,
+            "total": 1,
+            "frames": [5]
+          },
+          "death": {
+            "first": 4,
+            "total": 2,
+            "frames": [15,15]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+      }
+    }
+  }
+}
+

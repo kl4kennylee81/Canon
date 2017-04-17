@@ -388,6 +388,19 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_world = world;
     _colorChanged = false;
     _entryRemoved = false;
+    
+    std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");
+    if (reader == nullptr) {
+        CULogError("No asset directory located at");
+    }
+	std::shared_ptr<JsonValue> json = reader->readJson();
+    
+    for(std::string tName :json->get("templates")->asStringArray()){
+        auto temp = world->getAssetManager()->get<TemplateWaveEntry>(tName);
+        _templates.push_back(temp);
+    }
+
+    
     //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle0_template"));
     //_templates.push_back(world->getAssetManager()->get<TemplateWaveEntry>("kyle1_template"));
 	return true;
