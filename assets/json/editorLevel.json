@@ -6,14 +6,6 @@
 			"wave1":	{
 				"waveKey":	"wave 4",
 				"time":	180
-			},
-			"wave2":	{
-				"waveKey":	"wave 5",
-				"time":	180
-			},
-			"wave3":	{
-				"waveKey":	"wave 6",
-				"time":	180
 			}
 		},
 		"playerChars":	{
@@ -44,44 +36,6 @@
 					"x":	714.666687,
 					"y":	474.666687,
 					"element":	"GOLD",
-					"templateKey":	"homing"
-				}
-			}
-		},
-		"wave 5":	{
-			"waveEntries":	{
-				"object1":	{
-					"x":	554.666687,
-					"y":	441.599976,
-					"element":	"GOLD",
-					"templateKey":	"homing"
-				},
-				"object2":	{
-					"x":	280.533325,
-					"y":	124.800003,
-					"element":	"GOLD",
-					"templateKey":	"homing"
-				},
-				"object3":	{
-					"x":	928,
-					"y":	188.799988,
-					"element":	"BLUE",
-					"templateKey":	"homing"
-				},
-				"object4":	{
-					"x":	835.200012,
-					"y":	48,
-					"element":	"GOLD",
-					"templateKey":	"horizontal"
-				}
-			}
-		},
-		"wave 6":	{
-			"waveEntries":	{
-				"object1":	{
-					"x":	142.933350,
-					"y":	160,
-					"element":	"BLUE",
 					"templateKey":	"homing"
 				}
 			}
