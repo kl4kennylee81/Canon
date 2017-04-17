@@ -2,22 +2,6 @@
   "levels": {
     "level0": {
       "levelEntries": {
-        "wave1": {
-          "waveKey": "kylewave1",
-          "time": 500
-        },
-        "wave2": {
-          "waveKey": "kylewave2",
-          "time": 500
-        },
-        "wave3": {
-          "waveKey": "kylewave3",
-          "time": 500
-        },
-        "wave4": {
-          "waveKey": "kylewave4",
-          "time": 500
-        },
         "wave5": {
           "waveKey": "kylewave3",
           "time": 500

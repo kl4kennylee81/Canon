@@ -8,6 +8,7 @@
 
 #include "GameplayController.hpp"
 #include "MenuEvent.hpp"
+#include "FinishEvent.hpp"
 
 using namespace cugl;
 
@@ -20,7 +21,8 @@ _collisionController(nullptr),
 _aiController(nullptr),
 _switchController(nullptr),
 _levelController(nullptr),
-_clockController(nullptr)
+_clockController(nullptr),
+_finishController(nullptr)
 {}
 
 void GameplayController::attach(Observer* obs) {
@@ -35,6 +37,7 @@ void GameplayController::notify(Event* e) {
 void GameplayController::eventUpdate(Event* e) {
 	switch (e->_eventType) {
 		case Event::EventType::MENU:
+        {
 			MenuEvent* menuEvent = static_cast<MenuEvent*>(e);
 
 			switch (menuEvent->_menuEventType) {
@@ -44,6 +47,25 @@ void GameplayController::eventUpdate(Event* e) {
 
 			}
 			break;
+        }
+        case Event::EventType::FINISH:
+        {
+            FinishEvent* finishEvent = static_cast<FinishEvent*>(e);
+            switch(finishEvent->_finishType){
+                case FinishEvent::FinishEventType::GAME_WON:
+                {
+                    // route it onward to the observers of the gameplay controller
+                    // which is the menu controller
+                    this->notify(e);
+                }
+                case FinishEvent::FinishEventType::GAME_LOST:
+                {
+                    // route it onward to the observers of the gameplay controller
+                    // which is the menu controller
+                    this->notify(e);
+                }
+            }
+        }
 	}
 }
 
@@ -71,6 +93,7 @@ void GameplayController::update(float timestep) {
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
+    _finishController->update(timestep, _gameState);
 }
 
 /**
@@ -103,6 +126,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
+    _finishController = FinishController::alloc();
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());
@@ -114,6 +138,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _levelController->attach(_spawnController.get());
 	_levelController->attach(_aiController.get());
     _levelController->attach(_zoneController.get());
+    _levelController->attach(_finishController.get());
     
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
@@ -133,6 +158,11 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     
     _zoneController->attach(_collisionController.get());
     _zoneController->attach(_animationController.get());
+    
+    _animationController->attach(_finishController.get());
+    
+    // attach the gameplayController to the finishController
+    _finishController->attach(this);
     
 	_paused = false;
 

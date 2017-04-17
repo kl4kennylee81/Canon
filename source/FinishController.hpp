@@ -38,11 +38,11 @@ public:
     
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
-    virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init();
     
-    static std::shared_ptr<FinishController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<FinishController> alloc() {
         std::shared_ptr<FinishController> result = std::make_shared<FinishController>();
-        return (result->init(state) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
 };
 

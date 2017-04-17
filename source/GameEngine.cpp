@@ -125,69 +125,6 @@ void GameEngine::onShutdown() {
     Application::onShutdown();
 }
 
-void GameEngine::cleanPreviousMode(){
-    // clean up resources in previous mode
-    switch(_menuGraph->getMode()){
-        case Mode::LOADING:
-        {
-			_loading = nullptr;
-            break;
-        }
-        case Mode::GAMEPLAY:
-        {
-			_gameplay = nullptr;
-			_menu = nullptr;
-            break;
-        }
-        case Mode::MAIN_MENU:
-        {
-            break;
-        }
-        case Mode::LEVEL_EDIT:
-        {
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
-}
-
-void GameEngine::initializeNextMode(){
-    // initialize resources for next mode
-    switch(_menuGraph->getNextMode()){
-        case Mode::LOADING:
-        {
-            
-            break;
-        }
-        case Mode::GAMEPLAY:
-        {
-            std::shared_ptr<World> levelWorld = getNextWorld();
-            _gameplay = GameplayController::alloc(_scene, levelWorld);
-            _menu->attach(_gameplay.get());
-            break;
-        }
-        case Mode::MAIN_MENU:
-        {
-            _menu = MenuController::alloc(_scene,_menuGraph);
-            //TODO replace hard coded populate with menus loaded from data file
-            _menuGraph->populate(_assets);
-            break;
-        }
-        case Mode::LEVEL_EDIT:
-        {
-            _levelEditor = LevelEditorController::alloc(_scene, _assets);
-            break;
-        }
-        default:
-        {
-            break;
-        }
-    }
-}
-
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
     switch (_menuGraph->getMode()){
         case Mode::LOADING:
@@ -242,6 +179,70 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         }
     }
     return nullptr;
+}
+
+void GameEngine::cleanPreviousMode(){
+    // clean up resources in previous mode
+    switch(_menuGraph->getMode()){
+        case Mode::LOADING:
+        {
+            _loading = nullptr;
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            _gameplay = nullptr;
+            _menu = nullptr;
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void GameEngine::initializeNextMode(){
+    // initialize resources for next mode
+    switch(_menuGraph->getNextMode()){
+        case Mode::LOADING:
+        {
+            
+            break;
+        }
+        case Mode::GAMEPLAY:
+        {
+            std::shared_ptr<World> levelWorld = getNextWorld();
+            _gameplay = GameplayController::alloc(_scene, levelWorld);
+            _menu->attach(_gameplay.get());
+            _gameplay->attach(_menu.get());
+            break;
+        }
+        case Mode::MAIN_MENU:
+        {
+            _menu = MenuController::alloc(_scene,_menuGraph);
+            //TODO replace hard coded populate with menus loaded from data file
+            _menuGraph->populate(_assets);
+            break;
+        }
+        case Mode::LEVEL_EDIT:
+        {
+            _levelEditor = LevelEditorController::alloc(_scene, _assets);
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
 }
 
 /**

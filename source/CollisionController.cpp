@@ -106,12 +106,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
     
     for (auto obj : objsScheduledForRemoval) {
-        if(!obj->getIsPlayer()) {
-            removeFromWorld(obj);
-        } else {
-            // TODO : temporary reset after losing
-            state->toggleReset();
-        }
+        removeFromWorld(obj);
     }
     objsScheduledForRemoval.clear();
     

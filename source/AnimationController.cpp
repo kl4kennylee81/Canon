@@ -239,6 +239,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
         }
         
         if (!anim->nextFrame()){
+            removeAnimation(state,it->first,it->second);
 			animationMap.erase(it);
             break;
         } else {

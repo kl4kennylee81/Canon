@@ -43,7 +43,7 @@ void FinishController::eventUpdate(Event* e) {
 }
 
 void FinishController::update(float timestep, std::shared_ptr<GameState> state){
-    if (this.notified){
+    if (this->notified){
         return;
     }
     
@@ -52,7 +52,7 @@ void FinishController::update(float timestep, std::shared_ptr<GameState> state){
         // notify the gameplay controller the game is lost
         std::shared_ptr<Event> fEvent = GameLostEvent::alloc();
         this->notify(fEvent.get());
-        this.notified = true;
+        this->notified = true;
     }
     
     if (wavesFinished && state->getNumberEnemyCharacters() == 0) //all enemies are dead
@@ -61,13 +61,13 @@ void FinishController::update(float timestep, std::shared_ptr<GameState> state){
         // notify the gameplay controller the game is lost
         std::shared_ptr<Event> fEvent = GameWonEvent::alloc();
         this->notify(fEvent.get());
-        this.notified = true;
+        this->notified = true;
     }
 }
 
-bool FinishController::init(std::shared_ptr<GameState> state){
-    wavesFinished = false;
-    playerDead = false;
-    notified = false;
+bool FinishController::init(){
+    this->wavesFinished = false;
+    this->playerDead = false;
+    this->notified = false;
     return true;
 }

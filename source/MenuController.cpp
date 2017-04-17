@@ -10,6 +10,7 @@
 #include "InputController.hpp"
 #include "UIData.hpp"
 #include "MenuEvent.hpp"
+#include "FinishEvent.hpp"
 
 using namespace cugl;
 
@@ -32,8 +33,20 @@ void MenuController::notify(Event* e) {
 
 void MenuController::eventUpdate(Event* e) {
     switch (e->_eventType) {
-        default:
-            break;
+        case Event::EventType::FINISH:
+        {
+            FinishEvent* fEvent = (FinishEvent*)e;
+            switch(fEvent->_finishType){
+                case FinishEvent::FinishEventType::GAME_WON:
+                {
+                    this->getMenuGraph()->setActiveMenu("gameover");
+                }
+                case FinishEvent::FinishEventType::GAME_LOST:
+                {
+                    this->getMenuGraph()->setActiveMenu("gameover");
+                }
+            }
+        }
     }
 }
 
