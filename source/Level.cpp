@@ -12,12 +12,16 @@ using namespace cugl;
 
 bool Level::init(std::shared_ptr<LevelData> levelData){
     _levelData = levelData;
-    _currentWave = -1;
+    _currentWave = 0;
     _framesElapsed = 0;
-    _readyToSpawn = false;
     _playerSpawned = false;
     
-    update(0);
+    if (isLastWave()){
+        _readyToSpawn = false;
+    } else {
+        _readyToSpawn = true;
+    }
+    
     return true;
 }
 
@@ -72,12 +76,12 @@ void Level::setCurrentWave(int waveNum){
 
 
 bool Level::isLastWave(){
-    return _currentWave >= _levelData->getNumberWaves();
+    return _currentWave >= (int)_levelData->getNumberWaves();
 }
 
 bool Level::isSpawningFinished(){
-    return getCurrentWave() <= 0 || // the level has no waves
-    (isLastWave() && (_framesElapsed >= getNextTime())); // last wave and full elapsed
+    return getCurrentWave() < 0 || // the level has no waves
+    (_currentWave ==_levelData->getNumberWaves());
 }
 
 void Level::update(float timestep){
@@ -90,7 +94,6 @@ void Level::update(float timestep){
         _framesElapsed += GameState::_internalClock->getTimeDilation();
         return;
     }
-    
     _framesElapsed = 0; // reset frames for next waves
     _currentWave+=1;
     if (!isLastWave()){
