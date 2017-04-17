@@ -34,11 +34,12 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     float world_yPos = (size.getMaxY() - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2;
     Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
-    // Get the space background.  Its size determines all scaling.
+    // set the bkgd texture in the levelData
     auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
     auto bkgdTextureNode = PolygonNode::allocWithTexture(image);
     bkgdTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bkgdTextureNode->setPosition(Vec2::ZERO);
+    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/image->getWidth());
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
