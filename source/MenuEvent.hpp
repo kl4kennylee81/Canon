@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
-#include <Event.hpp>
+#include "Event.hpp"
 
 class MenuEvent : public Event {
 public:

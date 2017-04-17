@@ -8,7 +8,7 @@
 #include "ButtonAction.hpp"
 
 enum class FXType : int {
-	PAUSE, RESUME
+	PAUSE, RESUME, NONE
 };
 
 enum class UIDataType : int {
@@ -48,6 +48,7 @@ public:
 	static FXType stringToFXType(std::string event) {
 		if (event == "PAUSE") return FXType::PAUSE;
 		if (event == "RESUME") return FXType::RESUME;
+        return FXType::NONE;
 	}
 
 	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);

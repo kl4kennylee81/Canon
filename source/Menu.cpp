@@ -20,7 +20,7 @@ void Menu::setBackground(std::shared_ptr<cugl::Node> node)
 
 void Menu::addUIElement(std::shared_ptr<UIComponent> element){
     this->_uiElements.push_back(element);
-    this->_menu->addChild(element->getNode(), 1);
+    this->_menu->addChild(element->getNode(),5);
 }
 
 std::vector<std::shared_ptr<UIComponent>>& Menu::getUIElements(){

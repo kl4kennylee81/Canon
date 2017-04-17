@@ -166,7 +166,6 @@ void GameEngine::initializeNextMode(){
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
-			_menu = MenuController::alloc(_scene, _menuGraph);
 			_gameplay->attach(_menu.get());
             break;
         }
@@ -310,6 +309,7 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
+    _scene->sortZOrder();
     _scene->render(_batch);
 }
 

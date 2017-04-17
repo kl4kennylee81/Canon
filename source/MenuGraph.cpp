@@ -171,7 +171,7 @@ bool MenuGraph::needsUpdate(){
 }
 
 void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
-    scene->addChild(_menuNode);
+    scene->addChildWithName(_menuNode,"menuNode",3);
 }
 
 void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){
