@@ -18,10 +18,99 @@
                 "UIEntries": [
                     "levelSelectTextImg"
                 ]
+            },
+            "gameScreen": {
+                "menuKey": "gameScreen",
+                "UIEntries": [
+                    "pauseButton"
+                ]
+            },
+            "pauseScreen": {
+                "menuKey": "pauseScreen",
+                "UIEntries": [
+                    "pauseTextImg",
+                    "resumeButton",
+                    "homeButton"
+                ]
+            },
+            "gameover": {
+                "menuKey": "gameover",
+                "UIEntries": [
+                    "gameoverTextImg",
+                    "tryAgainButton",
+                    "homeButton"
+                ]
             }
         }
     },
     "UIData": {
+        "pauseButton": {
+           "type": "BUTTON",
+            "uiBackgroundKey": "pauseButton",
+            "buttonAction": {
+                "type": "fxTrigger",
+                "fxKey": "PAUSE",
+                "nextScreen": "pauseScreen"
+            },
+            "x": 0.020,
+            "y": 0.020,
+            "width": 0.060,
+            "height": 0.080
+        },
+        "gameoverTextImg": {
+            "type": "IMAGE",
+            "textureKey": "gameover",
+            "x": 0.257,
+            "y": 0.675,
+            "width": 0.476,
+            "height": 0.261
+        },
+        "tryAgainButton": {
+            "type": "BUTTON",
+            "buttonLabel": "try again",
+            "buttonAction": {
+                "type": "modeChange",
+                "buttonTarget": "GAMEPLAY"
+            },
+            "x": 0.375,
+            "y": 0.500,
+            "width": 0.250,
+            "height": 0.100
+        },
+        "pauseTextImg": {
+            "type": "IMAGE",
+            "textureKey": "Paused",
+            "x": 0.257,
+            "y": 0.675,
+            "width": 0.476,
+            "height": 0.261
+        },
+        "resumeButton": {
+            "type": "BUTTON",
+            "buttonLabel": "resume",
+            "buttonAction": {
+                "type": "fxTrigger",
+                "fxKey": "RESUME",
+                "nextScreen": "gameScreen"
+            },
+            "x": 0.375,
+            "y": 0.500,
+            "width": 0.250,
+            "height": 0.100
+        },
+        "homeButton": {
+            "type": "BUTTON",
+            "buttonLabel": "home",
+            "buttonAction": {
+                "type": "modeChange",
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "startMenu"
+            },
+            "x": 0.375,
+            "y": 0.375,
+            "width": 0.250,
+            "height": 0.100
+        },
         "levelBoxBorder": {
             "type": "IMAGE",
             "textureKey": "levelBoxBorder",

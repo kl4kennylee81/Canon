@@ -16,6 +16,8 @@ public:
 		type = t;
 		return true;
 	}
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
 
 	ButtonAction() {}
 
@@ -34,6 +36,9 @@ public:
 		menuTarget = tar;
 		return true;
 	}
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
+    
 	MenuChangeButtonAction() : ButtonAction() {}
     static std::shared_ptr<MenuChangeButtonAction> alloc(std::string tar) {
 		std::shared_ptr<MenuChangeButtonAction> result = std::make_shared<MenuChangeButtonAction>();
@@ -44,19 +49,23 @@ public:
 class ModeChangeButtonAction : public ButtonAction {
 public:
     Mode modeTarget;
-    std::string nextScreen; // key to the next screen/next level handled differently depending on the mode
+	std::string nextLevel;
+    std::string nextScreen;
     
-    virtual bool init(Mode mode,std::string nextScreen){
+    virtual bool init(Mode mode, std::string nextScreen = "",std::string nextLevel = ""){
         ButtonAction::init(ButtonActionType::MODECHANGE);
         this->modeTarget = mode;
         this->nextScreen = nextScreen;
+		this->nextLevel = nextLevel;
         return true;
     }
     
-    virtual bool init(std::string mode,std::string nextScreen)
+    virtual bool init(std::string mode,std::string nextScreen = "",std::string nextLevel = "")
 	{
         return init(stringToMode(mode),nextScreen);
 	}
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
 	ModeChangeButtonAction() : ButtonAction() {}
     
@@ -69,20 +78,44 @@ public:
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
 		return (result->init(mode,nextScreen) ? result : nullptr);
 	}
+
+
+	static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode, std::string nextLevel, std::string nextScreen) {
+		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
+		return (result->init(mode, nextLevel, nextScreen) ? result : nullptr);
+	}
 };
 
 class FxTriggerButtonAction : public ButtonAction {
 public:
-    std::string fxKey;
-    virtual bool init(std::string fx)
+    
+    enum class FXType : int {
+        PAUSE, RESUME, NONE
+    };
+
+    FXType fxKey;
+    std::string nextScreen;
+    
+    static FXType stringToFXType(std::string event) {
+        if (event == "PAUSE") return FXType::PAUSE;
+        if (event == "RESUME") return FXType::RESUME;
+        return FXType::NONE;
+    }
+    
+    virtual bool init(std::string fx,std::string next)
 	{
         ButtonAction::init(ButtonActionType::FXTRIGGER);
-		fxKey = fx;
+		fxKey = stringToFXType(fx);
+        this->nextScreen = next;
 		return true;
 	}
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
+    
+    
 	FxTriggerButtonAction() : ButtonAction() {}
-    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx) {
+    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx,std::string next) {
 		std::shared_ptr<FxTriggerButtonAction> result = std::make_shared<FxTriggerButtonAction>();
-		return (result->init(fx) ? result : nullptr);
+		return (result->init(fx,next) ? result : nullptr);
 	}
 };

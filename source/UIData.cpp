@@ -6,13 +6,22 @@ using namespace cugl;
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     std::string buttonType = json->get("buttonAction")->getString("type");
-
-	if (buttonType == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		MenuChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"))); }
-	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		ModeChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"),json->get("buttonAction")->getString("nextScreen"))); }
-	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(json->getString("fxKey"))); }
+    
+	if (buttonType == "menuChange")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = MenuChangeButtonAction::alloc(buttonJson->getString("buttonTarget"));
+    }
+	else if (buttonType == "modeChange")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = ModeChangeButtonAction::alloc(buttonJson->getString("buttonTarget"),buttonJson->getString("nextScreen"));
+    }
+	else if (buttonType == "fxTrigger")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"));
+    }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
@@ -37,8 +46,26 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-    auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
-    std::shared_ptr<Button> button = Button::alloc(buttonTexture);
+
+
+	std::shared_ptr<Button> button;
+	std::shared_ptr<Label> label;
+
+	if (uiBackgroundKey != "") {
+		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
+		button = Button::alloc(buttonTexture);
+	}
+	else if (buttonLabel != "") {
+		label = Label::alloc(buttonLabel, assets->get<Font>("Charlemagne"));
+		label->setForeground(Color4::WHITE);
+		button = Button::alloc(label);
+	}
+	else {
+		label = Label::alloc("stub button", assets->get<Font>("Charlemagne"));
+		label->setForeground(Color4::WHITE);
+		button = Button::alloc(label);
+	}
+
 	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
 

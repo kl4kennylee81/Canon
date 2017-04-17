@@ -52,7 +52,7 @@ public:
         return (result->init() ? result : nullptr);
     }
     
-    GameLostEvent() : GameLostEvent(){}
+    GameLostEvent() : FinishEvent(){}
     
 };
 
@@ -69,7 +69,7 @@ public:
         return (result->init() ? result : nullptr);
     }
     
-    GameWonEvent() : GameWonEvent(){}
+    GameWonEvent() : FinishEvent(){}
 };
 
 #endif /* FinishEvent_hpp */

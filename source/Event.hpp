@@ -28,8 +28,9 @@ public:
 		MOVE,
         SWITCH,
         ZONE,
+        ANIMATION,
         FINISH,
-        ANIMATION
+		MENU
     };
     
     EventType _eventType;

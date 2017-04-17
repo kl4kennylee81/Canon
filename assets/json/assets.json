@@ -1,244 +1,265 @@
 {
     "fonts": {
         "Charlemagne": {
-            "file": ".\\fonts\\Charlemagne.ttf", 
+            "file": "./fonts/Charlemagne.ttf", 
             "size": 64
         }
     }, 
     "textures": {
         "Color Fill 1": {
-            "file": ".\\textures\\menus\\levelSelect\\Color Fill 1.png", 
+            "file": "./textures/menus/levelSelect/Color Fill 1.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "Paused": {
+            "file": "./textures/menus/pause/Paused.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bar_background": {
-            "file": ".\\textures\\gameScreen\\progressBar\\bar_background.png", 
+            "file": "./textures/gameScreen/progressBar/bar_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bar_foreground": {
-            "file": ".\\textures\\gameScreen\\progressBar\\bar_foreground.png", 
+            "file": "./textures/gameScreen/progressBar/bar_foreground.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "beginCap_background": {
-            "file": ".\\textures\\gameScreen\\progressBar\\beginCap_background.png", 
+            "file": "./textures/gameScreen/progressBar/beginCap_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "beginCap_foreground": {
-            "file": ".\\textures\\gameScreen\\progressBar\\beginCap_foreground.png", 
+            "file": "./textures/gameScreen/progressBar/beginCap_foreground.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bg_dark_lake": {
-            "file": ".\\textures\\backgrounds\\bg_dark_lake.png", 
+            "file": "./textures/backgrounds/bg_dark_lake.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "charatemp_blue": {
-            "file": ".\\textures\\models\\player_models\\charatemp_blue.png", 
+            "file": "./textures/models/player_models/charatemp_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "charatemp_red": {
-            "file": ".\\textures\\models\\player_models\\charatemp_red.png", 
+            "file": "./textures/models/player_models/charatemp_red.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "circle": {
-            "file": ".\\textures\\test\\circle.png", 
+            "file": "./textures/test/circle.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "circle_zone": {
-            "file": ".\\textures\\models\\zones\\circle_zone.png", 
+            "file": "./textures/models/zones/circle_zone.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_blue": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_blue.png", 
+            "file": "./textures/models/enemy_models/enemy_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_red": {
-            "file": ".\\textures\\models\\enemy_models\\enemy_red.png", 
+            "file": "./textures/models/enemy_models/enemy_red.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "finalCap_background": {
-            "file": ".\\textures\\gameScreen\\progressBar\\finalCap_background.png", 
+            "file": "./textures/gameScreen/progressBar/finalCap_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "finalCap_foreground": {
-            "file": ".\\textures\\gameScreen\\progressBar\\finalCap_foreground.png", 
+            "file": "./textures/gameScreen/progressBar/finalCap_foreground.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "gameover": {
+            "file": "./textures/menus/gameover/gameover.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "infosymbol": {
-            "file": ".\\textures\\menus\\startMenu\\infosymbol.png", 
+            "file": "./textures/menus/startMenu/infosymbol.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "lakebg": {
-            "file": ".\\textures\\menus\\startMenu\\lakebg.png", 
+            "file": "./textures/menus/startMenu/lakebg.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "leftRibbon": {
-            "file": ".\\textures\\menus\\levelSelect\\leftRibbon.png", 
+            "file": "./textures/menus/levelSelect/leftRibbon.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "level 1 ": {
-            "file": ".\\textures\\menus\\levelSelect\\level 1 .png", 
+            "file": "./textures/menus/levelSelect/level 1 .png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "level2": {
-            "file": ".\\textures\\menus\\levelSelect\\level2.png", 
+            "file": "./textures/menus/levelSelect/level2.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "level3": {
-            "file": ".\\textures\\menus\\levelSelect\\level3.png", 
+            "file": "./textures/menus/levelSelect/level3.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "level4": {
-            "file": ".\\textures\\menus\\levelSelect\\level4.png", 
+            "file": "./textures/menus/levelSelect/level4.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelBoxBorder": {
-            "file": ".\\textures\\menus\\levelSelect\\levelBoxBorder.png", 
+            "file": "./textures/menus/levelSelect/levelBoxBorder.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectBg": {
-            "file": ".\\textures\\menus\\levelSelect\\levelSelectBg.png", 
+            "file": "./textures/menus/levelSelect/levelSelectBg.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectBgFlat": {
-            "file": ".\\textures\\menus\\levelSelect\\levelSelectBgFlat.png", 
+            "file": "./textures/menus/levelSelect/levelSelectBgFlat.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectTextImg": {
-            "file": ".\\textures\\menus\\levelSelect\\levelSelectTextImg.png", 
+            "file": "./textures/menus/levelSelect/levelSelectTextImg.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "pauseButton": {
+            "file": "./textures/gameScreen/pauseButton.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "play": {
-            "file": ".\\textures\\menus\\loading\\play.png", 
+            "file": "./textures/menus/loading/play.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "progressbar": {
-            "file": ".\\textures\\menus\\loading\\progressbar.png", 
+            "file": "./textures/menus/loading/progressbar.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "rightRibbon": {
-            "file": ".\\textures\\menus\\levelSelect\\rightRibbon.png", 
+            "file": "./textures/menus/levelSelect/rightRibbon.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "sector": {
-            "file": ".\\textures\\test\\sector.png", 
+            "file": "./textures/test/sector.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "settingsymbol": {
-            "file": ".\\textures\\menus\\startMenu\\settingsymbol.png", 
+            "file": "./textures/menus/startMenu/settingsymbol.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "sparkles": {
-            "file": ".\\textures\\menus\\levelSelect\\sparkles.png", 
+            "file": "./textures/menus/levelSelect/sparkles.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "square": {
-            "file": ".\\textures\\test\\square.png", 
+            "file": "./textures/test/square.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "swipetoplay": {
-            "file": ".\\textures\\menus\\startMenu\\swipetoplay.png", 
+            "file": "./textures/menus/startMenu/swipetoplay.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "title": {
-            "file": ".\\textures\\menus\\startMenu\\title.png", 
+            "file": "./textures/menus/startMenu/title.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

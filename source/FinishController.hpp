@@ -18,6 +18,7 @@ class FinishController : public BaseController {
 private:
     bool wavesFinished;
     bool playerDead;
+    bool notified;
     
 public:
     FinishController();

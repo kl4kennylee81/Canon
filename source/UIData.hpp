@@ -7,7 +7,6 @@
 #include "GenericAssetManager.hpp"
 #include "ButtonAction.hpp"
 
-
 enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
 };

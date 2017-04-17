@@ -130,16 +130,17 @@ void GameEngine::cleanPreviousMode(){
     switch(_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            _loading->dispose();
+			_loading = nullptr;
             break;
         }
         case Mode::GAMEPLAY:
         {
+			_gameplay = nullptr;
+			_menu = nullptr;
             break;
         }
         case Mode::MAIN_MENU:
         {
-            _menu->dispose();
             break;
         }
         case Mode::LEVEL_EDIT:
@@ -165,6 +166,7 @@ void GameEngine::initializeNextMode(){
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
+            _menu->attach(_gameplay.get());
             break;
         }
         case Mode::MAIN_MENU:
@@ -275,6 +277,7 @@ void GameEngine::update(float timestep) {
         }
         case Mode::GAMEPLAY:
         {
+			_menu->update(timestep);
             _gameplay->update(timestep);
             break;
         }
@@ -306,6 +309,7 @@ void GameEngine::update(float timestep) {
  */
 void GameEngine::draw() {
     // This takes care of begin/end
+    _scene->sortZOrder();
     _scene->render(_batch);
 }
 

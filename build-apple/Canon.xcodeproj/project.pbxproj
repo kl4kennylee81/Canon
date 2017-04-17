@@ -101,6 +101,8 @@
 		9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */; };
 		9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
 		9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
+		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
+		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
@@ -256,6 +258,8 @@
 		9F82210E1EA48049000EFCD0 /* FinishEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FinishEvent.hpp; sourceTree = "<group>"; };
 		9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationEvent.cpp; sourceTree = "<group>"; };
 		9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationEvent.hpp; sourceTree = "<group>"; };
+		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
+		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -585,6 +589,15 @@
 			name = AnimationEvent;
 			sourceTree = "<group>";
 		};
+		9FA275CE1EA4BFE3003D8C03 /* menuEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */,
+				9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */,
+			);
+			name = menuEvent;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +636,7 @@
 		9FE8E9D51E6381A300DBE3BC /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				9FA275CE1EA4BFE3003D8C03 /* menuEvent */,
 				9F7668301E8384E8003A06E8 /* SaveGameData.cpp */,
 				9F7668351E838641003A06E8 /* SaveGameData.hpp */,
 				9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */,
@@ -1209,6 +1223,7 @@
 				9F3BA6151E8BA575003138C0 /* Subject.cpp in Sources */,
 				9F3BA6161E8BA575003138C0 /* Observer.cpp in Sources */,
 				9F3BA6171E8BA575003138C0 /* GameObject.cpp in Sources */,
+				9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
 				9F3BA6181E8BA575003138C0 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1240,6 +1255,7 @@
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
 				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
+				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
 				9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
 				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,

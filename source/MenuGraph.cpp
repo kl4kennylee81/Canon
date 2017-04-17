@@ -42,9 +42,9 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 	int i = 0;
 	for (auto entry : saveGame->getSaveLevelEntries())
 	{
-		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, entry->levelKey);
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
+        
 		// TODO hacky setting of the uiKey
-
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
 		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", 0.240 + 0.270*i, 0.5, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
@@ -171,7 +171,7 @@ bool MenuGraph::needsUpdate(){
 }
 
 void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
-    scene->addChild(_menuNode);
+    scene->addChildWithName(_menuNode,"menuNode",3);
 }
 
 void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){

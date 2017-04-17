@@ -50,7 +50,7 @@ public:
         return (result->init() ? result : nullptr);
     }
     
-    PlayerRemovedEvent() : PlayerRemovedEvent(){}
+    PlayerRemovedEvent() : AnimationEvent(){}
     
 };
 
