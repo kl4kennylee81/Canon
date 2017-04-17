@@ -22,7 +22,8 @@ public:
         ZONE_SPAWN,
         ZONE_ON,
         ZONE_OFF,
-        ZONE_DELETE
+        ZONE_DELETE,
+        ZONE_FLASH
     };
     
     ZoneEventType zoneEventType;
@@ -141,6 +142,27 @@ public:
     
     static std::shared_ptr<ZoneDeleteEvent> alloc(GameObject* object){
         std::shared_ptr<ZoneDeleteEvent> result = std::make_shared<ZoneDeleteEvent>();
+        return (result->init(object) ? result : nullptr);
+    }
+};
+
+class ZoneFlashEvent : public ZoneEvent {
+public:
+    
+    GameObject* object;
+    
+    ZoneFlashEvent() : ZoneEvent() {
+        zoneEventType = ZoneEventType::ZONE_FLASH;
+    }
+    
+    bool init(GameObject* object){
+        this->zoneEventType = ZoneEventType::ZONE_FLASH;
+        this->object = object;
+        return true;
+    }
+    
+    static std::shared_ptr<ZoneFlashEvent> alloc(GameObject* object){
+        std::shared_ptr<ZoneFlashEvent> result = std::make_shared<ZoneFlashEvent>();
         return (result->init(object) ? result : nullptr);
     }
 };

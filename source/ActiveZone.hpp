@@ -25,6 +25,7 @@ public:
     bool spawned;
     
     bool isOn;
+    bool blinking;
     int curIndex;
     
     cugl::Size origSize;

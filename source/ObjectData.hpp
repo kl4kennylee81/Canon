@@ -17,14 +17,15 @@ class ObjectData : public Data {
 public:
     std::string shapeKey;
     std::string animationKey;
+    std::string soundKey;
     
     ObjectData() : Data(){}
     
-    bool init(std::string shape_key,std::string anim_key);
+    bool init(std::string shape_key,std::string anim_key,std::string sound_key);
     
-    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string animKey){
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string animKey,std::string soundKey){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(shapeKey,animKey) ? result : nullptr);
+        return (result->init(shapeKey,animKey,soundKey) ? result : nullptr);
     }
 
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();

@@ -14,6 +14,8 @@
 
 using namespace cugl;
 
+#define STATIC_BLINK_FRAMES 50
+
 ZoneController::ZoneController():
 BaseController(){}
 
@@ -103,8 +105,8 @@ void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<Activ
         zobj->getPhysicsComponent()->getBody()->setLinearVelocity(charObj->getPhysicsComponent()->getBody()->getLinearVelocity());
     }
     
-    zone->curIndex++;
-    if (zone->isOn && zone->curIndex == data->duration) {
+    zone->curIndex += GameState::_internalClock->getTimeDilation();
+    if (zone->isOn && zone->curIndex >= data->duration) {
         zone->isOn = false;
         zone->curIndex = 0;
         for (auto zobj : zoneObjs) {
@@ -112,12 +114,23 @@ void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<Activ
             notify(offEvent.get());
         }
     }
-    if (!zone->isOn && zone->curIndex == data->cooldown) {
-        zone->isOn = true;
-        zone->curIndex = 0;
-        for (auto zobj : zoneObjs) {
-            std::shared_ptr<ZoneOnEvent> onEvent = ZoneOnEvent::alloc(zobj);
-            notify(onEvent.get());
+    if (!zone->isOn){
+        //if we should tell animationcontroller to blink this zone
+        if (data->cooldown-zone->curIndex <= STATIC_BLINK_FRAMES && !zone->blinking) {
+            for (auto zobj : zoneObjs) {
+                std::shared_ptr<ZoneFlashEvent> flashEvent = ZoneFlashEvent::alloc(zobj);
+                notify(flashEvent.get());
+            }
+            zone->blinking = true;
+        }
+        if (zone->curIndex >= data->cooldown) {
+            zone->isOn = true;
+            zone->curIndex = 0;
+            zone->blinking = false;
+            for (auto zobj : zoneObjs) {
+                std::shared_ptr<ZoneOnEvent> onEvent = ZoneOnEvent::alloc(zobj);
+                notify(onEvent.get());
+            }
         }
     }
 }
@@ -129,7 +142,7 @@ void ZoneController::updateRotateZone(GameObject* charObj, std::shared_ptr<Activ
         auto obst = zobj->getPhysicsComponent()->getBody();
         float curAngle = obst->getAngle();
         
-        obst->setLinearVelocity(charObj->getPhysicsComponent()->getBody()->getLinearVelocity()+Vec2::forAngle(curAngle)*data->speed);
+        obst->setLinearVelocity(charObj->getPhysicsComponent()->getBody()->getLinearVelocity()+Vec2::forAngle(curAngle)*data->speed*GameState::_internalClock->getTimeDilation());
         
         cugl::Vec2 relPos = zobj->getPosition()-charObj->getPosition();
         obst->setAngle(relPos.getAngle()-M_PI/2);
@@ -148,14 +161,14 @@ void ZoneController::updatePulseZone(GameObject* charObj, std::shared_ptr<Active
     if (zone->isOn) {
         //max size
         if (zone->sizeScale >= data->maxSize) {
-            zone->curIndex++;
-            if (zone->curIndex == data->maxTime) {
+            zone->curIndex += GameState::_internalClock->getTimeDilation();
+            if (zone->curIndex >= data->maxTime) {
                 zone->isOn = false;
                 zone->curIndex = 0;
             }
         //growing
         } else {
-            zone->sizeScale += data->speed;
+            zone->sizeScale += data->speed*GameState::_internalClock->getTimeDilation();
             for (auto zobj : zoneObjs) {
                 //change to same speed when animations are done
                 zobj->getPhysicsComponent()->getBody()->setSize(zone->origSize*zone->sizeScale);
@@ -163,13 +176,13 @@ void ZoneController::updatePulseZone(GameObject* charObj, std::shared_ptr<Active
         }
     } else {
         if (zone->sizeScale <= data->minSize) {
-            zone->curIndex++;
-            if (zone->curIndex == data->minTime) {
+            zone->curIndex += GameState::_internalClock->getTimeDilation();;
+            if (zone->curIndex >= data->minTime) {
                 zone->isOn = true;
                 zone->curIndex = 0;
             }
         } else {
-            zone->sizeScale -= data->speed;
+            zone->sizeScale -= data->speed*GameState::_internalClock->getTimeDilation();
             for (auto zobj : zoneObjs) {
                 //change to same speed when animations are done
                 zobj->getPhysicsComponent()->getBody()->setSize(zone->origSize*zone->sizeScale);
@@ -218,7 +231,7 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     
     std::vector<GameObject*> objs = {zone.get()};
     activeZone->datas.push_back(std::make_pair(data,objs));
-    activeZone->isOn = true;
+    activeZone->isOn = false;
     activeZone->curIndex = 0;
 }
 

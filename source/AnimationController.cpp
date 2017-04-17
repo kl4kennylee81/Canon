@@ -112,24 +112,47 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
-                        anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.3));
+                        anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.1));
                     } else {
-                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.3));
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.1));
                     }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_ON: {
                     ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    GameObject* obj = zoneOn->object;
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
+                    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                        anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
+                    } else {
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.5));
+                    }
+                    animationMap.at(zoneOn->object)->setFlash(false);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_OFF: {
                     ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    GameObject* obj = zoneOff->object;
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
+                    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                        anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.1));
+                    } else {
+                        anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.1));
+                    }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_DELETE: {
                     ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
                     animationMap.at(zoneDelete->object)->setLastAnimation();
                     break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_FLASH: {
+                    ZoneFlashEvent* zoneFlash = (ZoneFlashEvent*)zoneEvent;
+                    animationMap.at(zoneFlash->object)->setFlash(true);
                 }
             }
             break;
@@ -158,6 +181,7 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
  */
 void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
+    if (anim->isLastAnimation()){ return;}
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
         syncAnimation(anim,obj);
@@ -237,11 +261,30 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
             continue;
         }
         
+        if (anim->getFlash()){
+            anim->flashIndex += GameState::_internalClock->getTimeDilation();
+            if (anim->flashIndex >= 10) {
+                anim->flashIndex = 0;
+                anim->lit = !anim->lit;
+            }
+            
+            float alphascale = anim->lit ? 0.5 : 0.1;
+            
+            if (it->first->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                anim->getAnimationNode()->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,alphascale));
+            } else {
+                anim->getAnimationNode()->setColor(Color4f(Color4::RED)*Color4f(1,1,1,alphascale));
+            }
+            
+        }
+        
         if (!anim->nextFrame()){
+            if(it->first->getIsPlayer()){
+                state->toggleReset();
+            }
             anim->getAnimationNode()->removeFromParent();
             state->removeObject(it->first);
-			animationMap.erase(it);
-            break;
+			it = animationMap.erase(it);
         } else {
             it++;
         }
