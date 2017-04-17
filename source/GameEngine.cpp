@@ -57,6 +57,7 @@ void GameEngine::onStartup() {
     _assets->attach<Texture>(TextureLoader::alloc()->getHook());
     _assets->attach<Font>(FontLoader::alloc()->getHook());
     _assets->attach<Sound>(SoundLoader::alloc()->getHook());
+    _assets->attach<Music>(MusicLoader::alloc()->getHook());
 	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
 	_assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
 	_assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());

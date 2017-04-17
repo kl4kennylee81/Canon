@@ -1,5 +1,11 @@
 {
-	"soundfx": {
+	"music": {
+        "rustling_leaves": {
+            "file": "./sounds/rustling_leaves.mp3",
+            "volume": 0.4
+        }
+    },
+    "soundfx": {
         "base_spawn": {
             "file": "./sounds/base_spawn.wav",
             "volume":   0.5
@@ -18,11 +24,11 @@
         },
         "slow_motion_start": {
         	"file": "./sounds/slow_motion_start.wav",
-        	"volume": 0.5
+        	"volume": 0.75
         },
         "slow_motion_end": {
         	"file": "./sounds/slow_motion_end.wav",
-        	"volume": 0.5
+        	"volume": 0.75
         }
     },
     "sounds": {

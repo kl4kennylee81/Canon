@@ -10,6 +10,8 @@
 
 using namespace cugl;
 
+#define RUSTLING_LEAVES "./sounds/rustlingleaves.mp3"
+
 GameplayController::GameplayController() :
 BaseController(),
 _gameState(nullptr),
@@ -126,6 +128,8 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _zoneController->attach(_animationController.get());
     
     activate();
+    
+    AudioEngine::get()->playMusic(levelWorld->getAssetManager()->get<Music>("rustling_leaves"),true);
     
 	return true;
 }
