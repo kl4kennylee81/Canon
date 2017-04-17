@@ -46,14 +46,14 @@
     "UIData": {
         "pauseButton": {
            "type": "BUTTON",
-            "uiBackgroundKey": "uglyPause",
+            "uiBackgroundKey": "pauseButton",
             "buttonAction": {
                 "type": "fxTrigger",
                 "fxKey": "PAUSE"
             },
             "x": 0.020,
             "y": 0.020,
-            "width": 0.080,
+            "width": 0.060,
             "height": 0.080
         },
         "gameoverTextImg": {

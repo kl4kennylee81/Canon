@@ -195,6 +195,13 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "pauseButton": {
+            "file": "./textures/gameScreen/pauseButton.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "play": {
             "file": "./textures/menus/loading/play.png", 
             "magfilter": "linear", 
@@ -253,13 +260,6 @@
         }, 
         "title": {
             "file": "./textures/menus/startMenu/title.png", 
-            "magfilter": "linear", 
-            "minfilter": "nearest", 
-            "wrapS": "clamp", 
-            "wrapT": "clamp"
-        }, 
-        "uglyPause": {
-            "file": "./textures/gameScreen/uglyPause.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

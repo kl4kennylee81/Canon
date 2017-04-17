@@ -95,6 +95,8 @@
 		9F76684A1E84AE2E003A06E8 /* PathAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668441E84AE2D003A06E8 /* PathAIData.cpp */; };
 		9F76684C1E84AE2E003A06E8 /* StaticAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668461E84AE2D003A06E8 /* StaticAIData.cpp */; };
 		9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F76684F1E84AE63003A06E8 /* AILoader.cpp */; };
+		9F8221211EA4AFA3000EFCD0 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82211F1EA4AFA3000EFCD0 /* MenuEvent.cpp */; };
+		9F8221221EA4AFA3000EFCD0 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82211F1EA4AFA3000EFCD0 /* MenuEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
 		9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
@@ -244,6 +246,8 @@
 		9F7668471E84AE2D003A06E8 /* StaticAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = StaticAIData.hpp; sourceTree = "<group>"; };
 		9F76684F1E84AE63003A06E8 /* AILoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AILoader.cpp; sourceTree = "<group>"; };
 		9F7668501E84AE63003A06E8 /* AILoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AILoader.hpp; sourceTree = "<group>"; };
+		9F82211F1EA4AFA3000EFCD0 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
+		9F8221201EA4AFA3000EFCD0 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
 		9FC16AB11E768F7E0040661D /* HomingAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HomingAI.hpp; sourceTree = "<group>"; };
 		9FC16AC81E76E9210040661D /* ActiveAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAI.hpp; sourceTree = "<group>"; };
@@ -545,6 +549,15 @@
 			name = zonedata;
 			sourceTree = "<group>";
 		};
+		9F82211C1EA4AF96000EFCD0 /* MenuEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9F82211F1EA4AFA3000EFCD0 /* MenuEvent.cpp */,
+				9F8221201EA4AFA3000EFCD0 /* MenuEvent.hpp */,
+			);
+			name = MenuEvent;
+			sourceTree = "<group>";
+		};
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +596,7 @@
 		9FE8E9D51E6381A300DBE3BC /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				9F82211C1EA4AF96000EFCD0 /* MenuEvent */,
 				9F7668301E8384E8003A06E8 /* SaveGameData.cpp */,
 				9F7668351E838641003A06E8 /* SaveGameData.hpp */,
 				9FE8E9D81E6381B100DBE3BC /* MenuController.cpp */,
@@ -1131,6 +1145,7 @@
 				9F3BA5F81E8BA575003138C0 /* LevelEvent.cpp in Sources */,
 				9F3BA5F91E8BA575003138C0 /* LevelController.cpp in Sources */,
 				9F3BA5FA1E8BA575003138C0 /* Level.cpp in Sources */,
+				9F8221221EA4AFA3000EFCD0 /* MenuEvent.cpp in Sources */,
 				9F3BA5FB1E8BA575003138C0 /* SpawnController.cpp in Sources */,
 				9F3BA5FC1E8BA575003138C0 /* GameState.cpp in Sources */,
 				9F3BA5FD1E8BA575003138C0 /* GameplayController.cpp in Sources */,
@@ -1223,6 +1238,7 @@
 				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
+				9F8221211EA4AFA3000EFCD0 /* MenuEvent.cpp in Sources */,
 				9F3BA6431E90CAB1003138C0 /* UIData.cpp in Sources */,
 				DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */,
 				9FE4FD741E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,

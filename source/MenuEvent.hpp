@@ -27,9 +27,9 @@ public:
 	MenuEvent() : Event() {}
 };
 
-class PauseGame : public MenuEvent {
+class PauseGameEvent : public MenuEvent {
 public:
-	PauseGame() : MenuEvent() {}
+	PauseGameEvent() : MenuEvent() {}
 	bool pause;
 
 	bool init(bool p) {
@@ -39,8 +39,8 @@ public:
 		return true;
 	}
 
-	static std::shared_ptr<PauseGame> alloc(bool p) {
-		std::shared_ptr<PauseGame> result = std::make_shared<PauseGame>();
+	static std::shared_ptr<PauseGameEvent> alloc(bool p) {
+		std::shared_ptr<PauseGameEvent> result = std::make_shared<PauseGameEvent>();
 		return (result->init(p) ? result : nullptr);
 	}
 };

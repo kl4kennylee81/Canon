@@ -166,7 +166,7 @@ void GameEngine::initializeNextMode(){
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
-			_gameplay->attach(_menu.get());
+            _menu->attach(_gameplay.get());
             break;
         }
         case Mode::MAIN_MENU:
