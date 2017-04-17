@@ -24,11 +24,8 @@
 #include "SpawnController.hpp"
 #include "ZoneController.hpp"
 #include "ClockController.hpp"
-<<<<<<< HEAD
 #include "FinishController.hpp"
-=======
 #include "SoundController.hpp"
->>>>>>> master
 #include "Observer.hpp"
 #include "Event.hpp"
 
