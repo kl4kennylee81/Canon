@@ -19,7 +19,7 @@
 enum class LevelEditorState : int {
     START,
 	MAIN,
-    DELETE,
+    REMOVE,
 	SWITCH_TO_WAVE,
 	ADD_NEW_WAVE,
 	WAVE

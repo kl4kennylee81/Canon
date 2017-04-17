@@ -369,7 +369,7 @@ std::string WaveEditorController::getStateAsString(){
             return "COLOR TOGGLE";
         }
         case WaveEditorState::REMOVE: {
-            return "DELETE";
+            return "REMOVE";
         }
     }
     return "";

@@ -12,6 +12,7 @@
 #include <cugl/cugl.h>
 #include <algorithm>
 #include <typeinfo>
+#include <sstream>
 
 
 class Util {

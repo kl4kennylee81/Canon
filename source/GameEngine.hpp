@@ -8,9 +8,16 @@
 
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
+
+#ifdef _WIN32
+#define CURRENT_OS "windows"
+#elif __APPLE__
+#define CURRENT_OS "apple"
+#include <dirent.h>
+#endif
+
 #include <cugl/cugl.h>
 #include <sys/types.h>
-#include <dirent.h>
 #include <errno.h>
 #include <vector>
 #include <string>

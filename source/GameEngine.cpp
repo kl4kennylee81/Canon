@@ -103,19 +103,21 @@ void GameEngine::onStartup() {
     // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
     //load all template wave entries
-    DIR *dir;
-    struct dirent *ent;
-    if ((dir = opendir(templateDir.c_str())) != NULL) {
-        /* print all the files and directories within directory */
-        while ((ent = readdir (dir)) != NULL) {
-            if(ent->d_name[0] != '.'){
-                std::string templatePath = TEMPLATE_PATH;
-                templatePath.append(ent->d_name);
-                _assets->loadDirectory(templatePath);
-            }
-        }
-        closedir (dir);
-    }
+	if (CURRENT_OS == "apple") {
+		DIR *dir;
+		struct dirent *ent;
+		if ((dir = opendir(templateDir.c_str())) != NULL) {
+			/* print all the files and directories within directory */
+			while ((ent = readdir(dir)) != NULL) {
+				if (ent->d_name[0] != '.') {
+					std::string templatePath = TEMPLATE_PATH;
+					templatePath.append(ent->d_name);
+					_assets->loadDirectory(templatePath);
+				}
+			}
+			closedir(dir);
+		}
+	}
     
     /** END OF TEMPORARY CODE TO WIPE **/
 
