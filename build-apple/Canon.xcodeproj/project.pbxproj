@@ -147,6 +147,12 @@
 		DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF9828981E8351900026223D /* ZoneEvent.cpp */; };
 		DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD54651E60E4920027FCC1 /* GameEngine.cpp */; };
 		DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */; };
+		DFEACF231EA40C78003836B7 /* SoundController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFEACF211EA40C78003836B7 /* SoundController.cpp */; };
+		DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFEACF211EA40C78003836B7 /* SoundController.cpp */; };
+		DFEACF331EA41DDC003836B7 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = DFEACF321EA41DDC003836B7 /* sounds */; };
+		DFEACF341EA41DDC003836B7 /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = DFEACF321EA41DDC003836B7 /* sounds */; };
+		DFEACF3B1EA42206003836B7 /* SoundData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFEACF391EA42206003836B7 /* SoundData.cpp */; };
+		DFEACF3C1EA42206003836B7 /* SoundData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFEACF391EA42206003836B7 /* SoundData.cpp */; };
 		EB2BE9B61D74952A002FE78B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EB2BE9B41D74952A002FE78B /* main.cpp */; };
 		EB2BE9B91D7498C9002FE78B /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE9B81D7498C9002FE78B /* fonts */; };
 		EB2BE9BB1D7498D2002FE78B /* textures in Resources */ = {isa = PBXBuildFile; fileRef = EB2BE9BA1D7498D2002FE78B /* textures */; };
@@ -352,6 +358,12 @@
 		DFBD54661E60E4920027FCC1 /* GameEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameEngine.hpp; sourceTree = "<group>"; };
 		DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameplayController.cpp; sourceTree = "<group>"; };
 		DFBD546E1E60E62D0027FCC1 /* GameplayController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameplayController.hpp; sourceTree = "<group>"; };
+		DFEACF211EA40C78003836B7 /* SoundController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundController.cpp; sourceTree = "<group>"; };
+		DFEACF221EA40C78003836B7 /* SoundController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundController.hpp; sourceTree = "<group>"; };
+		DFEACF321EA41DDC003836B7 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
+		DFEACF361EA4216A003836B7 /* SoundAction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundAction.hpp; sourceTree = "<group>"; };
+		DFEACF391EA42206003836B7 /* SoundData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundData.cpp; sourceTree = "<group>"; };
+		DFEACF3A1EA42206003836B7 /* SoundData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SoundData.hpp; sourceTree = "<group>"; };
 		EB2BE9B41D74952A002FE78B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EB2BE9B81D7498C9002FE78B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		EB2BE9BA1D7498D2002FE78B /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = textures; sourceTree = "<group>"; };
@@ -496,6 +508,8 @@
 				9FFA3FC31E636EF80029D648 /* ObjectData.hpp */,
 				9FFA3FCA1E6372670029D648 /* ShapeData.cpp */,
 				9FFA3FCB1E6372670029D648 /* ShapeData.hpp */,
+				DFEACF391EA42206003836B7 /* SoundData.cpp */,
+				DFEACF3A1EA42206003836B7 /* SoundData.hpp */,
 			);
 			name = object;
 			sourceTree = "<group>";
@@ -818,9 +832,20 @@
 			name = zones;
 			sourceTree = "<group>";
 		};
+		DFEACF1E1EA40C5C003836B7 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				DFEACF211EA40C78003836B7 /* SoundController.cpp */,
+				DFEACF221EA40C78003836B7 /* SoundController.hpp */,
+				DFEACF361EA4216A003836B7 /* SoundAction.hpp */,
+			);
+			name = sound;
+			sourceTree = "<group>";
+		};
 		EB2BE9B71D749870002FE78B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DFEACF321EA41DDC003836B7 /* sounds */,
 				EBFE7C041E19B496001007C2 /* json */,
 				EB2BE9BA1D7498D2002FE78B /* textures */,
 				EB2BE9B81D7498C9002FE78B /* fonts */,
@@ -938,6 +963,7 @@
 				9FFA3FA11E6367820029D648 /* movement */,
 				9FFA3F921E6364AB0029D648 /* pathControls */,
 				9FFA3F701E6352B90029D648 /* physics */,
+				DFEACF1E1EA40C5C003836B7 /* sound */,
 				9FCE47171E667430002F4A3E /* switching */,
 				829314A81E8A54EA00CFA733 /* time */,
 				9FFA3F771E6357AE0029D648 /* util */,
@@ -1069,6 +1095,7 @@
 			files = (
 				EB7454D01D750623002FBAE6 /* textures in Resources */,
 				EB7454D11D750623002FBAE6 /* fonts in Resources */,
+				DFEACF341EA41DDC003836B7 /* sounds in Resources */,
 				EB7454AB1D74D846002FBAE6 /* iOS.xcassets in Resources */,
 				EB7454AC1D74D846002FBAE6 /* Landscape.storyboard in Resources */,
 				EBFE7C051E19B496001007C2 /* json in Resources */,
@@ -1080,6 +1107,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFEACF331EA41DDC003836B7 /* sounds in Resources */,
 				EBFE7C091E19B4AC001007C2 /* json in Resources */,
 				EB2BE9BB1D7498D2002FE78B /* textures in Resources */,
 				EB2BE9B91D7498C9002FE78B /* fonts in Resources */,
@@ -1104,6 +1132,7 @@
 				9F3BA5DF1E8BA575003138C0 /* Mode.cpp in Sources */,
 				9F3BA5E01E8BA575003138C0 /* ZoneLoader.cpp in Sources */,
 				9F3BA5E11E8BA575003138C0 /* ZoneData.cpp in Sources */,
+				DFEACF3C1EA42206003836B7 /* SoundData.cpp in Sources */,
 				9F3BA5E21E8BA575003138C0 /* StaticZoneData.cpp in Sources */,
 				9F3BA5E31E8BA575003138C0 /* RotateZoneData.cpp in Sources */,
 				9F3BA5E41E8BA575003138C0 /* PulseZoneData.cpp in Sources */,
@@ -1127,6 +1156,7 @@
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
+				DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */,
 				9F3BA5F71E8BA575003138C0 /* ProgressBarModel.cpp in Sources */,
 				9F3BA5F81E8BA575003138C0 /* LevelEvent.cpp in Sources */,
 				9F3BA5F91E8BA575003138C0 /* LevelController.cpp in Sources */,
@@ -1177,6 +1207,7 @@
 				DFBD54671E60E4920027FCC1 /* GameEngine.cpp in Sources */,
 				DF9828811E80E0140026223D /* RotateZoneData.cpp in Sources */,
 				EB2BE9B61D74952A002FE78B /* main.cpp in Sources */,
+				DFEACF231EA40C78003836B7 /* SoundController.cpp in Sources */,
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
 				DF98288F1E8346F30026223D /* ZoneController.cpp in Sources */,
 				9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */,
@@ -1212,6 +1243,7 @@
 				9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */,
 				DF909EF01E80BEEA003BB459 /* AIData.cpp in Sources */,
 				9F3BA6631E9F48BA003138C0 /* UIComponent.cpp in Sources */,
+				DFEACF3B1EA42206003836B7 /* SoundData.cpp in Sources */,
 				DF9828951E834C210026223D /* ActiveZone.cpp in Sources */,
 				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
 				DF9828851E80E0250026223D /* PulseZoneData.cpp in Sources */,
