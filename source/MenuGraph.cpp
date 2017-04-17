@@ -52,10 +52,9 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 		// make label for level entry
 		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
+		textData->textValue = entry->name;
+		std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
 
-		std::shared_ptr<Node> labelNode = textData->dataToNode(assets, entry->name);
-
-		// the getsize function needs a parent's bounding box
 		buttonNode->addChild(labelNode, 3);
 
 		//std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);

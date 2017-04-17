@@ -89,8 +89,6 @@ public:
 
 	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
 
-	std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets, std::string text);
-
 	static std::shared_ptr<TextUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tv, std::string fKey) {
 		std::shared_ptr<TextUIData> result = std::make_shared<TextUIData>();
 		return (result->init(uiKey, bg, x, y, w, h, tv, fKey) ? result : nullptr);

@@ -1002,6 +1002,7 @@ public:
      * @param scale the uniform scaling factor.
      */
     void setScale(float scale) {
+		CUAssertLog(scale != 0, "Invalid scale parameter.");
         _scale.set(scale,scale);
         if (!_useTransform) updateTransform();
     }
@@ -1017,6 +1018,7 @@ public:
      * @param vec   the non-uniform scaling factor.
      */
     void setScale(const Vec2& vec) {
+		CUAssertLog(vec.x != 0 && vec.y != 0, "Invalid scale parameter.");
         _scale = vec;
         if (!_useTransform) updateTransform();
     }
@@ -1033,6 +1035,7 @@ public:
      * @param sy    the y-axis scaling factor.
      */
     void setScale(float sx, float sy) {
+		CUAssertLog(sx != 0 && sy != 0, "Invalid scale parameter.");
         _scale.set(sx,sy);
         if (!_useTransform) updateTransform();
     }
