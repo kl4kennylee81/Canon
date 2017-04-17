@@ -1,9 +1,0 @@
-{
-	"templates":	{
-		"kyle2":	{
-			"name":	"kyle2",
-			"aiKey":	"static",
-			"objectKey":	"object1"
-		}
-	}
-}

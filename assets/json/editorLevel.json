@@ -1,16 +1,8 @@
 {
-	"counter":	2,
+	"counter":	1,
 	"templates":	["birb", "blobo", "grump", "fesh", "horizontal", "vertical"],
 	"level":	{
 		"levelEntries":	{
-			"wave1":	{
-				"waveKey":	"wave 1",
-				"time":	180
-			},
-			"wave2":	{
-				"waveKey":	"wave 2",
-				"time":	180
-			}
 		},
 		"playerChars":	{
 		}
@@ -18,70 +10,6 @@
 	"waves":	{
 		"wave 1":	{
 			"waveEntries":	{
-				"object1":	{
-					"x":	224,
-					"y":	178.133331,
-					"element":	"GOLD",
-					"templateKey":	"birb"
-				},
-				"object2":	{
-					"x":	869.333313,
-					"y":	480,
-					"element":	"GOLD",
-					"templateKey":	"birb"
-				},
-				"object3":	{
-					"x":	908.799988,
-					"y":	136.533325,
-					"element":	"GOLD",
-					"templateKey":	"fesh"
-				},
-				"object4":	{
-					"x":	229.333313,
-					"y":	464,
-					"element":	"BLUE",
-					"templateKey":	"grump"
-				},
-				"object5":	{
-					"x":	727.466675,
-					"y":	88.533325,
-					"element":	"BLUE",
-					"templateKey":	"blobo"
-				},
-				"object6":	{
-					"x":	856.533325,
-					"y":	341.333344,
-					"element":	"BLUE",
-					"templateKey":	"horizontal"
-				},
-				"object7":	{
-					"x":	221.866669,
-					"y":	80,
-					"element":	"BLUE",
-					"templateKey":	"vertical"
-				}
-			}
-		},
-		"wave 2":	{
-			"waveEntries":	{
-				"object1":	{
-					"x":	298.666656,
-					"y":	124.800003,
-					"element":	"BLUE",
-					"templateKey":	"birb"
-				},
-				"object2":	{
-					"x":	745.599976,
-					"y":	421.333344,
-					"element":	"BLUE",
-					"templateKey":	"blobo"
-				},
-				"object3":	{
-					"x":	722.133362,
-					"y":	106.666672,
-					"element":	"BLUE",
-					"templateKey":	"birb"
-				}
 			}
 		}
 	}
