@@ -3,17 +3,8 @@
         "Charlemagne": {
             "file": "./fonts/Charlemagne.ttf", 
             "size": 64
-        },
-        "kyle": {
-            "file": "./fonts/Charlemagne.ttf",
-            "size": 20
-        },
-        "small": {
-            "file": "./fonts/Charlemagne.ttf",
-            "size": 12
         }
-
-    },
+    }, 
     "textures": {
         "Color Fill 1": {
             "file": "./textures/menus/levelSelect/Color Fill 1.png", 
@@ -80,6 +71,13 @@
         }, 
         "charatemp_red": {
             "file": "./textures/models/player_models/charatemp_red.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "chartemp_gold": {
+            "file": "./textures/models/player_models/chartemp_gold.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 

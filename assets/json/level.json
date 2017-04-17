@@ -72,9 +72,13 @@
     }
   },
   "templates":	{
-      "playerChar":	{
-          "name":	"playerChar",
-          "objectKey":	"playerChar"
+      "playerCharMale":	{
+          "name":	"playerCharMale",
+          "objectKey":	"playerCharMale"
+      },
+      "playerCharFemale":	{
+          "name":	"playerCharFemale",
+          "objectKey":	"playerCharFemale"
       },
       "object1": {
           "name": "object1",
@@ -92,13 +96,13 @@
     "playerCharMale":{
       "shapeKey": "shape1",
       "blueAnimationKey": "blueCharAnimation",
-      "goldAnimationKey": "redCharAnimation",
+      "goldAnimationKey": "goldCharAnimation",
       "soundKey": "male"
     },
     "playerCharFemale":{
       "shapeKey": "shape1",
       "blueAnimationKey": "blueCharAnimation",
-      "goldAnimationKey": "redCharAnimation",
+      "goldAnimationKey": "goldCharAnimation",
       "soundKey": "female"
     },
     "circle": {

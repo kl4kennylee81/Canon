@@ -83,10 +83,10 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
 	// maybe consider having option to set color in data file
 	label->setForeground(Color4::WHITE);
 	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * GameState::getGameSceneHeight()));
+    label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
 
 	cugl::Size size = label->getSize();
-	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * GameState::getGameSceneHeight() / size.height));
+	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
     
     // scale to width and height
     return label;

@@ -299,26 +299,19 @@ void GameEngine::initializeNextMode(){
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
             _gameplay = GameplayController::alloc(_scene, levelWorld);
-            
-            // this is so that the menu can interact with the game screen
-            _menu->attach(_gameplay.get());
-            _gameplay->attach(_menu.get());
             break;
         }
         case Mode::MAIN_MENU:
         {
-            _menu = MenuController::alloc(_scene,_menuGraph);
-            //TODO replace hard coded populate with menus loaded from data file
-            _menuGraph->populate(_assets);
+//            _menu = MenuController::alloc(_scene,_menuGraph);
+//            //TODO replace hard coded populate with menus loaded from data file
             break;
         }
         case Mode::LEVEL_EDIT:
         {
             // TODO likely have menuController always active but initialize it with
             // the menus when it is in that mode otherwise it is just there.
-            _menu = MenuController::alloc(_scene,_menuGraph);
-            _levelEditor = LevelEditorController::alloc(_scene, _assets);
-            _levelEditor->attach(_menu.get());
+            _levelEditor = LevelEditorController::alloc(_scene,_assets);
             break;
         }
         default:
@@ -345,6 +338,19 @@ void GameEngine::update(float timestep) {
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
         cleanPreviousMode();
+        
+        _menu = MenuController::alloc(_scene,_menuGraph);
+        if (_gameplay != nullptr){
+            // this is so that the menu can interact with the game screen
+            _menu->attach(_gameplay.get());
+            _gameplay->attach(_menu.get());
+        }
+        
+        if (_levelEditor != nullptr){
+            _levelEditor = LevelEditorController::alloc(_scene, _assets);
+            _levelEditor->attach(_menu.get());
+        }
+        
         _menuGraph->updateToNextMode();
     }
     // update the game
@@ -358,6 +364,7 @@ void GameEngine::update(float timestep) {
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
                 _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                _menuGraph->populate(_assets);
             }
             break;
         }

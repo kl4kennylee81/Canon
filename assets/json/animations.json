@@ -61,9 +61,9 @@
                 }
             }
         },
-        "redCharAnimation": {
+        "goldCharAnimation": {
             "id": 2,
-            "texture": "./textures/models/player_models/charatemp_red.png",
+            "texture": "./textures/models/player_models/charatemp_gold.png",
             "rows": 6,
             "cols": 1,
             "size": 6,

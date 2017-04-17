@@ -1,14 +1,10 @@
 {
-	"counter":	2,
+	"counter":	3,
 	"templates":	["homing", "horizontal", "vertical", "kyle3", "kyle4"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 1",
-				"time":	180
-			},
-			"wave2":	{
-				"waveKey":	"wave 2",
+				"waveKey":	"wave 3",
 				"time":	180
 			}
 		},
@@ -16,12 +12,32 @@
 		}
 	},
 	"waves":	{
-		"wave 1":	{
+		"wave 3":	{
 			"waveEntries":	{
-			}
-		},
-		"wave 2":	{
-			"waveEntries":	{
+				"object1":	{
+					"x":	384,
+					"y":	439.466644,
+					"element":	"BLUE",
+					"templateKey":	"homing"
+				},
+				"object2":	{
+					"x":	708.266663,
+					"y":	353.066650,
+					"element":	"BLUE",
+					"templateKey":	"homing"
+				},
+				"object3":	{
+					"x":	282.666656,
+					"y":	158.933334,
+					"element":	"BLUE",
+					"templateKey":	"homing"
+				},
+				"object4":	{
+					"x":	745.599976,
+					"y":	141.866669,
+					"element":	"BLUE",
+					"templateKey":	"homing"
+				}
 			}
 		}
 	}
