@@ -1,6 +1,6 @@
 {
 	"counter":	1,
-	"templates":	["fesh"],
+	"templates":	["birb"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
@@ -15,16 +15,16 @@
 		"wave 1":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	932.266663,
-					"y":	311.466675,
+					"x":	224,
+					"y":	178.133331,
 					"element":	"BLUE",
-					"templateKey":	"fesh"
+					"templateKey":	"birb"
 				},
 				"object2":	{
-					"x":	148.266663,
-					"y":	123.733337,
+					"x":	869.333313,
+					"y":	480,
 					"element":	"GOLD",
-					"templateKey":	"fesh"
+					"templateKey":	"birb"
 				}
 			}
 		}

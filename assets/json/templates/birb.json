@@ -3,7 +3,8 @@
     "birb": {
       "name": "birb",
       "aiKey":  "homing",
-      "objectKey":  "birb_object"
+      "objectKey":  "birb_object",
+      "zoneKeys": []
     }
   },
   "objects":{
@@ -12,11 +13,30 @@
       "blueAnimationKey": "blue_birb_animation",
       "goldAnimationKey": "yellow_birb_animation",
       "soundKey": "baseEnemySound"
+    },
+    "birb_zoneObject": {
+      "shapeKey": "birb_zoneShape",
+      "blueAnimationKey": "whiteCircle",
+      "goldAnimationKey": "whiteCircle"
     }
   },
   "shapes":{
     "birb_shape": {
       "vertices": [0,0,100,0,100,100,0,100]
+    },
+    "birb_zoneShape":{
+      "vertices": [0.0, -150.0, 75.0, -129.90381056774999, 129.90381056774999, -75.0, 150.0, 0.0, 129.90381056774999, 75.0, 75.0, 129.90381056774999, 0.0, 150.0, -75.0, 129.90381056774999, -129.90381056774999, 75.0, -150.0, 0.0, -129.90381056774999, -75.0, -75.0, -129.90381056774999]
+    }
+  },
+  "zones":{
+    "birb_zone": {
+      "type": "STATIC",
+      "objectKey": "birb_zoneObject",
+      "relX": 0,
+      "relY": 0,
+      "cooldown": 50,
+      "duration": 50,
+      "element": "BLUE"
     }
   },
   "animations":{
