@@ -6,13 +6,22 @@ using namespace cugl;
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     std::string buttonType = json->get("buttonAction")->getString("type");
-
-	if (buttonType == "menuChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		MenuChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"))); }
-	else if (buttonType == "modeChange") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		ModeChangeButtonAction::alloc(json->get("buttonAction")->getString("buttonTarget"),json->get("buttonAction")->getString("nextScreen"))); }
-	else if (buttonType == "fxTrigger") { buttonAction = std::dynamic_pointer_cast<ButtonAction>(
-		FxTriggerButtonAction::alloc(json->get("buttonAction")->getString("fxKey"))); }
+    
+	if (buttonType == "menuChange")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = MenuChangeButtonAction::alloc(buttonJson->getString("buttonTarget"));
+    }
+	else if (buttonType == "modeChange")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = ModeChangeButtonAction::alloc(buttonJson->getString("buttonTarget"),buttonJson->getString("nextScreen"));
+    }
+	else if (buttonType == "fxTrigger")
+    {
+        auto buttonJson = json->get("buttonAction");
+        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"));
+    }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");

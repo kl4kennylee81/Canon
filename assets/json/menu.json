@@ -25,8 +25,8 @@
                     "pauseButton"
                 ]
             },
-            "pause": {
-                "menuKey": "pause",
+            "pauseScreen": {
+                "menuKey": "pauseScreen",
                 "UIEntries": [
                     "pauseTextImg",
                     "resumeButton",
@@ -47,10 +47,10 @@
         "pauseButton": {
            "type": "BUTTON",
             "uiBackgroundKey": "pauseButton",
-            "buttonLabel": "hello",
             "buttonAction": {
                 "type": "fxTrigger",
-                "fxKey": "PAUSE"
+                "fxKey": "PAUSE",
+                "nextScreen": "pauseScreen"
             },
             "x": 0.020,
             "y": 0.020,
@@ -89,8 +89,9 @@
             "type": "BUTTON",
             "buttonLabel": "resume",
             "buttonAction": {
-                "type": "modeChange",
-                "buttonTarget": "GAMEPLAY"
+                "type": "fxTrigger",
+                "fxKey": "RESUME",
+                "nextScreen": "gameScreen"
             },
             "x": 0.375,
             "y": 0.500,

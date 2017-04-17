@@ -40,8 +40,7 @@ void GameplayController::eventUpdate(Event* e) {
 			switch (menuEvent->_menuEventType) {
 				case MenuEvent::MenuEventType::PAUSEGAME:
 					PauseGameEvent* pg = static_cast<PauseGameEvent*>(menuEvent);
-					if (pg->pause) _paused = true;
-					else _paused = false;
+                    _paused = pg->pause;
 
 			}
 			break;
