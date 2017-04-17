@@ -48,6 +48,13 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "bg_blue_sky": {
+            "file": "./textures/backgrounds/bg_blue_sky.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "bg_dark_lake": {
             "file": "./textures/backgrounds/bg_dark_lake.png", 
             "magfilter": "linear", 
