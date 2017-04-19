@@ -20,7 +20,7 @@
                 "attack": {
                     "first": 2,
                     "total": 1,
-                    "frames": [3]
+                    "frames": [1]
                 },
                 "moving": {
                     "first": 3,
@@ -81,7 +81,7 @@
                 "attack": {
                     "first": 2,
                     "total": 1,
-                    "frames": [15]
+                    "frames": [1]
                 },
                 "moving": {
                     "first": 3,
@@ -91,7 +91,7 @@
                 "return": {
                     "first": 4,
                     "total": 1,
-                    "frames": [15]
+                    "frames": [3]
                 },
                 "death": {
                     "first": 5,
