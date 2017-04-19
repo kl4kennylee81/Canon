@@ -16,6 +16,7 @@
 #include "StaticZoneData.hpp"
 #include "PathAIData.hpp"
 #include "AIData.hpp"
+#include "GameEngine.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            4
@@ -150,7 +151,6 @@ void World::populate() {
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets, std::string levelName){
     _assets = assets;
-
     this->_levelData = assets->get<LevelData>(levelName);
     _isSandbox = false;
     
@@ -209,11 +209,7 @@ std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
 }
 
 std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
-    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
-    if (templData == nullptr) {
-        return nullptr;
-    }
-    return getAIData(templData->getAIKey());
+    return getAIData(we->getAIKey());
 }
 
 std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
@@ -278,10 +274,10 @@ void World::presetPlayerCharacters(){
     // better solution will be when initialize level stub give default value for the player characters
     
     // add two player characters
-    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,ElementType::GOLD,"playerCharMale");
+    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,ElementType::GOLD,"playerCharMale", "");
     _levelData->addPlayerChars(playerChar2);
     
-    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,ElementType::BLUE,"playerCharFemale");
+    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,ElementType::BLUE,"playerCharFemale", "");
     _levelData->addPlayerChars(playerChar1);
     
     return;

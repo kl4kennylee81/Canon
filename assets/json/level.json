@@ -84,9 +84,14 @@
       },
       "object1": {
           "name": "object1",
+<<<<<<< HEAD
           "aiKey":  "homing",
           "objectKey":  "object1",
           "zoneKeys":["pulseZone"]
+=======
+          "aiKeys":  ["homing"],
+          "objectKey":  "object1"
+>>>>>>> master
       }
   },
   "objects": {

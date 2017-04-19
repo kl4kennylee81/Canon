@@ -23,7 +23,7 @@ private:
 public:
     std::string name;
     
-    std::string aiKey;
+    std::vector<std::string> aiKeys;
     
     std::vector<std::string> zoneKeys;
     
@@ -39,6 +39,7 @@ public:
 		return (result->init(json) ? result : nullptr);
 	}
 
+<<<<<<< HEAD
     bool init(std::string name, std::string obKey, std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime);
     
     static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
@@ -46,6 +47,15 @@ public:
 	{
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
 		return (result->init(name, obKey, aiKey, zoneKeys,spawnTime) ? result : nullptr);
+=======
+    bool init(std::string name, std::string obKey, std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys);
+    
+    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
+                                                    std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys)
+	{
+		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
+		return (result->init(name, obKey, aiKeys, zoneKeys) ? result : nullptr);
+>>>>>>> master
 	}
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
@@ -60,7 +70,9 @@ public:
     
     std::string getObjectKey();
     
-    std::string getAIKey();
+    std::string getAIKey(int index) { return aiKeys.at(index); }
+    
+    std::string getNextAIKey(std::string currentKey);
     
     std::vector<std::string> getZoneKeys();
     

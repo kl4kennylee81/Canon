@@ -15,6 +15,9 @@
 #include "ActiveAnimation.hpp"
 #include "AnimationData.hpp"
 #include "GameState.hpp"
+#include "AIData.hpp"
+#include "ZoneData.hpp"
+#include "GenericAssetManager.hpp"
 
 using namespace cugl;
 
@@ -53,7 +56,8 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
         std::string name = "kyle" + std::to_string(_templates.size());
-		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "static", {},90.0);
+        auto newTemplate = TemplateWaveEntry::alloc(name, "object1", {"static"}, {},90.0);
+
 		_templates.push_back(newTemplate);
         _world->addTemplate(name, newTemplate);
 		updateTemplateNodes();
@@ -62,20 +66,18 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		_state = WaveEditorState::DRAG;
 		break;
 	}
-	case WaveEditorState::SELECT: {
-		//allow user to select from available wave entry templates
-		//switch to drag when one is clicked
-		break;
-	}
+    case WaveEditorState::REFRESH: {
+        refreshTemplates();
+        _state = _prevState;
+        break;
+    }
 	case WaveEditorState::DRAG: {
+        updateTemplateNodes();
         updateDragAndDrop();
 		break;
 	}
-	case WaveEditorState::EDIT: {
-		//click on item to start editing, switch to TEMPLATE_EDIT
-		break;
-	}
 	case WaveEditorState::REMOVE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_entryRemoved){
             _currentWave->removeEntry(_removeIndex);
             updateWaveEntryNodes();
@@ -83,19 +85,21 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
         }
         break;
 	}
+    case WaveEditorState::AI_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        if(_aiChanged) {
+            updateWaveEntryNodes();
+            _aiChanged = false;
+        }
+    }
     case WaveEditorState::COLOR_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_colorChanged) {
             updateWaveEntryNodes();
             _colorChanged = false;
         }
         break;
     }
-	case WaveEditorState::TEMPLATE_EDIT: {
-		if (_templateEditorController->update(timestep, menuGraph)) {
-			_state = WaveEditorState::SELECT;
-		}
-		break;
-	}
 	case WaveEditorState::DONE: {
 		deactivateAndClear(_levelEditNode);
 		return true;
@@ -110,6 +114,68 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     label->setScale(0.5);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
+}
+
+
+
+/* -------------------------------------------------------------- */
+/* -------------------- TEMPLATE FILE STUFF --------------------- */
+/* -------------------------------------------------------------- */
+
+void WaveEditorController::refreshTemplates(){
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string canonDir = Util::join(vec,vec.size()-2,'/');
+    
+    std::unordered_set<std::string> aiKeys;
+    std::unordered_set<std::string> zoneKeys;
+    std::unordered_set<std::string> templateKeys;
+    auto tempAssets = GenericAssetManager::alloc();
+    GameEngine::attachLoaders(tempAssets);
+
+    //get all keys
+    for(auto it: _templates){
+        auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/templates/"+it->getName()+".json");
+        auto json = reader->readJson();
+        if(json->has("ai")){
+            auto ais = json->get("ai");
+            for(int i = 0; i < ais->size(); i++){
+                aiKeys.insert(ais->get(i)->key());
+            }
+        }
+        if(json->has("zones")){
+            auto zones = json->get("zones");
+            for(int i = 0; i < zones->size(); i++){
+                zoneKeys.insert(zones->get(i)->key());
+            }
+        }
+        if(json->has("templates")){
+            auto templates = json->get("templates");
+            for(int i = 0; i < templates->size(); i++){
+                templateKeys.insert(templates->get(i)->key());
+            }
+        }
+        tempAssets->loadDirectory(json);
+    }
+    
+    //transfer data into world
+    for(auto it: aiKeys){
+        _world->_aiData[it] = tempAssets->get<AIData>(it);
+    }
+    for(auto it: zoneKeys){
+        _world->_zoneData[it] = tempAssets->get<ZoneData>(it);
+    }
+    for(auto it: templateKeys){
+        _world->_templateData[it] = tempAssets->get<TemplateWaveEntry>(it);
+    }
+
+    //update _templates to reflect changes
+    std::vector<std::shared_ptr<TemplateWaveEntry>> newTemplates;
+    for(auto it: _templates){
+        newTemplates.push_back(_world->getTemplate(it->getName()));
+    }
+    _templates = newTemplates;
+    
+    tempAssets->unloadAll();
 }
 
 void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ) {
@@ -127,6 +193,13 @@ void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry>
     newFile.close();
 }
 
+
+
+
+/* -------------------------------------------------------------- */
+/* ------------------ DRAG AND DROP FUNCTION -------------------- */
+/* -------------------------------------------------------------- */
+
 void WaveEditorController::updateDragAndDrop(){
     if(_dragIndex == -1) return;
     auto templateNode = _levelEditNode->getChildByName("templates");
@@ -134,8 +207,8 @@ void WaveEditorController::updateDragAndDrop(){
         for(auto it: templateNode->getChildren()){
             it->setVisible(false);
         }
-        auto poly = PolygonNode::alloc(Rect::Rect(0,0,30,30));
-        poly->setColor(Color4::MAGENTA);
+        auto poly = PolygonNode::alloc(Rect::Rect(0,0,20,20));
+        poly->setColor(Color4::BLACK);
         _dragNode->addChildWithTag(poly, 1);
         _dragStart = false;
     }
@@ -149,7 +222,8 @@ void WaveEditorController::updateDragAndDrop(){
         _dragNode->removeAllChildren();
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
-            auto entry = WaveEntry::alloc(0, 0, ElementType::BLUE, templ->name);
+            auto entry = WaveEntry::alloc(0, 0, ElementType::BLUE, templ->name, templ->getAIKey(0));
+
             
             Vec2 physicsCoord;
             Util::sceneToPhysicsCoords(scene_pos,physicsCoord);
@@ -174,6 +248,31 @@ void WaveEditorController::updateDragAndDrop(){
     node->setPosition(scene_pos);
 }
 
+
+
+
+/* -------------------------------------------------------------- */
+/* ---------------------- TOGGLING STUFF ------------------------ */
+/* -------------------------------------------------------------- */
+
+std::string WaveEditorController::getStateAsString(){
+    switch(_state){
+        case WaveEditorState::DRAG: {
+            return "DRAG";
+        }
+        case WaveEditorState::COLOR_TOGGLE: {
+            return "COLOR TOGGLE";
+        }
+        case WaveEditorState::REMOVE: {
+            return "REMOVE";
+        }
+        case WaveEditorState::AI_TOGGLE: {
+            return "AI TOGGLE";
+        }
+    }
+    return "";
+}
+
 void WaveEditorController::checkKeyboardInput() {
     auto keys = Input::get<Keyboard>()->keySet();
     for(auto key: keys){
@@ -189,29 +288,80 @@ void WaveEditorController::checkKeyboardInput() {
             _state = WaveEditorState::COLOR_TOGGLE;
             return;
         }
-    }
-
-}
-
-void WaveEditorController::setWave(std::string key, std::shared_ptr<WaveData> wave) {
-	_currentWave = wave;
-    _waveKey = key;
-	_state = WaveEditorState::START;
-}
-
-std::shared_ptr<TemplateWaveEntry> WaveEditorController::getTemplateWaveEntry(std::string templateKey){
-    for (auto t : _templates){
-        if (templateKey == t->name) {
-            return t;
+        if(key == KeyCode::A){
+            _state = WaveEditorState::AI_TOGGLE;
+            return;
         }
     }
-    
-    // the template is not found
-    return nullptr;
+
 }
 
+/* -------------------------------------------------------------- */
+/* ---------------- BUTTON LISTENER FUNCTIONS ------------------- */
+/* -------------------------------------------------------------- */
+
+void WaveEditorController::waveEntryButtonListenerFunction(const std::string& name, bool down, int index) {
+    auto entryNode = _levelEditNode->getChildByName("entries");
+    auto buttonNode = std::static_pointer_cast<Button>(entryNode->getChildByTag(index));
+    if(down){
+        switch(_state) {
+            case WaveEditorState::DRAG: {
+                _dragIndex = index;
+                _newEntry = false;
+                _dragStart = true;
+                break;
+            }
+            case WaveEditorState::REMOVE: {
+                _entryRemoved = true;
+                _removeIndex = index;
+                break;
+            }
+            case WaveEditorState::COLOR_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
+                waveEntry->switchElement();
+                _colorChanged = true;
+                break;
+            }
+            case WaveEditorState::AI_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
+                waveEntry->setAIKey(templateEntry->getNextAIKey(waveEntry->getAIKey()));
+                _aiChanged = true;
+                break;
+            }
+            default:{
+                break;
+            }
+        }
+    }
+}
+
+void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
+    auto templateNode = _levelEditNode->getChildByName("templates");
+    auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(index));
+    if (down) {
+        switch(_state) {
+            case WaveEditorState::DRAG: {
+                _dragIndex = index;
+                _newEntry = true;
+                _dragStart = true;
+                break;
+            }
+        }
+    }
+}
+
+
+
+
+
+/* -------------------------------------------------------------- */
+/* -------------- SCENE GRAPH UTILITY FUNCTIONS ----------------- */
+/* -------------------------------------------------------------- */
+
 std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, float y,
-    std::shared_ptr<TemplateWaveEntry> templ, ElementType color)
+                                                                    std::shared_ptr<TemplateWaveEntry> templ, ElementType color)
 {
     auto activeAnim = ActiveAnimation::alloc();
     auto objectData = _world->getObjectData(templ->getObjectKey());
@@ -221,6 +371,44 @@ std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, flo
     button->setPosition(x, y);
     button->setScale(getAnimationScale(templ->getObjectKey(),animData->nonUniformScale));
     return button;
+}
+
+Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUniform){
+    std::shared_ptr<ObjectData> obj = _world->getObjectData(objectKey);
+    std::shared_ptr<ShapeData> shape = _world->getShapeData(obj->getShapeKey());
+    Poly2 poly(shape->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    std::shared_ptr<PolygonObstacle> obst = PolygonObstacle::alloc(poly);
+    
+    // TODO replace this hacky multiply by physics scale
+    Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
+    
+    auto activeAnim = ActiveAnimation::alloc();
+    auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
+    activeAnim->setAnimationData(animData);
+    
+    auto anim = activeAnim->getAnimationNode();
+    
+    Size animationSize = anim->getContentSize();
+    
+    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
+    // so that the animationNode is always encapsulating the full physics box with padding.
+    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
+    if (isNonUniform){
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        return animationScale;
+    } else {
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        float animationScale = std::max(scaleX,scaleY);
+        return Vec2::Vec2(animationScale,animationScale);
+    }
+
 }
 
 std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is in physicsCoordinates of the owner of the zone
@@ -319,96 +507,33 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
     }
 }
 
-void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
+
+
+
+/* -------------------------------------------------------------- */
+/* -------------- SCENE GRAPH DISPLAY FUNCTIONS ----------------- */
+/* -------------------------------------------------------------- */
+
+void WaveEditorController::updateTemplateNodes() {
     auto templateNode = _levelEditNode->getChildByName("templates");
-    auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(index));
-    if (down) {
-        switch(_state) {
-        case WaveEditorState::DRAG: {
-            _dragIndex = index;
-            _newEntry = true;
-            _dragStart = true;
-            break;
+    deactivateAndClear(templateNode);
+    std::cout << _templates.size() << std::endl;
+    for (int i = 0; i < _templates.size(); i++) {
+        auto button = getButtonFromTemplate(30, 500 - (i * 75), _templates.at(i), ElementType::BLUE);
+        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
+        label->setScale(0.3);
+        label->setPosition(90, 500 - (i * 75));
+        button->setListener(
+        [=](const std::string& name, bool down) {
+            templateButtonListenerFunction(name, down, i);
         }
-        case WaveEditorState::EDIT: {
-            break;
-        }
-        default:{
-            break;
-        }
-        }
-        
+        );
+        button->activate(getUid());
+        templateNode->addChildWithTag(button, i);
+        templateNode->addChild(label);
     }
 }
 
-
-void WaveEditorController::waveEntryButtonListenerFunction(const std::string& name, bool down, int index) {
-    auto entryNode = _levelEditNode->getChildByName("entries");
-    auto buttonNode = std::static_pointer_cast<Button>(entryNode->getChildByTag(index));
-    if(down){
-        switch(_state) {
-            case WaveEditorState::DRAG: {
-                _dragIndex = index;
-                _newEntry = false;
-                _dragStart = true;
-                break;
-            }
-            case WaveEditorState::REMOVE: {
-                _entryRemoved = true;
-                _removeIndex = index;
-                break;
-            }
-            case WaveEditorState::COLOR_TOGGLE: {
-                auto waveEntry = _currentWave->getEntry(index);
-                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
-                waveEntry->switchElement();
-                _colorChanged = true;
-                break;
-            }
-            default:{
-                break;
-            }
-        }
-    }
-}
-                                                           
-Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUniform){
-    std::shared_ptr<ObjectData> obj = _world->getObjectData(objectKey);
-    std::shared_ptr<ShapeData> shape = _world->getShapeData(obj->getShapeKey());
-    Poly2 poly(shape->vertices);
-    SimpleTriangulator triangulator;
-    triangulator.set(poly);
-    triangulator.calculate();
-    poly.setIndices(triangulator.getTriangulation());
-    std::shared_ptr<PolygonObstacle> obst = PolygonObstacle::alloc(poly);
-    
-    // TODO replace this hacky multiply by physics scale
-    Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
-    
-    auto activeAnim = ActiveAnimation::alloc();
-    auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
-    activeAnim->setAnimationData(animData);
-    
-    auto anim = activeAnim->getAnimationNode();
-    
-    Size animationSize = anim->getContentSize();
-    
-    // maximum of boxSize.width/animation.width and boxsize.height/animation.height
-    // so that the animationNode is always encapsulating the full physics box with padding.
-    // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    if (isNonUniform){
-        float scaleX = (polySize.width)/animationSize.width;
-        float scaleY = (polySize.height)/animationSize.height;
-        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
-        return animationScale;
-    } else {
-        float scaleX = (polySize.width)/animationSize.width;
-        float scaleY = (polySize.height)/animationSize.height;
-        float animationScale = std::max(scaleX,scaleY);
-        return Vec2::Vec2(animationScale,animationScale);
-    }
-
-}
 
 void WaveEditorController::updateWaveEntryNodes(){
     auto entryNode = _levelEditNode->getChildByName("entries");
@@ -427,61 +552,20 @@ void WaveEditorController::updateWaveEntryNodes(){
             std::shared_ptr<Node> zoneNode = createZoneNode(entry->getPosition().x,entry->getPosition().y,zoneKey,entry->getElement());
             entryNode->addChild(zoneNode,0);
         }
-        
-        auto label = Label::alloc(entry->getTemplateKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
+
+        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.18);
         label->setPosition(pos.x, pos.y);
+        
         button->setListener(
-            [=](const std::string& name, bool down) {
-                waveEntryButtonListenerFunction(name, down, i);
-            }
+        [=](const std::string& name, bool down) {
+            waveEntryButtonListenerFunction(name, down, i);
+        }
         );
         button->activate(getUid());
         entryNode->addChildWithTag(button, i,1);
         entryNode->addChild(label);
     }
-}
-
-void WaveEditorController::updateTemplateNodes() {
-	auto templateNode = _levelEditNode->getChildByName("templates");
-	deactivateAndClear(templateNode);
-    std::cout << _templates.size() << std::endl;
-	for (int i = 0; i < _templates.size(); i++) {
-        auto button = getButtonFromTemplate(30, 500 - (i * 100), _templates.at(i), ElementType::BLUE);
-        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.3);
-        label->setPosition(90, 500 - (i * 100));
-        button->setListener(
-            [=](const std::string& name, bool down) {
-                templateButtonListenerFunction(name, down, i);
-            }
-        );
-        button->activate(getUid());
-        templateNode->addChildWithTag(button, i);
-        templateNode->addChild(label);
-	}
-}
-
-void WaveEditorController::setTemplates(std::vector<std::string> templates){
-    _templates.clear();
-    for(auto str: templates){
-        _templates.push_back(_world->getTemplate(str));
-    }
-}
-
-std::string WaveEditorController::getStateAsString(){
-    switch(_state){
-        case WaveEditorState::DRAG: {
-            return "DRAG";
-        }
-        case WaveEditorState::COLOR_TOGGLE: {
-            return "COLOR TOGGLE";
-        }
-        case WaveEditorState::REMOVE: {
-            return "DELETE";
-        }
-    }
-    return "";
 }
 
 void WaveEditorController::setSceneGraph() {
@@ -504,11 +588,23 @@ void WaveEditorController::setSceneGraph() {
 		}
 	}
 	);
+    
+    auto refreshButton = Util::makeBoxButton(110, 30, 30, 30, Color4::BLUE, Color4::PAPYRUS);
+    refreshButton->setListener(
+        [=](const std::string& name, bool down) {
+           if (down) {
+               _prevState = _state;
+               _state = WaveEditorState::REFRESH;
+           }
+        }
+   );
 
 	backButton->activate(getUid());
 	addButton->activate(getUid());
+    refreshButton->activate(getUid());
 	_levelEditNode->addChildWithName(backButton, "back");
 	_levelEditNode->addChildWithName(addButton, "add");
+    _levelEditNode->addChildWithName(refreshButton, "refresh");
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
     
@@ -522,12 +618,46 @@ void WaveEditorController::setSceneGraph() {
     _dragIndex = -1;
 }
 
+
+
+
+/* -------------------------------------------------------------- */
+/* --------------------- UTILITY STUFF -------------------------- */
+/* -------------------------------------------------------------- */
+
+void WaveEditorController::setTemplates(std::vector<std::string> templates){
+    _templates.clear();
+    for(auto str: templates){
+        _templates.push_back(_world->getTemplate(str));
+    }
+}
+
+
+void WaveEditorController::setWave(std::string key, std::shared_ptr<WaveData> wave) {
+    _currentWave = wave;
+    _waveKey = key;
+    _state = WaveEditorState::START;
+}
+
+
+std::shared_ptr<TemplateWaveEntry> WaveEditorController::getTemplateWaveEntry(std::string templateKey){
+    for (auto t : _templates){
+        if (templateKey == t->name) {
+            return t;
+        }
+    }
+    
+    // the template is not found
+    return nullptr;
+}
+
+
 bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<World> world) {
 	_state = WaveEditorState::START;
-	_templateEditorController = TemplateEditorController::alloc(node, world);
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
+    _aiChanged = false;
     _entryRemoved = false;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");

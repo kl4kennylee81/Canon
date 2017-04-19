@@ -56,6 +56,8 @@ public:
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
     std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
     std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
+    
+    std::unordered_set<std::string> _tempKeys;
 
     World();
     

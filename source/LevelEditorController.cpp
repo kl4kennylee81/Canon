@@ -44,7 +44,7 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
         _state = LevelEditorState::MAIN;
         break;
     }
-    case LevelEditorState::DELETE: {
+    case LevelEditorState::REMOVE: {
         _levelData->removeWave(_removeIndex);
         updateWaveNodes();
         saveLevel();
@@ -193,7 +193,7 @@ void LevelEditorController::deleteButtonListenerFunction(const std::string& name
     auto buttonNode = std::static_pointer_cast<Button>(deleteNode->getChildByTag(index));
     if (buttonNode->isDown()) {
         _removeIndex = index;
-        _state = LevelEditorState::DELETE;
+        _state = LevelEditorState::REMOVE;
     }
 
 }

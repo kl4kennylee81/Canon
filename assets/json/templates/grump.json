@@ -2,9 +2,14 @@
   "templates":  {
     "grump": {
       "name": "grump",
+<<<<<<< HEAD
       "aiKey":  "static",
       "objectKey":  "grump_object",
       "zoneKeys": ["grump_zone"]
+=======
+      "aiKeys":  ["homing"],
+      "objectKey":  "grump_object"
+>>>>>>> master
     }
   },
   "objects":{

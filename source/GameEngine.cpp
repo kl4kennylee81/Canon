@@ -31,6 +31,51 @@ using namespace cugl;
 
 bool GameEngine::_touch;
 
+
+
+void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+#ifdef __APPLE__
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir(templateDir.c_str())) != NULL) {
+		/* print all the files and directories within directory */
+		while ((ent = readdir(dir)) != NULL) {
+			if (ent->d_name[0] != '.') {
+				std::string templatePath = TEMPLATE_PATH;
+				templatePath.append(ent->d_name);
+				assets->loadDirectory(templatePath);
+			}
+		}
+		closedir(dir);
+	}
+#endif
+}
+
+void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+
+}
+
+void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
+    // You have to attach the individual loaders for each asset type
+    assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
+    assets->attach<Texture>(TextureLoader::alloc()->getHook());
+    assets->attach<Font>(FontLoader::alloc()->getHook());
+    assets->attach<Sound>(SoundLoader::alloc()->getHook());
+    assets->attach<Music>(MusicLoader::alloc()->getHook());
+    assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
+    assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
+    assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
+    assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
+    assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
+    assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
+    assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
+    assets->attach<UIData>(UIDataLoader::alloc()->getHook());
+    assets->attach<AIData>(AILoader::alloc()->getHook());
+    assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
+    assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
+    assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+}
+
 /**
  * The method called after OpenGL is initialized, but before running the application.
  *
@@ -53,24 +98,7 @@ void GameEngine::onStartup() {
     // Create an asset manager to load all assets
     _assets = GenericAssetManager::alloc();
     
-    // You have to attach the individual loaders for each asset type
-	_assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
-    _assets->attach<Texture>(TextureLoader::alloc()->getHook());
-    _assets->attach<Font>(FontLoader::alloc()->getHook());
-    _assets->attach<Sound>(SoundLoader::alloc()->getHook());
-    _assets->attach<Music>(MusicLoader::alloc()->getHook());
-	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
-	_assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
-	_assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
-	_assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
-	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
-	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
-	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
-	_assets->attach<UIData>(UIDataLoader::alloc()->getHook());
-	_assets->attach<AIData>(AILoader::alloc()->getHook());
-    _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
-    _assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
-    _assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+    attachLoaders(_assets);
     
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
@@ -103,19 +131,13 @@ void GameEngine::onStartup() {
     // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
     //load all template wave entries
-    DIR *dir;
-    struct dirent *ent;
-    if ((dir = opendir(templateDir.c_str())) != NULL) {
-        /* print all the files and directories within directory */
-        while ((ent = readdir (dir)) != NULL) {
-            if(ent->d_name[0] != '.'){
-                std::string templatePath = TEMPLATE_PATH;
-                templatePath.append(ent->d_name);
-                _assets->loadDirectory(templatePath);
-            }
-        }
-        closedir (dir);
-    }
+
+	#ifdef _WIN32
+	loadTemplateFilesWindows(_assets, templateDir);
+	#elif __APPLE__
+	loadTemplateFilesApple(_assets, templateDir);
+	#endif
+
     
     /** END OF TEMPORARY CODE TO WIPE **/
 
@@ -408,4 +430,3 @@ void GameEngine::draw() {
     _scene->sortZOrder();
     _scene->render(_batch);
 }
-

@@ -2,7 +2,7 @@
 	"templates":	{
 		"homing":	{
 			"name":	"homing",
-			"aiKey":	"homing",
+			"aiKeys":	["homing"],
 			"objectKey":	"object1"
 		}
 	}

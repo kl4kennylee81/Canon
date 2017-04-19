@@ -2,7 +2,7 @@
   "templates":  {
     "birb": {
       "name": "birb",
-      "aiKey":  "homing",
+      "aiKeys":  ["homing", "vertical"],
       "objectKey":  "birb_object",
       "zoneKeys": ["birb_zone"]
     }
@@ -42,22 +42,27 @@
   "animations":{
     "blue_birb_animation": {
       "texture": "./textures/models/enemy_models/birb/birb_blue.png",
-      "rows": 1,
-      "cols": 1,
-      "size": 1,
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
       "statemap": {
           "spawning": {
             "first": 0,
-            "total": 1,
-            "frames": [10]
+            "total": 4,
+            "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 0,
+            "first": 27,
             "total": 1,
             "frames": [10]
           },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
           "death": {
-            "first": 0,
+            "first": 1,
             "total": 1,
             "frames": [10]
           }
@@ -67,6 +72,7 @@
               "repeat": "spawning"
           },
           "SPAWN": {
+              "active": "spawn",
               "repeat": "idle"
           },
           "DEATH": {
@@ -76,22 +82,27 @@
     },
     "yellow_birb_animation": {
       "texture": "./textures/models/enemy_models/birb/birb_yellow.png",
-      "rows": 1,
-      "cols": 1,
-      "size": 1,
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
       "statemap": {
           "spawning": {
             "first": 0,
-            "total": 1,
-            "frames": [10]
+            "total": 4,
+            "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 0,
+            "first": 27,
             "total": 1,
             "frames": [10]
           },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
           "death": {
-            "first": 0,
+            "first": 1,
             "total": 1,
             "frames": [10]
           }
@@ -101,6 +112,7 @@
               "repeat": "spawning"
           },
           "SPAWN": {
+              "active": "spawn",
               "repeat": "idle"
           },
           "DEATH": {
