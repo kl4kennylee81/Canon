@@ -50,22 +50,14 @@ public:
     
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-<<<<<<< HEAD
-    bool init(float x, float y,ElementType element,std::string templateKey);
-=======
-    bool init(float x, float y,Element element,std::string templateKey, std::string aiKey);
->>>>>>> master
+    bool init(float x, float y,ElementType element,std::string templateKey, std::string aiKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(json) ? result : nullptr);
     }
-    
-<<<<<<< HEAD
-    static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey) {
-=======
-    static std::shared_ptr<WaveEntry> alloc(float x, float y,Element element,std::string templateKey, std::string aiKey) {
->>>>>>> master
+
+    static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey, std::string aiKey) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(x,y,element,templateKey, aiKey) ? result : nullptr);
     }

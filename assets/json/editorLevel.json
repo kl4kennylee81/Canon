@@ -2,65 +2,12 @@
 <<<<<<< HEAD
 	"counter":	3,
 	"templates":	["birb", "blobo", "grump", "fesh"],
-=======
-	"counter":	6,
-	"templates":	["birb", "blobo", "grump", "fesh", "horizontal", "vertical"],
->>>>>>> master
 	"level":	{
 		"levelEntries":	{
-			"wave1":	{
-				"waveKey":	"wave 3",
-<<<<<<< HEAD
-=======
-				"time":	180
-			},
-			"wave2":	{
-				"waveKey":	"wave 4",
-				"time":	180
-			},
-			"wave3":	{
-				"waveKey":	"wave 5",
-				"time":	180
-			},
-			"wave4":	{
-				"waveKey":	"wave 6",
->>>>>>> master
-				"time":	180
-			}
 		},
 		"playerChars":	{
 		}
 	},
 	"waves":	{
-		"wave 3":	{
-			"waveEntries":	{
-				"object1":	{
-<<<<<<< HEAD
-					"x":	507.733337,
-					"y":	252.799988,
-					"element":	"BLUE",
-					"templateKey":	"grump"
-=======
-					"x":	437.333344,
-					"y":	289.066681,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
->>>>>>> master
-				}
-			}
-		},
-		"wave 4":	{
-			"waveEntries":	{
-			}
-		},
-		"wave 5":	{
-			"waveEntries":	{
-			}
-		},
-		"wave 6":	{
-			"waveEntries":	{
-			}
-		}
-	}
+    }
 }

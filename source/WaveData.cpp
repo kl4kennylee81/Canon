@@ -18,22 +18,13 @@ bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
     
     init(json->getFloat("x"),
         json->getFloat("y"),
-<<<<<<< HEAD
         json->getString("element") == "BLUE" ? ElementType::BLUE : ElementType::GOLD,
-        json->getString("templateKey"));
-    return true;
-}
-
-bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey){
-=======
-        json->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD,
         json->getString("templateKey"),
         json->getString("aiKey"));
     return true;
 }
 
-bool WaveEntry::init(float x, float y,Element element,std::string templateKey, std::string aiKey){
->>>>>>> master
+bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey, std::string aiKey){
     this->position.x = x / GAME_PHYSICS_SCALE;
     this->position.y = y / GAME_PHYSICS_SCALE;
     this->element = element;
@@ -47,12 +38,8 @@ std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
 	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
 	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
-<<<<<<< HEAD
 	object->appendChild("element", JsonValue::alloc((element == ElementType::BLUE) ? "BLUE" : "GOLD"));
-=======
-	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
     object->appendChild("aiKey", JsonValue::alloc(aiKey));
->>>>>>> master
     if(templateKey != ""){
         object->appendChild("templateKey", JsonValue::alloc(templateKey));
     }

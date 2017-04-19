@@ -39,23 +39,14 @@ public:
 		return (result->init(json) ? result : nullptr);
 	}
 
-<<<<<<< HEAD
-    bool init(std::string name, std::string obKey, std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime);
+
+    bool init(std::string name, std::string obKey, std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys,float spawnTime);
     
     static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
-                                                    std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime)
+                                                    std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys, float spawnTime)
 	{
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
-		return (result->init(name, obKey, aiKey, zoneKeys,spawnTime) ? result : nullptr);
-=======
-    bool init(std::string name, std::string obKey, std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys);
-    
-    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
-                                                    std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys)
-	{
-		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
-		return (result->init(name, obKey, aiKeys, zoneKeys) ? result : nullptr);
->>>>>>> master
+		return (result->init(name, obKey, aiKeys, zoneKeys,spawnTime) ? result : nullptr);
 	}
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
