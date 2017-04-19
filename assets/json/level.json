@@ -74,11 +74,13 @@
   "templates":	{
       "playerCharMale":	{
           "name":	"playerCharMale",
-          "objectKey":	"playerCharMale"
+          "objectKey":	"playerCharMale",
+          "spawnTime": 0.0
       },
       "playerCharFemale":	{
           "name":	"playerCharFemale",
-          "objectKey":	"playerCharFemale"
+          "objectKey":	"playerCharFemale",
+          "spawnTime": 0.0
       },
       "object1": {
           "name": "object1",

@@ -53,7 +53,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
         std::string name = "kyle" + std::to_string(_templates.size());
-		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "static", {});
+		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "static", {},90.0);
 		_templates.push_back(newTemplate);
         _world->addTemplate(name, newTemplate);
 		updateTemplateNodes();

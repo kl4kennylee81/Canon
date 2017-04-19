@@ -77,20 +77,22 @@ class ObjectSpawningEvent : public LevelEvent {
 public:
     
     std::shared_ptr<GameObject> object;
+    float spawnTime;
     
     ObjectSpawningEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_SPAWNING;
     }
     
-    bool init(std::shared_ptr<GameObject> object){
+    bool init(std::shared_ptr<GameObject> object,float sTime){
         this->levelEventType = LevelEventType::OBJECT_SPAWNING;
         this->object = object;
+        this->spawnTime = sTime;
         return true;
     }
     
-    static std::shared_ptr<ObjectSpawningEvent> alloc(std::shared_ptr<GameObject> object){
+    static std::shared_ptr<ObjectSpawningEvent> alloc(std::shared_ptr<GameObject> object,float sTime){
         std::shared_ptr<ObjectSpawningEvent> result = std::make_shared<ObjectSpawningEvent>();
-        return (result->init(object) ? result : nullptr);
+        return (result->init(object,sTime) ? result : nullptr);
     }
 };
 

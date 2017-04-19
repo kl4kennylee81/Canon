@@ -2,7 +2,7 @@
 
 using namespace cugl;
 
-
+#define SPAWN_FRAMES 90.0f
 
 bool TemplateWaveEntry::updateFile() {
 	return true;
@@ -15,12 +15,13 @@ bool TemplateWaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json) {
 
 
 bool TemplateWaveEntry::init(std::string name, std::string obKey,
-    std::string aiKey, std::vector<std::string> zoneKeys)
+    std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime)
 {
 	this->name = name;
     this->objectKey = obKey;
 	this->aiKey = aiKey;
 	this->zoneKeys = zoneKeys;
+    this->_spawnTime = spawnTime;
 	return true;
 }
 
@@ -30,6 +31,7 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
     object->appendChild("name", JsonValue::alloc(name));
     object->appendChild("aiKey", JsonValue::alloc(aiKey));
     object->appendChild("objectKey", JsonValue::alloc(objectKey));
+    object->appendChild("spawnTime",JsonValue::alloc(_spawnTime));
 
     std::shared_ptr<JsonValue> zones = JsonValue::allocArray();
     for (int i = 0; i < zoneKeys.size(); i++)
@@ -56,7 +58,12 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if (json->has("zoneKeys")) {
         zones = json->get("zoneKeys")->asStringArray();
     }
-    init(name, ob, ai, zones);
+    // this is to recognize to use default value
+    float sTime = SPAWN_FRAMES;
+    if (json->has("spawnTime")){
+        sTime = json->getFloat("spawnTime");
+    }
+    init(name, ob, ai, zones,sTime);
     return true;
 }
 
@@ -78,4 +85,8 @@ std::string TemplateWaveEntry::getAIKey(){
 
 std::vector<std::string> TemplateWaveEntry::getZoneKeys(){
     return zoneKeys;
+}
+
+float TemplateWaveEntry::getSpawnTime(){
+    return _spawnTime;
 }

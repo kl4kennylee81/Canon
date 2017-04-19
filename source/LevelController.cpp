@@ -32,6 +32,7 @@ void LevelController::notify(Event* e) {
 void LevelController::eventUpdate(Event* e) {}
 
 void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
+    std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());
     std::shared_ptr<ObjectData> od = _world->getObjectData(we);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(we->getElement()));
@@ -60,7 +61,7 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
         state->addEnemyGameObject(gameOb);
     }
     
-    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb);
+    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,templated->getSpawnTime());
     
     // notify the observers of the object that is spawned
     notify(spawningevent.get());

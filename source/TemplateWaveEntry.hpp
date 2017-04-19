@@ -17,6 +17,9 @@
 class TemplateWaveEntry : public Data {
 private:
     std::string objectKey;
+    
+    float _spawnTime;
+    
 public:
     std::string name;
     
@@ -36,13 +39,13 @@ public:
 		return (result->init(json) ? result : nullptr);
 	}
 
-    bool init(std::string name, std::string obKey, std::string aiKey, std::vector<std::string> zoneKeys);
+    bool init(std::string name, std::string obKey, std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime);
     
     static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
-                                                    std::string aiKey, std::vector<std::string> zoneKeys)
+                                                    std::string aiKey, std::vector<std::string> zoneKeys,float spawnTime)
 	{
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
-		return (result->init(name, obKey, aiKey, zoneKeys) ? result : nullptr);
+		return (result->init(name, obKey, aiKey, zoneKeys,spawnTime) ? result : nullptr);
 	}
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
@@ -60,5 +63,7 @@ public:
     std::string getAIKey();
     
     std::vector<std::string> getZoneKeys();
+    
+    float getSpawnTime();
 };
 #endif /* TemplateWaveData_hpp */
