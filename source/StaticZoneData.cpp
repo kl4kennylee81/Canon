@@ -45,3 +45,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 bool StaticZoneData::materialize(){
     return true;
 }
+
+cugl::Vec2 StaticZoneData::getPosition(cugl::Vec2 objPos){
+    return objPos+this->relPos;
+};

@@ -47,3 +47,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 bool PulseZoneData::materialize(){
     return true;
 }
+
+cugl::Vec2 PulseZoneData::getPosition(cugl::Vec2 objPos){
+    return objPos;
+}

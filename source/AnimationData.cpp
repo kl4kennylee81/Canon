@@ -68,7 +68,6 @@ bool AnimationData::preload(const std::string& file){
 
 bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     init();
-    std::cout << json->getString("texture") << std::endl;
     texture = Texture::allocWithFile(json->getString("texture"));
 	texture->setName(json->getString("texture")); // a way to preserve the texture path
     rows = json->getInt("rows");

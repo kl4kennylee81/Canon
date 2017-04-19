@@ -105,8 +105,6 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	// not all waves are the same length, so we use the total length of the level to adjust spacing.
 	float levelNetTime = 0.f;
 	for (int i = 0; i < level->getNumberWaves(); i++) { levelNetTime += level->getTime(i); }
-
-    std::cout << level->getNumberWaves() << std::endl;
     
     size_t numberWaves = level->getNumberWaves();
 	float spacePerUnitTime = (BAR_WIDTH - numberWaves*INTER_BAR_GAP) / levelNetTime;

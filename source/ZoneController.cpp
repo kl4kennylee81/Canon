@@ -227,7 +227,7 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+data->relPos,zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);
@@ -249,20 +249,14 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
         std::shared_ptr<GameObject> zone = GameObject::alloc();
         zone->type = GameObject::ObjectType::ZONE;
-        
-        float angle = zEntry->startingPosition*2*M_PI;
-        cugl::Vec2 offset;
-        offset.x = - (sin(angle));
-        offset.y = cos(angle);
-        offset *= data->radius;
     
-        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+offset,zoneElement);
+        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,zEntry->getPosition(objPos,data->radius),zoneElement);
         notify(initevent.get());
         
         state->addEnemyGameObject(zone);
         objs.push_back(zone.get());
         
-        zone->getPhysicsComponent()->getBody()->setAngle(angle);
+        zone->getPhysicsComponent()->getBody()->setAngle(zEntry->getAngle());
     }
     activeZone->datas.push_back(std::make_pair(data,objs));
     activeZone->isOn = true;
@@ -281,7 +275,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos,zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);

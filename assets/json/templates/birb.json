@@ -4,7 +4,7 @@
       "name": "birb",
       "aiKey":  "homing",
       "objectKey":  "birb_object",
-      "zoneKeys": []
+      "zoneKeys": ["birb_zone"]
     }
   },
   "objects":{
@@ -34,8 +34,8 @@
       "objectKey": "birb_zoneObject",
       "relX": 0,
       "relY": 0,
-      "cooldown": 50,
-      "duration": 50,
+      "cooldown": 180,
+      "duration": 180,
       "element": "BLUE"
     }
   },

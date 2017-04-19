@@ -48,6 +48,8 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     virtual bool materialize();
+    
+    cugl::Vec2 getPosition(cugl::Vec2 objPos);
 };
 
 #endif /* StaticZoneData_hpp */

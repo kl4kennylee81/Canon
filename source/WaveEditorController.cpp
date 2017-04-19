@@ -149,7 +149,6 @@ void WaveEditorController::updateDragAndDrop(){
         _dragNode->removeAllChildren();
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
-            std::cout << templ->name << std::endl;
             auto entry = WaveEntry::alloc(0, 0, ElementType::BLUE, templ->name);
             
             Vec2 physicsCoord;
@@ -219,14 +218,51 @@ std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, flo
     activeAnim->setAnimationData(_world->getAnimationData(objectData->getAnimationKey(color)));
     auto button = Button::alloc(activeAnim->getAnimationNode());
     button->setPosition(x, y);
-    button->setScale(getTemplateAnimationScale(templ));
+    button->setScale(getAnimationScale(templ->getObjectKey()));
     return button;
+}
+
+std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, float y,
+                                                           std::string zoneKey, ElementType parentColor){
+    auto zoneAnim = ActiveAnimation::alloc();
+    auto zoneD = _world->getZoneData(zoneKey);
+    switch(zoneD->type){
+        case ZoneType::STATIC:
+        {
+            auto staticZoneD =  std::dynamic_pointer_cast<StaticZoneData>(zoneD);
+            auto zoneObjData = _world->getObjectData(staticZoneD->objectKey);
+            ElementType zoneElement = Element::elementDataTypeToElement(staticZoneD->elementType,parentColor);
+            auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+            zoneAnim->setAnimationData(staticAnimD);
+            std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
+            zoneNode->setPosition(staticZoneD->getPosition(Vec2::Vec2(x,y)));
+            zoneNode->setScale(getAnimationScale(staticZoneD->objectKey));
+            
+            // set the color
+            if (zoneElement == ElementType::BLUE) {
+                zoneNode->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
+            } else {
+                zoneNode->setColor(Color4f(Color4::YELLOW)*Color4f(1,1,1,0.5));
+            }
+            return zoneNode;
+        }
+        case ZoneType::ROTATE:
+        {
+            auto rotateZoneD =  std::dynamic_pointer_cast<RotateZoneData>(zoneD);
+            return Node::alloc();
+        }
+        case ZoneType::PULSE:
+        {
+            auto pulseZoneD =  std::dynamic_pointer_cast<PulseZoneData>(zoneD);
+            return Node::alloc();
+        }
+    }
 }
 
 void WaveEditorController::templateButtonListenerFunction(const std::string& name, bool down, int index){
     auto templateNode = _levelEditNode->getChildByName("templates");
     auto buttonNode = std::static_pointer_cast<Button>(templateNode->getChildByTag(index));
-    if (buttonNode->isDown()) {
+    if (down) {
         switch(_state) {
         case WaveEditorState::DRAG: {
             _dragIndex = index;
@@ -249,7 +285,7 @@ void WaveEditorController::templateButtonListenerFunction(const std::string& nam
 void WaveEditorController::waveEntryButtonListenerFunction(const std::string& name, bool down, int index) {
     auto entryNode = _levelEditNode->getChildByName("entries");
     auto buttonNode = std::static_pointer_cast<Button>(entryNode->getChildByTag(index));
-    if(buttonNode->isDown()){
+    if(down){
         switch(_state) {
             case WaveEditorState::DRAG: {
                 _dragIndex = index;
@@ -275,9 +311,9 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
         }
     }
 }
-
-float WaveEditorController::getTemplateAnimationScale(std::shared_ptr<TemplateWaveEntry> entry) {
-    std::shared_ptr<ObjectData> obj = _world->getObjectData(entry->getObjectKey());
+                                                           
+float WaveEditorController::getAnimationScale(std::string objectKey){
+    std::shared_ptr<ObjectData> obj = _world->getObjectData(objectKey);
     std::shared_ptr<ShapeData> shape = _world->getShapeData(obj->getShapeKey());
     Poly2 poly(shape->vertices);
     SimpleTriangulator triangulator;
@@ -292,7 +328,7 @@ float WaveEditorController::getTemplateAnimationScale(std::shared_ptr<TemplateWa
     auto activeAnim = ActiveAnimation::alloc();
     auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
     activeAnim->setAnimationData(animData);
-
+    
     auto anim = activeAnim->getAnimationNode();
     
     Size animationSize = anim->getContentSize();
@@ -305,8 +341,8 @@ float WaveEditorController::getTemplateAnimationScale(std::shared_ptr<TemplateWa
     float scaleY = (polySize.height)/animationSize.height;
     float animationScale = std::max(scaleX,scaleY);
     return animationScale;
-}
 
+}
 
 void WaveEditorController::updateWaveEntryNodes(){
     auto entryNode = _levelEditNode->getChildByName("entries");
@@ -319,6 +355,13 @@ void WaveEditorController::updateWaveEntryNodes(){
         
         auto templateData = _world->getTemplate(entry->getTemplateKey());
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
+        
+        // create the zones
+        for (std::string zoneKey :templateData->getZoneKeys()){
+            std::shared_ptr<Node> zoneNode = createZoneNode(pos.x,pos.y,zoneKey,entry->getElement());
+            entryNode->addChild(zoneNode,0);
+        }
+        
         auto label = Label::alloc(entry->getTemplateKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.18);
         label->setPosition(pos.x, pos.y);
@@ -328,7 +371,7 @@ void WaveEditorController::updateWaveEntryNodes(){
             }
         );
         button->activate(getUid());
-        entryNode->addChildWithTag(button, i);
+        entryNode->addChildWithTag(button, i,1);
         entryNode->addChild(label);
     }
 }

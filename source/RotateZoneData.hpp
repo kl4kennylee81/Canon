@@ -34,6 +34,10 @@ public:
     }
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+    cugl::Vec2 getPosition(cugl::Vec2 objPos,float radius);
+    
+    float getAngle();
 };
 
 class RotateZoneData : public ZoneData {

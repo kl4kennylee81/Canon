@@ -50,6 +50,8 @@ public:
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
     virtual bool materialize() override;
+    
+    cugl::Vec2 getPosition(cugl::Vec2 objPos);
 };
 
 #endif /* PulseZoneData_hpp */

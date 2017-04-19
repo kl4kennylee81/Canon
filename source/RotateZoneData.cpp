@@ -19,6 +19,19 @@ std::shared_ptr<JsonValue> ZoneEntry::toJsonValue()
 	return z;
 }
 
+cugl::Vec2 ZoneEntry::getPosition(cugl::Vec2 objPos,float radius){
+    float angle = getAngle();
+    cugl::Vec2 offset;
+    offset.x = - (sin(angle));
+    offset.y = cos(angle);
+    offset *= radius;
+    return objPos+offset;
+}
+
+float ZoneEntry::getAngle(){
+    return this->startingPosition*2*M_PI;
+}
+
 std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
 	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
 	data->appendChild("type", JsonValue::alloc("ROTATE"));

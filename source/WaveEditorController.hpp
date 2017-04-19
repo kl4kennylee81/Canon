@@ -10,6 +10,7 @@
 #define WaveEditorController_hpp
 
 #include <stdio.h>
+#include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "MenuGraph.hpp"
 #include "World.hpp"
@@ -93,7 +94,7 @@ public:
 
 	void setSceneGraph();
     
-    float getTemplateAnimationScale(std::shared_ptr<TemplateWaveEntry> entry);
+    float getAnimationScale(std::string objectKey);
     
     void checkKeyboardInput();
     
@@ -112,6 +113,8 @@ public:
     void templateButtonListenerFunction(const std::string& name, bool down, int index);
 
     std::shared_ptr<cugl::Button> getButtonFromTemplate(float x, float y, std::shared_ptr<TemplateWaveEntry> templ, ElementType color);
+    
+    std::shared_ptr<cugl::Node> createZoneNode(float x, float y,std::string zoneKey, ElementType parentColor);
 
 	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world);
 
