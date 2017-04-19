@@ -19,7 +19,7 @@ protected:
     std::shared_ptr<cugl::PolygonObstacle> _body;
     float _speed;
     float _acceleration;
-    Element _elementType;
+    ElementType _elementType;
 public:
     
     PhysicsComponent();

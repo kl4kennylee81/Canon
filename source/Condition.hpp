@@ -38,7 +38,7 @@ public:
 	RadiusCondition() : Condition() {}
 
 	virtual bool checkCondition(std::shared_ptr<GameState> state, std::shared_ptr<GameObject> object) { 
-		Element myElement = object->getPhysicsComponent()->getElementType();
+		ElementType myElement = object->getPhysicsComponent()->getElementType();
 		auto players = state->getPlayerCharacters();
 		for (auto it : players) {
 			if (it->getPhysicsComponent()->getElementType() != myElement) {

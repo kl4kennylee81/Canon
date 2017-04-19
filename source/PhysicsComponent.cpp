@@ -24,7 +24,7 @@ std::shared_ptr<cugl::PolygonObstacle> PhysicsComponent::getBody(){
     return _body;
 }
 
-bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, Element element){
+bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element){
     _body = body;
     _speed = 0;
     _acceleration = 0;

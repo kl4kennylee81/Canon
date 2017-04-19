@@ -17,8 +17,8 @@ std::string ObjectData::getSoundKey(){
     return this->soundKey;
 }
 
-std::string ObjectData::getAnimationKey(Element e){
-    if (e == Element::BLUE){
+std::string ObjectData::getAnimationKey(ElementType e){
+    if (e == ElementType::BLUE){
         return this->blueAnimationKey;
     } else {
         return this->goldAnimationKey;

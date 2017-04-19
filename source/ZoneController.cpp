@@ -10,6 +10,7 @@
 #include "ZoneEvent.hpp"
 #include "LevelEvent.hpp"
 #include "CollisionEvent.hpp"
+#include "Element.hpp"
 #include <math.h>
 
 using namespace cugl;
@@ -199,17 +200,17 @@ void ZoneController::addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneD
             switch (zd->type) {
                 case ZoneType::STATIC: {
                     std::shared_ptr<StaticZoneData> data = std::static_pointer_cast<StaticZoneData>(zd);
-                    staticZoneInit(activeZone, data, obj->getPosition());
+                    staticZoneInit(activeZone, data, obj);
                     break;
                 }
                 case ZoneType::ROTATE: {
                     std::shared_ptr<RotateZoneData> data = std::static_pointer_cast<RotateZoneData>(zd);
-                    rotateZoneInit(activeZone, data, obj->getPosition());
+                    rotateZoneInit(activeZone, data, obj);
                     break;
                 }
                 case ZoneType::PULSE: {
                     std::shared_ptr<PulseZoneData> data = std::static_pointer_cast<PulseZoneData>(zd);
-                    pulseZoneInit(activeZone, data, obj->getPosition());
+                    pulseZoneInit(activeZone, data, obj);
                     break;
                 }
             }
@@ -217,14 +218,16 @@ void ZoneController::addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneD
     }
 }
 
-void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, cugl::Vec2 objPos) {
+void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, GameObject* gameObj) {
+    cugl::Vec2 objPos = gameObj->getPosition();
+    ElementType zoneElement = elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
-    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(data->element));
+    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+data->relPos,data->element);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+data->relPos,zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);
@@ -235,12 +238,15 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     activeZone->curIndex = 0;
 }
 
-void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<RotateZoneData> data, cugl::Vec2 objPos) {
+void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<RotateZoneData> data, GameObject* gameObj) {
+    cugl::Vec2 objPos = gameObj->getPosition();
     std::vector<GameObject*> objs = {};
     for (auto zEntry : data->zones) {
+        Element zoneElement = elementDataTypeToElement(zEntry->elementType ,gameObj->getPhysicsComponent()->getElementType());
+        
         std::shared_ptr<ObjectData> od = _world->getObjectData(zEntry->objectKey);
         std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
-        std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zEntry->element));
+        std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
         std::shared_ptr<GameObject> zone = GameObject::alloc();
         zone->type = GameObject::ObjectType::ZONE;
         
@@ -250,7 +256,7 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         offset.y = cos(angle);
         offset *= data->radius;
     
-        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+offset,zEntry->element);
+        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos+offset,zoneElement);
         notify(initevent.get());
         
         state->addEnemyGameObject(zone);
@@ -265,14 +271,17 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     
 }
 
-void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, cugl::Vec2 objPos) {
+void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, GameObject* gameObj) {
+    cugl::Vec2 objPos = gameObj->getPosition();
+    Element zoneElement = elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
+    
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
-    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(data->element));
+    std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos,data->element);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,objPos,zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);

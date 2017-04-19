@@ -111,7 +111,7 @@ public:
     
     void templateButtonListenerFunction(const std::string& name, bool down, int index);
 
-    std::shared_ptr<cugl::Button> getButtonFromTemplate(float x, float y, std::shared_ptr<TemplateWaveEntry> templ, Element color);
+    std::shared_ptr<cugl::Button> getButtonFromTemplate(float x, float y, std::shared_ptr<TemplateWaveEntry> templ, ElementType color);
 
 	virtual bool init(std::shared_ptr<cugl::Node> node, std::shared_ptr<World> world);
 

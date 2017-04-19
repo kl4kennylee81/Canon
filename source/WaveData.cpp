@@ -18,12 +18,12 @@ bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
     
     init(json->getFloat("x"),
         json->getFloat("y"),
-        json->getString("element") == "BLUE" ? Element::BLUE : Element::GOLD,
+        json->getString("element") == "BLUE" ? ElementType::BLUE : ElementType::GOLD,
         json->getString("templateKey"));
     return true;
 }
 
-bool WaveEntry::init(float x, float y,Element element,std::string templateKey){
+bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey){
     this->position.x = x / GAME_PHYSICS_SCALE;
     this->position.y = y / GAME_PHYSICS_SCALE;
     this->element = element;
@@ -36,7 +36,7 @@ std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
 	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
 	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
-	object->appendChild("element", JsonValue::alloc((element == Element::BLUE) ? "BLUE" : "GOLD"));
+	object->appendChild("element", JsonValue::alloc((element == ElementType::BLUE) ? "BLUE" : "GOLD"));
     if(templateKey != ""){
         object->appendChild("templateKey", JsonValue::alloc(templateKey));
     }
@@ -81,7 +81,7 @@ bool WaveData::materialize(){
     return true;
 }
 
-Element WaveEntry::getElement(){
+ElementType WaveEntry::getElement(){
     return element;
 }
 

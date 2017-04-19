@@ -112,7 +112,7 @@ void AnimationController::eventUpdate(Event* e) {
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
                     
                     // TODO change the colors to a macro
-                    if (zoneSpawn->object->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                    if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                         anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.1));
                     } else {
                         anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.1));
@@ -125,7 +125,7 @@ void AnimationController::eventUpdate(Event* e) {
                     std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
                     
                     // TODO change the colors to a macro
-                    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                    if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                         anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
                     } else {
                         anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.5));
@@ -139,7 +139,7 @@ void AnimationController::eventUpdate(Event* e) {
                     std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
                     
                     // TODO change the colors to a macro
-                    if (obj->getPhysicsComponent()->getElementType() == Element::BLUE) {
+                    if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                         anim->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.1));
                     } else {
                         anim->setColor(Color4f(Color4::RED)*Color4f(1,1,1,0.1));
@@ -271,7 +271,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
             
             float alphascale = anim->lit ? 0.5 : 0.1;
             
-            if (it->first->getPhysicsComponent()->getElementType() == Element::BLUE) {
+            if (it->first->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                 anim->getAnimationNode()->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,alphascale));
             } else {
                 anim->getAnimationNode()->setColor(Color4f(Color4::RED)*Color4f(1,1,1,alphascale));

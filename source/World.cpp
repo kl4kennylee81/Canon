@@ -278,10 +278,10 @@ void World::presetPlayerCharacters(){
     // better solution will be when initialize level stub give default value for the player characters
     
     // add two player characters
-    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,Element::GOLD,"playerCharMale");
+    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,ElementType::GOLD,"playerCharMale");
     _levelData->addPlayerChars(playerChar2);
     
-    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,Element::BLUE,"playerCharFemale");
+    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,ElementType::BLUE,"playerCharFemale");
     _levelData->addPlayerChars(playerChar1);
     
     return;

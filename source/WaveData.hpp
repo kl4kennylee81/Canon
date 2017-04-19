@@ -16,7 +16,7 @@
 
 class WaveEntry {
 private:
-    Element element;
+    ElementType element;
     
     cugl::Vec2 position;
     
@@ -26,7 +26,7 @@ public:
     
     WaveEntry(){}
     
-    Element getElement();
+    ElementType getElement();
     
     cugl::Vec2 getPosition();
     
@@ -37,19 +37,19 @@ public:
     void setPosition(cugl::Vec2 pos);
     
     void switchElement() {
-        element = element == Element::BLUE ? Element::GOLD : Element::BLUE;
+        element = element == ElementType::BLUE ? ElementType::GOLD : ElementType::BLUE;
     }
     
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-    bool init(float x, float y,Element element,std::string templateKey);
+    bool init(float x, float y,ElementType element,std::string templateKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(json) ? result : nullptr);
     }
     
-    static std::shared_ptr<WaveEntry> alloc(float x, float y,Element element,std::string templateKey) {
+    static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(x,y,element,templateKey) ? result : nullptr);
     }

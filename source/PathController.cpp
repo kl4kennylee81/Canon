@@ -85,7 +85,7 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
     }
     
     // switch color of path depending on who's turn
-    if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == Element::GOLD) {
+    if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
         pathNode->setColor(Color4::ORANGE);
     } else {
         pathNode->setColor(Color4::BLUE);

@@ -150,7 +150,7 @@ void WaveEditorController::updateDragAndDrop(){
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
             std::cout << templ->name << std::endl;
-            auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
+            auto entry = WaveEntry::alloc(0, 0, ElementType::BLUE, templ->name);
             
             Vec2 physicsCoord;
             Util::sceneToPhysicsCoords(scene_pos,physicsCoord);
@@ -212,7 +212,7 @@ std::shared_ptr<TemplateWaveEntry> WaveEditorController::getTemplateWaveEntry(st
 }
 
 std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, float y,
-    std::shared_ptr<TemplateWaveEntry> templ, Element color)
+    std::shared_ptr<TemplateWaveEntry> templ, ElementType color)
 {
     auto activeAnim = ActiveAnimation::alloc();
     auto objectData = _world->getObjectData(templ->getObjectKey());
@@ -290,7 +290,7 @@ float WaveEditorController::getTemplateAnimationScale(std::shared_ptr<TemplateWa
     Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
     
     auto activeAnim = ActiveAnimation::alloc();
-    auto animData = _world->getAnimationData(obj->getAnimationKey(Element::GOLD));
+    auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
     activeAnim->setAnimationData(animData);
 
     auto anim = activeAnim->getAnimationNode();
@@ -338,7 +338,7 @@ void WaveEditorController::updateTemplateNodes() {
 	deactivateAndClear(templateNode);
     std::cout << _templates.size() << std::endl;
 	for (int i = 0; i < _templates.size(); i++) {
-        auto button = getButtonFromTemplate(30, 500 - (i * 100), _templates.at(i), Element::BLUE);
+        auto button = getButtonFromTemplate(30, 500 - (i * 100), _templates.at(i), ElementType::BLUE);
         auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.3);
         label->setPosition(90, 500 - (i * 100));
