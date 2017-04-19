@@ -3,6 +3,7 @@
     "fesh": {
       "name": "fesh",
       "aiKeys":  ["homing"],
+      "zoneKeys": ["fesh_zone"],
       "objectKey":  "fesh_object"
     }
   },
@@ -12,11 +13,33 @@
       "blueAnimationKey": "blue_fesh_animation",
       "goldAnimationKey": "yellow_fesh_animation",
       "soundKey": "baseEnemySound"
+    },
+    "fesh_zoneObject":{
+      "shapeKey": "fesh_zoneShape",
+      "blueAnimationKey": "whiteBar",
+      "goldAnimationKey": "whiteBar"
     }
   },
   "shapes":{
     "fesh_shape": {
       "vertices": [0,0,75,0,75,75,0,75]
+    },
+    "fesh_zoneShape":{
+      "vertices": [-20,400,20,400,20,-400,-20,-400]
+    }
+  },
+  "zones":{
+    "fesh_zone": {
+      "type": "PULSE",
+      "objectKey": "fesh_zoneObject",
+      "minSizeX": 0.8,
+      "minSizeY": 0.0,
+      "minTime": 60,
+      "maxSizeX": 1.0,
+      "maxSizeY": 1.0,
+      "maxTime": 60,
+      "lerpTime": 320,
+      "element": "MATCH"
     }
   },
   "animations":{
