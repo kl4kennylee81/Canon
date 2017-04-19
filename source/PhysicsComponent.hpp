@@ -36,7 +36,7 @@ public:
     }
     std::shared_ptr<cugl::PolygonObstacle> getBody();
     
-    Element getElementType() { return _elementType; };
+    ElementType getElementType() { return _elementType; };
     
 };
 

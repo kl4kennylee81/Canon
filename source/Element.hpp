@@ -12,59 +12,60 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 
+enum class ElementType : int {
+    BLUE,
+    GOLD
+};
+
+enum class ElementDataType : int {
+    MATCH,
+    OPPOSITE
+};
+
 class Element {
 public:
-    enum class ElementType : int {
-        BLUE,
-        GOLD
-    };
-    
-    enum class ElementDataType : int {
-        MATCH,
-        OPPOSITE
-    };
-    
     static std::string elementDataTypeToString(ElementDataType elementData){
         std::string r = "MATCH";
         if (elementData == ElementDataType::MATCH){
             r = "MATCH";
-            if (elementData == ElementDataType::OPPOSITE){
-                r = "OPPOSITE";
-            }
-            return r;
         }
-        
-        static ElementDataType stringToElementDataType(std::string element){
-            if (element == "MATCH"){
-                return ElementDataType::MATCH;
-            }
-            if (element == "OPPOSITE"){
-                return ElementDataType::OPPOSITE;
-            }
+        if (elementData == ElementDataType::OPPOSITE){
+            r = "OPPOSITE";
+        }
+        return r;
+    }
+    
+    static ElementDataType stringToElementDataType(std::string element){
+        if (element == "MATCH"){
             return ElementDataType::MATCH;
         }
-        
-        static ElementType elementDataTypeToElement(ElementDataType dataType, ElementType currentElement){
-            switch (dataType){
-                case ElementDataType::MATCH:
-                {
-                    return currentElement;
-                }
-                case ElementDataType::OPPOSITE:
-                {
-                    switch(currentElement){
-                        case ElementType::BLUE:
-                        {
-                            return ElementType::GOLD;
-                        }
-                        case Element::GOLD:
-                        {
-                            return ElementType::BLUE;
-                        }
+        if (element == "OPPOSITE"){
+            return ElementDataType::OPPOSITE;
+        }
+        return ElementDataType::MATCH;
+    }
+    
+    static ElementType elementDataTypeToElement(ElementDataType dataType, ElementType currentElement){
+        switch (dataType){
+            case ElementDataType::MATCH:
+            {
+                return currentElement;
+            }
+            case ElementDataType::OPPOSITE:
+            {
+                switch(currentElement){
+                    case ElementType::BLUE:
+                    {
+                        return ElementType::GOLD;
+                    }
+                    case ElementType::GOLD:
+                    {
+                        return ElementType::BLUE;
                     }
                 }
             }
         }
+    }
 };
     
 #endif /* Element_hpp */

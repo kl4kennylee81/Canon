@@ -220,7 +220,7 @@ void ZoneController::addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneD
 
 void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, GameObject* gameObj) {
     cugl::Vec2 objPos = gameObj->getPosition();
-    ElementType zoneElement = elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
+    ElementType zoneElement = Element::elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
@@ -242,7 +242,7 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     cugl::Vec2 objPos = gameObj->getPosition();
     std::vector<GameObject*> objs = {};
     for (auto zEntry : data->zones) {
-        Element zoneElement = elementDataTypeToElement(zEntry->elementType ,gameObj->getPhysicsComponent()->getElementType());
+        ElementType zoneElement = Element::elementDataTypeToElement(zEntry->elementType ,gameObj->getPhysicsComponent()->getElementType());
         
         std::shared_ptr<ObjectData> od = _world->getObjectData(zEntry->objectKey);
         std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
@@ -273,7 +273,7 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
 
 void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, GameObject* gameObj) {
     cugl::Vec2 objPos = gameObj->getPosition();
-    Element zoneElement = elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
+    ElementType zoneElement = Element::elementDataTypeToElement(data->elementType ,gameObj->getPhysicsComponent()->getElementType());
     
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());

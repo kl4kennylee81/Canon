@@ -28,7 +28,7 @@ public:
     
     std::string getSoundKey();
     
-    std::string getAnimationKey(Element e);
+    std::string getAnimationKey(ElementType e);
     
     bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key);
     
