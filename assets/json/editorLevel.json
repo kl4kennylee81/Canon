@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-	"counter":	3,
+	"counter":	0,
 	"templates":	["birb", "blobo", "grump", "fesh"],
 	"level":	{
 		"levelEntries":	{
