@@ -2,8 +2,8 @@
   "templates":  {
     "grump": {
       "name": "grump",
-      "aiKey":  ["static"],
       "objectKey":  "grump_object",
+      "aiKeys":  ["static"],
       "zoneKeys": ["grump_zone"]
     }
   },

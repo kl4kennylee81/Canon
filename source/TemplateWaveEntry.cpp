@@ -63,7 +63,6 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if(json->has("aiKeys")){
         ais = json->get("aiKeys")->asStringArray();
     }
-    std::string ai = json->getString("aiKey");
     std::string ob = json->getString("objectKey");
     std::vector<std::string> zones = {};
     if (json->has("zoneKeys")) {

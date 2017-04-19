@@ -1,12 +1,34 @@
 {
-	"counter":	0,
+	"counter":	2,
 	"templates":	["birb", "blobo", "grump", "fesh"],
 	"level":	{
 		"levelEntries":	{
+			"wave1":	{
+				"waveKey":	"wave 2",
+				"time":	180
+			}
 		},
 		"playerChars":	{
 		}
 	},
 	"waves":	{
-    }
+		"wave 2":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	528,
+					"y":	253.866669,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object2":	{
+					"x":	388.266663,
+					"y":	273.066650,
+					"element":	"BLUE",
+					"aiKey":	"static",
+					"templateKey":	"grump"
+				}
+			}
+		}
+	}
 }
