@@ -301,6 +301,25 @@ void ZoneController::handleObjectSpawn(GameObject* obj) {
         for (auto obj : it.second) {
             std::shared_ptr<ZoneSpawnEvent> spawnEvent = ZoneSpawnEvent::alloc(obj);
             notify(spawnEvent.get());
+            
+            // have to turn on the zone for the rotate and pulse zones since they don't have
+            // a cooldown.
+            switch(it.first->type){
+                case ZoneType::STATIC:
+                {
+                    break;
+                }
+                case ZoneType::ROTATE:
+                {
+                    std::shared_ptr<ZoneOnEvent> onEvent = ZoneOnEvent::alloc(obj);
+                    notify(onEvent.get());
+                }
+                case ZoneType::PULSE:
+                {
+                    std::shared_ptr<ZoneOnEvent> onEvent = ZoneOnEvent::alloc(obj);
+                    notify(onEvent.get());
+                }
+            }
         }
     }
 }

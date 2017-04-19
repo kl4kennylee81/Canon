@@ -112,9 +112,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.5));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.5));
                     }
                     break;
                 }

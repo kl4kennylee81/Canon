@@ -15,38 +15,8 @@
 		"wave 3":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	544,
-					"y":	487.466675,
-					"element":	"BLUE",
-					"templateKey":	"birb"
-				},
-				"object2":	{
-					"x":	286.933319,
-					"y":	313.600006,
-					"element":	"BLUE",
-					"templateKey":	"birb"
-				},
-				"object3":	{
-					"x":	726.400024,
-					"y":	310.399994,
-					"element":	"BLUE",
-					"templateKey":	"blobo"
-				},
-				"object4":	{
-					"x":	721.066650,
-					"y":	89.599991,
-					"element":	"BLUE",
-					"templateKey":	"blobo"
-				},
-				"object5":	{
-					"x":	672,
-					"y":	292.266663,
-					"element":	"BLUE",
-					"templateKey":	"grump"
-				},
-				"object6":	{
-					"x":	267.733337,
-					"y":	243.200012,
+					"x":	507.733337,
+					"y":	252.799988,
 					"element":	"BLUE",
 					"templateKey":	"grump"
 				}
