@@ -169,7 +169,7 @@ void ZoneController::updatePulseZone(GameObject* charObj, std::shared_ptr<Active
             }
         //growing
         } else {
-            zone->sizeScale += data->speed*GameState::_internalClock->getTimeDilation();
+            zone->sizeScale += data->getLerpSpeed()*GameState::_internalClock->getTimeDilation();
             for (auto zobj : zoneObjs) {
                 //change to same speed when animations are done
                 zobj->getPhysicsComponent()->getBody()->setSize(zone->origSize*zone->sizeScale);
@@ -183,9 +183,10 @@ void ZoneController::updatePulseZone(GameObject* charObj, std::shared_ptr<Active
                 zone->curIndex = 0;
             }
         } else {
-            zone->sizeScale -= data->speed*GameState::_internalClock->getTimeDilation();
+            zone->sizeScale -= data->getLerpSpeed()*GameState::_internalClock->getTimeDilation();
             for (auto zobj : zoneObjs) {
                 //change to same speed when animations are done
+                auto val = zone->origSize*zone->sizeScale;
                 zobj->getPhysicsComponent()->getBody()->setSize(zone->origSize*zone->sizeScale);
             }
         }
@@ -285,7 +286,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     activeZone->isOn = true;
     activeZone->curIndex = 0;
     activeZone->origSize = zone->getPhysicsComponent()->getBody()->getSize();
-    activeZone->sizeScale = data->minSize;
+    activeZone->sizeScale = Vec2::Vec2(data->minSize);
 }
 
 void ZoneController::handleObjectSpawn(GameObject* obj) {

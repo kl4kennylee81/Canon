@@ -29,7 +29,7 @@ public:
     int curIndex;
     
     cugl::Size origSize;
-    float sizeScale;
+    cugl::Vec2 sizeScale;
     
     bool init() {
         spawned = false;

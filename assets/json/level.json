@@ -86,7 +86,7 @@
           "name": "object1",
           "aiKey":  "homing",
           "objectKey":  "object1",
-          "zoneKeys":["staticZone"]
+          "zoneKeys":["pulseZone"]
       }
   },
   "objects": {
@@ -199,12 +199,14 @@
     },
     "pulseZone": {
       "type": "PULSE",
-      "objectKey": "circle",
-      "minSize": 0.5,
-      "minTime": 180,
-      "maxSize": 1,
-      "maxTime": 180,
-      "speed": 0.004,
+      "objectKey": "bar",
+      "minSizeX": 0.8,
+      "minSizeY": 0.0,
+      "minTime": 60,
+      "maxSizeX": 1.0,
+      "maxSizeY": 1.0,
+      "maxTime": 60,
+      "lerpTime": 320,
       "element": "MATCH"
     }
   }

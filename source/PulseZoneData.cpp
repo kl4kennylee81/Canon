@@ -14,11 +14,13 @@ std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
 	std::shared_ptr<JsonValue> pz = JsonValue::allocObject();
 	pz->appendChild("type", JsonValue::alloc("PULSE"));
 	pz->appendChild("objectKey", JsonValue::alloc(objectKey));
-	pz->appendChild("minSize", JsonValue::alloc(minSize));
+	pz->appendChild("minSizeX", JsonValue::alloc(minSize.x));
+	pz->appendChild("minSizeY", JsonValue::alloc(minSize.y));
 	pz->appendChild("minTime", JsonValue::alloc(static_cast<float>(minTime)));
-	pz->appendChild("maxSize", JsonValue::alloc(maxSize));
+	pz->appendChild("maxSizeX", JsonValue::alloc(maxSize.x));
+	pz->appendChild("maxSizeY", JsonValue::alloc(maxSize.y));
 	pz->appendChild("maxTime", JsonValue::alloc(static_cast<float>(maxTime)));
-	pz->appendChild("speed", JsonValue::alloc(speed));
+	pz->appendChild("lerpTime", JsonValue::alloc(_lerpTime));
     pz->appendChild("element", JsonValue::alloc(static_cast<std::string>(Element::elementDataTypeToString(this->elementType))));
 	return pz;
 }
@@ -33,13 +35,19 @@ bool PulseZoneData::preload(const std::string& file){
 
 bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string oid = json->getString("objectKey");
-    float minSize = json->getFloat("minSize");
+    float minSizeX = json->getFloat("minSizeX",1.0);
+    float minSizeY = json->getFloat("minSizeY",1.0);
+    Vec2 minSize = Vec2::Vec2(minSizeX,minSizeY);
     int minTime = json->getInt("minTime");
-    float maxSize = json->getFloat("maxSize");
+    
+    float maxSizeX = json->getFloat("maxSizeX",1.0);
+    float maxSizeY = json->getFloat("maxSizeY",1.0);
+    Vec2 maxSize = Vec2::Vec2(maxSizeX,maxSizeY);
+    
     int maxTime = json->getInt("maxTime");
-    float speed = json->getFloat("speed");
+    float lerpTime = json->getFloat("lerpTime");
     auto el = Element::stringToElementDataType(json->getString("element"));
-    init(oid,minSize,minTime,maxSize,maxTime,speed,el);
+    init(oid,minSize,minTime,maxSize,maxTime,lerpTime,el);
 
     return true;
 }
@@ -50,4 +58,8 @@ bool PulseZoneData::materialize(){
 
 cugl::Vec2 PulseZoneData::getPosition(cugl::Vec2 objPos){
     return objPos;
+}
+
+cugl::Vec2 PulseZoneData::getLerpSpeed(){
+    return (maxSize - minSize)/_lerpTime;
 }

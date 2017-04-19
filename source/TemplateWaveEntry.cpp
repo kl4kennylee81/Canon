@@ -58,11 +58,7 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if (json->has("zoneKeys")) {
         zones = json->get("zoneKeys")->asStringArray();
     }
-    // this is to recognize to use default value
-    float sTime = SPAWN_FRAMES;
-    if (json->has("spawnTime")){
-        sTime = json->getFloat("spawnTime");
-    }
+    float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
     init(name, ob, ai, zones,sTime);
     return true;
 }
