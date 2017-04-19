@@ -148,7 +148,7 @@ void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
 
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
-	auto backButton = Util::makeBoxButton(950, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
+	auto backButton = Util::makeBoxButton(100, 160, 30, 30, Color4::RED, Color4::PAPYRUS);
 
     backButton->setListener(
         [=](const std::string& name, bool down) {
@@ -161,10 +161,10 @@ void LevelEditorController::setSceneGraph() {
     );
     backButton->activate(getUid());
 
-	auto addButton = Util::makeBoxButton(70, 30, 30, 30, Color4::GREEN, Color4::PAPYRUS);
+	auto addButton = Util::makeBoxButton(100, 200, 30, 30, Color4::GREEN, Color4::PAPYRUS);
     addButton->setListener(
 		[=](const std::string& name, bool down) {
-            if (down) {
+            if (!down) {
                 _state = LevelEditorState::ADD_NEW_WAVE;
             }
 		}

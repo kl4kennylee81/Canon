@@ -1,10 +1,14 @@
 {
-	"counter":	1,
+	"counter":	2,
 	"templates":	["birb", "blobo", "grump", "fesh"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
 				"waveKey":	"wave 1",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 2",
 				"time":	180
 			}
 		},
@@ -44,6 +48,10 @@
 					"element":	"BLUE",
 					"templateKey":	"blobo"
 				}
+			}
+		},
+		"wave 2":	{
+			"waveEntries":	{
 			}
 		}
 	}
