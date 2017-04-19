@@ -279,8 +279,41 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
         }
         case ZoneType::PULSE:
         {
+            std::shared_ptr<Node> pulseNode = Node::alloc();
+            
             auto pulseZoneD =  std::dynamic_pointer_cast<PulseZoneData>(zoneD);
-            return Node::alloc();
+            auto zoneObjData = _world->getObjectData(pulseZoneD->objectKey);
+            ElementType zoneElement = Element::elementDataTypeToElement(pulseZoneD->elementType,parentColor);
+            auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+            zoneAnim->setAnimationData(staticAnimD);
+            std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
+            Vec2 zonePos = pulseZoneD->getPosition(Vec2::Vec2(x,y));
+            Util::physicsToSceneCoords(zonePos, zonePos);
+            zoneNode->setPosition(zonePos);
+            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey)*pulseZoneD->minSize);
+            
+            // set the color
+            if (zoneElement == ElementType::BLUE) {
+                zoneNode->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
+            } else {
+                zoneNode->setColor(Color4f(Color4::YELLOW)*Color4f(1,1,1,0.5));
+            }
+            pulseNode->addChild(zoneNode,0);
+            
+            staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+            zoneAnim->setAnimationData(staticAnimD);
+            zoneNode = zoneAnim->getAnimationNode();
+            zoneNode->setPosition(zonePos);
+            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey)*pulseZoneD->maxSize);
+            
+            // set the color
+            if (zoneElement == ElementType::BLUE) {
+                zoneNode->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
+            } else {
+                zoneNode->setColor(Color4f(Color4::YELLOW)*Color4f(1,1,1,0.5));
+            }
+            pulseNode->addChild(zoneNode,0);
+            return pulseNode;
         }
     }
 }
