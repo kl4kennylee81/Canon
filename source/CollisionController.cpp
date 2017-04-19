@@ -115,28 +115,35 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
         removeFromWorld(obj);
     }
     
-    // check for resized dirty obstacles that need to be remade
-    for (std::shared_ptr<GameObject> gameObj : state->getEnemyObjects()){
-        if (gameObj->getPhysicsComponent() == nullptr){
-            continue;
-        }
-        
-        if (gameObj->getPhysicsComponent()->getBody() == nullptr){
-            continue;
-        }
-        if (gameObj->getPhysicsComponent()->getBody()->isDirty()){
-            // create a new obstacle based on the scaling
-            
-            
-            // delete the physics body and remake it
-            removeFromWorld(gameObj.get());
-        }
-    }
-    
     objsScheduledForRemoval.clear();
     
     if (inGame) {
         _world->update(timestep);
+        
+        // update all obstacle after updating the world
+        // check for resized dirty obstacles that need to be remade
+        for (std::shared_ptr<GameObject> gameObj : state->getEnemyObjects()){
+            if (gameObj->getPhysicsComponent() == nullptr){
+                continue;
+            }
+            
+            if (gameObj->getPhysicsComponent()->getBody() == nullptr){
+                continue;
+            }
+            gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
+        
+        // check for resized dirty obstacles that need to be remade
+        for (std::shared_ptr<GameObject> gameObj : state->getPlayerCharacters()){
+            if (gameObj->getPhysicsComponent() == nullptr){
+                continue;
+            }
+            
+            if (gameObj->getPhysicsComponent()->getBody() == nullptr){
+                continue;
+            }
+            gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
     }
 }
 
@@ -194,29 +201,13 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     return true;
 }
 
-std::shared_ptr<PolygonObstacle> createObstacle(std::vector<float> vertices,float scaleX=1.0,float scaleY=1.0){
-    // must be even number
-    CUAssert(vertices.size() % 2 == 0);
-    
-    // scale the shape according to the size
-    for (int i =0;i<vertices.size();i++){
-        if (i % 2 == 0){
-            vertices[i] = vertices[i] * scaleX;
-        } else {
-            vertices[i] = vertices[i] * scaleY;
-        }
-    }
-    Poly2 poly(vertices);
+void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
+    Poly2 poly(objectInit->shapeData->vertices);
     SimpleTriangulator triangulator;
     triangulator.set(poly);
     triangulator.calculate();
     poly.setIndices(triangulator.getTriangulation());
     auto obst = PolygonObstacle::alloc(poly);
-    return obst;
-}
-
-void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
-    auto obst = createObstacle(objectInit->shapeData->vertices);
     obst->setPosition(objectInit->waveEntry->getPosition());
     
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement());

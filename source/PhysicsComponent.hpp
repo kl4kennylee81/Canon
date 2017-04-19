@@ -38,6 +38,8 @@ public:
     
     ElementType getElementType() { return _elementType; };
     
+    void setBody(std::shared_ptr<cugl::PolygonObstacle> body);
+    
 };
 
 #endif /* PhysicsComponent_hpp */

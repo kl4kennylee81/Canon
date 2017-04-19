@@ -31,3 +31,7 @@ bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, Element
     _elementType = element;
     return true;
 }
+
+void PhysicsComponent::setBody(std::shared_ptr<cugl::PolygonObstacle> body){
+    _body = body;
+}
