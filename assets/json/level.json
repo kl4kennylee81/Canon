@@ -83,7 +83,8 @@
       "object1": {
           "name": "object1",
           "aiKey":  "homing",
-          "objectKey":  "object1"
+          "objectKey":  "object1",
+          "zoneKeys":["staticZone"]
       }
   },
   "objects": {
@@ -159,8 +160,8 @@
       "objectKey": "circle",
       "relX": 0,
       "relY": 0,
-      "cooldown": 50,
-      "duration": 50,
+      "cooldown": 180,
+      "duration": 180,
       "element": "MATCH"
     },
     "staticZoneBig": {
@@ -168,8 +169,8 @@
       "objectKey": "big_circle",
       "relX": 0,
       "relY": 0,
-      "cooldown": 50,
-      "duration": 50,
+      "cooldown": 180,
+      "duration": 180,
       "element": "MATCH"
     },
     "rotateZone": {

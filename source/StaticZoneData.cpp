@@ -19,7 +19,7 @@ std::shared_ptr<JsonValue> StaticZoneData::toJsonValue()
 	data->appendChild("relY", JsonValue::alloc(relPos.y));
 	data->appendChild("cooldown", JsonValue::alloc(static_cast<float>(cooldown)));
 	data->appendChild("duration", JsonValue::alloc(static_cast<float>(duration)));
-	data->appendChild("element", JsonValue::alloc(elementDataTypeToString(elementType)));
+	data->appendChild("element", JsonValue::alloc(Element::elementDataTypeToString(elementType)));
 	return data;
 }
 
@@ -36,7 +36,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float rel_y = json->getFloat("relY");
     int cooldown = json->getInt("cooldown");
     int duration = json->getInt("duration");
-    auto el = stringToElementDataType(json->getString("element"));
+    auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,rel_x,rel_y,cooldown,duration,el);
 
     return true;

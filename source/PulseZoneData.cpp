@@ -19,7 +19,7 @@ std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
 	pz->appendChild("maxSize", JsonValue::alloc(maxSize));
 	pz->appendChild("maxTime", JsonValue::alloc(static_cast<float>(maxTime)));
 	pz->appendChild("speed", JsonValue::alloc(speed));
-    pz->appendChild("element", JsonValue::alloc(static_cast<std::string>(elementDataTypeToString(this->elementType))));
+    pz->appendChild("element", JsonValue::alloc(static_cast<std::string>(Element::elementDataTypeToString(this->elementType))));
 	return pz;
 }
 
@@ -38,7 +38,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float maxSize = json->getFloat("maxSize");
     int maxTime = json->getInt("maxTime");
     float speed = json->getFloat("speed");
-    auto el = stringToElementDataType(json->getString("element"));
+    auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,minSize,minTime,maxSize,maxTime,speed,el);
 
     return true;

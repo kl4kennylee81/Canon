@@ -28,9 +28,9 @@ public:
     
     void dispose();
     
-    virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, Element element);
+    virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element);
     
-    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::PolygonObstacle> body, Element element) {
+    static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element) {
         std::shared_ptr<PhysicsComponent> result = std::make_shared<PhysicsComponent>();
         return (result->init(body, element) ? result : nullptr);
     }
