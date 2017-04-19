@@ -4,22 +4,18 @@
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 2",
-				"time":	180
-			},
-			"wave2":	{
 				"waveKey":	"wave 3",
 				"time":	180
 			},
-			"wave3":	{
+			"wave2":	{
 				"waveKey":	"wave 4",
 				"time":	180
 			},
-			"wave4":	{
+			"wave3":	{
 				"waveKey":	"wave 5",
 				"time":	180
 			},
-			"wave5":	{
+			"wave4":	{
 				"waveKey":	"wave 6",
 				"time":	180
 			}
@@ -28,47 +24,15 @@
 		}
 	},
 	"waves":	{
-		"wave 2":	{
+		"wave 3":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	233.600006,
-					"y":	464,
-					"element":	"BLUE",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
-				},
-				"object2":	{
-					"x":	328.533325,
-					"y":	484.266663,
+					"x":	437.333344,
+					"y":	289.066681,
 					"element":	"GOLD",
-					"aiKey":	"vertical",
-					"templateKey":	"birb"
-				},
-				"object3":	{
-					"x":	804.266663,
-					"y":	468.266663,
-					"element":	"BLUE",
-					"aiKey":	"vertical",
-					"templateKey":	"birb"
-				},
-				"object4":	{
-					"x":	827.733337,
-					"y":	116.266663,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
-				},
-				"object5":	{
-					"x":	625.066650,
-					"y":	80,
-					"element":	"BLUE",
 					"aiKey":	"homing",
 					"templateKey":	"birb"
 				}
-			}
-		},
-		"wave 3":	{
-			"waveEntries":	{
 			}
 		},
 		"wave 4":	{

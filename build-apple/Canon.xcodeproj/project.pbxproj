@@ -107,8 +107,6 @@
 		9FA275F41EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
 		9FA275F51EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */; };
 		9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */; };
-		9FA275FB1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */; };
-		9FA275FC1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */; };
 		9FA276001EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */; };
 		9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */; };
 		9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FC16AB01E768F7E0040661D /* HomingAI.cpp */; };
@@ -278,8 +276,6 @@
 		9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemplateWaveEntry.hpp; sourceTree = "<group>"; };
 		9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveEditorController.cpp; sourceTree = "<group>"; };
 		9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WaveEditorController.hpp; sourceTree = "<group>"; };
-		9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateEditorController.cpp; sourceTree = "<group>"; };
-		9FA275FA1EA4D7F0003D8C03 /* TemplateEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TemplateEditorController.hpp; sourceTree = "<group>"; };
 		9FA275FE1EA4D80A003D8C03 /* LevelEditorEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorEvent.cpp; sourceTree = "<group>"; };
 		9FA275FF1EA4D80A003D8C03 /* LevelEditorEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorEvent.hpp; sourceTree = "<group>"; };
 		9FC16AB01E768F7E0040661D /* HomingAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomingAI.cpp; sourceTree = "<group>"; };
@@ -556,8 +552,6 @@
 				9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */,
 				9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */,
 				9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */,
-				9FA275F91EA4D7F0003D8C03 /* TemplateEditorController.cpp */,
-				9FA275FA1EA4D7F0003D8C03 /* TemplateEditorController.hpp */,
 			);
 			name = levelEditor;
 			sourceTree = "<group>";
@@ -1279,7 +1273,6 @@
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
 				9F3BA60F1E8BA575003138C0 /* CollisionEvent.cpp in Sources */,
 				9F3BA6101E8BA575003138C0 /* PhysicsComponent.cpp in Sources */,
-				9FA275FC1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */,
 				9F3BA6111E8BA575003138C0 /* CollisionController.cpp in Sources */,
 				9F3BA6121E8BA575003138C0 /* Element.cpp in Sources */,
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
@@ -1363,7 +1356,6 @@
 				829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
-				9FA275FB1EA4D7F0003D8C03 /* TemplateEditorController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,
 				9FFA3F8B1E6362570029D648 /* CollisionController.cpp in Sources */,
 				9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */,

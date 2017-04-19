@@ -14,19 +14,16 @@
 #include "MenuGraph.hpp"
 #include "World.hpp"
 #include "WaveData.hpp"
-#include "TemplateEditorController.hpp"
 #include "TemplateWaveEntry.hpp"
 
 enum class WaveEditorState : int {
 	START,
 	SELECT,
-	EDIT,
 	DRAG,
 	REMOVE,
     COLOR_TOGGLE,
     AI_TOGGLE,
 	DONE,
-	TEMPLATE_EDIT,
 	NEW_TEMPLATE,
     REFRESH
 };
@@ -65,8 +62,8 @@ private:
 	std::shared_ptr<WaveData> _currentWave;
 
 	WaveEditorState _state;
-
-	std::shared_ptr<TemplateEditorController> _templateEditorController;
+    
+    WaveEditorState _prevState;
     
 	std::vector<std::shared_ptr<TemplateWaveEntry>> _templates;
     
