@@ -16,13 +16,21 @@ class InputController {
 public:
     static bool _touch;
     
+    static bool _isPressed;
+    
+    static bool _wasPressed;
+    
     static void setTouch(bool touch);
 
     static cugl::Vec2 getInputVector();
     
     static bool getIsPressed();
+    
+    static bool getIsPressedUp();
 
     static bool getDoubleTouch();
+    
+    static void update();
 
 	static std::vector<cugl::KeyCode> getPressedKeys();
 };

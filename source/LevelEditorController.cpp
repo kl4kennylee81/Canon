@@ -148,11 +148,11 @@ void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
 
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
-	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
+	auto backButton = Util::makeBoxButton(950, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 
     backButton->setListener(
         [=](const std::string& name, bool down) {
-            if (down) {
+            if (!down) {
                 _waveEditorController->updateWorld(_world);
                 std::shared_ptr<Event> slEvent = SimulateLevelEvent::alloc();
                 this->notify(slEvent.get());

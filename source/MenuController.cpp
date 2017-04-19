@@ -58,6 +58,7 @@ void MenuController::eventUpdate(Event* e) {
                 case LevelEditorEvent::LevelEditorEventType::SIMULATE_LEVEL:
                 {
                     _menuGraph->setNextMode(Mode::GAMEPLAY);
+                    _menuGraph->setActiveMenu("gameScreen");
                     break;
                 }
             }
@@ -76,7 +77,7 @@ void MenuController::update(float timestep) {
     }
     
     // check that a press has been made
-    if (!InputController::getIsPressed()){
+    if (!InputController::getIsPressedUp()){
         return;
     }
     

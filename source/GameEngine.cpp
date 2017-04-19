@@ -335,6 +335,9 @@ void GameEngine::initializeNextMode(){
  * @param timestep  The amount of time (in seconds) since the last frame
  */
 void GameEngine::update(float timestep) {
+    // update the touch input
+    InputController::update();
+    
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
         cleanPreviousMode();
@@ -363,8 +366,8 @@ void GameEngine::update(float timestep) {
                 // TODO loadController should also holds onto the next mode
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
-                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
                 _menuGraph->populate(_assets);
+                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
             }
             break;
         }
