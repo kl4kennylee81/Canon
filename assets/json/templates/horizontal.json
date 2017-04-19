@@ -2,7 +2,7 @@
 	"templates":	{
 		"horizontal":	{
 			"name":	"horizontal",
-			"aiKey":	"horizontal",
+			"aiKeys":	["horizontal"],
 			"objectKey":	"blobo_object"
 		}
 	}

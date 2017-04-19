@@ -2,7 +2,7 @@
   "templates":  {
     "grump": {
       "name": "grump",
-      "aiKey":  "homing",
+      "aiKeys":  ["homing"],
       "objectKey":  "grump_object"
     }
   },

@@ -53,7 +53,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
         std::string name = "kyle" + std::to_string(_templates.size());
-		auto newTemplate = TemplateWaveEntry::alloc(name, "object1", "static", {});
+        auto newTemplate = TemplateWaveEntry::alloc(name, "object1", {"static"}, {});
 		_templates.push_back(newTemplate);
         _world->addTemplate(name, newTemplate);
 		updateTemplateNodes();
@@ -68,6 +68,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case WaveEditorState::DRAG: {
+        updateTemplateNodes();
         updateDragAndDrop();
 		break;
 	}
@@ -76,6 +77,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		break;
 	}
 	case WaveEditorState::REMOVE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_entryRemoved){
             _currentWave->removeEntry(_removeIndex);
             updateWaveEntryNodes();
@@ -83,7 +85,15 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
         }
         break;
 	}
+    case WaveEditorState::AI_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        if(_aiChanged) {
+            updateWaveEntryNodes();
+            _aiChanged = false;
+        }
+    }
     case WaveEditorState::COLOR_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_colorChanged) {
             updateWaveEntryNodes();
             _colorChanged = false;
@@ -134,8 +144,8 @@ void WaveEditorController::updateDragAndDrop(){
         for(auto it: templateNode->getChildren()){
             it->setVisible(false);
         }
-        auto poly = PolygonNode::alloc(Rect::Rect(0,0,30,30));
-        poly->setColor(Color4::MAGENTA);
+        auto poly = PolygonNode::alloc(Rect::Rect(0,0,20,20));
+        poly->setColor(Color4::BLACK);
         _dragNode->addChildWithTag(poly, 1);
         _dragStart = false;
     }
@@ -150,7 +160,7 @@ void WaveEditorController::updateDragAndDrop(){
         if(_newEntry){
             auto templ = _templates.at(_dragIndex);
             std::cout << templ->name << std::endl;
-            auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name);
+            auto entry = WaveEntry::alloc(0, 0, Element::BLUE, templ->name, templ->getAIKey(0));
             
             Vec2 physicsCoord;
             Util::sceneToPhysicsCoords(scene_pos,physicsCoord);
@@ -188,6 +198,10 @@ void WaveEditorController::checkKeyboardInput() {
         }
         if(key == KeyCode::C){
             _state = WaveEditorState::COLOR_TOGGLE;
+            return;
+        }
+        if(key == KeyCode::A){
+            _state = WaveEditorState::AI_TOGGLE;
             return;
         }
     }
@@ -269,6 +283,13 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
                 _colorChanged = true;
                 break;
             }
+            case WaveEditorState::AI_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
+                waveEntry->setAIKey(templateEntry->getNextAIKey(waveEntry->getAIKey()));
+                _aiChanged = true;
+                break;
+            }
             default:{
                 break;
             }
@@ -319,9 +340,10 @@ void WaveEditorController::updateWaveEntryNodes(){
         
         auto templateData = _world->getTemplate(entry->getTemplateKey());
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
-        auto label = Label::alloc(entry->getTemplateKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
+        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.18);
         label->setPosition(pos.x, pos.y);
+        
         button->setListener(
             [=](const std::string& name, bool down) {
                 waveEntryButtonListenerFunction(name, down, i);
@@ -371,6 +393,9 @@ std::string WaveEditorController::getStateAsString(){
         case WaveEditorState::REMOVE: {
             return "REMOVE";
         }
+        case WaveEditorState::AI_TOGGLE: {
+            return "AI TOGGLE";
+        }
     }
     return "";
 }
@@ -419,6 +444,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
 	_levelEditNode = node;
 	_world = world;
     _colorChanged = false;
+    _aiChanged = false;
     _entryRemoved = false;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");

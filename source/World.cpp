@@ -209,11 +209,7 @@ std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
 }
 
 std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
-    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
-    if (templData == nullptr) {
-        return nullptr;
-    }
-    return getAIData(templData->getAIKey());
+    return getAIData(we->getAIKey());
 }
 
 std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
@@ -278,10 +274,10 @@ void World::presetPlayerCharacters(){
     // better solution will be when initialize level stub give default value for the player characters
     
     // add two player characters
-    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,Element::GOLD,"playerCharMale");
+    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,Element::GOLD,"playerCharMale", "");
     _levelData->addPlayerChars(playerChar2);
     
-    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,Element::BLUE,"playerCharFemale");
+    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,Element::BLUE,"playerCharFemale", "");
     _levelData->addPlayerChars(playerChar1);
     
     return;

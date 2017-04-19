@@ -1,14 +1,92 @@
 {
-	"counter":	1,
+	"counter":	6,
 	"templates":	["birb", "blobo", "grump", "fesh", "horizontal", "vertical"],
 	"level":	{
 		"levelEntries":	{
+			"wave1":	{
+				"waveKey":	"wave 2",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 3",
+				"time":	180
+			},
+			"wave3":	{
+				"waveKey":	"wave 4",
+				"time":	180
+			},
+			"wave4":	{
+				"waveKey":	"wave 5",
+				"time":	180
+			},
+			"wave5":	{
+				"waveKey":	"wave 6",
+				"time":	180
+			}
 		},
 		"playerChars":	{
 		}
 	},
 	"waves":	{
-		"wave 1":	{
+		"wave 2":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	233.600006,
+					"y":	464,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"object2":	{
+					"x":	328.533325,
+					"y":	484.266663,
+					"element":	"GOLD",
+					"aiKey":	"vertical",
+					"templateKey":	"birb"
+				},
+				"object3":	{
+					"x":	804.266663,
+					"y":	468.266663,
+					"element":	"BLUE",
+					"aiKey":	"vertical",
+					"templateKey":	"birb"
+				},
+				"object4":	{
+					"x":	827.733337,
+					"y":	116.266663,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"object5":	{
+					"x":	625.066650,
+					"y":	80,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"object6":	{
+					"x":	221.866669,
+					"y":	73.600006,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"wave 3":	{
+			"waveEntries":	{
+			}
+		},
+		"wave 4":	{
+			"waveEntries":	{
+			}
+		},
+		"wave 5":	{
+			"waveEntries":	{
+			}
+		},
+		"wave 6":	{
 			"waveEntries":	{
 			}
 		}

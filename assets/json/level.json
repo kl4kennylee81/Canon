@@ -82,7 +82,7 @@
       },
       "object1": {
           "name": "object1",
-          "aiKey":  "homing",
+          "aiKeys":  ["homing"],
           "objectKey":  "object1"
       }
   },

@@ -33,7 +33,7 @@ bool GameEngine::_touch;
 
 
 
-void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets) {
+void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
 #ifdef __APPLE__
 	DIR *dir;
 	struct dirent *ent;
@@ -51,7 +51,7 @@ void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets) 
 #endif
 }
 
-void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets) {
+void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
 
 }
 
@@ -131,9 +131,9 @@ void GameEngine::onStartup() {
     //load all template wave entries
 
 	#ifdef _WIN32
-	loadTemplateFilesWindows(_assets);
+	loadTemplateFilesWindows(_assets, templateDir);
 	#elif __APPLE__
-	loadTemplateFilesApple(_assets);
+	loadTemplateFilesApple(_assets, templateDir);
 	#endif
 
     

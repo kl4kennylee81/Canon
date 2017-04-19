@@ -2,7 +2,7 @@
   "templates":  {
     "fesh": {
       "name": "fesh",
-      "aiKey":  "homing",
+      "aiKeys":  ["homing"],
       "objectKey":  "fesh_object"
     }
   },

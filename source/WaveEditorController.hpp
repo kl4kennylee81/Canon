@@ -24,6 +24,7 @@ enum class WaveEditorState : int {
 	DRAG,
 	REMOVE,
     COLOR_TOGGLE,
+    AI_TOGGLE,
 	DONE,
 	TEMPLATE_EDIT,
 	NEW_TEMPLATE
@@ -53,6 +54,8 @@ private:
     bool _newEntry;
     
     bool _colorChanged;
+    
+    bool _aiChanged;
     
     int _removeIndex;
     

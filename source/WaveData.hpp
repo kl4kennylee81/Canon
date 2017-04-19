@@ -22,6 +22,8 @@ private:
     
     std::string templateKey;
     
+    std::string aiKey;
+    
 public:
     
     WaveEntry(){}
@@ -30,11 +32,17 @@ public:
     
     cugl::Vec2 getPosition();
     
+    std::string getAIKey() {
+        return aiKey;
+    }
+    
     std::string getTemplateKey();
     
     void setTemplateKey(std::string tKey);
     
     void setPosition(cugl::Vec2 pos);
+    
+    void setAIKey(std::string aKey) { aiKey = aKey; }
     
     void switchElement() {
         element = element == Element::BLUE ? Element::GOLD : Element::BLUE;
@@ -42,16 +50,16 @@ public:
     
     bool init(const std::shared_ptr<cugl::JsonValue>& json);
     
-    bool init(float x, float y,Element element,std::string templateKey);
+    bool init(float x, float y,Element element,std::string templateKey, std::string aiKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
         return (result->init(json) ? result : nullptr);
     }
     
-    static std::shared_ptr<WaveEntry> alloc(float x, float y,Element element,std::string templateKey) {
+    static std::shared_ptr<WaveEntry> alloc(float x, float y,Element element,std::string templateKey, std::string aiKey) {
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(x,y,element,templateKey) ? result : nullptr);
+        return (result->init(x,y,element,templateKey, aiKey) ? result : nullptr);
     }
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
