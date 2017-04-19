@@ -215,10 +215,11 @@ std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, flo
 {
     auto activeAnim = ActiveAnimation::alloc();
     auto objectData = _world->getObjectData(templ->getObjectKey());
-    activeAnim->setAnimationData(_world->getAnimationData(objectData->getAnimationKey(color)));
+    auto animData = _world->getAnimationData(objectData->getAnimationKey(color));
+    activeAnim->setAnimationData(animData);
     auto button = Button::alloc(activeAnim->getAnimationNode());
     button->setPosition(x, y);
-    button->setScale(getAnimationScale(templ->getObjectKey()));
+    button->setScale(getAnimationScale(templ->getObjectKey(),animData->nonUniformScale));
     return button;
 }
 
@@ -239,7 +240,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             Vec2 zonePos = staticZoneD->getPosition(Vec2::Vec2(x,y));
             Util::physicsToSceneCoords(zonePos, zonePos);
             zoneNode->setPosition(zonePos);
-            zoneNode->setScale(getAnimationScale(staticZoneD->objectKey));
+            zoneNode->setScale(getAnimationScale(staticZoneD->objectKey,staticAnimD->nonUniformScale));
             
             // set the color
             if (zoneElement == ElementType::BLUE) {
@@ -263,7 +264,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
                 Util::physicsToSceneCoords(zonePos, zonePos);
                 zoneNode->setPosition(zonePos);
                 zoneNode->setAngle(zEntry->getAngle());
-                zoneNode->setScale(getAnimationScale(zEntry->objectKey));
+                zoneNode->setScale(getAnimationScale(zEntry->objectKey,zEntryAnimD->nonUniformScale));
                 
                 // set the color
                 if (zoneElement == ElementType::BLUE) {
@@ -284,13 +285,13 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             auto pulseZoneD =  std::dynamic_pointer_cast<PulseZoneData>(zoneD);
             auto zoneObjData = _world->getObjectData(pulseZoneD->objectKey);
             ElementType zoneElement = Element::elementDataTypeToElement(pulseZoneD->elementType,parentColor);
-            auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
-            zoneAnim->setAnimationData(staticAnimD);
+            auto pulseAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+            zoneAnim->setAnimationData(pulseAnimD);
             std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
             Vec2 zonePos = pulseZoneD->getPosition(Vec2::Vec2(x,y));
             Util::physicsToSceneCoords(zonePos, zonePos);
             zoneNode->setPosition(zonePos);
-            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey)*pulseZoneD->minSize);
+            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey,pulseAnimD->nonUniformScale)*pulseZoneD->minSize);
             
             // set the color
             if (zoneElement == ElementType::BLUE) {
@@ -300,11 +301,11 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             }
             pulseNode->addChild(zoneNode,0);
             
-            staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
-            zoneAnim->setAnimationData(staticAnimD);
+            pulseAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+            zoneAnim->setAnimationData(pulseAnimD);
             zoneNode = zoneAnim->getAnimationNode();
             zoneNode->setPosition(zonePos);
-            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey)*pulseZoneD->maxSize);
+            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey,pulseAnimD->nonUniformScale)*pulseZoneD->maxSize);
             
             // set the color
             if (zoneElement == ElementType::BLUE) {
@@ -371,7 +372,7 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
     }
 }
                                                            
-float WaveEditorController::getAnimationScale(std::string objectKey){
+Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUniform){
     std::shared_ptr<ObjectData> obj = _world->getObjectData(objectKey);
     std::shared_ptr<ShapeData> shape = _world->getShapeData(obj->getShapeKey());
     Poly2 poly(shape->vertices);
@@ -395,11 +396,17 @@ float WaveEditorController::getAnimationScale(std::string objectKey){
     // maximum of boxSize.width/animation.width and boxsize.height/animation.height
     // so that the animationNode is always encapsulating the full physics box with padding.
     // this is for if we wanted to increase the size of the character, you'd only have to increase the physics box size
-    
-    float scaleX = (polySize.width)/animationSize.width;
-    float scaleY = (polySize.height)/animationSize.height;
-    float animationScale = std::max(scaleX,scaleY);
-    return animationScale;
+    if (isNonUniform){
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        return animationScale;
+    } else {
+        float scaleX = (polySize.width)/animationSize.width;
+        float scaleY = (polySize.height)/animationSize.height;
+        float animationScale = std::max(scaleX,scaleY);
+        return Vec2::Vec2(animationScale,animationScale);
+    }
 
 }
 

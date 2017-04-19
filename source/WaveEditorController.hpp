@@ -94,7 +94,7 @@ public:
 
 	void setSceneGraph();
     
-    float getAnimationScale(std::string objectKey);
+    cugl::Vec2 getAnimationScale(std::string objectKey,bool isNonUniform);
     
     void checkKeyboardInput();
     
