@@ -16,6 +16,7 @@
 #include "StaticZoneData.hpp"
 #include "PathAIData.hpp"
 #include "AIData.hpp"
+#include "GameEngine.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
 #define NUMBER_SPAWNS            4
@@ -150,7 +151,6 @@ void World::populate() {
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets, std::string levelName){
     _assets = assets;
-
     this->_levelData = assets->get<LevelData>(levelName);
     _isSandbox = false;
     

@@ -27,7 +27,8 @@ enum class WaveEditorState : int {
     AI_TOGGLE,
 	DONE,
 	TEMPLATE_EDIT,
-	NEW_TEMPLATE
+	NEW_TEMPLATE,
+    REFRESH
 };
 
 class WaveEditorController : public BaseController {
@@ -103,6 +104,8 @@ public:
     void updateDragAndDrop();
     
     void updateWaveEntryNodes();
+    
+    void refreshTemplates();
     
     std::string getStateAsString();
     

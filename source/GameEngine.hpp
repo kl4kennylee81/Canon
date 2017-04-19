@@ -166,6 +166,8 @@ public:
     
     void initializeNextMode();
     
+    static void attachLoaders(std::shared_ptr<GenericAssetManager> assets);
+    
     std::shared_ptr<LevelData> getNextLevelData();
     
     std::shared_ptr<World> getNextWorld();

@@ -64,13 +64,6 @@
 					"element":	"BLUE",
 					"aiKey":	"homing",
 					"templateKey":	"birb"
-				},
-				"object6":	{
-					"x":	221.866669,
-					"y":	73.600006,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
 				}
 			}
 		},

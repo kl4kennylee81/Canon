@@ -15,6 +15,9 @@
 #include "ActiveAnimation.hpp"
 #include "AnimationData.hpp"
 #include "GameState.hpp"
+#include "AIData.hpp"
+#include "ZoneData.hpp"
+#include "GenericAssetManager.hpp"
 
 using namespace cugl;
 
@@ -62,11 +65,11 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 		_state = WaveEditorState::DRAG;
 		break;
 	}
-	case WaveEditorState::SELECT: {
-		//allow user to select from available wave entry templates
-		//switch to drag when one is clicked
-		break;
-	}
+    case WaveEditorState::REFRESH: {
+        refreshTemplates();
+        _state = WaveEditorState::DRAG;
+        break;
+    }
 	case WaveEditorState::DRAG: {
         updateTemplateNodes();
         updateDragAndDrop();
@@ -120,6 +123,44 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     label->setScale(0.5);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
+}
+
+void WaveEditorController::refreshTemplates(){
+    
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string canonDir = Util::join(vec,vec.size()-2,'/');
+    
+    std::unordered_set<std::string> tempKeys;
+    auto tempAssets = GenericAssetManager::alloc();
+    GameEngine::attachLoaders(tempAssets);
+
+    for(auto it: _templates){
+        auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/templates/"+it->getName()+".json");
+        auto json = reader->readJson();
+        if(json->has("ai")){
+            auto ais = json->get("ai");
+            for(int i = 0; i < ais->size(); i++){
+                tempKeys.insert(ais->get(i)->key());
+            }
+        }
+        if(json->has("zones")){
+            auto zones = json->get("zones");
+            for(int i = 0; i < zones->size(); i++){
+                tempKeys.insert(zones->get(i)->key());
+            }
+        }
+        if(json->has("templates")){
+            auto templates = json->get("templates");
+            for(int i = 0; i < templates->size(); i++){
+                tempKeys.insert(templates->get(i)->key());
+            }
+        }
+        tempAssets->loadDirectory(json);
+    }
+    
+    //transfer all assets over to world
+    
+    tempAssets->unloadAll();
 }
 
 void WaveEditorController::createTemplateFile(std::shared_ptr<TemplateWaveEntry> templ) {
@@ -420,11 +461,22 @@ void WaveEditorController::setSceneGraph() {
 		}
 	}
 	);
+    
+    auto refreshButton = Util::makeBoxButton(110, 30, 30, 30, Color4::BLUE, Color4::PAPYRUS);
+    refreshButton->setListener(
+        [=](const std::string& name, bool down) {
+           if (down) {
+               _state = WaveEditorState::REFRESH;
+           }
+        }
+   );
 
 	backButton->activate(getUid());
 	addButton->activate(getUid());
+    refreshButton->activate(getUid());
 	_levelEditNode->addChildWithName(backButton, "back");
 	_levelEditNode->addChildWithName(addButton, "add");
+    _levelEditNode->addChildWithName(refreshButton, "refresh");
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
     

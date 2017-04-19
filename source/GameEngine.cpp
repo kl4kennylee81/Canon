@@ -55,7 +55,26 @@ void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets
 
 }
 
-
+void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
+    // You have to attach the individual loaders for each asset type
+    assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
+    assets->attach<Texture>(TextureLoader::alloc()->getHook());
+    assets->attach<Font>(FontLoader::alloc()->getHook());
+    assets->attach<Sound>(SoundLoader::alloc()->getHook());
+    assets->attach<Music>(MusicLoader::alloc()->getHook());
+    assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
+    assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
+    assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
+    assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
+    assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
+    assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
+    assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
+    assets->attach<UIData>(UIDataLoader::alloc()->getHook());
+    assets->attach<AIData>(AILoader::alloc()->getHook());
+    assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
+    assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
+    assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+}
 
 /**
  * The method called after OpenGL is initialized, but before running the application.
@@ -79,24 +98,7 @@ void GameEngine::onStartup() {
     // Create an asset manager to load all assets
     _assets = GenericAssetManager::alloc();
     
-    // You have to attach the individual loaders for each asset type
-	_assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
-    _assets->attach<Texture>(TextureLoader::alloc()->getHook());
-    _assets->attach<Font>(FontLoader::alloc()->getHook());
-    _assets->attach<Sound>(SoundLoader::alloc()->getHook());
-    _assets->attach<Music>(MusicLoader::alloc()->getHook());
-	_assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
-	_assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
-	_assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
-	_assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
-	_assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
-	_assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
-	_assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
-	_assets->attach<UIData>(UIDataLoader::alloc()->getHook());
-	_assets->attach<AIData>(AILoader::alloc()->getHook());
-    _assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
-    _assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
-    _assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+    attachLoaders(_assets);
     
     _loading = LoadController::alloc(_scene,_assets);
     _loading->activate();
