@@ -2,8 +2,9 @@
   "templates":  {
     "grump": {
       "name": "grump",
-      "aiKey":  "homing",
-      "objectKey":  "grump_object"
+      "aiKey":  "static",
+      "objectKey":  "grump_object",
+      "zoneKeys": ["grump_zone"]
     }
   },
   "objects":{
@@ -12,11 +13,43 @@
       "blueAnimationKey": "blue_grump_animation",
       "goldAnimationKey": "yellow_grump_animation",
       "soundKey": "baseEnemySound"
+    },
+    "grump_zoneObject": {
+      "shapeKey": "grump_zoneShape",
+      "blueAnimationKey": "whiteSector",
+      "goldAnimationKey": "whiteSector"
     }
   },
   "shapes":{
     "grump_shape": {
-      "vertices": [0,0,100,0,100,100,0,100]
+      "vertices": [0,0,120,0,120,120,0,120]
+    },
+    "grump_zoneShape":{
+      "vertices": [37.5, 0.0, 187.5, 0.0, 262.5, 168.75, 112.5, 206.25, -37.5, 168.75]
+    }
+  },
+  "zones":{
+    "grump_zone": {
+      "type": "ROTATE",
+      "zoneEntries": {
+        "zone1": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0,
+          "element": "MATCH"
+        },
+        "zone2": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0.33,
+          "element": "MATCH"
+        },
+        "zone3": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0.67,
+          "element": "MATCH"
+        }
+      },
+      "radius": 225,
+      "speed": 0.5
     }
   },
   "animations":{

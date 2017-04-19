@@ -61,6 +61,10 @@ public:
     
     #pragma mark Coordinate Conversions
     
+    static float getGamePhysicsScale(){
+        return GAME_PHYSICS_SCALE;
+    }
+    
     static float getGameSceneHeight()
     {
         cugl::Size size = cugl::Application::get()->getDisplaySize();

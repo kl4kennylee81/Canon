@@ -222,7 +222,8 @@ std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, flo
     return button;
 }
 
-std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, float y,
+std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is in physicsCoordinates of the owner of the zone
+                                                           float y, // this is in physicsCoordinates of the owner of the zone
                                                            std::string zoneKey, ElementType parentColor){
     auto zoneAnim = ActiveAnimation::alloc();
     auto zoneD = _world->getZoneData(zoneKey);
@@ -235,7 +236,9 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, float y,
             auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(staticAnimD);
             std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
-            zoneNode->setPosition(staticZoneD->getPosition(Vec2::Vec2(x,y)));
+            Vec2 zonePos = staticZoneD->getPosition(Vec2::Vec2(x,y));
+            Util::physicsToSceneCoords(zonePos, zonePos);
+            zoneNode->setPosition(zonePos);
             zoneNode->setScale(getAnimationScale(staticZoneD->objectKey));
             
             // set the color
@@ -248,8 +251,31 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, float y,
         }
         case ZoneType::ROTATE:
         {
+            std::shared_ptr<Node> rotateNode = Node::alloc();
             auto rotateZoneD =  std::dynamic_pointer_cast<RotateZoneData>(zoneD);
-            return Node::alloc();
+            for (std::shared_ptr<ZoneEntry> zEntry : rotateZoneD->zones){
+                auto zoneObjData = _world->getObjectData(zEntry->objectKey);
+                ElementType zoneElement = Element::elementDataTypeToElement(zEntry->elementType,parentColor);
+                auto zEntryAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+                zoneAnim->setAnimationData(zEntryAnimD);
+                std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
+                Vec2 zonePos = zEntry->getPosition(Vec2::Vec2(x,y),rotateZoneD->radius);
+                Util::physicsToSceneCoords(zonePos, zonePos);
+                zoneNode->setPosition(zonePos);
+                zoneNode->setAngle(zEntry->getAngle());
+                zoneNode->setScale(getAnimationScale(zEntry->objectKey));
+                
+                // set the color
+                if (zoneElement == ElementType::BLUE) {
+                    zoneNode->setColor(Color4f(Color4::BLUE)*Color4f(1,1,1,0.5));
+                } else {
+                    zoneNode->setColor(Color4f(Color4::YELLOW)*Color4f(1,1,1,0.5));
+                }
+                
+                rotateNode->addChild(zoneNode,0);
+            }
+            
+            return rotateNode;
         }
         case ZoneType::PULSE:
         {
@@ -358,7 +384,7 @@ void WaveEditorController::updateWaveEntryNodes(){
         
         // create the zones
         for (std::string zoneKey :templateData->getZoneKeys()){
-            std::shared_ptr<Node> zoneNode = createZoneNode(pos.x,pos.y,zoneKey,entry->getElement());
+            std::shared_ptr<Node> zoneNode = createZoneNode(entry->getPosition().x,entry->getPosition().y,zoneKey,entry->getElement());
             entryNode->addChild(zoneNode,0);
         }
         

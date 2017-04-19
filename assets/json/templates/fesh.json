@@ -16,7 +16,7 @@
   },
   "shapes":{
     "fesh_shape": {
-      "vertices": [0,0,100,0,100,100,0,100]
+      "vertices": [0,0,75,0,75,75,0,75]
     }
   },
   "animations":{
