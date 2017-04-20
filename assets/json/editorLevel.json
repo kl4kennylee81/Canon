@@ -1,12 +1,169 @@
 {
-	"counter":	0,
+	"counter":	4,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
 		"levelEntries":	{
+			"wave1":	{
+				"waveKey":	"wave 1",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 2",
+				"time":	180
+			},
+			"wave3":	{
+				"waveKey":	"wave 3",
+				"time":	180
+			}
 		},
 		"playerChars":	{
 		}
 	},
 	"waves":	{
+		"wave 1":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	532.266663,
+					"y":	392.533325,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"object2":	{
+					"x":	434.133331,
+					"y":	386.133362,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"object3":	{
+					"x":	327.466675,
+					"y":	298.666656,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"object4":	{
+					"x":	653.866638,
+					"y":	293.333344,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"object5":	{
+					"x":	441.600006,
+					"y":	188.799988,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"object6":	{
+					"x":	540.799988,
+					"y":	180.266663,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"object7":	{
+					"x":	434.133331,
+					"y":	292.266663,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object8":	{
+					"x":	546.133362,
+					"y":	293.333344,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"wave 2":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	945.066650,
+					"y":	531.199951,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object2":	{
+					"x":	907.733337,
+					"y":	307.200012,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"object3":	{
+					"x":	929.066650,
+					"y":	52.266663,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object4":	{
+					"x":	81.066650,
+					"y":	298.666656,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"object5":	{
+					"x":	40.533325,
+					"y":	533.333313,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object6":	{
+					"x":	26.666656,
+					"y":	64,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"wave 3":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	481.066681,
+					"y":	273.066650,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object2":	{
+					"x":	477.866669,
+					"y":	349.866669,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object3":	{
+					"x":	381.866669,
+					"y":	264.533325,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object4":	{
+					"x":	574.933350,
+					"y":	274.133331,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"object5":	{
+					"x":	480,
+					"y":	186.666656,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
+			}
+		}
 	}
 }
