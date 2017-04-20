@@ -12,17 +12,19 @@
       "shapeKey": "feshHorizontal_shape",
       "blueAnimationKey": "blue_feshHorizontal_animation",
       "goldAnimationKey": "yellow_feshHorizontal_animation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale":2.0
     },
     "feshHorizontal_zoneObject":{
       "shapeKey": "feshHorizontal_zoneShape",
       "blueAnimationKey": "whiteBar",
-      "goldAnimationKey": "whiteBar"
+      "goldAnimationKey": "whiteBar",
+      "animationScale":1.0
     }
   },
   "shapes":{
     "feshHorizontal_shape": {
-      "vertices": [0,0,75,0,75,75,0,75]
+      "vertices": [0,0,50,0,50,50,0,50]
     },
     "feshHorizontal_zoneShape":{
       "vertices": [-1024,20,1024,20,1024,-20,-1024,-20]

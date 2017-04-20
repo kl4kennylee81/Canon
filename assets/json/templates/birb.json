@@ -13,7 +13,7 @@
       "blueAnimationKey": "blue_birb_animation",
       "goldAnimationKey": "yellow_birb_animation",
       "soundKey": "baseEnemySound",
-      "animationScale":1.25
+      "animationScale":2.5
     },
     "birb_zoneObject": {
       "shapeKey": "birb_zoneShape",
@@ -23,7 +23,7 @@
   },
   "shapes":{
     "birb_shape": {
-      "vertices": [0,0,75,0,75,75,0,75]
+      "vertices": [0,0,25,0,25,25,0,25]
     },
     "birb_zoneShape":{
       "vertices": [0.0, -108.0, 54.0, -93.53074360877999, 93.53074360877999, -54.0, 108.0, 0.0, 93.53074360877999, 54.0, 54.0, 93.53074360877999, 0.0, 108.0, -54.0, 93.53074360877999, -93.53074360877999, 54.0, -108.0, 0.0, -93.53074360877999, -54.0, -54.0, -93.53074360877999]

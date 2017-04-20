@@ -12,12 +12,12 @@
       "blueAnimationKey": "blue_blobo_animation",
       "goldAnimationKey": "yellow_blobo_animation",
       "soundKey": "baseEnemySound",
-      "animationScale":1.25
+      "animationScale":2.0
     }
   },
   "shapes":{
     "blobo_shape": {
-      "vertices": [0,0,100,0,100,100,0,100]
+      "vertices": [0,0,40,0,40,40,0,40]
     }
   },
   "animations":{

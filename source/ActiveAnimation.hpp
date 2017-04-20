@@ -65,7 +65,7 @@ public:
         return true;
     }
     
-    static std::shared_ptr<ActiveAnimation> alloc(float animScale) {
+    static std::shared_ptr<ActiveAnimation> alloc(float animScale=1.0f) {
         std::shared_ptr<ActiveAnimation> result = std::make_shared<ActiveAnimation>();
         return (result->init(animScale) ? result : nullptr);
     }

@@ -13,7 +13,7 @@
       "blueAnimationKey": "blue_grump_animation",
       "goldAnimationKey": "yellow_grump_animation",
       "soundKey": "baseEnemySound",
-      "animationScale": 1.25
+      "animationScale": 2.0
     },
     "grump_zoneObject": {
       "shapeKey": "grump_zoneShape",
@@ -23,7 +23,7 @@
   },
   "shapes":{
     "grump_shape": {
-      "vertices": [0,0,120,0,120,120,0,120]
+      "vertices": [0,0,60,0,60,60,0,60]
     },
     "grump_zoneShape":{
       "vertices": [30.0, 0.0, 150.0, 0.0, 210.0, 135.0, 90.0, 165.0, -30.0, 135.0]

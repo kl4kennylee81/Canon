@@ -363,9 +363,10 @@ void WaveEditorController::templateButtonListenerFunction(const std::string& nam
 std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, float y,
                                                                     std::shared_ptr<TemplateWaveEntry> templ, ElementType color)
 {
-    auto activeAnim = ActiveAnimation::alloc();
     auto objectData = _world->getObjectData(templ->getObjectKey());
     auto animData = _world->getAnimationData(objectData->getAnimationKey(color));
+    
+    auto activeAnim = ActiveAnimation::alloc(objectData->getAnimationScale());
     activeAnim->setAnimationData(animData);
     auto button = Button::alloc(activeAnim->getAnimationNode());
     button->setPosition(x, y);
@@ -386,7 +387,7 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     // TODO replace this hacky multiply by physics scale
     Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
     
-    auto activeAnim = ActiveAnimation::alloc();
+    auto activeAnim = ActiveAnimation::alloc(obj->getAnimationScale());
     auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
     activeAnim->setAnimationData(animData);
     
@@ -400,12 +401,12 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     if (isNonUniform){
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY) * activeAnim->getAnimationScale();
         return animationScale;
     } else {
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        float animationScale = std::max(scaleX,scaleY);
+        float animationScale = std::max(scaleX,scaleY) * activeAnim->getAnimationScale();
         return Vec2::Vec2(animationScale,animationScale);
     }
 
@@ -414,13 +415,13 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
 std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is in physicsCoordinates of the owner of the zone
                                                            float y, // this is in physicsCoordinates of the owner of the zone
                                                            std::string zoneKey, ElementType parentColor){
-    auto zoneAnim = ActiveAnimation::alloc();
     auto zoneD = _world->getZoneData(zoneKey);
     switch(zoneD->type){
         case ZoneType::STATIC:
         {
             auto staticZoneD =  std::dynamic_pointer_cast<StaticZoneData>(zoneD);
             auto zoneObjData = _world->getObjectData(staticZoneD->objectKey);
+            auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
             ElementType zoneElement = Element::elementDataTypeToElement(staticZoneD->elementType,parentColor);
             auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(staticAnimD);
@@ -446,6 +447,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
                 auto zoneObjData = _world->getObjectData(zEntry->objectKey);
                 ElementType zoneElement = Element::elementDataTypeToElement(zEntry->elementType,parentColor);
                 auto zEntryAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+                auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
                 zoneAnim->setAnimationData(zEntryAnimD);
                 std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
                 Vec2 zonePos = zEntry->getPosition(Vec2::Vec2(x,y),rotateZoneD->radius);
@@ -472,6 +474,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             
             auto pulseZoneD =  std::dynamic_pointer_cast<PulseZoneData>(zoneD);
             auto zoneObjData = _world->getObjectData(pulseZoneD->objectKey);
+            auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
             ElementType zoneElement = Element::elementDataTypeToElement(pulseZoneD->elementType,parentColor);
             auto pulseAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(pulseAnimD);
