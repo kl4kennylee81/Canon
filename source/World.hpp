@@ -141,6 +141,8 @@ public:
     
     void presetPlayerCharacters();
 	
+    void copyWave(std::string copiedWaveKey, std::string newWaveKey);
+    
 };
 
 #endif /* World_hpp */

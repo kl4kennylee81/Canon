@@ -16,7 +16,8 @@
                 "menuKey": "levelSelect",
                 "menuBackgroundKey": "levelSelectBgFlat",
                 "UIEntries": [
-                    "levelSelectTextImg"
+                    "levelSelectTextImg",
+                    "backToLevelEditor"
                 ]
             },
             "gameScreen": {

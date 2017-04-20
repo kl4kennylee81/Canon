@@ -69,6 +69,9 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
 }
 
 void GameState::dispose(){
+    if (_scene->getChildByName("gameplay") != nullptr){
+        detachFromScene();
+    }
     _reset = false;
     _scene = nullptr;
     _gameplayNode = nullptr;
@@ -80,7 +83,7 @@ void GameState::dispose(){
 }
 
 void GameState::attachToScene(){
-    _scene->addChild(_gameplayNode);
+    _scene->addChildWithName(_gameplayNode, "gameplay");
 }
 
 void GameState::detachFromScene(){

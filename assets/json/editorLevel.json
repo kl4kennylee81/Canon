@@ -1,10 +1,14 @@
 {
-	"counter":	5,
+	"counter":	3,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 5",
+				"waveKey":	"wave 2",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 3",
 				"time":	180
 			}
 		},
@@ -12,48 +16,38 @@
 		}
 	},
 	"waves":	{
-		"wave 5":	{
+		"wave 2":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	804.266663,
-					"y":	283.733337,
+					"x":	46.933350,
+					"y":	359.466675,
 					"element":	"BLUE",
-					"aiKey":	"horizontalLeft",
-					"templateKey":	"feshVertical"
+					"aiKey":	"static",
+					"templateKey":	"grump"
 				},
 				"object2":	{
-					"x":	217.600006,
-					"y":	291.200012,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"blobo"
-				},
-				"object3":	{
-					"x":	181.333313,
-					"y":	291.200012,
+					"x":	46.933350,
+					"y":	441.599976,
 					"element":	"BLUE",
 					"aiKey":	"homing",
-					"templateKey":	"birb"
-				},
-				"object4":	{
-					"x":	856.533325,
-					"y":	284.799988,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
-				},
-				"object5":	{
-					"x":	856.533325,
-					"y":	424.533356,
-					"element":	"GOLD",
-					"aiKey":	"horizontalLeft",
 					"templateKey":	"blobo"
+				}
+			}
+		},
+		"wave 3":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	46.933350,
+					"y":	359.466675,
+					"element":	"BLUE",
+					"aiKey":	"static",
+					"templateKey":	"grump"
 				},
-				"object6":	{
-					"x":	855.466675,
-					"y":	141.866669,
-					"element":	"GOLD",
-					"aiKey":	"horizontalLeft",
+				"object2":	{
+					"x":	46.933350,
+					"y":	441.599976,
+					"element":	"BLUE",
+					"aiKey":	"homing",
 					"templateKey":	"blobo"
 				}
 			}

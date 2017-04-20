@@ -76,6 +76,13 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 		}
 		break;
 	}
+    case LevelEditorState::COPY_WAVE: {
+        copyWave(_copyIndex);
+        updateWaveNodes();
+        saveLevel();
+        _state = LevelEditorState::MAIN;
+        break;
+    }
 	}
 }
 
@@ -177,6 +184,7 @@ void LevelEditorController::setSceneGraph() {
 
     _levelEditNode->addChildWithName(Node::alloc(), "waves");
     _levelEditNode->addChildWithName(Node::alloc(), "delete");
+    _levelEditNode->addChildWithName(Node::alloc(), "copy");
     
 }
 
@@ -185,6 +193,16 @@ void LevelEditorController::addNewWave() {
 	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
+}
+
+void LevelEditorController::copyWave(int index) {
+    std::string newWaveName = "wave "+ std::to_string(increment());
+    std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(newWaveName, 180);
+    _world->_waveData[newWaveName] = WaveData::alloc();
+    _levelData->addLevelEntry(entry);
+    
+    std::string copiedWaveName = _levelData->getWaveKey(index);
+    _world->copyWave(copiedWaveName, newWaveName);
 }
 
 
@@ -196,6 +214,15 @@ void LevelEditorController::deleteButtonListenerFunction(const std::string& name
         _state = LevelEditorState::REMOVE;
     }
 
+}
+
+void LevelEditorController::copyButtonListenerFunction(const std::string &name, bool down, int index) {
+    auto copyNode = _levelEditNode->getChildByName("copy");
+    auto buttonNode = std::static_pointer_cast<Button>(copyNode->getChildByTag(index));
+    if (buttonNode->isDown()) {
+        _copyIndex = index;
+        _state = LevelEditorState::COPY_WAVE;
+    }
 }
 
 void LevelEditorController::waveButtonListenerFunction(const std::string& name, bool down, int index) {
@@ -214,6 +241,8 @@ void LevelEditorController::updateWaveNodes() {
 	deactivateAndClear(waveNode);
     auto deleteNode = _levelEditNode->getChildByName("delete");
     deactivateAndClear(deleteNode);
+    auto copyNode = _levelEditNode->getChildByName("copy");
+    deactivateAndClear(copyNode);
     
 	for (int i = 0; i < _levelData->getNumberWaves(); i++) {
 		auto waveButton = Util::makeBoxButton(200 + 60 * i, 200, 45, 30, Color4::BLACK, Color4::PAPYRUS);
@@ -232,6 +261,14 @@ void LevelEditorController::updateWaveNodes() {
         );
         deleteButton->activate(getUid());
         
+        auto copyButton = Util::makeBoxButton(200+60 * i, 120, 25, 25, Color4::YELLOW, Color4::PAPYRUS);
+        copyButton->setListener(
+            [=](const std::string& name, bool down) {
+                copyButtonListenerFunction(name ,down, i);
+            }
+        );
+        copyButton->activate(getUid());
+        
         auto label = Label::alloc(_levelData->getWaveKey(i), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.17);
         label->setPosition(200 + 60 * i, 230);
@@ -244,6 +281,7 @@ void LevelEditorController::updateWaveNodes() {
         
 		waveNode->addChildWithTag(waveButton, i);
         deleteNode->addChildWithTag(deleteButton, i);
+        copyNode->addChildWithTag(copyButton, i);
         waveNode->addChild(label);
         waveNode->addChild(timeLabel);
 	}
