@@ -1,38 +1,38 @@
 {
   "templates":  {
-    "fesh": {
-      "name": "fesh",
-      "aiKeys":  ["homing"],
-      "zoneKeys": ["fesh_zone"],
-      "objectKey":  "fesh_object"
+    "feshHorizontal": {
+      "name": "feshHorizontal",
+      "aiKeys":  ["vertical"],
+      "zoneKeys": ["feshHorizontal_zone"],
+      "objectKey":  "feshHorizontal_object"
     }
   },
   "objects":{
-    "fesh_object":{
-      "shapeKey": "fesh_shape",
-      "blueAnimationKey": "blue_fesh_animation",
-      "goldAnimationKey": "yellow_fesh_animation",
+    "feshHorizontal_object":{
+      "shapeKey": "feshHorizontal_shape",
+      "blueAnimationKey": "blue_feshHorizontal_animation",
+      "goldAnimationKey": "yellow_feshHorizontal_animation",
       "soundKey": "baseEnemySound"
     },
-    "fesh_zoneObject":{
-      "shapeKey": "fesh_zoneShape",
+    "feshHorizontal_zoneObject":{
+      "shapeKey": "feshHorizontal_zoneShape",
       "blueAnimationKey": "whiteBar",
       "goldAnimationKey": "whiteBar"
     }
   },
   "shapes":{
-    "fesh_shape": {
+    "feshHorizontal_shape": {
       "vertices": [0,0,75,0,75,75,0,75]
     },
-    "fesh_zoneShape":{
-      "vertices": [-20,400,20,400,20,-400,-20,-400]
+    "feshHorizontal_zoneShape":{
+      "vertices": [-1024,20,1024,20,1024,-20,-1024,-20]
     }
   },
   "zones":{
-    "fesh_zone": {
+    "feshHorizontal_zone": {
       "type": "PULSE",
-      "objectKey": "fesh_zoneObject",
-      "minSizeX": 0.8,
+      "objectKey": "feshHorizontal_zoneObject",
+      "minSizeX": 1.0,
       "minSizeY": 1.0,
       "minTime": 60,
       "maxSizeX": 1.0,
@@ -43,7 +43,7 @@
     }
   },
   "animations":{
-    "blue_fesh_animation": {
+    "blue_feshHorizontal_animation": {
       "texture": "./textures/models/enemy_models/fesh/fesh_blue.png",
       "rows": 5,
       "cols": 9,
@@ -83,7 +83,7 @@
           }
       }
     },
-    "yellow_fesh_animation": {
+    "yellow_feshHorizontal_animation": {
       "texture": "./textures/models/enemy_models/fesh/fesh_yellow.png",
       "rows": 5,
       "cols": 9,

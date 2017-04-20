@@ -1,10 +1,10 @@
 {
-	"counter":	2,
-	"templates":	["birb", "blobo", "grump", "fesh"],
+	"counter":	3,
+	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 2",
+				"waveKey":	"wave 3",
 				"time":	180
 			}
 		},
@@ -12,28 +12,21 @@
 		}
 	},
 	"waves":	{
-		"wave 2":	{
+		"wave 3":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	528,
-					"y":	253.866669,
+					"x":	545.066650,
+					"y":	332.800018,
 					"element":	"BLUE",
-					"aiKey":	"horizontal",
-					"templateKey":	"blobo"
+					"aiKey":	"vertical",
+					"templateKey":	"feshHorizontal"
 				},
 				"object2":	{
-					"x":	388.266663,
-					"y":	273.066650,
+					"x":	677.333313,
+					"y":	171.733337,
 					"element":	"BLUE",
-					"aiKey":	"static",
-					"templateKey":	"grump"
-				},
-				"object3":	{
-					"x":	812.799988,
-					"y":	440.533325,
-					"element":	"BLUE",
-					"aiKey":	"homing",
-					"templateKey":	"fesh"
+					"aiKey":	"horizontal",
+					"templateKey":	"feshVertical"
 				}
 			}
 		}
