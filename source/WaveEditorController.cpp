@@ -479,7 +479,8 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             Vec2 zonePos = pulseZoneD->getPosition(Vec2::Vec2(x,y));
             Util::physicsToSceneCoords(zonePos, zonePos);
             zoneNode->setPosition(zonePos);
-            zoneNode->setScale(getAnimationScale(pulseZoneD->objectKey,pulseAnimD->nonUniformScale)*pulseZoneD->minSize);
+            Vec2 animScale = getAnimationScale(pulseZoneD->objectKey,pulseAnimD->nonUniformScale);
+            zoneNode->setScale(animScale*pulseZoneD->minSize);
             
             // set the color
             if (zoneElement == ElementType::BLUE) {
@@ -564,7 +565,7 @@ void WaveEditorController::updateWaveEntryNodes(){
         );
         button->activate(getUid());
         entryNode->addChildWithTag(button, i,1);
-        entryNode->addChild(label);
+        entryNode->addChild(label,2);
     }
 }
 
