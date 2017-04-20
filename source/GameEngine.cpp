@@ -380,8 +380,6 @@ void GameEngine::update(float timestep) {
     // update the touch input
     InputController::update();
     
-    std::cout << timestep << std::endl;
-    
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
         cleanPreviousMode();
