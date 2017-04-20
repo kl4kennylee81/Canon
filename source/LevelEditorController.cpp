@@ -89,10 +89,22 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 void LevelEditorController::loadLevel(std::string file){
     _levelData = LevelData::alloc();
     _world->setLevelData(_levelData);
+
+	std::string delim = "";
+	std::string dirprefix = "";
+
+#ifdef _WIN32
+	delim = "\\";
+	dirprefix = "";
+#elif __APPLE__
+	delim = "/";
+	dirprefix = delim;
+#endif
     
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string canonDir = Util::join(vec,vec.size()-2,'/');
-    auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/"+file);
+    std::vector<std::string> vec = Util::split(__FILE__, delim);
+    std::string canonDir = Util::join(vec,vec.size()-2, delim);
+
+    auto reader = JsonReader::alloc(dirprefix+canonDir+delim+"assets"+delim+"json"+delim+file);
     if(reader == nullptr) {
         _waveEditorController->setTemplates({"homing","horizontal","vertical"});
         return;
