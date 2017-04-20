@@ -16,6 +16,7 @@
 #include "UIData.hpp"
 #include "UIDataLoader.hpp"
 #include "Util.hpp"
+#include <memory>
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -52,7 +53,26 @@ void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, 
 }
 
 void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+#ifdef _WIN32
+	WIN32_FIND_DATA file;
+	HANDLE hndl = FindFirstFile((templateDir + "*").c_str(), &file);
 
+	if (hndl != INVALID_HANDLE_VALUE) {
+		do {
+			std::string filename = file.cFileName;
+			if (file.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+				// directory logic
+			}
+			else {
+				std::string templatePath = TEMPLATE_PATH;
+				templatePath.append(filename);
+				assets->loadDirectory(templatePath);
+			}
+		} while (FindNextFile(hndl, &file));	
+	}
+	FindClose(hndl);
+	
+#endif
 }
 
 void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
