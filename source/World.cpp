@@ -283,3 +283,7 @@ void World::presetPlayerCharacters(){
     return;
 }
 
+void World::copyWave(std::string copiedWaveKey, std::string newWaveKey){
+    _waveData.at(newWaveKey) = _waveData.at(copiedWaveKey);
+}
+
