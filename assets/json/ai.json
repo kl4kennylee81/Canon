@@ -16,7 +16,17 @@
     },
     "vertical": {
       "type": "PATH",
-      "pathType": "VERTICAL"
+      "pathType": "HORIZONTAL"
+    },
+    "verticalUp": {
+      "type": "PATH",
+      "pathType": "VERTICAL",
+      "direction": "UP"
+    },
+    "verticalDown": {
+      "type": "PATH",
+      "pathType": "VERTICAL",
+      "direction": "DOWN"
     },
     "static": {
       "type": "STATIC"

@@ -2,7 +2,7 @@
   "templates":  {
     "feshVertical": {
       "name": "feshVertical",
-      "aiKeys":  ["horizontal"],
+      "aiKeys":  ["horizontalLeft","horizontalRight","horizontal"],
       "zoneKeys": ["feshVertical_zone"],
       "objectKey":  "feshVertical_object"
     }
