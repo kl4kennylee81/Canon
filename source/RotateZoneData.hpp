@@ -19,19 +19,25 @@ public:
     
     std::string objectKey;
     float startingPosition;
-    Element element;
+    ElementDataType elementType;
     
-    bool init(std::string o, float p, Element e) {
+    bool init(std::string o, float p, ElementDataType e) {
         this->objectKey = o;
         this->startingPosition = p;
-        this->element = e;
+        this->elementType = e;
         return true;
     }
     
-    static std::shared_ptr<ZoneEntry> alloc(std::string objectKey, float startingPosition, Element element) {
+    static std::shared_ptr<ZoneEntry> alloc(std::string objectKey, float startingPosition, ElementDataType element) {
         std::shared_ptr<ZoneEntry> result = std::make_shared<ZoneEntry>();
         return (result->init(objectKey,startingPosition,element) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+    cugl::Vec2 getPosition(cugl::Vec2 objPos,float radius);
+    
+    float getAngle();
 };
 
 class RotateZoneData : public ZoneData {
@@ -55,9 +61,9 @@ public:
         return (result->init(radius,speed) ? result : nullptr);
     }
     
-    virtual std::string serialize();
-    
-    virtual bool preload(const std::string& file);
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     

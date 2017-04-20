@@ -26,7 +26,9 @@ public:
 
     MoveController();
     
-	virtual void attach(std::shared_ptr<Observer> obs);
+    ~MoveController(){};
+    
+	virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 

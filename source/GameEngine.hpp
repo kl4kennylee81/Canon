@@ -8,11 +8,27 @@
 
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
+
+#ifdef _WIN32
+#define CURRENT_OS "windows"
+#elif __APPLE__
+#define CURRENT_OS "apple"
+#include <dirent.h>
+#endif
+
 #include <cugl/cugl.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <vector>
+#include <string>
 #include "GameplayController.hpp"
 #include "LoadController.hpp"
-#include "MenuGraph.hpp"
+#include "MenuController.hpp"
 #include "GenericAssetManager.hpp"
+#include "LevelEditorController.hpp"
+
+#define TEMPLATE_PATH "json/templates/"
+
 
 /**
  * Class for a simple Hello World style application
@@ -32,13 +48,22 @@ protected:
 
 
     // Player modes
+    
+    /** the load controller */
+    std::shared_ptr<LoadController> _loading;
+    
+    /** The menu controller */
+    std::shared_ptr<MenuController> _menu;
+    
+    /** menu graph **/
+    std::shared_ptr<MenuGraph> _menuGraph;
+    
     /** The primary controller for the game world */
     std::shared_ptr<GameplayController> _gameplay;
     
-    std::shared_ptr<LoadController> _loading;
+    /** level editor controller */
+    std::shared_ptr<LevelEditorController> _levelEditor;
     
-    MenuGraph _menuGraph;
-
 public:
 	/** Represents whether we are using touch screen or not */
 	static bool _touch;
@@ -89,6 +114,31 @@ public:
     virtual void onShutdown() override;
     
     /**
+     * The method called when the application is suspended and put in the background.
+     *
+     * When this method is called, you should store any state that you do not
+     * want to be lost.  There is no guarantee that an application will return
+     * from the background; it may be terminated instead.
+     *
+     * If you are using audio, it is critical that you pause it on suspension.
+     * Otherwise, the audio thread may persist while the application is in
+     * the background.
+     */
+    virtual void onSuspend() override;
+    
+    /**
+     * The method called when the application resumes and put in the foreground.
+     *
+     * If you saved any state before going into the background, now is the time
+     * to restore it. This guarantees that the application looks the same as
+     * when it was suspended.
+     *
+     * If you are using audio, you should use this method to resume any audio
+     * paused before app suspension.
+     */
+    virtual void onResume()  override;
+    
+    /**
      * The method called to update the application data.
      *
      * This is your core loop and should be replaced with your custom implementation.
@@ -111,6 +161,16 @@ public:
      * at all. The default implmentation does nothing.
      */
     virtual void draw() override;
+    
+    void cleanPreviousMode();
+    
+    void initializeNextMode();
+    
+    static void attachLoaders(std::shared_ptr<GenericAssetManager> assets);
+    
+    std::shared_ptr<LevelData> getNextLevelData();
+    
+    std::shared_ptr<World> getNextWorld();
     
 };
 

@@ -1,0 +1,139 @@
+{
+  "templates":  {
+    "grump": {
+      "name": "grump",
+      "objectKey":  "grump_object",
+      "aiKeys":  ["static"],
+      "zoneKeys": ["grump_zone"]
+    }
+  },
+  "objects":{
+    "grump_object":{
+      "shapeKey": "grump_shape",
+      "blueAnimationKey": "blue_grump_animation",
+      "goldAnimationKey": "yellow_grump_animation",
+      "soundKey": "baseEnemySound",
+      "animationScale": 2.0
+    },
+    "grump_zoneObject": {
+      "shapeKey": "grump_zoneShape",
+      "blueAnimationKey": "whiteSector",
+      "goldAnimationKey": "whiteSector"
+    }
+  },
+  "shapes":{
+    "grump_shape": {
+      "vertices": [0,0,60,0,60,60,0,60]
+    },
+    "grump_zoneShape":{
+      "vertices": [30.0, 0.0, 150.0, 0.0, 210.0, 135.0, 90.0, 165.0, -30.0, 135.0]
+    }
+  },
+  "zones":{
+    "grump_zone": {
+      "type": "ROTATE",
+      "zoneEntries": {
+        "zone1": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0,
+          "element": "MATCH"
+        },
+        "zone2": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0.33,
+          "element": "MATCH"
+        },
+        "zone3": {
+          "objectKey": "grump_zoneObject",
+          "startingPosition": 0.67,
+          "element": "MATCH"
+        }
+      },
+      "radius": 180,
+      "speed": 1.0
+    }
+  },
+  "animations":{
+    "blue_grump_animation": {
+      "texture": "./textures/models/enemy_models/grump/grump_blue.png",
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 27,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [10]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "active": "spawn",
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+      }
+    },
+    "yellow_grump_animation": {
+      "texture": "./textures/models/enemy_models/grump/grump_yellow.png",
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 27,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [10]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "active": "spawn",
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+      }
+    }
+  }
+}
+

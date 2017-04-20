@@ -39,6 +39,10 @@ public:
     _node(nullptr),
     _isPlayer(false){}
     
+    ~GameObject(){ dispose(); }
+    
+    void dispose();
+    
     bool init();
     
     bool init(std::shared_ptr<cugl::Node> node);

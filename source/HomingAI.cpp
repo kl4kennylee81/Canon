@@ -5,7 +5,7 @@
 using namespace cugl;
 
 void HomingAI::update(std::shared_ptr<GameState> state) {
-    Element e = _object->getPhysicsComponent()->getElementType();
+    ElementType e = _object->getPhysicsComponent()->getElementType();
     
     // HACK we should check the actual active player list
     // and then iterate through to find closest one

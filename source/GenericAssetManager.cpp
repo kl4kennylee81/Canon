@@ -7,9 +7,12 @@
 #include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
+#include "TemplateWaveEntry.hpp"
 #include "SaveGameData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
+#include "UIData.hpp"
+#include "SoundData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -211,6 +214,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;
 		}
+		else if (child->key() == "UIData") {
+			success = readCategory(typeid(UIData).hash_code(), child) && success;
+		}
 		else if (child->key() == "SaveGameData") {
 			success = readCategory(typeid(SaveGameData).hash_code(), child) && success;
 		}
@@ -219,6 +225,12 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
         else if (child->key() == "zones"){
             success = readCategory(typeid(ZoneData).hash_code(), child) && success;
+        }
+        else if (child->key() == "sounds"){
+            success = readCategory(typeid(SoundData).hash_code(), child) && success;
+        }
+        else if (child->key() == "templates") {
+            success = readCategory(typeid(TemplateWaveEntry).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

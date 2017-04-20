@@ -55,10 +55,22 @@ public:
     
     void addLevelEntry(std::shared_ptr<LevelEntry> entry);
     
+    void updateEntryTime(int index, float time);
+    
     void addPlayerChars(std::shared_ptr<WaveEntry> entry);
     
     std::vector<std::shared_ptr<WaveEntry>>& getPlayerChars() {
         return _playerChars;
+    }
+    
+    void removeWave(int index){
+        std::vector<std::shared_ptr<LevelEntry>> newEntries;
+        for(int i = 0; i < _levelEntries.size(); i++){
+            if(i != index){
+                newEntries.push_back(_levelEntries.at(i));
+            }
+        }
+        _levelEntries = newEntries;
     }
     
     float getTime(int index);
@@ -66,14 +78,16 @@ public:
     std::string getWaveKey(int index);
     
     size_t getNumberWaves();
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
-    virtual std::string serialize();
+    virtual bool preload(const std::string& file) override;
     
-    virtual bool preload(const std::string& file);
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
-    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    virtual bool materialize() override;
     
-    virtual bool materialize();
+    bool isValid();
 };
 
 #endif /* LevelData_hpp */

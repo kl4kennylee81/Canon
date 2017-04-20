@@ -30,7 +30,9 @@ protected:
 public:
     ZoneController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~ZoneController(){ dispose(); }
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -42,6 +44,8 @@ public:
     virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep);
+    
+    void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state,std::shared_ptr<World> world) {
         this->state = state;
@@ -62,11 +66,11 @@ public:
     
     void addToMap(GameObject* obj, std::vector<std::shared_ptr<ZoneData>> datas);
     
-    void staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, cugl::Vec2 objPos);
+    void staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<StaticZoneData> data, GameObject* gameObj);
     
-    void rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<RotateZoneData> data, cugl::Vec2 objPos);
+    void rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<RotateZoneData> data, GameObject* gameObj);
     
-    void pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, cugl::Vec2 objPos);
+    void pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, GameObject* gameObj);
     
     void handleObjectSpawn(GameObject* obj);
     

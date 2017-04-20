@@ -4,8 +4,23 @@
 
 using namespace cugl;
 
-std::string CompositeAIData::serialize() {
-	return "";
+std::shared_ptr<JsonValue> CompositeAIData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	data->appendChild("type", JsonValue::alloc("COMPOSITE"));
+	data->appendChild("startAI", JsonValue::alloc(_startKey));
+	std::shared_ptr<JsonValue> conditions = JsonValue::allocArray();
+
+	for (int i = 0; i < getConditions().size(); i++)
+	{
+		std::shared_ptr<JsonValue> cond = JsonValue::allocObject();
+		cond->appendChild("condition", JsonValue::alloc(getConditions().at(i)->getJsonString()));
+		cond->appendChild("aiKey", JsonValue::alloc(_aiKeys.at(i)));
+		conditions->appendChild(cond);
+	}
+
+	data->appendChild("conditions", conditions);
+	return data;
 }
 
 bool CompositeAIData::preload(const std::string& file) {

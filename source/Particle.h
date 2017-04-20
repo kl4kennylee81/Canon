@@ -12,8 +12,10 @@
 #ifndef __MD_PARTICLE_H__
 #define __MD_PARTICLE_H__
 
+#include "ParticleData.hpp"
 #include "cugl/cugl.h"
 #include <set>
+#include <cmath>
 
 using namespace cugl;
 
@@ -24,84 +26,50 @@ using namespace cugl;
 #pragma mark Particle
 
 /**
- * This class represents a simple particle
- *
- * Particles only contain position information.  They do not have any
- * drawing information. We use a single ParticleNode to draw a collection
- * of Particles.
- *
- * The Particle class implements the reset() method, making it compatible
- * with the FreeList template.
+ * A general particle class whose data must be initialized by ParticleData.
  */
 class Particle {
 private:
-    /** The particle position */
-    Vec2 _position;
-    /** The particle velocity (not directly accessible) */
-    Vec2 _velocity;
-    /** The particle angle of movement (according to initial position) */
-    float _trajectory;
-    /** Whether or not the particle is visible */
-    bool _visible;
+    /** These are fields that you do not set on initialization. */
+    
+    /** Internal clock for the particle */
+    int _time_alive;
+    Color4f _color_step;
+    Color4f _current_color;
+    Color4f _alpha_step;
+    
+    /**
+     * Returns a Color4f object that can be added to the current color at each step
+     */
+    Color4f findColorStep();
+    Color4f findAlphaStep();
     
 public:
-    /** Construct a particle with default values */
-    Particle() : _trajectory(0), _visible(false) {}
+    /** Holds all properties of the particle that are set by a data file */
+    ParticleData _pd;
+    
+    Particle() {}
+    
+    bool init(ParticleData pd) {
+        _pd = pd;
+        _time_alive = 0;
+        _color_step = findColorStep();
+        _current_color = _pd.start_color;
+        _alpha_step = findAlphaStep();
+        return true;
+    }
     
     /**
-     * Returns the position of this particle
-     *
-     * @return the position of this particle
+     * Performs one step of frame of the particle.
      */
-    Vec2 getPosition() const { return _position; }
+    void move();
     
-    /**
-     * Sets the position of this particle
-     *
-     * @param pos   The position of this particle
-     */
-    void setPosition(Vec2 pos) { _position = pos; }
-    
-    /**
-     * Returns the trajectory angle of this particle
-     *
-     * The particle velocity is (PARTICLE_SPEED,angle) in polar-coordinates.
-     *
-     * @return the trajectory angle of this particle
-     */
-    float getTrajectory() const { return _trajectory; }
-    
-    /**
-     * Sets the trajectory angle of this particle
-     *
-     * When the angle is set, the particle will change its velocity
-     * to (PARTICLE_SPEED,angle) in polar-coordinates.
-     *
-     * @param angle  the trajectory angle of this particle
-     */
-    void setTrajectory(float angle);
-    
-    /**
-     * Move the particle one frame, adding the velocity to the position.
-     */
-    void move() { _position += _velocity; }
-    
-    /**
-     * Returns true if this particle is visible
-     *
-     * @return true if this particle is visible
-     */
-    bool isVisible() const { return _visible; }
-    
-    /**
-     * Sets whether this particle is visible
-     *
-     * @param flag  Whether this particle is visible
-     */
-    void setVisible(bool visible) { _visible = visible; }
-    
-    /** Resets a previously allocated particle */
+    /** Must have this method to be compatible with a FreeList */
     void reset();
+    
+    Color4f getCurrentColor() { return _current_color; }
+    
+    bool isActive();
 };
 
 

@@ -7,8 +7,12 @@
 //
 
 #include "GameplayController.hpp"
+#include "MenuEvent.hpp"
+#include "FinishEvent.hpp"
 
 using namespace cugl;
+
+#define RUSTLING_LEAVES "./sounds/rustlingleaves.mp3"
 
 GameplayController::GameplayController() :
 BaseController(),
@@ -19,10 +23,16 @@ _collisionController(nullptr),
 _aiController(nullptr),
 _switchController(nullptr),
 _levelController(nullptr),
-_clockController(nullptr)
+_clockController(nullptr),
+_finishController(nullptr),
+_soundController(nullptr)
 {}
 
-void GameplayController::attach(std::shared_ptr<Observer> obs) {
+GameplayController::~GameplayController(){
+    dispose();
+}
+
+void GameplayController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void GameplayController::detach(Observer* obs) {
@@ -31,20 +41,72 @@ void GameplayController::detach(Observer* obs) {
 void GameplayController::notify(Event* e) {
     BaseController::notify(e);
 }
-void GameplayController::eventUpdate(Event* e) {}
+void GameplayController::eventUpdate(Event* e) {
+	switch (e->_eventType) {
+		case Event::EventType::MENU:
+        {
+			MenuEvent* menuEvent = static_cast<MenuEvent*>(e);
+
+			switch (menuEvent->_menuEventType) {
+				case MenuEvent::MenuEventType::PAUSEGAME:
+                {
+					PauseGameEvent* pg = static_cast<PauseGameEvent*>(menuEvent);
+                    _paused = pg->pause;
+                    break;
+                }
+                case MenuEvent::MenuEventType::RESETGAME:
+                {
+                    _gameState->toggleReset();
+                    break;
+                }
+
+			}
+			break;
+        }
+        case Event::EventType::FINISH:
+        {
+            FinishEvent* finishEvent = static_cast<FinishEvent*>(e);
+            switch(finishEvent->_finishType){
+                case FinishEvent::FinishEventType::GAME_WON:
+                {
+                    // route it onward to the observers of the gameplay controller
+                    // which is the menu controller
+                    this->notify(e);
+                    _paused = true;
+                    break;
+                }
+                case FinishEvent::FinishEventType::GAME_LOST:
+                {
+                    // route it onward to the observers of the gameplay controller
+                    // which is the menu controller
+                    this->notify(e);
+                    _paused = true;
+                    break;
+                }
+            }
+            break;
+        }
+	}
+}
 
 void GameplayController::update(float timestep) {
+
     // TODO temporary rest until we have a retry screen
-    if (_gameState->reset){
-        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager());
-        init(_levelController->getWorld());
-        _gameState->reset = false;
+    if (_gameState->getReset()){
+        // repopulate the randomly generated level
+        _levelController->getWorld()->init(_levelController->getWorld()->getAssetManager(),_levelController->getWorld()->getLevelData());
+        std::shared_ptr<Scene> s = _gameState->getScene();
+        std::shared_ptr<World> w = _levelController->getWorld();
+        dispose();
+        init(s,w);
         return;
     }
+    // TODO hacky way to pause the game
+	if (_paused) return;
     
     _clockController->update(timestep);
     _levelController->update(timestep, _gameState);
-    _spawnController->update(timestep);
+    _spawnController->update(timestep, _gameState);
     _switchController->update(timestep, _gameState);
     _pathController->update(timestep, _gameState);
     _moveController->update(timestep, _gameState);
@@ -53,7 +115,8 @@ void GameplayController::update(float timestep) {
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
     _particleController->update(timestep, _gameState);
-
+    _finishController->update(timestep, _gameState);
+    _soundController->update(timestep, _gameState);
 }
 
 /**
@@ -65,9 +128,17 @@ void GameplayController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
     _gameState->draw(_batch);
 }
 
+void GameplayController::activate(){
+    _gameState->attachToScene();
+}
 
-bool GameplayController::init(std::shared_ptr<World> levelWorld) {
-	_gameState = GameState::alloc(levelWorld->getAssetManager());
+void GameplayController::deactivate(){
+    _gameState->detachFromScene();
+}
+
+
+bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld) {
+	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
 	_pathController = PathController::alloc(_gameState);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
@@ -79,35 +150,78 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
     _particleController = ParticleController::alloc();
+    _finishController = FinishController::alloc();
+    _soundController = SoundController::alloc(levelWorld);
 
-	_pathController->attach(_moveController);
-    _pathController->attach(_switchController);
-    _pathController->attach(_animationController);
-    _pathController->attach(_clockController);
+	_pathController->attach(_moveController.get());
+    _pathController->attach(_switchController.get());
+    _pathController->attach(_animationController.get());
+    _pathController->attach(_clockController.get());
+    _pathController->attach(_soundController.get());
     
-    _levelController->attach(_collisionController);
-    _levelController->attach(_animationController);
-    _levelController->attach(_spawnController);
-	_levelController->attach(_aiController);
-    _levelController->attach(_zoneController);
+    _levelController->attach(_collisionController.get());
+    _levelController->attach(_animationController.get());
+    _levelController->attach(_spawnController.get());
+	_levelController->attach(_aiController.get());
+    _levelController->attach(_zoneController.get());
+    _levelController->attach(_finishController.get());
+    _levelController->attach(_soundController.get());
     
-	_moveController->attach(_switchController);
-    _moveController->attach(_pathController);
-    _moveController->attach(_animationController);
+	_moveController->attach(_switchController.get());
+    _moveController->attach(_pathController.get());
+    _moveController->attach(_animationController.get());
 
-    _collisionController->attach(_animationController);
-    _collisionController->attach(_zoneController);
+    _collisionController->attach(_animationController.get());
+    _collisionController->attach(_zoneController.get());
+    _collisionController->attach(_aiController.get());
+    _collisionController->attach(_soundController.get());
     
-    _spawnController->attach(_collisionController);
-    _spawnController->attach(_animationController);
-    _spawnController->attach(_switchController);
-    _spawnController->attach(_aiController);
-    _spawnController->attach(_zoneController);
+    _spawnController->attach(_collisionController.get());
+    _spawnController->attach(_animationController.get());
+    _spawnController->attach(_switchController.get());
+    _spawnController->attach(_aiController.get());
+    _spawnController->attach(_zoneController.get());
+    _spawnController->attach(_soundController.get());
+    _spawnController->attach(_pathController.get());
     
-    _switchController->attach(_animationController);
+    _switchController->attach(_animationController.get());
     
-    _zoneController->attach(_collisionController);
-    _zoneController->attach(_animationController);
+    _zoneController->attach(_collisionController.get());
+    _zoneController->attach(_animationController.get());
+    
+    _animationController->attach(_finishController.get());
+    
+    // attach the gameplayController to the finishController
+    _finishController->attach(this);
+    
+	_paused = false;
+
+    activate();
+    
+    AudioEngine::get()->playMusic(levelWorld->getAssetManager()->get<Music>("rustling_leaves"),true);
     
 	return true;
+}
+
+void GameplayController::dispose(){
+    _levelController = nullptr;
+    _spawnController = nullptr;
+    _switchController = nullptr;
+    _pathController = nullptr;
+    _moveController = nullptr;
+    _aiController = nullptr;
+    _collisionController = nullptr;
+    _animationController = nullptr;
+    _zoneController = nullptr;
+    _soundController = nullptr;
+
+    _gameState = nullptr;
+}
+
+std::shared_ptr<LevelData> GameplayController::getCurrentLevel(){
+    return _levelController->getWorld()->getLevelData();
+}
+
+std::shared_ptr<World> GameplayController::getWorld(){
+    return _levelController->getWorld();
 }

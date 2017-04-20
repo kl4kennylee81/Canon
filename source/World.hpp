@@ -19,8 +19,10 @@
 #include "WaveData.hpp"
 #include "LevelData.hpp"
 #include "ZoneData.hpp"
+#include "SoundData.hpp"
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
+#include "TemplateWaveEntry.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -39,7 +41,8 @@ protected:
     
     /** The asset manager for this game world. */
     std::shared_ptr<GenericAssetManager> _assets;
-    
+
+public:
     /** if this is a sandbox prepopulated instance */
     bool _isSandbox;
     
@@ -51,24 +54,46 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
-
-public:
+    std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
+    std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
     
+    std::unordered_set<std::string> _tempKeys;
+
     World();
     
     ~World();
     
-    virtual bool init(){
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets){
+        _assets = assets;
         return true;
     }
 
-    virtual bool init(std::shared_ptr<GenericAssetManager> assets);
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets, std::string levelName);
     
     virtual bool init(std::shared_ptr<GenericAssetManager> assets, std::shared_ptr<LevelData> levelData){
         _assets = assets;
         _levelData = levelData;
         return true;
     }
+
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
+		std::shared_ptr<World> result = std::make_shared<World>();
+		return (result->init(assets) ? result : nullptr);
+	}
+
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::string levelName) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(assets,levelName) ? result : nullptr);
+    }
+    
+    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {
+        std::shared_ptr<World> result = std::make_shared<World>();
+        return (result->init(assets,levelData) ? result : nullptr);
+    }
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::string levelName);
+    
+    std::string serialize(std::string levelName);
     
     std::shared_ptr<GenericAssetManager> getAssetManager();
     
@@ -79,41 +104,45 @@ public:
     std::shared_ptr<PathData> getPathData(std::string pathKey);
     
     std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
-
+    
     std::shared_ptr<WaveData> getWaveData(std::string waveKey);
     
     std::shared_ptr<AIData> getAIData(std::string aiKey);
     
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
-	static std::shared_ptr<World> alloc() {
-		std::shared_ptr<World> result = std::make_shared<World>();
-		return (result->init() ? result : nullptr);
-	}
-
-    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets) {
-        std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(assets) ? result : nullptr);
-    }
+    std::shared_ptr<SoundData> getSoundData(std::string soundKey);
     
-    static std::shared_ptr<World> alloc(std::shared_ptr<GenericAssetManager> assets,std::shared_ptr<LevelData> levelData) {
-        std::shared_ptr<World> result = std::make_shared<World>();
-        return (result->init(assets,levelData) ? result : nullptr);
-    }
+    std::shared_ptr<TemplateWaveEntry> getTemplate(std::string templateKey);
+    
+    std::shared_ptr<ObjectData> getObjectData(std::shared_ptr<WaveEntry> we);
+    
+    std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
+    
+    std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
     
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
     }
     
-    /** testing function to populate the world without the data files */
+    void setLevelData(std::shared_ptr<LevelData> levelData){
+        _levelData = levelData;
+    }
+    
+    void setLevelData(std::string levelName){
+        _levelData = _assets->get<LevelData>(levelName);
+    }
+    
+    void addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry>);
+
     void populate();
     
-    /**
-     * Hong test
-     */
-    void populate2();
-
-	void populateLevel1();
+    bool isValid();
+    
+    void presetPlayerCharacters();
+	
+    void copyWave(std::string copiedWaveKey, std::string newWaveKey);
+    
 };
 
 #endif /* World_hpp */

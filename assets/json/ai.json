@@ -2,12 +2,31 @@
   "ai": {
     "horizontal": {
       "type": "PATH",
+      "pathType": "HORIZONTAL"
+    },
+    "horizontalRight": {
+      "type": "PATH",
       "pathType": "HORIZONTAL",
       "direction": "RIGHT"
     },
+    "horizontalLeft": {
+      "type": "PATH",
+      "pathType": "HORIZONTAL",
+      "direction": "LEFT"
+    },
     "vertical": {
       "type": "PATH",
-      "pathType": "VERTICAL"
+      "pathType": "HORIZONTAL"
+    },
+    "verticalUp": {
+      "type": "PATH",
+      "pathType": "VERTICAL",
+      "direction": "UP"
+    },
+    "verticalDown": {
+      "type": "PATH",
+      "pathType": "VERTICAL",
+      "direction": "DOWN"
     },
     "static": {
       "type": "STATIC"

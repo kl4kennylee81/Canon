@@ -20,6 +20,14 @@ private:
 	bool _isActive;
 	std::shared_ptr<GameObject> _object;
 public:
+    
+    StaticAI(){}
+    
+    ~StaticAI(){ dispose(); }
+    
+    void dispose(){
+        _object = nullptr;
+    }
 
 	void update(std::shared_ptr<GameState> state) { }
 

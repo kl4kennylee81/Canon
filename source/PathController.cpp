@@ -13,7 +13,9 @@
 #include <cugl/base/CUBase.h>
 #include <cugl/2d/CUPathNode.h>
 #include "MoveEvent.hpp"
+#include "LevelEvent.hpp"
 #include "InputController.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 
@@ -30,7 +32,7 @@ using namespace cugl;
 PathController::PathController():
 BaseController(){}
 
-void PathController::attach(std::shared_ptr<Observer> obs) {
+void PathController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 
@@ -53,13 +55,23 @@ void PathController::eventUpdate(Event* e) {
             controllerState = IDLE;
             break;
         }
+        case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    _spawnStart = true;
+                    break;
+                }
+            }
+            break;
+        }
     }
 }
 
 
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
-	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.15625, PathJoint::ROUND, PathCap::ROUND);
+	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
 	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
@@ -73,7 +85,7 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
     }
     
     // switch color of path depending on who's turn
-    if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == Element::GOLD) {
+    if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
         pathNode->setColor(Color4::ORANGE);
     } else {
         pathNode->setColor(Color4::BLUE);
@@ -103,6 +115,7 @@ bool PathController::isOnCooldown() {
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
+    if (!_spawnStart) return;
     _cooldown_frames += GameState::_internalClock->getTimeDilation();
 	bool isPressed = InputController::getIsPressed();
 	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
@@ -110,14 +123,14 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     Vec2 physicsPosition = Vec2::Vec2();
     
     if (isPressed){
-        state->screenToPhysicsCoords(position,physicsPosition);
+        Util::screenToPhysicsCoords(position,physicsPosition);
 		float buffer = GAME_PHYSICS_WIDTH * 0.02;
 		float x2 = GAME_PHYSICS_WIDTH - buffer;
 		float y2 = GAME_PHYSICS_HEIGHT - buffer;
 		physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
 
         Vec2 scenePosition = Vec2::Vec2();
-        state->screenToSceneCoords(position, scenePosition);
+        Util::screenToSceneCoords(position, scenePosition);
     }
     
     // can't start drawing a path before a character is done moving through a previous path
@@ -194,6 +207,13 @@ bool PathController::init(std::shared_ptr<GameState> state) {
     controllerState = IDLE;
 	_wasPressed = false;
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
+    
+    _spawnStart = false;
 
 	return true;
+}
+
+void PathController::dispose(){
+    _path = nullptr;
+    _pathSceneNode = nullptr;
 }

@@ -27,7 +27,12 @@ public:
 		/** Move **/
 		MOVE,
         SWITCH,
-        ZONE
+        ZONE,
+        ANIMATION,
+        /** menu transition system */
+        FINISH,
+		MENU,
+        LEVEL_EDITOR
     };
     
     EventType _eventType;

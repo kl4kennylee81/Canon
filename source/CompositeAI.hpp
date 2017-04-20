@@ -27,6 +27,13 @@ private:
 	int _index;
 
 public:
+    
+    CompositeAI(){}
+    
+    ~CompositeAI(){
+        _object = nullptr;
+        _activeAI = nullptr;
+    }
 
 	void update(std::shared_ptr<GameState> state);
 

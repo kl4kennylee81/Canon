@@ -20,8 +20,11 @@ using namespace cugl;
 ClockController::ClockController():
 BaseController(){}
 
+void ClockController::dispose(){
 
-void ClockController::attach(std::shared_ptr<Observer> obs) {
+}
+
+void ClockController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void ClockController::detach(Observer* obs) {

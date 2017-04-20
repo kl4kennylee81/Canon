@@ -9,27 +9,47 @@
 //
 #include "Particle.h"
 
-/** Resets a previously allocated particle */
-void Particle::reset() {
-    _position.setZero();
-    _velocity.setZero();
-    _trajectory = 0;
-    _visible = false;
+
+void Particle::move() {
+    // iteratively simulating kinematics
+    _pd.position += _pd.velocity;
+    _pd.velocity.x += _pd.velocity.x*_pd.acceleration*_time_alive;
+    _pd.velocity.y += _pd.velocity.y*_pd.acceleration*_time_alive;
+    _pd.velocity += _pd.gravity*_time_alive;
+    
+    // take into account color interpolation. Linear for now.
+    _current_color.add(_color_step, false);
+    
+    // take into account ttl fades
+    _current_color.subtract(_alpha_step, true);
+    
+    if (_current_color.a == 0) {
+        _pd.active = false;
+    }
+    
+    _time_alive++;
 }
 
-/**
- * Sets the trajectory angle of this particle
- *
- * When the angle is set, the particle will change its velocity
- * to (PARTICLE_SPEED,angle) in polar-coordinates.
- *
- * @param angle  the trajectory angle of this particle
- */
-void Particle::setTrajectory(float angle) {
-    _trajectory = angle;
-    _velocity.set((float)(PARTICLE_SPEED*cosf(angle)),
-                  (float)(PARTICLE_SPEED*sinf(angle)));
+Color4f Particle::findColorStep() {
+    Color4f diff = _pd.end_color.subtract(_pd.start_color);
+    diff.scale(1/((float)_pd.color_duration));
+    return diff;
 }
+
+Color4f Particle::findAlphaStep() {
+    Color4f diff = Color4f(0, 0, 0, 1/(float)_pd.ttl);
+    return diff;
+}
+
+bool Particle::isActive() {
+    return _pd.active;
+}
+
+
+void Particle::reset() {
+    _pd.reset();
+}
+
 
 /**
  * Updates all of the particles, moving them one time step
@@ -42,12 +62,12 @@ void Particle::setTrajectory(float angle) {
  */
 
 void ParticleNode::update(std::set<Particle*>& reset) {
-    // Move all of the particles according to velocity
     Rect bounds(Vec2::ZERO, getContentSize());
     for (auto it=_particles.begin(); it !=_particles.end(); ++it) {
         Particle* p = *it;
         p->move();
-        if (!bounds.contains(p->getPosition())) {
+        
+        if (!p->isActive()) {
             reset.insert(p);
         }
     }
@@ -77,14 +97,14 @@ void ParticleNode::update(std::set<Particle*>& reset) {
  * @param tint      The tint to blend with the Node color.
  */
 void ParticleNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
-    batch->setColor(tint);
     batch->setTexture(_texture);
-    batch->setBlendEquation(_blendEquation);
-    batch->setBlendFunc(_srcFactor, _dstFactor);
+    //    batch->setBlendEquation(_blendEquation);
+    //    batch->setBlendFunc(_srcFactor, _dstFactor);
     
     for(auto it = _particles.begin(); it != _particles.end(); ++it) {
         Rect bounds = _polygon.getBounds();
-        bounds.origin += (*it)->getPosition()-bounds.size/2.0f;
+        bounds.origin += (*it)->_pd.position-bounds.size/2.0f;
+        batch->setColor((*it)->getCurrentColor());
         batch->fill(bounds);
     }
 }

@@ -17,6 +17,11 @@
 #include "GameState.hpp"
 
 class ActiveAnimation {
+private:
+    
+    // physicsShape * animationScale = actual animation texture size
+    // this is to provide a buffer for the texture to be smaller than the shape
+    float _animationScale;
     
     std::shared_ptr<cugl::AnimationNode> _node;
     
@@ -35,16 +40,34 @@ class ActiveAnimation {
      */
     bool _last;
     
+    bool flash;
     
 public:
+    bool lit;
+    float flashIndex;
     
-    bool init() {
+    ActiveAnimation():_node(nullptr),_data(nullptr),_last(false),curIndex(0),curFrames(0),_animationScale(1.0){}
+    
+    ~ActiveAnimation(){ dispose(); }
+    
+    void dispose();
+    
+    bool init(float animScale) {
+        _last = false;
+        _node = nullptr;
+        _data = nullptr;
+        active = std::string();
+        repeat = std::string();
+        curIndex = 0;
+        curFrames = 0;
+        flash = false;
+        this->_animationScale = animScale;
         return true;
     }
     
-    static std::shared_ptr<ActiveAnimation> alloc() {
+    static std::shared_ptr<ActiveAnimation> alloc(float animScale=1.0f) {
         std::shared_ptr<ActiveAnimation> result = std::make_shared<ActiveAnimation>();
-        return (result->init() ? result : nullptr);
+        return (result->init(animScale) ? result : nullptr);
     }
     
     void setAnimationData(std::shared_ptr<AnimationData> data) {
@@ -80,8 +103,20 @@ public:
     
     void setLastAnimation() {_last = true;};
     
+    bool isLastAnimation() { return _last;};
+    
     void setScale(float scale){
         _node->setScale(scale);
     }
+    
+    void setFlash(bool f) {
+        flash = f;
+        lit = false;
+        flashIndex = 0;
+    }
+    
+    bool getFlash() {return flash;};
+    
+    float getAnimationScale() { return _animationScale; };
 };
 #endif /* ActiveAnimation_hpp */

@@ -18,7 +18,9 @@ def indent(elem, level=0):
 xcode_structure = {}
 should_parse = False
 grab_children = False
+grab_id = True
 child_buffer = []
+source_id = ''
 
 with open('build-apple/Canon.xcodeproj/project.pbxproj') as xcode_config:
 	for line in xcode_config:
@@ -31,6 +33,11 @@ with open('build-apple/Canon.xcodeproj/project.pbxproj') as xcode_config:
 			break
 
 		if should_parse:
+			# get the unique identifier to append onto names
+			if grab_id:
+				identifier = line.split()[0]
+				grab_id = False
+
 			if grab_children:
 				if ');' in line: # denotes end of children listings
 					grab_children = False
@@ -38,17 +45,23 @@ with open('build-apple/Canon.xcodeproj/project.pbxproj') as xcode_config:
 
 				ind1 = line.index('/*')
 				ind2 = line.index('*/')
-				child = line[ind1+3:ind2-1] # specific af, dwai
-				child_buffer.append(child)
+				child = line[:ind1-1] + line[ind1+3:ind2-1] # specific af, dwai
+				child_buffer.append(child.strip()) # strip the indentation
 
 			elif 'children' in line:
 				grab_children = True
 				child_buffer = [] # some don't have 'name', so we also reset here
 			
 			elif 'name' in line:
-				actual_name = line[line.index('name')+7:len(line)-2] # slicing to get rid of comments
+				actual_name = identifier + line[line.index('name')+7:len(line)-2] # slicing to get rid of comments
+
+				if line[line.index('name')+7:len(line)-2] == 'Source':
+					source_id = actual_name
 				xcode_structure[actual_name] = child_buffer
 				child_buffer = []
+
+			if '};' in line: # denotes end of overall listing
+				grab_id = True
 
 
 # clean up - we remove all branches that do not eventually lead to a cpp or hpp file
@@ -125,11 +138,11 @@ hpp_item_group.clear()
 ET.SubElement(hpp_item_group, 'ClInclude', attrib={'Include': 'resource.h'})
 
 for cpp_file in cpp_files:
-	att = {'Include': "..\..\source\\" + cpp_file}
+	att = {'Include': "..\..\source\\" + cpp_file[24:]}
 	ET.SubElement(cpp_item_group, 'ClCompile', attrib=att)
 
 for hpp_file in hpp_files:
-	att = {'Include': "..\..\source\\" + hpp_file}
+	att = {'Include': "..\..\source\\" + hpp_file[24:]}
 	ET.SubElement(hpp_item_group, 'ClInclude', attrib=att)
 
 indent(root)
@@ -160,7 +173,7 @@ for child in filterroot:
 
 # create child-parent mapping
 child_parent_map = {}
-mapstack = ['Source']
+mapstack = [source_id]
 while len(mapstack) > 0:
 	popped = mapstack.pop()
 	klist = xcode_structure[popped]
@@ -169,19 +182,18 @@ while len(mapstack) > 0:
 		if not ('.cpp' in k or '.hpp' in k or '.h' in k):
 			mapstack.append(k)
 
-
 # create flattened child-path mapping
 flat_child_parent_map = {}
 for child in child_parent_map.keys():
 	if not ('.cpp' in child or '.hpp' in child or '.h' in child):
 		continue
-	value = child_parent_map[child]
-	path = value
-	while value in child_parent_map:
-		path = child_parent_map[value] + '\\' + value
-		value = child_parent_map[value]
+	
+	parent = child_parent_map[child]
+	path = parent[24:]
+	while parent in child_parent_map:
+		path = child_parent_map[parent][24:] + '\\' + path
+		parent = child_parent_map[parent]
 	flat_child_parent_map[child] = path
-
 
 # pin source folder to top
 filter_parent.clear()
@@ -216,12 +228,12 @@ for c in remove_list:
 # generate cl includes
 for c in flat_child_parent_map:
 	if '.cpp' in c:
-		path = "..\..\source\\" + c
+		path = "..\..\source\\" + c[24:]
 		k = ET.SubElement(include_parent, 'ClCompile', attrib={'Include': path})
 		k.text=' '
 		ET.SubElement(k, 'Filter').text=flat_child_parent_map[c]
 	elif '.hpp' in c or '.h' in c:
-		path = "..\..\source\\" + c
+		path = "..\..\source\\" + c[24:]
 		k = ET.SubElement(compile_parent, 'ClInclude', attrib={'Include': path})
 		k.text=' '
 		ET.SubElement(k, 'Filter').text=flat_child_parent_map[c]

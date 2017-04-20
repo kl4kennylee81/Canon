@@ -26,6 +26,7 @@
 
 class CollisionController : public BaseController {
 protected:
+    bool inGame;
     /** The Box2D world */
     std::shared_ptr<cugl::ObstacleWorld> _world;
     
@@ -61,8 +62,10 @@ protected:
 public:
     
     CollisionController();
+    
+    ~CollisionController() { dispose(); }
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 
@@ -72,6 +75,8 @@ public:
 	virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose();
 
 	virtual bool init();
 

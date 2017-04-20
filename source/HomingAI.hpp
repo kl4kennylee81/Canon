@@ -21,6 +21,14 @@ private:
     std::shared_ptr<GameObject> _object;
 public:
     
+    HomingAI(){}
+    
+    ~HomingAI(){ dispose(); }
+    
+    void dispose(){
+        _object = nullptr;
+    }
+    
     void update(std::shared_ptr<GameState> state);
     
     bool garbageCollect(GameObject* obj);

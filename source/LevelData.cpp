@@ -9,6 +9,7 @@
 #include "LevelData.hpp"
 #include "GameState.hpp"
 
+
 using namespace cugl;
 
 void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
@@ -17,6 +18,10 @@ void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
 
 void LevelData::addPlayerChars(std::shared_ptr<WaveEntry> entry){
     _playerChars.push_back(entry);
+}
+
+void LevelData::updateEntryTime(int index, float time){
+    _levelEntries.at(index)->time = time;
 }
 
 /**
@@ -34,8 +39,27 @@ size_t LevelData::getNumberWaves(){
     return _levelEntries.size();
 }
 
-std::string LevelData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> LevelData::toJsonValue(){
+
+	std::shared_ptr<JsonValue> levelList = JsonValue::allocObject();
+	for (int i = 0; i < getNumberWaves(); i++)
+	{
+		std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();
+		waveDetails->appendChild("waveKey", JsonValue::alloc(getWaveKey(i)));
+		waveDetails->appendChild("time", JsonValue::alloc(getTime(i)));
+		levelList->appendChild("wave" + std::to_string(i + 1), waveDetails);
+	}
+
+	std::shared_ptr<JsonValue> playerList = JsonValue::allocObject();
+	for (int i = 0; i < getPlayerChars().size(); i++)
+	{
+		playerList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->toJsonValue());
+	}
+
+	std::shared_ptr<JsonValue> finalList = JsonValue::allocObject();
+	finalList->appendChild("levelEntries", levelList);
+	finalList->appendChild("playerChars", playerList);
+	return finalList;
 }
 
 bool LevelData::preload(const std::string& file){
@@ -65,5 +89,13 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 }
 
 bool LevelData::materialize(){
+    return true;
+}
+
+bool LevelData::isValid(){
+    // check that there are two player characters
+    if (!(_playerChars.size() == 2)){
+        return false;
+    }
     return true;
 }

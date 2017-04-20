@@ -16,7 +16,7 @@ LevelController::LevelController():
 BaseController(),
 _world(nullptr){}
 
-void LevelController::attach(std::shared_ptr<Observer> obs) {
+void LevelController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void LevelController::detach(Observer* obs) {
@@ -32,36 +32,44 @@ void LevelController::notify(Event* e) {
 void LevelController::eventUpdate(Event* e) {}
 
 void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
-    std::shared_ptr<ObjectData> od = _world->getObjectData(we->objectKey);
-    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->shapeKey);
-    std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->animationKey);
-    std::shared_ptr<AIData> aid = _world->getAIData(we->aiKey); // aiKey is in the wave entry
-    std::vector<std::shared_ptr<ZoneData>> zds = {};
-    for(auto zkey: we->zoneKeys){
-        zds.push_back(_world->getZoneData(zkey));
+    std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());
+    std::shared_ptr<ObjectData> od = _world->getObjectData(we);
+    std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+    std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(we->getElement()));
+    std::shared_ptr<AIData> aid = _world->getAIData(we); // aiKey is in the wave entry
+    std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
+    if (sounddata == nullptr){
+        sounddata = _world->getSoundData("baseEnemySound");
     }
-    
+    std::vector<std::shared_ptr<ZoneData>> zds = {};
+    for (std::string zoneKey:_world->getZoneKeys(we)){
+        zds.push_back(_world->getZoneData(zoneKey));
+    }
+
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     gameOb->setIsPlayer(isPlayer);
     
-    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, aid, zds);
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds);
     notify(initevent.get());
     
     if (isPlayer){
         // player is added to the game state here
-        gameOb->setIsPlayer(true);
         state->addPlayerGameObject(gameOb);
     } else {
         // enemy is added to the game state here
-        gameOb->setIsPlayer(false);
         state->addEnemyGameObject(gameOb);
     }
     
-    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb);
+    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,templated->getSpawnTime());
     
     // notify the observers of the object that is spawned
     notify(spawningevent.get());
+}
+
+void LevelController::dispose(){
+    _world = nullptr;
+    _progressBarController = nullptr;
 }
 
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
@@ -84,6 +92,11 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         for(auto it: wd->getWaveEntries()) {
             spawnWaveEntry(it, false, state);
         }
+    }
+    
+    if (_level.isSpawningFinished()){
+        std::shared_ptr<LevelFinishedEvent> levelFEvent = LevelFinishedEvent::alloc();
+        this->notify(levelFEvent.get());
     }
 }
 

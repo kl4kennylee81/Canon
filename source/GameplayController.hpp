@@ -25,6 +25,8 @@
 #include "ZoneController.hpp"
 #include "ClockController.hpp"
 #include "ParticleController.hpp"
+#include "FinishController.hpp"
+#include "SoundController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -42,28 +44,42 @@ protected:
     std::shared_ptr<AnimationController> _animationController;
     std::shared_ptr<ClockController> _clockController;
     std::shared_ptr<ParticleController> _particleController;
-
+    std::shared_ptr<FinishController> _finishController;
+    std::shared_ptr<SoundController> _soundController;
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;
+	bool _paused;
 
 public:
     
     GameplayController();
+    
+    ~GameplayController();
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 	virtual void eventUpdate(Event* e);
     virtual void update(float timestep);
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
+    
+    void activate();
+    
+    void deactivate();
+    
+    void dispose();
+    
+    std::shared_ptr<LevelData> getCurrentLevel();
+    
+    std::shared_ptr<World> getWorld();
 
-    virtual bool init(std::shared_ptr<World> levelWorld);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
 
-	static std::shared_ptr<GameplayController> alloc(std::shared_ptr<World> levelWorld) {
+    static std::shared_ptr<GameplayController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld) {
 		std::shared_ptr<GameplayController> result = std::make_shared<GameplayController>();
-		return (result->init(levelWorld) ? result : nullptr);
+		return (result->init(scene,levelWorld) ? result : nullptr);
 	}
 
 

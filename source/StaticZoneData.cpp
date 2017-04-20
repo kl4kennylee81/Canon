@@ -10,8 +10,17 @@
 
 using namespace cugl;
 
-std::string StaticZoneData::serialize(){
-    return "";
+std::shared_ptr<JsonValue> StaticZoneData::toJsonValue()
+{
+	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	data->appendChild("type", JsonValue::alloc("STATIC"));
+	data->appendChild("objectKey", JsonValue::alloc(objectKey));
+	data->appendChild("relX", JsonValue::alloc(relPos.x));
+	data->appendChild("relY", JsonValue::alloc(relPos.y));
+	data->appendChild("cooldown", JsonValue::alloc(static_cast<float>(cooldown)));
+	data->appendChild("duration", JsonValue::alloc(static_cast<float>(duration)));
+	data->appendChild("element", JsonValue::alloc(Element::elementDataTypeToString(elementType)));
+	return data;
 }
 
 bool StaticZoneData::preload(const std::string& file){
@@ -27,11 +36,16 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float rel_y = json->getFloat("relY");
     int cooldown = json->getInt("cooldown");
     int duration = json->getInt("duration");
-    auto el = json->getString("element").compare("BLUE") == 0 ? Element::BLUE : Element::GOLD;
+    auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,rel_x,rel_y,cooldown,duration,el);
+
     return true;
 }
 
 bool StaticZoneData::materialize(){
     return true;
 }
+
+cugl::Vec2 StaticZoneData::getPosition(cugl::Vec2 objPos){
+    return objPos+this->relPos;
+};

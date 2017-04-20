@@ -32,7 +32,7 @@ public:
 	~ProgressBarController();
 
 	// inherited from base
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 	virtual void eventUpdate(Event* e);

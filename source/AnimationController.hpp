@@ -13,6 +13,7 @@
 #include <cugl/cugl.h>
 #include "BaseController.hpp"
 #include "GameState.hpp"
+#include "GameObject.hpp"
 #include "ActiveAnimation.hpp"
 #include "AnimationAction.hpp"
 #include "WaveData.hpp"
@@ -27,7 +28,9 @@ protected:
 public:
     AnimationController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~AnimationController(){ dispose(); }
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -40,6 +43,8 @@ public:
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
+    void dispose();
+    
     virtual bool init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets);
     
     static std::shared_ptr<AnimationController> alloc(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
@@ -47,7 +52,7 @@ public:
         return (result->init(state, assets) ? result : nullptr);
     }
     
-    void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data);
+    void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data,float animScale=1.0f);
     
     void handleAction(GameObject* obj, AnimationAction action);
     
@@ -55,7 +60,9 @@ public:
     
     void syncAnimation(std::shared_ptr<ActiveAnimation> activeAnim, GameObject* obj);
     
-    void updateFrames();
+    void updateFrames(std::shared_ptr<GameState> state);
+    
+    void removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim);
 };
 
 #endif /* AnimationController_hpp */

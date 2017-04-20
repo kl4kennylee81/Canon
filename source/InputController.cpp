@@ -12,6 +12,8 @@
 using namespace cugl;
 
 bool InputController::_touch;
+bool InputController::_wasPressed;
+bool InputController::_isPressed;
 
 void InputController::setTouch(bool touch) {
     InputController::_touch = touch;
@@ -32,11 +34,20 @@ cugl::Vec2 InputController::getInputVector() {
 }
 
 bool InputController::getIsPressed() {
+    return _isPressed;
+}
+
+bool InputController::getIsPressedUp(){
+    return _wasPressed && !_isPressed;
+}
+
+void InputController::update(){
+    _wasPressed = _isPressed;
     if (_touch) {
-        return Input::get<Touchscreen>()->touchSet().size() > 0;
+        _isPressed = Input::get<Touchscreen>()->touchSet().size() > 0;
     }
     else {
-        return Input::get<Mouse>()->buttonDown().hasLeft();
+        _isPressed = Input::get<Mouse>()->buttonDown().hasLeft();
     }
 }
 
@@ -51,3 +62,8 @@ bool InputController::getDoubleTouch(){
         }
     }
 }
+
+std::vector<cugl::KeyCode> InputController::getPressedKeys() {
+	return Input::get<Keyboard>()->keySet();
+}
+

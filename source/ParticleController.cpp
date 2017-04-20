@@ -15,12 +15,10 @@
 using namespace cugl;
 
 #define MAX_PARTICLES 100
-// the number of frames to wait until a next particle
-#define COOLDOWN 1
 
 ParticleController::ParticleController(): BaseController(){}
 
-void ParticleController::attach(std::shared_ptr<Observer> obs) {
+void ParticleController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void ParticleController::detach(Observer* obs) {

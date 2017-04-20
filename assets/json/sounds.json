@@ -1,0 +1,50 @@
+{
+	"music": {
+        "rustling_leaves": {
+            "file": "./sounds/rustling_leaves.mp3",
+            "volume": 0.2
+        }
+    },
+    "soundfx": {
+        "base_spawn": {
+            "file": "./sounds/base_spawn.wav",
+            "volume":   0.3
+        },
+        "base_death": {
+        	"file": "./sounds/base_death.wav",
+        	"volume": 0.3
+        },
+        "male_death": {
+        	"file": "./sounds/male_death.wav",
+        	"volume": 0.3
+        },
+        "female_death": {
+        	"file": "./sounds/female_death.wav",
+        	"volume": 0.3
+        },
+        "slow_motion_start": {
+        	"file": "./sounds/slow_motion_start.wav",
+        	"volume": 1.0
+        },
+        "slow_motion_end": {
+        	"file": "./sounds/slow_motion_end.wav",
+        	"volume": 1.0
+        }
+    },
+    "sounds": {
+		"general": {
+			"SLOW_MOTION_START": "slow_motion_start",
+			"SLOW_MOTION_END": "slow_motion_end"
+		},
+    	"baseEnemySound": {
+      		"SPAWN": "base_spawn",
+      		"DEATH": "base_death"
+    	},
+    	"male": {
+    		"DEATH": "male_death"
+    	},
+    	"female": {
+    		"DEATH": "female_death"
+    	}
+  	}
+ }

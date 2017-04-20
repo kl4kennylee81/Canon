@@ -25,10 +25,11 @@ public:
     bool spawned;
     
     bool isOn;
+    bool blinking;
     int curIndex;
     
     cugl::Size origSize;
-    float sizeScale;
+    cugl::Vec2 sizeScale;
     
     bool init() {
         spawned = false;

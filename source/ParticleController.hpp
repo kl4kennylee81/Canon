@@ -16,18 +16,13 @@
 
 class ParticleController : public BaseController {
 private:
-    int _cooldown;
-    
     /** The memory pool for future allocations */
     std::shared_ptr<cugl::FreeList<Particle>> _memory;
-    
-    /** Container to track the particles to recycle */
-    std::set<Particle*> _particles;
     
 public:
     ParticleController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     

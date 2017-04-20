@@ -16,14 +16,22 @@ _speed(0),
 _acceleration(0)
 {}
 
+void PhysicsComponent::dispose(){
+    _body = nullptr;
+}
+
 std::shared_ptr<cugl::PolygonObstacle> PhysicsComponent::getBody(){
     return _body;
 }
 
-bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, Element element){
+bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element){
     _body = body;
     _speed = 0;
     _acceleration = 0;
     _elementType = element;
     return true;
+}
+
+void PhysicsComponent::setBody(std::shared_ptr<cugl::PolygonObstacle> body){
+    _body = body;
 }

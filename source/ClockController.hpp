@@ -20,7 +20,11 @@ class ClockController : public BaseController {
 public:
     ClockController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~ClockController() { dispose(); };
+    
+    void dispose();
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
