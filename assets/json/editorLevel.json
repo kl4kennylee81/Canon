@@ -2,7 +2,6 @@
 	"counter":	0,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
-		"levelEntries":	{
 		},
 		"playerChars":	{
 		}
