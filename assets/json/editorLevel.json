@@ -1,10 +1,14 @@
 {
-	"counter":	11,
+	"counter":	9,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 11",
+				"waveKey":	"wave 8",
+				"time":	180
+			},
+			"wave2":	{
+				"waveKey":	"wave 9",
 				"time":	180
 			}
 		},
@@ -12,14 +16,81 @@
 		}
 	},
 	"waves":	{
-		"wave 11":	{
+		"wave 8":	{
 			"waveEntries":	{
 				"object1":	{
-					"x":	584.533325,
-					"y":	328.533325,
+					"x":	422.399994,
+					"y":	289.066681,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"object2":	{
+					"x":	503.466675,
+					"y":	289.066681,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"object3":	{
+					"x":	420.266663,
+					"y":	429.866669,
 					"element":	"BLUE",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"object4":	{
+					"x":	510.933319,
+					"y":	440.533325,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"object5":	{
+					"x":	597.333313,
+					"y":	288,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"object6":	{
+					"x":	341.333344,
+					"y":	289.066681,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"object7":	{
+					"x":	427.733337,
+					"y":	137.600006,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"object8":	{
+					"x":	519.466675,
+					"y":	136.533325,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"wave 9":	{
+			"waveEntries":	{
+				"object1":	{
+					"x":	496,
+					"y":	344.533356,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"feshHorizontal"
+				},
+				"object2":	{
+					"x":	494.933319,
+					"y":	228.266663,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"feshHorizontal"
 				}
 			}
 		}
