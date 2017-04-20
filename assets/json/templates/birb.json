@@ -2,7 +2,7 @@
   "templates":  {
     "birb": {
       "name": "birb",
-      "aiKeys":  ["homing", "vertical","horizontal"],
+      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
       "objectKey":  "birb_object",
       "zoneKeys": ["birb_zone"]
     }
