@@ -55,6 +55,8 @@ public:
     
     void addLevelEntry(std::shared_ptr<LevelEntry> entry);
     
+    void updateEntryTime(int index, float time);
+    
     void addPlayerChars(std::shared_ptr<WaveEntry> entry);
     
     std::vector<std::shared_ptr<WaveEntry>>& getPlayerChars() {
