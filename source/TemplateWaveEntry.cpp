@@ -32,7 +32,7 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
     
     std::shared_ptr<JsonValue> ais = JsonValue::allocArray();
     for(int i = 0; i < aiKeys.size(); i++){
-        ais->appendChild(JsonValue::alloc(zoneKeys.at(i)));
+        ais->appendChild(JsonValue::alloc(aiKeys.at(i)));
     }
     
     object->appendChild("aiKeys", ais);
