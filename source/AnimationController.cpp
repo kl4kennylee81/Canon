@@ -56,7 +56,7 @@ void AnimationController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    addAnimation(objectInit->object.get(), objectInit->animationData);
+                    addAnimation(objectInit->object.get(), objectInit->animationData, objectInit->objectData->getAnimationScale());
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
@@ -170,8 +170,8 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
 /**
  * Adds the animation data to the active animation map.
  */
-void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
-    std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
+void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data,float animScale=1.0) {
+    std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc(animScale);
     anim->setAnimationData(data);
     animationMap.insert({obj, anim});
 }
@@ -233,7 +233,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
         
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        float animationScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+        float animationScale = std::max(scaleX,scaleY) * activeAnim->getAnimationScale(); // to make the animation bigger than the bounding box
         anim->setScale(animationScale);
     } else {
         Size animationSize = anim->getContentSize();

@@ -12,7 +12,8 @@
       "shapeKey": "birb_shape",
       "blueAnimationKey": "blue_birb_animation",
       "goldAnimationKey": "yellow_birb_animation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale":1.25
     },
     "birb_zoneObject": {
       "shapeKey": "birb_zoneShape",

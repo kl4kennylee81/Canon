@@ -12,7 +12,8 @@
       "shapeKey": "feshVertical_shape",
       "blueAnimationKey": "blue_feshVertical_animation",
       "goldAnimationKey": "yellow_feshVertical_animation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale": 1.25
     },
     "feshVertical_zoneObject":{
       "shapeKey": "feshVertical_zoneShape",

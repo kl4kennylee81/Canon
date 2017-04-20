@@ -12,7 +12,8 @@
       "shapeKey": "grump_shape",
       "blueAnimationKey": "blue_grump_animation",
       "goldAnimationKey": "yellow_grump_animation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale": 1.25
     },
     "grump_zoneObject": {
       "shapeKey": "grump_zoneShape",

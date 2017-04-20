@@ -52,7 +52,7 @@ public:
         return (result->init(state, assets) ? result : nullptr);
     }
     
-    void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data);
+    void addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data,float animScale);
     
     void handleAction(GameObject* obj, AnimationAction action);
     

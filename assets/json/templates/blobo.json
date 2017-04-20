@@ -11,7 +11,8 @@
       "shapeKey": "blobo_shape",
       "blueAnimationKey": "blue_blobo_animation",
       "goldAnimationKey": "yellow_blobo_animation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale":1.25
     }
   },
   "shapes":{

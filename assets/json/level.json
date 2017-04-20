@@ -94,19 +94,23 @@
       "shapeKey": "shape1",
       "blueAnimationKey": "blueEnemyAnimation",
       "goldAnimationKey": "redEnemyAnimation",
-      "soundKey": "baseEnemySound"
+      "soundKey": "baseEnemySound",
+      "animationScale": 1.25
     },
     "playerCharMale":{
       "shapeKey": "shape1",
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
-      "soundKey": "male"
+      "soundKey": "male",
+      "animationScale": 1.25
     },
     "playerCharFemale":{
       "shapeKey": "shape1",
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
-      "soundKey": "female"
+      "soundKey": "female",
+      "animationScale": 1.25
+
     },
     "circle": {
       "shapeKey": "circle",

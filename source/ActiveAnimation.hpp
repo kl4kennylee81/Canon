@@ -18,6 +18,11 @@
 
 class ActiveAnimation {
 private:
+    
+    // physicsShape * animationScale = actual animation texture size
+    // this is to provide a buffer for the texture to be smaller than the shape
+    float _animationScale;
+    
     std::shared_ptr<cugl::AnimationNode> _node;
     
     std::shared_ptr<AnimationData> _data;
@@ -41,13 +46,13 @@ public:
     bool lit;
     float flashIndex;
     
-    ActiveAnimation():_node(nullptr),_data(nullptr),_last(false),curIndex(0),curFrames(0){}
+    ActiveAnimation():_node(nullptr),_data(nullptr),_last(false),curIndex(0),curFrames(0),_animationScale(1.0){}
     
     ~ActiveAnimation(){ dispose(); }
     
     void dispose();
     
-    bool init() {
+    bool init(float animScale) {
         _last = false;
         _node = nullptr;
         _data = nullptr;
@@ -56,12 +61,13 @@ public:
         curIndex = 0;
         curFrames = 0;
         flash = false;
+        this->_animationScale = animScale;
         return true;
     }
     
-    static std::shared_ptr<ActiveAnimation> alloc() {
+    static std::shared_ptr<ActiveAnimation> alloc(float animScale) {
         std::shared_ptr<ActiveAnimation> result = std::make_shared<ActiveAnimation>();
-        return (result->init() ? result : nullptr);
+        return (result->init(animScale) ? result : nullptr);
     }
     
     void setAnimationData(std::shared_ptr<AnimationData> data) {
@@ -110,5 +116,7 @@ public:
     }
     
     bool getFlash() {return flash;};
+    
+    float getAnimationScale() { return _animationScale; };
 };
 #endif /* ActiveAnimation_hpp */
