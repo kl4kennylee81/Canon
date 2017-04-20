@@ -264,6 +264,7 @@ bool LevelEditorController::init(std::shared_ptr<Scene> scene, std::shared_ptr<G
 }
 
 void LevelEditorController::dispose(){
+    deactivateAndClear(_levelEditNode);
     _world = nullptr;
     _levelEditNode = nullptr;
     _waveEditorController = nullptr;

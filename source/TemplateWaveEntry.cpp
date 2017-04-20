@@ -2,7 +2,7 @@
 
 using namespace cugl;
 
-#define SPAWN_FRAMES 90.0f
+#define SPAWN_FRAMES 180.0f
 
 bool TemplateWaveEntry::updateFile() {
 	return true;

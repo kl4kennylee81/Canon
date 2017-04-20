@@ -53,6 +53,8 @@ protected:
 public:
     
     GameplayController();
+    
+    ~GameplayController();
 
 	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);

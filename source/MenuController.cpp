@@ -122,6 +122,10 @@ void MenuController::update(float timestep) {
                     {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                     }
+                    case Mode::LEVEL_EDIT:
+                    {
+                        getMenuGraph()->setActiveMenu(action->nextScreen);
+                    }
                     default:
                     {
                         break;

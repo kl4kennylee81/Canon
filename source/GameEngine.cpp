@@ -287,6 +287,7 @@ void GameEngine::cleanPreviousMode(){
         }
         case Mode::GAMEPLAY:
         {
+            _gameplay->deactivate();
             _gameplay = nullptr;
             _menu = nullptr;
             break;
@@ -314,7 +315,6 @@ void GameEngine::initializeNextMode(){
     switch(_menuGraph->getNextMode()){
         case Mode::LOADING:
         {
-            
             break;
         }
         case Mode::GAMEPLAY:

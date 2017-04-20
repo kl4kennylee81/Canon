@@ -28,6 +28,10 @@ _finishController(nullptr),
 _soundController(nullptr)
 {}
 
+GameplayController::~GameplayController(){
+    dispose();
+}
+
 void GameplayController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
