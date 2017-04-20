@@ -518,7 +518,6 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
 void WaveEditorController::updateTemplateNodes() {
     auto templateNode = _levelEditNode->getChildByName("templates");
     deactivateAndClear(templateNode);
-    std::cout << _templates.size() << std::endl;
     for (int i = 0; i < _templates.size(); i++) {
         auto button = getButtonFromTemplate(30, 500 - (i * 75), _templates.at(i), ElementType::BLUE);
         auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
