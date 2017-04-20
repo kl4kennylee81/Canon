@@ -83,6 +83,15 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
         _state = LevelEditorState::MAIN;
         break;
     }
+    case LevelEditorState::WAVE_TIME: {
+        if (updateWaveInput()) {
+            _levelData->updateEntryTime(_timeIndex, _waveTime);
+            updateWaveNodes();
+            saveLevel();
+            _state = LevelEditorState::MAIN;
+        }
+        break;
+    }
 	}
 }
 
@@ -185,6 +194,7 @@ void LevelEditorController::setSceneGraph() {
     _levelEditNode->addChildWithName(Node::alloc(), "waves");
     _levelEditNode->addChildWithName(Node::alloc(), "delete");
     _levelEditNode->addChildWithName(Node::alloc(), "copy");
+    _levelEditNode->addChildWithName(Node::alloc(), "time");
     
 }
 
@@ -201,10 +211,70 @@ void LevelEditorController::copyWave(int index) {
     _world->_waveData[newWaveName] = WaveData::alloc();
     _levelData->addLevelEntry(entry);
     
+    _levelData->getTime(index);
+    _levelData->updateEntryTime(_levelData->getNumberWaves() - 1, _levelData->getTime(index));
+    
     std::string copiedWaveName = _levelData->getWaveKey(index);
     _world->copyWave(copiedWaveName, newWaveName);
 }
 
+bool LevelEditorController::updateWaveInput() {
+    auto keys = Input::get<Keyboard>()->keySet();
+    for(auto key: keys){
+        int input = 0;
+        bool pressed = false;
+
+        if(key == KeyCode::NUM_0){
+            input = 0;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_1){
+            input = 1;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_2){
+            input = 2;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_3){
+            input = 3;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_4){
+            input = 4;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_5){
+            input = 5;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_6){
+            input = 6;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_7){
+            input = 7;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_8){
+            input = 8;
+            pressed = true;
+        }
+        if(key == KeyCode::NUM_9){
+            input = 9;
+            pressed = true;
+        }
+        
+        if (pressed && Input::get<Keyboard>()->keyPressed(key)) {
+            _waveTime = _waveTime * 10 + input;
+        }
+        
+        if (key == KeyCode::RETURN || key == KeyCode::ENTER){
+            return true;
+        }
+    }
+    return false;
+}
 
 void LevelEditorController::deleteButtonListenerFunction(const std::string& name, bool down, int index) {
     auto deleteNode = _levelEditNode->getChildByName("delete");
@@ -236,6 +306,16 @@ void LevelEditorController::waveButtonListenerFunction(const std::string& name, 
     }
 }
 
+void LevelEditorController::timeButtonListenerFunction(const std::string &name, bool down, int index) {
+    auto timeNode = _levelEditNode->getChildByName("time");
+    auto buttonNode = std::static_pointer_cast<Button>(timeNode->getChildByTag(index));
+    if (buttonNode->isDown()) {
+        _timeIndex = index;
+        _waveTime = 0;
+        _state = LevelEditorState::WAVE_TIME;
+    }
+}
+
 void LevelEditorController::updateWaveNodes() {
 	auto waveNode = _levelEditNode->getChildByName("waves");
 	deactivateAndClear(waveNode);
@@ -243,6 +323,8 @@ void LevelEditorController::updateWaveNodes() {
     deactivateAndClear(deleteNode);
     auto copyNode = _levelEditNode->getChildByName("copy");
     deactivateAndClear(copyNode);
+    auto timeNode = _levelEditNode->getChildByName("time");
+    deactivateAndClear(timeNode);
     
 	for (int i = 0; i < _levelData->getNumberWaves(); i++) {
 		auto waveButton = Util::makeBoxButton(200 + 60 * i, 200, 45, 30, Color4::BLACK, Color4::PAPYRUS);
@@ -269,6 +351,14 @@ void LevelEditorController::updateWaveNodes() {
         );
         copyButton->activate(getUid());
         
+        auto timeButton = Util::makeBoxButton(200+60*i,80, 25, 25, Color4::BLACK, Color4::PAPYRUS);
+        timeButton->setListener(
+            [=](const std::string& name, bool down) {
+                timeButtonListenerFunction(name,down,i);
+            }
+        );
+        timeButton->activate(getUid());
+        
         auto label = Label::alloc(_levelData->getWaveKey(i), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.17);
         label->setPosition(200 + 60 * i, 230);
@@ -282,6 +372,7 @@ void LevelEditorController::updateWaveNodes() {
 		waveNode->addChildWithTag(waveButton, i);
         deleteNode->addChildWithTag(deleteButton, i);
         copyNode->addChildWithTag(copyButton, i);
+        timeNode->addChildWithTag(timeButton,i);
         waveNode->addChild(label);
         waveNode->addChild(timeLabel);
 	}
