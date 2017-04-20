@@ -211,6 +211,9 @@ void LevelEditorController::copyWave(int index) {
     _world->_waveData[newWaveName] = WaveData::alloc();
     _levelData->addLevelEntry(entry);
     
+    _levelData->getTime(index);
+    _levelData->updateEntryTime(_levelData->getNumberWaves() - 1, _levelData->getTime(index));
+    
     std::string copiedWaveName = _levelData->getWaveKey(index);
     _world->copyWave(copiedWaveName, newWaveName);
 }
