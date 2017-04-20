@@ -24,6 +24,7 @@
 #include "SpawnController.hpp"
 #include "ZoneController.hpp"
 #include "ClockController.hpp"
+#include "ParticleController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
 
@@ -40,6 +41,7 @@ protected:
     std::shared_ptr<ZoneController> _zoneController;
     std::shared_ptr<AnimationController> _animationController;
     std::shared_ptr<ClockController> _clockController;
+    std::shared_ptr<ParticleController> _particleController;
 
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */

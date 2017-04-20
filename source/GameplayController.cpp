@@ -52,6 +52,7 @@ void GameplayController::update(float timestep) {
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
+    _particleController->update(timestep, _gameState);
 
 }
 
@@ -77,6 +78,7 @@ bool GameplayController::init(std::shared_ptr<World> levelWorld) {
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
+    _particleController = ParticleController::alloc();
 
 	_pathController->attach(_moveController);
     _pathController->attach(_switchController);

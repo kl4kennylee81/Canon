@@ -17,6 +17,10 @@ void InputController::setTouch(bool touch) {
     InputController::_touch = touch;
 }
 
+/**
+ * Returns the screen coordinates of the input. If the input is a 
+ * touch screen, return the screen coordinates of the first touch.
+ */
 cugl::Vec2 InputController::getInputVector() {
     if (_touch) {
         auto set = Input::get<Touchscreen>()->touchSet();

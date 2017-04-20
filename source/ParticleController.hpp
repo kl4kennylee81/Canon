@@ -10,9 +10,20 @@
 #define ParticleController_hpp
 
 #include <stdio.h>
+#include <set>
 #include "BaseController.hpp"
+#include "Particle.h"
 
 class ParticleController : public BaseController {
+private:
+    int _cooldown;
+    
+    /** The memory pool for future allocations */
+    std::shared_ptr<cugl::FreeList<Particle>> _memory;
+    
+    /** Container to track the particles to recycle */
+    std::set<Particle*> _particles;
+    
 public:
     ParticleController();
     
@@ -24,7 +35,7 @@ public:
     
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep, std::shared_ptr<GameState> state);
     
     virtual bool init();
     
