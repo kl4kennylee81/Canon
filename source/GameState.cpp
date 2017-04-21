@@ -7,6 +7,7 @@
 //
 
 #include "GameState.hpp"
+#include "Util.hpp"
 
 std::unique_ptr<InternalClock> GameState::_internalClock(new InternalClock());
 
@@ -150,12 +151,32 @@ size_t GameState::getNumberEnemyCharacters(){
     return _enemyObjects.size();
 }
 
+std::shared_ptr<GameObject> GameState::getClosestChar(cugl::Vec2::Vec2 phys_coord) {
+    
+    if (getPlayerCharacters().size() <= 0){
+        return nullptr;
+    }
+        float minDist = _playerCharacters.at(0)->getPosition().distance(phys_coord);
+        std::shared_ptr<GameObject> closerChar = _playerCharacters.at(0);
+        for (std::shared_ptr<GameObject> playerOb : getPlayerCharacters()){
+            if (playerOb->type != GameObject::ObjectType::CHARACTER){
+                continue;
+            }
+            
+            float playerDist = playerOb->getPosition().distance(phys_coord);
+            if (playerDist < minDist){
+                closerChar = playerOb;
+            }
+        }
+    return closerChar;
+};
+
+
 #pragma mark Coordinate Conversions
 
 float GameState::getPhysicsScale(){
     return GAME_PHYSICS_SCALE;
 }
-
 
 
 
