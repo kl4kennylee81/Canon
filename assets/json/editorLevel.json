@@ -1,5 +1,5 @@
 {
-	"counter":	0,
+	"counter":	1,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"level":	{
 		"levelEntries":	{
