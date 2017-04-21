@@ -75,6 +75,8 @@ public:
     void handleObjectSpawn(GameObject* obj);
     
     void removeObjectZones(GameObject* obj);
+    
+    void toggleZone(std::shared_ptr<ActiveZone> zone);
 };
 
 #endif /* ZoneController_hpp */

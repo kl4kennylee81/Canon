@@ -99,6 +99,39 @@ std::shared_ptr<GameObject> GameState::getActiveCharacter()
     return _playerCharacters.at(_activeCharacterPosition);
 }
 
+std::vector<std::shared_ptr<GameObject>> GameState::getInactiveCharacters(){
+    std::vector<std::shared_ptr<GameObject>> inactives = std::vector<std::shared_ptr<GameObject>>();
+    for (int i = 0; i<getPlayerCharacters().size();++i){
+        if (i == _activeCharacterPosition){
+            continue;
+        }
+        
+        std::shared_ptr<GameObject> playerOb = getPlayerCharacters().at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
+        
+        inactives.push_back(playerOb);
+    }
+    return inactives;
+}
+
+std::shared_ptr<GameObject> GameState::getInactiveCharacter(){
+    for (int i = 0; i<getPlayerCharacters().size();++i){
+        if (i == _activeCharacterPosition){
+            continue;
+        }
+        
+        std::shared_ptr<GameObject> playerOb = getPlayerCharacters().at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
+        
+        return playerOb;
+    }
+    return nullptr;
+}
+
 void GameState::toggleActiveCharacter()
 {
     for (int i =1;i<=_playerCharacters.size();i++){

@@ -97,7 +97,7 @@ GameState():
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
-        
+    
     /**
      * Return the vector by reference
      */
@@ -108,6 +108,10 @@ GameState():
     std::shared_ptr<cugl::Node>& getGameplayNode() { return _gameplayNode; };
 
     std::shared_ptr<GameObject> getActiveCharacter();
+
+    std::shared_ptr<GameObject> getInactiveCharacter();
+    
+    std::vector<std::shared_ptr<GameObject>> getInactiveCharacters();
 
     bool getReset();
     

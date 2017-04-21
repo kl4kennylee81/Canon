@@ -190,7 +190,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene(state);
         
         // notify that the controller has finished drawing
-        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter(),state->getInactiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         

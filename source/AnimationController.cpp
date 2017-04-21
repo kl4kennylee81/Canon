@@ -82,7 +82,7 @@ void AnimationController::eventUpdate(Event* e) {
             switch (pathEvent->_pathType) {
                 case PathEvent::PathEventType::PATH_FINISHED:
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
-                    GameObject* obj = pathFinished->_character.get();
+                    GameObject* obj = pathFinished->_activeChar.get();
                     handleAction(obj, AnimationAction::ATTACK);
                     break;
             }

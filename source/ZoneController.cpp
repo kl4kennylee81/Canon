@@ -10,6 +10,7 @@
 #include "ZoneEvent.hpp"
 #include "LevelEvent.hpp"
 #include "CollisionEvent.hpp"
+#include "PathEvent.hpp"
 #include "Element.hpp"
 #include <math.h>
 
@@ -58,6 +59,17 @@ void ZoneController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::PATH:{
+            PathEvent* pathEvent = (PathEvent*) e;
+            switch(pathEvent->_pathType){
+                case PathEvent::PathEventType::PATH_FINISHED:
+                {
+                    PathFinished* pathFinish = (PathFinished*) pathEvent;
+                    std::shared_ptr<ActiveZone> zone = zoneMap.at(pathFinish->_inactiveChar.get());
+                    toggleZone(zone);
+                }
+            }
+        }
     }
 }
 
@@ -97,6 +109,31 @@ void ZoneController::update(float timestep) {
 void ZoneController::dispose(){
     _world = nullptr;
     state = nullptr;
+}
+
+void ZoneController::toggleZone(std::shared_ptr<ActiveZone> zone){
+    if (zone->isOn){
+        zone->isOn = false;
+        zone->curIndex = 0;
+        for (std::pair<std::shared_ptr<ZoneData>,std::vector<GameObject*>> pair: zone->datas) {
+            for (GameObject* gameObj : pair.second)
+            {
+                std::shared_ptr<ZoneOffEvent> offEvent = ZoneOffEvent::alloc(gameObj);
+                notify(offEvent.get());
+            }
+        }
+    } else {
+        zone->isOn = true;
+        zone->curIndex = 0;
+        zone->blinking = false;
+        for (std::pair<std::shared_ptr<ZoneData>,std::vector<GameObject*>> pair: zone->datas) {
+            for (GameObject* gameObj : pair.second)
+            {
+                std::shared_ptr<ZoneOnEvent> OnEvent = ZoneOnEvent::alloc(gameObj);
+                notify(OnEvent.get());
+            }
+        }
+    }
 }
 
 void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs) {

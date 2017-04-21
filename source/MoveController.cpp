@@ -40,7 +40,7 @@ void MoveController::eventUpdate(Event* e) {
 		case PathEvent::PathEventType::PATH_FINISHED:
 			PathFinished* pathFinished = (PathFinished*)pathEvent;
 			std::shared_ptr<ActivePath> path = ActivePath::alloc(pathFinished->_path);
-			_activePaths[pathFinished->_character] = path;
+			_activePaths[pathFinished->_activeChar] = path;
 			break;
 		}
 		break;

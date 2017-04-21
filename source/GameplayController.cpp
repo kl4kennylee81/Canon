@@ -156,6 +156,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _pathController->attach(_animationController.get());
     _pathController->attach(_clockController.get());
     _pathController->attach(_soundController.get());
+    _pathController->attach(_zoneController.get());
     
     _levelController->attach(_collisionController.get());
     _levelController->attach(_animationController.get());
