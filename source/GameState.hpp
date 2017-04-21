@@ -139,6 +139,8 @@ GameState():
     
     std::shared_ptr<GameObject> getClosestChar(cugl::Vec2::Vec2 world_coord);
     
+    void setClosestChar(cugl::Vec2::Vec2 world_coord);
+    
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
     }

@@ -151,24 +151,37 @@ size_t GameState::getNumberEnemyCharacters(){
     return _enemyObjects.size();
 }
 
-std::shared_ptr<GameObject> GameState::getClosestChar(cugl::Vec2::Vec2 phys_coord) {
-    
-    if (getPlayerCharacters().size() <= 0){
-        return nullptr;
+int getClosestCharIndex(std::vector<std::shared_ptr<GameObject>> objs, Vec2 physCoord){
+    if (objs.size() <= 0){
+        return -1;
     }
-        float minDist = _playerCharacters.at(0)->getPosition().distance(phys_coord);
-        std::shared_ptr<GameObject> closerChar = _playerCharacters.at(0);
-        for (std::shared_ptr<GameObject> playerOb : getPlayerCharacters()){
-            if (playerOb->type != GameObject::ObjectType::CHARACTER){
-                continue;
-            }
-            
-            float playerDist = playerOb->getPosition().distance(phys_coord);
-            if (playerDist < minDist){
-                closerChar = playerOb;
-            }
+    float minDist = FLT_MAX;
+    int closerIndex = -1;
+    for (int i=0 ; i<objs.size() ; ++i){
+        std::shared_ptr<GameObject> playerOb = objs.at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
         }
-    return closerChar;
+        
+        float playerDist = playerOb->getPosition().distance(physCoord);
+        if (playerDist < minDist){
+            closerIndex = i;
+            minDist = playerDist;
+        }
+    }
+    return closerIndex;
+}
+
+
+std::shared_ptr<GameObject> GameState::getClosestChar(Vec2 phys_coord) {
+    
+    int closerIndex = getClosestCharIndex(_playerCharacters, phys_coord);
+    return _playerCharacters.at(closerIndex);
+};
+
+void GameState::setClosestChar(cugl::Vec2::Vec2 phys_coord) {
+    int closerIndex = getClosestCharIndex(_playerCharacters, phys_coord);
+    _activeCharacterPosition = closerIndex;
 };
 
 

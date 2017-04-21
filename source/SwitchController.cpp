@@ -63,16 +63,16 @@ void SwitchController::eventUpdate(Event* e) {
 }
 
 void SwitchController::update(float timestep, std::shared_ptr<GameState> state) {
-	if (switchFlag) {
-        
-        if (state->getActiveCharacter() == nullptr){
-            return;
-        }
-		state->toggleActiveCharacter(); // new active character
-        std::shared_ptr<SwitchEvent> switchevent = SwitchEvent::alloc(state->getActiveCharacter());
-        notify(switchevent.get());
-        switchFlag = false;
-	}
+//	if (switchFlag) {
+//        
+//        if (state->getActiveCharacter() == nullptr){
+//            return;
+//        }
+//		state->toggleActiveCharacter(); // new active character
+//        std::shared_ptr<SwitchEvent> switchevent = SwitchEvent::alloc(state->getActiveCharacter());
+//        notify(switchevent.get());
+//        switchFlag = false;
+//	}
 }
 
 bool SwitchController::init(std::shared_ptr<GameState> state) {

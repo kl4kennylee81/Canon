@@ -115,22 +115,8 @@ bool PathController::isOnCooldown() {
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
-    if (!_spawnStart) return;
-    _cooldown_frames += GameState::_internalClock->getTimeDilation();
-	bool isPressed = InputController::getIsPressed();
-	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
-    
-    Vec2 physicsPosition = Vec2::Vec2();
-    
-    if (isPressed){
-        Util::screenToPhysicsCoords(position,physicsPosition);
-		float buffer = GAME_PHYSICS_WIDTH * 0.02;
-		float x2 = GAME_PHYSICS_WIDTH - buffer;
-		float y2 = GAME_PHYSICS_HEIGHT - buffer;
-		physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
-
-        Vec2 scenePosition = Vec2::Vec2();
-        Util::screenToSceneCoords(position, scenePosition);
+    if (!_spawnStart){
+        return;
     }
     
     // can't start drawing a path before a character is done moving through a previous path
@@ -145,6 +131,27 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		_pathSceneNode->removeAllChildren();
 		return;
 	}
+    
+    _cooldown_frames += GameState::_internalClock->getTimeDilation();
+    bool isPressed = InputController::getIsPressed();
+    Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
+    
+    Vec2 physicsPosition = Vec2::Vec2();
+    
+    if (isPressed){
+        Util::screenToPhysicsCoords(position,physicsPosition);
+        float buffer = GAME_PHYSICS_WIDTH * 0.02;
+        float x2 = GAME_PHYSICS_WIDTH - buffer;
+        float y2 = GAME_PHYSICS_HEIGHT - buffer;
+        physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
+        
+        Vec2 physicPosition = Vec2::Vec2();
+        Util::screenToPhysicsCoords(position, physicPosition);
+        
+        if (controllerState == IDLE){
+            state->setClosestChar(physicPosition);
+        }
+    }
     
 	if (!_wasPressed && isPressed) {
         
