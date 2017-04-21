@@ -16,10 +16,6 @@
                 "wave3":	{
                     "waveKey":	"lure wave 10",
                     "time":	620
-                },
-                "wave4":	{
-                    "waveKey":	"lure wave 11",
-                    "time":	300
                 }
             },
             "playerChars":	{
@@ -125,38 +121,6 @@
                     "x":	475.733337,
                     "y":	39.466675,
                     "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                }
-            }
-        },
-        "lure wave 11":	{
-            "waveEntries":	{
-                "object1":	{
-                    "x":	473.600006,
-                    "y":	67.200012,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"feshHorizontal"
-                },
-                "object2":	{
-                    "x":	474.666656,
-                    "y":	16,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "object3":	{
-                    "x":	474.666656,
-                    "y":	501.333344,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "object4":	{
-                    "x":	472.533325,
-                    "y":	554.666687,
-                    "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
                 }
