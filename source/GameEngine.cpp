@@ -34,17 +34,17 @@ bool GameEngine::_touch;
 
 
 
-void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+void loadFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string dirToRead, std::string path) {
 #ifdef __APPLE__
 	DIR *dir;
 	struct dirent *ent;
-	if ((dir = opendir(templateDir.c_str())) != NULL) {
+	if ((dir = opendir(dirToRead.c_str())) != NULL) {
 		/* print all the files and directories within directory */
 		while ((ent = readdir(dir)) != NULL) {
 			if (ent->d_name[0] != '.') {
-				std::string templatePath = TEMPLATE_PATH;
-				templatePath.append(ent->d_name);
-				assets->loadDirectory(templatePath);
+				std::string pathToLoad = path;
+				pathToLoad.append(ent->d_name);
+				assets->loadDirectory(pathToLoad);
 			}
 		}
 		closedir(dir);
@@ -142,8 +142,9 @@ void GameEngine::onStartup() {
     
     /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
     
-    std::string templateDir = Application::get()->getAssetDirectory();
-    templateDir.append(TEMPLATE_PATH);
+    std::string assetDir = Application::get()->getAssetDirectory();
+    std::string templateDir = assetDir + TEMPLATE_PATH;
+    std::string levelDir = assetDir + LEVEL_PATH;
     
     // std::cout << "current file directory: "<< __FILE__ << std::endl;
     std::vector<std::string> vec = Util::split(__FILE__, '/');
@@ -154,8 +155,10 @@ void GameEngine::onStartup() {
 
 	#ifdef _WIN32
 	loadTemplateFilesWindows(_assets, templateDir);
+    loadLevelFilesWindows(_assets, levelDir);
 	#elif __APPLE__
-	loadTemplateFilesApple(_assets, templateDir);
+	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
+    loadFilesApple(_assets, levelDir, LEVEL_PATH);
 	#endif
 
     
@@ -285,7 +288,6 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         {
             std::shared_ptr<World> levelWorld = _levelEditor->getWorld();
             // TODO will replace once we give a default value to the levelStubs
-            levelWorld->presetPlayerCharacters();
             return levelWorld;
             break;
         }

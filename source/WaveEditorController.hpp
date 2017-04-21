@@ -26,7 +26,8 @@ enum class WaveEditorState : int {
     AI_TOGGLE,
 	DONE,
 	NEW_TEMPLATE,
-    REFRESH
+    REFRESH,
+    TEMPLATE_TOGGLE
 };
 
 class WaveEditorController : public BaseController {
@@ -59,6 +60,8 @@ private:
     int _removeIndex;
     
     bool _entryRemoved;
+    
+    bool _showTemplates;
 
 	std::shared_ptr<WaveData> _currentWave;
 

@@ -1,30 +1,47 @@
 {
+    "name": "lure",
     "counter":	12,
-    "templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "level":	{
-        "levelEntries":	{
-            "wave1":	{
-                "waveKey":	"wave 8",
-                "time":	660
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "lure":{
+            "levelEntries":	{
+                "wave1":	{
+                    "waveKey":	"lure wave 8",
+                    "time":	660
+                },
+                "wave2":	{
+                    "waveKey":	"lure wave 9",
+                    "time":	620
+                },
+                "wave3":	{
+                    "waveKey":	"lure wave 10",
+                    "time":	620
+                },
+                "wave4":	{
+                    "waveKey":	"lure wave 11",
+                    "time":	300
+                }
             },
-            "wave2":	{
-                "waveKey":	"wave 9",
-                "time":	620
-            },
-            "wave3":	{
-                "waveKey":	"wave 10",
-                "time":	620
-            },
-            "wave4":	{
-                "waveKey":	"wave 11",
-                "time":	300
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
             }
-        },
-        "playerChars":	{
         }
     },
     "waves":	{
-        "wave 8":	{
+        "lure wave 8":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	892.799988,
@@ -49,7 +66,7 @@
                 }
             }
         },
-        "wave 9":	{
+        "lure wave 9":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	106.666656,
@@ -81,7 +98,7 @@
                 }
             }
         },
-        "wave 10":	{
+        "lure wave 10":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	489.600006,
@@ -113,7 +130,7 @@
                 }
             }
         },
-        "wave 11":	{
+        "lure wave 11":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	473.600006,

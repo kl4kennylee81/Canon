@@ -18,7 +18,7 @@
 using namespace cugl;
 
 #define ANIMATION_SCALE_BUFFER     1.0 // a constant needed to make the animation a bit bigger than the bounding box.
-#define BLUE_COLOR   Color4::BLUE
+#define BLUE_COLOR   Color4::CYAN
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
 
@@ -125,9 +125,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.7));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.7));
                     }
                     animationMap.at(zoneOn->object)->setFlash(false);
                     break;
@@ -268,7 +268,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
                 anim->lit = !anim->lit;
             }
             
-            float alphascale = anim->lit ? 0.5 : 0.1;
+            float alphascale = anim->lit ? 0.7 : 0.1;
             
             if (it->first->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                 anim->getAnimationNode()->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,alphascale));
