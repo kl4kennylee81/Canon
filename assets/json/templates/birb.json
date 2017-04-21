@@ -35,7 +35,7 @@
       "objectKey": "birb_zoneObject",
       "relX": 0,
       "relY": 0,
-      "cooldown": 180,
+      "cooldown": 0,
       "duration": 180,
       "element": "BLUE"
     }

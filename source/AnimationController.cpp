@@ -112,9 +112,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.1));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.1));
                     }
                     break;
                 }
@@ -263,7 +263,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
         
         if (anim->getFlash()){
             anim->flashIndex += GameState::_internalClock->getTimeDilation();
-            if (anim->flashIndex >= 10) {
+            if (anim->flashIndex >= 30) {
                 anim->flashIndex = 0;
                 anim->lit = !anim->lit;
             }
