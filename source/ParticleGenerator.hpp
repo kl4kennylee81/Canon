@@ -12,13 +12,19 @@
 #include <stdio.h>
 #include "Particle.h"
 #include "ParticleData.hpp"
+#include "GameObject.hpp"
+#include "GameState.hpp"
+#include <random>
+
 
 /**
  * Base particle generator
  */
 class ParticleGenerator {
 protected:
+    /** The node that renders all particles for this generator */
     std::shared_ptr<ParticleNode> _partnode;
+    
     std::shared_ptr<cugl::FreeList<Particle>> _memory;
     ParticleData _pd;
     /** Flag to start or stop the generator */
@@ -26,12 +32,6 @@ protected:
     
 public:
     ParticleGenerator() {}
-    
-    ParticleGenerator(std::shared_ptr<ParticleNode> partnode, std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd) {
-        _partnode = partnode;
-        _memory = mem;
-        _pd = pd;
-    }
     
     /** Start / Stop generator */
     virtual void start() { _active = true; };
@@ -48,36 +48,45 @@ public:
  */
 class TrailParticleGenerator : public ParticleGenerator {
 private:
-    //    std::shared_ptr<GameObject> _char;
+    // need to keep track of the character to get positions
+    std::shared_ptr<GameObject> _char;
+    int _cooldown;
+    int _respawn;
+    std::set<Particle*> _particles;
     
 public:
     TrailParticleGenerator() : ParticleGenerator() {}
     
-    TrailParticleGenerator(std::shared_ptr<ParticleNode> partnode,
-                           std::shared_ptr<cugl::FreeList<Particle>> mem,
-                           ParticleData pd
-    /* std::shared_ptr<GameObject> char */ ) : ParticleGenerator(partnode, mem, pd) {
-        //        _char = char;
-    }
+    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> ch, std::shared_ptr<GameState> state) {
+        _memory = mem;
+        _pd = pd;
+        _char = ch;
+        _respawn = 0;
+        _cooldown = _respawn;
+        
+        // initialize particle node and attach to the world node
+        _partnode = ParticleNode::allocWithTexture(_pd.texture);
+        _partnode->setBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+        _partnode->setPosition(Vec2::ZERO);
+        _partnode->setContentSize(state->getWorldNode()->getContentSize());
+        state->getWorldNode()->addChild(_partnode);
+        
+        std::cout << "done initializing particlegenerator\n";
     
-    bool init() {
         return true;
     }
     
-    static std::shared_ptr<TrailParticleGenerator> alloc() {
+    static std::shared_ptr<TrailParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> gameObj, std::shared_ptr<GameState> state) {
         std::shared_ptr<TrailParticleGenerator> result = std::make_shared<TrailParticleGenerator>();
-        return (result->init() ? result : nullptr);
+        return (result->init(mem, pd, gameObj, state) ? result : nullptr);
     }
     
-    /** TEMP: Generates particles of type _pd where the mouse was clicked */
-    void generate() {
-        if (!_active) return;
-        std::cout << "particle generated\n";
-    }
+    void generate();
 };
 
+
 /**
- * Randomly generates
+ * Randomly generates some particles on a map to make it look alive
  */
 class BackgroundParticleGenerator : public ParticleGenerator {
 public:

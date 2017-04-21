@@ -37,6 +37,9 @@ public:
     /** How long it takes for the color to transition from start to end */
     int color_duration;
     
+    std::string texture_name;
+    std::shared_ptr<Texture> texture;
+    
     
     ParticleData() {}
     

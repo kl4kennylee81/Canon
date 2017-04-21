@@ -13,11 +13,20 @@
 #include <set>
 #include "BaseController.hpp"
 #include "Particle.h"
+#include "ParticleGenerator.hpp"
 
 class ParticleController : public BaseController {
 private:
     /** The memory pool for future allocations */
     std::shared_ptr<cugl::FreeList<Particle>> _memory;
+    
+    /** Character to the trail generator map */
+    std::unordered_map<GameObject*, std::shared_ptr<TrailParticleGenerator>> _character_map;
+    
+    /** Can retreive specific particles by name */
+    std::unordered_map<std::string, ParticleData> _particle_map;
+    
+    void generateTrails();
     
 public:
     ParticleController();
@@ -32,11 +41,11 @@ public:
     
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
-    virtual bool init();
+    virtual bool init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets);
     
-    static std::shared_ptr<ParticleController> alloc() {
+    static std::shared_ptr<ParticleController> alloc(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
         std::shared_ptr<ParticleController> result = std::make_shared<ParticleController>();
-        return (result->init() ? result : nullptr);
+        return (result->init(state, assets) ? result : nullptr);
     }
 };
 

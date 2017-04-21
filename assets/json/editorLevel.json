@@ -1,5 +1,5 @@
 {
-	"counter":	6,
+	"counter":	7,
 	"templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical", "kyle5"],
 	"level":	{
 		"levelEntries":	{
@@ -9,6 +9,10 @@
 			},
 			"wave2":	{
 				"waveKey":	"wave 6",
+				"time":	180
+			},
+			"wave3":	{
+				"waveKey":	"wave 7",
 				"time":	180
 			}
 		},
@@ -70,6 +74,10 @@
 			}
 		},
 		"wave 6":	{
+			"waveEntries":	{
+			}
+		},
+		"wave 7":	{
 			"waveEntries":	{
 			}
 		}
