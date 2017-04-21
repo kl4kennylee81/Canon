@@ -411,7 +411,7 @@ void GameEngine::update(float timestep) {
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
                 _menuGraph->populate(_assets);
-                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                _menuGraph->setNextMode(Mode::MAIN_MENU);
             }
             break;
         }
