@@ -41,7 +41,7 @@
             "waveEntries":	{
                 "object1":	{
                     "x":	892.799988,
-                    "y":	388.266663,
+                    "y":	296.533325,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
