@@ -40,11 +40,7 @@ bool InputController::getIsPressed() {
 }
 
 bool InputController::getIsPressedUp(){
-    if (_touch){
-        return _wasPressed && !_isPressed;
-    } else {
-        return !_isPressed;
-    }
+    return _wasPressed && !_isPressed;
 }
 
 void InputController::update(){
