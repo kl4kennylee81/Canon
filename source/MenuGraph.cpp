@@ -46,7 +46,9 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
 		// TODO hacky setting of the uiKey
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
-		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", 0.240 + 0.270*i, 0.5, boxData->width, boxData->height, action, "");
+        float x = 0.240 + (0.270*(i%2));
+        float y = 0.6 - (0.12 * (i/2));
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
 
 		// make label for level entry

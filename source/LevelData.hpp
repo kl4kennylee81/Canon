@@ -77,6 +77,10 @@ public:
     
     std::string getWaveKey(int index);
     
+    void setWaveKey(int index, std::string newKey){
+        _levelEntries.at(index)->waveKey = newKey;
+    }
+    
     size_t getNumberWaves();
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue() override;

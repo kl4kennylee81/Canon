@@ -1,26 +1,43 @@
 {
+    "name": "squareLaser",
     "counter":	9,
-    "templates":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "level":	{
-        "levelEntries":	{
-            "wave1":	{
-                "waveKey":	"wave 6",
-                "time":	330
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "squareLaser": {
+            "levelEntries":	{
+                "wave1":	{
+                    "waveKey":	"squareLaser wave 6",
+                    "time":	330
+                },
+                "wave2":	{
+                    "waveKey":	"squareLaser wave 7",
+                    "time":	510
+                },
+                "wave3":	{
+                    "waveKey":	"squareLaser wave 9",
+                    "time":	180
+                }
             },
-            "wave2":	{
-                "waveKey":	"wave 7",
-                "time":	510
-            },
-            "wave3":	{
-                "waveKey":	"wave 9",
-                "time":	180
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
             }
-        },
-        "playerChars":	{
         }
     },
     "waves":	{
-        "wave 6":	{
+        "squareLaser wave 6":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	921.599976,
@@ -52,7 +69,7 @@
                 }
             }
         },
-        "wave 7":	{
+        "squareLaser wave 7":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	632.533325,
@@ -84,7 +101,7 @@
                 }
             }
         },
-        "wave 9":	{
+        "squareLaser wave 9":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	328.533325,

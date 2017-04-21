@@ -1,0 +1,115 @@
+{
+    "name": "doubleGrump",
+    "counter":	14,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "doubleGrump": {
+            "levelEntries":	{
+                "wave1":	{
+                    "waveKey":	"doubleGrump wave 12",
+                    "time":	330
+                },
+                "wave2":	{
+                    "waveKey":	"doubleGrump wave 13",
+                    "time":	180
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "doubleGrump wave 12":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	503.466675,
+                    "y":	192,
+                    "element":	"BLUE",
+                    "aiKey":	"static",
+                    "templateKey":	"grump"
+                },
+                "object2":	{
+                    "x":	661.333313,
+                    "y":	190.933334,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object3":	{
+                    "x":	337.066681,
+                    "y":	373.333313,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object4":	{
+                    "x":	336,
+                    "y":	183.466675,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object5":	{
+                    "x":	657.066650,
+                    "y":	366.933350,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object6":	{
+                    "x":	501.333344,
+                    "y":	374.399994,
+                    "element":	"GOLD",
+                    "aiKey":	"static",
+                    "templateKey":	"grump"
+                }
+            }
+        },
+        "doubleGrump wave 13":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	24.533325,
+                    "y":	294.400024,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
+                },
+                "object2":	{
+                    "x":	998.400024,
+                    "y":	290.133331,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical"
+                },
+                "object3":	{
+                    "x":	451.200012,
+                    "y":	101.333328,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical"
+                },
+                "object4":	{
+                    "x":	522.666687,
+                    "y":	499.200012,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
+                }
+            }
+        }
+    }
+}
