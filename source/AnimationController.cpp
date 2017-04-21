@@ -17,10 +17,13 @@
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1.0 // a constant needed to make the animation a bit bigger than the bounding box.
 #define BLUE_COLOR   Color4::CYAN
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
+
+/** The alpha of the zones on/off */
+#define ZONE_ON_ALPHA 0.6
+#define ZONE_OFF_ALPHA 0.1
 
 AnimationController::AnimationController():
 BaseController(){}
@@ -112,9 +115,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     }
                     break;
                 }
@@ -125,9 +128,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.7));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.7));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
                     }
                     animationMap.at(zoneOn->object)->setFlash(false);
                     break;
@@ -139,9 +142,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     }
                     break;
                 }
@@ -268,7 +271,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
                 anim->lit = !anim->lit;
             }
             
-            float alphascale = anim->lit ? 0.7 : 0.1;
+            float alphascale = anim->lit ? ZONE_ON_ALPHA : ZONE_OFF_ALPHA;
             
             if (it->first->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                 anim->getAnimationNode()->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,alphascale));
@@ -290,9 +293,21 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
 
 void AnimationController::removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim){
     if (obj->getIsPlayer()){
-        // send the event to notify that the player character is dead
-        std::shared_ptr<Event> prEvent = PlayerRemovedEvent::alloc();
-        this->notify(prEvent.get());
+        switch(obj->type){
+            case GameObject::ObjectType::CHARACTER:
+            {
+                // send the event to notify that the player character is dead
+                std::shared_ptr<Event> prEvent = PlayerRemovedEvent::alloc();
+                this->notify(prEvent.get());
+                break;
+            }
+            case GameObject::ObjectType::ZONE:
+            {
+                break;
+            }
+            break;
+            
+        }
     }
     
     anim->getAnimationNode()->removeFromParent();
