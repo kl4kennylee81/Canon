@@ -64,9 +64,9 @@ void ZoneController::eventUpdate(Event* e) {
             switch(pathEvent->_pathType){
                 case PathEvent::PathEventType::PATH_FINISHED:
                 {
-                    PathFinished* pathFinish = (PathFinished*) pathEvent;
-                    std::shared_ptr<ActiveZone> zone = zoneMap.at(pathFinish->_inactiveChar.get());
-                    toggleZone(zone);
+//                    PathFinished* pathFinish = (PathFinished*) pathEvent;
+//                    std::shared_ptr<ActiveZone> zone = zoneMap.at(pathFinish->_inactiveChar.get());
+//                    toggleZone(zone);
                 }
             }
         }
