@@ -136,7 +136,7 @@
       "objectKey": "playerZoneObject",
       "relX": 0,
       "relY": 0,
-      "cooldown": 0,
+      "cooldown": 1,
       "duration": 1,
       "element": "MATCH"
     }
