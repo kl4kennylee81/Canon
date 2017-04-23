@@ -1,86 +1,20 @@
 {
   "levels": {
-    "level0": {
-        "levelEntries":{
-            "wave1": {
-                "waveKey": "wave1",
-                "time": 300
-            },
-            "wave2": {
-                "waveKey": "wave1",
-                "time": 300
-            }
-        },
-        "playerChars":{
-            "player1":{
-                "templateKey": "playerCharFemale",
-                "x": 500,
-                "y": 200,
-                "element":"BLUE"
-            },
-            "player2":{
-                "templateKey": "playerCharMale",
-                "x": 550,
-                "y": 250,
-                "element":"GOLD"
-            }
-        }
-    },
-    "level1": {
-        "levelEntries":{
-          "wave1": {
-            "waveKey": "wave1",
-            "time": 300
-          },
-          "wave2": {
-            "waveKey": "wave1",
-            "time": 300
-          }
-        },
-        "playerChars":{
-            "player1":{
-                "templateKey": "playerChar",
-                "x": 500,
-                "y": 200,
-                "element":"BLUE"
-            },
-            "player2":{
-                "templateKey": "playerChar",
-                "x": 550,
-                "y": 250,
-                "element":"GOLD"
-            }
-        }
-    }
   },
   "waves": {
-    "wave1": {
-        "waveEntries":{
-          "object1": {
-            "templateKey": "object1",
-            "x": 100,
-            "y": 100,
-            "element":"BLUE"
-          },
-          "object2": {
-            "templateKey": "object1",
-            "x": 200,
-            "y": 200,
-            "element" : "GOLD"
-          }
-        }
-    }
   },
   "templates":	{
       "playerCharMale":	{
           "name":	"playerCharMale",
           "objectKey":	"playerCharMale",
-          "spawnTime": 0.0
+          "spawnTime": 0.0,
+          "zoneKeys":["playerZone"]
       },
       "playerCharFemale":	{
           "name":	"playerCharFemale",
           "objectKey":	"playerCharFemale",
-          "spawnTime": 0.0
+          "spawnTime": 0.0,
+          "zoneKeys":["playerZone"]
       },
       "object1": {
           "name": "object1",
@@ -90,22 +24,15 @@
       }
   },
   "objects": {
-    "object1": {
-      "shapeKey": "shape1",
-      "blueAnimationKey": "blueEnemyAnimation",
-      "goldAnimationKey": "redEnemyAnimation",
-      "soundKey": "baseEnemySound",
-      "animationScale": 1.25
-    },
     "playerCharMale":{
-      "shapeKey": "shape1",
+      "shapeKey": "playerCharShape",
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
       "soundKey": "male",
       "animationScale": 2.5
     },
     "playerCharFemale":{
-      "shapeKey": "shape1",
+      "shapeKey": "playerCharShape",
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
       "soundKey": "female",
@@ -128,21 +55,21 @@
       "blueAnimationKey": "whiteBar",
       "goldAnimationKey": "whiteBar"
     },
-    "big_circle": {
-      "shapeKey": "big_circle",
+    "playerZoneObject":{
+      "shapeKey": "playerZoneShape",
       "blueAnimationKey": "whiteCircle",
       "goldAnimationKey": "whiteCircle"
     }
   },
   "shapes": {
-    "shape1": {
+    "playerCharShape": {
       "vertices": [0,0,22,0,22,33,0,33]
+    },
+    "playerZoneShape":{
+      "vertices": [0.0, -40.0, 20.0, -34.64101615136, 34.64101615136, -20.0, 40.0, 0.0, 34.64101615136, 20.0, 20.0, 34.64101615136, 0.0, 40.0, -20.0, 34.64101615136, -34.64101615136, 20.0, -40.0, 0.0, -34.64101615136, -20.0, -20.0, -34.64101615136]
     },
     "circle": {
       "vertices": [0, -100, 50.0, -86.6025403784, 86.6025403784, -50.0, 100, 0, 86.6025403784, 50.0, 50.0, 86.6025403784, 0, 100, -50.0, 86.6025403784, -86.6025403784, 50.0, -100, 0, -86.6025403784, -50.0, -50.0, -86.6025403784]
-    },
-    "big_circle": {
-        "vertices": [0.0, -150.0, 75.0, -129.90381056774999, 129.90381056774999, -75.0, 150.0, 0.0, 129.90381056774999, 75.0, 75.0, 129.90381056774999, 0.0, 150.0, -75.0, 129.90381056774999, -129.90381056774999, 75.0, -150.0, 0.0, -129.90381056774999, -75.0, -75.0, -129.90381056774999]
     },
     "sector": {
       "vertices": [ 10, 0, 50, 0, 70, 45, 30, 55, -10, 45 ]
@@ -164,15 +91,6 @@
     "staticZone": {
       "type": "STATIC",
       "objectKey": "circle",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 180,
-      "duration": 180,
-      "element": "MATCH"
-    },
-    "staticZoneBig": {
-      "type": "STATIC",
-      "objectKey": "big_circle",
       "relX": 0,
       "relY": 0,
       "cooldown": 180,
@@ -211,6 +129,15 @@
       "maxSizeY": 1.0,
       "maxTime": 60,
       "lerpTime": 320,
+      "element": "MATCH"
+    },
+    "playerZone": {
+      "type": "STATIC",
+      "objectKey": "playerZoneObject",
+      "relX": 0,
+      "relY": 0,
+      "cooldown": 0,
+      "duration": 1,
       "element": "MATCH"
     }
   }

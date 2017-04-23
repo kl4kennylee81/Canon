@@ -94,8 +94,10 @@ void MenuController::update(float timestep) {
         
         std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
         
+        Vec2 vec = InputController::getPrevVector();
+        
         // check if this button was clicked
-        if (!button->containsScreen(InputController::getInputVector())){
+        if (!button->containsScreen(vec)){
             continue;
         }
         

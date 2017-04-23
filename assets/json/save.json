@@ -1,21 +1,48 @@
 {
     "SaveGameData": {
         "saveFile": {
-            "level0": {
-                "name": "Level 0",
+            "interweave": {
+                "name": "Weave",
                 "unlocked": 1,
                 "complete": 0,
                 "menuKey": "lake_bg",
-                "levelKey": "level0",
+                "levelKey": "interweave",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
-            "level1": {
-                "name": "Level 1",
+            "doubleGrump": {
+                "name": "Rotation",
                 "unlocked": 1,
                 "complete": 0,
                 "menuKey": "lake_bg",
-                "levelKey": "level1",
+                "levelKey": "doubleGrump",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "lure": {
+                "name": "Lure",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "lure",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "squareLaser": {
+                "name": "Lasers",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "squareLaser",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "sneakAttack": {
+                "name": "SneakAttack",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "sneakAttack",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             }

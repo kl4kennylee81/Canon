@@ -28,6 +28,8 @@
 #include "LevelEditorController.hpp"
 
 #define TEMPLATE_PATH "json/templates/"
+#define LEVEL_PATH "json/testLevels/"
+
 
 
 /**

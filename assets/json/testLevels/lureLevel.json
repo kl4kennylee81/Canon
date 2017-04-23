@@ -1,0 +1,130 @@
+{
+    "name": "lure",
+    "counter":	12,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "lure":{
+            "levelEntries":	{
+                "wave1":	{
+                    "waveKey":	"lure wave 8",
+                    "time":	660
+                },
+                "wave2":	{
+                    "waveKey":	"lure wave 9",
+                    "time":	620
+                },
+                "wave3":	{
+                    "waveKey":	"lure wave 10",
+                    "time":	620
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "lure wave 8":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	892.799988,
+                    "y":	388.266663,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object2":	{
+                    "x":	842.666687,
+                    "y":	296.533325,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical"
+                },
+                "object3":	{
+                    "x":	157.866669,
+                    "y":	541.866699,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        },
+        "lure wave 9":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	106.666656,
+                    "y":	293.333344,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object2":	{
+                    "x":	161.066650,
+                    "y":	297.599976,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
+                },
+                "object3":	{
+                    "x":	872.533325,
+                    "y":	286.933319,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object4":	{
+                    "x":	936.533325,
+                    "y":	288,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                }
+            }
+        },
+        "lure wave 10":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	489.600006,
+                    "y":	510.933350,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"feshHorizontal"
+                },
+                "object2":	{
+                    "x":	492.799988,
+                    "y":	536.533325,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object3":	{
+                    "x":	474.666656,
+                    "y":	103.466660,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object4":	{
+                    "x":	475.733337,
+                    "y":	39.466675,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                }
+            }
+        }
+    }
+}

@@ -113,7 +113,7 @@ GameState():
     
     void toggleReset();
     
-	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
+    void toggleActiveCharacter();
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     

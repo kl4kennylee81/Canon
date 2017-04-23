@@ -138,9 +138,7 @@ public:
     void populate();
     
     bool isValid();
-    
-    void presetPlayerCharacters();
-	
+    	
     void copyWave(std::string copiedWaveKey, std::string newWaveKey);
     
 };

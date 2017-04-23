@@ -18,7 +18,7 @@ class WaveEntry {
 private:
     ElementType element;
     
-    cugl::Vec2 position;
+    cugl::Vec2 position; //physics coordinates
     
     std::string templateKey;
     
@@ -76,9 +76,23 @@ public:
         return true;
     }
     
+    bool init(std::shared_ptr<WaveData> data) {
+        for(auto it: data->getWaveEntries()){
+            auto we = WaveEntry::alloc(0, 0, it->getElement(), it->getTemplateKey(), it->getAIKey());
+            we->setPosition(it->getPosition()); //already in physics coordinates
+            _waveEntries.push_back(we);
+        }
+        return true;
+    }
+    
     static std::shared_ptr<WaveData> alloc() {
         std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
         return (result->init() ? result : nullptr);
+    }
+    
+    static std::shared_ptr<WaveData> alloc(std::shared_ptr<WaveData> data) {
+        std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
+        return (result->init(data) ? result : nullptr);
     }
     
     void addWaveEntry(std::shared_ptr<WaveEntry> w){

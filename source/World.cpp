@@ -266,24 +266,9 @@ bool World::isValid(){
     return _levelData->isValid();
 }
 
-void World::presetPlayerCharacters(){
-    if(isValid()){
-        return;
-    }
-    // TODO hacky function need to remove when a better solution comes up
-    // better solution will be when initialize level stub give default value for the player characters
-    
-    // add two player characters
-    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,ElementType::GOLD,"playerCharMale", "");
-    _levelData->addPlayerChars(playerChar2);
-    
-    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,ElementType::BLUE,"playerCharFemale", "");
-    _levelData->addPlayerChars(playerChar1);
-    
-    return;
-}
 
 void World::copyWave(std::string copiedWaveKey, std::string newWaveKey){
-    _waveData.at(newWaveKey) = _waveData.at(copiedWaveKey);
+    auto newWaveData = WaveData::alloc(getWaveData(copiedWaveKey));
+    _waveData.at(newWaveKey) = newWaveData;
 }
 

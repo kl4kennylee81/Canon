@@ -72,8 +72,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
         break;
     }
 	case WaveEditorState::DRAG: {
-        updateTemplateNodes();
         updateDragAndDrop();
+        if(_showTemplates){
+            updateTemplateNodes();
+        }
+        else {
+            deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        }
 		break;
 	}
 	case WaveEditorState::REMOVE: {
@@ -291,6 +296,16 @@ void WaveEditorController::checkKeyboardInput() {
         if(key == KeyCode::A){
             _state = WaveEditorState::AI_TOGGLE;
             return;
+        }
+        if(key == KeyCode::NUM_1){
+            if(_state == WaveEditorState::DRAG){
+                _showTemplates = true;
+            }
+        }
+        if(key == KeyCode::NUM_2){
+            if(_state == WaveEditorState::DRAG){
+                _showTemplates = false;
+            }
         }
     }
 
@@ -533,6 +548,7 @@ void WaveEditorController::updateTemplateNodes() {
         );
         button->activate(getUid());
         templateNode->addChildWithTag(button, i);
+        templateNode->setZOrder(5000);
         templateNode->addChild(label);
     }
 }
@@ -662,6 +678,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     _colorChanged = false;
     _aiChanged = false;
     _entryRemoved = false;
+    _showTemplates = true;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");
     if (reader == nullptr) {
@@ -669,7 +686,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     }
 	std::shared_ptr<JsonValue> json = reader->readJson();
     
-    for(std::string tName :json->get("templates")->asStringArray()){
+    for(std::string tName :json->get("template names")->asStringArray()){
         auto temp = world->getAssetManager()->get<TemplateWaveEntry>(tName);
         _templates.push_back(temp);
     }

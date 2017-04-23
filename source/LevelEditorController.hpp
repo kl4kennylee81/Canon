@@ -16,6 +16,8 @@
 #include "WaveEditorController.hpp"
 #include "LevelData.hpp"
 
+#define LEVEL_NAME "interweave"
+
 enum class LevelEditorState : int {
     START,
 	MAIN,
@@ -50,6 +52,8 @@ private:
     int _timeIndex;
     
     int _waveTime;
+    
+    std::string _name;
     
 public:
     
@@ -99,6 +103,8 @@ public:
     }
 
     void loadLevel(std::string file);
+    
+    void ensureNameMatch();
     
     void deleteButtonListenerFunction(const std::string& name, bool down, int index);
     

@@ -120,12 +120,14 @@ void LevelEditorController::loadLevel(std::string file){
     }
     auto json = reader->readJson();
     
+    _name = json->getString("name");
     _waveCounter = json->getInt("counter");
     
-    auto templates = json->get("templates");
+    auto templates = json->get("template names");
     _waveEditorController->setTemplates(templates->asStringArray());
     
-    _levelData->preload(json->get("level"));
+    std::shared_ptr<JsonValue> levels = json->get("levels");
+    _levelData->preload(levels->get(0));
     
     std::shared_ptr<JsonValue> waves = json->get("waves");
     for(int i = 0; i < _levelData->getNumberWaves(); i++){
@@ -134,20 +136,46 @@ void LevelEditorController::loadLevel(std::string file){
         _world->_waveData[_levelData->getWaveKey(i)] = waveData;
     }
     
+    ensureNameMatch();
+    saveLevel();
+}
+
+void LevelEditorController::ensureNameMatch() {
+    for(int i = 0; i < _levelData->getNumberWaves(); i++){
+        std::string key = _levelData->getWaveKey(i);
+        std::string newKey = key;
+        std::vector<std::string> arr = Util::split(key, ' ');
+        if(key.compare(arr.at(0)) != 0) {
+            if(arr.at(0).compare("wave") == 0) {
+                newKey = _name + " " + arr.at(0) + " " + arr.at(1);
+            }
+            else {
+                newKey = _name + " " + arr.at(1) + " " + arr.at(2);
+            }
+            _world->_waveData[newKey] = _world->getWaveData(key);
+            _levelData->setWaveKey(i, newKey);
+        }
+    }
 }
 
 void LevelEditorController::saveLevel() {
+    ensureNameMatch();
+    
     auto json = JsonValue::allocObject();
     
     auto templates = JsonValue::allocArray();
     for(auto it: _waveEditorController->getTemplates()){
         templates->appendValue(it->getName());
     }
+    json->appendValue("name", _name);
     json->appendValue("counter", long(_waveCounter));
                       
-    json->appendChild("templates", templates);
+    json->appendChild("template names", templates);
     
-    json->appendChild("level", _levelData->toJsonValue());
+    auto levels = JsonValue::allocObject();
+    levels->appendChild(_name, _levelData->toJsonValue());
+    
+    json->appendChild("levels", levels);
     
     auto waves = JsonValue::allocObject();
     for(int i = 0; i < _levelData->getNumberWaves(); i++){
@@ -211,14 +239,14 @@ void LevelEditorController::setSceneGraph() {
 }
 
 void LevelEditorController::addNewWave() {
-    std::string waveName = "wave "+ std::to_string(increment());
+    std::string waveName = _name+" wave "+ std::to_string(increment());
 	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
 
 void LevelEditorController::copyWave(int index) {
-    std::string newWaveName = "wave "+ std::to_string(increment());
+    std::string newWaveName = _name+" wave "+ std::to_string(increment());
     std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(newWaveName, 180);
     _world->_waveData[newWaveName] = WaveData::alloc();
     _levelData->addLevelEntry(entry);
@@ -371,7 +399,9 @@ void LevelEditorController::updateWaveNodes() {
         );
         timeButton->activate(getUid());
         
-        auto label = Label::alloc(_levelData->getWaveKey(i), _world->getAssetManager()->get<Font>("Charlemagne"));
+        std::string waveKey = _levelData->getWaveKey(i);
+        std::vector<std::string> vec = Util::split(waveKey, ' ');
+        auto label = Label::alloc(vec.at(vec.size()-1), _world->getAssetManager()->get<Font>("Charlemagne"));
         label->setScale(0.17);
         label->setPosition(200 + 60 * i, 230);
         
