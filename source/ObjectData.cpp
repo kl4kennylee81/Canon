@@ -25,17 +25,22 @@ std::string ObjectData::getAnimationKey(ElementType e){
     }
 }
 
-bool ObjectData::init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string soundKey,float animScale){
+bool ObjectData::init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string soundKey,float animScale,int health){
     this->shapeKey = shapeKey;
     this->soundKey = soundKey;
     this->blueAnimationKey = blueAnimKey;
     this->goldAnimationKey = goldAnimKey;
     this->animationScale = animScale;
+    this->health = health;
     return true;
 };
 
 float ObjectData::getAnimationScale(){
     return animationScale;
+}
+
+int ObjectData::getHealth(){
+    return health;
 }
 
 std::shared_ptr<JsonValue> ObjectData::toJsonValue()
@@ -46,6 +51,7 @@ std::shared_ptr<JsonValue> ObjectData::toJsonValue()
 	object->appendChild("blueAnimationKey", JsonValue::alloc(blueAnimationKey));
     object->appendChild("goldAnimationKey", JsonValue::alloc(goldAnimationKey));
     object->appendChild("animationScale", JsonValue::alloc(animationScale));
+    object->appendChild("health", JsonValue::alloc(static_cast<float>(health)));
 	return object;
 }
 
@@ -62,7 +68,8 @@ bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string banimKey = json->getString("blueAnimationKey");
     std::string ganimKey = json->getString("goldAnimationKey");
     float animScale = json->getFloat("animationScale",1.0f);
-    init(sKey,banimKey,ganimKey,soundKey,animScale);
+    int health = json->getInt("health",1);
+    init(sKey,banimKey,ganimKey,soundKey,animScale,health);
     return true;
 }
 

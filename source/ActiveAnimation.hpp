@@ -42,6 +42,8 @@ private:
     
     bool flash;
     
+    bool hitStun;
+    
 public:
     bool lit;
     float flashIndex;
@@ -118,5 +120,13 @@ public:
     bool getFlash() {return flash;};
     
     float getAnimationScale() { return _animationScale; };
+    
+    void setHitStun(bool h) {
+        hitStun = h;
+        lit = false;
+        flashIndex = 0;
+    }
+    
+    bool getHitStun() {return hitStun;} ;
 };
 #endif /* ActiveAnimation_hpp */

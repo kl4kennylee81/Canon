@@ -1,6 +1,6 @@
 {
 	"name":	"sneakAttack",
-	"counter":	5,
+	"counter":	6,
 	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"levels":	{
 		"sneakAttack":	{
@@ -19,6 +19,10 @@
 				},
 				"wave4":	{
 					"waveKey":	"sneakAttack wave 5",
+					"time":	180
+				},
+				"wave5":	{
+					"waveKey":	"sneakAttack wave 6",
 					"time":	180
 				}
 			},
@@ -279,6 +283,10 @@
 					"aiKey":	"homing",
 					"templateKey":	"birb"
 				}
+			}
+		},
+		"sneakAttack wave 6":	{
+			"waveEntries":	{
 			}
 		}
 	}

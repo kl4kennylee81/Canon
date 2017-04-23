@@ -26,6 +26,8 @@ BaseController(){}
 #define DEBUG_COLOR  Color4::GREEN
 #define DEBUG_OFF_COLOR Color4::RED
 
+#define HIT_STUN 60
+
 void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
@@ -103,6 +105,8 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
         setDebug(!isDebug());
     }
     
+    updateHitStun();
+    
     //remove duplicates
     sort(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() );
     objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
@@ -110,6 +114,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     for (auto obj : objsScheduledForRemoval) {
         if (obj->getIsPlayer()){
             // TODO check if we actually need this inGame flag
+            // added so things dont keep moving during death animation
             inGame = false;
         }
         removeFromWorld(obj);
@@ -143,6 +148,26 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
                 continue;
             }
             gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
+    }
+}
+
+void CollisionController::updateHitStun(){
+    auto itr = hitStunMap.begin();
+    while (itr != hitStunMap.end()) {
+        itr->second -= GameState::_internalClock->getTimeDilation();
+        if (itr->second <= 0) {
+            //remove from ignore list
+            auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), itr->first);
+            if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+            
+            //send event
+            std::shared_ptr<ObjectHitFinishedEvent> objectHitFinishedEvent = ObjectHitFinishedEvent::alloc(itr->first);
+            notify(objectHitFinishedEvent.get());
+            
+            itr = hitStunMap.erase(itr);
+        } else {
+            ++itr;
         }
     }
 }
@@ -210,7 +235,7 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->getPosition());
     
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement());
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
     objectInit->object->setPhysicsComponent(physics);
 }
 
@@ -223,7 +248,7 @@ void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(zoneInit->pos);
     
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element);
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element,1);
     zoneInit->object->setPhysicsComponent(physics);
 }
 
@@ -280,17 +305,33 @@ void CollisionController::beginContact(b2Contact* contact) {
         if (obj1->type == GameObject::ObjectType::ZONE) {
             return;
         }
-        objsScheduledForRemoval.push_back(obj1);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
-        notify(objectGoneEvent.get());
+        obj1->getPhysicsComponent()->getHit();
+        if (obj1->getPhysicsComponent()->isAlive()) {
+            objsToIgnore.push_back(obj1);
+            hitStunMap.insert({obj1,HIT_STUN});
+            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(obj1);
+            notify(objectHitEvent.get());
+        } else {
+            objsScheduledForRemoval.push_back(obj1);
+            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
+            notify(objectGoneEvent.get());
+        }
     }
     if (remove == 2) {
         if (obj2->type == GameObject::ObjectType::ZONE) {
             return;
         }
-        objsScheduledForRemoval.push_back(obj2);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
-        notify(objectGoneEvent.get());
+        obj2->getPhysicsComponent()->getHit();
+        if (obj2->getPhysicsComponent()->isAlive()){
+            objsToIgnore.push_back(obj2);
+            hitStunMap.insert({obj2,HIT_STUN});
+            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(obj2);
+            notify(objectHitEvent.get());
+        } else {
+            objsScheduledForRemoval.push_back(obj2);
+            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
+            notify(objectGoneEvent.get());
+        }
     }
 }
 

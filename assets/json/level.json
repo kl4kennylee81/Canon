@@ -29,15 +29,16 @@
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
       "soundKey": "male",
-      "animationScale": 2.5
+      "animationScale": 2.5,
+      "health": 3
     },
     "playerCharFemale":{
       "shapeKey": "playerCharShape",
       "blueAnimationKey": "blueCharAnimation",
       "goldAnimationKey": "goldCharAnimation",
       "soundKey": "female",
-      "animationScale": 2.5
-
+      "animationScale": 2.5,
+      "health": 3
     },
     "circle": {
       "shapeKey": "circle",

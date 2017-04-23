@@ -22,7 +22,8 @@ public:
         /** Signal that an object is hit */
         OBJECT_HIT,
         /** Signal game is over */
-        GAME_LOST
+        GAME_LOST,
+        HIT_FINISHED
     };
 
     CollisionEventType _collisionType;
@@ -62,12 +63,47 @@ public:
     
 };
 
-class ObjectHitEvent : CollisionEvent {
+class ObjectHitEvent : public CollisionEvent {
+public:
+    GameObject* _obj;
+    bool init(GameObject* obj) {
+        CollisionEvent::init();
+        _obj = obj;
+        _collisionType = CollisionEventType::OBJECT_HIT;
+        return true;
+    }
+    
+    static std::shared_ptr<ObjectHitEvent> alloc(GameObject* obj) {
+        std::shared_ptr<ObjectHitEvent> result = std::make_shared<ObjectHitEvent>();
+        return (result->init(obj) ? result : nullptr);
+    }
+    
+    ObjectHitEvent() : CollisionEvent(){}
 
 };
 
 class GameLostEvent : CollisionEvent {
 
 };
+
+class ObjectHitFinishedEvent : public CollisionEvent {
+public:
+    GameObject* _obj;
+    bool init(GameObject* obj) {
+        CollisionEvent::init();
+        _obj = obj;
+        _collisionType = CollisionEventType::HIT_FINISHED;
+        return true;
+    }
+    
+    static std::shared_ptr<ObjectHitFinishedEvent> alloc(GameObject* obj) {
+        std::shared_ptr<ObjectHitFinishedEvent> result = std::make_shared<ObjectHitFinishedEvent>();
+        return (result->init(obj) ? result : nullptr);
+    }
+    
+    ObjectHitFinishedEvent() : CollisionEvent(){}
+    
+};
+
 
 #endif /* CollisionEvent_hpp */
