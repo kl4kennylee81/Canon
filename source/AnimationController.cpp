@@ -302,7 +302,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
                 anim->lit = !anim->lit;
             }
             
-            Color4f color = anim->lit ? Color4f::WHITE : Color4f(1,1,1,.4f);
+            Color4 color = anim->lit ? Color4::WHITE : Color4::RED;
             anim->getAnimationNode()->setColor(color);
         }
         

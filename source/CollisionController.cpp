@@ -26,7 +26,7 @@ BaseController(){}
 #define DEBUG_COLOR  Color4::GREEN
 #define DEBUG_OFF_COLOR Color4::RED
 
-#define HIT_STUN 60
+#define HIT_STUN 90
 
 void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
