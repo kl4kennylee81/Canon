@@ -4,10 +4,6 @@
 	"level":	{
 		"levelEntries":	{
 			"wave1":	{
-				"waveKey":	"wave 10",
-				"time":	180
-			},
-			"wave2":	{
 				"waveKey":	"wave 11",
 				"time":	180
 			}
@@ -16,12 +12,15 @@
 		}
 	},
 	"waves":	{
-		"wave 10":	{
-			"waveEntries":	{
-			}
-		},
 		"wave 11":	{
 			"waveEntries":	{
+				"object1":	{
+					"x":	480,
+					"y":	158.933334,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
 			}
 		}
 	}
