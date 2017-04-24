@@ -62,6 +62,41 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "birb_blue": {
+            "file": "./textures/models/enemy_models/birb/birb_blue.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "birb_yellow": {
+            "file": "./textures/models/enemy_models/birb/birb_yellow.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "blobo_blue": {
+            "file": "./textures/models/enemy_models/blobo/blobo_blue.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "blobo_yellow": {
+            "file": "./textures/models/enemy_models/blobo/blobo_yellow.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "blue_particle": {
+            "file": "./textures/test/blue_particle.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "charatemp_blue": {
             "file": "./textures/models/player_models/charatemp_blue.png", 
             "magfilter": "linear", 
@@ -111,6 +146,20 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "fesh_blue": {
+            "file": "./textures/models/enemy_models/fesh/fesh_blue.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "fesh_yellow": {
+            "file": "./textures/models/enemy_models/fesh/fesh_yellow.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "finalCap_background": {
             "file": "./textures/gameScreen/progressBar/finalCap_background.png", 
             "magfilter": "linear", 
@@ -127,6 +176,27 @@
         }, 
         "gameover": {
             "file": "./textures/menus/gameover/gameover.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "gold_particle": {
+            "file": "./textures/test/gold_particle.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "grump_blue": {
+            "file": "./textures/models/enemy_models/grump/grump_blue.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "grump_yellow": {
+            "file": "./textures/models/enemy_models/grump/grump_yellow.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
@@ -267,6 +337,20 @@
         }, 
         "swipetoplay": {
             "file": "./textures/menus/startMenu/swipetoplay.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "temp": {
+            "file": "./textures/test/temp.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "temp2": {
+            "file": "./textures/test/temp2.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
