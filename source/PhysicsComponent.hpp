@@ -20,6 +20,7 @@ protected:
     float _speed;
     float _acceleration;
     ElementType _elementType;
+    int _maxHealth;
     int _health;
 public:
     

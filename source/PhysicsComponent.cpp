@@ -31,6 +31,7 @@ bool PhysicsComponent::init(std::shared_ptr<cugl::PolygonObstacle> body, Element
     _acceleration = 0;
     _elementType = element;
     _health = health;
+    _maxHealth = health;
     return true;
 }
 
