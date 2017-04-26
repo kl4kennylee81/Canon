@@ -1030,10 +1030,10 @@
 			isa = PBXGroup;
 			children = (
 				EBBF18B11D749176008E2001 /* Source */,
-				EB2BE9B71D749870002FE78B /* Assets */,
 				EBBF18931D74904A008E2001 /* Resources */,
 				EB4880FC1D74AAB600EFC946 /* Frameworks */,
 				EBBF18921D74904A008E2001 /* Products */,
+				EB2BE9B71D749870002FE78B /* Assets */,
 				EB4EB19D1E3404F3007BCF09 /* CUGL.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -1153,11 +1153,11 @@
 				TargetAttributes = {
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YX9S6B2J7Q;
+						DevelopmentTeam = PKT82FV824;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YX9S6B2J7Q;
+						DevelopmentTeam = 4S972L8QNQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1427,7 +1427,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = YX9S6B2J7Q;
+				DEVELOPMENT_TEAM = PKT82FV824;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
@@ -1450,9 +1450,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = YX9S6B2J7Q;
+				DEVELOPMENT_TEAM = PKT82FV824;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1562,7 +1563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YX9S6B2J7Q;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1582,7 +1583,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = YX9S6B2J7Q;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
