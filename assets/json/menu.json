@@ -73,7 +73,7 @@
                 "nextScreen": "blankScreen"
             },
             "x": 0.375,
-            "y": 0.25,
+            "y": 0.05,
             "width": 0.250,
             "height": 0.100
         },
@@ -142,7 +142,7 @@
             "type": "IMAGE",
             "textureKey": "levelSelectTextImg",
             "x": 0.257,
-            "y": 0.675,
+            "y": 0.775,
             "width": 0.476,
             "height": 0.261
         },

@@ -1,0 +1,87 @@
+{
+    "name":	"overlap",
+    "counter":	39,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "overlap":	{
+            "levelEntries":	{
+                "wave1":	{
+                    "waveKey":	"overlap wave 36",
+                    "time":	420
+                },
+                "wave2":	{
+                    "waveKey":	"overlap wave 38",
+                    "time":	450
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "overlap wave 36":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	508.799988,
+                    "y":	538.666687,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object2":	{
+                    "x":	457.600006,
+                    "y":	538.666687,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        },
+        "overlap wave 38":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	921.599976,
+                    "y":	475.733337,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object2":	{
+                    "x":	100.266663,
+                    "y":	476.800018,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object3":	{
+                    "x":	140.799988,
+                    "y":	488.533325,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "object4":	{
+                    "x":	877.866638,
+                    "y":	487.466675,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        }
+    }
+}

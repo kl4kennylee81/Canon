@@ -1,30 +1,66 @@
 {
     "SaveGameData": {
         "saveFile": {
+            "rapidSpawn": {
+                "name": "rapidSpawn",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "rapidSpawn",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "separation": {
+                "name": "separation",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "separation",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "xxxxxx": {
+                "name": "xxxxxx",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "xxxxxx",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "precision": {
+                "name": "precision",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "precision",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "overlap": {
+                "name": "overlap",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "overlap",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "sneakAttack": {
+                "name": "SneakAttack",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "sneakAttack",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
             "interweave": {
                 "name": "Weave",
                 "unlocked": 1,
                 "complete": 0,
                 "menuKey": "lake_bg",
                 "levelKey": "interweave",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "doubleGrump": {
-                "name": "Rotation",
-                "unlocked": 1,
-                "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "doubleGrump",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "lure": {
-                "name": "Lure",
-                "unlocked": 1,
-                "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "lure",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
@@ -37,12 +73,12 @@
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
-            "sneakAttack": {
-                "name": "SneakAttack",
+            "lure": {
+                "name": "Lure",
                 "unlocked": 1,
                 "complete": 0,
                 "menuKey": "lake_bg",
-                "levelKey": "sneakAttack",
+                "levelKey": "lure",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             }
