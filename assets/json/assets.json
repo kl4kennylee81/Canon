@@ -314,6 +314,20 @@
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
+        "temp": {
+            "file": "./textures/test/temp.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
+        "temp2": {
+            "file": "./textures/test/temp2.png", 
+            "magfilter": "linear", 
+            "minfilter": "nearest", 
+            "wrapS": "clamp", 
+            "wrapT": "clamp"
+        }, 
         "title": {
             "file": "./textures/menus/startMenu/title.png", 
             "magfilter": "linear", 
