@@ -164,88 +164,32 @@
         "sneakAttack wave 4":	{
             "waveEntries":	{
                 "object1":	{
-                    "x":	110,
-                    "y":	450,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
+                    "x":	101.333344,
+                    "y":	330.666687,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
                 },
                 "object2":	{
-                    "x":	110,
-                    "y":	375,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
+                    "x":	101.333344,
+                    "y":	253.866669,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
                 },
                 "object3":	{
-                    "x":	110,
-                    "y":	300,
+                    "x":	906.666687,
+                    "y":	342.399994,
                     "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
                 },
                 "object4":	{
-                    "x":	110,
-                    "y":	225,
+                    "x":	902.400024,
+                    "y":	257.066681,
                     "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "object5":	{
-                    "x":	110,
-                    "y":	150,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "object6":	{
-                    "x":	110,
-                    "y":	75,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "object7":	{
-                    "x":	900,
-                    "y":	450,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "object8":	{
-                    "x":	900,
-                    "y":	375,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "object9":	{
-                    "x":	900,
-                    "y":	300,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "object10":	{
-                    "x":	900,
-                    "y":	225,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "object11":	{
-                    "x":	900,
-                    "y":	150,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "object12":	{
-                    "x":	904.533325,
-                    "y":	75,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
                 }
             }
         },

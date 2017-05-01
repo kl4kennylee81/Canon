@@ -1,0 +1,4 @@
+# this is because we have a githook to regenerate these files whenever you pull
+assets/json/fullLevels/*
+assets/json/assets.json
+*/.DS_Store

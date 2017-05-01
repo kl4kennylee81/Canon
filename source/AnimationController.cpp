@@ -196,7 +196,14 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
  * Defers handling to the active animation handleEvent()
  */
 void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
+    if (obj == nullptr){
+        return;
+    }
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
+    if (anim == nullptr){
+        return;
+    }
+    
     if (anim->isLastAnimation()){ return;}
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
