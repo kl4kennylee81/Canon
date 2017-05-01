@@ -15,7 +15,6 @@
 #include "GameObject.hpp"
 
 class ActiveAI {
-    
 public:
     virtual void update(std::shared_ptr<GameState> state) = 0;
     
