@@ -93,5 +93,5 @@ for level in test_levels.keys():
 	name, ext = splits[0], splits[1]
 	abspath = os.path.abspath(__file__)
 	dname = os.path.dirname(abspath)
-	with open(dname + os.sep + 'json' + os.sep + 'fullLevels' + os.sep + name + 'Full.' + ext, 'w') as file:
-		json.dump(level_json, file, indent=4, sort_keys=True)
+	with open(dname + os.sep + 'json' + os.sep + 'fullLevels' + os.sep + name + 'Full.' + ext, 'w+') as f:
+		json.dump(level_json, f, indent=4, sort_keys=True)
