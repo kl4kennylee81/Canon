@@ -27,5 +27,5 @@ mapping = {"textures": image_mapping, "fonts": font_mapping}
 # data = json.dumps(mapping, sort_keys=False, indent=4)
 
 # write to assets.json file if json/ directory exists
-with open(dname + os.sep +'json/assets.json', 'w') as file:
+with open(dname + os.sep +'json/assets.json', 'w+') as file:
 	json.dump(mapping, file, indent=4, sort_keys=True)
