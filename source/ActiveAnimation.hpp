@@ -63,6 +63,7 @@ public:
         curIndex = 0;
         curFrames = 0;
         flash = false;
+        hitStun = false;
         this->_animationScale = animScale;
         return true;
     }
