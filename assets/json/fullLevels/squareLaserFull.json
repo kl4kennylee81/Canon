@@ -464,14 +464,17 @@
         }, 
         "whiteBar": {
             "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
                 "SPAWN": {
                     "repeat": "idle"
                 }
             }, 
             "cols": 1, 
             "nonUniformScale": 1, 
-            "rows": 1, 
-            "size": 1, 
+            "rows": 2, 
+            "size": 2, 
             "statemap": {
                 "idle": {
                     "first": 0, 
@@ -479,20 +482,29 @@
                         10
                     ], 
                     "total": 1
+                },
+                "spawning": {
+                    "first": 1,
+                    "frames": [
+                        10
+                    ],
+                    "total": 1
                 }
             }, 
-            "texture": "./textures/test/square.png"
+            "texture": "./textures/test/square_spritesheet.png"
         }, 
         "whiteCircle": {
             "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
                 "SPAWN": {
-                    "active": "spawning", 
                     "repeat": "idle"
                 }
             }, 
             "cols": 1, 
-            "rows": 1, 
-            "size": 1, 
+            "rows": 2, 
+            "size": 2, 
             "statemap": {
                 "idle": {
                     "first": 0, 
@@ -500,26 +512,29 @@
                         10
                     ], 
                     "total": 1
-                }, 
+                },
                 "spawning": {
-                    "first": 0, 
+                    "first": 1,
                     "frames": [
                         10
-                    ], 
+                    ],
                     "total": 1
                 }
             }, 
-            "texture": "./textures/test/circle.png"
+            "texture": "./textures/test/circle_spritesheet.png"
         }, 
         "whiteSector": {
             "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
                 "SPAWN": {
                     "repeat": "idle"
                 }
             }, 
             "cols": 1, 
-            "rows": 1, 
-            "size": 1, 
+            "rows": 2, 
+            "size": 2, 
             "statemap": {
                 "idle": {
                     "first": 0, 
@@ -527,9 +542,16 @@
                         10
                     ], 
                     "total": 1
+                },
+                "spawning": {
+                    "first": 1,
+                    "frames": [
+                        10
+                    ],
+                    "total": 1
                 }
             }, 
-            "texture": "./textures/test/sector.png"
+            "texture": "./textures/test/sector_spritesheet.png"
         }, 
         "yellow_blobo_animation": {
             "actionmap": {

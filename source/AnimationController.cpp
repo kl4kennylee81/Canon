@@ -108,6 +108,19 @@ void AnimationController::eventUpdate(Event* e) {
                     addAnimation(zoneInit->object.get(), zoneInit->animationData);
                     break;
                 }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
+                    ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
+                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawning->object)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
+                    if (zoneSpawning->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    } else {
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    }
+                    break;
+                }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
                     handleAction(zoneSpawn->object, AnimationAction::SPAWN);
