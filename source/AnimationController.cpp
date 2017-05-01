@@ -90,8 +90,14 @@ void AnimationController::eventUpdate(Event* e) {
         }
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
-            GameObject* obj = moveEvent->_character.get();
-            handleAction(obj, AnimationAction::RETURN);
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    GameObject* obj = moveEvent->_character.get();
+                    handleAction(obj, AnimationAction::RETURN);
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::SWITCH: {

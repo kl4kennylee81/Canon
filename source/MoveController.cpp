@@ -78,7 +78,7 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			if (path->_pathIndex >= path->_path->size()) {
 				player->getPhysicsComponent()->getBody()->setVX(0);
 				player->getPhysicsComponent()->getBody()->setVY(0);
-				auto moveEvent = MoveEvent::alloc(player);
+				auto moveEvent = MoveFinished::alloc(player);
 				notify(moveEvent.get());
 				toDelete.push_back(player);
 			}

@@ -40,10 +40,10 @@
             },
             "actionmap": {
                 "SPAWNING": {
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "SPAWN": {
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "ACTIVE": {
                     "repeat": "active"
@@ -54,7 +54,7 @@
                 },
                 "RETURN": {
                     "active": "return",
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "DEATH": {
                     "active": "death"
@@ -101,10 +101,10 @@
             },
             "actionmap": {
                 "SPAWNING": {
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "SPAWN": {
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "ACTIVE": {
                     "repeat": "active"
@@ -115,7 +115,7 @@
                 },
                 "RETURN": {
                     "active": "return",
-                    "repeat": "idle"
+                    "repeat": "active"
                 },
                 "DEATH": {
                     "active": "death"

@@ -51,8 +51,15 @@ void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
         {
-            // character is now done moving through the path
-            controllerState = IDLE;
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    // character is now done moving through the path
+                    controllerState = IDLE;
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::LEVEL: {
