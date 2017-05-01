@@ -1,335 +1,335 @@
 {
     "fonts": {
         "Charlemagne": {
-            "file": "./fonts/Charlemagne.ttf", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/fonts/Charlemagne.ttf", 
             "size": 64
         }
     }, 
     "textures": {
         "Color Fill 1": {
-            "file": "./textures/menus/levelSelect/Color Fill 1.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/Color Fill 1.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "Paused": {
-            "file": "./textures/menus/pause/Paused.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/pause/Paused.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bar_background": {
-            "file": "./textures/gameScreen/progressBar/bar_background.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/bar_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bar_foreground": {
-            "file": "./textures/gameScreen/progressBar/bar_foreground.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/bar_foreground.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "beginCap_background": {
-            "file": "./textures/gameScreen/progressBar/beginCap_background.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/beginCap_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "beginCap_foreground": {
-            "file": "./textures/gameScreen/progressBar/beginCap_foreground.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/beginCap_foreground.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bg_blue_sky": {
-            "file": "./textures/backgrounds/bg_blue_sky.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/backgrounds/bg_blue_sky.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "bg_dark_lake": {
-            "file": "./textures/backgrounds/bg_dark_lake.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/backgrounds/bg_dark_lake.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "birb_blue": {
-            "file": "./textures/models/enemy_models/birb/birb_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/birb/birb_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "birb_yellow": {
-            "file": "./textures/models/enemy_models/birb/birb_yellow.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/birb/birb_yellow.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "blobo_blue": {
-            "file": "./textures/models/enemy_models/blobo/blobo_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/blobo/blobo_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "blobo_yellow": {
-            "file": "./textures/models/enemy_models/blobo/blobo_yellow.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/blobo/blobo_yellow.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "blue_particle": {
-            "file": "./textures/test/blue_particle.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/blue_particle.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "charatemp_blue": {
-            "file": "./textures/models/player_models/charatemp_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/player_models/charatemp_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "charatemp_gold": {
-            "file": "./textures/models/player_models/charatemp_gold.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/player_models/charatemp_gold.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "charatemp_red": {
-            "file": "./textures/models/player_models/charatemp_red.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/player_models/charatemp_red.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "circle": {
-            "file": "./textures/test/circle.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/circle.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "circle_zone": {
-            "file": "./textures/models/zones/circle_zone.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/zones/circle_zone.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_blue": {
-            "file": "./textures/models/enemy_models/enemy_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/enemy_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "enemy_red": {
-            "file": "./textures/models/enemy_models/enemy_red.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/enemy_red.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "fesh_blue": {
-            "file": "./textures/models/enemy_models/fesh/fesh_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/fesh/fesh_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "fesh_yellow": {
-            "file": "./textures/models/enemy_models/fesh/fesh_yellow.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/fesh/fesh_yellow.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "finalCap_background": {
-            "file": "./textures/gameScreen/progressBar/finalCap_background.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/finalCap_background.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "finalCap_foreground": {
-            "file": "./textures/gameScreen/progressBar/finalCap_foreground.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/progressBar/finalCap_foreground.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "gameover": {
-            "file": "./textures/menus/gameover/gameover.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/gameover/gameover.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "gold_particle": {
-            "file": "./textures/test/gold_particle.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/gold_particle.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "grump_blue": {
-            "file": "./textures/models/enemy_models/grump/grump_blue.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/grump/grump_blue.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "grump_yellow": {
-            "file": "./textures/models/enemy_models/grump/grump_yellow.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/models/enemy_models/grump/grump_yellow.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "infosymbol": {
-            "file": "./textures/menus/startMenu/infosymbol.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/startMenu/infosymbol.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "lakebg": {
-            "file": "./textures/menus/startMenu/lakebg.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/startMenu/lakebg.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "leftRibbon": {
-            "file": "./textures/menus/levelSelect/leftRibbon.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/leftRibbon.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelBoxBorder": {
-            "file": "./textures/menus/levelSelect/levelBoxBorder.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/levelBoxBorder.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectBg": {
-            "file": "./textures/menus/levelSelect/levelSelectBg.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/levelSelectBg.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectBgFlat": {
-            "file": "./textures/menus/levelSelect/levelSelectBgFlat.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/levelSelectBgFlat.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "levelSelectTextImg": {
-            "file": "./textures/menus/levelSelect/levelSelectTextImg.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/levelSelectTextImg.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "pauseButton": {
-            "file": "./textures/gameScreen/pauseButton.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/gameScreen/pauseButton.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "play": {
-            "file": "./textures/menus/loading/play.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/loading/play.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "progressbar": {
-            "file": "./textures/menus/loading/progressbar.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/loading/progressbar.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "rightRibbon": {
-            "file": "./textures/menus/levelSelect/rightRibbon.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/rightRibbon.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "sector": {
-            "file": "./textures/test/sector.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/sector.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "settingsymbol": {
-            "file": "./textures/menus/startMenu/settingsymbol.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/startMenu/settingsymbol.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "sparkles": {
-            "file": "./textures/menus/levelSelect/sparkles.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/levelSelect/sparkles.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "square": {
-            "file": "./textures/test/square.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/square.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "swipetoplay": {
-            "file": "./textures/menus/startMenu/swipetoplay.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/startMenu/swipetoplay.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "temp": {
-            "file": "./textures/test/temp.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/temp.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "temp2": {
-            "file": "./textures/test/temp2.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/test/temp2.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
             "wrapT": "clamp"
         }, 
         "title": {
-            "file": "./textures/menus/startMenu/title.png", 
+            "file": "/Users/Kenneth/Documents/SP2017/CS4152/Canon/assets/textures/menus/startMenu/title.png", 
             "magfilter": "linear", 
             "minfilter": "nearest", 
             "wrapS": "clamp", 
