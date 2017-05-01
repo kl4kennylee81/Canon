@@ -4,7 +4,9 @@ import os.path
 
 
 def handle_residual_files(src_json, cache, tset):
-	for path, subdirs, files in os.walk('.' + os.sep + 'json'):
+	abspath = os.path.abspath(__file__)
+	dname = os.path.dirname(abspath)
+	for path, subdirs, files in os.walk(dname + os.sep + 'json'):
 		for filename in files:
 			splits = filename.split('.')
 			name, ext = splits[0], splits[1]
@@ -48,13 +50,17 @@ def combine_template_json(template_names, src_json): # takes in a set of keys in
 
 
 def populate_test_levels(src_dict):
-	for path, subdirs, files in os.walk('.' + os.sep + 'json' + os.sep + 'testLevels'):
+	abspath = os.path.abspath(__file__)
+	dname = os.path.dirname(abspath)
+	for path, subdirs, files in os.walk(dname + os.sep + 'json' + os.sep + 'testLevels'):
 		for filename in files:
 			src_dict[filename] = (os.path.join(path, filename))
 
 
 def populate_template_cache(src_dict):
-	for path, subdirs, files in os.walk('.' + os.sep + 'json' + os.sep + 'templates'):
+	abspath = os.path.abspath(__file__)
+	dname = os.path.dirname(abspath)
+	for path, subdirs, files in os.walk(dname + os.sep + 'json' + os.sep + 'templates'):
 		for filename in files:
 			splits = filename.split('.')
 			name, ext = splits[0], splits[1]
@@ -85,5 +91,7 @@ for level in test_levels.keys():
 
 	splits = level.split('.')
 	name, ext = splits[0], splits[1]
-	with open('.' + os.sep + 'json' + os.sep + 'fullLevels' + os.sep + name + 'Full.' + ext, 'w') as file:
+	abspath = os.path.abspath(__file__)
+	dname = os.path.dirname(abspath)
+	with open(dname + os.sep + 'json' + os.sep + 'fullLevels' + os.sep + name + 'Full.' + ext, 'w') as file:
 		json.dump(level_json, file, indent=4, sort_keys=True)
