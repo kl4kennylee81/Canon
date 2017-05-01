@@ -1157,11 +1157,7 @@
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-<<<<<<< HEAD
 						DevelopmentTeam = NV24Q8X6G8;
-=======
-						DevelopmentTeam = PKT82FV824;
->>>>>>> 02f2a3d2d1b2bed01ffcaf919d89e89dbd3aab42
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1568,11 +1564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = NV24Q8X6G8;
-=======
-				DEVELOPMENT_TEAM = PKT82FV824;
->>>>>>> 02f2a3d2d1b2bed01ffcaf919d89e89dbd3aab42
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1592,11 +1584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = NV24Q8X6G8;
-=======
-				DEVELOPMENT_TEAM = PKT82FV824;
->>>>>>> 02f2a3d2d1b2bed01ffcaf919d89e89dbd3aab42
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
