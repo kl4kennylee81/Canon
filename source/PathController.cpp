@@ -51,8 +51,15 @@ void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
         {
-            // character is now done moving through the path
-            controllerState = IDLE;
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    // character is now done moving through the path
+                    controllerState = IDLE;
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::LEVEL: {
@@ -126,6 +133,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 
 	// clear path on two finger touch
 	if (InputController::getDoubleTouch()) {
+        controllerState = IDLE;
 		_path->clear();
 		_wasPressed = false;
 		_pathSceneNode->removeAllChildren();
@@ -160,6 +168,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         }
         
 		_path->clear();
+        
+        if (state->getActiveCharacter() == nullptr){
+            return;
+        }
         Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
 		// can't start drawing a path if the touch is far away from the active character

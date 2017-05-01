@@ -70,8 +70,6 @@ public:
         _partnode->setPosition(Vec2::ZERO);
         _partnode->setContentSize(state->getWorldNode()->getContentSize());
         state->getWorldNode()->addChild(_partnode);
-        
-        std::cout << "done initializing particlegenerator\n";
     
         return true;
     }

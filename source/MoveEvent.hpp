@@ -22,6 +22,8 @@ public:
 		MOVE_FINISHED
 	};
     
+    MoveEventType _moveEventType;
+    
     std::shared_ptr<GameObject> _character;
 
 	bool init( std::shared_ptr<GameObject> c) {
@@ -37,6 +39,23 @@ public:
 	}
 
 	MoveEvent() : Event() {}
+};
+
+class MoveFinished : public MoveEvent {
+
+public:
+    MoveFinished() : MoveEvent() {}
+    
+    bool init( std::shared_ptr<GameObject> c) {
+        MoveEvent::init(c);
+        _moveEventType = MoveEvent::MoveEventType::MOVE_FINISHED;
+        return true;
+    }
+    
+    static std::shared_ptr<MoveFinished> alloc( std::shared_ptr<GameObject> c) {
+        std::shared_ptr<MoveFinished> result = std::make_shared<MoveFinished>();
+        return (result->init(c) ? result : nullptr);
+    }
 };
 
 

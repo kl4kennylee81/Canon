@@ -11,8 +11,12 @@
 
 #ifdef _WIN32
 #define CURRENT_OS "windows"
+#define TEMPLATE_PATH "json\\templates\\"
+#define LEVEL_PATH "json\\fullLevels\\"
 #elif __APPLE__
 #define CURRENT_OS "apple"
+#define TEMPLATE_PATH "json/templates/"
+#define LEVEL_PATH "json/fullLevels/"
 #include <dirent.h>
 #endif
 
@@ -27,8 +31,6 @@
 #include "GenericAssetManager.hpp"
 #include "LevelEditorController.hpp"
 
-#define TEMPLATE_PATH "json/templates/"
-#define LEVEL_PATH "json/testLevels/"
 
 
 

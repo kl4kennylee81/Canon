@@ -19,6 +19,7 @@ class ZoneEvent : public Event {
 public:
     enum class ZoneEventType : int {
         ZONE_INIT,
+        ZONE_SPAWNING,
         ZONE_SPAWN,
         ZONE_ON,
         ZONE_OFF,
@@ -59,6 +60,27 @@ public:
     static std::shared_ptr<ZoneInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, cugl::Vec2 pos, ElementType element){
         std::shared_ptr<ZoneInitEvent> result = std::make_shared<ZoneInitEvent>();
         return (result->init(object,animationData,shapeData,pos,element) ? result : nullptr);
+    }
+};
+
+class ZoneSpawningEvent : public ZoneEvent {
+public:
+    
+    GameObject* object;
+    
+    ZoneSpawningEvent() : ZoneEvent() {
+        zoneEventType = ZoneEventType::ZONE_SPAWNING;
+    }
+    
+    bool init(GameObject* object){
+        this->zoneEventType = ZoneEventType::ZONE_SPAWNING;
+        this->object = object;
+        return true;
+    }
+    
+    static std::shared_ptr<ZoneSpawningEvent> alloc(GameObject* object){
+        std::shared_ptr<ZoneSpawningEvent> result = std::make_shared<ZoneSpawningEvent>();
+        return (result->init(object) ? result : nullptr);
     }
 };
 

@@ -1,15 +1,15 @@
 {
-    "name": "doubleGrump",
+    "name":	"doubleGrump",
     "counter":	14,
     "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
     "levels":	{
-        "doubleGrump": {
+        "doubleGrump":	{
             "levelEntries":	{
-                "wave1":	{
+                "wave01":	{
                     "waveKey":	"doubleGrump wave 12",
                     "time":	330
                 },
-                "wave2":	{
+                "wave02":	{
                     "waveKey":	"doubleGrump wave 13",
                     "time":	180
                 }

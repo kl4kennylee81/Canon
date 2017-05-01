@@ -53,6 +53,9 @@ void MoveController::update(float timestep,std::shared_ptr<GameState> state){
 	for (auto it : _activePaths) {
 		std::shared_ptr<GameObject> player = it.first;
 		std::shared_ptr<ActivePath> path = it.second;
+        if (player == nullptr){
+            return;
+        }
 		Vec2 goal = path->_path->get(path->_pathIndex);
 		Vec2 current = player->getPosition();
         Vec2 velocity = getVelocityVector(current, goal,((float) VELOCITY * 60));
@@ -65,6 +68,9 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 	for (auto it : _activePaths) {
 		std::shared_ptr<GameObject> player = it.first;
 		std::shared_ptr<ActivePath> path = it.second;
+        if (player == nullptr){
+            return;
+        }
 		Vec2 goal = path->_path->get(path->_pathIndex);
 		Vec2 current = player->getPosition();
 		if (std::abs(current.distance(goal)) <= (((float) RADIUS))) {
@@ -72,7 +78,7 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
 			if (path->_pathIndex >= path->_path->size()) {
 				player->getPhysicsComponent()->getBody()->setVX(0);
 				player->getPhysicsComponent()->getBody()->setVY(0);
-				auto moveEvent = MoveEvent::alloc(player);
+				auto moveEvent = MoveFinished::alloc(player);
 				notify(moveEvent.get());
 				toDelete.push_back(player);
 			}

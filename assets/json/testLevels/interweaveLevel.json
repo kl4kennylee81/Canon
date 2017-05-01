@@ -1,19 +1,19 @@
 {
-    "name": "interweave",
+    "name":	"interweave",
     "counter":	11,
     "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels": {
+    "levels":	{
         "interweave":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"interweave wave 2",
+                "wave01":	{
+                    "waveKey":	"interweave wave 02",
                     "time":	420
                 },
-                "wave2":	{
-                    "waveKey":	"interweave wave 9",
+                "wave02":	{
+                    "waveKey":	"interweave wave 09",
                     "time":	420
                 },
-                "wave3":	{
+                "wave03":	{
                     "waveKey":	"interweave wave 10",
                     "time":	180
                 }
@@ -37,7 +37,7 @@
         }
     },
     "waves":	{
-        "interweave wave 2":	{
+        "interweave wave 02":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	166.399994,
@@ -125,7 +125,7 @@
                 }
             }
         },
-        "interweave wave 9":	{
+        "interweave wave 09":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	166.399994,

@@ -1,21 +1,21 @@
 {
-    "name":	"lure",
-    "counter":	12,
+    "name":	"separation",
+    "counter":	10,
     "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
     "levels":	{
-        "lure":	{
+        "separation":	{
             "levelEntries":	{
                 "wave01":	{
-                    "waveKey":	"lure wave 08",
-                    "time":	660
+                    "waveKey":	"separation wave 06",
+                    "time":	360
                 },
                 "wave02":	{
-                    "waveKey":	"lure wave 09",
-                    "time":	620
+                    "waveKey":	"separation wave 07",
+                    "time":	480
                 },
                 "wave03":	{
-                    "waveKey":	"lure wave 10",
-                    "time":	620
+                    "waveKey":	"separation wave 10",
+                    "time":	360
                 }
             },
             "playerChars":	{
@@ -37,90 +37,83 @@
         }
     },
     "waves":	{
-        "lure wave 08":	{
+        "separation wave 06":	{
             "waveEntries":	{
                 "object1":	{
-                    "x":	892.799988,
-                    "y":	296.533325,
+                    "x":	840,
+                    "y":	210,
                     "element":	"BLUE",
                     "aiKey":	"homing",
-                    "templateKey":	"birb"
+                    "templateKey":	"blobo"
                 },
                 "object2":	{
-                    "x":	842.666687,
-                    "y":	296.533325,
+                    "x":	840,
+                    "y":	290,
                     "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"feshVertical"
-                },
-                "object3":	{
-                    "x":	157.866669,
-                    "y":	541.866699,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                }
-            }
-        },
-        "lure wave 09":	{
-            "waveEntries":	{
-                "object1":	{
-                    "x":	106.666656,
-                    "y":	293.333344,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "object2":	{
-                    "x":	161.066650,
-                    "y":	297.599976,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"feshVertical"
-                },
-                "object3":	{
-                    "x":	872.533325,
-                    "y":	286.933319,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "object4":	{
-                    "x":	936.533325,
-                    "y":	288,
-                    "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
                 }
             }
         },
-        "lure wave 10":	{
+        "separation wave 07":	{
             "waveEntries":	{
                 "object1":	{
-                    "x":	489.600006,
-                    "y":	510.933350,
+                    "x":	446.933319,
+                    "y":	442.666656,
                     "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"feshHorizontal"
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 },
                 "object2":	{
-                    "x":	492.799988,
-                    "y":	536.533325,
+                    "x":	490.666656,
+                    "y":	442.666656,
                     "element":	"BLUE",
                     "aiKey":	"homing",
-                    "templateKey":	"birb"
+                    "templateKey":	"blobo"
                 },
                 "object3":	{
-                    "x":	474.666656,
-                    "y":	103.466660,
-                    "element":	"GOLD",
+                    "x":	448,
+                    "y":	119.466675,
+                    "element":	"BLUE",
                     "aiKey":	"homing",
-                    "templateKey":	"birb"
+                    "templateKey":	"blobo"
                 },
                 "object4":	{
-                    "x":	475.733337,
-                    "y":	39.466675,
+                    "x":	493.866669,
+                    "y":	119.466675,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                }
+            }
+        },
+        "separation wave 10":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	401.066681,
+                    "y":	352,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object2":	{
+                    "x":	538.666687,
+                    "y":	352,
                     "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object3":	{
+                    "x":	403.200012,
+                    "y":	226.133331,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
+                },
+                "object4":	{
+                    "x":	539.733337,
+                    "y":	224,
+                    "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
                 }

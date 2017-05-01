@@ -5,8 +5,11 @@ import os.path
 image_files = {}
 font_files = {}
 
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+
 # get all files
-for path, subdirs, files in os.walk('.'):
+for path, subdirs, files in os.walk(dname):
 	for filename in files:
 		splits = filename.split('.')
 		name, ext = splits[0], splits[1]
@@ -24,5 +27,5 @@ mapping = {"textures": image_mapping, "fonts": font_mapping}
 # data = json.dumps(mapping, sort_keys=False, indent=4)
 
 # write to assets.json file if json/ directory exists
-with open('json/assets.json', 'w') as file:
+with open(dname + os.sep +'json/assets.json', 'w+') as file:
 	json.dump(mapping, file, indent=4, sort_keys=True)

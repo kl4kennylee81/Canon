@@ -147,10 +147,10 @@ void LevelEditorController::ensureNameMatch() {
         std::vector<std::string> arr = Util::split(key, ' ');
         if(key.compare(arr.at(0)) != 0) {
             if(arr.at(0).compare("wave") == 0) {
-                newKey = _name + " " + arr.at(0) + " " + arr.at(1);
+                newKey = _name + " " + arr.at(0) + " " + Util::appendLeadingZero(2,arr.at(1));
             }
             else {
-                newKey = _name + " " + arr.at(1) + " " + arr.at(2);
+                newKey = _name + " " + arr.at(1) + " " +  Util::appendLeadingZero(2,arr.at(2));
             }
             _world->_waveData[newKey] = _world->getWaveData(key);
             _levelData->setWaveKey(i, newKey);
@@ -239,14 +239,14 @@ void LevelEditorController::setSceneGraph() {
 }
 
 void LevelEditorController::addNewWave() {
-    std::string waveName = _name+" wave "+ std::to_string(increment());
+    std::string waveName = _name+" wave "+ Util::appendLeadingZero(2,std::to_string(increment()));
 	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
 
 void LevelEditorController::copyWave(int index) {
-    std::string newWaveName = _name+" wave "+ std::to_string(increment());
+    std::string newWaveName = _name+" wave "+ Util::appendLeadingZero(2,std::to_string(increment()));
     std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(newWaveName, 180);
     _world->_waveData[newWaveName] = WaveData::alloc();
     _levelData->addLevelEntry(entry);

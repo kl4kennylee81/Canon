@@ -47,7 +47,7 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 		// TODO hacky setting of the uiKey
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
         float x = 0.240 + (0.270*(i%2));
-        float y = 0.6 - (0.12 * (i/2));
+        float y = 0.72 - (0.12 * (i/2));
 		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
 

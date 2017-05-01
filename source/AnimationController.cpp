@@ -104,8 +104,14 @@ void AnimationController::eventUpdate(Event* e) {
         }
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
-            GameObject* obj = moveEvent->_character.get();
-            handleAction(obj, AnimationAction::RETURN);
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    GameObject* obj = moveEvent->_character.get();
+                    handleAction(obj, AnimationAction::RETURN);
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::SWITCH: {
@@ -120,6 +126,19 @@ void AnimationController::eventUpdate(Event* e) {
                 case ZoneEvent::ZoneEventType::ZONE_INIT: {
                     ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
                     addAnimation(zoneInit->object.get(), zoneInit->animationData);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
+                    ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
+                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawning->object)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
+                    if (zoneSpawning->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    } else {
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
@@ -197,7 +216,14 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
  * Defers handling to the active animation handleEvent()
  */
 void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
+    if (obj == nullptr){
+        return;
+    }
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
+    if (anim == nullptr){
+        return;
+    }
+    
     if (anim->isLastAnimation()){ return;}
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){

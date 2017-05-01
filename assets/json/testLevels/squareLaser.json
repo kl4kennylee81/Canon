@@ -1,20 +1,20 @@
 {
-    "name": "squareLaser",
+    "name":	"squareLaser",
     "counter":	9,
     "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
     "levels":	{
-        "squareLaser": {
+        "squareLaser":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"squareLaser wave 6",
+                "wave01":	{
+                    "waveKey":	"squareLaser wave 06",
                     "time":	330
                 },
-                "wave2":	{
-                    "waveKey":	"squareLaser wave 7",
+                "wave02":	{
+                    "waveKey":	"squareLaser wave 07",
                     "time":	510
                 },
-                "wave3":	{
-                    "waveKey":	"squareLaser wave 9",
+                "wave03":	{
+                    "waveKey":	"squareLaser wave 09",
                     "time":	180
                 }
             },
@@ -37,7 +37,7 @@
         }
     },
     "waves":	{
-        "squareLaser wave 6":	{
+        "squareLaser wave 06":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	921.599976,
@@ -69,7 +69,7 @@
                 }
             }
         },
-        "squareLaser wave 7":	{
+        "squareLaser wave 07":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	632.533325,
@@ -101,7 +101,7 @@
                 }
             }
         },
-        "squareLaser wave 9":	{
+        "squareLaser wave 09":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	328.533325,

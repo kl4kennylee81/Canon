@@ -40,6 +40,12 @@ void ZoneController::eventUpdate(Event* e) {
                     addToMap(objectInit->object.get(), objectInit->zoneDatas);
                     break;
                 }
+                case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
+                    ObjectSpawningEvent* objectSpawning = (ObjectSpawningEvent*)levelEvent;
+                    GameObject* obj = objectSpawning->object.get();
+                    handleObjectSpawning(obj);
+                    break;
+                }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
@@ -331,6 +337,22 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     activeZone->curIndex = 0;
     activeZone->origSize = zone->getPhysicsComponent()->getBody()->getSize();
     activeZone->sizeScale = Vec2::Vec2(data->minSize);
+}
+
+void ZoneController::handleObjectSpawning(GameObject* obj) {
+    if (zoneMap.find(obj) == zoneMap.end()) {
+        return;
+    }
+    
+    std::shared_ptr<ActiveZone> activeZone = zoneMap.at(obj);
+    
+    //temp
+    for (auto it : activeZone->datas){
+        for (auto obj : it.second) {
+            std::shared_ptr<ZoneSpawningEvent> spawningEvent = ZoneSpawningEvent::alloc(obj);
+            notify(spawningEvent.get());
+        }
+    }
 }
 
 void ZoneController::handleObjectSpawn(GameObject* obj) {
