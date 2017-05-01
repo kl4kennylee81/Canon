@@ -5,16 +5,16 @@
     "levels":	{
         "precision":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"precision wave 7",
+                "wave01":	{
+                    "waveKey":	"precision wave 07",
                     "time":	120
                 },
-                "wave2":	{
-                    "waveKey":	"precision wave 8",
+                "wave02":	{
+                    "waveKey":	"precision wave 08",
                     "time":	120
                 },
-                "wave3":	{
-                    "waveKey":	"precision wave 9",
+                "wave03":	{
+                    "waveKey":	"precision wave 09",
                     "time":	120
                 }
             },
@@ -37,7 +37,7 @@
         }
     },
     "waves":	{
-        "precision wave 7":	{
+        "precision wave 07":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	950,
@@ -76,7 +76,7 @@
                 }
             }
         },
-        "precision wave 8":	{
+        "precision wave 08":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	50,
@@ -115,7 +115,7 @@
                 }
             }
         },
-        "precision wave 9":	{
+        "precision wave 09":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	550,

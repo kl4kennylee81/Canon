@@ -5,15 +5,15 @@
     "levels":	{
         "blobos":	{
             "levelEntries":	{
-                "wave1":	{
+                "wave01":	{
                     "waveKey":	"blobos wave 14",
                     "time":	460
                 },
-                "wave2":	{
+                "wave02":	{
                     "waveKey":	"blobos wave 17",
                     "time":	330
                 },
-                "wave3":	{
+                "wave03":	{
                     "waveKey":	"blobos wave 18",
                     "time":	180
                 }

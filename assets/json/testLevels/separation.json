@@ -5,15 +5,15 @@
     "levels":	{
         "separation":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"separation wave 6",
+                "wave01":	{
+                    "waveKey":	"separation wave 06",
                     "time":	360
                 },
-                "wave2":	{
-                    "waveKey":	"separation wave 7",
+                "wave02":	{
+                    "waveKey":	"separation wave 07",
                     "time":	480
                 },
-                "wave3":	{
+                "wave03":	{
                     "waveKey":	"separation wave 10",
                     "time":	360
                 }
@@ -37,25 +37,25 @@
         }
     },
     "waves":	{
-        "separation wave 6":	{
+        "separation wave 06":	{
             "waveEntries":	{
-                "object2":	{
-                    "x":	840.0,
-                    "y":	210.0,
+                "object1":	{
+                    "x":	840,
+                    "y":	210,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
                 },
-                "object3":	{
-                    "x":	840.0,
-                    "y":	290.0,
+                "object2":	{
+                    "x":	840,
+                    "y":	290,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
                 }
             }
         },
-        "separation wave 7":	{
+        "separation wave 07":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	446.933319,

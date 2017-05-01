@@ -5,11 +5,11 @@
     "levels":	{
         "overlap":	{
             "levelEntries":	{
-                "wave1":	{
+                "wave01":	{
                     "waveKey":	"overlap wave 36",
                     "time":	420
                 },
-                "wave2":	{
+                "wave02":	{
                     "waveKey":	"overlap wave 38",
                     "time":	450
                 }

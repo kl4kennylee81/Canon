@@ -1,213 +1,207 @@
 {
-    "name": "rapidSpawn",
-    "counter": 35,
-    "template names": [
-        "birb",
-        "blobo",
-        "grump",
-        "feshHorizontal",
-        "feshVertical"
-    ],
-    "levels": {
-        "rapidSpawn": {
-            "levelEntries": {
-                "wave1": {
-                    "waveKey": "rapidSpawn wave 20",
-                    "time": 60
+    "name":	"rapidSpawn",
+    "counter":	35,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "rapidSpawn":	{
+            "levelEntries":	{
+                "wave01":	{
+                    "waveKey":	"rapidSpawn wave 20",
+                    "time":	60
                 },
-                "wave2": {
-                    "waveKey": "rapidSpawn wave 21",
-                    "time": 60
+                "wave02":	{
+                    "waveKey":	"rapidSpawn wave 21",
+                    "time":	60
                 },
-                "wave3": {
-                    "waveKey": "rapidSpawn wave 22",
-                    "time": 60
+                "wave03":	{
+                    "waveKey":	"rapidSpawn wave 22",
+                    "time":	60
                 },
-                "wave4": {
-                    "waveKey": "rapidSpawn wave 23",
-                    "time": 120
+                "wave04":	{
+                    "waveKey":	"rapidSpawn wave 23",
+                    "time":	90
                 },
-                "wave5": {
-                    "waveKey": "rapidSpawn wave 24",
-                    "time": 60
+                "wave05":	{
+                    "waveKey":	"rapidSpawn wave 24",
+                    "time":	60
                 },
-                "wave6": {
-                    "waveKey": "rapidSpawn wave 25",
-                    "time": 60
+                "wave06":	{
+                    "waveKey":	"rapidSpawn wave 25",
+                    "time":	60
                 },
-                "wave7": {
-                    "waveKey": "rapidSpawn wave 26",
-                    "time": 60
+                "wave07":	{
+                    "waveKey":	"rapidSpawn wave 26",
+                    "time":	60
                 },
-                "wave8": {
-                    "waveKey": "rapidSpawn wave 27",
-                    "time": 120
+                "wave08":	{
+                    "waveKey":	"rapidSpawn wave 27",
+                    "time":	90
                 },
-                "wave9": {
-                    "waveKey": "rapidSpawn wave 32",
-                    "time": 60
+                "wave09":	{
+                    "waveKey":	"rapidSpawn wave 32",
+                    "time":	60
                 },
-                "wave10": {
-                    "waveKey": "rapidSpawn wave 33",
-                    "time": 60
+                "wave10":	{
+                    "waveKey":	"rapidSpawn wave 33",
+                    "time":	60
                 },
-                "wave11": {
-                    "waveKey": "rapidSpawn wave 34",
-                    "time": 60
+                "wave11":	{
+                    "waveKey":	"rapidSpawn wave 34",
+                    "time":	60
                 },
-                "wave12": {
-                    "waveKey": "rapidSpawn wave 35",
-                    "time": 60
+                "wave12":	{
+                    "waveKey":	"rapidSpawn wave 35",
+                    "time":	60
                 }
             },
-            "playerChars": {
-                "player1": {
-                    "x": 600,
-                    "y": 250,
-                    "element": "GOLD",
-                    "aiKey": "",
-                    "templateKey": "playerCharMale"
+            "playerChars":	{
+                "player1":	{
+                    "x":	600,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
                 },
-                "player2": {
-                    "x": 400,
-                    "y": 250,
-                    "element": "BLUE",
-                    "aiKey": "",
-                    "templateKey": "playerCharFemale"
+                "player2":	{
+                    "x":	400,
+                    "y":	250,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
                 }
             }
         }
     },
-    "waves": {
-        "rapidSpawn wave 20": {
-            "waveEntries": {
-                "object1": {
-                    "x": 250,
-                    "y": 350,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+    "waves":	{
+        "rapidSpawn wave 20":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	250,
+                    "y":	350,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 21": {
-            "waveEntries": {
-                "object1": {
-                    "x": 250,
-                    "y": 150,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 21":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	250,
+                    "y":	150,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 22": {
-            "waveEntries": {
-                "object1": {
-                    "x": 750,
-                    "y": 150,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 22":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	750,
+                    "y":	150,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 23": {
-            "waveEntries": {
-                "object1": {
-                    "x": 750,
-                    "y": 350,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 23":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	750,
+                    "y":	350,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 24": {
-            "waveEntries": {
-                "object1": {
-                    "x": 250,
-                    "y": 250,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 24":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	250,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 25": {
-            "waveEntries": {
-                "object1": {
-                    "x": 500,
-                    "y": 150,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 25":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	500,
+                    "y":	150,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 26": {
-            "waveEntries": {
-                "object1": {
-                    "x": 750,
-                    "y": 250,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 26":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	750,
+                    "y":	250,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 27": {
-            "waveEntries": {
-                "object1": {
-                    "x": 500,
-                    "y": 350,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 27":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	500,
+                    "y":	350,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 32": {
-            "waveEntries": {
-                "object1": {
-                    "x": 250,
-                    "y": 350,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 32":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	250,
+                    "y":	350,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 33": {
-            "waveEntries": {
-                "object1": {
-                    "x": 250,
-                    "y": 150,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 33":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	250,
+                    "y":	150,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 34": {
-            "waveEntries": {
-                "object1": {
-                    "x": 750,
-                    "y": 150,
-                    "element": "BLUE",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 34":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	750,
+                    "y":	150,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         },
-        "rapidSpawn wave 35": {
-            "waveEntries": {
-                "object1": {
-                    "x": 750,
-                    "y": 350,
-                    "element": "GOLD",
-                    "aiKey": "homing",
-                    "templateKey": "blobo"
+        "rapidSpawn wave 35":	{
+            "waveEntries":	{
+                "object1":	{
+                    "x":	750,
+                    "y":	350,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"blobo"
                 }
             }
         }

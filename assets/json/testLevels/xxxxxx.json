@@ -5,11 +5,11 @@
     "levels":	{
         "xxxxxx":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"xxxxxx wave 6",
+                "wave01":	{
+                    "waveKey":	"xxxxxx wave 06",
                     "time":	300
                 },
-                "wave2":	{
+                "wave02":	{
                     "waveKey":	"xxxxxx wave 12",
                     "time":	360
                 }
@@ -33,7 +33,7 @@
         }
     },
     "waves":	{
-        "xxxxxx wave 6":	{
+        "xxxxxx wave 06":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	934.400024,

@@ -17,6 +17,11 @@
 
 class Util {
 public:
+    
+    static std::string appendLeadingZero(int n_zero,std::string in){
+        std::string new_string = std::string(n_zero - in.length(), '0') + in;
+        return new_string;
+    }
 
     static std::vector<std::string> split(const std::string& s, const char& c)
     {

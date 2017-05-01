@@ -5,20 +5,20 @@
     "levels":	{
         "sneakAttack":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"sneakAttack wave 2",
+                "wave01":	{
+                    "waveKey":	"sneakAttack wave 02",
                     "time":	420
                 },
-                "wave2":	{
-                    "waveKey":	"sneakAttack wave 3",
+                "wave02":	{
+                    "waveKey":	"sneakAttack wave 03",
                     "time":	400
                 },
-                "wave3":	{
-                    "waveKey":	"sneakAttack wave 4",
+                "wave03":	{
+                    "waveKey":	"sneakAttack wave 04",
                     "time":	500
                 },
-                "wave4":	{
-                    "waveKey":	"sneakAttack wave 5",
+                "wave04":	{
+                    "waveKey":	"sneakAttack wave 05",
                     "time":	180
                 }
             },
@@ -41,7 +41,7 @@
         }
     },
     "waves":	{
-        "sneakAttack wave 2":	{
+        "sneakAttack wave 02":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	837.333313,
@@ -101,7 +101,7 @@
                 }
             }
         },
-        "sneakAttack wave 3":	{
+        "sneakAttack wave 03":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	501.333344,
@@ -161,7 +161,7 @@
                 }
             }
         },
-        "sneakAttack wave 4":	{
+        "sneakAttack wave 04":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	101.333344,
@@ -193,7 +193,7 @@
                 }
             }
         },
-        "sneakAttack wave 5":	{
+        "sneakAttack wave 05":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	24.533325,

@@ -1,19 +1,19 @@
 {
-    "name": "lure",
+    "name":	"lure",
     "counter":	12,
     "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
     "levels":	{
-        "lure":{
+        "lure":	{
             "levelEntries":	{
-                "wave1":	{
-                    "waveKey":	"lure wave 8",
+                "wave01":	{
+                    "waveKey":	"lure wave 08",
                     "time":	660
                 },
-                "wave2":	{
-                    "waveKey":	"lure wave 9",
+                "wave02":	{
+                    "waveKey":	"lure wave 09",
                     "time":	620
                 },
-                "wave3":	{
+                "wave03":	{
                     "waveKey":	"lure wave 10",
                     "time":	620
                 }
@@ -37,7 +37,7 @@
         }
     },
     "waves":	{
-        "lure wave 8":	{
+        "lure wave 08":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	892.799988,
@@ -62,7 +62,7 @@
                 }
             }
         },
-        "lure wave 9":	{
+        "lure wave 09":	{
             "waveEntries":	{
                 "object1":	{
                     "x":	106.666656,
