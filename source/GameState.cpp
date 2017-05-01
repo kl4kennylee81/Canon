@@ -93,7 +93,7 @@ void GameState::detachFromScene(){
 
 std::shared_ptr<GameObject> GameState::getActiveCharacter()
 {
-    if (_playerCharacters.size() < NUM_PLAYER_CHARS){
+    if (_playerCharacters.size() < NUM_PLAYER_CHARS * 2){
         return nullptr;
     }
     return _playerCharacters.at(_activeCharacterPosition);
