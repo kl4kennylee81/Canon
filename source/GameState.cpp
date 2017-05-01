@@ -212,7 +212,7 @@ std::shared_ptr<GameObject> GameState::getClosestChar(Vec2 phys_coord) {
     return _playerCharacters.at(closerIndex);
 };
 
-void GameState::setClosestChar(cugl::Vec2::Vec2 phys_coord) {
+void GameState::setClosestChar(cugl::Vec2 phys_coord) {
     int closerIndex = getClosestCharIndex(_playerCharacters, phys_coord);
     _activeCharacterPosition = closerIndex;
 };

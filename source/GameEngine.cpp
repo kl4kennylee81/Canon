@@ -52,7 +52,7 @@ void loadFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::str
 #endif
 }
 
-void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+void loadFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir, std::string path) {
 #ifdef _WIN32
 	WIN32_FIND_DATA file;
 	HANDLE hndl = FindFirstFile((templateDir + "*").c_str(), &file);
@@ -64,7 +64,7 @@ void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets
 				// directory logic
 			}
 			else {
-				std::string templatePath = TEMPLATE_PATH;
+				std::string templatePath = path;
 				templatePath.append(filename);
 				assets->loadDirectory(templatePath);
 			}
@@ -133,12 +133,12 @@ void GameEngine::onStartup() {
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
-    _assets->loadDirectory("json/animations.json");
+    //_assets->loadDirectory("json/animations.json");
     _assets->loadDirectory("json/sounds.json");
-	_assets->loadDirectory("json/ai.json");
+	//_assets->loadDirectory("json/ai.json");
 	_assets->loadDirectory("json/menu.json");
 	_assets->loadDirectory("json/save.json");
-    _assets->loadDirectory("json/level.json");
+    //_assets->loadDirectory("json/level.json");
     
     /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
     
@@ -154,8 +154,8 @@ void GameEngine::onStartup() {
     //load all template wave entries
 
 	#ifdef _WIN32
-	loadTemplateFilesWindows(_assets, templateDir);
-    loadLevelFilesWindows(_assets, levelDir);
+	loadFilesWindows(_assets, templateDir, TEMPLATE_PATH);
+    loadFilesWindows(_assets, levelDir, LEVEL_PATH);
 	#elif __APPLE__
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);

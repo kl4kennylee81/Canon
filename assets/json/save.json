@@ -64,6 +64,15 @@
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
+            "blobos": {
+                "name": "Blobos",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "blobos",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
             "squareLaser": {
                 "name": "Lasers",
                 "unlocked": 1,
