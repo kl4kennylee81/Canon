@@ -52,10 +52,14 @@ public:
 	std::shared_ptr<cugl::Node> _pathSceneNode;
 
 	bool _wasPressed;
+    
+    std::shared_ptr<cugl::Texture> _mainTexture;
+    
+    std::shared_ptr<cugl::Texture> _capTexture;
 
 	void addPathToScene(std::shared_ptr<GameState> state);
 
-	void updateMinMax(cugl::Vec2 vec);
+    void updateMinMax(cugl::Vec2 vec);
     
     
     bool isOnCooldown();
@@ -77,6 +81,11 @@ public:
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
     void dispose();
+    
+    void setTextures(std::shared_ptr<cugl::Texture> main, std::shared_ptr<cugl::Texture> cap){
+        _mainTexture = main;
+        _capTexture = cap;
+    }
 
 	virtual bool init(std::shared_ptr<GameState> state);
 

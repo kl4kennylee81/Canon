@@ -16,6 +16,7 @@
 #include "LevelEvent.hpp"
 #include "InputController.hpp"
 #include "Util.hpp"
+#include "TexturedPathNode.hpp"
 
 using namespace cugl;
 
@@ -79,7 +80,11 @@ void PathController::eventUpdate(Event* e) {
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
 	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
-	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    //pathNode->setPath(_path->clone());
+    //pathNode->setStroke(15);
+    //pathNode->setTexture(_mainTexture);
+    //pathNode->setCapTexture(_capTexture);
+    pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
     
@@ -228,6 +233,12 @@ bool PathController::init(std::shared_ptr<GameState> state) {
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
     
     _spawnStart = false;
+    
+    //_mainTexture = Texture::allocWithFile("./textures/backgrounds/bg_blue_sky.png");
+    //_capTexture = Texture::allocWithFile("./textures/backgrounds/bg_blue_sky.png");
+    
+    if(_capTexture == nullptr){ fprintf(stderr, "wtf \n"); }
+    std::cout << _capTexture << std::endl;
 
 	return true;
 }
