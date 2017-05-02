@@ -11,7 +11,7 @@
                 },
                 "wave02":	{
                     "waveKey":	"lure wave 09",
-                    "time":	620
+                    "time":	630
                 },
                 "wave03":	{
                     "waveKey":	"lure wave 10",
@@ -40,14 +40,14 @@
         "lure wave 08":	{
             "waveEntries":	{
                 "object1":	{
-                    "x":	892.799988,
-                    "y":	296.533325,
+                    "x":	1018.666687,
+                    "y":	293.333344,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "object2":	{
-                    "x":	842.666687,
+                    "x":	976,
                     "y":	296.533325,
                     "element":	"GOLD",
                     "aiKey":	"horizontalLeft",
@@ -91,6 +91,13 @@
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"blobo"
+                },
+                "object5":	{
+                    "x":	51.200012,
+                    "y":	295.466644,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
                 }
             }
         },
