@@ -110,10 +110,16 @@ void LevelEditorController::loadLevel(std::string file){
 	dirprefix = delim;
 #endif
     
+#if defined (CU_TOUCH_SCREEN)
+    std::string editorFileStr = Application::get()->getAssetDirectory()+"json"+delim+file;
+#else
     std::vector<std::string> vec = Util::split(__FILE__, delim);
     std::string canonDir = Util::join(vec,vec.size()-2, delim);
+    std::string editorFileStr = dirprefix+canonDir+delim+"assets"+delim+"json"+delim+file;
+#endif
+    std::cout << editorFileStr << std::endl;
 
-    auto reader = JsonReader::alloc(dirprefix+canonDir+delim+"assets"+delim+"json"+delim+file);
+    auto reader = JsonReader::alloc(editorFileStr);
     if(reader == nullptr) {
         _waveEditorController->setTemplates({"homing","horizontal","vertical"});
         return;
