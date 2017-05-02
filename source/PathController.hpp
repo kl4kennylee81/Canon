@@ -16,6 +16,7 @@
 #include "Event.hpp"
 #include "GameState.hpp"
 #include "Path.hpp"
+#include "World.hpp"
 
 enum PathControllerState
 {
@@ -44,6 +45,8 @@ public:
     
     //Do not start looking for input until player object has spawned
     bool _spawnStart;
+    
+    std::shared_ptr<World> _world;
     
     PathControllerState controllerState;
 
@@ -87,11 +90,11 @@ public:
         _capTexture = cap;
     }
 
-	virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
 
-	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
-		return (result->init(state) ? result : nullptr);
+		return (result->init(state, world) ? result : nullptr);
     }
 };
 

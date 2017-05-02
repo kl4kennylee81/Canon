@@ -79,11 +79,11 @@ void PathController::eventUpdate(Event* e) {
 
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
-	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
-    //pathNode->setPath(_path->clone());
-    //pathNode->setStroke(15);
-    //pathNode->setTexture(_mainTexture);
-    //pathNode->setCapTexture(_capTexture);
+	auto pathNode = TexturedPathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
+    pathNode->setPath(_path->clone());
+    pathNode->setStroke(15);
+    pathNode->setTexture(_mainTexture);
+    pathNode->setCapTexture(_capTexture);
     pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
@@ -217,7 +217,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	_wasPressed = isPressed;
 }
     
-bool PathController::init(std::shared_ptr<GameState> state) {
+bool PathController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);
@@ -231,14 +231,12 @@ bool PathController::init(std::shared_ptr<GameState> state) {
     controllerState = IDLE;
 	_wasPressed = false;
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
+    _world = world;
     
     _spawnStart = false;
     
-    //_mainTexture = Texture::allocWithFile("./textures/backgrounds/bg_blue_sky.png");
-    //_capTexture = Texture::allocWithFile("./textures/backgrounds/bg_blue_sky.png");
-    
-    if(_capTexture == nullptr){ fprintf(stderr, "wtf \n"); }
-    std::cout << _capTexture << std::endl;
+    _capTexture = _world->getAssetManager()->get<Texture>("square");
+    _mainTexture = _world->getAssetManager()->get<Texture>("square");
 
 	return true;
 }

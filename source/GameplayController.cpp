@@ -139,7 +139,7 @@ void GameplayController::deactivate(){
 
 bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld) {
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
-	_pathController = PathController::alloc(_gameState);
+	_pathController = PathController::alloc(_gameState, levelWorld);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();

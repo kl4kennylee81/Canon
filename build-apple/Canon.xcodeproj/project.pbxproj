@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273CB39A1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3981EB7CC8F0042708C /* TexturedPathNode.cpp */; };
+		273CB39B1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3981EB7CC8F0042708C /* TexturedPathNode.cpp */; };
 		824E10AC1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10AD1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10B21EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
@@ -235,6 +237,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		273CB3981EB7CC8F0042708C /* TexturedPathNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TexturedPathNode.cpp; sourceTree = "<group>"; };
+		273CB3991EB7CC8F0042708C /* TexturedPathNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TexturedPathNode.hpp; sourceTree = "<group>"; };
 		824E10AA1EA941B80068C0F5 /* ParticleData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleData.cpp; sourceTree = "<group>"; };
 		824E10AB1EA941B80068C0F5 /* ParticleData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleData.hpp; sourceTree = "<group>"; };
 		824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleGenerator.cpp; sourceTree = "<group>"; };
@@ -806,6 +810,8 @@
 				9FFA3F991E6365660029D648 /* PathEvent */,
 				9FFA3F961E6365390029D648 /* PathController.cpp */,
 				9FFA3F971E6365390029D648 /* PathController.hpp */,
+				273CB3981EB7CC8F0042708C /* TexturedPathNode.cpp */,
+				273CB3991EB7CC8F0042708C /* TexturedPathNode.hpp */,
 			);
 			name = pathControls;
 			sourceTree = "<group>";
@@ -1153,11 +1159,11 @@
 				TargetAttributes = {
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = PKT82FV824;
+						DevelopmentTeam = H26RD7FXNA;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = PKT82FV824;
+						DevelopmentTeam = H26RD7FXNA;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1263,6 +1269,7 @@
 				9F3BA5EA1E8BA575003138C0 /* CompositeAIData.cpp in Sources */,
 				9F3BA5EB1E8BA575003138C0 /* MenuScreenData.cpp in Sources */,
 				9F3BA5EC1E8BA575003138C0 /* AnimationData.cpp in Sources */,
+				273CB39B1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */,
 				9F3BA5ED1E8BA575003138C0 /* ObjectData.cpp in Sources */,
 				9F3BA5EE1E8BA575003138C0 /* ShapeData.cpp in Sources */,
 				9F3BA5EF1E8BA575003138C0 /* pathData.cpp in Sources */,
@@ -1354,6 +1361,7 @@
 				9FFA3F911E6363030029D648 /* BaseController.cpp in Sources */,
 				9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */,
 				9FA276001EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
+				273CB39A1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */,
 				9FC16AB21E768F7E0040661D /* HomingAI.cpp in Sources */,
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
 				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
@@ -1427,14 +1435,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = PKT82FV824;
+				DEVELOPMENT_TEAM = H26RD7FXNA;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kyleGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1450,7 +1458,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = PKT82FV824;
+				DEVELOPMENT_TEAM = H26RD7FXNA;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1458,7 +1466,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kyleGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1564,7 +1572,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PKT82FV824;
+				DEVELOPMENT_TEAM = H26RD7FXNA;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1572,7 +1580,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kenGame2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kyleGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -1584,7 +1592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = PKT82FV824;
+				DEVELOPMENT_TEAM = H26RD7FXNA;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1592,7 +1600,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kenGame2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kyleGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

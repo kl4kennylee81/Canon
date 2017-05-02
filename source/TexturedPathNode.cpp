@@ -7,6 +7,7 @@
 //
 
 #include "TexturedPathNode.hpp"
+#include "GameState.hpp"
 
 
 using namespace cugl;
@@ -266,46 +267,25 @@ void TexturedPathNode::setPolygon(const Rect& rect) {
  * @param tint      The tint to blend with the Node color.
  */
 void TexturedPathNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
-    if (!_rendered) {
-        generateRenderData();
-    }
-    
-    //batch->setColor(tint);
+    batch->setColor(tint);
     batch->setTexture(_texture);
     batch->setBlendEquation(_blendEquation);
     batch->setBlendFunc(_srcFactor, _dstFactor);
         
     Poly2* source = (_stroke > 0 ? &_extrusion : &_polygon);
     for (int i = 1; i < _path->size(); i++) {
-        Vec2 pos1 = Vec2(_path->get(i)).scale(32.0);
-        Vec2 pos2 = Vec2(_path->get(i-1)).scale(32.0);
+        Vec2 pos1 = Vec2(_path->get(i)).scale(GAME_PHYSICS_WIDTH);
+        Vec2 pos2 = Vec2(_path->get(i-1)).scale(GAME_PHYSICS_WIDTH);
         Vec2 pos3 = Vec2(pos1.x - pos2.x, pos1.y - pos2.y);
         float distance = pos1.distance(pos2);
         
-        batch->draw(_capTexture, Rect(0, -(_stroke/2), distance, _stroke),
+        batch->draw(_texture, tint,Rect(0, -(_stroke/2), distance, _stroke),
                     Vec2(0, 0), Vec2(1,1), pos3.getAngle(), Vec2(pos2.x, pos2.y));
         
-        //batch->fill(Rect(0, -(_stroke/2),distance,_stroke), Vec2(0, 0), Vec2(1,1), pos3.getAngle(), Vec2(pos2.x, pos2.y));
-        batch->fill(Poly2::createEllipse(pos2, Size(_stroke,_stroke), 30));
+        batch->draw(_capTexture, tint, Poly2::createEllipse(Vec2(0, 0), Size(_stroke,_stroke), 30), pos2);
     }
-    batch->fill(Poly2::createEllipse(Vec2::Vec2(_path->get(_path->size()-1)).scale(32), Size(_stroke,_stroke), 30));
-
-    
-//    batch->setColor(tint);
-//    batch->setTexture(_texture);
-//    batch->setBlendEquation(_blendEquation);
-//    batch->setBlendFunc(_srcFactor, _dstFactor);
-//    
-//    if (_stroke > 0) {
-//        batch->fill(_vertices.data(), (unsigned int)_vertices.size(), 0,
-//                    _extrusion.getIndices().data(), (unsigned int)_extrusion.getIndices().size(), 0,
-//                    transform);
-//    }
-//    else {
-//        batch->outline(_vertices.data(), (unsigned int)_vertices.size(), 0,
-//                       _polygon.getIndices().data(), (unsigned int)_polygon.getIndices().size(), 0,
-//                       transform);
-//    }
+    batch->draw(_capTexture, tint, Poly2::createEllipse(Vec2(0, 0), Size(_stroke,_stroke), 30),
+                Vec2::Vec2(_path->get(_path->size()-1)).scale(GAME_PHYSICS_WIDTH));
 }
 
 /**
