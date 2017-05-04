@@ -131,7 +131,7 @@
         }, 
         "rotateZone": {
             "key": "rotateZone", 
-            "radius": 50, 
+            "radius": 1.5625, 
             "speed": 0.5, 
             "type": "ROTATE", 
             "zoneEntries": {
