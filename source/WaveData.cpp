@@ -13,7 +13,7 @@
 
 using namespace cugl;
 
-bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
+bool WaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string tempKey = json->getString("templateKey");
     
     init(json->getFloat("x"),
@@ -25,6 +25,7 @@ bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
 }
 
 bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey, std::string aiKey){
+    Data::init();
     this->position.x = x / GAME_PHYSICS_SCALE;
     this->position.y = y / GAME_PHYSICS_SCALE;
     this->element = element;

@@ -58,3 +58,14 @@ void SpawnController::update(float timestep,std::shared_ptr<GameState> state) {
 bool SpawnController::init() {
     return true;
 }
+
+std::shared_ptr<cugl::JsonValue> SpawnController::toJsonValue(){
+    // TODO kelly
+    // the spawnController needs to serialize its map of spawnMap
+    // save it as gameObject uid -> float
+    // IMPORTANT: spawnController json is actually used by the LevelController not by itself
+    // since levelController has the mapping of gameObjectUid -> waveEntryID
+    // it will call initEvent and SpawningEvent with the modified time according to what
+    // it is currently at based on the serialized json value
+    return JsonValue::allocObject();
+}

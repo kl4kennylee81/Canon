@@ -106,3 +106,12 @@ bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<Wor
     _progressBarController = ProgressBarController::alloc(state,world);
     return true;
 }
+
+std::shared_ptr<cugl::JsonValue> LevelController::toJsonValue(std::shared_ptr<GameState> state){
+    
+    // TODO follow the doc serialize info within the level and also the gameObjectuid->WaveEntryID
+    // it is given the gameState because the active gameObject and the player characters are
+    // used by the levelController deserialize to get back into the game so it is within this json
+    
+    return JsonValue::allocObject();
+}

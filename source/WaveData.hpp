@@ -14,7 +14,7 @@
 #include "Data.hpp"
 #include "AIData.hpp"
 
-class WaveEntry {
+class WaveEntry : public Data{
 private:
     ElementType element;
     
@@ -26,7 +26,7 @@ private:
     
 public:
     
-    WaveEntry(){}
+    WaveEntry():Data(){}
     
     ElementType getElement();
     
@@ -48,13 +48,13 @@ public:
         element = element == ElementType::BLUE ? ElementType::GOLD : ElementType::BLUE;
     }
     
-    bool init(const std::shared_ptr<cugl::JsonValue>& json);
+    bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     bool init(float x, float y,ElementType element,std::string templateKey, std::string aiKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(json) ? result : nullptr);
+        return (result->preload(json) ? result : nullptr);
     }
 
     static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey, std::string aiKey) {
@@ -73,6 +73,7 @@ public:
     WaveData() : Data(){}
     
     bool init() {
+        Data::init();
         return true;
     }
     

@@ -82,6 +82,7 @@ public:
 		return (result->init(scene,levelWorld) ? result : nullptr);
 	}
 
+    std::shared_ptr<cugl::JsonValue> toJsonValue();
 
 };
 

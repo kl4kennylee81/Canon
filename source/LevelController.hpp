@@ -56,6 +56,8 @@ public:
 	std::shared_ptr<World> getWorld() {
 		return _world;
 	}
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };
 
 #endif /* LevelController_hpp */

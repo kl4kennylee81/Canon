@@ -12,7 +12,9 @@ using namespace cugl;
 
 bool Data::preload(const std::string& file) {
     Asset::preload(file);
-    return true;
+    auto reader = JsonReader::allocWithAsset(file.c_str());
+    auto json = reader->readJson();
+    return preload(json);
 }
 
 bool Data::preload(const std::shared_ptr<cugl::JsonValue>& json) {

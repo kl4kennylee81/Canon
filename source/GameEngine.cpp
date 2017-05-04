@@ -17,6 +17,8 @@
 #include "UIDataLoader.hpp"
 #include "Util.hpp"
 #include <memory>
+#include <iostream>
+#include <fstream>
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -221,6 +223,22 @@ void GameEngine::onShutdown() {
  */
 void GameEngine::onSuspend() {
     AudioEngine::get()->pauseAll();
+    
+    std::shared_ptr<JsonValue> suspendJson = JsonValue::allocObject();
+    suspendJson->appendChild("menuGraph", _menuGraph->toJsonValue());
+    switch(_menuGraph->getMode()){
+        case Mode::GAMEPLAY:
+        {
+            suspendJson->appendChild("gameplay",_gameplay->toJsonValue());
+        }
+    }
+    // save the suspendJson to a file in the saveDirectory only exists when running the game
+    // its in a temporary directory of the app
+    std::string saveDir = Application::get()->getSaveDirectory();
+    std::ofstream newFile;
+    newFile.open("/"+saveDir+"/suspend.json");
+    newFile << suspendJson->toString();
+    newFile.close();
 }
 
 /**
@@ -235,6 +253,7 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
+    
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
