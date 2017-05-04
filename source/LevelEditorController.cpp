@@ -160,6 +160,9 @@ void LevelEditorController::ensureNameMatch() {
             }
             _world->_waveData[newKey] = _world->getWaveData(key);
             _levelData->setWaveKey(i, newKey);
+            
+            // update
+            std::shared_ptr<LevelEntry> levelEntry = _levelData->getLevelEntry(i);
         }
     }
 }

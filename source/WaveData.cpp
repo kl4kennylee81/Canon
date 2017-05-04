@@ -58,7 +58,7 @@ std::shared_ptr<JsonValue> WaveData::toJsonValue()
 	{
 		auto child = _waveEntries.at(i);
 		std::shared_ptr<JsonValue> object = child->toJsonValue();
-		objectList->appendChild("object" + std::to_string(i + 1), object);		
+		objectList->appendChild(child->key, object);
 	}
 	wave->appendChild("waveEntries", objectList);
 	return wave;

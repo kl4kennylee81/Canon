@@ -103,6 +103,8 @@ public:
     
     std::string getWaveKey(int index);
     
+    std::shared_ptr<LevelEntry> getLevelEntry(int index);
+    
     void setWaveKey(int index, std::string newKey){
         _levelEntries.at(index)->waveKey = newKey;
     }

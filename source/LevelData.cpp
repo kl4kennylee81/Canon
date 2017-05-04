@@ -59,6 +59,10 @@ std::string LevelData::getWaveKey(int index){
     return _levelEntries.at(index)->waveKey;
 }
 
+std::shared_ptr<LevelEntry> LevelData::getLevelEntry(int index){
+    return _levelEntries.at(index);
+}
+
 size_t LevelData::getNumberWaves(){
     return _levelEntries.size();
 }
@@ -71,7 +75,8 @@ std::shared_ptr<JsonValue> LevelData::toJsonValue(){
 		std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();
 		waveDetails->appendChild("waveKey", JsonValue::alloc(getWaveKey(i)));
 		waveDetails->appendChild("time", JsonValue::alloc(getTime(i)));
-        levelList->appendChild("wave" + Util::appendLeadingZero(2,std::to_string(i + 1)), waveDetails);
+        // levelEntry key
+        levelList->appendChild(_levelEntries.at(i)->key, waveDetails);
 	}
 
 	std::shared_ptr<JsonValue> playerList = JsonValue::allocObject();
