@@ -9,6 +9,7 @@
 #include "LevelController.hpp"
 #include "LevelEvent.hpp"
 #include <math.h>
+#include <string>
 
 using namespace cugl;
 
@@ -61,8 +62,13 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
         // enemy is added to the game state here
         state->addEnemyGameObject(gameOb);
     }
-    
-    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,templated->getSpawnTime());
+    return gameOb;
+}
+
+std::shared_ptr<GameObject> LevelController::spawnAndNotifyWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                                     bool isPlayer,std::shared_ptr<GameState> state,float spawnTime){
+    std::shared_ptr<GameObject> gameOb = spawnWaveEntry(we,isPlayer,state);
+    std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,spawnTime);
     
     // notify the observers of the object that is spawned
     notify(spawningevent.get());
@@ -71,7 +77,9 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
 
 std::shared_ptr<GameObject> LevelController::spawnAndRecordWaveEntry(std::shared_ptr<WaveEntry> we,
                                                                       bool isPlayer,std::shared_ptr<GameState> state){
-    std::shared_ptr<GameObject> gameOb = spawnWaveEntry(we,isPlayer,state);
+    std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());
+    std::shared_ptr<GameObject> gameOb = spawnAndNotifyWaveEntry(we,isPlayer,state,templated->getSpawnTime());
+    
     // map the uid of the gameObject to the waveEntry key used to identify it in the json (from the parent class data)
     _uidToWaveEntryMap.insert(std::make_pair(gameOb->getUid(),we->key));
     return gameOb;
@@ -157,7 +165,14 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
                                                                      waveEntry->getElement(),
                                                                      waveEntry->getTemplateKey(),
                                                                      waveEntry->getAIKey());
-                    std::shared_ptr<GameObject> enemyOb = spawnWaveEntry(we, false, state);
+                    
+                    std::shared_ptr<JsonValue> spawnMapJson = spawnControlJson->get("spawnMap");
+                    float spawnTime = 0;
+                    if (spawnMapJson->has(to_string(uidEnemy))){
+                        spawnTime = _world->getTemplate(waveEntry->getTemplateKey())->getSpawnTime();
+                        spawnTime -= stoi(spawnMapJson->getString(to_string(uidEnemy)));
+                    }
+                    std::shared_ptr<GameObject> enemyOb = spawnAndNotifyWaveEntry(we,false,state,spawnTime);
                     enemyOb->setUid(uidEnemy);
                     found = true;
                     break;

@@ -6,44 +6,87 @@
 	},
 	"gameplay":	{
 		"levelController":	{
-			"levelDataKey":	"overlap",
+			"levelDataKey":	"interweave",
 			"currentWaveIndex":	0,
-			"framesElapsed":	4,
+			"framesElapsed":	388.201599,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	18.750000,
-					"currentPosY":	7.812500,
+					"currentPosX":	1.001097,
+					"currentPosY":	13.533778,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
-					"currentPosX":	12.500000,
-					"currentPosY":	7.812500,
+					"currentPosX":	8.419950,
+					"currentPosY":	16.005156,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
-					"uid":	"5",
-					"currentPosX":	15.900000,
-					"currentPosY":	16.833334,
-					"waveID":	"object1"
+					"uid":	"6",
+					"currentPosX":	22.185314,
+					"currentPosY":	6.666667,
+					"waveID":	"object10"
 				}, {
 					"uid":	"7",
-					"currentPosX":	14.300000,
-					"currentPosY":	16.833334,
-					"waveID":	"object2"
+					"currentPosX":	22.118649,
+					"currentPosY":	4.266666,
+					"waveID":	"object11"
+				}, {
+					"uid":	"8",
+					"currentPosX":	22.185314,
+					"currentPosY":	1.966666,
+					"waveID":	"object12"
+				}, {
+					"uid":	"11",
+					"currentPosX":	14.500000,
+					"currentPosY":	9.651981,
+					"waveID":	"object4"
+				}, {
+					"uid":	"12",
+					"currentPosX":	17.500000,
+					"currentPosY":	9.651981,
+					"waveID":	"object5"
+				}, {
+					"uid":	"13",
+					"currentPosX":	20.466667,
+					"currentPosY":	9.651981,
+					"waveID":	"object6"
+				}, {
+					"uid":	"14",
+					"currentPosX":	22.118649,
+					"currentPosY":	13.900000,
+					"waveID":	"object7"
+				}, {
+					"uid":	"15",
+					"currentPosX":	22.185314,
+					"currentPosY":	11.533334,
+					"waveID":	"object8"
+				}, {
+					"uid":	"16",
+					"currentPosX":	22.185314,
+					"currentPosY":	9.033334,
+					"waveID":	"object9"
 				}],
 			"uidToWaveEntryMap":	{
 				"1":	"player1",
 				"3":	"player2",
 				"5":	"object1",
-				"7":	"object2"
+				"6":	"object10",
+				"7":	"object11",
+				"8":	"object12",
+				"9":	"object2",
+				"10":	"object3",
+				"11":	"object4",
+				"12":	"object5",
+				"13":	"object6",
+				"14":	"object7",
+				"15":	"object8",
+				"16":	"object9"
 			}
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"7":	176,
-				"5":	176
 			}
 		}
 	}

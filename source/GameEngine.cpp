@@ -461,7 +461,7 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            if (hi == 3){
+            if (hi == 600){
                 onSuspend();
                 onResume();
                 hi+=1;
