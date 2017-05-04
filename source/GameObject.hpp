@@ -15,6 +15,9 @@
 
 class GameObject {
     
+private:
+    static int _atomicUidCounter;
+    
 protected:
     
     // HACK once we load from data files we want to uniquely identify a game object
@@ -82,6 +85,18 @@ public:
     cugl::Vec2 getPosition() {return _body->getBody()->getPosition();};
 
     void sync(float scale);
+    
+#pragma static methods
+    
+    static void resetAtomicUidCounter(){
+        _atomicUidCounter = 0;
+    }
+    
+    static int getAtomicUid(){
+        _atomicUidCounter+=1;
+        return _atomicUidCounter;
+    }
+
 };
 
 #endif /* GameObject_hpp */

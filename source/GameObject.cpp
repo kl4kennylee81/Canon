@@ -18,23 +18,21 @@ void GameObject::dispose(){
 }
 
 bool GameObject::init(){
+    _uid = GameObject::getAtomicUid();
     _isPlayer = false;
     type = ObjectType::CHARACTER;
     return true;
 }
 
 bool GameObject::init(std::shared_ptr<cugl::Node> node){
+    init();
     _node = node;
-    _isPlayer = false;
-    type = ObjectType::CHARACTER;
     return true;
 }
 
 bool GameObject::init(std::shared_ptr<PhysicsComponent> body,std::shared_ptr<cugl::Node> node){
+    init(node);
     setPhysicsComponent(body);
-    _node = node;
-    _isPlayer = false;
-    type = ObjectType::CHARACTER;
     return true;
 }
 
