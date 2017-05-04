@@ -31,7 +31,7 @@ void LevelController::notify(Event* e) {
  */
 void LevelController::eventUpdate(Event* e) {}
 
-void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
+std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
     std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());
     std::shared_ptr<ObjectData> od = _world->getObjectData(we);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
@@ -48,9 +48,6 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
 
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
-    
-    // map the uid of the gameObject to the waveEntry key used to identify it in the json (from the parent class data)
-    _uidToWaveEntryMap.insert(std::make_pair(gameOb->getUid(),we->key));
     
     gameOb->setIsPlayer(isPlayer);
     
@@ -69,6 +66,15 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     
     // notify the observers of the object that is spawned
     notify(spawningevent.get());
+    return gameOb;
+}
+
+std::shared_ptr<GameObject> LevelController::spawnAndRecordWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                                      bool isPlayer,std::shared_ptr<GameState> state){
+    std::shared_ptr<GameObject> gameOb = spawnWaveEntry(we,isPlayer,state);
+    // map the uid of the gameObject to the waveEntry key used to identify it in the json (from the parent class data)
+    _uidToWaveEntryMap.insert(std::make_pair(gameOb->getUid(),we->key));
+    return gameOb;
 }
 
 void LevelController::dispose(){
@@ -82,7 +88,7 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     if (!_level.hasPlayerSpawned()){
         _level.togglePlayerSpawned();
         for (auto playerEntry : _level.getPlayerChars()){
-            spawnWaveEntry(playerEntry,true,state);
+            spawnAndRecordWaveEntry(playerEntry,true,state);
         }
     }
     
@@ -94,7 +100,7 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         // spawn the gameObject from the prototypes
         std::shared_ptr<WaveData> wd = _world->getWaveData(waveKey);
         for(auto it: wd->getWaveEntries()) {
-            spawnWaveEntry(it, false, state);
+            spawnAndRecordWaveEntry(it, false, state);
         }
     }
     
@@ -134,6 +140,7 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
         auto resumeEnemy = enemylist->get(i);
         
         // info from the serialized active objects of players
+        int uidEnemy = stoi(resumeEnemy->getString("uid"));
         std::string waveId = resumeEnemy->getString("waveID");
         float xPos = resumeEnemy->getFloat("currentPosX");
         float yPos = resumeEnemy->getFloat("currentPosY");
@@ -150,7 +157,8 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
                                                                      waveEntry->getElement(),
                                                                      waveEntry->getTemplateKey(),
                                                                      waveEntry->getAIKey());
-                    spawnWaveEntry(we, false, state);
+                    std::shared_ptr<GameObject> enemyOb = spawnWaveEntry(we, false, state);
+                    enemyOb->setUid(uidEnemy);
                     found = true;
                     break;
                 }
@@ -168,6 +176,8 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
         std::shared_ptr<JsonValue> resumePlayer = playerList->get(i);
         
         // info from the serialized active objects of players
+        // info from the serialized active objects of players
+        int uidPlayer = stoi(resumePlayer->getString("uid"));
         std::string waveId = resumePlayer->getString("waveID");
         float xPos = resumePlayer->getFloat("currentPosX");
         float yPos = resumePlayer->getFloat("currentPosY");
@@ -183,7 +193,8 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
                                                              player->getElement(),
                                                              player->getTemplateKey(),
                                                              player->getAIKey());
-            spawnWaveEntry(we, true, state);
+            std::shared_ptr<GameObject> playerOb = spawnWaveEntry(we, true, state);
+            playerOb->setUid(uidPlayer);
             break;
         }
     }
@@ -240,6 +251,9 @@ std::shared_ptr<JsonValue> LevelController::toJsonValue(std::shared_ptr<GameStat
 
 	std::shared_ptr<JsonValue> enemies = JsonValue::allocArray();
 	for (auto en : state->getEnemyObjects()) {
+        if (en->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
 		std::shared_ptr<JsonValue> activeMap = JsonValue::allocObject();
 		activeMap->appendChild("uid", JsonValue::alloc(std::to_string(en->getUid())));
 		activeMap->appendChild("currentPosX", JsonValue::alloc(en->getPosition().x));

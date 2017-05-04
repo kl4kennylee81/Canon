@@ -44,7 +44,10 @@ public:
      */
     virtual void eventUpdate(Event* e);
 
-    void spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    std::shared_ptr<GameObject> spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<GameObject> spawnAndRecordWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                        bool isPlayer,std::shared_ptr<GameState> state);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
