@@ -55,6 +55,7 @@ public:
         return (result->init() ? result : nullptr);
     }
     
+	std::string serialize();
     std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 

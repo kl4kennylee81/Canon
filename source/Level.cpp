@@ -50,16 +50,8 @@ float Level::getProgress(){
     return _framesElapsed/((float)getNextTime());
 }
 
-bool Level::isReadyToSpawn(){
-    return _readyToSpawn;
-}
-
 void Level::toggleReadyToSpawn(){
     this->_readyToSpawn = !this->_readyToSpawn;
-}
-
-bool Level::hasPlayerSpawned(){
-    return this->_playerSpawned;
 }
 
 std::vector<std::shared_ptr<WaveEntry>> Level::getPlayerChars(){
