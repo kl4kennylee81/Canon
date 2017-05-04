@@ -565,6 +565,8 @@
 		9F3BA64B1E90CAF5003138C0 /* object */ = {
 			isa = PBXGroup;
 			children = (
+				9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */,
+				9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */,
 				9FFA3FCD1E6372830029D648 /* AnimationData.cpp */,
 				9FFA3FCE1E6372830029D648 /* AnimationData.hpp */,
 				9FFA3FC21E636EF80029D648 /* ObjectData.cpp */,
@@ -583,8 +585,6 @@
 				9FA275FD1EA4D7F4003D8C03 /* LevelEditorEvent */,
 				9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */,
 				9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */,
-				9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */,
-				9FA275F01EA4D7DB003D8C03 /* TemplateWaveEntry.hpp */,
 				9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */,
 				9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */,
 			);
