@@ -117,50 +117,65 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
 {
     // set the level data of the world after resuming
     _world->setLevelData(_world->getAssetManager()->get<LevelData>(levelControlJson->getString("levelDataKey")));
-    init(state,_world);
-    
-    // toggle off player spawning on the level since we're setting them here
-    // it is turned back on by call to init
-    this->_level.togglePlayerSpawned();
-    
+    _level.setLevelData(_world->getLevelData());
+    _level.init(levelControlJson);
+
     std::shared_ptr<JsonValue> enemylist = levelControlJson->get("enemyObjects");
     for (int i = 0; i < enemylist->size(); i++) {
-        auto entry = enemylist->get(i);
+        auto resumeEnemy = enemylist->get(i);
         
         // info from the serialized active objects of players
-        std::string wave = entry->getString("waveID");
-        float xPos = entry->getFloat("currentPosX");
-        float yPos = entry->getFloat("currentPosY");
+        std::string waveId = resumeEnemy->getString("waveID");
+        float xPos = resumeEnemy->getFloat("currentPosX");
+        float yPos = resumeEnemy->getFloat("currentPosY");
         
         std::shared_ptr<LevelData> ld = _world->getLevelData();
         
         for (std::shared_ptr<LevelEntry> entry : ld->getLevelEntries()) {
             std::string wKey = entry->waveKey;
             std::shared_ptr<WaveData> wd = _world->getAssetManager()->get<WaveData>(wKey);
-            for (std::shared_ptr<WaveEntry> w : wd->getWaveEntries()) {
-                if (w->key == wave) {
-                    std::shared_ptr<WaveEntry> we = WaveEntry::alloc(xPos, yPos, w->getElement(), w->getTemplateKey(), w->getAIKey());
+            bool found = false;
+            for (std::shared_ptr<WaveEntry> waveEntry : wd->getWaveEntries()) {
+                if (waveEntry->key == waveId) {
+                    std::shared_ptr<WaveEntry> we = WaveEntry::alloc(xPos, yPos,
+                                                                     waveEntry->getElement(),
+                                                                     waveEntry->getTemplateKey(),
+                                                                     waveEntry->getAIKey());
                     spawnWaveEntry(we, false, state);
+                    found = true;
                     break;
                 }
+            }
+            if (found){
+                break;
             }
         }
     }
     
     std::shared_ptr<JsonValue> playerList = levelControlJson->get("players");
+    
+    // for each character in the suspension file find the character in the levelData
     for (int i = 0; i < playerList->size(); i++) {
-        auto entry = playerList->get(i);
+        std::shared_ptr<JsonValue> resumePlayer = playerList->get(i);
         
         // info from the serialized active objects of players
-        std::string wave = entry->getString("waveID");
-        float xPos = entry->getFloat("currentPosX");
-        float yPos = entry->getFloat("currentPosY");
+        std::string waveId = resumePlayer->getString("waveID");
+        float xPos = resumePlayer->getFloat("currentPosX");
+        float yPos = resumePlayer->getFloat("currentPosY");
         
         std::shared_ptr<LevelData> ld = _world->getLevelData();
         
-        for (std::shared_ptr<WaveEntry> entry : ld->getPlayerChars() ) {
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(xPos, yPos, entry->getElement(), entry->getTemplateKey(), entry->getAIKey());
+        // find the approproriate wave entry of the character
+        for (std::shared_ptr<WaveEntry> player : ld->getPlayerChars() ) {
+            if (waveId != player->key){
+                continue;
+            }
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(xPos, yPos,
+                                                             player->getElement(),
+                                                             player->getTemplateKey(),
+                                                             player->getAIKey());
             spawnWaveEntry(we, true, state);
+            break;
         }
     }
     
