@@ -18,6 +18,7 @@ bool PathData::preload(const std::string& file){
 }
 
 bool PathData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+	Data::preload(json);
     return true;
 }
 

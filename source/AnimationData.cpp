@@ -104,6 +104,7 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         _actionmap.insert({action,animationupdate});
     }
+	Data::preload(json);
 	return true;
 }
 

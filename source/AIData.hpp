@@ -29,7 +29,10 @@ public:
 
 	virtual bool preload(const std::string& file) { return true;  }
 
-	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) { return true;  }
+	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) {
+		Data::preload(json); 
+		return true;  
+	}
 
 	virtual bool materialize() { return true;  }
 

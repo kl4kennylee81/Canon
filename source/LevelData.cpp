@@ -86,6 +86,7 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     }
     
     init();
+	Data::preload(json);
     return true;
 }
 

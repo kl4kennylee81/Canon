@@ -17,6 +17,7 @@ bool Data::preload(const std::string& file) {
 
 bool Data::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     Asset::preload(json);
+	key = json->getString("key");
     return true;
 }
 

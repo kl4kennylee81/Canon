@@ -16,6 +16,8 @@ class Data : cugl::Asset {
 public:
     Data():Asset(){};
     
+	std::string key;
+
     bool init(){
         return true;
     };

@@ -70,6 +70,7 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     }
     float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
     init(name, ob, ais, zones,sTime);
+	Data::preload(json);
     return true;
 }
 

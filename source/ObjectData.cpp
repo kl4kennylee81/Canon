@@ -63,6 +63,7 @@ bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string ganimKey = json->getString("goldAnimationKey");
     float animScale = json->getFloat("animationScale",1.0f);
     init(sKey,banimKey,ganimKey,soundKey,animScale);
+	Data::preload(json);
     return true;
 }
 

@@ -77,6 +77,7 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = WaveEntry::alloc(child);
 		addWaveEntry(entry);
 	}
+	Data::preload(json);
     return true;
 }
 

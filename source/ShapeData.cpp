@@ -42,6 +42,7 @@ bool ShapeData::preload(const std::string& file){
 
 bool ShapeData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 	init(json->get("vertices")->asFloatArray());
+	Data::preload(json);
 
 	return true;
 }

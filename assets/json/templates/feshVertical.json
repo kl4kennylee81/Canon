@@ -1,129 +1,198 @@
 {
-  "templates":  {
-    "feshVertical": {
-      "name": "feshVertical",
-      "aiKeys":  ["horizontalLeft","horizontalRight","horizontal"],
-      "zoneKeys": ["feshVertical_zone"],
-      "objectKey":  "feshVertical_object"
+    "animations": {
+        "blue_feshVertical_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 9, 
+            "key": "blue_feshVertical_animation", 
+            "rows": 5, 
+            "size": 45, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 27, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 9, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        25
+                    ], 
+                    "total": 9
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/fesh/fesh_blue.png"
+        }, 
+        "yellow_feshVertical_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 9, 
+            "key": "yellow_feshVertical_animation", 
+            "rows": 5, 
+            "size": 45, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 27, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 9, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        25
+                    ], 
+                    "total": 9
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/fesh/fesh_yellow.png"
+        }
+    }, 
+    "objects": {
+        "feshVertical_object": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blue_feshVertical_animation", 
+            "goldAnimationKey": "yellow_feshVertical_animation", 
+            "key": "feshVertical_object", 
+            "shapeKey": "feshVertical_shape", 
+            "soundKey": "baseEnemySound"
+        }, 
+        "feshVertical_zoneObject": {
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "feshVertical_zoneObject", 
+            "shapeKey": "feshVertical_zoneShape"
+        }
+    }, 
+    "shapes": {
+        "feshVertical_shape": {
+            "key": "feshVertical_shape", 
+            "vertices": [
+                0, 
+                0, 
+                50, 
+                0, 
+                50, 
+                50, 
+                0, 
+                50
+            ]
+        }, 
+        "feshVertical_zoneShape": {
+            "key": "feshVertical_zoneShape", 
+            "vertices": [
+                -20, 
+                512, 
+                20, 
+                512, 
+                20, 
+                -512, 
+                -20, 
+                -512
+            ]
+        }
+    }, 
+    "templates": {
+        "feshVertical": {
+            "aiKeys": [
+                "horizontalLeft", 
+                "horizontalRight", 
+                "horizontal"
+            ], 
+            "key": "feshVertical", 
+            "name": "feshVertical", 
+            "objectKey": "feshVertical_object", 
+            "zoneKeys": [
+                "feshVertical_zone"
+            ]
+        }
+    }, 
+    "zones": {
+        "feshVertical_zone": {
+            "element": "MATCH", 
+            "key": "feshVertical_zone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 1.0, 
+            "minSizeY": 1.0, 
+            "minTime": 60, 
+            "objectKey": "feshVertical_zoneObject", 
+            "type": "PULSE"
+        }
     }
-  },
-  "objects":{
-    "feshVertical_object":{
-      "shapeKey": "feshVertical_shape",
-      "blueAnimationKey": "blue_feshVertical_animation",
-      "goldAnimationKey": "yellow_feshVertical_animation",
-      "soundKey": "baseEnemySound",
-      "animationScale": 2.0
-    },
-    "feshVertical_zoneObject":{
-      "shapeKey": "feshVertical_zoneShape",
-      "blueAnimationKey": "whiteBar",
-      "goldAnimationKey": "whiteBar"
-    }
-  },
-  "shapes":{
-    "feshVertical_shape": {
-      "vertices": [0,0,50,0,50,50,0,50]
-    },
-    "feshVertical_zoneShape":{
-      "vertices": [-20,512,20,512,20,-512,-20,-512]
-    }
-  },
-  "zones":{
-    "feshVertical_zone": {
-      "type": "PULSE",
-      "objectKey": "feshVertical_zoneObject",
-      "minSizeX": 1.0,
-      "minSizeY": 1.0,
-      "minTime": 60,
-      "maxSizeX": 1.0,
-      "maxSizeY": 1.0,
-      "maxTime": 60,
-      "lerpTime": 320,
-      "element": "MATCH"
-    }
-  },
-  "animations":{
-    "blue_feshVertical_animation": {
-      "texture": "./textures/models/enemy_models/fesh/fesh_blue.png",
-      "rows": 5,
-      "cols": 9,
-      "size": 45,
-      "statemap": {
-          "spawning": {
-            "first": 0,
-            "total": 4,
-            "frames": [12,12,12,12]
-          },
-          "idle": {
-            "first": 27,
-            "total": 1,
-            "frames": [10]
-          },
-          "spawn": {
-            "first": 9,
-            "total": 9,
-            "frames": [5,5,5,5,5,5,5,5,25]
-          },
-          "death": {
-            "first": 1,
-            "total": 1,
-            "frames": [10]
-          }
-      },
-      "actionmap": {
-          "SPAWNING": {
-              "repeat": "spawning"
-          },
-          "SPAWN": {
-              "active": "spawn",
-              "repeat": "idle"
-          },
-          "DEATH": {
-              "active": "death"
-          }
-      }
-    },
-    "yellow_feshVertical_animation": {
-      "texture": "./textures/models/enemy_models/fesh/fesh_yellow.png",
-      "rows": 5,
-      "cols": 9,
-      "size": 45,
-      "statemap": {
-          "spawning": {
-            "first": 0,
-            "total": 4,
-            "frames": [12,12,12,12]
-          },
-          "idle": {
-            "first": 27,
-            "total": 1,
-            "frames": [10]
-          },
-          "spawn": {
-            "first": 9,
-            "total": 9,
-            "frames": [5,5,5,5,5,5,5,5,25]
-          },
-          "death": {
-            "first": 1,
-            "total": 1,
-            "frames": [10]
-          }
-      },
-      "actionmap": {
-          "SPAWNING": {
-              "repeat": "spawning"
-          },
-          "SPAWN": {
-              "active": "spawn",
-              "repeat": "idle"
-          },
-          "DEATH": {
-              "active": "death"
-          }
-      }
-    }
-  }
 }
-

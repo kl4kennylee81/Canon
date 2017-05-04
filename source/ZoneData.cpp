@@ -18,6 +18,8 @@ bool ZoneData::preload(const std::string& file){
 }
 
 bool ZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
+
+	Data::preload(json);
     return true;
 }
 

@@ -164,6 +164,7 @@ bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	std::vector<Vec2> path = getPathFromString(json->getString("path"));
 	PathDirection direction = getDirectionFromString(json->getString("direction"));
 	init(pathType, path, direction);
+	Data::preload(json);
 	return true;
 }
 

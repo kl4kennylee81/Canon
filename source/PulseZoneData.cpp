@@ -49,6 +49,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,minSize,minTime,maxSize,maxTime,lerpTime,el);
 
+	Data::preload(json);
     return true;
 }
 

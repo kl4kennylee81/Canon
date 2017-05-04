@@ -43,6 +43,7 @@ bool SoundData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         soundMap.insert({action,soundFxString});
     }
+	Data::preload(json);
     return true;
 }
 

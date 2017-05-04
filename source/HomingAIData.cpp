@@ -20,6 +20,7 @@ bool HomingAIData::preload(const std::string& file) {
 bool HomingAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::HOMING;
 	init();
+	Data::preload(json);
 	return true;
 }
 

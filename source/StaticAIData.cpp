@@ -19,6 +19,7 @@ bool StaticAIData::preload(const std::string& file) {
 bool StaticAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::STATIC;
 	init();
+	Data::preload(json);
 
 	return true;
 }

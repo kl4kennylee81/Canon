@@ -67,6 +67,7 @@ bool RotateZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         zones.push_back(entry);
     }
 
+	Data::preload(json);
     return true;
 }
 

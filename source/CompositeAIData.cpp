@@ -50,6 +50,7 @@ bool CompositeAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	}
 	std::string startKey = json->getString("startAI");
 	init(startKey, conditions, aiKeys);
+	Data::preload(json);
 	return true;
 }
 

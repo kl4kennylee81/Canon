@@ -126,6 +126,7 @@ bool UIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	y = json->getFloat("y");
 	width = json->getFloat("width");
 	height = json->getFloat("height");
+	Data::preload(json);
 	return true;
 }
 

@@ -39,6 +39,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,rel_x,rel_y,cooldown,duration,el);
 
+	Data::preload(json);
     return true;
 }
 
