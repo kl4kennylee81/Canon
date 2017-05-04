@@ -226,3 +226,14 @@ std::shared_ptr<LevelData> GameplayController::getCurrentLevel(){
 std::shared_ptr<World> GameplayController::getWorld(){
     return _levelController->getWorld();
 }
+
+std::shared_ptr<cugl::JsonValue> GameplayController::toJsonValue(){
+    // TODO kelly
+    // call the toJsonValue for eachController that needs serialization
+    // and collect into one big gameplayController json and return it
+    _levelController->toJsonValue(_gameState);
+    _spawnController->toJsonValue();
+    // need to actually attach the json all to the outputted json key->value
+    // ex. levelController : {blob of json}
+    return JsonValue::allocObject();
+}

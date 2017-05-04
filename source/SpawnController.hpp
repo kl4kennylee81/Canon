@@ -54,6 +54,8 @@ public:
         std::shared_ptr<SpawnController> result = std::make_shared<SpawnController>();
         return (result->init() ? result : nullptr);
     }
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 #endif /* SpawnController_hpp */

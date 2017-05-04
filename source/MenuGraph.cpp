@@ -179,3 +179,8 @@ void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
 void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){
     scene->removeChild(_menuNode);
 }
+
+std::shared_ptr<cugl::JsonValue> MenuGraph::toJsonValue(){
+    //TODO kelly
+    return JsonValue::allocNull();
+}

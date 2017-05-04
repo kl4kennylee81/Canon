@@ -221,6 +221,17 @@ void GameEngine::onShutdown() {
  */
 void GameEngine::onSuspend() {
     AudioEngine::get()->pauseAll();
+    
+    std::shared_ptr<JsonValue> suspendJson = JsonValue::allocObject();
+    suspendJson->appendChild("menuGraph", _menuGraph->toJsonValue());
+    switch(_menuGraph->getMode()){
+        case Mode::GAMEPLAY:
+        {
+            suspendJson->appendChild("gameplay",_gameplay->toJsonValue());
+        }
+    }
+    // save the suspendJson to a file in the saveDirectory
+    Application::get()->getSaveDirectory();
 }
 
 /**

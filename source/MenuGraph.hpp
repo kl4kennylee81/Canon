@@ -65,6 +65,8 @@ public:
     void attachToScene(std::shared_ptr<cugl::Scene> scene);
     
     void detachFromScene(std::shared_ptr<cugl::Scene> scene);
+    
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 #endif /* MenuGraph_hpp */

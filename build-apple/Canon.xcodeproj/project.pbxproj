@@ -94,8 +94,6 @@
 		9F3BA6441E90CAB1003138C0 /* UIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6411E90CAB1003138C0 /* UIData.cpp */; };
 		9F3BA6471E90CAC9003138C0 /* UIDataLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */; };
 		9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */; };
-		9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */; };
-		9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */; };
 		9F3BA6631E9F48BA003138C0 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */; };
 		9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */; };
 		9F3BA6671EA074E1003138C0 /* ButtonAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA6651EA074E1003138C0 /* ButtonAction.cpp */; };
@@ -267,7 +265,6 @@
 		9F3BA6421E90CAB1003138C0 /* UIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIData.hpp; sourceTree = "<group>"; };
 		9F3BA6451E90CAC9003138C0 /* UIDataLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDataLoader.cpp; sourceTree = "<group>"; };
 		9F3BA6461E90CAC9003138C0 /* UIDataLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIDataLoader.hpp; sourceTree = "<group>"; };
-		9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEditorController.cpp; sourceTree = "<group>"; };
 		9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEditorController.hpp; sourceTree = "<group>"; };
 		9F3BA6611E9F48BA003138C0 /* UIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent.cpp; sourceTree = "<group>"; };
 		9F3BA6621E9F48BA003138C0 /* UIComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIComponent.hpp; sourceTree = "<group>"; };
@@ -583,7 +580,6 @@
 			isa = PBXGroup;
 			children = (
 				9FA275FD1EA4D7F4003D8C03 /* LevelEditorEvent */,
-				9F3BA64D1E932862003138C0 /* LevelEditorController.cpp */,
 				9F3BA64E1E932862003138C0 /* LevelEditorController.hpp */,
 				9FA275F11EA4D7DB003D8C03 /* WaveEditorController.cpp */,
 				9FA275F21EA4D7DB003D8C03 /* WaveEditorController.hpp */,
@@ -1313,7 +1309,6 @@
 				9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
 				9F3BA60D1E8BA575003138C0 /* InternalClock.cpp in Sources */,
 				9F82210B1EA47EDB000EFCD0 /* FinishController.cpp in Sources */,
-				9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
 				9F3BA60F1E8BA575003138C0 /* CollisionEvent.cpp in Sources */,
 				8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */,
@@ -1367,7 +1362,6 @@
 				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
 				9F7668321E8384E8003A06E8 /* SaveGameData.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
-				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
 				9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
