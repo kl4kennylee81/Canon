@@ -43,7 +43,7 @@ std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
 	}
 
 	data->appendChild("zoneEntries", zoneEntries);
-	data->appendChild("radius", JsonValue::alloc(radius*GAME_PHYSICS_SCALE));
+	data->appendChild("radius", JsonValue::alloc(radius));
 	data->appendChild("speed", JsonValue::alloc(speed));
 	return data;
 }

@@ -27,8 +27,8 @@ bool WaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
 
 bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey, std::string aiKey){
     Data::init();
-    this->position.x = x / GAME_PHYSICS_SCALE;
-    this->position.y = y / GAME_PHYSICS_SCALE;
+    this->position.x = x;
+    this->position.y = y;
     this->element = element;
     this->templateKey = templateKey;
     this->aiKey = aiKey;
@@ -38,8 +38,8 @@ bool WaveEntry::init(float x, float y,ElementType element,std::string templateKe
 std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 {
 	std::shared_ptr<JsonValue> object = Data::toJsonValue();
-	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
-	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
+	object->appendChild("x", JsonValue::alloc(position.x));
+	object->appendChild("y", JsonValue::alloc(position.y));
 	object->appendChild("element", JsonValue::alloc((element == ElementType::BLUE) ? "BLUE" : "GOLD"));
     object->appendChild("aiKey", JsonValue::alloc(aiKey));
     if(templateKey != ""){

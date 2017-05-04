@@ -11,7 +11,7 @@ bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path, PathDirec
 
     // scale to physics coordinates
     for (auto vec : _path){
-        vec = vec / (GAME_PHYSICS_SCALE);
+        vec = vec;
     }
     
     return true;

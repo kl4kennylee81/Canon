@@ -16,7 +16,7 @@ bool ShapeData::init(std::vector<float> v){
     
     for (int i = 0;i<this->vertices.size() ;i++){
         // converting from world coordinate sto physics
-        vertices[i] = this->vertices[i]/GAME_PHYSICS_SCALE;
+        vertices[i] = this->vertices[i];
     }
     return true;
 }
@@ -26,7 +26,7 @@ std::shared_ptr<JsonValue> ShapeData::toJsonValue()
 	std::shared_ptr<JsonValue> verticesArray = JsonValue::allocArray();
 	for (int i = 0; i < this->vertices.size(); i++)
 	{
-		verticesArray->appendValue(this->vertices[i] * GAME_PHYSICS_SCALE);
+		verticesArray->appendValue(this->vertices[i];
 	}
 	std::shared_ptr<JsonValue> vertices = Data::toJsonValue();
 	vertices->appendChild("vertices", verticesArray);
