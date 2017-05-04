@@ -41,7 +41,7 @@ def fixup(adict, k):
 
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
-for path, subdirs, files in os.walk(dname + os.sep + 'json' + os.sep + 'testLevels'):
+for path, subdirs, files in os.walk(dname + os.sep + 'json' + os.sep + 'editorLevel.json'):
 	for filename in files:
 		splits = filename.split('.')
 		name, ext = splits[0], splits[1]

@@ -26,7 +26,7 @@ std::shared_ptr<JsonValue> ShapeData::toJsonValue()
 	std::shared_ptr<JsonValue> verticesArray = JsonValue::allocArray();
 	for (int i = 0; i < this->vertices.size(); i++)
 	{
-		verticesArray->appendValue(this->vertices[i];
+		verticesArray->appendValue(this->vertices[i]);
 	}
 	std::shared_ptr<JsonValue> vertices = Data::toJsonValue();
 	vertices->appendChild("vertices", verticesArray);

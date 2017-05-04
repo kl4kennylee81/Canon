@@ -461,12 +461,12 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            if (hi == 3){
-                onSuspend();
-                onResume();
-            } else {
-                hi+=1;
-            }
+//            if (hi == 3){
+//                onSuspend();
+//                onResume();
+//            } else {
+//                hi+=1;
+//            }
             break;
         }
         case Mode::MAIN_MENU:
