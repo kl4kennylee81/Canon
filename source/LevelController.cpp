@@ -118,6 +118,11 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
     // set the level data of the world after resuming
     _world->setLevelData(_world->getAssetManager()->get<LevelData>(levelControlJson->getString("levelDataKey")));
     init(state,_world);
+    
+    // toggle off player spawning on the level since we're setting them here
+    // it is turned back on by call to init
+    this->_level.togglePlayerSpawned();
+    
     std::shared_ptr<JsonValue> enemylist = levelControlJson->get("enemyObjects");
     for (int i = 0; i < enemylist->size(); i++) {
         auto entry = enemylist->get(i);
@@ -142,9 +147,9 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
         }
     }
     
-    std::shared_ptr<JsonValue> playerlist = levelControlJson->get("players");
-    for (int i = 0; i < enemylist->size(); i++) {
-        auto entry = enemylist->get(i);
+    std::shared_ptr<JsonValue> playerList = levelControlJson->get("players");
+    for (int i = 0; i < playerList->size(); i++) {
+        auto entry = playerList->get(i);
         
         // info from the serialized active objects of players
         std::string wave = entry->getString("waveID");
