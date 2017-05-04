@@ -183,7 +183,7 @@
     "zones": {
         "grump_zone": {
             "key": "grump_zone", 
-            "radius": 180, 
+            "radius": 5.625, 
             "speed": 1.0, 
             "type": "ROTATE", 
             "zoneEntries": {
