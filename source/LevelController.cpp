@@ -48,6 +48,10 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
 
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
+    
+    // map the uid of the gameObject to the waveEntry key used to identify it in the json (from the parent class data)
+    _uidToWaveEntryMap.insert(std::make_pair(gameOb->getUid(),we->key));
+    
     gameOb->setIsPlayer(isPlayer);
     
     std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds);

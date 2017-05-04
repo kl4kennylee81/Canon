@@ -231,6 +231,7 @@ void GameEngine::onSuspend() {
             suspendJson->appendChild("gameplay",_gameplay->toJsonValue());
         }
     }
+    
 //    // save the suspendJson to a file in the saveDirectory only exists when running the game
 //    // its in a temporary directory of the app
 //    std::string saveDir = Application::get()->getSaveDirectory();
@@ -439,8 +440,6 @@ void GameEngine::update(float timestep) {
                 // ex. useful in loading before a level
                 _menuGraph->populate(_assets);
                 _menuGraph->setNextMode(Mode::MAIN_MENU);
-                
-                onSuspend();
             }
             break;
         }
@@ -448,6 +447,8 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
+            onSuspend();
+            onResume();
             break;
         }
         case Mode::MAIN_MENU:
