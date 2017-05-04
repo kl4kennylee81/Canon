@@ -29,6 +29,11 @@ protected:
     bool _playerSpawned;
 public:
     Level(){}
+
+	bool isReadyToSpawn() { return _readyToSpawn; }
+	bool hasPlayerSpawned() { return _playerSpawned; }
+	std::string getLevelKey() { return _levelData->key; }
+	float getFramesElapsed() { return _framesElapsed; }
     
     bool init(std::shared_ptr<LevelData> levelData);
     
@@ -41,11 +46,7 @@ public:
     
     float getProgress();
     
-    bool isReadyToSpawn();
-    
     void toggleReadyToSpawn();
-    
-    bool hasPlayerSpawned();
     
     void togglePlayerSpawned();
     

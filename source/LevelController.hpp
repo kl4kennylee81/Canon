@@ -15,6 +15,7 @@
 #include "GameState.hpp"
 #include "World.hpp"
 #include "Level.hpp"
+#include <map>
 #include "ProgressBarController.hpp"
 
 class LevelController : BaseController {
@@ -24,6 +25,9 @@ protected:
     Level _level;
     
     std::shared_ptr<ProgressBarController> _progressBarController;
+
+	std::map<int, std::string> _uidToWaveEntryMap;
+
 public:
     LevelController();
     
@@ -46,6 +50,7 @@ public:
     
     void dispose();
     
+	void resumeHelper(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> resumeJson, std::string key);
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
     static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
@@ -57,6 +62,8 @@ public:
 		return _world;
 	}
     
+	void initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> resumeJson);
+	std::string serialize(std::shared_ptr<GameState> state);
     std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };
 

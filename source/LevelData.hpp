@@ -73,7 +73,9 @@ public:
     bool init() {
         return true;
     }
-    
+
+	std::vector<std::shared_ptr<LevelEntry>> getLevelEntries() { return _levelEntries; }
+
     static std::shared_ptr<LevelData> alloc() {
         std::shared_ptr<LevelData> result = std::make_shared<LevelData>();
         return (result->init() ? result : nullptr);
