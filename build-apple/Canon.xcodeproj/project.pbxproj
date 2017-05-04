@@ -44,7 +44,6 @@
 		9F3BA5EC1E8BA575003138C0 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FCD1E6372830029D648 /* AnimationData.cpp */; };
 		9F3BA5ED1E8BA575003138C0 /* ObjectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FC21E636EF80029D648 /* ObjectData.cpp */; };
 		9F3BA5EE1E8BA575003138C0 /* ShapeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FCA1E6372670029D648 /* ShapeData.cpp */; };
-		9F3BA5EF1E8BA575003138C0 /* pathData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FD31E6373190029D648 /* pathData.cpp */; };
 		9F3BA5F01E8BA575003138C0 /* WaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE470D1E655C79002F4A3E /* WaveData.cpp */; };
 		9F3BA5F11E8BA575003138C0 /* LevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FCE47101E655D8B002F4A3E /* LevelData.cpp */; };
 		9F3BA5F21E8BA575003138C0 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FE01E6374C90029D648 /* Data.cpp */; };
@@ -154,7 +153,6 @@
 		9FFA3FC41E636EF80029D648 /* ObjectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FC21E636EF80029D648 /* ObjectData.cpp */; };
 		9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FCA1E6372670029D648 /* ShapeData.cpp */; };
 		9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FCD1E6372830029D648 /* AnimationData.cpp */; };
-		9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FD31E6373190029D648 /* pathData.cpp */; };
 		9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FD61E6373470029D648 /* LoadController.cpp */; };
 		9FFA3FDC1E6373770029D648 /* LevelEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FDA1E6373770029D648 /* LevelEvent.cpp */; };
 		9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3FE01E6374C90029D648 /* Data.cpp */; };
@@ -369,8 +367,6 @@
 		9FFA3FCB1E6372670029D648 /* ShapeData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShapeData.hpp; sourceTree = "<group>"; };
 		9FFA3FCD1E6372830029D648 /* AnimationData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationData.cpp; sourceTree = "<group>"; };
 		9FFA3FCE1E6372830029D648 /* AnimationData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationData.hpp; sourceTree = "<group>"; };
-		9FFA3FD31E6373190029D648 /* pathData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pathData.cpp; sourceTree = "<group>"; };
-		9FFA3FD41E6373190029D648 /* pathData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pathData.hpp; sourceTree = "<group>"; };
 		9FFA3FD61E6373470029D648 /* LoadController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadController.cpp; sourceTree = "<group>"; };
 		9FFA3FD71E6373470029D648 /* LoadController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LoadController.hpp; sourceTree = "<group>"; };
 		9FFA3FDA1E6373770029D648 /* LevelEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEvent.cpp; sourceTree = "<group>"; };
@@ -681,8 +677,6 @@
 				9F3BA6491E90CAD4003138C0 /* menu */,
 				9F76684E1E84AE35003A06E8 /* zonedata */,
 				9F76683F1E84AE23003A06E8 /* aidata */,
-				9FFA3FD31E6373190029D648 /* pathData.cpp */,
-				9FFA3FD41E6373190029D648 /* pathData.hpp */,
 			);
 			name = prototypes;
 			sourceTree = "<group>";
@@ -1272,7 +1266,6 @@
 				273CB39B1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */,
 				9F3BA5ED1E8BA575003138C0 /* ObjectData.cpp in Sources */,
 				9F3BA5EE1E8BA575003138C0 /* ShapeData.cpp in Sources */,
-				9F3BA5EF1E8BA575003138C0 /* pathData.cpp in Sources */,
 				9F3BA5F01E8BA575003138C0 /* WaveData.cpp in Sources */,
 				9F3BA5F11E8BA575003138C0 /* LevelData.cpp in Sources */,
 				9F3BA5F21E8BA575003138C0 /* Data.cpp in Sources */,
@@ -1354,7 +1347,6 @@
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9F3BA63F1E90C902003138C0 /* Menu.cpp in Sources */,
 				824E10AC1EA941B80068C0F5 /* ParticleData.cpp in Sources */,
-				9FFA3FD51E6373190029D648 /* pathData.cpp in Sources */,
 				9FE4FD681E7B7BC0007AD880 /* ProgressBarController.cpp in Sources */,
 				9FFA3FE21E6374C90029D648 /* Data.cpp in Sources */,
 				9F7668511E84AE63003A06E8 /* AILoader.cpp in Sources */,

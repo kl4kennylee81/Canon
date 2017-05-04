@@ -68,13 +68,11 @@ size_t LevelData::getNumberWaves(){
 }
 
 std::shared_ptr<JsonValue> LevelData::toJsonValue(){
-
-	std::shared_ptr<JsonValue> levelList = Data::toJsonValue();
+	std::shared_ptr<JsonValue> levelJson = Data::toJsonValue();
+    std::shared_ptr<JsonValue> levelList = JsonValue::allocObject();
 	for (int i = 0; i < getNumberWaves(); i++)
 	{
-		std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();
-		waveDetails->appendChild("waveKey", JsonValue::alloc(getWaveKey(i)));
-		waveDetails->appendChild("time", JsonValue::alloc(getTime(i)));
+        std::shared_ptr<JsonValue> waveDetails = getLevelEntry(i)->toJsonValue();
         // levelEntry key
         levelList->appendChild(_levelEntries.at(i)->key, waveDetails);
 	}
@@ -84,11 +82,9 @@ std::shared_ptr<JsonValue> LevelData::toJsonValue(){
 	{
 		playerList->appendChild("player" + std::to_string(i + 1), getPlayerChars().at(i)->toJsonValue());
 	}
-
-	std::shared_ptr<JsonValue> finalList = JsonValue::allocObject();
-	finalList->appendChild("levelEntries", levelList);
-	finalList->appendChild("playerChars", playerList);
-	return finalList;
+	levelJson->appendChild("levelEntries", levelList);
+	levelJson->appendChild("playerChars", playerList);
+    return levelJson;
 }
 
 bool LevelData::preload(const std::string& file){
