@@ -15,9 +15,6 @@
 
 class GameObject {
     
-private:
-    static int _atomicUidCounter;
-    
 protected:
     
     // HACK once we load from data files we want to uniquely identify a game object
@@ -28,6 +25,9 @@ protected:
     bool _isPlayer;
     
 public:
+    // static int to give Uid to gameObjects
+    static int _atomicUidCounter;
+    
     enum class ObjectType : int {
         CHARACTER,
         ZONE,

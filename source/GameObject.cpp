@@ -8,6 +8,8 @@
 
 #include "GameObject.hpp"
 
+int GameObject::_atomicUidCounter(0);
+
 using namespace cugl;
 
 void GameObject::dispose(){
