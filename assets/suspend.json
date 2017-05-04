@@ -8,7 +8,7 @@
 		"levelController":	{
 			"levelDataKey":	"overlap",
 			"currentWaveIndex":	0,
-			"framesElapsed":	124,
+			"framesElapsed":	4,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
@@ -42,8 +42,8 @@
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"7":	179,
-				"5":	179
+				"7":	176,
+				"5":	176
 			}
 		}
 	}
