@@ -83,6 +83,8 @@ public:
 	}
 
     std::shared_ptr<cugl::JsonValue> toJsonValue();
+    
+    void onResume(const std::shared_ptr<cugl::JsonValue>);
 
 };
 

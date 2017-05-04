@@ -15,6 +15,11 @@ bool Level::init(std::shared_ptr<LevelData> levelData){
     _currentWave = 0;
     _framesElapsed = 0;
     _playerSpawned = false;
+    _readyToSpawn = false;
+    
+    if (_levelData == nullptr){
+        return true;
+    }
     
     if (isLastWave()){
         _readyToSpawn = false;

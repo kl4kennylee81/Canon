@@ -50,7 +50,6 @@ public:
     
     void dispose();
     
-	void resumeHelper(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> resumeJson, std::string key);
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
     static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
@@ -62,7 +61,9 @@ public:
 		return _world;
 	}
     
-	void initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> resumeJson);
+	void initAfterResume(std::shared_ptr<GameState> state,
+                         std::shared_ptr<cugl::JsonValue> levelControlJson,
+                         std::shared_ptr<cugl::JsonValue> spawnControlJson);
 	std::string serialize(std::shared_ptr<GameState> state);
     std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };

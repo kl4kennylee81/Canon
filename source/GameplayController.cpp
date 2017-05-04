@@ -231,9 +231,14 @@ std::shared_ptr<cugl::JsonValue> GameplayController::toJsonValue(){
     // TODO kelly
     // call the toJsonValue for eachController that needs serialization
     // and collect into one big gameplayController json and return it
-    _levelController->toJsonValue(_gameState);
-    _spawnController->toJsonValue();
-    // need to actually attach the json all to the outputted json key->value
-    // ex. levelController : {blob of json}
-    return JsonValue::allocObject();
+    
+    std::shared_ptr<JsonValue> gameplayJson = JsonValue::allocObject();
+    gameplayJson->appendChild("levelController" ,_levelController->toJsonValue(_gameState));
+    gameplayJson->appendChild("spawnController" ,_spawnController->toJsonValue());
+    return gameplayJson;
+}
+
+void GameplayController::onResume(const std::shared_ptr<cugl::JsonValue> resumeJson){
+    // give level controller the full json since it uses spawn and level
+    _levelController->initAfterResume(_gameState,resumeJson->get("levelController"),resumeJson->get("spawnController"));
 }

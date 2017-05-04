@@ -241,7 +241,6 @@ void GameEngine::onSuspend() {
     
     std::string filePath = "/"+saveDir+"/suspend.json";
     
-    std::cout << filePath << std::endl;
     std::ofstream newFile;
     newFile.open(filePath);
     newFile << suspendJson->toString();
@@ -260,6 +259,21 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
+    
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
+    
+    std::string filePath = "/"+saveDir+"/suspend.json";
+    auto reader = JsonReader::alloc(filePath);
+    if(reader == nullptr) {
+        return;
+    }
+    auto resumeJson = reader->readJson();
+    
+    // possibly call all the load methods again
+    std::shared_ptr<World> levelWorld = World::alloc(_assets);
+    _gameplay = GameplayController::alloc(_scene,levelWorld);
+    _gameplay->onResume(resumeJson->get("gameplay"));
     
 }
 
@@ -391,7 +405,7 @@ void GameEngine::initializeNextMode(){
     }
 }
 
-
+int hi = 0;
 
 /**
  * The method called to update the application data.
@@ -447,8 +461,12 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            onSuspend();
-            onResume();
+            if (hi == 3){
+                onSuspend();
+                onResume();
+            } else {
+                hi+=1;
+            }
             break;
         }
         case Mode::MAIN_MENU:
