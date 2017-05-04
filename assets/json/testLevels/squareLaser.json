@@ -26,16 +26,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 600, 
-                    "y": 250
+                    "x": 18.75, 
+                    "y": 7.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 400, 
-                    "y": 250
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
@@ -57,32 +57,32 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "feshVertical", 
-                    "x": 921.599976, 
-                    "y": 289.066681
+                    "x": 28.79999925, 
+                    "y": 9.03333378125
                 }, 
                 "object2": {
                     "aiKey": "verticalUp", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "feshHorizontal", 
-                    "x": 471.466675, 
-                    "y": 27.733337
+                    "x": 14.73333359375, 
+                    "y": 0.86666678125
                 }, 
                 "object3": {
                     "aiKey": "verticalDown", 
                     "element": "BLUE", 
                     "key": "object3", 
                     "templateKey": "feshHorizontal", 
-                    "x": 468.266663, 
-                    "y": 548.266663
+                    "x": 14.63333321875, 
+                    "y": 17.13333321875
                 }, 
                 "object4": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object4", 
                     "templateKey": "feshVertical", 
-                    "x": 108.799988, 
-                    "y": 297.599976
+                    "x": 3.399999625, 
+                    "y": 9.29999925
                 }
             }
         }, 
@@ -94,32 +94,32 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "feshHorizontal", 
-                    "x": 632.533325, 
-                    "y": 193.066681
+                    "x": 19.76666640625, 
+                    "y": 6.03333378125
                 }, 
                 "object2": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "feshVertical", 
-                    "x": 389.333344, 
-                    "y": 445.866669
+                    "x": 12.166667, 
+                    "y": 13.93333340625
                 }, 
                 "object3": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object3", 
                     "templateKey": "feshVertical", 
-                    "x": 579.200012, 
-                    "y": 134.400009
+                    "x": 18.100000375, 
+                    "y": 4.20000028125
                 }, 
                 "object4": {
                     "aiKey": "verticalUp", 
                     "element": "GOLD", 
                     "key": "object4", 
                     "templateKey": "feshHorizontal", 
-                    "x": 330.666656, 
-                    "y": 384
+                    "x": 10.333333, 
+                    "y": 12.0
                 }
             }
         }, 
@@ -131,64 +131,64 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 328.533325, 
-                    "y": 338.133331
+                    "x": 10.26666640625, 
+                    "y": 10.56666659375
                 }, 
                 "object2": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 513.06665, 
-                    "y": 162.133331
+                    "x": 16.0333328125, 
+                    "y": 5.06666659375
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object3", 
                     "templateKey": "blobo", 
-                    "x": 514.133362, 
-                    "y": 409.600006
+                    "x": 16.0666675625, 
+                    "y": 12.8000001875
                 }, 
                 "object4": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 405.333344, 
-                    "y": 407.466675
+                    "x": 12.666667, 
+                    "y": 12.73333359375
                 }, 
                 "object5": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object5", 
                     "templateKey": "blobo", 
-                    "x": 586.666687, 
-                    "y": 334.933319
+                    "x": 18.33333396875, 
+                    "y": 10.46666621875
                 }, 
                 "object6": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object6", 
                     "templateKey": "blobo", 
-                    "x": 403.200012, 
-                    "y": 164.266663
+                    "x": 12.600000375, 
+                    "y": 5.13333321875
                 }, 
                 "object7": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object7", 
                     "templateKey": "blobo", 
-                    "x": 327.466675, 
-                    "y": 234.666656
+                    "x": 10.23333359375, 
+                    "y": 7.333333
                 }, 
                 "object8": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object8", 
                     "templateKey": "blobo", 
-                    "x": 588.799988, 
-                    "y": 237.866669
+                    "x": 18.399999625, 
+                    "y": 7.43333340625
                 }
             }
         }

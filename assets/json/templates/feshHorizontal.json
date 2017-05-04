@@ -142,27 +142,27 @@
         "feshHorizontal_shape": {
             "key": "feshHorizontal_shape", 
             "vertices": [
-                0, 
-                0, 
-                50, 
-                0, 
-                50, 
-                50, 
-                0, 
-                50
+                0.0, 
+                0.0, 
+                1.5625, 
+                0.0, 
+                1.5625, 
+                1.5625, 
+                0.0, 
+                1.5625
             ]
         }, 
         "feshHorizontal_zoneShape": {
             "key": "feshHorizontal_zoneShape", 
             "vertices": [
-                -1024, 
-                20, 
-                1024, 
-                20, 
-                1024, 
-                -20, 
-                -1024, 
-                -20
+                -32.0, 
+                0.625, 
+                32.0, 
+                0.625, 
+                32.0, 
+                -0.625, 
+                -32.0, 
+                -0.625
             ]
         }
     }, 

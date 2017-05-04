@@ -71,16 +71,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 600, 
-                    "y": 250
+                    "x": 18.75, 
+                    "y": 7.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 400, 
-                    "y": 250
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
@@ -102,8 +102,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 250, 
-                    "y": 350
+                    "x": 7.8125, 
+                    "y": 10.9375
                 }
             }
         }, 
@@ -115,8 +115,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 250, 
-                    "y": 150
+                    "x": 7.8125, 
+                    "y": 4.6875
                 }
             }
         }, 
@@ -128,8 +128,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 750, 
-                    "y": 150
+                    "x": 23.4375, 
+                    "y": 4.6875
                 }
             }
         }, 
@@ -141,8 +141,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 750, 
-                    "y": 350
+                    "x": 23.4375, 
+                    "y": 10.9375
                 }
             }
         }, 
@@ -154,8 +154,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 250, 
-                    "y": 250
+                    "x": 7.8125, 
+                    "y": 7.8125
                 }
             }
         }, 
@@ -167,8 +167,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 500, 
-                    "y": 150
+                    "x": 15.625, 
+                    "y": 4.6875
                 }
             }
         }, 
@@ -180,8 +180,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 750, 
-                    "y": 250
+                    "x": 23.4375, 
+                    "y": 7.8125
                 }
             }
         }, 
@@ -193,8 +193,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 500, 
-                    "y": 350
+                    "x": 15.625, 
+                    "y": 10.9375
                 }
             }
         }, 
@@ -206,8 +206,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 250, 
-                    "y": 350
+                    "x": 7.8125, 
+                    "y": 10.9375
                 }
             }
         }, 
@@ -219,8 +219,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 250, 
-                    "y": 150
+                    "x": 7.8125, 
+                    "y": 4.6875
                 }
             }
         }, 
@@ -232,8 +232,8 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 750, 
-                    "y": 150
+                    "x": 23.4375, 
+                    "y": 4.6875
                 }
             }
         }, 
@@ -245,8 +245,8 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 750, 
-                    "y": 350
+                    "x": 23.4375, 
+                    "y": 10.9375
                 }
             }
         }

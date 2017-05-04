@@ -26,16 +26,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 600, 
-                    "y": 250
+                    "x": 18.75, 
+                    "y": 7.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 400, 
-                    "y": 250
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
@@ -57,24 +57,24 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "birb", 
-                    "x": 1018.666687, 
-                    "y": 293.333344
+                    "x": 31.83333396875, 
+                    "y": 9.166667
                 }, 
                 "object2": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object2", 
                     "templateKey": "feshVertical", 
-                    "x": 976, 
-                    "y": 296.533325
+                    "x": 30.5, 
+                    "y": 9.26666640625
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object3", 
                     "templateKey": "birb", 
-                    "x": 157.866669, 
-                    "y": 541.866699
+                    "x": 4.93333340625, 
+                    "y": 16.93333434375
                 }
             }
         }, 
@@ -86,40 +86,40 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "birb", 
-                    "x": 106.666656, 
-                    "y": 293.333344
+                    "x": 3.333333, 
+                    "y": 9.166667
                 }, 
                 "object2": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "feshVertical", 
-                    "x": 161.06665, 
-                    "y": 297.599976
+                    "x": 5.0333328125, 
+                    "y": 9.29999925
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object3", 
                     "templateKey": "birb", 
-                    "x": 872.533325, 
-                    "y": 286.933319
+                    "x": 27.26666640625, 
+                    "y": 8.96666621875
                 }, 
                 "object4": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 936.533325, 
-                    "y": 288
+                    "x": 29.26666640625, 
+                    "y": 9.0
                 }, 
                 "object5": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object5", 
                     "templateKey": "feshVertical", 
-                    "x": 51.200012, 
-                    "y": 295.466644
+                    "x": 1.600000375, 
+                    "y": 9.233332625
                 }
             }
         }, 
@@ -131,32 +131,32 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "feshHorizontal", 
-                    "x": 489.600006, 
-                    "y": 510.93335
+                    "x": 15.3000001875, 
+                    "y": 15.9666671875
                 }, 
                 "object2": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "birb", 
-                    "x": 492.799988, 
-                    "y": 536.533325
+                    "x": 15.399999625, 
+                    "y": 16.76666640625
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object3", 
                     "templateKey": "birb", 
-                    "x": 474.666656, 
-                    "y": 103.46666
+                    "x": 14.833333, 
+                    "y": 3.233333125
                 }, 
                 "object4": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 475.733337, 
-                    "y": 39.466675
+                    "x": 14.86666678125, 
+                    "y": 1.23333359375
                 }
             }
         }

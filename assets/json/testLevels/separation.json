@@ -26,16 +26,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 600, 
-                    "y": 250
+                    "x": 18.75, 
+                    "y": 7.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 400, 
-                    "y": 250
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
@@ -57,16 +57,16 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 840, 
-                    "y": 210
+                    "x": 26.25, 
+                    "y": 6.5625
                 }, 
                 "object2": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 840, 
-                    "y": 290
+                    "x": 26.25, 
+                    "y": 9.0625
                 }
             }
         }, 
@@ -78,32 +78,32 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 446.933319, 
-                    "y": 442.666656
+                    "x": 13.96666621875, 
+                    "y": 13.833333
                 }, 
                 "object2": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 490.666656, 
-                    "y": 442.666656
+                    "x": 15.333333, 
+                    "y": 13.833333
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object3", 
                     "templateKey": "blobo", 
-                    "x": 448, 
-                    "y": 119.466675
+                    "x": 14.0, 
+                    "y": 3.73333359375
                 }, 
                 "object4": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 493.866669, 
-                    "y": 119.466675
+                    "x": 15.43333340625, 
+                    "y": 3.73333359375
                 }
             }
         }, 
@@ -115,32 +115,32 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 401.066681, 
-                    "y": 352
+                    "x": 12.53333378125, 
+                    "y": 11.0
                 }, 
                 "object2": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 538.666687, 
-                    "y": 352
+                    "x": 16.83333396875, 
+                    "y": 11.0
                 }, 
                 "object3": {
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object3", 
                     "templateKey": "blobo", 
-                    "x": 403.200012, 
-                    "y": 226.133331
+                    "x": 12.600000375, 
+                    "y": 7.06666659375
                 }, 
                 "object4": {
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 539.733337, 
-                    "y": 224
+                    "x": 16.86666678125, 
+                    "y": 7.0
                 }
             }
         }

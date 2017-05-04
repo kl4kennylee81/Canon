@@ -21,16 +21,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 600, 
-                    "y": 250
+                    "x": 18.75, 
+                    "y": 7.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 400, 
-                    "y": 250
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
@@ -52,96 +52,96 @@
                     "element": "BLUE", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 934.400024, 
-                    "y": 518.400024
+                    "x": 29.20000075, 
+                    "y": 16.20000075
                 }, 
                 "object10": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object10", 
                     "templateKey": "blobo", 
-                    "x": 710.400024, 
-                    "y": 429.866669
+                    "x": 22.20000075, 
+                    "y": 13.43333340625
                 }, 
                 "object11": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object11", 
                     "templateKey": "blobo", 
-                    "x": 640, 
-                    "y": 517.333313
+                    "x": 20.0, 
+                    "y": 16.16666603125
                 }, 
                 "object12": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object12", 
                     "templateKey": "blobo", 
-                    "x": 759.466675, 
-                    "y": 234.666656
+                    "x": 23.73333359375, 
+                    "y": 7.333333
                 }, 
                 "object2": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 880, 
-                    "y": 430.93335
+                    "x": 27.5, 
+                    "y": 13.4666671875
                 }, 
                 "object3": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object3", 
                     "templateKey": "blobo", 
-                    "x": 836.266663, 
-                    "y": 343.466675
+                    "x": 26.13333321875, 
+                    "y": 10.73333359375
                 }, 
                 "object4": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 949.333313, 
-                    "y": 65.066666
+                    "x": 29.66666603125, 
+                    "y": 2.0333333125
                 }, 
                 "object5": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object5", 
                     "templateKey": "blobo", 
-                    "x": 709.333313, 
-                    "y": 154.666656
+                    "x": 22.16666603125, 
+                    "y": 4.833333
                 }, 
                 "object6": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "object6", 
                     "templateKey": "blobo", 
-                    "x": 657.06665, 
-                    "y": 66.133331
+                    "x": 20.5333328125, 
+                    "y": 2.06666659375
                 }, 
                 "object7": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object7", 
                     "templateKey": "blobo", 
-                    "x": 889.599976, 
-                    "y": 158.933334
+                    "x": 27.79999925, 
+                    "y": 4.9666666875
                 }, 
                 "object8": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object8", 
                     "templateKey": "blobo", 
-                    "x": 835.200012, 
-                    "y": 233.599991
+                    "x": 26.100000375, 
+                    "y": 7.29999971875
                 }, 
                 "object9": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object9", 
                     "templateKey": "blobo", 
-                    "x": 766.93335, 
-                    "y": 343.466675
+                    "x": 23.9666671875, 
+                    "y": 10.73333359375
                 }
             }
         }, 
@@ -153,96 +153,96 @@
                     "element": "GOLD", 
                     "key": "object1", 
                     "templateKey": "blobo", 
-                    "x": 440.533325, 
-                    "y": 521.599976
+                    "x": 13.76666640625, 
+                    "y": 16.29999925
                 }, 
                 "object10": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object10", 
                     "templateKey": "blobo", 
-                    "x": 250.666687, 
-                    "y": 240
+                    "x": 7.83333396875, 
+                    "y": 7.5
                 }, 
                 "object11": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object11", 
                     "templateKey": "blobo", 
-                    "x": 146.133331, 
-                    "y": 519.466675
+                    "x": 4.56666659375, 
+                    "y": 16.23333359375
                 }, 
                 "object12": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object12", 
                     "templateKey": "blobo", 
-                    "x": 153.600006, 
-                    "y": 67.200012
+                    "x": 4.8000001875, 
+                    "y": 2.100000375
                 }, 
                 "object2": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object2", 
                     "templateKey": "blobo", 
-                    "x": 385.066681, 
-                    "y": 437.333344
+                    "x": 12.03333378125, 
+                    "y": 13.666667
                 }, 
                 "object3": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object3", 
                     "templateKey": "blobo", 
-                    "x": 332.799988, 
-                    "y": 353.06665
+                    "x": 10.399999625, 
+                    "y": 11.0333328125
                 }, 
                 "object4": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object4", 
                     "templateKey": "blobo", 
-                    "x": 442.666656, 
-                    "y": 65.066666
+                    "x": 13.833333, 
+                    "y": 2.0333333125
                 }, 
                 "object5": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "object5", 
                     "templateKey": "blobo", 
-                    "x": 209.06665, 
-                    "y": 154.666656
+                    "x": 6.5333328125, 
+                    "y": 4.833333
                 }, 
                 "object6": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object6", 
                     "templateKey": "blobo", 
-                    "x": 391.466675, 
-                    "y": 155.733337
+                    "x": 12.23333359375, 
+                    "y": 4.86666678125
                 }, 
                 "object7": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object7", 
                     "templateKey": "blobo", 
-                    "x": 331.733337, 
-                    "y": 240
+                    "x": 10.36666678125, 
+                    "y": 7.5
                 }, 
                 "object8": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object8", 
                     "templateKey": "blobo", 
-                    "x": 253.866669, 
-                    "y": 353.06665
+                    "x": 7.93333340625, 
+                    "y": 11.0333328125
                 }, 
                 "object9": {
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object9", 
                     "templateKey": "blobo", 
-                    "x": 203.733337, 
-                    "y": 436.266663
+                    "x": 6.36666678125, 
+                    "y": 13.63333321875
                 }
             }
         }
