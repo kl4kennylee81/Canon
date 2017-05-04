@@ -13,6 +13,29 @@
 
 using namespace cugl;
 
+std::shared_ptr<cugl::JsonValue> LevelEntry::toJsonValue(){
+    std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();
+    waveDetails->appendChild("waveKey", JsonValue::alloc(waveKey));
+    waveDetails->appendChild("time", JsonValue::alloc(time));
+    return waveDetails;
+}
+
+bool LevelEntry::preload(const std::string& file){
+    auto reader = JsonReader::allocWithAsset(file.c_str());
+    auto json = reader->readJson();
+    preload(json);
+    return true;
+}
+
+bool LevelEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
+    Data::preload(json);
+    return init(json->getString("waveKey"), json->getInt("time"));
+}
+
+bool LevelEntry::materialize(){
+    return true;
+}
+
 void LevelData::addLevelEntry(std::shared_ptr<LevelEntry> entry){
     _levelEntries.push_back(entry);
 }
@@ -74,7 +97,7 @@ bool LevelData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::shared_ptr<JsonValue> levelEntries = json->get("levelEntries");
 	for (int i = 0; i < levelEntries->size(); i++) {
 		auto child = levelEntries->get(i);
-		auto entry = LevelEntry::alloc(child->getString("waveKey"), child->getInt("time"));
+		auto entry = LevelEntry::alloc(child);
 		addLevelEntry(entry);
 	}
     // get the blue player character
