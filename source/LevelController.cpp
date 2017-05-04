@@ -111,15 +111,24 @@ bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<Wor
     return true;
 }
 
+bool LevelController::init(std::string levelDataKey, std::shared_ptr<GameState> state, std::shared_ptr<World> world){
+    // set the level data of the world after resuming
+    _world->setLevelData(_world->getAssetManager()->get<LevelData>(levelDataKey));
+    _level.init(_world->getLevelData());
+    _progressBarController = ProgressBarController::alloc(state,world);
+    return true;
+}
+
 void LevelController::initAfterResume(std::shared_ptr<GameState> state,
                                       std::shared_ptr<cugl::JsonValue> levelControlJson,
                                       std::shared_ptr<cugl::JsonValue> spawnControlJson)
 {
     // set the level data of the world after resuming
-    _world->setLevelData(_world->getAssetManager()->get<LevelData>(levelControlJson->getString("levelDataKey")));
-    _level.setLevelData(_world->getLevelData());
+    init(levelControlJson->getString("levelDataKey"),state,_world);
+    
+    // update the level based on what was saved in the levelControlJson
     _level.init(levelControlJson);
-
+    
     std::shared_ptr<JsonValue> enemylist = levelControlJson->get("enemyObjects");
     for (int i = 0; i < enemylist->size(); i++) {
         auto resumeEnemy = enemylist->get(i);

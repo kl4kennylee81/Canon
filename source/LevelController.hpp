@@ -52,6 +52,8 @@ public:
     
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
+    bool init(std::string levelDataKey, std::shared_ptr<GameState> state, std::shared_ptr<World> world);
+    
     static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
         return (result->init(state, world) ? result : nullptr);
@@ -65,6 +67,7 @@ public:
                          std::shared_ptr<cugl::JsonValue> levelControlJson,
                          std::shared_ptr<cugl::JsonValue> spawnControlJson);
 	std::string serialize(std::shared_ptr<GameState> state);
+    
     std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };
 

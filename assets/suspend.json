@@ -8,84 +8,154 @@
 		"levelController":	{
 			"levelDataKey":	"blobos",
 			"currentWaveIndex":	0,
-			"framesElapsed":	4,
+			"framesElapsed":	1,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
-					"uid":	"1",
+					"uid":	"9",
+					"currentPosX":	18.750000,
+					"currentPosY":	7.812500,
+					"waveID":	""
+				}, {
+					"uid":	"11",
+					"currentPosX":	12.500000,
+					"currentPosY":	7.812500,
+					"waveID":	""
+				}, {
+					"uid":	"13",
 					"currentPosX":	18.750000,
 					"currentPosY":	7.812500,
 					"waveID":	"player1"
 				}, {
-					"uid":	"3",
+					"uid":	"15",
 					"currentPosX":	12.500000,
 					"currentPosY":	7.812500,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
+					"uid":	"1",
+					"currentPosX":	13,
+					"currentPosY":	13.433333,
+					"waveID":	""
+				}, {
+					"uid":	"2",
+					"currentPosX":	16.666666,
+					"currentPosY":	13.600000,
+					"waveID":	""
+				}, {
+					"uid":	"3",
+					"currentPosX":	20.066668,
+					"currentPosY":	11.033333,
+					"waveID":	""
+				}, {
+					"uid":	"4",
+					"currentPosX":	20.400000,
+					"currentPosY":	7.466666,
+					"waveID":	""
+				}, {
 					"uid":	"5",
+					"currentPosX":	9.766666,
+					"currentPosY":	10.900000,
+					"waveID":	""
+				}, {
+					"uid":	"6",
+					"currentPosX":	9.933333,
+					"currentPosY":	7.633333,
+					"waveID":	""
+				}, {
+					"uid":	"7",
+					"currentPosX":	13,
+					"currentPosY":	4.366666,
+					"waveID":	""
+				}, {
+					"uid":	"8",
+					"currentPosX":	17.166666,
+					"currentPosY":	4.433333,
+					"waveID":	""
+				}, {
+					"uid":	"17",
 					"currentPosX":	13,
 					"currentPosY":	13.433333,
 					"waveID":	"object1"
 				}, {
-					"uid":	"6",
+					"uid":	"18",
 					"currentPosX":	16.666666,
 					"currentPosY":	13.600000,
 					"waveID":	"object2"
 				}, {
-					"uid":	"7",
+					"uid":	"19",
 					"currentPosX":	20.066668,
 					"currentPosY":	11.033333,
 					"waveID":	"object3"
 				}, {
-					"uid":	"8",
+					"uid":	"20",
 					"currentPosX":	20.400000,
 					"currentPosY":	7.466666,
 					"waveID":	"object4"
 				}, {
-					"uid":	"9",
+					"uid":	"21",
 					"currentPosX":	9.766666,
 					"currentPosY":	10.900000,
 					"waveID":	"object5"
 				}, {
-					"uid":	"10",
+					"uid":	"22",
 					"currentPosX":	9.933333,
 					"currentPosY":	7.633333,
 					"waveID":	"object6"
 				}, {
-					"uid":	"11",
+					"uid":	"23",
 					"currentPosX":	13,
 					"currentPosY":	4.366666,
 					"waveID":	"object7"
 				}, {
-					"uid":	"12",
+					"uid":	"24",
 					"currentPosX":	17.166666,
 					"currentPosY":	4.433333,
 					"waveID":	"object8"
 				}],
 			"uidToWaveEntryMap":	{
-				"1":	"player1",
-				"3":	"player2",
-				"5":	"object1",
-				"6":	"object2",
-				"7":	"object3",
-				"8":	"object4",
-				"9":	"object5",
+				"1":	"",
+				"2":	"",
+				"3":	"",
+				"4":	"",
+				"5":	"",
+				"6":	"",
+				"7":	"",
+				"8":	"",
+				"9":	"",
 				"10":	"object6",
-				"11":	"object7",
-				"12":	"object8"
+				"11":	"",
+				"12":	"object8",
+				"13":	"player1",
+				"15":	"player2",
+				"17":	"object1",
+				"18":	"object2",
+				"19":	"object3",
+				"20":	"object4",
+				"21":	"object5",
+				"22":	"object6",
+				"23":	"object7",
+				"24":	"object8"
 			}
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"7":	176,
-				"10":	176,
-				"11":	176,
-				"8":	176,
-				"5":	176,
-				"9":	176,
-				"6":	176,
-				"12":	176
+				"1":	179,
+				"8":	179,
+				"5":	179,
+				"20":	179,
+				"17":	179,
+				"18":	179,
+				"21":	179,
+				"22":	179,
+				"7":	179,
+				"4":	179,
+				"6":	179,
+				"2":	179,
+				"3":	179,
+				"19":	179,
+				"23":	179,
+				"24":	179
 			}
 		}
 	}
