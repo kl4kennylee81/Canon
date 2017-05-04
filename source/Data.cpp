@@ -23,6 +23,12 @@ bool Data::preload(const std::shared_ptr<cugl::JsonValue>& json) {
     return true;
 }
 
+std::shared_ptr<JsonValue> Data::toJsonValue() {
+	std::shared_ptr<JsonValue> jv = JsonValue::allocObject();
+	jv->appendChild("key", JsonValue::alloc(key));
+	return jv;
+}
+
 bool Data::materialize(){
     Asset::materialize();
     return true;

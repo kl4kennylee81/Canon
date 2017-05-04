@@ -2,6 +2,7 @@
     "counter": 9, 
     "levels": {
         "squareLaser": {
+            "key": "squareLaser", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "squareLaser wave 06": {
+            "key": "squareLaser wave 06", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalLeft", 
@@ -85,6 +87,7 @@
             }
         }, 
         "squareLaser wave 07": {
+            "key": "squareLaser wave 07", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalDown", 
@@ -121,6 +124,7 @@
             }
         }, 
         "squareLaser wave 09": {
+            "key": "squareLaser wave 09", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

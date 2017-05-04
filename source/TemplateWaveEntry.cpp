@@ -27,7 +27,7 @@ bool TemplateWaveEntry::init(std::string name, std::string obKey,
 
 std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
 {
-    std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> object = Data::toJsonValue();
     object->appendChild("name", JsonValue::alloc(name));
     
     std::shared_ptr<JsonValue> ais = JsonValue::allocArray();
@@ -45,6 +45,7 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
         zones->appendChild(JsonValue::alloc(zoneKeys.at(i)));
     }
     if (zoneKeys.size() > 0) object->appendChild("zoneKeys", zones);
+	
     return object;
 }
 

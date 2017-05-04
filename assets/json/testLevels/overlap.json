@@ -2,6 +2,7 @@
     "counter": 39, 
     "levels": {
         "overlap": {
+            "key": "overlap", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -44,6 +45,7 @@
     ], 
     "waves": {
         "overlap wave 36": {
+            "key": "overlap wave 36", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -64,6 +66,7 @@
             }
         }, 
         "overlap wave 38": {
+            "key": "overlap wave 38", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

@@ -8,12 +8,16 @@ def add_json_keys(src_json, key_set):
 
     if key == 'waves':
       for child_key in src_json[key].keys():
+        # child_key is lure wave xx
+        src_json[key][child_key]['key'] = child_key
         for obj in src_json[key][child_key]['waveEntries'].keys():
           src_json[key][child_key]['waveEntries'][obj]['key'] = obj
     
     elif key == 'levels':
       for child_key in src_json[key].keys():
         for entrylist in src_json[key][child_key].keys():
+          # entrylist is levelEntries, playerChars...
+          src_json[key][child_key]['key'] = child_key
           for entry in src_json[key][child_key][entrylist].keys():
               src_json[key][child_key][entrylist][entry]['key'] = entry
 

@@ -2,6 +2,7 @@
     "counter": 11, 
     "levels": {
         "precision": {
+            "key": "precision", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "precision wave 07": {
+            "key": "precision wave 07", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalLeft", 
@@ -93,6 +95,7 @@
             }
         }, 
         "precision wave 08": {
+            "key": "precision wave 08", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalRight", 
@@ -137,6 +140,7 @@
             }
         }, 
         "precision wave 09": {
+            "key": "precision wave 09", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalRight", 

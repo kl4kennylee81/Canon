@@ -2,6 +2,7 @@
     "counter": 18, 
     "levels": {
         "insanity": {
+            "key": "insanity", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "insanity wave 16": {
+            "key": "insanity wave 16", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalDown", 
@@ -213,6 +215,7 @@
             }
         }, 
         "insanity wave 17": {
+            "key": "insanity wave 17", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalRight", 
@@ -313,6 +316,7 @@
             }
         }, 
         "insanity wave 18": {
+            "key": "insanity wave 18", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

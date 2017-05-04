@@ -2,6 +2,7 @@
     "counter": 11, 
     "levels": {
         "interweave": {
+            "key": "interweave", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "interweave wave 02": {
+            "key": "interweave wave 02", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalDown", 
@@ -149,6 +151,7 @@
             }
         }, 
         "interweave wave 09": {
+            "key": "interweave wave 09", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalDown", 
@@ -249,6 +252,7 @@
             }
         }, 
         "interweave wave 10": {
+            "key": "interweave wave 10", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

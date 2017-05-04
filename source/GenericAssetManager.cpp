@@ -4,7 +4,6 @@
 #include "LevelData.hpp"
 #include "ObjectData.hpp"
 #include "ShapeData.hpp"
-#include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
 #include "TemplateWaveEntry.hpp"
@@ -204,9 +203,6 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "shapes") {
 			success = readCategory(typeid(ShapeData).hash_code(), child) && success;
-		}
-		else if (child->key() == "paths") {
-			success = readCategory(typeid(PathData).hash_code(), child) && success;
 		}
 		else if (child->key() == "animations") {
 			success = readCategory(typeid(AnimationData).hash_code(), child) && success;

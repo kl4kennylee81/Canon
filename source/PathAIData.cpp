@@ -131,7 +131,7 @@ std::string getStringFromPath(std::vector<Vec2> vecPath)
 }
 
 std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("PATH"));
 	data->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_pathType)));
     switch (_pathType){

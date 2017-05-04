@@ -1,6 +1,7 @@
 {
     "levels": {
         "level0": {
+            "key": "level0", 
             "levelEntries": {
                 "wave5": {
                     "key": "wave5", 
@@ -26,6 +27,7 @@
             }
         }, 
         "level1": {
+            "key": "level1", 
             "levelEntries": {
                 "wave5": {
                     "key": "wave5", 
@@ -198,6 +200,7 @@
     }, 
     "waves": {
         "kylewave1": {
+            "key": "kylewave1", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontal", 
@@ -294,6 +297,7 @@
             }
         }, 
         "kylewave2": {
+            "key": "kylewave2", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "vertical", 
@@ -384,6 +388,7 @@
             }
         }, 
         "kylewave3": {
+            "key": "kylewave3", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -420,6 +425,7 @@
             }
         }, 
         "kylewave4": {
+            "key": "kylewave4", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "composite", 

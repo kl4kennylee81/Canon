@@ -87,7 +87,6 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
     assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
     assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
-    assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
     assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
     assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
     assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());

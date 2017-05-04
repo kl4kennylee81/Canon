@@ -28,7 +28,7 @@ std::shared_ptr<JsonValue> ShapeData::toJsonValue()
 	{
 		verticesArray->appendValue(this->vertices[i] * GAME_PHYSICS_SCALE);
 	}
-	std::shared_ptr<JsonValue> vertices = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> vertices = Data::toJsonValue();
 	vertices->appendChild("vertices", verticesArray);
 	return vertices;
 }

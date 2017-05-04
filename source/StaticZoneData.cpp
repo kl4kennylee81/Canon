@@ -12,7 +12,7 @@ using namespace cugl;
 
 std::shared_ptr<JsonValue> StaticZoneData::toJsonValue()
 {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("STATIC"));
 	data->appendChild("objectKey", JsonValue::alloc(objectKey));
 	data->appendChild("relX", JsonValue::alloc(relPos.x));

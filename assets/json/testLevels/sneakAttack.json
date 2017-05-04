@@ -2,6 +2,7 @@
     "counter": 5, 
     "levels": {
         "sneakAttack": {
+            "key": "sneakAttack", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -54,6 +55,7 @@
     ], 
     "waves": {
         "sneakAttack wave 02": {
+            "key": "sneakAttack wave 02", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalLeft", 
@@ -122,6 +124,7 @@
             }
         }, 
         "sneakAttack wave 03": {
+            "key": "sneakAttack wave 03", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalUp", 
@@ -190,6 +193,7 @@
             }
         }, 
         "sneakAttack wave 04": {
+            "key": "sneakAttack wave 04", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -226,6 +230,7 @@
             }
         }, 
         "sneakAttack wave 05": {
+            "key": "sneakAttack wave 05", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

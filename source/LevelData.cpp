@@ -14,7 +14,7 @@
 using namespace cugl;
 
 std::shared_ptr<cugl::JsonValue> LevelEntry::toJsonValue(){
-    std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> waveDetails = Data::toJsonValue();
     waveDetails->appendChild("waveKey", JsonValue::alloc(waveKey));
     waveDetails->appendChild("time", JsonValue::alloc(time));
     return waveDetails;
@@ -65,7 +65,7 @@ size_t LevelData::getNumberWaves(){
 
 std::shared_ptr<JsonValue> LevelData::toJsonValue(){
 
-	std::shared_ptr<JsonValue> levelList = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> levelList = Data::toJsonValue();
 	for (int i = 0; i < getNumberWaves(); i++)
 	{
 		std::shared_ptr<JsonValue> waveDetails = JsonValue::allocObject();

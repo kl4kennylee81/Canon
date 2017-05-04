@@ -33,7 +33,7 @@ float ZoneEntry::getAngle(){
 }
 
 std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("ROTATE"));
 	std::shared_ptr<JsonValue> zoneEntries = JsonValue::allocObject();
 

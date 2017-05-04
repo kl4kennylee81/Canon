@@ -2,6 +2,7 @@
     "counter": 19, 
     "levels": {
         "blobos": {
+            "key": "blobos", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "blobos wave 14": {
+            "key": "blobos wave 14", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -117,6 +119,7 @@
             }
         }, 
         "blobos wave 17": {
+            "key": "blobos wave 17", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -217,6 +220,7 @@
             }
         }, 
         "blobos wave 18": {
+            "key": "blobos wave 18", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

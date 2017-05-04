@@ -6,7 +6,7 @@ using namespace cugl;
 
 std::shared_ptr<JsonValue> CompositeAIData::toJsonValue()
 {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("COMPOSITE"));
 	data->appendChild("startAI", JsonValue::alloc(_startKey));
 	std::shared_ptr<JsonValue> conditions = JsonValue::allocArray();

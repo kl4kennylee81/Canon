@@ -5,7 +5,7 @@
 using namespace cugl;
 
 std::shared_ptr<JsonValue> HomingAIData::toJsonValue() {
-	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> ai = Data::toJsonValue();
 	ai->appendChild("type", JsonValue::alloc("HOMING"));
 	return ai;
 }

@@ -11,7 +11,7 @@
 using namespace cugl;
 
 std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
-	std::shared_ptr<JsonValue> pz = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> pz = Data::toJsonValue();
 	pz->appendChild("type", JsonValue::alloc("PULSE"));
 	pz->appendChild("objectKey", JsonValue::alloc(objectKey));
 	pz->appendChild("minSizeX", JsonValue::alloc(minSize.x));

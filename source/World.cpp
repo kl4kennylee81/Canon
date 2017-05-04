@@ -172,13 +172,6 @@ std::shared_ptr<AnimationData> World::getAnimationData(std::string aKey){
     return _assets->get<AnimationData>(aKey);
 }
 
-std::shared_ptr<PathData> World::getPathData(std::string pathKey){
-    if (_isSandbox && _pathData.count(pathKey) > 0){
-        return _pathData.at(pathKey);
-    }
-    return _assets->get<PathData>(pathKey);
-}
-
 std::shared_ptr<ShapeData> World::getShapeData(std::string shapeKey){
     if (_isSandbox && _shapeData.count(shapeKey) > 0){
         return _shapeData.at(shapeKey);

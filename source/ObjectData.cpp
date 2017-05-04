@@ -40,7 +40,7 @@ float ObjectData::getAnimationScale(){
 
 std::shared_ptr<JsonValue> ObjectData::toJsonValue()
 {
-	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> object = Data::toJsonValue();
 	object->appendChild("shapeKey", JsonValue::alloc(shapeKey));
     object->appendChild("soundKey", JsonValue::alloc(soundKey));
 	object->appendChild("blueAnimationKey", JsonValue::alloc(blueAnimationKey));

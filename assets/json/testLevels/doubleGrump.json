@@ -2,6 +2,7 @@
     "counter": 14, 
     "levels": {
         "doubleGrump": {
+            "key": "doubleGrump", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -44,6 +45,7 @@
     ], 
     "waves": {
         "doubleGrump wave 12": {
+            "key": "doubleGrump wave 12", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "static", 
@@ -96,6 +98,7 @@
             }
         }, 
         "doubleGrump wave 13": {
+            "key": "doubleGrump wave 13", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalRight", 

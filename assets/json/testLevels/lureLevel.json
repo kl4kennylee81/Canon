@@ -2,6 +2,7 @@
     "counter": 12, 
     "levels": {
         "lure": {
+            "key": "lure", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "lure wave 08": {
+            "key": "lure wave 08", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -77,6 +79,7 @@
             }
         }, 
         "lure wave 09": {
+            "key": "lure wave 09", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -121,6 +124,7 @@
             }
         }, 
         "lure wave 10": {
+            "key": "lure wave 10", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "verticalDown", 

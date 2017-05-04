@@ -2,6 +2,7 @@
     "counter": 10, 
     "levels": {
         "separation": {
+            "key": "separation", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -49,6 +50,7 @@
     ], 
     "waves": {
         "separation wave 06": {
+            "key": "separation wave 06", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -69,6 +71,7 @@
             }
         }, 
         "separation wave 07": {
+            "key": "separation wave 07", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -105,6 +108,7 @@
             }
         }, 
         "separation wave 10": {
+            "key": "separation wave 10", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 

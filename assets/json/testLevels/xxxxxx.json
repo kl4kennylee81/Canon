@@ -2,6 +2,7 @@
     "counter": 13, 
     "levels": {
         "xxxxxx": {
+            "key": "xxxxxx", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -44,6 +45,7 @@
     ], 
     "waves": {
         "xxxxxx wave 06": {
+            "key": "xxxxxx wave 06", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalLeft", 
@@ -144,6 +146,7 @@
             }
         }, 
         "xxxxxx wave 12": {
+            "key": "xxxxxx wave 12", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "horizontalRight", 

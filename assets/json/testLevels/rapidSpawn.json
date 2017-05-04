@@ -2,6 +2,7 @@
     "counter": 35, 
     "levels": {
         "rapidSpawn": {
+            "key": "rapidSpawn", 
             "levelEntries": {
                 "wave01": {
                     "key": "wave01", 
@@ -94,6 +95,7 @@
     ], 
     "waves": {
         "rapidSpawn wave 20": {
+            "key": "rapidSpawn wave 20", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -106,6 +108,7 @@
             }
         }, 
         "rapidSpawn wave 21": {
+            "key": "rapidSpawn wave 21", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -118,6 +121,7 @@
             }
         }, 
         "rapidSpawn wave 22": {
+            "key": "rapidSpawn wave 22", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -130,6 +134,7 @@
             }
         }, 
         "rapidSpawn wave 23": {
+            "key": "rapidSpawn wave 23", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -142,6 +147,7 @@
             }
         }, 
         "rapidSpawn wave 24": {
+            "key": "rapidSpawn wave 24", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -154,6 +160,7 @@
             }
         }, 
         "rapidSpawn wave 25": {
+            "key": "rapidSpawn wave 25", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -166,6 +173,7 @@
             }
         }, 
         "rapidSpawn wave 26": {
+            "key": "rapidSpawn wave 26", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -178,6 +186,7 @@
             }
         }, 
         "rapidSpawn wave 27": {
+            "key": "rapidSpawn wave 27", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -190,6 +199,7 @@
             }
         }, 
         "rapidSpawn wave 32": {
+            "key": "rapidSpawn wave 32", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -202,6 +212,7 @@
             }
         }, 
         "rapidSpawn wave 33": {
+            "key": "rapidSpawn wave 33", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -214,6 +225,7 @@
             }
         }, 
         "rapidSpawn wave 34": {
+            "key": "rapidSpawn wave 34", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
@@ -226,6 +238,7 @@
             }
         }, 
         "rapidSpawn wave 35": {
+            "key": "rapidSpawn wave 35", 
             "waveEntries": {
                 "object1": {
                     "aiKey": "homing", 
