@@ -1,292 +1,676 @@
 {
-    "counter": 11,
-    "levels": {
-        "interweave": {
-            "key": "interweave",
-            "levelEntries": {
-                "wave01": {
-                    "key": "wave01",
-                    "time": 420,
-                    "waveKey": "interweave wave 02"
-                },
-                "wave02": {
-                    "key": "wave02",
-                    "time": 420,
-                    "waveKey": "interweave wave 09"
-                },
-                "wave03": {
-                    "key": "wave03",
-                    "time": 180,
-                    "waveKey": "interweave wave 10"
-                }
-            },
-            "playerChars": {
-                "player1": {
-                    "aiKey": "",
-                    "element": "GOLD",
-                    "key": "player1",
-                    "templateKey": "playerCharMale",
-                    "x": 18.75,
-                    "y": 7.8125
-                },
-                "player2": {
-                    "aiKey": "",
-                    "element": "BLUE",
-                    "key": "player2",
-                    "templateKey": "playerCharFemale",
-                    "x": 12.5,
-                    "y": 7.8125
-                }
-            }
-        }
-    },
-    "name": "interweave",
-    "template names": [
-                       "birb",
-                       "blobo",
-                       "grump",
-                       "feshHorizontal",
-                       "feshVertical"
-                       ],
-    "waves": {
-        "interweave wave 02": {
-            "key": "interweave wave 02",
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object1",
-                    "templateKey": "blobo",
-                    "x": 5.1999998125,
-                    "y": 16.16666603125
-                },
-                "object10": {
-                    "aiKey": "horizontalLeft",
-                    "element": "BLUE",
-                    "key": "object10",
-                    "templateKey": "blobo",
-                    "x": 28.66666603125,
-                    "y": 6.6666665
-                },
-                "object11": {
-                    "aiKey": "horizontalLeft",
-                    "element": "GOLD",
-                    "key": "object11",
-                    "templateKey": "blobo",
-                    "x": 28.600000375,
-                    "y": 4.26666640625
-                },
-                "object12": {
-                    "aiKey": "horizontalLeft",
-                    "element": "BLUE",
-                    "key": "object12",
-                    "templateKey": "blobo",
-                    "x": 28.66666603125,
-                    "y": 1.96666621875
-                },
-                "object2": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object2",
-                    "templateKey": "blobo",
-                    "x": 8.26666640625,
-                    "y": 16.16666603125
-                },
-                "object3": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object3",
-                    "templateKey": "blobo",
-                    "x": 11.43333340625,
-                    "y": 16.16666603125
-                },
-                "object4": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object4",
-                    "templateKey": "blobo",
-                    "x": 14.5,
-                    "y": 16.13333321875
-                },
-                "object5": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object5",
-                    "templateKey": "blobo",
-                    "x": 17.5,
-                    "y": 16.13333321875
-                },
-                "object6": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object6",
-                    "templateKey": "blobo",
-                    "x": 20.4666671875,
-                    "y": 16.13333321875
-                },
-                "object7": {
-                    "aiKey": "horizontalLeft",
-                    "element": "GOLD",
-                    "key": "object7",
-                    "templateKey": "blobo",
-                    "x": 28.600000375,
-                    "y": 13.899999625
-                },
-                "object8": {
-                    "aiKey": "horizontalLeft",
-                    "element": "BLUE",
-                    "key": "object8",
-                    "templateKey": "blobo",
-                    "x": 28.66666603125,
-                    "y": 11.53333378125
-                },
-                "object9": {
-                    "aiKey": "horizontalLeft",
-                    "element": "GOLD",
-                    "key": "object9",
-                    "templateKey": "blobo",
-                    "x": 28.66666603125,
-                    "y": 9.03333378125
-                }
-            }
-        },
-        "interweave wave 09": {
-            "key": "interweave wave 09",
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object1",
-                    "templateKey": "blobo",
-                    "x": 5.1999998125,
-                    "y": 16.16666603125
-                },
-                "object10": {
-                    "aiKey": "horizontalRight",
-                    "element": "GOLD",
-                    "key": "object10",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 6.6666665
-                },
-                "object11": {
-                    "aiKey": "horizontalRight",
-                    "element": "BLUE",
-                    "key": "object11",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 4.26666640625
-                },
-                "object12": {
-                    "aiKey": "verticalUp",
-                    "element": "GOLD",
-                    "key": "object12",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 1.96666621875
-                },
-                "object2": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object2",
-                    "templateKey": "blobo",
-                    "x": 8.26666640625,
-                    "y": 16.16666603125
-                },
-                "object3": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object3",
-                    "templateKey": "blobo",
-                    "x": 11.43333340625,
-                    "y": 16.16666603125
-                },
-                "object4": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object4",
-                    "templateKey": "blobo",
-                    "x": 14.5,
-                    "y": 16.13333321875
-                },
-                "object5": {
-                    "aiKey": "verticalDown",
-                    "element": "BLUE",
-                    "key": "object5",
-                    "templateKey": "blobo",
-                    "x": 17.5,
-                    "y": 16.13333321875
-                },
-                "object6": {
-                    "aiKey": "verticalDown",
-                    "element": "GOLD",
-                    "key": "object6",
-                    "templateKey": "blobo",
-                    "x": 20.4666671875,
-                    "y": 16.13333321875
-                },
-                "object7": {
-                    "aiKey": "horizontalRight",
-                    "element": "BLUE",
-                    "key": "object7",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 13.899999625
-                },
-                "object8": {
-                    "aiKey": "horizontalRight",
-                    "element": "GOLD",
-                    "key": "object8",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 11.53333378125
-                },
-                "object9": {
-                    "aiKey": "horizontalRight",
-                    "element": "BLUE",
-                    "key": "object9",
-                    "templateKey": "blobo",
-                    "x": 1.5625,
-                    "y": 9.03333378125
-                }
-            }
-        },
-        "interweave wave 10": {
-            "key": "interweave wave 10",
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "homing",
-                    "element": "BLUE",
-                    "key": "object1",
-                    "templateKey": "birb",
-                    "x": 2.100000375,
-                    "y": 16.3333320625
-                },
-                "object2": {
-                    "aiKey": "homing",
-                    "element": "GOLD",
-                    "key": "object2",
-                    "templateKey": "birb",
-                    "x": 29.9666671875,
-                    "y": 16.3333320625
-                },
-                "object3": {
-                    "aiKey": "homing",
-                    "element": "BLUE",
-                    "key": "object3",
-                    "templateKey": "birb",
-                    "x": 29.86666678125,
-                    "y": 2.06666659375
-                },
-                "object4": {
-                    "aiKey": "homing",
-                    "element": "GOLD",
-                    "key": "object4",
-                    "templateKey": "birb",
-                    "x": 1.93333340625,
-                    "y": 1.90000009375
-                }
-            }
-        }
-    }
+	"name":	"interweave",
+	"counter":	23,
+	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+	"levels":	{
+		"interweave":	{
+			"key":	"interweave",
+			"levelEntries":	{
+				"interweave wave 09":	{
+					"key":	"interweave wave 09",
+					"waveKey":	"interweave wave 09",
+					"time":	420
+				},
+				"interweave wave 10":	{
+					"key":	"interweave wave 10",
+					"waveKey":	"interweave wave 10",
+					"time":	180
+				},
+				"interweave wave 16":	{
+					"key":	"interweave wave 16",
+					"waveKey":	"interweave wave 16",
+					"time":	420
+				},
+				"interweave wave 17":	{
+					"key":	"interweave wave 17",
+					"waveKey":	"interweave wave 17",
+					"time":	180
+				},
+				"interweave wave 18":	{
+					"key":	"interweave wave 18",
+					"waveKey":	"interweave wave 18",
+					"time":	420
+				},
+				"interweave wave 19":	{
+					"key":	"interweave wave 19",
+					"waveKey":	"interweave wave 19",
+					"time":	180
+				},
+				"interweave wave 20":	{
+					"key":	"interweave wave 20",
+					"waveKey":	"interweave wave 20",
+					"time":	420
+				},
+				"interweave wave 21":	{
+					"key":	"interweave wave 21",
+					"waveKey":	"interweave wave 21",
+					"time":	180
+				},
+				"interweave wave 22":	{
+					"key":	"interweave wave 22",
+					"waveKey":	"interweave wave 22",
+					"time":	180
+				},
+				"interweave wave 23":	{
+					"key":	"interweave wave 23",
+					"waveKey":	"interweave wave 23",
+					"time":	180
+				}
+			},
+			"playerChars":	{
+				"player1":	{
+					"key":	"player1",
+					"x":	18.750000,
+					"y":	7.812500,
+					"element":	"GOLD",
+					"aiKey":	"",
+					"templateKey":	"playerCharMale"
+				},
+				"player2":	{
+					"key":	"player2",
+					"x":	12.500000,
+					"y":	7.812500,
+					"element":	"BLUE",
+					"aiKey":	"",
+					"templateKey":	"playerCharFemale"
+				}
+			}
+		}
+	},
+	"waves":	{
+		"interweave wave 09":	{
+			"key":	"interweave wave 09",
+			"waveEntries":	{
+				"interweave wave 09 object 1":	{
+					"key":	"interweave wave 09 object 1",
+					"x":	5.200000,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 2":	{
+					"key":	"interweave wave 09 object 2",
+					"x":	1.562500,
+					"y":	6.666667,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 3":	{
+					"key":	"interweave wave 09 object 3",
+					"x":	1.562500,
+					"y":	4.266666,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 4":	{
+					"key":	"interweave wave 09 object 4",
+					"x":	1.562500,
+					"y":	1.966666,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 5":	{
+					"key":	"interweave wave 09 object 5",
+					"x":	8.266666,
+					"y":	16.166666,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 6":	{
+					"key":	"interweave wave 09 object 6",
+					"x":	11.433333,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 7":	{
+					"key":	"interweave wave 09 object 7",
+					"x":	14.500000,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 8":	{
+					"key":	"interweave wave 09 object 8",
+					"x":	17.500000,
+					"y":	16.133333,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 9":	{
+					"key":	"interweave wave 09 object 9",
+					"x":	20.466667,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 10":	{
+					"key":	"interweave wave 09 object 10",
+					"x":	1.562500,
+					"y":	13.900000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 11":	{
+					"key":	"interweave wave 09 object 11",
+					"x":	1.562500,
+					"y":	11.533334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 09 object 12":	{
+					"key":	"interweave wave 09 object 12",
+					"x":	1.562500,
+					"y":	9.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"interweave wave 10":	{
+			"key":	"interweave wave 10",
+			"waveEntries":	{
+				"interweave wave 10 object 1":	{
+					"key":	"interweave wave 10 object 1",
+					"x":	2.100000,
+					"y":	16.333332,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 10 object 2":	{
+					"key":	"interweave wave 10 object 2",
+					"x":	29.966667,
+					"y":	16.333332,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 10 object 3":	{
+					"key":	"interweave wave 10 object 3",
+					"x":	29.866667,
+					"y":	2.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 10 object 4":	{
+					"key":	"interweave wave 10 object 4",
+					"x":	1.933333,
+					"y":	1.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"interweave wave 16":	{
+			"key":	"interweave wave 16",
+			"waveEntries":	{
+				"interweave wave 16 object 1":	{
+					"key":	"interweave wave 16 object 1",
+					"x":	5.200000,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 2":	{
+					"key":	"interweave wave 16 object 2",
+					"x":	1.562500,
+					"y":	6.666667,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 3":	{
+					"key":	"interweave wave 16 object 3",
+					"x":	1.562500,
+					"y":	4.266666,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 4":	{
+					"key":	"interweave wave 16 object 4",
+					"x":	1.562500,
+					"y":	1.966666,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 5":	{
+					"key":	"interweave wave 16 object 5",
+					"x":	8.266666,
+					"y":	16.166666,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 6":	{
+					"key":	"interweave wave 16 object 6",
+					"x":	11.433333,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 7":	{
+					"key":	"interweave wave 16 object 7",
+					"x":	14.500000,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 8":	{
+					"key":	"interweave wave 16 object 8",
+					"x":	17.500000,
+					"y":	16.133333,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 9":	{
+					"key":	"interweave wave 16 object 9",
+					"x":	20.466667,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 10":	{
+					"key":	"interweave wave 16 object 10",
+					"x":	1.562500,
+					"y":	13.900000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 11":	{
+					"key":	"interweave wave 16 object 11",
+					"x":	1.562500,
+					"y":	11.533334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 16 object 12":	{
+					"key":	"interweave wave 16 object 12",
+					"x":	1.562500,
+					"y":	9.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"interweave wave 17":	{
+			"key":	"interweave wave 17",
+			"waveEntries":	{
+				"interweave wave 17 object 1":	{
+					"key":	"interweave wave 17 object 1",
+					"x":	2.100000,
+					"y":	16.333332,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 17 object 2":	{
+					"key":	"interweave wave 17 object 2",
+					"x":	29.966667,
+					"y":	16.333332,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 17 object 3":	{
+					"key":	"interweave wave 17 object 3",
+					"x":	29.866667,
+					"y":	2.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 17 object 4":	{
+					"key":	"interweave wave 17 object 4",
+					"x":	1.933333,
+					"y":	1.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"interweave wave 18":	{
+			"key":	"interweave wave 18",
+			"waveEntries":	{
+				"interweave wave 18 object 1":	{
+					"key":	"interweave wave 18 object 1",
+					"x":	5.200000,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 2":	{
+					"key":	"interweave wave 18 object 2",
+					"x":	1.562500,
+					"y":	6.666667,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 3":	{
+					"key":	"interweave wave 18 object 3",
+					"x":	1.562500,
+					"y":	4.266666,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 4":	{
+					"key":	"interweave wave 18 object 4",
+					"x":	1.562500,
+					"y":	1.966666,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 5":	{
+					"key":	"interweave wave 18 object 5",
+					"x":	8.266666,
+					"y":	16.166666,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 6":	{
+					"key":	"interweave wave 18 object 6",
+					"x":	11.433333,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 7":	{
+					"key":	"interweave wave 18 object 7",
+					"x":	14.500000,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 8":	{
+					"key":	"interweave wave 18 object 8",
+					"x":	17.500000,
+					"y":	16.133333,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 9":	{
+					"key":	"interweave wave 18 object 9",
+					"x":	20.466667,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 10":	{
+					"key":	"interweave wave 18 object 10",
+					"x":	1.562500,
+					"y":	13.900000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 11":	{
+					"key":	"interweave wave 18 object 11",
+					"x":	1.562500,
+					"y":	11.533334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 18 object 12":	{
+					"key":	"interweave wave 18 object 12",
+					"x":	1.562500,
+					"y":	9.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"interweave wave 19":	{
+			"key":	"interweave wave 19",
+			"waveEntries":	{
+				"interweave wave 19 object 1":	{
+					"key":	"interweave wave 19 object 1",
+					"x":	2.100000,
+					"y":	16.333332,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 19 object 2":	{
+					"key":	"interweave wave 19 object 2",
+					"x":	29.966667,
+					"y":	16.333332,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 19 object 3":	{
+					"key":	"interweave wave 19 object 3",
+					"x":	29.866667,
+					"y":	2.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 19 object 4":	{
+					"key":	"interweave wave 19 object 4",
+					"x":	1.933333,
+					"y":	1.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"interweave wave 20":	{
+			"key":	"interweave wave 20",
+			"waveEntries":	{
+				"interweave wave 20 object 1":	{
+					"key":	"interweave wave 20 object 1",
+					"x":	5.200000,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 2":	{
+					"key":	"interweave wave 20 object 2",
+					"x":	1.562500,
+					"y":	6.666667,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 3":	{
+					"key":	"interweave wave 20 object 3",
+					"x":	1.562500,
+					"y":	4.266666,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 4":	{
+					"key":	"interweave wave 20 object 4",
+					"x":	1.562500,
+					"y":	1.966666,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 5":	{
+					"key":	"interweave wave 20 object 5",
+					"x":	8.266666,
+					"y":	16.166666,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 6":	{
+					"key":	"interweave wave 20 object 6",
+					"x":	11.433333,
+					"y":	16.166666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 7":	{
+					"key":	"interweave wave 20 object 7",
+					"x":	14.500000,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 8":	{
+					"key":	"interweave wave 20 object 8",
+					"x":	17.500000,
+					"y":	16.133333,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 9":	{
+					"key":	"interweave wave 20 object 9",
+					"x":	20.466667,
+					"y":	16.133333,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 10":	{
+					"key":	"interweave wave 20 object 10",
+					"x":	1.562500,
+					"y":	13.900000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 11":	{
+					"key":	"interweave wave 20 object 11",
+					"x":	1.562500,
+					"y":	11.533334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"interweave wave 20 object 12":	{
+					"key":	"interweave wave 20 object 12",
+					"x":	1.562500,
+					"y":	9.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"interweave wave 21":	{
+			"key":	"interweave wave 21",
+			"waveEntries":	{
+				"interweave wave 21 object 1":	{
+					"key":	"interweave wave 21 object 1",
+					"x":	2.100000,
+					"y":	16.333332,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 21 object 2":	{
+					"key":	"interweave wave 21 object 2",
+					"x":	29.966667,
+					"y":	16.333332,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 21 object 3":	{
+					"key":	"interweave wave 21 object 3",
+					"x":	29.866667,
+					"y":	2.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 21 object 4":	{
+					"key":	"interweave wave 21 object 4",
+					"x":	1.933333,
+					"y":	1.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"interweave wave 22":	{
+			"key":	"interweave wave 22",
+			"waveEntries":	{
+				"interweave wave 22 object 1":	{
+					"key":	"interweave wave 22 object 1",
+					"x":	2.100000,
+					"y":	16.333332,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 22 object 2":	{
+					"key":	"interweave wave 22 object 2",
+					"x":	29.966667,
+					"y":	16.333332,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 22 object 3":	{
+					"key":	"interweave wave 22 object 3",
+					"x":	29.866667,
+					"y":	2.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"interweave wave 22 object 4":	{
+					"key":	"interweave wave 22 object 4",
+					"x":	1.933333,
+					"y":	1.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"interweave wave 23":	{
+			"key":	"interweave wave 23",
+			"waveEntries":	{
+			}
+		}
+	}
 }
