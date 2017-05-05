@@ -57,7 +57,7 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 27,
+            "first": 24,
             "total": 1,
             "frames": [10]
           },
@@ -97,7 +97,7 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 27,
+            "first": 24,
             "total": 1,
             "frames": [10]
           },
