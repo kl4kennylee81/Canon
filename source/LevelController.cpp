@@ -10,6 +10,7 @@
 #include "LevelEvent.hpp"
 #include "BulletInitEvent.hpp"
 #include "BulletSpawnEvent.hpp"
+#include "BulletAIData.hpp"
 #include <math.h>
 
 using namespace cugl;
@@ -46,18 +47,25 @@ void LevelController::eventUpdate(Event* e) {
             gameOb->setIsPlayer(false);
             gameOb->type = GameObject::ObjectType::BULLET;
             
+            auto ai = BulletAIData::alloc(bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
             //TODO: Change this shit
             std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x *32, pos.y*32, bulletEvent->element, "", "");
             
             std::shared_ptr<ObjectInitEvent> initevent =
-                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, nullptr, {}, nullptr);
+                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, ai, {}, nullptr);
             notify(initevent.get());
             
             bulletEvent->state->addEnemyGameObject(gameOb);
-
-            std::shared_ptr<BulletSpawnEvent> bulletSpawn =
-                BulletSpawnEvent::alloc(gameOb, bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
-            notify(bulletSpawn.get());
+//            std::shared_ptr<ObjectSpawnEvent> spawn = ObjectSpawnEvent::alloc(gameOb);
+//            notify(spawn.get());
+//            
+            std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,1);
+            
+//             notify the observers of the object that is spawned
+            notify(spawningevent.get());
+//            std::shared_ptr<BulletSpawnEvent> bulletSpawn =
+//                BulletSpawnEvent::alloc(gameOb, bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
+//            notify(bulletSpawn.get());
             
             break;
         }

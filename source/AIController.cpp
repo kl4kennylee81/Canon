@@ -49,6 +49,10 @@ void AIController::eventUpdate(Event* e){
                     return;
                 }
 				addAI(init->aiData->newActiveAI(init->object));
+//                if(init->object->type == GameObject::ObjectType::BULLET){
+//                    std::shared_ptr<ActiveAI> activeAi = _map.at(init->object.get());
+//                    activeAi->toggleActive();
+//                }
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:

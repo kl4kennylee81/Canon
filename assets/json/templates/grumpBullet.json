@@ -30,6 +30,15 @@
     }
   },
   "bullets":{
+      "grumpBullet_bullet" : {
+          "objectKey": "grumpBullet_bulletObject",
+          "startingAngle": 0.0,
+          "angleVariance": 360.0,
+          "numberShots": 4,
+          "cooldown": 120,
+          "velocity": 10,
+          "target": "false"
+      }
   },
   "animations":{
     "blue_grumpBullet_animation": {
@@ -113,6 +122,7 @@
       }
     },
     "blue_grumpBullet_bulletanimation": {
+        "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
         "actionmap": {
             "SPAWNING": {
                 "repeat": "spawning"
@@ -122,25 +132,24 @@
             }
         }, 
         "cols": 1, 
-        "rows": 2, 
-        "size": 2, 
+        "rows": 1,
+        "size": 1,
         "statemap": {
             "idle": {
                 "first": 0, 
                 "frames": [
-                    10
+                    1
                 ], 
                 "total": 1
             },
             "spawning": {
-                "first": 1,
+                "first": 0,
                 "frames": [
-                    10
+                    1
                 ],
                 "total": 1
             }
-        }, 
-        "texture": "./models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
+        }
     },
     "yellow_grumpBullet_bulletanimation": {
         "actionmap": {
@@ -152,25 +161,25 @@
             }
         }, 
         "cols": 1, 
-        "rows": 2, 
-        "size": 2, 
+        "rows": 1,
+        "size": 1,
         "statemap": {
             "idle": {
                 "first": 0, 
                 "frames": [
-                    10
+                    1
                 ], 
                 "total": 1
             },
             "spawning": {
-                "first": 1,
+                "first": 0,
                 "frames": [
-                    10
+                    1
                 ],
                 "total": 1
             }
         }, 
-        "texture": "./models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
+        "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
     }
   }
 }

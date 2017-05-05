@@ -44,7 +44,7 @@ void BulletController::eventUpdate(Event* e){
                 {
                     ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
                     
-                    // the player character does not have an BulletData
+                    // the player character does not have a BulletData
                     if(init->bulletData == nullptr) {
                         return;
                     }

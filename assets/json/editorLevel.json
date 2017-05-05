@@ -31,6 +31,13 @@
 	"waves":	{
 		"insanity wave 19":	{
 			"waveEntries":	{
+				"object1":	{
+					"x":	481.066681,
+					"y":	266.666656,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"grumpBullet"
+				}
 			}
 		}
 	}

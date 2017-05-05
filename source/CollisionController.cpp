@@ -62,10 +62,6 @@ void CollisionController::eventUpdate(Event* e) {
         case Event::EventType::BULLET_SPAWN: {
             BulletSpawnEvent* bulletSpawn = (BulletSpawnEvent*)e;
             GameObject* obj = bulletSpawn->object.get();
-            Vec2 vec = Vec2::forAngle(bulletSpawn->angle);
-            vec.negate();
-            vec.scale(bulletSpawn->velocity);
-            obj->getPhysicsComponent()->getBody()->setLinearVelocity(vec);
             addToWorld(bulletSpawn->object.get());
             break;
         }
