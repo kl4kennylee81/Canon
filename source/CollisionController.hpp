@@ -37,6 +37,11 @@ protected:
     
     std::map<GameObject*,float> hitStunMap;
     
+    GameObject* bluePlayer;
+    GameObject* goldPlayer;
+    GameObject* blueZone;
+    GameObject* goldZone;
+    
     /** Whether or not debug mode is active */
     bool _debug;
     

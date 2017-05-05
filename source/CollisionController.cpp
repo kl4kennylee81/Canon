@@ -49,6 +49,12 @@ void CollisionController::eventUpdate(Event* e) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
                     initPhysicsComponent(objectInit);
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        bluePlayer = objectInit->object.get();
+                    }
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldPlayer = objectInit->object.get();
+                    }
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
@@ -66,6 +72,12 @@ void CollisionController::eventUpdate(Event* e) {
                 case ZoneEvent::ZoneEventType::ZONE_INIT: {
                     ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
                     initPhysicsComponent(zoneInit);
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        blueZone = zoneInit->object.get();
+                    }
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldZone = zoneInit->object.get();
+                    }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
@@ -162,8 +174,10 @@ void CollisionController::updateHitStun(){
             if (position != objsToIgnore.end()) objsToIgnore.erase(position);
             
             //send event
-            std::shared_ptr<ObjectHitFinishedEvent> objectHitFinishedEvent = ObjectHitFinishedEvent::alloc(itr->first);
-            notify(objectHitFinishedEvent.get());
+            if(itr->first->type == GameObject::ObjectType::CHARACTER) {
+                std::shared_ptr<ObjectHitFinishedEvent> objectHitFinishedEvent = ObjectHitFinishedEvent::alloc(itr->first);
+                notify(objectHitFinishedEvent.get());
+            }
             
             itr = hitStunMap.erase(itr);
         } else {
@@ -301,37 +315,39 @@ void CollisionController::beginContact(b2Contact* contact) {
         }
     }
     
-    if (remove == 1) {
-        if (obj1->type == GameObject::ObjectType::ZONE) {
-            return;
-        }
-        obj1->getPhysicsComponent()->getHit();
-        if (obj1->getPhysicsComponent()->isAlive()) {
-            objsToIgnore.push_back(obj1);
-            hitStunMap.insert({obj1,HIT_STUN});
-            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(obj1);
-            notify(objectHitEvent.get());
-        } else {
-            objsScheduledForRemoval.push_back(obj1);
-            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
-            notify(objectGoneEvent.get());
-        }
+    if (remove == 0) {
+        return;
     }
-    if (remove == 2) {
-        if (obj2->type == GameObject::ObjectType::ZONE) {
-            return;
+    
+    GameObject* gotHit;
+    
+    if (remove == 1) {
+        gotHit = obj1;
+    } else {
+        gotHit = obj2;
+    }
+    
+    if (gotHit->type == GameObject::ObjectType::ZONE) {
+        return;
+    }
+    gotHit->getPhysicsComponent()->getHit();
+    if (gotHit->getPhysicsComponent()->isAlive()) {
+        objsToIgnore.push_back(gotHit);
+        hitStunMap.insert({gotHit,HIT_STUN});
+        if (gotHit == bluePlayer) {
+            objsToIgnore.push_back(blueZone);
+            hitStunMap.insert({blueZone,HIT_STUN});
         }
-        obj2->getPhysicsComponent()->getHit();
-        if (obj2->getPhysicsComponent()->isAlive()){
-            objsToIgnore.push_back(obj2);
-            hitStunMap.insert({obj2,HIT_STUN});
-            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(obj2);
-            notify(objectHitEvent.get());
-        } else {
-            objsScheduledForRemoval.push_back(obj2);
-            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
-            notify(objectGoneEvent.get());
+        if (gotHit == goldPlayer) {
+            objsToIgnore.push_back(goldZone);
+            hitStunMap.insert({goldZone,HIT_STUN});
         }
+        std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
+        notify(objectHitEvent.get());
+    } else {
+        objsScheduledForRemoval.push_back(gotHit);
+        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
+        notify(objectGoneEvent.get());
     }
 }
 
