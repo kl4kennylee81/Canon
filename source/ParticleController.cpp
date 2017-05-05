@@ -44,6 +44,47 @@ void ParticleController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+//                    addAnimation(zoneInit->object.get(), zoneInit->animationData);
+                    
+                    // mapping gameobj ->
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
+                    ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
+//                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
+                    ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
+//                    handleZoneSpawn(zoneSpawn->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    GameObject* obj = zoneOn->object;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    GameObject* obj = zoneOff->object;
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_DELETE: {
+                    ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
+                    // remove from GameObject -> ParticleWrapper
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_FLASH: {
+                    ZoneFlashEvent* zoneFlash = (ZoneFlashEvent*)zoneEvent;
+                }
+            }
+            break;
+        }
     }
 }
 
@@ -52,6 +93,10 @@ void ParticleController::handleDeathParticle(GameObject* obj) {
     
     Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
     _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
+}
+
+void ParticleController::handleZoneSpawn(GameObject* obj) {
+    _zone_gen->add_mapping(obj);
 }
 
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
@@ -67,14 +112,15 @@ void ParticleController::update(float timestep, std::shared_ptr<GameState> state
                 pd = _particle_map.at("blue_particle");
             }
             
-//            std::shared_ptr<TrailParticleGenerator> generator = TrailParticleGenerator::alloc(_memory, pd, gameObj, state);
-//            
-//            _character_map.insert(std::make_pair(gameObj.get(), generator));
+            std::shared_ptr<TrailParticleGenerator> generator = TrailParticleGenerator::alloc(_memory, pd, gameObj, state);
+            
+            _character_map.insert(std::make_pair(gameObj.get(), generator));
         }
     }
     
     generateTrails();
     _death_gen->generate();
+//    _zone_gen->generate();
 }
 
 void ParticleController::generateTrails() {
@@ -90,30 +136,31 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     /** Particle for the Trail */
     ParticleData pd = ParticleData();
     pd.move = true;
-    pd.acceleration = -0.005;
-    pd.ttl = 40;
+    pd.acceleration = -0.0005;
+    pd.ttl = 30;
     pd.color_fade = true;
     pd.start_color = Color4f::WHITE;
     pd.end_color = Color4f::WHITE;
     pd.color_duration = -1;
     pd.alpha_fade = true;
-    pd.alpha_duration = 40;
-    pd.start_alpha = 1;
+    pd.alpha_duration = 30;
+    pd.start_alpha = 0.7;
     pd.texture_name = "blue_particle";
-    pd.texture = assets->get<Texture>("blue_particle");
+    pd.texture = assets->get<Texture>(pd.texture_name);
     
     ParticleData pd2 = ParticleData();
     pd2.move = true;
-    pd2.acceleration = -0.005;
-    pd2.ttl = 40;
+    pd2.acceleration = -0.0005;
+    pd2.ttl = 30;
+    pd2.color_fade = true;
     pd2.start_color = Color4f::WHITE;
     pd2.end_color = Color4f::WHITE;
     pd2.color_duration = -1;
     pd2.alpha_fade = true;
-    pd2.alpha_duration = 40;
-    pd2.start_alpha = 1;
+    pd2.alpha_duration = 30;
+    pd2.start_alpha = 0.7;
     pd2.texture_name = "gold_particle";
-    pd2.texture = assets->get<Texture>("gold_particle");
+    pd2.texture = assets->get<Texture>(pd2.texture_name);
     
     /** Blue Death particle */
     ParticleData temp;
@@ -159,13 +206,47 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     temp2.texture = assets->get<Texture>(temp2.texture_name);
     
     
+    // circle of the zone
+    ParticleData circlepd_temp;
+    circlepd_temp.color_fade = true;
+    circlepd_temp.start_color = Color4f::RED;
+    circlepd_temp.end_color = Color4f::RED;
+    circlepd_temp.color_duration = -1; // infinite
+    circlepd_temp.scale = true;
+    circlepd_temp.current_scale = 1.25;
+    circlepd_temp.start_scale = 1.25;
+    circlepd_temp.end_scale = 1.25;
+    circlepd_temp.texture_name = "t_portalbackground";
+    circlepd_temp.texture = assets->get<Texture>(temp2.texture_name);
+    
+    
+    // ring around the zone
+    ParticleData ringpd_temp;
+    ringpd_temp.color_fade = true;
+    ringpd_temp.start_color = Color4f::RED;
+    ringpd_temp.end_color = Color4f::RED;
+    ringpd_temp.color_duration = 1; // infinite
+    ringpd_temp.scale = true;
+    ringpd_temp.current_scale = 1.25;
+    ringpd_temp.start_scale = 1.25;
+    ringpd_temp.end_scale = 1.25;
+    ringpd_temp.rotate = true;
+    ringpd_temp.texture_name = "t_portalcircle";
+    ringpd_temp.texture = assets->get<Texture>(temp2.texture_name);
+    
+    
     _particle_map.insert(std::make_pair(pd.texture_name, pd)); // blue trail
     _particle_map.insert(std::make_pair(pd2.texture_name, pd2)); // gold trail
     _particle_map.insert(std::make_pair(temp.texture_name, temp)); // blue death
     _particle_map.insert(std::make_pair(temp2.texture_name, temp2)); // gold death
+    _particle_map.insert(std::make_pair(circlepd_temp.texture_name, circlepd_temp)); // circle
+    _particle_map.insert(std::make_pair(ringpd_temp.texture_name, ringpd_temp)); // ring
     
     _death_gen = DeathParticleGenerator::alloc(_memory, pd, state, &_particle_map);
     _death_gen->start();
+    
+//    _zone_gen = ZoneParticleGenerator::alloc(_memory, state, &_particle_map);
+//    _zone_gen->start();
     
     return true;
 }

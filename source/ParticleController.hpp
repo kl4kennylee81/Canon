@@ -17,6 +17,7 @@
 #include "TrailParticleGenerator.hpp"
 #include "ParticleGenerator.hpp"
 #include "DeathParticleGenerator.hpp"
+#include "ZoneParticleGenerator.hpp"
 #include "Util.hpp"
 
 class ParticleController : public BaseController {
@@ -32,9 +33,11 @@ private:
     
     /** Generators */
     std::shared_ptr<DeathParticleGenerator> _death_gen;
+    std::shared_ptr<ZoneParticleGenerator> _zone_gen;
     
     /** Handlers for events */
     void handleDeathParticle(GameObject* obj);
+    void handleZoneSpawn(GameObject* obj);
     
     void generateTrails();
     

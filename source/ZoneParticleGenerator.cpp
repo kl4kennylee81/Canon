@@ -8,47 +8,32 @@
 
 #include "ZoneParticleGenerator.hpp"
 
-bool ZoneParticleGenerator::init(std::shared_ptr<ParticleNode> circlepartnode,
-                                 std::shared_ptr<ParticleNode> ringpartnode,
-                                 std::shared_ptr<cugl::FreeList<Particle>> mem,
-                                 ParticleData circlepd,
-                                 ParticleData ringpd) {
-    _circlepartnode = circlepartnode;
-    _ringpartnode = ringpartnode;
+bool ZoneParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+    _particle_map = particle_map;
     _memory = mem;
     _active = false;
     
-    // circle of the zone
-    ParticleData circlepd_temp;
-    circlepd_temp.color_fade = false;
-    circlepd_temp.start_color = Color4f::RED;
-    circlepd_temp.end_color = Color4f::RED;
-    circlepd_temp.color_duration = -1; // infinite
-    circlepd_temp.scale = true;
-    circlepd_temp.current_scale = 0.65;
-    circlepd_temp.start_scale = .65;
-    circlepd_temp.end_scale = .65;
+    // initialize particle node and attach to the world node
+    ParticleData circlepd = _particle_map->at("t_portalbackground");
+    _circlepartnode = ParticleNode::allocWithTexture(circlepd.texture);
+    _circlepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _circlepartnode->setBlendEquation(GL_FUNC_ADD);
+    _circlepartnode->setPosition(Vec2::ZERO);
+    _circlepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    state->getWorldNode()->addChild(_circlepartnode);
     
+    // initialize particle node and attach to the world node
+    ParticleData ringpd = _particle_map->at("t_portalcircle");
+    _ringpartnode = ParticleNode::allocWithTexture(ringpd.texture);
+    _ringpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _ringpartnode->setBlendEquation(GL_FUNC_ADD);
+    _ringpartnode->setPosition(Vec2::ZERO);
+    _ringpartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    state->getWorldNode()->addChild(_ringpartnode);
     
-    // ring around the zone
-    ParticleData ringpd_temp;
-    ringpd_temp.color_fade = true;
-    ringpd_temp.start_color = Color4f::RED;
-    ringpd_temp.end_color = Color4f::RED;
-    ringpd_temp.color_duration = 1; // infinite
-    ringpd_temp.scale = true;
-    ringpd_temp.current_scale = .5;
-    ringpd_temp.start_scale = .5;
-    ringpd_temp.end_scale = .5;
-    ringpd_temp.rotate = true;
-    
-    
-    _circlepd = circlepd_temp;
-    _ringpd = ringpd_temp;
-    
+    _circlepd = circlepd;
+    _ringpd = ringpd;
     _ring_num = 5;
-    
-    add_particles(Vec2(500,200));
     
     return true;
 }
@@ -59,7 +44,19 @@ ParticleData ZoneParticleGenerator::randomizePD(ParticleData pd) {
     return pd;
 }
 
-void ZoneParticleGenerator::createZoneParticle(int num, std::set<Particle*>& particle_set) {
+void ZoneParticleGenerator::createZoneParticle(int num, std::set<Particle*>& particle_set, ElementType element) {
+    if (element == ElementType::BLUE) {
+        _circlepd.start_color = Color4f::BLUE;
+        _circlepd.end_color = Color4f::BLUE;
+        _ringpd.start_color = Color4f::BLUE;
+        _ringpd.end_color = Color4f::BLUE;
+    } else {
+        _circlepd.start_color = Color4f::YELLOW;
+        _circlepd.end_color = Color4f::YELLOW;
+        _ringpd.start_color = Color4f::YELLOW;
+        _ringpd.end_color = Color4f::YELLOW;
+    }
+    
     Particle* circle = _memory->malloc();
     if (circle != nullptr) {
         particle_set.insert(circle);
@@ -77,20 +74,32 @@ void ZoneParticleGenerator::createZoneParticle(int num, std::set<Particle*>& par
     }
 }
 
-void ZoneParticleGenerator::add_particles(cugl::Vec2 location) {
-    Vec2* location_ptr = new Vec2(location); // temporary
-    
-    // create the wrapper
+void ZoneParticleGenerator::add_mapping(GameObject* obj) {
+    Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
     std::set<Particle*> zone_particles_set;
-    createZoneParticle(_ring_num, zone_particles_set);
-    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(zone_particles_set, location);
+    createZoneParticle(_ring_num, zone_particles_set, obj->getPhysicsComponent()->getElementType());
+    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(zone_particles_set, world_pos);
     
-    // insert wrapper to location -> wrapper map
-    _location_to_wrapper.insert(std::make_pair(location_ptr, wrapper));
+    _obj_to_wrapper.insert(std::make_pair(obj, wrapper));
+}
+
+void ZoneParticleGenerator::remove_mapping(GameObject* obj) {
+    auto wrapper = _obj_to_wrapper.at(obj);
+    for(auto it = wrapper->_particle_set.begin(); it != wrapper->_particle_set.end(); ++it) {
+        Particle* p = *it;
+        _circlepartnode->removeParticle(p);
+        _ringpartnode->removeParticle(p);
+        _memory->free(p);
+    }
+    
+    _obj_to_wrapper.erase(obj);
+    
 }
 
 void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
+    // update _global_position by looking at the zone position;
     for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
+        
         Particle* p = *it;
         p->_pd.position = wrapper->_global_position;
         p->move();
@@ -107,14 +116,23 @@ void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapp
 void ZoneParticleGenerator::generate() {
     if (!_active) return;
     
-    for (auto it = _location_to_wrapper.begin(); it != _location_to_wrapper.end(); it++) {
+    for (auto it = _obj_to_wrapper.begin(); it != _obj_to_wrapper.end(); it++) {
+        
+        GameObject* obj = it->first;
         std::shared_ptr<ParticleWrapper> wrapper = it->second;
+        
+        // sync zone position with char position.
+        Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+        wrapper->_global_position = world_pos;
+        
+        // update particles
         updateWrapper(wrapper, _particles);
     }
     
     for(auto it = _particles.begin(); it != _particles.end(); ++it) {
         Particle* p = *it;
-        _partnode->removeParticle(p);
+        _circlepartnode->removeParticle(p);
+        _ringpartnode->removeParticle(p);
         _memory->free(p);
     }
     _particles.clear();

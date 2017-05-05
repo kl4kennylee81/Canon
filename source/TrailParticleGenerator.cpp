@@ -18,8 +18,8 @@ bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem,
     // initialize particle node and attach to the world node
     _partnode = ParticleNode::allocWithTexture(_pd.texture);
     _partnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _partnode->setBlendEquation(GL_FUNC_ADD);
     _partnode->setPosition(Vec2::ZERO);
-    _partnode->setContentSize(state->getWorldNode()->getContentSize());
     state->getWorldNode()->addChild(_partnode);
     
     return true;

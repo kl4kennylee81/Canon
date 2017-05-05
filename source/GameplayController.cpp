@@ -190,6 +190,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     
     _zoneController->attach(_collisionController.get());
     _zoneController->attach(_animationController.get());
+    _zoneController->attach(_particleController.get());
     
     _animationController->attach(_finishController.get());
     

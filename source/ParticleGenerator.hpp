@@ -19,6 +19,7 @@
 #include "GameObject.hpp"
 #include "GameState.hpp"
 #include "PhysicsComponent.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 

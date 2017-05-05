@@ -58,11 +58,8 @@ void Particle::move() {
     }
     
     if (_pd.ttl == 0) {
-        std::cout<<"INACTIVE!!!!!!!!!!!!!\n";
         _pd.active = false;
     }
-    
-    std::cout << "pos:" << _pd.position.toString() << "\n";
     
     _pd.ttl--;
     _time_alive++;

@@ -24,37 +24,31 @@ private:
     
     int _ring_num;
     
-    void createZoneParticle(int num, std::set<Particle*>& particle_set);
+    void createZoneParticle(int num, std::set<Particle*>& particle_set, ElementType element);
     ParticleData randomizePD(ParticleData pd);
     
     /**
      * This will be replaced by GameObject -> ParticleWrapper
      */
-    std::unordered_map<cugl::Vec2*, std::shared_ptr<ParticleWrapper>> _location_to_wrapper;
+    std::unordered_map<GameObject*, std::shared_ptr<ParticleWrapper>> _obj_to_wrapper;
     
     void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     
 public:
     ZoneParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<ParticleNode> circlepartnode,
-              std::shared_ptr<ParticleNode> ringpartnode,
-              std::shared_ptr<cugl::FreeList<Particle>> mem,
-              ParticleData circlepd,
-              ParticleData ringpd);
+    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
     
-    static std::shared_ptr<ZoneParticleGenerator> alloc(std::shared_ptr<ParticleNode> circlepartnode, std::shared_ptr<ParticleNode> ringpartnode, std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData circlepd, ParticleData ringpd) {
+    static std::shared_ptr<ZoneParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
         std::shared_ptr<ZoneParticleGenerator> result = std::make_shared<ZoneParticleGenerator>();
-        return (result->init(circlepartnode, ringpartnode, mem, circlepd, ringpd) ? result : nullptr);
+        return (result->init(mem, state, particle_map) ? result : nullptr);
     }
     
     void generate();
     
-    /**
-     * This is going to get replaced by the code that handles associating the zone with the particle wrapper
-     * for now, associate a location with a particle wrapper
-     */
-    void add_particles(Vec2 location);
+    void add_mapping(GameObject* obj);
+    
+    void remove_mapping(GameObject* obj);
 };
 
 #endif /* ZoneParticleGenerator_hpp */
