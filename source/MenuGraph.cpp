@@ -191,6 +191,11 @@ std::shared_ptr<JsonValue> MenuGraph::toJsonValue(){
 bool MenuGraph::initAfterResume(std::shared_ptr<JsonValue> menuGraphResumeJson){
     _currentMode = stringToMode(menuGraphResumeJson->getString("currentMode"));
     _nextMode = stringToMode(menuGraphResumeJson->getString("nextMode"));
+    
     _activeMenu = _menuMap.at(menuGraphResumeJson->getString("activeMenu"));
+    if (_currentMode == Mode::GAMEPLAY){
+        // hardcoded to go pause the screen when in gameplay state
+        _activeMenu = _menuMap.at("pauseScreen");
+    }
     return true;
 }

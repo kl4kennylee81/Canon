@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "MenuEvent.hpp"
 #include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
@@ -300,6 +301,10 @@ void GameEngine::onResume() {
         _levelEditor = LevelEditorController::alloc(_scene, _assets);
         _levelEditor->attach(_menu.get());
     }
+    
+    // send an event to gameplayController to pause the game
+    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
+    _menu->notify(pauseEvent.get());
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
