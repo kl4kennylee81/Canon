@@ -15,6 +15,10 @@
 		273CB3A41EBBF1E80042708C /* BulletController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3A11EBBF1E80042708C /* BulletController.cpp */; };
 		273CB3A71EBBF20F0042708C /* ActiveBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3A51EBBF20F0042708C /* ActiveBullet.cpp */; };
 		273CB3A81EBBF20F0042708C /* ActiveBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3A51EBBF20F0042708C /* ActiveBullet.cpp */; };
+		273CB3AB1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3A91EBC29CE0042708C /* BulletInitEvent.cpp */; };
+		273CB3AC1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3A91EBC29CE0042708C /* BulletInitEvent.cpp */; };
+		273CB3AF1EBC38550042708C /* BulletSpawnEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3AD1EBC38550042708C /* BulletSpawnEvent.cpp */; };
+		273CB3B01EBC38550042708C /* BulletSpawnEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273CB3AD1EBC38550042708C /* BulletSpawnEvent.cpp */; };
 		824E10AC1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10AD1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10B21EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
@@ -251,6 +255,10 @@
 		273CB3A21EBBF1E80042708C /* BulletController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BulletController.hpp; sourceTree = "<group>"; };
 		273CB3A51EBBF20F0042708C /* ActiveBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveBullet.cpp; sourceTree = "<group>"; };
 		273CB3A61EBBF20F0042708C /* ActiveBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveBullet.hpp; sourceTree = "<group>"; };
+		273CB3A91EBC29CE0042708C /* BulletInitEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletInitEvent.cpp; sourceTree = "<group>"; };
+		273CB3AA1EBC29CE0042708C /* BulletInitEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BulletInitEvent.hpp; sourceTree = "<group>"; };
+		273CB3AD1EBC38550042708C /* BulletSpawnEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BulletSpawnEvent.cpp; sourceTree = "<group>"; };
+		273CB3AE1EBC38550042708C /* BulletSpawnEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BulletSpawnEvent.hpp; sourceTree = "<group>"; };
 		824E10AA1EA941B80068C0F5 /* ParticleData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleData.cpp; sourceTree = "<group>"; };
 		824E10AB1EA941B80068C0F5 /* ParticleData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleData.hpp; sourceTree = "<group>"; };
 		824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleGenerator.cpp; sourceTree = "<group>"; };
@@ -887,6 +895,10 @@
 				273CB3A21EBBF1E80042708C /* BulletController.hpp */,
 				273CB3A51EBBF20F0042708C /* ActiveBullet.cpp */,
 				273CB3A61EBBF20F0042708C /* ActiveBullet.hpp */,
+				273CB3A91EBC29CE0042708C /* BulletInitEvent.cpp */,
+				273CB3AA1EBC29CE0042708C /* BulletInitEvent.hpp */,
+				273CB3AD1EBC38550042708C /* BulletSpawnEvent.cpp */,
+				273CB3AE1EBC38550042708C /* BulletSpawnEvent.hpp */,
 			);
 			name = ai;
 			sourceTree = "<group>";
@@ -1279,6 +1291,7 @@
 				9F3BA5DE1E8BA575003138C0 /* MenuGraph.cpp in Sources */,
 				9F3BA5DF1E8BA575003138C0 /* Mode.cpp in Sources */,
 				9F3BA5E01E8BA575003138C0 /* ZoneLoader.cpp in Sources */,
+				273CB3AC1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */,
 				9F3BA5E11E8BA575003138C0 /* ZoneData.cpp in Sources */,
 				DFEACF3C1EA42206003836B7 /* SoundData.cpp in Sources */,
 				9F3BA5E21E8BA575003138C0 /* StaticZoneData.cpp in Sources */,
@@ -1327,6 +1340,7 @@
 				9F3BA6201E8BA9D9003138C0 /* InputController.cpp in Sources */,
 				9F3BA6041E8BA575003138C0 /* CompositeAI.cpp in Sources */,
 				9F3BA6051E8BA575003138C0 /* PathAI.cpp in Sources */,
+				273CB3B01EBC38550042708C /* BulletSpawnEvent.cpp in Sources */,
 				9F3BA6061E8BA575003138C0 /* HomingAI.cpp in Sources */,
 				9F3BA6071E8BA575003138C0 /* ActiveAI.hpp in Sources */,
 				9F3BA6081E8BA575003138C0 /* AIController.cpp in Sources */,
@@ -1399,6 +1413,7 @@
 				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
+				273CB3AB1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */,
 				9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,
 				824E10B21EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */,
@@ -1419,6 +1434,7 @@
 				DFEACF3B1EA42206003836B7 /* SoundData.cpp in Sources */,
 				DF9828951E834C210026223D /* ActiveZone.cpp in Sources */,
 				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
+				273CB3AF1EBC38550042708C /* BulletSpawnEvent.cpp in Sources */,
 				DF9828851E80E0250026223D /* PulseZoneData.cpp in Sources */,
 				9FFA3F7D1E6357E00029D648 /* Observer.cpp in Sources */,
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,

@@ -45,7 +45,11 @@ void BulletController::eventUpdate(Event* e){
                     ObjectInitEvent* init = (ObjectInitEvent*)levelEvent;
                     
                     // the player character does not have an BulletData
-                    addBullet(init->bulletData->newActiveBullet(init->object));
+                    if(init->bulletData == nullptr) {
+                        return;
+                    }
+                    
+                    addBullet(ActiveBullet::alloc(init->object, init->bulletData));
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN:
@@ -102,7 +106,9 @@ void BulletController::removeBullet(GameObject* obj) {
 void BulletController::update(float timestep,std::shared_ptr<GameState> state){
     for (auto it : _enemies) {
         if (it->isActive()){
-            it->update(state);
+            for(auto event: it->update(state)) {
+                this->notify(event.get());
+            }
         }
     }
 }

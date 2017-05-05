@@ -217,7 +217,7 @@ std::shared_ptr<BulletData> World::getBulletData(std::shared_ptr<WaveEntry> we){
     if(templData == nullptr){
         return nullptr;
     }
-    return getBulletData(templData->bullet);
+    return getBulletData(templData->bulletKey);
 }
 
 

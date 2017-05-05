@@ -22,7 +22,7 @@ bool TemplateWaveEntry::init(std::string name, std::string obKey, std::vector<st
 	this->aiKeys = aiKeys;
 	this->zoneKeys = zoneKeys;
     this->_spawnTime = spawnTime;
-    this->bullet = bullet;
+    this->bulletKey = bullet;
 	return true;
 }
 
@@ -70,13 +70,13 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
         zones = json->get("zoneKeys")->asStringArray();
     }
     
-    std::string bullet = "";
+    std::string bk = "";
     if (json->has("bulletKey")) {
-        bullet = json->getString("bulletKey");
+        bk = json->getString("bulletKey");
     }
     
     float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
-    init(name, ob, ais, zones, sTime, bullet);
+    init(name, ob, ais, zones, sTime, bk);
     return true;
 }
 

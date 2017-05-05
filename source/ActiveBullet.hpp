@@ -13,11 +13,15 @@
 #include "GameState.hpp"
 #include "ActiveAI.hpp"
 #include "GameObject.hpp"
+#include "BulletData.hpp"
+#include "BulletInitEvent.hpp"
 
 class ActiveBullet {
 private:
     bool _isActive;
+    int _frameCount;
     std::shared_ptr<GameObject> _object;
+    std::shared_ptr<BulletData> _bulletData;
     
 public:
     
@@ -29,7 +33,9 @@ public:
         _object = nullptr;
     }
     
-    void update(std::shared_ptr<GameState> state) { }
+    std::vector<std::shared_ptr<BulletInitEvent>> update(std::shared_ptr<GameState> state);
+    
+    std::vector<std::shared_ptr<BulletInitEvent>> shootBullets(std::shared_ptr<GameState> state);
     
     bool garbageCollect(GameObject* obj) { return true; }
     
@@ -43,15 +49,17 @@ public:
     
     void toggleActive() { _isActive = !_isActive;  }
     
-    bool init(std::shared_ptr<GameObject> object) {
+    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<BulletData> data) {
         _object = object;
         _isActive = false;
+        _frameCount = 0;
+        _bulletData = data;
         return true;
     }
     
-    static std::shared_ptr<ActiveBullet> alloc(std::shared_ptr<GameObject> object) {
+    static std::shared_ptr<ActiveBullet> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<BulletData> data) {
         std::shared_ptr<ActiveBullet> result = std::make_shared<ActiveBullet>();
-        return (result->init(object) ? result : nullptr);
+        return (result->init(object, data) ? result : nullptr);
     }
 };
 

@@ -27,7 +27,7 @@ public:
     
     std::vector<std::string> zoneKeys;
     
-    std::string bullet;
+    std::string bulletKey;
     
     TemplateWaveEntry() : Data(){}
 

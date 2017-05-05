@@ -8,6 +8,8 @@
 
 #include "LevelController.hpp"
 #include "LevelEvent.hpp"
+#include "BulletInitEvent.hpp"
+#include "BulletSpawnEvent.hpp"
 #include <math.h>
 
 using namespace cugl;
@@ -29,7 +31,38 @@ void LevelController::notify(Event* e) {
 /**
  * Update the observer state based on an event from the subject
  */
-void LevelController::eventUpdate(Event* e) {}
+void LevelController::eventUpdate(Event* e) {
+    switch (e->_eventType) {
+        case Event::EventType::BULLET:
+        {
+            BulletInitEvent* bulletEvent = (BulletInitEvent*)e;
+            Vec2 pos = bulletEvent->position;
+            std::shared_ptr<ObjectData> od = _world->getObjectData(bulletEvent->_bulletData->getObjectKey());
+            std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+            std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(bulletEvent->element));
+            std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
+            
+            std::shared_ptr<GameObject> gameOb = GameObject::alloc();
+            gameOb->setIsPlayer(false);
+            gameOb->type = GameObject::ObjectType::BULLET;
+            
+            //TODO: Change this shit
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x *32, pos.y*32, bulletEvent->element, "", "");
+            
+            std::shared_ptr<ObjectInitEvent> initevent =
+                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, nullptr, {}, nullptr);
+            notify(initevent.get());
+            
+            bulletEvent->state->addEnemyGameObject(gameOb);
+
+            std::shared_ptr<BulletSpawnEvent> bulletSpawn =
+                BulletSpawnEvent::alloc(gameOb, bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
+            notify(bulletSpawn.get());
+            
+            break;
+        }
+    }
+}
 
 void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
     std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());

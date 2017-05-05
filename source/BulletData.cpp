@@ -10,7 +10,7 @@
 
 using namespace cugl;
 
-bool BulletData::init(std::string object, float start, float var, int num, float cool, float vel, bool tar){
+bool BulletData::init(std::string object, float start, float var, int num, int cool, float vel, bool tar){
     _objectKey = object;
     _startingAngle = start;
     _angleVariance = var;
@@ -37,10 +37,12 @@ bool BulletData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float start = json->getFloat("startingAngle");
     float var = json->getFloat("angleVariance");
     int num = json->getInt("numberShots");
-    float cool = json->getFloat("cooldown");
+    int cool = json->getInt("cooldown");
     float vel = json->getFloat("velocity");
-    bool tar = json->getBool("target");
-    init(ob, start, var, num, cool, vel, tar);
+    std::string tar = json->getString("target");
+    std::cout << tar <<std::endl;
+    bool tarb = tar.compare("true") == 0 ? true : false;
+    init(ob, start, var, num, cool, vel, tarb);
     return true;
 }
 
@@ -48,6 +50,3 @@ bool BulletData::materialize(){
     return true;
 }
 
-std::shared_ptr<ActiveBullet> BulletData::newActiveBullet(std::shared_ptr<GameObject> object){
-    return ActiveBullet::alloc(object);
-}

@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
-#include "ActiveBullet.hpp"
 
 class BulletData : public Data {
 private:
@@ -20,7 +19,7 @@ private:
     float _startingAngle;
     float _angleVariance;
     int _numberShots;
-    float _cooldown;
+    int _cooldown;
     float _velocity;
     bool _target;
     
@@ -32,13 +31,13 @@ public:
     float getStartingAngle() { return _startingAngle; }
     float getAngleVariance() { return _angleVariance; }
     int getNumberShots() { return _numberShots; }
-    float getCooldown() { return _cooldown; }
+    int getCooldown() { return _cooldown; }
     float getVelocity() { return _velocity; }
     bool isTarget() { return _target; }
     
-    bool init(std::string object, float start, float var, int num, float cool, float vel, bool tar);
+    bool init(std::string object, float start, float var, int num, int cool, float vel, bool tar);
     
-    static std::shared_ptr<BulletData> alloc(std::string object, float start, float var, float num, float cool, float vel, bool tar){
+    static std::shared_ptr<BulletData> alloc(std::string object, float start, float var, int num, int cool, float vel, bool tar){
         std::shared_ptr<BulletData> result = std::make_shared<BulletData>();
         return (result->init(object, start, var, num, cool, vel, tar) ? result : nullptr);
     }
@@ -51,8 +50,6 @@ public:
     
     virtual bool materialize();
     
-    std::shared_ptr<ActiveBullet> newActiveBullet(std::shared_ptr<GameObject> object);
-
     
 };
 

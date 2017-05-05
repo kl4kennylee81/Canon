@@ -27,6 +27,8 @@ public:
 		/** Move **/
 		MOVE,
         SWITCH,
+        BULLET,
+        BULLET_SPAWN,
         ZONE,
         ANIMATION,
         /** menu transition system */

@@ -13,6 +13,7 @@
 #include "MoveEvent.hpp"
 #include "SwitchEvent.hpp"
 #include "AnimationEvent.hpp"
+#include "BulletSpawnEvent.hpp"
 #include <cugl/cugl.h>
 
 using namespace cugl;
@@ -75,6 +76,12 @@ void AnimationController::eventUpdate(Event* e) {
                     break;
                 }
             }
+            break;
+        }
+        case Event::EventType::BULLET_SPAWN: {
+            BulletSpawnEvent* bulletSpawn = (BulletSpawnEvent*)e;
+            GameObject* obj = bulletSpawn->object.get();
+            handleAction(obj, AnimationAction::SPAWN);
             break;
         }
         case Event::EventType::PATH: {

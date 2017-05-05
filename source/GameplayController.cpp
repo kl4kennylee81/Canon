@@ -179,15 +179,19 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _collisionController->attach(_animationController.get());
     _collisionController->attach(_zoneController.get());
     _collisionController->attach(_aiController.get());
+    _collisionController->attach(_bulletController.get());
     _collisionController->attach(_soundController.get());
     
     _spawnController->attach(_collisionController.get());
     _spawnController->attach(_animationController.get());
     _spawnController->attach(_switchController.get());
+    _spawnController->attach(_bulletController.get());
     _spawnController->attach(_aiController.get());
     _spawnController->attach(_zoneController.get());
     _spawnController->attach(_soundController.get());
     _spawnController->attach(_pathController.get());
+    
+    _bulletController->attach(_levelController.get());
     
     _switchController->attach(_animationController.get());
     

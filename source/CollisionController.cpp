@@ -14,6 +14,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
+#include "BulletSpawnEvent.hpp"
 
 using namespace cugl;
 
@@ -56,6 +57,16 @@ void CollisionController::eventUpdate(Event* e) {
                     break;
                 }
             }
+            break;
+        }
+        case Event::EventType::BULLET_SPAWN: {
+            BulletSpawnEvent* bulletSpawn = (BulletSpawnEvent*)e;
+            GameObject* obj = bulletSpawn->object.get();
+            Vec2 vec = Vec2::forAngle(bulletSpawn->angle);
+            vec.negate();
+            vec.scale(bulletSpawn->velocity);
+            obj->getPhysicsComponent()->getBody()->setLinearVelocity(vec);
+            addToWorld(bulletSpawn->object.get());
             break;
         }
         case Event::EventType::ZONE: {
@@ -209,7 +220,6 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     poly.setIndices(triangulator.getTriangulation());
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->getPosition());
-    
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement());
     objectInit->object->setPhysicsComponent(physics);
 }
@@ -224,6 +234,7 @@ void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
     obst->setPosition(zoneInit->pos);
     
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element);
+    
     zoneInit->object->setPhysicsComponent(physics);
 }
 
