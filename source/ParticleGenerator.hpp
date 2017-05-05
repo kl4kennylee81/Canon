@@ -18,6 +18,7 @@
 #include "ParticleWrapper.hpp"
 #include "GameObject.hpp"
 #include "GameState.hpp"
+#include "PhysicsComponent.hpp"
 
 using namespace cugl;
 
@@ -37,6 +38,8 @@ protected:
     
     /** The set of particles to be removed at the end of update()*/
     std::set<Particle*> _particles;
+    
+    std::unordered_map<std::string, ParticleData>* _particle_map;
     
     /** Copy of the particle data */
     ParticleData _pd;

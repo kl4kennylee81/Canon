@@ -11,33 +11,27 @@
 #define PARTICLE_BASE_SPEED 5
 #define CLUSTER_SIZE 5
 
-bool DeathParticleGenerator::init(std::shared_ptr<ParticleNode> partnode,
-                                  std::shared_ptr<cugl::FreeList<Particle>> mem,
-                                  ParticleData pd) {
-    _partnode = partnode;
+bool DeathParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem,
+                                  ParticleData pd, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _memory = mem;
-    _active = false;
+    _pd = pd;
+    _active = false; // default
+    _particle_map = particle_map;
     
-    ParticleData temp;
-    temp.color_fade = true;
-    temp.start_color = Color4f::WHITE;
-    temp.end_color = Color4f::WHITE;
-    temp.color_duration = -1; // infinite
-    temp.move = true;
-    temp.gravity = Vec2(0,0);
-    temp.acceleration = -0.005;
-    temp.alpha_fade = true;
-    temp.alpha_duration = 50;
-    temp.start_alpha = 1;
-    temp.rotate = true;
-    temp.current_angle = 0;
-    temp.revolution_time = 2;
-    temp.scale = true;
-    temp.start_scale = 0.3;
-    temp.end_scale = 0.1;
-    temp.current_scale = 0.5;
+    // initialize particle node and attach to the world node
+    ParticleData blue_death_pd = _particle_map->at("blue_death");
+    _bluepartnode = ParticleNode::allocWithTexture(blue_death_pd.texture);
+    _bluepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _bluepartnode->setPosition(Vec2::ZERO);
+    _bluepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    state->getWorldNode()->addChild(_bluepartnode);
     
-    _pd = temp;
+    ParticleData gold_death_pd = _particle_map->at("green_death");
+    _goldpartnode = ParticleNode::allocWithTexture(gold_death_pd.texture);
+    _goldpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _goldpartnode->setPosition(Vec2::ZERO);
+    _goldpartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    state->getWorldNode()->addChild(_goldpartnode);
     
     return true;
 }
@@ -50,25 +44,26 @@ ParticleData DeathParticleGenerator::randomizePD(ParticleData pd) {
     pd.velocity = Vec2((PARTICLE_BASE_SPEED*(float)(cosf(angle))),PARTICLE_BASE_SPEED*(float)(sinf(angle)));
     
     pd.ttl = floor(ttl_rand);
-    
     pd.revolution_time = rand*5 + 2;
     return pd;
 }
 
-void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_set) {
+void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_set, ElementType element) {
     for (int ii = 0; ii < CLUSTER_SIZE; ++ii) {
         Particle* particle = _memory->malloc();
         if (particle != nullptr) {
-            // need to tint colors based on who clicked?
-            
-            particle->init(randomizePD(_pd)); // pd copies velocities
+            particle->init(randomizePD(_pd));
             particle_set.insert(particle);
-            _partnode->addParticle(particle);
+            if (element == ElementType::BLUE) {
+                _bluepartnode->addParticle(particle);
+            } else {
+                _goldpartnode->addParticle(particle);
+            }
         }
     }
 }
 
-void DeathParticleGenerator::add_particles(Vec2 location) {
+void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
     if (!_active) return;
     
     // just don't use the global position for this one
@@ -76,7 +71,7 @@ void DeathParticleGenerator::add_particles(Vec2 location) {
     
     // create the wrapper
     std::set<Particle*> death_particles_set;
-    createDeathParticles(death_particles_set);
+    createDeathParticles(death_particles_set, element);
     std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(death_particles_set, location);
     
     _alive_wrappers.insert(wrapper);
@@ -123,7 +118,8 @@ void DeathParticleGenerator::generate() {
     // remove the dead particles from the particle node
     for(auto it = _particles.begin(); it != _particles.end(); ++it) {
         Particle* p = *it;
-        _partnode->removeParticle(p);
+        _bluepartnode->removeParticle(p); // check both since we don't know
+        _goldpartnode->removeParticle(p);
         _memory->free(p);
     }
     _particles.clear();

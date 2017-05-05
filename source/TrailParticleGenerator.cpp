@@ -8,8 +8,24 @@
 
 #include "TrailParticleGenerator.hpp"
 
-void TrailParticleGenerator::generate() {
+bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> ch, std::shared_ptr<GameState> state) {
+    _memory = mem;
+    _pd = pd;
+    _char = ch;
+    _respawn = 0;
+    _cooldown = _respawn;
     
+    // initialize particle node and attach to the world node
+    _partnode = ParticleNode::allocWithTexture(_pd.texture);
+    _partnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _partnode->setPosition(Vec2::ZERO);
+    _partnode->setContentSize(state->getWorldNode()->getContentSize());
+    state->getWorldNode()->addChild(_partnode);
+    
+    return true;
+}
+
+void TrailParticleGenerator::generate() {
     auto vel = _char->getPhysicsComponent()->getBody()->getLinearVelocity();
     if (vel.isZero()) {
         _active = false;

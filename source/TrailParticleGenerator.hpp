@@ -28,22 +28,7 @@ private:
 public:
     TrailParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> ch, std::shared_ptr<GameState> state) {
-        _memory = mem;
-        _pd = pd;
-        _char = ch;
-        _respawn = 0;
-        _cooldown = _respawn;
-        
-        // initialize particle node and attach to the world node
-        _partnode = ParticleNode::allocWithTexture(_pd.texture);
-        _partnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
-        _partnode->setPosition(Vec2::ZERO);
-        _partnode->setContentSize(state->getWorldNode()->getContentSize());
-        state->getWorldNode()->addChild(_partnode);
-        
-        return true;
-    }
+    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> ch, std::shared_ptr<GameState> state);
     
     static std::shared_ptr<TrailParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> gameObj, std::shared_ptr<GameState> state) {
         std::shared_ptr<TrailParticleGenerator> result = std::make_shared<TrailParticleGenerator>();
