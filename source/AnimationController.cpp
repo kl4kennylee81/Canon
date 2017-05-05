@@ -351,3 +351,12 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     
     return true;
 }
+
+std::string AnimationController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> AnimationController::toJsonValue() {
+	std::shared_ptr<JsonValue> fullJson = JsonValue::allocObject();
+	return fullJson;
+}

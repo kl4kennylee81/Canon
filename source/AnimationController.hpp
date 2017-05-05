@@ -63,6 +63,9 @@ public:
     void updateFrames(std::shared_ptr<GameState> state);
     
     void removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim);
+
+	std::string serialize();
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 #endif /* AnimationController_hpp */

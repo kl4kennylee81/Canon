@@ -50,6 +50,11 @@ public:
 		std::shared_ptr<AIController> result = std::make_shared<AIController>();
 		return (result->init() ? result : nullptr);
 	}
+
+	std::string serialize();
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	void initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> rJson);
 };
 
 #endif /* AIController_hpp */

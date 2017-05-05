@@ -50,6 +50,55 @@ public:
 	bool materialize() override;
 
 	std::shared_ptr<ActiveAI> newActiveAI(std::shared_ptr<GameObject> object) override;
+
+	static std::string getStringFromPathType(PathType pt) {
+		switch (pt) {
+			case PathType::CUSTOM:
+				return "CUSTOM";
+			case PathType::HORIZONTAL:
+				return "HORIZONTAL";
+			case PathType::NONE:
+				return "NONE";
+			case PathType::VERTICAL:
+				return "VERTICAL";
+			default:
+				return "NONE";
+		}
+	}
+
+	static PathType getPathTypeFromString(std::string s) {
+		if (s == "CUSTOM") return PathType::CUSTOM;
+		if (s == "HORIZONTAL") return PathType::HORIZONTAL;
+		if (s == "NONE") return PathType::NONE;
+		if (s == "VERTICAL") return PathType::VERTICAL;
+		return PathType::NONE;
+	}
+
+	static std::string getStringFromPathDirection(PathDirection dir) {
+		switch (dir) {
+			case PathDirection::LEFT:
+				return "LEFT";
+			case PathDirection::RIGHT:
+				return "RIGHT";
+			case PathDirection::UP:
+				return "UP";
+			case PathDirection::RANDOM:
+				return "RANDOM";
+			case PathDirection::DOWN:
+				return "DOWN";
+			default:
+				return "RANDOM";
+		}
+	}
+
+	static PathDirection getPathDirectionFromString(std::string s) {
+		if (s == "LEFT") return PathDirection::LEFT;
+		if (s == "RIGHT") return PathDirection::RIGHT;
+		if (s == "UP") return PathDirection::UP;
+		if (s == "DOWN") return PathDirection::DOWN;
+		if (s == "RANDOM") return PathDirection::RANDOM;
+		return PathDirection::UP;
+	}
 };
 
 #endif /* PathAIData.hpp */

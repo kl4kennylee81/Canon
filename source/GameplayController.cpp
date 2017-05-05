@@ -233,12 +233,16 @@ std::shared_ptr<cugl::JsonValue> GameplayController::toJsonValue(){
     // and collect into one big gameplayController json and return it
     
     std::shared_ptr<JsonValue> gameplayJson = JsonValue::allocObject();
-    gameplayJson->appendChild("levelController" ,_levelController->toJsonValue(_gameState));
-    gameplayJson->appendChild("spawnController" ,_spawnController->toJsonValue());
+    gameplayJson->appendChild("levelController", _levelController->toJsonValue(_gameState));
+    gameplayJson->appendChild("spawnController", _spawnController->toJsonValue());
+	gameplayJson->appendChild("moveController", _moveController->toJsonValue());
+	gameplayJson->appendChild("aiController", _aiController->toJsonValue());
     return gameplayJson;
 }
 
 void GameplayController::onResume(const std::shared_ptr<cugl::JsonValue> resumeJson){
     // give level controller the full json since it uses spawn and level
-    _levelController->initAfterResume(_gameState,resumeJson->get("levelController"),resumeJson->get("spawnController"));
+    _levelController->initAfterResume(_gameState,resumeJson->get("levelController"), resumeJson->get("spawnController"));
+	_moveController->initAfterResume(_gameState, resumeJson->get("moveController"));
+	_aiController->initAfterResume(_gameState, resumeJson->get("aiController"));
 }

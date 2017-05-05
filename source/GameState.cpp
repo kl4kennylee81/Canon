@@ -228,5 +228,14 @@ float GameState::getPhysicsScale(){
     return GAME_PHYSICS_SCALE;
 }
 
+std::shared_ptr<GameObject> GameState::getUID2GameObject(int uid) {
+	// search
+	for (auto entry : getPlayerCharacters()) {
+		if (entry->getUid() == uid) { return entry; }
+	}
+	for (auto entry : getEnemyObjects()) {
+		if (entry->getUid() == uid) { return entry; }
 
+	}
+}
 

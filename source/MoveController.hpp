@@ -60,6 +60,8 @@ public:
 	// cuz level controller has different signature
 	std::string serialize();
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	void initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> rJson);
 };
 
 #endif /* MoveController_hpp */
