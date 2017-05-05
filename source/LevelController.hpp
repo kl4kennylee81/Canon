@@ -44,13 +44,21 @@ public:
      */
     virtual void eventUpdate(Event* e);
 
-    void spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    std::shared_ptr<GameObject> spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<GameObject> spawnAndRecordWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                        bool isPlayer,std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<GameObject> spawnAndNotifyWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                        bool isPlayer,std::shared_ptr<GameState> state, float spawnTime);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
     void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
+    
+    bool init(std::string levelDataKey, std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
     static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();

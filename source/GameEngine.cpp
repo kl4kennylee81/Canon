@@ -243,7 +243,7 @@ void GameEngine::onSuspend() {
 	#ifdef _WIN32
 	std::vector<std::string> vec = Util::split(__FILE__, '\\');
 	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
-	std::string filePath = "\\" + saveDir + "\\suspend.json";
+	std::string filePath = saveDir + "\\suspend.json";
 
 	#elif __APPLE__
 	std::vector<std::string> vec = Util::split(__FILE__, '/');
@@ -271,22 +271,55 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
-    
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
-    
-    std::string filePath = "/"+saveDir+"/suspend.json";
+   
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = saveDir + "\\suspend.json";
+
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
+
     auto reader = JsonReader::alloc(filePath);
     if(reader == nullptr) {
         return;
     }
-    auto resumeJson = reader->readJson();
+    std::shared_ptr<JsonValue> resumeJson = reader->readJson();
+    
+    // have to reload all data files
+    this->onStartup();
+    
+    // poll while loading
+    while (_assets->progress() < 1.0){
+    }
+    
+    _menuGraph->populate(_assets);
+    _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
+    
+    _menu = MenuController::alloc(_scene,_menuGraph);
     
     // possibly call all the load methods again
     std::shared_ptr<World> levelWorld = World::alloc(_assets);
+    
+    // TODO replace with allocing the menuGraph and also reloading in all the files
     _gameplay = GameplayController::alloc(_scene,levelWorld);
+    
     _gameplay->onResume(resumeJson->get("gameplay"));
     
+    if (_gameplay != nullptr){
+        // this is so that the menu can interact with the game screen
+        _menu->attach(_gameplay.get());
+        _gameplay->attach(_menu.get());
+    }
+    
+    if (_levelEditor != nullptr){
+        _levelEditor = LevelEditorController::alloc(_scene, _assets);
+        _levelEditor->attach(_menu.get());
+    }
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
@@ -434,8 +467,6 @@ void GameEngine::update(float timestep) {
     // update the touch input
     InputController::update();
     
-//    std::cout << timestep << std::endl;
-    
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
         cleanPreviousMode();
@@ -473,9 +504,10 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            if (hi == 3){
+            if (hi == 10){
                 onSuspend();
                 onResume();
+                hi+=1;
             } else {
                 hi+=1;
             }

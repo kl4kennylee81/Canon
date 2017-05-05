@@ -30,6 +30,21 @@ bool Level::init(std::shared_ptr<LevelData> levelData){
     return true;
 }
 
+bool Level::init(int currentWave,int framesElapsed,bool readyToSpawn,bool playerSpawned){
+    _currentWave = currentWave;
+    _framesElapsed = framesElapsed;
+    _readyToSpawn = readyToSpawn;
+    _playerSpawned = playerSpawned;
+    return true;
+}
+
+bool Level::init(const std::shared_ptr<JsonValue> json){
+    return init(json->getInt("currentWaveIndex"),
+                 json->getInt("framesElapsed"),
+                 json->getBool("readyToSpawn"),
+                 json->getBool("playerSpawned"));
+}
+
 /**
  * Gets the frames of when the next wave is supposed to spawn
  */
