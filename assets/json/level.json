@@ -82,6 +82,7 @@
             "objectKey": "playerCharFemale", 
             "spawnTime": 0.0, 
             "zoneKeys": [
+                "playerZone"
             ]
         }, 
         "playerCharMale": {
@@ -90,6 +91,7 @@
             "objectKey": "playerCharMale", 
             "spawnTime": 0.0, 
             "zoneKeys": [
+                "playerZone"
             ]
         }
     }, 

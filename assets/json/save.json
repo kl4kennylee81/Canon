@@ -1,15 +1,6 @@
 {
     "SaveGameData": {
         "saveFile": {
-            "blobos": {
-                "complete": 0, 
-                "highScore": 0, 
-                "levelKey": "blobos", 
-                "levelUrl": "level1assets.json", 
-                "menuKey": "lake_bg", 
-                "name": "Blobos", 
-                "unlocked": 1
-            }, 
             "interweave": {
                 "complete": 0, 
                 "highScore": 0, 
@@ -80,15 +71,6 @@
                 "levelUrl": "level1assets.json", 
                 "menuKey": "lake_bg", 
                 "name": "Lasers", 
-                "unlocked": 1
-            }, 
-            "xxxxxx": {
-                "complete": 0, 
-                "highScore": 0, 
-                "levelKey": "xxxxxx", 
-                "levelUrl": "level1assets.json", 
-                "menuKey": "lake_bg", 
-                "name": "The xx", 
                 "unlocked": 1
             }
         }
