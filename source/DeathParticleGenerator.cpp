@@ -9,26 +9,27 @@
 #include "DeathParticleGenerator.hpp"
 
 #define PARTICLE_BASE_SPEED 5
-#define CLUSTER_SIZE 5
+#define CLUSTER_SIZE 1
 
 bool DeathParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem,
                                   ParticleData pd, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _memory = mem;
-    _pd = pd;
     _active = false; // default
     _particle_map = particle_map;
     
     // initialize particle node and attach to the world node
-    ParticleData blue_death_pd = _particle_map->at("blue_death");
+    ParticleData blue_death_pd = _particle_map->at("blue_death_part");
     _bluepartnode = ParticleNode::allocWithTexture(blue_death_pd.texture);
     _bluepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _bluepartnode->setBlendEquation(GL_FUNC_ADD);
     _bluepartnode->setPosition(Vec2::ZERO);
     _bluepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
     state->getWorldNode()->addChild(_bluepartnode);
     
-    ParticleData gold_death_pd = _particle_map->at("green_death");
+    ParticleData gold_death_pd = _particle_map->at("green_death_part");
     _goldpartnode = ParticleNode::allocWithTexture(gold_death_pd.texture);
     _goldpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _goldpartnode->setBlendEquation(GL_FUNC_ADD);
     _goldpartnode->setPosition(Vec2::ZERO);
     _goldpartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
     state->getWorldNode()->addChild(_goldpartnode);
@@ -38,7 +39,7 @@ bool DeathParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem,
 
 ParticleData DeathParticleGenerator::randomizePD(ParticleData pd) {
     float rand = getRandomFloat(0, 1);
-    float ttl_rand = getRandomFloat(10, 50);
+    float ttl_rand = getRandomFloat(5, 30);
     
     auto angle = rand*2.0f*M_PI;
     pd.velocity = Vec2((PARTICLE_BASE_SPEED*(float)(cosf(angle))),PARTICLE_BASE_SPEED*(float)(sinf(angle)));
@@ -48,30 +49,38 @@ ParticleData DeathParticleGenerator::randomizePD(ParticleData pd) {
     return pd;
 }
 
-void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_set, ElementType element) {
+void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_set, ElementType element, Vec2 location) {
     for (int ii = 0; ii < CLUSTER_SIZE; ++ii) {
         Particle* particle = _memory->malloc();
+        
         if (particle != nullptr) {
-            particle->init(randomizePD(_pd));
-            particle_set.insert(particle);
             if (element == ElementType::BLUE) {
+                ParticleData pd = _particle_map->at("blue_death_part");
+                pd.position = location;
+                particle->init(randomizePD(pd));
+                
                 _bluepartnode->addParticle(particle);
+                particle_set.insert(particle);
             } else {
+                ParticleData pd = _particle_map->at("green_death_part");
+                pd.position = location;
+                particle->init(randomizePD(pd));
+                
                 _goldpartnode->addParticle(particle);
+                particle_set.insert(particle);
             }
         }
     }
 }
 
 void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
-    if (!_active) return;
+    std::cout<<"add_particle() called\n";
     
-    // just don't use the global position for this one
-    _pd.position = location;
+    if (!_active) return;
     
     // create the wrapper
     std::set<Particle*> death_particles_set;
-    createDeathParticles(death_particles_set, element);
+    createDeathParticles(death_particles_set, element, location);
     std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(death_particles_set, location);
     
     _alive_wrappers.insert(wrapper);

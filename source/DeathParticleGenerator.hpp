@@ -22,7 +22,7 @@ private:
     
     std::set<std::shared_ptr<ParticleWrapper>> _alive_wrappers;
     
-    void createDeathParticles(std::set<Particle*>& particle_set, ElementType element);
+    void createDeathParticles(std::set<Particle*>& particle_set, ElementType element, Vec2 location);
     
     ParticleData randomizePD(ParticleData pd);
     

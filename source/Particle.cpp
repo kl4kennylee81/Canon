@@ -57,10 +57,12 @@ void Particle::move() {
         _pd.current_angle += findAngularVelocity(_pd.revolution_time);
     }
     
-    // kind of hack
-    if (_pd.ttl == 0 || _pd.ttl < -50) {
+    if (_pd.ttl == 0) {
+        std::cout<<"INACTIVE!!!!!!!!!!!!!\n";
         _pd.active = false;
     }
+    
+    std::cout << "pos:" << _pd.position.toString() << "\n";
     
     _pd.ttl--;
     _time_alive++;

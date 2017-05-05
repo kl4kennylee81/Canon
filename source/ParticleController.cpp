@@ -36,6 +36,7 @@ void ParticleController::eventUpdate(Event* e) {
             CollisionEvent* collisionEvent = (CollisionEvent*)e;
             switch (collisionEvent->_collisionType) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
+                    std::cout << "sent\n";
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
                     handleDeathParticle(obj);
@@ -47,6 +48,8 @@ void ParticleController::eventUpdate(Event* e) {
 }
 
 void ParticleController::handleDeathParticle(GameObject* obj) {
+    if (obj->type != GameObject::ObjectType::CHARACTER) return;
+    
     Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
     _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
 }
@@ -64,13 +67,14 @@ void ParticleController::update(float timestep, std::shared_ptr<GameState> state
                 pd = _particle_map.at("blue_particle");
             }
             
-            std::shared_ptr<TrailParticleGenerator> generator = TrailParticleGenerator::alloc(_memory, pd, gameObj, state);
-            generator->start(); // replace this with events later?
-            _character_map.insert(std::make_pair(gameObj.get(), generator));
+//            std::shared_ptr<TrailParticleGenerator> generator = TrailParticleGenerator::alloc(_memory, pd, gameObj, state);
+//            
+//            _character_map.insert(std::make_pair(gameObj.get(), generator));
         }
     }
     
     generateTrails();
+    _death_gen->generate();
 }
 
 void ParticleController::generateTrails() {
@@ -130,18 +134,35 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     temp.start_scale = 0.3;
     temp.end_scale = 0.1;
     temp.current_scale = 0.5;
-    temp.texture_name = "blue_death";
+    temp.texture_name = "blue_death_part";
     temp.texture = assets->get<Texture>(temp.texture_name);
     
-    ParticleData temp2 = temp;
-    temp2.texture_name = "green_death";
+    ParticleData temp2;
+    temp2.color_fade = true;
+    temp2.start_color = Color4f::WHITE;
+    temp2.end_color = Color4f::WHITE;
+    temp2.color_duration = -1; // infinite
+    temp2.move = true;
+    temp2.gravity = Vec2(0,0);
+    temp2.acceleration = -0.005;
+    temp2.alpha_fade = true;
+    temp2.alpha_duration = 50;
+    temp2.start_alpha = 1;
+    temp2.rotate = true;
+    temp2.current_angle = 0;
+    temp2.revolution_time = 2;
+    temp2.scale = true;
+    temp2.start_scale = 0.3;
+    temp2.end_scale = 0.1;
+    temp2.current_scale = 0.5;
+    temp2.texture_name = "green_death_part";
     temp2.texture = assets->get<Texture>(temp2.texture_name);
     
     
     _particle_map.insert(std::make_pair(pd.texture_name, pd)); // blue trail
     _particle_map.insert(std::make_pair(pd2.texture_name, pd2)); // gold trail
     _particle_map.insert(std::make_pair(temp.texture_name, temp)); // blue death
-    _particle_map.insert(std::make_pair(temp2.texture_name, temp)); // gold death
+    _particle_map.insert(std::make_pair(temp2.texture_name, temp2)); // gold death
     
     _death_gen = DeathParticleGenerator::alloc(_memory, pd, state, &_particle_map);
     _death_gen->start();
