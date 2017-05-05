@@ -24,9 +24,9 @@
                 "UIEntries": [
                               "pauseTextImg",
                               "resumeButton",
-                              "homeButton2",
                               "LevelButton",
                               "RetryButton",
+                              "homeButton2",
                               "volumeIcon2",
                               "pianoIcon",
                               "sideEnds",
@@ -132,8 +132,8 @@
         },
         "LevelButton": {
             "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT",
-                "nextScreen": "blankScreen",
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "levelSelect",
                 "type": "modeChange"
             },
             "buttonLabel": " ",
