@@ -29,6 +29,7 @@
 #include "SoundController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
+#include "BulletController.hpp"
 
 class GameplayController : public BaseController {
 protected:
@@ -37,6 +38,7 @@ protected:
 	std::shared_ptr<MoveController> _moveController;
 	std::shared_ptr<CollisionController> _collisionController;
 	std::shared_ptr<AIController> _aiController;
+    std::shared_ptr<BulletController> _bulletController;
     std::shared_ptr<SwitchController> _switchController;
     std::shared_ptr<LevelController>  _levelController;
     std::shared_ptr<SpawnController> _spawnController;

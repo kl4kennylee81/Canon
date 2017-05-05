@@ -17,6 +17,7 @@
 #include "PathData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
+#include "BulletData.hpp"
 #include "LevelData.hpp"
 #include "ZoneData.hpp"
 #include "SoundData.hpp"
@@ -56,6 +57,7 @@ public:
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
     std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
     std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
+    std::unordered_map<std::string, std::shared_ptr<BulletData>> _bulletData;
     
     std::unordered_set<std::string> _tempKeys;
 
@@ -109,6 +111,8 @@ public:
     
     std::shared_ptr<AIData> getAIData(std::string aiKey);
     
+    std::shared_ptr<BulletData> getBulletData(std::string bulletKey);
+    
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
     std::shared_ptr<SoundData> getSoundData(std::string soundKey);
@@ -120,6 +124,8 @@ public:
     std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
     
     std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
+    
+    std::shared_ptr<BulletData> getBulletData(std::shared_ptr<WaveEntry> we);
     
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;

@@ -212,6 +212,15 @@ std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
     return getAIData(we->getAIKey());
 }
 
+std::shared_ptr<BulletData> World::getBulletData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if(templData == nullptr){
+        return nullptr;
+    }
+    return getBulletData(templData->bullet);
+}
+
+
 std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
     std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
     if (templData == nullptr) {
@@ -241,6 +250,13 @@ std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
         return _zoneData.at(zoneKey);
     }
     return _assets->get<ZoneData>(zoneKey);
+}
+
+std::shared_ptr<BulletData> World::getBulletData(std::string bulletKey){
+    if (_isSandbox && _bulletData.count(bulletKey) > 0){
+        return _bulletData.at(bulletKey);
+    }
+    return _assets->get<BulletData>(bulletKey);
 }
 
 std::shared_ptr<SoundData> World::getSoundData(std::string soundKey){

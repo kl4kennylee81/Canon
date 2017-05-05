@@ -37,6 +37,7 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(we->getElement()));
     std::shared_ptr<AIData> aid = _world->getAIData(we); // aiKey is in the wave entry
+    std::shared_ptr<BulletData> bd = _world->getBulletData(we);
     std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
     if (sounddata == nullptr){
         sounddata = _world->getSoundData("baseEnemySound");
@@ -46,11 +47,12 @@ void LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlaye
         zds.push_back(_world->getZoneData(zoneKey));
     }
 
+
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     gameOb->setIsPlayer(isPlayer);
     
-    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds);
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds, bd);
     notify(initevent.get());
     
     if (isPlayer){

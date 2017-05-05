@@ -21,6 +21,7 @@ _pathController(nullptr),
 _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
+_bulletController(nullptr),
 _switchController(nullptr),
 _levelController(nullptr),
 _clockController(nullptr),
@@ -111,6 +112,7 @@ void GameplayController::update(float timestep) {
     _pathController->update(timestep, _gameState);
     _moveController->update(timestep, _gameState);
     _aiController->update(timestep, _gameState);
+    _bulletController->update(timestep, _gameState);
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
@@ -143,6 +145,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
+    _bulletController = BulletController::alloc();
     _switchController = SwitchController::alloc(_gameState);
     _spawnController = SpawnController::alloc();
     _zoneController = ZoneController::alloc(_gameState,levelWorld);
@@ -164,6 +167,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _levelController->attach(_animationController.get());
     _levelController->attach(_spawnController.get());
 	_levelController->attach(_aiController.get());
+    _levelController->attach(_bulletController.get());
     _levelController->attach(_zoneController.get());
     _levelController->attach(_finishController.get());
     _levelController->attach(_soundController.get());
@@ -211,6 +215,7 @@ void GameplayController::dispose(){
     _pathController = nullptr;
     _moveController = nullptr;
     _aiController = nullptr;
+    _bulletController = nullptr;
     _collisionController = nullptr;
     _animationController = nullptr;
     _zoneController = nullptr;
