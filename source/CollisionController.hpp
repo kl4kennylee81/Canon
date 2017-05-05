@@ -35,6 +35,13 @@ protected:
     std::vector<GameObject*> objsScheduledForRemoval;
     std::vector<GameObject*> objsToIgnore;
     
+    std::map<GameObject*,float> hitStunMap;
+    
+    GameObject* bluePlayer;
+    GameObject* goldPlayer;
+    GameObject* blueZone;
+    GameObject* goldZone;
+    
     /** Whether or not debug mode is active */
     bool _debug;
     
@@ -75,6 +82,8 @@ public:
 	virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void updateHitStun();
     
     void dispose();
 

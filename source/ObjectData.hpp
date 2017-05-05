@@ -22,6 +22,7 @@ private:
     std::string goldAnimationKey;
     
     float animationScale;
+    int health;
 public:
     
     ObjectData() : Data(){}
@@ -34,11 +35,13 @@ public:
     
     float getAnimationScale();
     
-    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale);
+    int getHealth();
     
-    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale){
+    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale, int health);
+    
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale,int health){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(shapeKey,blueAnimKey, goldAnimKey,sound_key,animScale) ? result : nullptr);
+        return (result->init(shapeKey,blueAnimKey, goldAnimKey,sound_key,animScale,health) ? result : nullptr);
     }
 
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
