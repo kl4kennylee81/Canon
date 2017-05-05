@@ -25,6 +25,10 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     }
     // reinitialize the static clock
     GameState::_internalClock->init();
+    
+    // reset the gameObjects atomic counter
+    GameObject::resetAtomicUidCounter();
+    
     _reset = false;
     _activeCharacterPosition = 0;
     

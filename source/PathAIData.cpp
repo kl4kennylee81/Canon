@@ -11,7 +11,7 @@ bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path, PathDirec
 
     // scale to physics coordinates
     for (auto vec : _path){
-        vec = vec / (GAME_PHYSICS_SCALE);
+        vec = vec;
     }
     
     return true;
@@ -131,7 +131,7 @@ std::string getStringFromPath(std::vector<Vec2> vecPath)
 }
 
 std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("PATH"));
 	data->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_pathType)));
     switch (_pathType){
@@ -164,6 +164,7 @@ bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	std::vector<Vec2> path = getPathFromString(json->getString("path"));
 	PathDirection direction = getDirectionFromString(json->getString("direction"));
 	init(pathType, path, direction);
+	Data::preload(json);
 	return true;
 }
 

@@ -1,207 +1,254 @@
 {
     "animations": {
         "blueCharAnimation": {
-            "id": 1,
-            "texture": "./textures/models/player_models/charatemp_blue.png",
-            "rows": 6,
-            "cols": 1,
-            "size": 6,
-            "statemap": {
-                "idle": {
-                    "first": 0,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "active": {
-                    "first": 1,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "attack": {
-                    "first": 2,
-                    "total": 1,
-                    "frames": [1]
-                },
-                "moving": {
-                    "first": 3,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "return": {
-                    "first": 4,
-                    "total": 1,
-                    "frames": [3]
-                },
-                "death": {
-                    "first": 5,
-                    "total": 1,
-                    "frames": [15]
-                }
-            },
             "actionmap": {
-                "SPAWNING": {
-                    "repeat": "active"
-                },
-                "SPAWN": {
-                    "repeat": "active"
-                },
                 "ACTIVE": {
                     "repeat": "active"
-                },
+                }, 
                 "ATTACK": {
-                    "active": "attack",
+                    "active": "attack", 
                     "repeat": "moving"
-                },
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
                 "RETURN": {
-                    "active": "return",
+                    "active": "return", 
                     "repeat": "active"
-                },
-                "DEATH": {
-                    "active": "death"
-                }
-            }
-        },
-        "goldCharAnimation": {
-            "id": 2,
-            "texture": "./textures/models/player_models/charatemp_gold.png",
-            "rows": 6,
-            "cols": 1,
-            "size": 6,
-            "statemap": {
-                "idle": {
-                    "first": 0,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "active": {
-                    "first": 1,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "attack": {
-                    "first": 2,
-                    "total": 1,
-                    "frames": [1]
-                },
-                "moving": {
-                    "first": 3,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "return": {
-                    "first": 4,
-                    "total": 1,
-                    "frames": [3]
-                },
-                "death": {
-                    "first": 5,
-                    "total": 1,
-                    "frames": [15]
-                }
-            },
-            "actionmap": {
-                "SPAWNING": {
-                    "repeat": "active"
-                },
+                }, 
                 "SPAWN": {
                     "repeat": "active"
-                },
-                "ACTIVE": {
+                }, 
+                "SPAWNING": {
                     "repeat": "active"
-                },
-                "ATTACK": {
-                    "active": "attack",
-                    "repeat": "moving"
-                },
-                "RETURN": {
-                    "active": "return",
-                    "repeat": "active"
-                },
-                "DEATH": {
-                    "active": "death"
-                }
-            }
-        },
-        "blueEnemyAnimation": {
-            "id": 3,
-            "texture": "./textures/models/enemy_models/enemy_blue.png",
-            "rows": 4,
-            "cols": 2,
-            "size": 8,
-            "statemap": {
-                "spawning": {
-                    "first": 0,
-                    "total": 3,
-                    "frames": [10,10,30]
-                },
-                "idle": {
-                    "first": 2,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "death": {
-                    "first": 4,
-                    "total": 2,
-                    "frames": [15,15]
-                }
-            },
-            "actionmap": {
-                "SPAWNING": {
-                    "repeat": "spawning"
-                },
-                "SPAWN": {
-                    "repeat": "idle"
-                },
-                "DEATH": {
-                    "active": "death"
-                }
-            }
-        },
-        "redEnemyAnimation": {
-            "id": 4,
-            "texture": "./textures/models/enemy_models/enemy_red.png",
-            "rows": 4,
-            "cols": 2,
-            "size": 8,
-            "statemap": {
-                "spawning": {
-                    "first": 0,
-                    "total": 3,
-                    "frames": [10,10,30]
-                },
-                "idle": {
-                    "first": 2,
-                    "total": 1,
-                    "frames": [5]
-                },
-                "death": {
-                    "first": 4,
-                    "total": 2,
-                    "frames": [15,15]
-                }
-            },
-            "actionmap": {
-                "SPAWNING": {
-                    "repeat": "spawning"
-                },
-                "SPAWN": {
-                    "repeat": "idle"
-                },
-                "DEATH": {
-                    "active": "death"
-                }
-            }
-        },
-        "whiteBar": {
-            "actionmap": {
-                "SPAWNING": {
-                    "repeat": "spawning"
-                },
-                "SPAWN": {
-                    "repeat": "idle"
                 }
             }, 
             "cols": 1, 
+            "id": 1, 
+            "key": "blueCharAnimation", 
+            "rows": 6, 
+            "size": 6, 
+            "statemap": {
+                "active": {
+                    "first": 1, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "attack": {
+                    "first": 2, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "death": {
+                    "first": 5, 
+                    "frames": [
+                        15
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 3, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 4, 
+                    "frames": [
+                        3
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/models/player_models/charatemp_blue.png"
+        }, 
+        "blueEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 3, 
+            "key": "blueEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_blue.png"
+        }, 
+        "goldCharAnimation": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }, 
+                "ATTACK": {
+                    "active": "attack", 
+                    "repeat": "moving"
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "RETURN": {
+                    "active": "return", 
+                    "repeat": "active"
+                }, 
+                "SPAWN": {
+                    "repeat": "active"
+                }, 
+                "SPAWNING": {
+                    "repeat": "active"
+                }
+            }, 
+            "cols": 1, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 6, 
+            "size": 6, 
+            "statemap": {
+                "active": {
+                    "first": 1, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "attack": {
+                    "first": 2, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "death": {
+                    "first": 5, 
+                    "frames": [
+                        15
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 3, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 4, 
+                    "frames": [
+                        3
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/models/player_models/charatemp_gold.png"
+        }, 
+        "redEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 4, 
+            "key": "redEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_red.png"
+        }, 
+        "whiteBar": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteBar", 
             "nonUniformScale": 1, 
             "rows": 2, 
             "size": 2, 
@@ -212,12 +259,12 @@
                         10
                     ], 
                     "total": 1
-                },
+                }, 
                 "spawning": {
-                    "first": 1,
+                    "first": 1, 
                     "frames": [
                         10
-                    ],
+                    ], 
                     "total": 1
                 }
             }, 
@@ -225,14 +272,15 @@
         }, 
         "whiteCircle": {
             "actionmap": {
-                "SPAWNING": {
-                    "repeat": "spawning"
-                },
                 "SPAWN": {
                     "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
                 }
             }, 
             "cols": 1, 
+            "key": "whiteCircle", 
             "rows": 2, 
             "size": 2, 
             "statemap": {
@@ -242,12 +290,12 @@
                         10
                     ], 
                     "total": 1
-                },
+                }, 
                 "spawning": {
-                    "first": 1,
+                    "first": 1, 
                     "frames": [
                         10
-                    ],
+                    ], 
                     "total": 1
                 }
             }, 
@@ -255,14 +303,15 @@
         }, 
         "whiteSector": {
             "actionmap": {
-                "SPAWNING": {
-                    "repeat": "spawning"
-                },
                 "SPAWN": {
                     "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
                 }
             }, 
             "cols": 1, 
+            "key": "whiteSector", 
             "rows": 2, 
             "size": 2, 
             "statemap": {
@@ -272,17 +321,16 @@
                         10
                     ], 
                     "total": 1
-                },
+                }, 
                 "spawning": {
-                    "first": 1,
+                    "first": 1, 
                     "frames": [
                         10
-                    ],
+                    ], 
                     "total": 1
                 }
             }, 
             "texture": "./textures/test/sector_spritesheet.png"
         }
-        
     }
 }

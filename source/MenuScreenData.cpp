@@ -52,7 +52,8 @@ bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = MenuEntry::alloc(child);
 		addMenuEntry(entry);
 	}
-    
+
+	Data::preload(json);
 	return true;
 }
 

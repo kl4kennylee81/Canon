@@ -33,7 +33,7 @@ float ZoneEntry::getAngle(){
 }
 
 std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("ROTATE"));
 	std::shared_ptr<JsonValue> zoneEntries = JsonValue::allocObject();
 
@@ -43,7 +43,7 @@ std::shared_ptr<JsonValue> RotateZoneData::toJsonValue(){
 	}
 
 	data->appendChild("zoneEntries", zoneEntries);
-	data->appendChild("radius", JsonValue::alloc(radius*GAME_PHYSICS_SCALE));
+	data->appendChild("radius", JsonValue::alloc(radius));
 	data->appendChild("speed", JsonValue::alloc(speed));
 	return data;
 }
@@ -67,6 +67,7 @@ bool RotateZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         zones.push_back(entry);
     }
 
+	Data::preload(json);
     return true;
 }
 

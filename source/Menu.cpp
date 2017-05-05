@@ -12,6 +12,8 @@ using namespace cugl;
 
 std::shared_ptr<cugl::Node> Menu::getBackground() { return _menuBackground; }
 
+std::string Menu::getMenuKey() { return _mKey; }
+
 void Menu::setBackground(std::shared_ptr<cugl::Node> node)
 { 
 	_menuBackground = node;
@@ -35,7 +37,8 @@ void Menu::detachFromScene(){
     this->_menu->removeFromParent();
 }
 
-bool Menu::init(bool touch){
+bool Menu::init(bool touch, std::string mKey){
     this->_menu = Node::alloc();
+	this->_mKey = mKey;
     return true;
 }

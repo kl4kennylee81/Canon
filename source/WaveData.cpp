@@ -13,7 +13,7 @@
 
 using namespace cugl;
 
-bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
+bool WaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string tempKey = json->getString("templateKey");
     
     init(json->getFloat("x"),
@@ -21,12 +21,14 @@ bool WaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json){
         json->getString("element") == "BLUE" ? ElementType::BLUE : ElementType::GOLD,
         json->getString("templateKey"),
         json->getString("aiKey"));
+	Data::preload(json);
     return true;
 }
 
 bool WaveEntry::init(float x, float y,ElementType element,std::string templateKey, std::string aiKey){
-    this->position.x = x / GAME_PHYSICS_SCALE;
-    this->position.y = y / GAME_PHYSICS_SCALE;
+    Data::init();
+    this->position.x = x;
+    this->position.y = y;
     this->element = element;
     this->templateKey = templateKey;
     this->aiKey = aiKey;
@@ -35,9 +37,9 @@ bool WaveEntry::init(float x, float y,ElementType element,std::string templateKe
 
 std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 {
-	std::shared_ptr<JsonValue> object = JsonValue::allocObject();
-	object->appendChild("x", JsonValue::alloc(position.x * GAME_PHYSICS_SCALE));
-	object->appendChild("y", JsonValue::alloc(position.y * GAME_PHYSICS_SCALE));
+	std::shared_ptr<JsonValue> object = Data::toJsonValue();
+	object->appendChild("x", JsonValue::alloc(position.x));
+	object->appendChild("y", JsonValue::alloc(position.y));
 	object->appendChild("element", JsonValue::alloc((element == ElementType::BLUE) ? "BLUE" : "GOLD"));
     object->appendChild("aiKey", JsonValue::alloc(aiKey));
     if(templateKey != ""){
@@ -50,13 +52,13 @@ std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
 
 std::shared_ptr<JsonValue> WaveData::toJsonValue()
 {
-	std::shared_ptr<JsonValue> wave = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> wave = Data::toJsonValue();
 	std::shared_ptr<JsonValue> objectList = JsonValue::allocObject();
 	for (int i = 0; i < _waveEntries.size(); i++)
 	{
-		auto child = _waveEntries.at(i);
+        std::shared_ptr<WaveEntry> child = _waveEntries.at(i);
 		std::shared_ptr<JsonValue> object = child->toJsonValue();
-		objectList->appendChild("object" + std::to_string(i + 1), object);		
+		objectList->appendChild(child->key, object);
 	}
 	wave->appendChild("waveEntries", objectList);
 	return wave;
@@ -77,6 +79,7 @@ bool WaveData::preload(const std::shared_ptr<cugl::JsonValue>& json){
 		auto entry = WaveEntry::alloc(child);
 		addWaveEntry(entry);
 	}
+	Data::preload(json);
     return true;
 }
 

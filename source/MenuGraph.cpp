@@ -74,7 +74,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
     for (auto entry : menuScreens->getMenuEntries() ){
         std::string menuKey = entry.first;
         std::shared_ptr<MenuEntry> menuEntry = entry.second;
-        std::shared_ptr<Menu> menu = Menu::alloc(false);
+        std::shared_ptr<Menu> menu = Menu::alloc(false, menuKey);
 
 		if (entry.second->menuBackgroundKey != "") {
 			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
@@ -172,10 +172,33 @@ bool MenuGraph::needsUpdate(){
     return _currentMode != _nextMode;
 }
 
-void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
+void MenuGraph::attachToScene(std::shared_ptr<Scene> scene){
     scene->addChildWithName(_menuNode,"menuNode",3);
 }
 
-void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){
+void MenuGraph::detachFromScene(std::shared_ptr<Scene> scene){
+    if (scene->getChildByName("menuNode") == nullptr){
+        return;
+    }
     scene->removeChild(_menuNode);
+}
+
+std::shared_ptr<JsonValue> MenuGraph::toJsonValue(){
+	std::shared_ptr<JsonValue> mg = JsonValue::allocObject();
+	mg->appendChild("currentMode", JsonValue::alloc(modeToString(_currentMode)));
+	mg->appendChild("nextMode", JsonValue::alloc(modeToString(_nextMode)));
+	mg->appendChild("activeMenu", JsonValue::alloc(_activeMenu->getMenuKey()));
+	return mg;
+}
+
+bool MenuGraph::initAfterResume(std::shared_ptr<JsonValue> menuGraphResumeJson){
+    _currentMode = stringToMode(menuGraphResumeJson->getString("currentMode"));
+    _nextMode = stringToMode(menuGraphResumeJson->getString("nextMode"));
+    
+    _activeMenu = _menuMap.at(menuGraphResumeJson->getString("activeMenu"));
+    if (_currentMode == Mode::GAMEPLAY){
+        // hardcoded to go pause the screen when in gameplay state
+        setActiveMenu("pauseScreen");
+    }
+    return true;
 }

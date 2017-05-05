@@ -1,0 +1,50 @@
+{
+	"menuGraph":	{
+		"currentMode":	"GAMEPLAY",
+		"nextMode":	"GAMEPLAY",
+		"activeMenu":	"gameScreen"
+	},
+	"gameplay":	{
+		"levelController":	{
+			"levelDataKey":	"overlap",
+			"currentWaveIndex":	0,
+			"framesElapsed":	101,
+			"readyToSpawn":	0,
+			"playerSpawned":	1,
+			"players":	[{
+					"uid":	"1",
+					"currentPosX":	18.750000,
+					"currentPosY":	7.812500,
+					"waveID":	"player1"
+				}, {
+					"uid":	"3",
+					"currentPosX":	12.500000,
+					"currentPosY":	7.812500,
+					"waveID":	"player2"
+				}],
+			"enemyObjects":	[{
+					"uid":	"5",
+					"currentPosX":	15.900000,
+					"currentPosY":	16.833334,
+					"waveID":	"object1"
+				}, {
+					"uid":	"7",
+					"currentPosX":	14.300000,
+					"currentPosY":	16.833334,
+					"waveID":	"object2"
+				}],
+			"uidToWaveEntryMap":	{
+				"1":	"player1",
+				"3":	"player2",
+				"5":	"object1",
+				"7":	"object2"
+			}
+		},
+		"spawnController":	{
+			"spawnMap":	{
+				"5":	79,
+				"7":	79
+			}
+		}
+	}
+}

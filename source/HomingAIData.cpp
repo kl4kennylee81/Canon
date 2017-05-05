@@ -5,7 +5,7 @@
 using namespace cugl;
 
 std::shared_ptr<JsonValue> HomingAIData::toJsonValue() {
-	std::shared_ptr<JsonValue> ai = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> ai = Data::toJsonValue();
 	ai->appendChild("type", JsonValue::alloc("HOMING"));
 	return ai;
 }
@@ -20,6 +20,7 @@ bool HomingAIData::preload(const std::string& file) {
 bool HomingAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::HOMING;
 	init();
+	Data::preload(json);
 	return true;
 }
 

@@ -57,6 +57,11 @@ void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 
 bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world)
 {
+    // in case when resuming initially levelData empty
+    if (world->getLevelData() == nullptr){
+        return true;
+    }
+    
     cugl::Size cameraSize = state->getScene()->getCamera()->getViewport().size;
     
 	// Constants

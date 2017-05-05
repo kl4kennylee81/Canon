@@ -1,48 +1,90 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <ItemGroup>
-    <Filter Include="Resource Files"> </Filter>
-    <Filter Include="Source\sound"> </Filter>
-    <Filter Include="Source\particle"> </Filter>
-    <Filter Include="Source\load\prototypes\zonedata"> </Filter>
-    <Filter Include="Source\finish"> </Filter>
-    <Filter Include="Source\util"> </Filter>
-    <Filter Include="Source\load\prototypes\levels"> </Filter>
-    <Filter Include="Source\levelEditor\LevelEditorEvent"> </Filter>
-    <Filter Include="Source\physics\collisionEvent"> </Filter>
-    <Filter Include="Source\physics"> </Filter>
-    <Filter Include="Source\load\prototypes\menu"> </Filter>
-    <Filter Include="Source\menu\menuEvent"> </Filter>
-    <Filter Include="Source\ai"> </Filter>
-    <Filter Include="Source\models"> </Filter>
-    <Filter Include="Source\animation\AnimationEvent"> </Filter>
-    <Filter Include="Source\movement\moveEvent"> </Filter>
-    <Filter Include="Source\pathControls"> </Filter>
-    <Filter Include="Source\level"> </Filter>
-    <Filter Include="Source\movement\player"> </Filter>
-    <Filter Include="Source\movement"> </Filter>
-    <Filter Include="Source\gameplay"> </Filter>
-    <Filter Include="Source\level\progressBar"> </Filter>
-    <Filter Include="Source\switching"> </Filter>
-    <Filter Include="Source\levelEditor"> </Filter>
-    <Filter Include="Source\util\path"> </Filter>
-    <Filter Include="Source\base"> </Filter>
-    <Filter Include="Source\load\prototypes\object"> </Filter>
-    <Filter Include="Source\util\observer\event"> </Filter>
-    <Filter Include="Source\time"> </Filter>
-    <Filter Include="Source\load"> </Filter>
-    <Filter Include="Source\ai\activeAI"> </Filter>
-    <Filter Include="Source"> </Filter>
-    <Filter Include="Source\load\prototypes\aidata"> </Filter>
-    <Filter Include="Source\animation"> </Filter>
-    <Filter Include="Source\finish\FinishEvent"> </Filter>
-    <Filter Include="Source\switching\SwitchEvent"> </Filter>
-    <Filter Include="Source\pathControls\PathEvent"> </Filter>
-    <Filter Include="Source\level\LevelEvent"> </Filter>
-    <Filter Include="Source\load\prototypes"> </Filter>
-    <Filter Include="Source\util\observer"> </Filter>
-    <Filter Include="Source\zones"> </Filter>
-    <Filter Include="Source\menu"> </Filter>
+    <Filter Include="Resource Files">
+    </Filter>
+    <Filter Include="Source\sound">
+    </Filter>
+    <Filter Include="Source\particle">
+    </Filter>
+    <Filter Include="Source\load\prototypes\zonedata">
+    </Filter>
+    <Filter Include="Source\finish">
+    </Filter>
+    <Filter Include="Source\util">
+    </Filter>
+    <Filter Include="Source\load\prototypes\levels">
+    </Filter>
+    <Filter Include="Source\levelEditor\LevelEditorEvent">
+    </Filter>
+    <Filter Include="Source\physics\collisionEvent">
+    </Filter>
+    <Filter Include="Source\physics">
+    </Filter>
+    <Filter Include="Source\load\prototypes\menu">
+    </Filter>
+    <Filter Include="Source\menu\menuEvent">
+    </Filter>
+    <Filter Include="Source\ai">
+    </Filter>
+    <Filter Include="Source\models">
+    </Filter>
+    <Filter Include="Source\animation\AnimationEvent">
+    </Filter>
+    <Filter Include="Source\movement\moveEvent">
+    </Filter>
+    <Filter Include="Source\pathControls">
+    </Filter>
+    <Filter Include="Source\level">
+    </Filter>
+    <Filter Include="Source\movement\player">
+    </Filter>
+    <Filter Include="Source\movement">
+    </Filter>
+    <Filter Include="Source\gameplay">
+    </Filter>
+    <Filter Include="Source\level\progressBar">
+    </Filter>
+    <Filter Include="Source\switching">
+    </Filter>
+    <Filter Include="Source\levelEditor">
+    </Filter>
+    <Filter Include="Source\util\path">
+    </Filter>
+    <Filter Include="Source\base">
+    </Filter>
+    <Filter Include="Source\load\prototypes\object">
+    </Filter>
+    <Filter Include="Source\util\observer\event">
+    </Filter>
+    <Filter Include="Source\time">
+    </Filter>
+    <Filter Include="Source\load">
+    </Filter>
+    <Filter Include="Source\ai\activeAI">
+    </Filter>
+    <Filter Include="Source">
+    </Filter>
+    <Filter Include="Source\load\prototypes\aidata">
+    </Filter>
+    <Filter Include="Source\animation">
+    </Filter>
+    <Filter Include="Source\finish\FinishEvent">
+    </Filter>
+    <Filter Include="Source\switching\SwitchEvent">
+    </Filter>
+    <Filter Include="Source\pathControls\PathEvent">
+    </Filter>
+    <Filter Include="Source\level\LevelEvent">
+    </Filter>
+    <Filter Include="Source\load\prototypes">
+    </Filter>
+    <Filter Include="Source\util\observer">
+    </Filter>
+    <Filter Include="Source\zones">
+    </Filter>
+    <Filter Include="Source\menu">
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -210,9 +252,6 @@
     <ClCompile Include="..\..\source\ActivePath.cpp">
       <Filter>Source\movement</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Data.cpp">
-      <Filter>Source\load</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Level.cpp">
       <Filter>Source\level</Filter>
     </ClCompile>
@@ -300,6 +339,9 @@
     <ClCompile Include="..\..\source\LevelEditorController.cpp">
       <Filter>Source\levelEditor</Filter>
     </ClCompile>
+    <ClInclude Include="..\..\source\Resume.hpp">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HelloWorld.rc">
@@ -585,5 +627,13 @@
     <ClInclude Include="..\..\source\InternalClock.hpp">
       <Filter>Source\time</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Resume.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Data.cpp">
+      <Filter>Source\load</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

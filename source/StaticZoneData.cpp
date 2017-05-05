@@ -12,7 +12,7 @@ using namespace cugl;
 
 std::shared_ptr<JsonValue> StaticZoneData::toJsonValue()
 {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("STATIC"));
 	data->appendChild("objectKey", JsonValue::alloc(objectKey));
 	data->appendChild("relX", JsonValue::alloc(relPos.x));
@@ -39,6 +39,7 @@ bool StaticZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,rel_x,rel_y,cooldown,duration,el);
 
+	Data::preload(json);
     return true;
 }
 

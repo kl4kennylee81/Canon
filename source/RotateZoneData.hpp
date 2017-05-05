@@ -51,7 +51,7 @@ public:
     
     bool init(float radius, float speed) {
         ZoneData::init(ZoneType::ROTATE);
-        this->radius = radius/GAME_PHYSICS_SCALE;
+        this->radius = radius;
         this->speed = speed;
         return true;
     }

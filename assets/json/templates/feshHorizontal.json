@@ -1,49 +1,4 @@
 {
-  "templates":  {
-    "feshHorizontal": {
-      "name": "feshHorizontal",
-      "aiKeys":  ["verticalUp","verticalDown","vertical"],
-      "zoneKeys": ["feshHorizontal_zone"],
-      "objectKey":  "feshHorizontal_object"
-    }
-  },
-  "objects":{
-    "feshHorizontal_object":{
-      "shapeKey": "feshHorizontal_shape",
-      "blueAnimationKey": "blue_feshHorizontal_animation",
-      "goldAnimationKey": "yellow_feshHorizontal_animation",
-      "soundKey": "baseEnemySound",
-      "animationScale":2.0
-    },
-    "feshHorizontal_zoneObject":{
-      "shapeKey": "feshHorizontal_zoneShape",
-      "blueAnimationKey": "whiteBar",
-      "goldAnimationKey": "whiteBar",
-      "animationScale":1.0
-    }
-  },
-  "shapes":{
-    "feshHorizontal_shape": {
-      "vertices": [0,0,50,0,50,50,0,50]
-    },
-    "feshHorizontal_zoneShape":{
-      "vertices": [-1024,20,1024,20,1024,-20,-1024,-20]
-    }
-  },
-  "zones":{
-    "feshHorizontal_zone": {
-      "type": "PULSE",
-      "objectKey": "feshHorizontal_zoneObject",
-      "minSizeX": 1.0,
-      "minSizeY": 1.0,
-      "minTime": 60,
-      "maxSizeX": 1.0,
-      "maxSizeY": 1.0,
-      "maxTime": 60,
-      "lerpTime": 320,
-      "element": "MATCH"
-    }
-  },
   "animations":{
     "blue_feshHorizontal_animation": {
       "texture": "./textures/models/enemy_models/fesh/fesh_blue.png",
@@ -125,6 +80,80 @@
           }
       }
     }
-  }
+  }, 
+    "objects": {
+        "feshHorizontal_object": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blue_feshHorizontal_animation", 
+            "goldAnimationKey": "yellow_feshHorizontal_animation", 
+            "key": "feshHorizontal_object", 
+            "shapeKey": "feshHorizontal_shape", 
+            "soundKey": "baseEnemySound"
+        }, 
+        "feshHorizontal_zoneObject": {
+            "animationScale": 1.0, 
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "feshHorizontal_zoneObject", 
+            "shapeKey": "feshHorizontal_zoneShape"
+        }
+    }, 
+    "shapes": {
+        "feshHorizontal_shape": {
+            "key": "feshHorizontal_shape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.5625, 
+                0.0, 
+                1.5625, 
+                1.5625, 
+                0.0, 
+                1.5625
+            ]
+        }, 
+        "feshHorizontal_zoneShape": {
+            "key": "feshHorizontal_zoneShape", 
+            "vertices": [
+                -32.0, 
+                0.625, 
+                32.0, 
+                0.625, 
+                32.0, 
+                -0.625, 
+                -32.0, 
+                -0.625
+            ]
+        }
+    }, 
+    "templates": {
+        "feshHorizontal": {
+            "aiKeys": [
+                "verticalUp", 
+                "verticalDown", 
+                "vertical"
+            ], 
+            "key": "feshHorizontal", 
+            "name": "feshHorizontal", 
+            "objectKey": "feshHorizontal_object", 
+            "zoneKeys": [
+                "feshHorizontal_zone"
+            ]
+        }
+    }, 
+    "zones": {
+        "feshHorizontal_zone": {
+            "element": "MATCH", 
+            "key": "feshHorizontal_zone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 1.0, 
+            "minSizeY": 1.0, 
+            "minTime": 60, 
+            "objectKey": "feshHorizontal_zoneObject", 
+            "type": "PULSE"
+        }
+    }
 }
-

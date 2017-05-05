@@ -17,7 +17,6 @@
 class TemplateWaveEntry : public Data {
 private:
     std::string objectKey;
-    
     float _spawnTime;
     
 public:

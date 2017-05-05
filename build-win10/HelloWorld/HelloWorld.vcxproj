@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="14.0">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -123,6 +123,7 @@
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <DisableSpecificWarnings>4068;4018;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -185,6 +186,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\Resume.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\source\PathEvent.hpp" />
     <ClInclude Include="..\..\source\Subject.hpp" />
@@ -291,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\PathEvent.cpp" />
+    <ClCompile Include="..\..\source\Resume.cpp" />
     <ClCompile Include="..\..\source\Subject.cpp" />
     <ClCompile Include="..\..\source\Observer.cpp" />
     <ClCompile Include="..\..\source\main.cpp" />

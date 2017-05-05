@@ -14,7 +14,6 @@
 #include <unordered_map>
 #include "ObjectData.hpp"
 #include "AnimationData.hpp"
-#include "PathData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
 #include "LevelData.hpp"
@@ -49,7 +48,6 @@ public:
     // static prototypes used to spawn units into the gameState
     std::unordered_map<std::string, std::shared_ptr<ObjectData>> _objectData;
     std::unordered_map<std::string, std::shared_ptr<AnimationData>> _animationData;
-    std::unordered_map<std::string, std::shared_ptr<PathData>> _pathData;
     std::unordered_map<std::string, std::shared_ptr<ShapeData>> _shapeData;
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
@@ -100,8 +98,6 @@ public:
     std::shared_ptr<ObjectData> getObjectData(std::string obKey);
     
     std::shared_ptr<AnimationData> getAnimationData(std::string aKey);
-    
-    std::shared_ptr<PathData> getPathData(std::string pathKey);
     
     std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
     

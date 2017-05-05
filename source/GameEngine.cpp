@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "MenuEvent.hpp"
 #include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
@@ -17,6 +18,8 @@
 #include "UIDataLoader.hpp"
 #include "Util.hpp"
 #include <memory>
+#include <iostream>
+#include <fstream>
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -85,7 +88,6 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
     assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
     assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
-    assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
     assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
     assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
     assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
@@ -221,6 +223,29 @@ void GameEngine::onShutdown() {
  */
 void GameEngine::onSuspend() {
     AudioEngine::get()->pauseAll();
+    
+    std::shared_ptr<JsonValue> suspendJson = JsonValue::allocObject();
+    suspendJson->appendChild("menuGraph", _menuGraph->toJsonValue());
+    switch(_menuGraph->getMode()){
+        case Mode::GAMEPLAY:
+        {
+            suspendJson->appendChild("gameplay",_gameplay->toJsonValue());
+        }
+    }
+    
+//    // save the suspendJson to a file in the saveDirectory only exists when running the game
+//    // its in a temporary directory of the app
+//    std::string saveDir = Application::get()->getSaveDirectory();
+    
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
+    
+    std::string filePath = "/"+saveDir+"/suspend.json";
+    
+    std::ofstream newFile;
+    newFile.open(filePath);
+    newFile << suspendJson->toString();
+    newFile.close();
 }
 
 /**
@@ -235,6 +260,60 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
+    
+    std::vector<std::string> vec = Util::split(__FILE__, '/');
+    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
+    
+    std::string filePath = "/"+saveDir+"/suspend.json";
+    auto reader = JsonReader::alloc(filePath);
+    if(reader == nullptr) {
+        return;
+    }
+    std::shared_ptr<JsonValue> resumeJson = reader->readJson();
+    
+    // have to reload all data files
+    this->onStartup();
+    
+    // poll while loading
+    while (_assets->progress() < 1.0){
+    }
+    
+    // this is to clear the outdated screen when resuming
+    if (_menu!=nullptr){
+        _menu->deactivate();
+        _menu = nullptr;
+    }
+    if (_gameplay != nullptr){
+        _gameplay->deactivate();
+        _gameplay = nullptr;
+    }
+    // possibly call all the load methods again
+    std::shared_ptr<World> levelWorld = World::alloc(_assets);
+    
+    // TODO replace with allocing the menuGraph and also reloading in all the files
+    _gameplay = GameplayController::alloc(_scene,levelWorld);
+    
+    _gameplay->onResume(resumeJson->get("gameplay"));
+    
+    _menuGraph->populate(_assets);
+    _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
+    
+    _menu = MenuController::alloc(_scene,_menuGraph);
+    
+    if (_gameplay != nullptr){
+        // this is so that the menu can interact with the game screen
+        _menu->attach(_gameplay.get());
+        _gameplay->attach(_menu.get());
+    }
+    
+    if (_levelEditor != nullptr){
+        _levelEditor = LevelEditorController::alloc(_scene, _assets);
+        _levelEditor->attach(_menu.get());
+    }
+    
+    // send an event to gameplayController to pause the game
+    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
+    _menu->notify(pauseEvent.get());
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
@@ -365,7 +444,7 @@ void GameEngine::initializeNextMode(){
     }
 }
 
-
+int hi = 0;
 
 /**
  * The method called to update the application data.
@@ -381,8 +460,6 @@ void GameEngine::initializeNextMode(){
 void GameEngine::update(float timestep) {
     // update the touch input
     InputController::update();
-    
-//    std::cout << timestep << std::endl;
     
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
@@ -421,6 +498,13 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
+            if (hi == 100){
+                onSuspend();
+                onResume();
+                hi+=1;
+            } else {
+                hi+=1;
+            }
             break;
         }
         case Mode::MAIN_MENU:

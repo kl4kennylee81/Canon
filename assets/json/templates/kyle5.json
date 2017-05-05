@@ -1,10 +1,13 @@
 {
-	"templates":	{
-		"kyle5":	{
-			"name":	"kyle5",
-			"aiKeys":	["static"],
-			"objectKey":	"object1",
-			"spawnTime":	90
-		}
-	}
+    "templates": {
+        "kyle5": {
+            "aiKeys": [
+                "static"
+            ], 
+            "key": "kyle5", 
+            "name": "kyle5", 
+            "objectKey": "object1", 
+            "spawnTime": 90
+        }
+    }
 }
