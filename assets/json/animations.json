@@ -23,56 +23,56 @@
                     "repeat": "active"
                 }
             }, 
-            "cols": 1, 
-            "id": 1, 
-            "key": "blueCharAnimation", 
-            "rows": 6, 
-            "size": 6, 
+            "cols": 8, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 7, 
+            "size": 56, 
             "statemap": {
                 "active": {
-                    "first": 1, 
+                    "first": 8, 
                     "frames": [
-                        5
+                        9,9,9,9,9,9,9
                     ], 
-                    "total": 1
+                    "total": 7
                 }, 
                 "attack": {
-                    "first": 2, 
+                    "first": 16, 
+                    "frames": [
+                        6,6,6,6,6,6,5,5,5
+                    ], 
+                    "total": 9
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10,10,10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
                     "frames": [
                         1
                     ], 
                     "total": 1
                 }, 
-                "death": {
-                    "first": 5, 
-                    "frames": [
-                        15
-                    ], 
-                    "total": 1
-                }, 
-                "idle": {
-                    "first": 0, 
-                    "frames": [
-                        5
-                    ], 
-                    "total": 1
-                }, 
                 "moving": {
-                    "first": 3, 
+                    "first": 24, 
                     "frames": [
-                        5
+                        1
                     ], 
                     "total": 1
                 }, 
                 "return": {
-                    "first": 4, 
+                    "first": 32, 
                     "frames": [
-                        3
+                        5,5,5,6,6,6,6,6
                     ], 
-                    "total": 1
+                    "total": 8
                 }
             }, 
-            "texture": "./textures/models/player_models/charatemp_blue.png"
+            "texture": "./textures/models/player_models/odette_spritesheet.png"
         }, 
         "blueEnemyAnimation": {
             "actionmap": {
@@ -142,56 +142,56 @@
                     "repeat": "active"
                 }
             }, 
-            "cols": 1, 
+            "cols": 8, 
             "id": 2, 
             "key": "goldCharAnimation", 
-            "rows": 6, 
-            "size": 6, 
+            "rows": 7, 
+            "size": 56, 
             "statemap": {
                 "active": {
-                    "first": 1, 
+                    "first": 8, 
                     "frames": [
-                        5
+                        9,9,9,9,9,9,9
                     ], 
-                    "total": 1
+                    "total": 7
                 }, 
                 "attack": {
-                    "first": 2, 
+                    "first": 16, 
+                    "frames": [
+                        6,6,6,6,6,6,5,5,5
+                    ], 
+                    "total": 9
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10,10,10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
                     "frames": [
                         1
                     ], 
                     "total": 1
                 }, 
-                "death": {
-                    "first": 5, 
-                    "frames": [
-                        15
-                    ], 
-                    "total": 1
-                }, 
-                "idle": {
-                    "first": 0, 
-                    "frames": [
-                        5
-                    ], 
-                    "total": 1
-                }, 
                 "moving": {
-                    "first": 3, 
+                    "first": 24, 
                     "frames": [
-                        5
+                        1
                     ], 
                     "total": 1
                 }, 
                 "return": {
-                    "first": 4, 
+                    "first": 32, 
                     "frames": [
-                        3
+                        5,5,5,6,6,6,6,6
                     ], 
-                    "total": 1
+                    "total": 8
                 }
             }, 
-            "texture": "./textures/models/player_models/charatemp_gold.png"
+            "texture": "./textures/models/player_models/loide_spritesheet.png"
         }, 
         "redEnemyAnimation": {
             "actionmap": {

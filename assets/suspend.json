@@ -6,44 +6,86 @@
 	},
 	"gameplay":	{
 		"levelController":	{
-			"levelDataKey":	"overlap",
+			"levelDataKey":	"blobos",
 			"currentWaveIndex":	0,
-			"framesElapsed":	80.200020,
+			"framesElapsed":	86.600014,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	18.750000,
-					"currentPosY":	7.812500,
+					"currentPosX":	23.521463,
+					"currentPosY":	14.001861,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
-					"currentPosX":	11.304443,
-					"currentPosY":	2.579659,
+					"currentPosX":	12.500000,
+					"currentPosY":	7.812500,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
 					"uid":	"5",
-					"currentPosX":	15.900000,
-					"currentPosY":	16.833334,
+					"currentPosX":	13,
+					"currentPosY":	13.433333,
 					"waveID":	"object1"
 				}, {
-					"uid":	"7",
-					"currentPosX":	14.300000,
-					"currentPosY":	16.833334,
+					"uid":	"6",
+					"currentPosX":	16.666666,
+					"currentPosY":	13.600000,
 					"waveID":	"object2"
+				}, {
+					"uid":	"7",
+					"currentPosX":	20.066668,
+					"currentPosY":	11.033333,
+					"waveID":	"object3"
+				}, {
+					"uid":	"8",
+					"currentPosX":	20.400000,
+					"currentPosY":	7.466666,
+					"waveID":	"object4"
+				}, {
+					"uid":	"9",
+					"currentPosX":	9.766666,
+					"currentPosY":	10.900000,
+					"waveID":	"object5"
+				}, {
+					"uid":	"10",
+					"currentPosX":	9.933333,
+					"currentPosY":	7.633333,
+					"waveID":	"object6"
+				}, {
+					"uid":	"11",
+					"currentPosX":	13,
+					"currentPosY":	4.366666,
+					"waveID":	"object7"
+				}, {
+					"uid":	"12",
+					"currentPosX":	17.166666,
+					"currentPosY":	4.433333,
+					"waveID":	"object8"
 				}],
 			"uidToWaveEntryMap":	{
 				"1":	"player1",
 				"3":	"player2",
 				"5":	"object1",
-				"7":	"object2"
+				"6":	"object2",
+				"7":	"object3",
+				"8":	"object4",
+				"9":	"object5",
+				"10":	"object6",
+				"11":	"object7",
+				"12":	"object8"
 			}
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"7":	99.800079,
-				"5":	99.800079
+				"8":	93.400055,
+				"9":	93.400055,
+				"7":	93.400055,
+				"12":	93.400055,
+				"6":	93.400055,
+				"5":	93.400055,
+				"10":	93.400055,
+				"11":	93.400055
 			}
 		}
 	}
