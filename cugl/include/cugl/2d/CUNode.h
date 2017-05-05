@@ -955,6 +955,12 @@ public:
     
 #pragma mark -
 #pragma mark Transforms
+    
+    /**
+     * Custom code
+     */
+    Mat4 getCombined();
+    
     /**
      * Returns the non-uniform scaling factor for this node about the anchor.
      *

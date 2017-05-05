@@ -3,3 +3,4 @@ assets/json/fullLevels/*.json
 assets/json/assets.json
 build-win10/
 */.DS_Store
+.DS_Store

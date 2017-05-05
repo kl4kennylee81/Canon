@@ -9,36 +9,84 @@
 //
 #include "Particle.h"
 
+#pragma mark -
+#pragma mark Particle
+
+bool Particle::init(ParticleData pd) {
+    _pd = pd;
+    _time_alive = 0;
+    
+    if (pd.color_fade) {
+        _current_color = _pd.start_color;
+        _color_step = findColorStep();
+    }
+    
+    if (pd.alpha_fade) {
+        _alpha_step = findAlphaStep();
+        _current_color.set(_current_color.r, _current_color.g, _current_color.b, pd.start_alpha);
+    }
+    
+    return true;
+}
 
 void Particle::move() {
-    // iteratively simulating kinematics
-    _pd.position += _pd.velocity;
-    _pd.velocity.x += _pd.velocity.x*_pd.acceleration*_time_alive;
-    _pd.velocity.y += _pd.velocity.y*_pd.acceleration*_time_alive;
-    _pd.velocity += _pd.gravity*_time_alive;
+    if (!_pd.active) return;
     
-    // take into account color interpolation. Linear for now.
-    _current_color.add(_color_step, false);
+    if (_pd.move) {
+        // iteratively simulating kinematics
+        _pd.position += _pd.velocity;
+        _pd.velocity.x += _pd.velocity.x*_pd.acceleration*_time_alive;
+        _pd.velocity.y += _pd.velocity.y*_pd.acceleration*_time_alive;
+        _pd.velocity += _pd.gravity*_time_alive;
+    }
     
-    // take into account ttl fades
-    _current_color.subtract(_alpha_step, true);
+    if (_pd.color_fade) {
+        // take into account color interpolation. Linear for now.
+        _current_color.add(_color_step, false);
+    }
     
-    if (_current_color.a == 0) {
+    if (_pd.alpha_fade) {
+        _current_color.subtract(_alpha_step, true);
+    }
+    
+    if (_pd.scale) {
+        _pd.current_scale += findScaleStep();
+    }
+    
+    if (_pd.rotate) {
+        _pd.current_angle += findAngularVelocity(_pd.revolution_time);
+    }
+    
+    if (_pd.ttl == 0) {
         _pd.active = false;
     }
     
+    _pd.ttl--;
     _time_alive++;
 }
 
+float Particle::findScaleStep() {
+    return (((float)_pd.end_scale-_pd.current_scale)/_pd.ttl);
+}
+
 Color4f Particle::findColorStep() {
+    if (_pd.color_duration == -1) {
+        return Color4f(0,0,0,0);
+    }
+    
     Color4f diff = _pd.end_color.subtract(_pd.start_color);
     diff.scale(1/((float)_pd.color_duration));
     return diff;
 }
 
 Color4f Particle::findAlphaStep() {
-    Color4f diff = Color4f(0, 0, 0, 1/(float)_pd.ttl);
+    float step = _pd.start_alpha / (float)_pd.alpha_duration;
+    Color4f diff = Color4f(0, 0, 0, step);
     return diff;
+}
+
+float Particle::findAngularVelocity(float time) {
+    return M_PI_4/time;
 }
 
 bool Particle::isActive() {
@@ -47,65 +95,6 @@ bool Particle::isActive() {
 
 
 void Particle::reset() {
+    _time_alive = 0;
     _pd.reset();
 }
-
-
-/**
- * Updates all of the particles, moving them one time step
- *
- * If a particle goes out of the bounding box of this node, it is added
- * to the reset set.  This allows the caller a chance to remove and
- * recycle these particles.
- *
- * @param reset The recycle set
- */
-
-void ParticleNode::update(std::set<Particle*>& reset) {
-    Rect bounds(Vec2::ZERO, getContentSize());
-    for (auto it=_particles.begin(); it !=_particles.end(); ++it) {
-        Particle* p = *it;
-        p->move();
-        
-        if (!p->isActive()) {
-            reset.insert(p);
-        }
-    }
-}
-
-/**
- * Draws this Node via the given SpriteBatch.
- *
- * This method only worries about drawing the current node.  It does not
- * attempt to render the children.
- *
- * This is the method that you should override to implement your custom
- * drawing code.  You are welcome to use any OpenGL commands that you wish.
- * You can even skip use of the SpriteBatch.  However, if you do so, you
- * must flush the SpriteBatch by calling end() at the start of the method.
- * in addition, you should remember to call begin() at the start of the
- * method.
- *
- * This method provides the correct transformation matrix and tint color.
- * You do not need to worry about whether the node uses relative color.
- * This method is called by render() and these values are guaranteed to be
- * correct.  In addition, this method does not need to check for visibility,
- * as it is guaranteed to only be called when the node is visible.
- *
- * @param batch     The SpriteBatch to draw with.
- * @param matrix    The global transformation matrix.
- * @param tint      The tint to blend with the Node color.
- */
-void ParticleNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transform, Color4 tint) {
-    batch->setTexture(_texture);
-    //    batch->setBlendEquation(_blendEquation);
-    //    batch->setBlendFunc(_srcFactor, _dstFactor);
-    
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Rect bounds = _polygon.getBounds();
-        bounds.origin += (*it)->_pd.position-bounds.size/2.0f;
-        batch->setColor((*it)->getCurrentColor());
-        batch->fill(bounds);
-    }
-}
-
