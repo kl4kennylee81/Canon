@@ -14,6 +14,11 @@
 #include "BaseController.hpp"
 #include "Particle.h"
 #include "ParticleGenerator.hpp"
+#include "TrailParticleGenerator.hpp"
+#include "ParticleGenerator.hpp"
+#include "DeathParticleGenerator.hpp"
+#include "ZoneParticleGenerator.hpp"
+#include "Util.hpp"
 
 class ParticleController : public BaseController {
 private:
@@ -25,6 +30,14 @@ private:
     
     /** Can retreive specific particles by name */
     std::unordered_map<std::string, ParticleData> _particle_map;
+    
+    /** Generators */
+    std::shared_ptr<DeathParticleGenerator> _death_gen;
+    std::shared_ptr<ZoneParticleGenerator> _zone_gen;
+    
+    /** Handlers for events */
+    void handleDeathParticle(GameObject* obj);
+    void handleZoneSpawn(GameObject* obj);
     
     void generateTrails();
     

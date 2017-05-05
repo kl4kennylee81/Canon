@@ -18,30 +18,76 @@ using namespace cugl;
  * Contain particle information that can be loaded in from a data file.
  * The properties are public on purpose because it is inherently
  * simple enough to manipulate without getters and setters.
+ *
+ * IMPORTANT: set the following flags you want: move, scale, rotate, color_fade, alpha_fade, and
+ * all the properties underneath those flags. All will default to false;
+ *
  */
 class ParticleData {
 public:
-    Vec2 position;
-    Vec2 velocity;
-    Vec2 gravity;
-    
-    float acceleration;
-    
-    /** Time to live is counted by the number of frames */
-    int ttl;
-    
+    /**
+     * Any particle that is not active is removed from the node and reset() in memory
+     */
     bool active;
-    
-    Color4f start_color;
-    Color4f end_color;
-    /** How long it takes for the color to transition from start to end */
-    int color_duration;
-    
+    int ttl; // -1 means infinite
     std::string texture_name;
     std::shared_ptr<Texture> texture;
     
+    /**
+     * Movement
+     */
+    bool move;
+    Vec2 position;
+    Vec2 velocity;
+    Vec2 gravity;
+    float acceleration;
     
-    ParticleData() {}
+    /**
+     * Scale
+     */
+    bool scale;
+    float start_scale; // scale when time_alive = 0
+    float end_scale; // sacle when time_alive = ttl
+    float current_scale;
+    
+    /**
+     * Rotate
+     */
+    bool rotate;
+    float current_angle;
+    float revolution_time; // # frames for a full revolution
+    
+    /**
+     * Color fade
+     */
+    bool color_fade;
+    int color_duration; // # frames till end_color
+    Color4f start_color;
+    Color4f end_color;
+    
+    /**
+     * Alpha fade
+     */
+    bool alpha_fade;
+    int alpha_duration; // # frames till end_alpha
+    float start_alpha;
+    
+    /**
+     * TODO: Everything undearneath this point needs to get completed in order for JSON loading.
+     */
+    
+    ParticleData() {
+        active = true;
+        ttl = -1;
+        current_angle = 0;
+        
+        // default flags
+        move = false;
+        scale = false;
+        rotate = false;
+        color_fade = false;
+        alpha_fade = false;
+    }
     
     bool init(Vec2 p, Vec2 v, Vec2 g, float a, int tl, bool ac, Color4f sc, Color4f ec, int cd) {
         position = p;
@@ -61,11 +107,18 @@ public:
         velocity.setZero();
         gravity.setZero();
         acceleration = 0;
-        ttl = 0;
         active = false;
         start_color = Color4f();
         end_color = Color4f();
         color_duration = 0;
+        ttl = -1;
+        current_angle = 0;
+        
+        move = false;
+        scale = false;
+        rotate = false;
+        color_fade = false;
+        alpha_fade = false;
     }
 };
 
