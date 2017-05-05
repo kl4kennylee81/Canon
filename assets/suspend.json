@@ -8,7 +8,7 @@
 		"levelController":	{
 			"levelDataKey":	"overlap",
 			"currentWaveIndex":	0,
-			"framesElapsed":	101,
+			"framesElapsed":	80.200020,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
@@ -18,8 +18,8 @@
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
-					"currentPosX":	12.500000,
-					"currentPosY":	7.812500,
+					"currentPosX":	11.304443,
+					"currentPosY":	2.579659,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
@@ -42,8 +42,8 @@
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"5":	79,
-				"7":	79
+				"7":	99.800079,
+				"5":	99.800079
 			}
 		}
 	}

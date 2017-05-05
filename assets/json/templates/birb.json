@@ -80,8 +80,7 @@
           }
       }
     }
-  }
-    }, 
+  }, 
     "objects": {
         "birb_object": {
             "animationScale": 2.5, 
