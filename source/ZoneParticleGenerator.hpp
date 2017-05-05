@@ -1,0 +1,60 @@
+//
+//  ZoneParticleGenerator.hpp
+//  MemoryDemo
+//
+//  Created by Hong Jeon on 5/4/17.
+//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//
+
+#ifndef ZoneParticleGenerator_hpp
+#define ZoneParticleGenerator_hpp
+
+#include <stdio.h>
+#include "ParticleGenerator.hpp"
+
+/**
+ * Creates the wavy effect we use for zones. Square zones TBD..
+ */
+class ZoneParticleGenerator : public ParticleGenerator {
+private:
+    std::shared_ptr<ParticleNode> _circlepartnode;
+    std::shared_ptr<ParticleNode> _ringpartnode;
+    ParticleData _circlepd;
+    ParticleData _ringpd;
+    
+    int _ring_num;
+    
+    void createZoneParticle(int num, std::set<Particle*>& particle_set);
+    ParticleData randomizePD(ParticleData pd);
+    
+    /**
+     * This will be replaced by GameObject -> ParticleWrapper
+     */
+    std::unordered_map<cugl::Vec2*, std::shared_ptr<ParticleWrapper>> _location_to_wrapper;
+    
+    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
+    
+public:
+    ZoneParticleGenerator() : ParticleGenerator() {}
+    
+    bool init(std::shared_ptr<ParticleNode> circlepartnode,
+              std::shared_ptr<ParticleNode> ringpartnode,
+              std::shared_ptr<cugl::FreeList<Particle>> mem,
+              ParticleData circlepd,
+              ParticleData ringpd);
+    
+    static std::shared_ptr<ZoneParticleGenerator> alloc(std::shared_ptr<ParticleNode> circlepartnode, std::shared_ptr<ParticleNode> ringpartnode, std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData circlepd, ParticleData ringpd) {
+        std::shared_ptr<ZoneParticleGenerator> result = std::make_shared<ZoneParticleGenerator>();
+        return (result->init(circlepartnode, ringpartnode, mem, circlepd, ringpd) ? result : nullptr);
+    }
+    
+    void generate();
+    
+    /**
+     * This is going to get replaced by the code that handles associating the zone with the particle wrapper
+     * for now, associate a location with a particle wrapper
+     */
+    void add_particles(Vec2 location);
+};
+
+#endif /* ZoneParticleGenerator_hpp */

@@ -2,3 +2,4 @@
 assets/json/fullLevels/*.json
 assets/json/assets.json
 */.DS_Store
+.DS_Store

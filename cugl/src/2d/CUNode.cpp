@@ -766,6 +766,13 @@ void Node::render(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transfo
 }
 
 /**
+ * Custom code
+ */
+Mat4 Node::getCombined() {
+    return _combined;
+}
+
+/**
  * Returns the absolute color tinting this node.
  *
  * If hasRelativeColor() is true, this value is the base color multiplied by

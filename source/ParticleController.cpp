@@ -74,7 +74,7 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     pd.color_duration = 100;
     pd.active = true;
     pd.texture_name = "blue_particle";
-    pd.texture = assets->get<Texture>(pd.texture_name);
+    pd.texture = assets->get<Texture>("blue_particle");
     _particle_map.insert(std::make_pair(pd.texture_name, pd));
     
     ParticleData pd2 = ParticleData();
@@ -85,7 +85,7 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     pd2.color_duration = 100;
     pd2.active = true;
     pd2.texture_name = "gold_particle";
-    pd2.texture = assets->get<Texture>(pd2.texture_name);
+    pd2.texture = assets->get<Texture>("gold_particle");
     _particle_map.insert(std::make_pair(pd2.texture_name, pd2));
     
     return true;

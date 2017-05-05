@@ -14,6 +14,8 @@
 #include "BaseController.hpp"
 #include "Particle.h"
 #include "ParticleGenerator.hpp"
+#include "TrailParticleGenerator.hpp"
+#include "ParticleGenerator.hpp"
 
 class ParticleController : public BaseController {
 private:
