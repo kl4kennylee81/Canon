@@ -208,7 +208,15 @@ void LevelController::initAfterResume(std::shared_ptr<GameState> state,
                                                              player->getElement(),
                                                              player->getTemplateKey(),
                                                              player->getAIKey());
-            std::shared_ptr<GameObject> playerOb = spawnWaveEntry(we, true, state);
+            
+            std::shared_ptr<JsonValue> spawnMapJson = spawnControlJson->get("spawnMap");
+            float spawnTime = 0;
+            if (spawnMapJson->has(to_string(uidPlayer))){
+                spawnTime = _world->getTemplate(player->getTemplateKey())->getSpawnTime();
+                spawnTime -= stoi(spawnMapJson->getString(to_string(uidPlayer)));
+            }
+            
+            std::shared_ptr<GameObject> playerOb = spawnAndNotifyWaveEntry(we, true, state,spawnTime);
             playerOb->setUid(uidPlayer);
             break;
         }

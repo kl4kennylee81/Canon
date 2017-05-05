@@ -272,7 +272,11 @@ void GameEngine::onResume() {
     
     // possibly call all the load methods again
     std::shared_ptr<World> levelWorld = World::alloc(_assets);
+    
+    // TODO replace with allocing the menuGraph and also reloading in all the files
     _gameplay = GameplayController::alloc(_scene,levelWorld);
+    _menu = MenuController::alloc(_scene,_menuGraph);
+    
     _gameplay->onResume(resumeJson->get("gameplay"));
     
 }
