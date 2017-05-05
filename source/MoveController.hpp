@@ -55,6 +55,11 @@ public:
 	* pixels per frame.
 	*/
 	static cugl::Vec2 getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity);
+
+	// maybe in the future we can put these 2 functions in base controller; right now we can't
+	// cuz level controller has different signature
+	std::string serialize();
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 #endif /* MoveController_hpp */

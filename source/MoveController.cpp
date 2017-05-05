@@ -98,9 +98,17 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
 /**
  * Return velocity vector with current time dilation applied
  */
-cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
+Vec2 MoveController::getVelocityVector(Vec2 start, Vec2 end, float velocity)
 {
 	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
 	direction.normalize().scale(velocity * GameState::_internalClock->getTimeDilation());
 	return direction;
+}
+
+std::string MoveController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> MoveController::toJsonValue() {
+	return JsonValue::allocObject();
 }

@@ -148,7 +148,11 @@ void GameEngine::onStartup() {
     std::string levelDir = assetDir + LEVEL_PATH;
     
     // std::cout << "current file directory: "<< __FILE__ << std::endl;
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	#elif __APPLE__
     std::vector<std::string> vec = Util::split(__FILE__, '/');
+	#endif
     
     // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
     
@@ -236,10 +240,18 @@ void GameEngine::onSuspend() {
 //    // its in a temporary directory of the app
 //    std::string saveDir = Application::get()->getSaveDirectory();
     
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
-    
-    std::string filePath = "/"+saveDir+"/suspend.json";
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = "\\" + saveDir + "\\suspend.json";
+
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
+
     
     std::ofstream newFile;
     newFile.open(filePath);
