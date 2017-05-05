@@ -187,3 +187,10 @@ std::shared_ptr<JsonValue> MenuGraph::toJsonValue(){
 	mg->appendChild("activeMenu", JsonValue::alloc(_activeMenu->getMenuKey()));
 	return mg;
 }
+
+bool MenuGraph::initAfterResume(std::shared_ptr<JsonValue> menuGraphResumeJson){
+    _currentMode = stringToMode(menuGraphResumeJson->getString("currentMode"));
+    _nextMode = stringToMode(menuGraphResumeJson->getString("nextMode"));
+    _activeMenu = _menuMap.at(menuGraphResumeJson->getString("activeMenu"));
+    return true;
+}
