@@ -164,10 +164,12 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
-				}
+                }
                 break;
             }
+            break;
         }
+        break;
     }
     
 }
