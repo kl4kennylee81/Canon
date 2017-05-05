@@ -8,13 +8,13 @@
 		"levelController":	{
 			"levelDataKey":	"blobos",
 			"currentWaveIndex":	0,
-			"framesElapsed":	86.600014,
+			"framesElapsed":	90.599960,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	23.521463,
-					"currentPosY":	14.001861,
+					"currentPosX":	20.049189,
+					"currentPosY":	9.762983,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
@@ -78,14 +78,14 @@
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"8":	93.400055,
-				"9":	93.400055,
-				"7":	93.400055,
-				"12":	93.400055,
-				"6":	93.400055,
-				"5":	93.400055,
-				"10":	93.400055,
-				"11":	93.400055
+				"7":	89.400040,
+				"8":	89.400040,
+				"6":	89.400040,
+				"9":	89.400040,
+				"11":	89.400040,
+				"5":	89.400040,
+				"10":	89.400040,
+				"12":	89.400040
 			}
 		}
 	}
