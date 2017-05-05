@@ -37,7 +37,7 @@ public:
         
         // initialize particle node and attach to the world node
         _partnode = ParticleNode::allocWithTexture(_pd.texture);
-        _partnode->setBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_COLOR);
+        _partnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
         _partnode->setPosition(Vec2::ZERO);
         _partnode->setContentSize(state->getWorldNode()->getContentSize());
         state->getWorldNode()->addChild(_partnode);

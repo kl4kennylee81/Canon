@@ -67,25 +67,40 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     // init the different types of particles
     // replace this with json loading later.
     ParticleData pd = ParticleData();
+    pd.move = true;
     pd.acceleration = -0.005;
     pd.ttl = 40;
+    
+    pd.color_fade = true;
     pd.start_color = Color4f::WHITE;
     pd.end_color = Color4f::WHITE;
-    pd.color_duration = 100;
-    pd.active = true;
+    pd.color_duration = -1;
+    
+    pd.alpha_fade = true;
+    pd.alpha_duration = 40;
+    pd.start_alpha = 1;
+    
     pd.texture_name = "blue_particle";
     pd.texture = assets->get<Texture>("blue_particle");
-    _particle_map.insert(std::make_pair(pd.texture_name, pd));
+    
+    
     
     ParticleData pd2 = ParticleData();
+    pd2.move = true;
     pd2.acceleration = -0.005;
     pd2.ttl = 40;
     pd2.start_color = Color4f::WHITE;
     pd2.end_color = Color4f::WHITE;
-    pd2.color_duration = 100;
-    pd2.active = true;
+    pd2.color_duration = -1;
+    
+    pd2.alpha_fade = true;
+    pd2.alpha_duration = 40;
+    pd2.start_alpha = 1;
+
     pd2.texture_name = "gold_particle";
     pd2.texture = assets->get<Texture>("gold_particle");
+    
+    _particle_map.insert(std::make_pair(pd.texture_name, pd));
     _particle_map.insert(std::make_pair(pd2.texture_name, pd2));
     
     return true;

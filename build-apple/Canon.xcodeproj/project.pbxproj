@@ -551,6 +551,8 @@
 		829615561E9BC5BA00A731DB /* particle */ = {
 			isa = PBXGroup;
 			children = (
+				829615501E9BC5B300A731DB /* ParticleController.cpp */,
+				829615511E9BC5B300A731DB /* ParticleController.hpp */,
 				823D5FC21EBC617600A2B11D /* particleGenerators */,
 				829615571E9BCA5500A731DB /* Particle.cpp */,
 				8296155B1E9BCACA00A731DB /* Particle.h */,
@@ -558,8 +560,6 @@
 				823D5FC81EBC61FF00A2B11D /* ParticleNode.hpp */,
 				824E10AB1EA941B80068C0F5 /* ParticleData.hpp */,
 				823D5FC41EBC61DA00A2B11D /* ParticleWrapper.hpp */,
-				829615501E9BC5B300A731DB /* ParticleController.cpp */,
-				829615511E9BC5B300A731DB /* ParticleController.hpp */,
 			);
 			name = particle;
 			sourceTree = "<group>";
