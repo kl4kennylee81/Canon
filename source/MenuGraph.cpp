@@ -177,6 +177,9 @@ void MenuGraph::attachToScene(std::shared_ptr<Scene> scene){
 }
 
 void MenuGraph::detachFromScene(std::shared_ptr<Scene> scene){
+    if (scene->getChildByName("menuNode") == nullptr){
+        return;
+    }
     scene->removeChild(_menuNode);
 }
 
@@ -195,7 +198,7 @@ bool MenuGraph::initAfterResume(std::shared_ptr<JsonValue> menuGraphResumeJson){
     _activeMenu = _menuMap.at(menuGraphResumeJson->getString("activeMenu"));
     if (_currentMode == Mode::GAMEPLAY){
         // hardcoded to go pause the screen when in gameplay state
-        _activeMenu = _menuMap.at("pauseScreen");
+        setActiveMenu("pauseScreen");
     }
     return true;
 }

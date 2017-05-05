@@ -278,11 +278,15 @@ void GameEngine::onResume() {
     while (_assets->progress() < 1.0){
     }
     
-    _menuGraph->populate(_assets);
-    _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
-    
-    _menu = MenuController::alloc(_scene,_menuGraph);
-    
+    // this is to clear the outdated screen when resuming
+    if (_menu!=nullptr){
+        _menu->deactivate();
+        _menu = nullptr;
+    }
+    if (_gameplay != nullptr){
+        _gameplay->deactivate();
+        _gameplay = nullptr;
+    }
     // possibly call all the load methods again
     std::shared_ptr<World> levelWorld = World::alloc(_assets);
     
@@ -290,6 +294,11 @@ void GameEngine::onResume() {
     _gameplay = GameplayController::alloc(_scene,levelWorld);
     
     _gameplay->onResume(resumeJson->get("gameplay"));
+    
+    _menuGraph->populate(_assets);
+    _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
+    
+    _menu = MenuController::alloc(_scene,_menuGraph);
     
     if (_gameplay != nullptr){
         // this is so that the menu can interact with the game screen
@@ -303,8 +312,8 @@ void GameEngine::onResume() {
     }
     
     // send an event to gameplayController to pause the game
-    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
-    _menu->notify(pauseEvent.get());
+//    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
+//    _menu->notify(pauseEvent.get());
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
@@ -489,7 +498,7 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            if (hi == 10){
+            if (hi == 100){
                 onSuspend();
                 onResume();
                 hi+=1;
