@@ -312,8 +312,8 @@ void GameEngine::onResume() {
     }
     
     // send an event to gameplayController to pause the game
-//    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
-//    _menu->notify(pauseEvent.get());
+    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
+    _menu->notify(pauseEvent.get());
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
