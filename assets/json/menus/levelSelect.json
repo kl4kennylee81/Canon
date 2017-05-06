@@ -14,7 +14,7 @@
     "UIData": {
         "home": {
             "buttonAction": {
-                "buttonTarget": "levelSelect",
+                "buttonTarget": "startMenu",
                 "type": "menuChange"
             },
             "buttonLabel": "",
@@ -47,7 +47,7 @@
             "type": "BUTTON",
             "width": 0.15,
             "x": 0.8,
-            "y": 0.1
+            "y": 0.05
         },
         "levelSelectStarCircle": {
             "height": 0.2,
