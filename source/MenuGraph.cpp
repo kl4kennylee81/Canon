@@ -77,7 +77,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 			continue;
 		}
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
-		std::string menuKey = menuData->menuKey;
+        std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
 		std::shared_ptr<Menu> menu = Menu::alloc(false,menuKey);
 

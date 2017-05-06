@@ -8,7 +8,7 @@
                 "playButton"
             ],
             "menuBackgroundKey": "lakebg",
-            "menuKey": "startMenu"
+            "key": "startMenu"
         }
     },
     "UIData": {

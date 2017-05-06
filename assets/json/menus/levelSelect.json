@@ -6,7 +6,7 @@
                 "backToLevelEditor"
             ],
             "menuBackgroundKey": "levelSelectBgFlat",
-            "menuKey": "levelSelect"
+            "key": "levelSelect"
         }
     },
     "UIData": {
@@ -32,6 +32,21 @@
             "width": 0.25,
             "x": 0.375,
             "y": 0.05
+        },
+        "levelBoxBorder": {
+            "height": 0.1,
+            "key": "levelBoxBorder",
+            "textureKey": "levelBoxBorder",
+            "type": "IMAGE",
+            "width": 0.25
+        },
+        "levelLabelText": {
+            "fontKey": "Charlemagne",
+            "height": 0.17,
+            "key": "levelLabelText",
+            "textValue": "",
+            "type": "TEXT",
+            "width": 0.36
         }
     }
 }

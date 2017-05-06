@@ -7,7 +7,7 @@
                 "homeButton",
                 "backToLevelEditor"
             ],
-            "menuKey": "gameover"
+            "key": "gameover"
         }
     },
     "UIData": {

@@ -2,7 +2,7 @@
     "MenuScreenData": {
         "blankScreen": {
             "UIEntries": [],
-            "menuKey": "blankScreen"
+            "key": "blankScreen"
         }
     }
 }

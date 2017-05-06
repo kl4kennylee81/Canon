@@ -4,7 +4,7 @@
             "UIEntries": [
                 "pauseButton"
             ],
-            "menuKey": "gameScreen"
+            "key": "gameScreen"
         }
     },
     "UIData": {

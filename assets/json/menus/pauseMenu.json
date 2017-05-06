@@ -13,7 +13,7 @@
                 "swirls",
                 "stars"
             ],
-            "menuKey": "pauseScreen"
+            "key": "pauseScreen"
         }
     },
     "UIData": {
