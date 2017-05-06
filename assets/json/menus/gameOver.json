@@ -1,0 +1,66 @@
+{
+    "MenuScreenData": {
+        "gameOver": {
+            "UIEntries": [
+                "gameoverTextImg",
+                "tryAgainButton",
+                "homeButton",
+                "backToLevelEditor"
+            ],
+            "menuKey": "gameover"
+        }
+    },
+    "UIData": {
+        "gameoverTextImg": {
+            "height": 0.261,
+            "key": "gameoverTextImg",
+            "textureKey": "gameover",
+            "type": "IMAGE",
+            "width": 0.476,
+            "x": 0.257,
+            "y": 0.675
+        },
+        "homeButton": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "startMenu",
+                "type": "modeChange"
+            },
+            "buttonLabel": "home",
+            "height": 0.1,
+            "key": "homeButton",
+            "type": "BUTTON",
+            "width": 0.25,
+            "x": 0.375,
+            "y": 0.375
+        },
+        "backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT",
+                "nextScreen": "blankScreen",
+                "type": "modeChange"
+            },
+            "buttonLabel": "Level Edit",
+            "height": 0.1,
+            "key": "backToLevelEditor",
+            "type": "BUTTON",
+            "width": 0.25,
+            "x": 0.375,
+            "y": 0.05
+        },
+        "tryAgainButton": {
+            "buttonAction": {
+                "fxKey": "RETRY",
+                "nextScreen": "gameScreen",
+                "type": "fxTrigger"
+            },
+            "buttonLabel": "try again",
+            "height": 0.1,
+            "key": "tryAgainButton",
+            "type": "BUTTON",
+            "width": 0.25,
+            "x": 0.375,
+            "y": 0.5
+        }
+    }
+}

@@ -12,6 +12,7 @@
 #include "GameState.hpp"
 #include "SaveGameData.hpp"
 #include "Util.hpp"
+#include "MenuListData.hpp"
 
 #define SAVE_GAME_FILE "saveFile"
 
@@ -68,37 +69,42 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 }
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-	//    std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
 
-	//    for (auto entry : menuScreens->getMenuEntries() ){
-	//        std::string menuKey = entry.first;
-	//        std::shared_ptr<MenuEntry> menuEntry = entry.second;
-	//        std::shared_ptr<Menu> menu = Menu::alloc(false);
+	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
 
-	// 	if (entry.second->menuBackgroundKey != "") {
-	// 		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
-	// 		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
-	// 		cugl::Size imageSize = imageNode->getSize();
-	// 		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	// 		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
-	// 		imageNode->setPosition(Vec2::ZERO);
+	for (std::string key : menuList->getMenuKeys()) {
+		// hack: remove this later
+		if (key == "randomMenuAssets") {
+			continue;
+		}
+		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
+		std::string menuKey = menuData->menuKey;
+		std::string menuBackgroundKey = menuData->menuBackgroundKey;
+		std::shared_ptr<Menu> menu = Menu::alloc(false);
 
-	// 		menu->setBackground(imageNode);
-	// 	}
+		if (menuBackgroundKey != "") {
+			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(menuBackgroundKey));
+			cugl::Size imageSize = imageNode->getSize();
+			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
+			imageNode->setPosition(Vec2::ZERO);
 
-	//        for (std::string uiKey : menuEntry->getUIEntryKeys()){
-	//            auto uiData = assets->get<UIData>(uiKey);
-	//            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
-	//            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData,uiNode);
-	//            menu->addUIElement(uiComponent);
+			menu->setBackground(imageNode);
+		}
 
-	//        }
+		for (std::string uiKey : menuData->getUIEntryKeys()) {
+			auto uiData = assets->get<UIData>(uiKey);
+			std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
+			std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
+			menu->addUIElement(uiComponent);
 
-	//        _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
-	//    }
+		}
 
-	// augmentLevelMenu(assets, _menuMap);
+		_menuMap.insert(std::make_pair(menuKey, menu));
+	}
 
+	augmentLevelMenu(assets, _menuMap);
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){

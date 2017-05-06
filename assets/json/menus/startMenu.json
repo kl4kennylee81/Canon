@@ -1,0 +1,64 @@
+{
+    "MenuScreenData": {
+        "startMenu": {
+            "UIEntries": [
+                "infoButton",
+                "settingsButton",
+                "title",
+                "playButton"
+            ],
+            "menuBackgroundKey": "lakebg",
+            "menuKey": "startMenu"
+        }
+    },
+    "UIData": {
+        "infoButton": {
+            "buttonAction": {
+                "buttonTarget": "",
+                "type": "menuChange"
+            },
+            "height": 0.171,
+            "key": "infoButton",
+            "type": "BUTTON",
+            "uiBackgroundKey": "infosymbol",
+            "width": 0.096,
+            "x": 0.9,
+            "y": 0.008
+        },
+        "settingsButton": {
+            "buttonAction": {
+                "buttonTarget": "",
+                "type": "menuChange"
+            },
+            "height": 0.171,
+            "key": "settingsButton",
+            "type": "BUTTON",
+            "uiBackgroundKey": "settingsymbol",
+            "width": 0.096,
+            "x": 0.005,
+            "y": 0.008
+        },
+        "title": {
+            "height": 0.545,
+            "key": "title",
+            "textureKey": "title",
+            "type": "IMAGE",
+            "width": 0.796,
+            "x": 0.104,
+            "y": 0.33
+        },
+        "playButton": {
+            "buttonAction": {
+                "buttonTarget": "levelSelect",
+                "type": "menuChange"
+            },
+            "height": 0.157,
+            "key": "playButton",
+            "type": "BUTTON",
+            "uiBackgroundKey": "swipetoplay",
+            "width": 0.339,
+            "x": 0.339,
+            "y": 0.217
+        }
+    }
+}

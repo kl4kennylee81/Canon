@@ -9,6 +9,7 @@
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "MenuScreenData.hpp"
+#include "MenuListData.hpp"
 #include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
@@ -93,6 +94,7 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
     assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
 }
 
 /**
@@ -132,12 +134,9 @@ void GameEngine::onStartup() {
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
-    //_assets->loadDirectory("json/animations.json");
     _assets->loadDirectory("json/sounds.json");
-	//_assets->loadDirectory("json/ai.json");
-	_assets->loadDirectory("json/menu.json");
+	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/save.json");
-    //_assets->loadDirectory("json/level.json");
     
     
     std::string assetDir = Application::get()->getAssetDirectory();
@@ -145,6 +144,7 @@ void GameEngine::onStartup() {
     std::string levelDir = assetDir + LEVEL_PATH;
 	std::string menuDir = assetDir + MENU_PATH;
 
+ 
     //load all template wave entries
 
 	#ifdef _WIN32

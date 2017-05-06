@@ -1,13 +1,16 @@
 {
     "MenuListData": {
-        "menuEntries": [
-            "blankScreen",
-            "gameScreen",
-            "gameOver",
-            "levelSelect",
-            "pauseScreen",
-            "startMenu"
-        ],
-        "startMenuKey": "startMenu"
+        "menuList": {
+            "menuEntries": [
+                "blankScreen",
+                "gameScreen",
+                "gameOver",
+                "levelSelect",
+                "pauseMenu",
+                "startMenu",
+                "randomMenuAssets"
+            ],
+            "startMenuKey": "startMenu"
+        }
     }
 }
