@@ -1,489 +1,547 @@
 {
-  "levels": {
-    "level0": {
-      "levelEntries": {
-        "wave5": {
-          "waveKey": "kylewave3",
-          "time": 500
+    "levels": {
+        "level0": {
+            "key": "level0", 
+            "levelEntries": {
+                "wave5": {
+                    "key": "wave5", 
+                    "time": 500, 
+                    "waveKey": "kylewave3"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "element": "BLUE", 
+                    "key": "player1", 
+                    "objectKey": "playerChar1", 
+                    "x": 500, 
+                    "y": 300
+                }, 
+                "player2": {
+                    "element": "GOLD", 
+                    "key": "player2", 
+                    "objectKey": "playerChar2", 
+                    "x": 400, 
+                    "y": 300
+                }
+            }
+        }, 
+        "level1": {
+            "key": "level1", 
+            "levelEntries": {
+                "wave5": {
+                    "key": "wave5", 
+                    "time": 500, 
+                    "waveKey": "kylewave3"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "element": "BLUE", 
+                    "key": "player1", 
+                    "objectKey": "playerChar1", 
+                    "x": 500, 
+                    "y": 300
+                }, 
+                "player2": {
+                    "element": "GOLD", 
+                    "key": "player2", 
+                    "objectKey": "playerChar2", 
+                    "x": 400, 
+                    "y": 300
+                }
+            }
         }
-      },
-      "playerChars": {
-        "player1": {
-          "x": 500,
-          "y": 300,
-          "element": "BLUE",
-          "objectKey": "playerChar1"
-        },
-        "player2": {
-          "x": 400,
-          "y": 300,
-          "element": "GOLD",
-          "objectKey": "playerChar2"
-        }
-      }
-    },
-    "level1": {
-      "levelEntries": {
-        "wave5": {
-          "waveKey": "kylewave3",
-          "time": 500
-        }
-      },
-      "playerChars": {
-        "player1": {
-          "x": 500,
-          "y": 300,
-          "element": "BLUE",
-          "objectKey": "playerChar1"
-        },
-        "player2": {
-          "x": 400,
-          "y": 300,
-          "element": "GOLD",
-          "objectKey": "playerChar2"
-        }
-      }
-    }
-
-  },
-  "waves": {
-    "kylewave2": {
-      "waveEntries": {
+    }, 
+    "objects": {
+        "bar": {
+            "animationKey": "whiteBar", 
+            "key": "bar", 
+            "shapeKey": "bar"
+        }, 
+        "big_circle": {
+            "animationKey": "whiteCircle", 
+            "key": "big_circle", 
+            "shapeKey": "big_circle"
+        }, 
+        "circle": {
+            "animationKey": "whiteCircle", 
+            "key": "circle", 
+            "shapeKey": "circle"
+        }, 
         "object1": {
-          "aiKey": "vertical",
-          "x": 200,
-          "y": 280,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
+            "animationKey": "blueEnemyAnimation", 
+            "key": "object1", 
+            "shapeKey": "shape1"
+        }, 
         "object2": {
-          "aiKey": "vertical",
-          "x": 275,
-          "y": 35,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object3": {
-          "aiKey": "vertical",
-          "x": 350,
-          "y": 226,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object4": {
-          "aiKey": "vertical",
-          "x": 425,
-          "y": 14,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object5": {
-          "aiKey": "vertical",
-          "x": 500,
-          "y": 100,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object6": {
-          "aiKey": "vertical",
-          "x": 575,
-          "y": 42,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object7": {
-          "aiKey": "vertical",
-          "x": 650,
-          "y": 228,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object8": {
-          "aiKey": "vertical",
-          "x": 725,
-          "y": 257,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object9": {
-          "aiKey": "horizontalRight",
-          "x": 500,
-          "y": 300,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "columnZone"
-          ]
-        },
-        "object10": {
-          "aiKey": "horizontalLeft",
-          "x": 500,
-          "y": 300,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "columnZone"
-          ]
+            "animationKey": "redEnemyAnimation", 
+            "key": "object2", 
+            "shapeKey": "shape1"
+        }, 
+        "playerChar1": {
+            "animationKey": "blueCharAnimation", 
+            "key": "playerChar1", 
+            "shapeKey": "shape1", 
+            "soundKey": "female"
+        }, 
+        "playerChar2": {
+            "animationKey": "redCharAnimation", 
+            "key": "playerChar2", 
+            "shapeKey": "shape1", 
+            "soundKey": "male"
+        }, 
+        "sector": {
+            "animationKey": "whiteSector", 
+            "key": "sector", 
+            "shapeKey": "sector"
         }
-      }
-    },
-    "kylewave3": {
-      "waveEntries": {
-        "object1": {
-          "aiKey": "homing",
-          "x": 100,
-          "y": 100,
-          "element": "GOLD",
-          "objectKey": "object2"
-        },
-        "object2": {
-          "aiKey": "homing",
-          "x": 100,
-          "y": 500,
-          "element": "GOLD",
-          "objectKey": "object2"
-        },
-        "object3": {
-          "aiKey": "homing",
-          "x": 900,
-          "y": 500,
-          "element": "GOLD",
-          "objectKey": "object2"
-        },
-        "object4": {
-          "aiKey": "homing",
-          "x": 900,
-          "y": 100,
-          "element": "GOLD",
-          "objectKey": "object2"
+    }, 
+    "shapes": {
+        "bar": {
+            "key": "bar", 
+            "vertices": [
+                -20, 
+                400, 
+                20, 
+                400, 
+                20, 
+                -400, 
+                -20, 
+                -400
+            ]
+        }, 
+        "big_circle": {
+            "key": "big_circle", 
+            "vertices": [
+                0, 
+                -200, 
+                100.0, 
+                -173.205080757, 
+                173.205080757, 
+                -100.0, 
+                200, 
+                0, 
+                173.205080757, 
+                100.0, 
+                100.0, 
+                173.205080757, 
+                0, 
+                200, 
+                -100.0, 
+                173.205080757, 
+                -173.205080757, 
+                100.0, 
+                -200, 
+                0, 
+                -173.205080757, 
+                -100.0, 
+                -100.0, 
+                -173.205080757
+            ]
+        }, 
+        "circle": {
+            "key": "circle", 
+            "vertices": [
+                0, 
+                -100, 
+                50.0, 
+                -86.6025403784, 
+                86.6025403784, 
+                -50.0, 
+                100, 
+                0, 
+                86.6025403784, 
+                50.0, 
+                50.0, 
+                86.6025403784, 
+                0, 
+                100, 
+                -50.0, 
+                86.6025403784, 
+                -86.6025403784, 
+                50.0, 
+                -100, 
+                0, 
+                -86.6025403784, 
+                -50.0, 
+                -50.0, 
+                -86.6025403784
+            ]
+        }, 
+        "sector": {
+            "key": "sector", 
+            "vertices": [
+                10, 
+                0, 
+                50, 
+                0, 
+                70, 
+                45, 
+                30, 
+                55, 
+                -10, 
+                45
+            ]
+        }, 
+        "shape1": {
+            "key": "shape1", 
+            "vertices": [
+                0, 
+                0, 
+                50, 
+                0, 
+                50, 
+                50, 
+                0, 
+                50
+            ]
         }
-      }
-    },
-    "kylewave4": {
-      "waveEntries": {
-        "object1": {
-          "aiKey": "composite",
-          "x": 100,
-          "y": 100,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object2": {
-          "aiKey": "static",
-          "x": 100,
-          "y": 500,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "pulseZone"
-          ]
-        },
-        "object3": {
-          "aiKey": "composite",
-          "x": 900,
-          "y": 500,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object4": {
-          "aiKey": "static",
-          "x": 900,
-          "y": 100,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "rotateZone"
-          ]
+    }, 
+    "waves": {
+        "kylewave1": {
+            "key": "kylewave1", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontal", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "objectKey": "object1", 
+                    "x": 0, 
+                    "y": 100, 
+                    "zoneKeys": [
+                        "staticZoneBig"
+                    ]
+                }, 
+                "object10": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object10", 
+                    "objectKey": "object1", 
+                    "x": 114, 
+                    "y": 108
+                }, 
+                "object2": {
+                    "aiKey": "horizontal", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "objectKey": "object2", 
+                    "x": 940, 
+                    "y": 440, 
+                    "zoneKeys": [
+                        "redBigCircleZone"
+                    ]
+                }, 
+                "object3": {
+                    "aiKey": "vertical", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "objectKey": "object2", 
+                    "x": 0, 
+                    "y": 100, 
+                    "zoneKeys": [
+                        "redBigCircleZone"
+                    ]
+                }, 
+                "object4": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "objectKey": "object1", 
+                    "x": 940, 
+                    "y": 440, 
+                    "zoneKeys": [
+                        "staticZoneBig"
+                    ]
+                }, 
+                "object5": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object5", 
+                    "objectKey": "object2", 
+                    "x": 824, 
+                    "y": 338
+                }, 
+                "object6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object6", 
+                    "objectKey": "object2", 
+                    "x": 356, 
+                    "y": 541
+                }, 
+                "object7": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object7", 
+                    "objectKey": "object1", 
+                    "x": 809, 
+                    "y": 492
+                }, 
+                "object8": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object8", 
+                    "objectKey": "object1", 
+                    "x": 37, 
+                    "y": 539
+                }, 
+                "object9": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object9", 
+                    "objectKey": "object1", 
+                    "x": 704, 
+                    "y": 309
+                }
+            }
+        }, 
+        "kylewave2": {
+            "key": "kylewave2", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "objectKey": "object1", 
+                    "x": 200, 
+                    "y": 280
+                }, 
+                "object10": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object10", 
+                    "objectKey": "object2", 
+                    "x": 500, 
+                    "y": 300, 
+                    "zoneKeys": [
+                        "columnZone"
+                    ]
+                }, 
+                "object2": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "objectKey": "object1", 
+                    "x": 275, 
+                    "y": 35
+                }, 
+                "object3": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "objectKey": "object1", 
+                    "x": 350, 
+                    "y": 226
+                }, 
+                "object4": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "objectKey": "object1", 
+                    "x": 425, 
+                    "y": 14
+                }, 
+                "object5": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object5", 
+                    "objectKey": "object1", 
+                    "x": 500, 
+                    "y": 100
+                }, 
+                "object6": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object6", 
+                    "objectKey": "object1", 
+                    "x": 575, 
+                    "y": 42
+                }, 
+                "object7": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object7", 
+                    "objectKey": "object1", 
+                    "x": 650, 
+                    "y": 228
+                }, 
+                "object8": {
+                    "aiKey": "vertical", 
+                    "element": "BLUE", 
+                    "key": "object8", 
+                    "objectKey": "object1", 
+                    "x": 725, 
+                    "y": 257
+                }, 
+                "object9": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "object9", 
+                    "objectKey": "object2", 
+                    "x": 500, 
+                    "y": 300, 
+                    "zoneKeys": [
+                        "columnZone"
+                    ]
+                }
+            }
+        }, 
+        "kylewave3": {
+            "key": "kylewave3", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "objectKey": "object2", 
+                    "x": 100, 
+                    "y": 100
+                }, 
+                "object2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "objectKey": "object2", 
+                    "x": 100, 
+                    "y": 500
+                }, 
+                "object3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "objectKey": "object2", 
+                    "x": 900, 
+                    "y": 500
+                }, 
+                "object4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "objectKey": "object2", 
+                    "x": 900, 
+                    "y": 100
+                }
+            }
+        }, 
+        "kylewave4": {
+            "key": "kylewave4", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "composite", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "objectKey": "object1", 
+                    "x": 100, 
+                    "y": 100
+                }, 
+                "object2": {
+                    "aiKey": "static", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "objectKey": "object2", 
+                    "x": 100, 
+                    "y": 500, 
+                    "zoneKeys": [
+                        "pulseZone"
+                    ]
+                }, 
+                "object3": {
+                    "aiKey": "composite", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "objectKey": "object1", 
+                    "x": 900, 
+                    "y": 500
+                }, 
+                "object4": {
+                    "aiKey": "static", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "objectKey": "object2", 
+                    "x": 900, 
+                    "y": 100, 
+                    "zoneKeys": [
+                        "rotateZone"
+                    ]
+                }
+            }
         }
-      }
-    },
-    "kylewave1": {
-      "waveEntries": {
-        "object1": {
-          "aiKey": "horizontal",
-          "x": 0,
-          "y": 100,
-          "element": "BLUE",
-          "objectKey": "object1",
-          "zoneKeys": [
-            "staticZoneBig"
-          ]
-        },
-        "object2": {
-          "aiKey": "horizontal",
-          "x": 940,
-          "y": 440,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "redBigCircleZone"
-          ]
-        },
-        "object3": {
-          "aiKey": "vertical",
-          "x": 0,
-          "y": 100,
-          "element": "GOLD",
-          "objectKey": "object2",
-          "zoneKeys": [
-            "redBigCircleZone"
-          ]
-        },
-        "object4": {
-          "aiKey": "vertical",
-          "x": 940,
-          "y": 440,
-          "element": "BLUE",
-          "objectKey": "object1",
-          "zoneKeys": [
-            "staticZoneBig"
-          ]
-        },
-        "object5": {
-          "aiKey": "homing",
-          "x": 824,
-          "y": 338,
-          "element": "GOLD",
-          "objectKey": "object2"
-        },
-        "object6": {
-          "aiKey": "homing",
-          "x": 356,
-          "y": 541,
-          "element": "GOLD",
-          "objectKey": "object2"
-        },
-        "object7": {
-          "aiKey": "homing",
-          "x": 809,
-          "y": 492,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object8": {
-          "aiKey": "homing",
-          "x": 37,
-          "y": 539,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object9": {
-          "aiKey": "homing",
-          "x": 704,
-          "y": 309,
-          "element": "BLUE",
-          "objectKey": "object1"
-        },
-        "object10": {
-          "aiKey": "homing",
-          "x": 114,
-          "y": 108,
-          "element": "BLUE",
-          "objectKey": "object1"
+    }, 
+    "zones": {
+        "columnZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "RED", 
+            "key": "columnZone", 
+            "objectKey": "bar", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "pulseZone": {
+            "element": "GOLD", 
+            "key": "pulseZone", 
+            "maxSize": 1, 
+            "maxTime": 180, 
+            "minSize": 0.5, 
+            "minTime": 180, 
+            "objectKey": "circle", 
+            "speed": 0.004, 
+            "type": "PULSE"
+        }, 
+        "redBigCircleZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "GOLD", 
+            "key": "redBigCircleZone", 
+            "objectKey": "big_circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "rotateZone": {
+            "key": "rotateZone", 
+            "radius": 50, 
+            "speed": 0.5, 
+            "type": "ROTATE", 
+            "zoneEntries": {
+                "zone1": {
+                    "element": "GOLD", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0
+                }, 
+                "zone2": {
+                    "element": "GOLD", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.33
+                }, 
+                "zone3": {
+                    "element": "GOLD", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.67
+                }
+            }
+        }, 
+        "staticZone": {
+            "cooldown": 50, 
+            "duration": 50, 
+            "element": "BLUE", 
+            "key": "staticZone", 
+            "objectKey": "circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "staticZoneBig": {
+            "cooldown": 150, 
+            "duration": 150, 
+            "element": "BLUE", 
+            "key": "staticZoneBig", 
+            "objectKey": "big_circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
         }
-      }
     }
-  },
-  "objects": {
-    "object1": {
-      "shapeKey": "shape1",
-      "animationKey": "blueEnemyAnimation"
-    },
-    "object2": {
-      "shapeKey": "shape1",
-      "animationKey": "redEnemyAnimation"
-    },
-    "playerChar1": {
-      "shapeKey": "shape1",
-      "animationKey": "blueCharAnimation",
-      "soundKey": "female"
-    },
-    "playerChar2": {
-      "shapeKey": "shape1",
-      "animationKey": "redCharAnimation",
-      "soundKey": "male"
-    },
-    "circle": {
-      "shapeKey": "circle",
-      "animationKey": "whiteCircle"
-    },
-    "sector": {
-      "shapeKey": "sector",
-      "animationKey": "whiteSector"
-    },
-    "bar": {
-      "shapeKey": "bar",
-      "animationKey": "whiteBar"
-    },
-    "big_circle": {
-      "shapeKey": "big_circle",
-      "animationKey": "whiteCircle"
-    }
-  },
-  "shapes": {
-    "shape1": {
-      "vertices": [
-        0,
-        0,
-        50,
-        0,
-        50,
-        50,
-        0,
-        50
-      ]
-    },
-    "circle": {
-      "vertices": [
-        0,
-        -100,
-        50.0,
-        -86.6025403784,
-        86.6025403784,
-        -50.0,
-        100,
-        0,
-        86.6025403784,
-        50.0,
-        50.0,
-        86.6025403784,
-        0,
-        100,
-        -50.0,
-        86.6025403784,
-        -86.6025403784,
-        50.0,
-        -100,
-        0,
-        -86.6025403784,
-        -50.0,
-        -50.0,
-        -86.6025403784
-      ]
-    },
-    "big_circle": {
-      "vertices": [
-        0,
-        -200,
-        100.0,
-        -173.205080757,
-        173.205080757,
-        -100.0,
-        200,
-        0,
-        173.205080757,
-        100.0,
-        100.0,
-        173.205080757,
-        0,
-        200,
-        -100.0,
-        173.205080757,
-        -173.205080757,
-        100.0,
-        -200,
-        0,
-        -173.205080757,
-        -100.0,
-        -100.0,
-        -173.205080757
-      ]
-    },
-    "sector": {
-      "vertices": [
-        10,
-        0,
-        50,
-        0,
-        70,
-        45,
-        30,
-        55,
-        -10,
-        45
-      ]
-    },
-    "bar": {
-      "vertices": [
-        -20,
-        400,
-        20,
-        400,
-        20,
-        -400,
-        -20,
-        -400
-      ]
-    }
-  },
-  "zones": {
-    "columnZone": {
-      "type": "STATIC",
-      "objectKey": "bar",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 0,
-      "duration": 100,
-      "element": "RED"
-    },
-    "staticZone": {
-      "type": "STATIC",
-      "objectKey": "circle",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 50,
-      "duration": 50,
-      "element": "BLUE"
-    },
-    "staticZoneBig": {
-      "type": "STATIC",
-      "objectKey": "big_circle",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 150,
-      "duration": 150,
-      "element": "BLUE"
-    },
-    "rotateZone": {
-      "type": "ROTATE",
-      "zoneEntries": {
-        "zone1": {
-          "objectKey": "sector",
-          "startingPosition": 0,
-          "element": "GOLD"
-        },
-        "zone2": {
-          "objectKey": "sector",
-          "startingPosition": 0.33,
-          "element": "GOLD"
-        },
-        "zone3": {
-          "objectKey": "sector",
-          "startingPosition": 0.67,
-          "element": "GOLD"
-        }
-      },
-      "radius": 50,
-      "speed": 0.5
-    },
-    "pulseZone": {
-      "type": "PULSE",
-      "objectKey": "circle",
-      "minSize": 0.5,
-      "minTime": 180,
-      "maxSize": 1,
-      "maxTime": 180,
-      "speed": 0.004,
-      "element": "GOLD"
-    },
-    "redBigCircleZone": {
-      "type": "STATIC",
-      "objectKey": "big_circle",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 0,
-      "duration": 100,
-      "element": "GOLD"
-    }
-  }
 }

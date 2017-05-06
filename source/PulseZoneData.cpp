@@ -11,7 +11,7 @@
 using namespace cugl;
 
 std::shared_ptr<JsonValue> PulseZoneData::toJsonValue(){
-	std::shared_ptr<JsonValue> pz = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> pz = Data::toJsonValue();
 	pz->appendChild("type", JsonValue::alloc("PULSE"));
 	pz->appendChild("objectKey", JsonValue::alloc(objectKey));
 	pz->appendChild("minSizeX", JsonValue::alloc(minSize.x));
@@ -49,6 +49,7 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     auto el = Element::stringToElementDataType(json->getString("element"));
     init(oid,minSize,minTime,maxSize,maxTime,lerpTime,el);
 
+	Data::preload(json);
     return true;
 }
 

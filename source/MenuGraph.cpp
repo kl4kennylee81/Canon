@@ -46,10 +46,10 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 	{
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
 		// TODO hacky setting of the uiKey
-		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelBoxBorder");
-        float x = 0.240 + (0.270*(i%2));
-        float y = 0.72 - (0.12 * (i/2));
-		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelBoxBorder", x, y, boxData->width, boxData->height, action, "");
+		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelectStarCircle");
+        float x = 0.1 + (0.225*(i%4));
+        float y = 0.45 - (0.26 * (i/4));
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelectStarCircle", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
 
 		// make label for level entry
@@ -57,7 +57,7 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
 		textData->textValue = entry->name;
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
-
+        labelNode->setPosition(x+225,y+300);
 		buttonNode->addChild(labelNode, 3);
 
 		//std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
@@ -69,7 +69,6 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 }
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-
 	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
 
 	for (std::string key : menuList->getMenuKeys()) {
@@ -80,7 +79,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
 		std::string menuKey = menuData->menuKey;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
-		std::shared_ptr<Menu> menu = Menu::alloc(false);
+		std::shared_ptr<Menu> menu = Menu::alloc(false,menuKey);
 
 		if (menuBackgroundKey != "") {
 			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
@@ -135,7 +134,7 @@ void MenuGraph::setMode(Mode mode){
         case Mode::MAIN_MENU:
         {
             // TODO this is a little hacky rn to switch back to the main menu
-            this->setActiveMenu(_menuMap.at("startMenu"));
+            this->setActiveMenu(_menuMap.at("levelSelect"));
             break;
         }
         default:
@@ -178,10 +177,33 @@ bool MenuGraph::needsUpdate(){
     return _currentMode != _nextMode;
 }
 
-void MenuGraph::attachToScene(std::shared_ptr<cugl::Scene> scene){
+void MenuGraph::attachToScene(std::shared_ptr<Scene> scene){
     scene->addChildWithName(_menuNode,"menuNode",3);
 }
 
-void MenuGraph::detachFromScene(std::shared_ptr<cugl::Scene> scene){
+void MenuGraph::detachFromScene(std::shared_ptr<Scene> scene){
+    if (scene->getChildByName("menuNode") == nullptr){
+        return;
+    }
     scene->removeChild(_menuNode);
+}
+
+std::shared_ptr<JsonValue> MenuGraph::toJsonValue(){
+	std::shared_ptr<JsonValue> mg = JsonValue::allocObject();
+	mg->appendChild("currentMode", JsonValue::alloc(modeToString(_currentMode)));
+	mg->appendChild("nextMode", JsonValue::alloc(modeToString(_nextMode)));
+	mg->appendChild("activeMenu", JsonValue::alloc(_activeMenu->getMenuKey()));
+	return mg;
+}
+
+bool MenuGraph::initAfterResume(std::shared_ptr<JsonValue> menuGraphResumeJson){
+    _currentMode = stringToMode(menuGraphResumeJson->getString("currentMode"));
+    _nextMode = stringToMode(menuGraphResumeJson->getString("nextMode"));
+    
+    _activeMenu = _menuMap.at(menuGraphResumeJson->getString("activeMenu"));
+    if (_currentMode == Mode::GAMEPLAY){
+        // hardcoded to go pause the screen when in gameplay state
+        setActiveMenu("pauseScreen");
+    }
+    return true;
 }

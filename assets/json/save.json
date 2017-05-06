@@ -2,22 +2,31 @@
     "SaveGameData": {
         "saveFile": {
             "rapidSpawn": {
-                "name": "rapidSpawn",
-                "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "highScore": 0,
                 "levelKey": "rapidSpawn",
                 "levelUrl": "level1assets.json",
-                "highScore": 0
+                "menuKey": "lake_bg",
+                "name": "rapidSpawn",
+                "unlocked": 1
             },
             "separation": {
-                "name": "separation",
-                "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "highScore": 0,
                 "levelKey": "separation",
                 "levelUrl": "level1assets.json",
-                "highScore": 0
+                "menuKey": "lake_bg",
+                "name": "separation",
+                "unlocked": 1
+            },
+            "precision": {
+                "complete": 0,
+                "highScore": 0,
+                "levelKey": "precision",
+                "levelUrl": "level1assets.json",
+                "menuKey": "lake_bg",
+                "name": "precision",
+                "unlocked": 1
             },
             "xxxxxx": {
                 "name": "The xx",
@@ -28,41 +37,50 @@
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
-            "precision": {
-                "name": "precision",
-                "unlocked": 1,
-                "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "precision",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
             "overlap": {
-                "name": "overlap",
-                "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "highScore": 0,
                 "levelKey": "overlap",
                 "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "sneakAttack": {
-                "name": "SneakAttack",
-                "unlocked": 1,
-                "complete": 0,
                 "menuKey": "lake_bg",
-                "levelKey": "sneakAttack",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
+                "name": "overlap",
+                "unlocked": 1
             },
             "interweave": {
-                "name": "Weave",
-                "unlocked": 1,
+                "complete": 0, 
+                "highScore": 0, 
+                "levelKey": "interweave", 
+                "levelUrl": "level1assets.json", 
+                "menuKey": "lake_bg", 
+                "name": "Weave", 
+                "unlocked": 1
+            },
+            "sneakAttack": {
                 "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "interweave",
+                "highScore": 0,
+                "levelKey": "sneakAttack",
                 "levelUrl": "level1assets.json",
-                "highScore": 0
+                "menuKey": "lake_bg",
+                "name": "SneakAttack",
+                "unlocked": 1
+            },
+            "squareLaser": {
+                "complete": 0,
+                "highScore": 0,
+                "levelKey": "squareLaser",
+                "levelUrl": "level1assets.json",
+                "menuKey": "lake_bg",
+                "name": "Lasers",
+                "unlocked": 1
+            },
+            "lure": {
+                "complete": 0, 
+                "highScore": 0, 
+                "levelKey": "lure", 
+                "levelUrl": "level1assets.json", 
+                "menuKey": "lake_bg", 
+                "name": "Lure", 
+                "unlocked": 1
             },
             "blobos": {
                 "name": "Blobos",
@@ -70,24 +88,6 @@
                 "complete": 0,
                 "menuKey": "lake_bg",
                 "levelKey": "blobos",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "squareLaser": {
-                "name": "Lasers",
-                "unlocked": 1,
-                "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "squareLaser",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "lure": {
-                "name": "Lure",
-                "unlocked": 1,
-                "complete": 0,
-                "menuKey": "lake_bg",
-                "levelKey": "lure",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             }

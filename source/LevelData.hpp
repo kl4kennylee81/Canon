@@ -15,23 +15,49 @@
 #include "WaveData.hpp"
 #include <vector>
 
-class LevelEntry {
+class LevelEntry : public Data {
 public:
     std::string waveKey;
     float time; // frames
     
-    LevelEntry(){}
+    LevelEntry():Data(){}
+    
+    bool init(){
+        Data::init();
+        this->waveKey = "";
+        this->time = 0;
+        return true;
+    }
     
     bool init(std::string wkey,int t){
+        init();
         this->waveKey = wkey;
         this->time = t;
         return true;
+    }
+    
+    static std::shared_ptr<LevelEntry> alloc() {
+        std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
+        return (result->init() ? result : nullptr);
     }
 
     static std::shared_ptr<LevelEntry> alloc(std::string waveKey,int time) {
         std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
         return (result->init(waveKey,time) ? result : nullptr);
     }
+    
+    static std::shared_ptr<LevelEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
+        std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
+        return (result->preload(json) ? result : nullptr);
+    }
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue() override;
+    
+    virtual bool preload(const std::string& file) override;
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
+    
+    virtual bool materialize() override;
 };
 
 class LevelData : public Data {
@@ -47,7 +73,9 @@ public:
     bool init() {
         return true;
     }
-    
+
+	std::vector<std::shared_ptr<LevelEntry>> getLevelEntries() { return _levelEntries; }
+
     static std::shared_ptr<LevelData> alloc() {
         std::shared_ptr<LevelData> result = std::make_shared<LevelData>();
         return (result->init() ? result : nullptr);
@@ -76,6 +104,8 @@ public:
     float getTime(int index);
     
     std::string getWaveKey(int index);
+    
+    std::shared_ptr<LevelEntry> getLevelEntry(int index);
     
     void setWaveKey(int index, std::string newKey){
         _levelEntries.at(index)->waveKey = newKey;

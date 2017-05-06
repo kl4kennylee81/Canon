@@ -15,6 +15,7 @@
 #include "GameState.hpp"
 #include "World.hpp"
 #include "Level.hpp"
+#include <map>
 #include "ProgressBarController.hpp"
 
 class LevelController : BaseController {
@@ -24,6 +25,9 @@ protected:
     Level _level;
     
     std::shared_ptr<ProgressBarController> _progressBarController;
+
+	std::map<int, std::string> _uidToWaveEntryMap;
+
 public:
     LevelController();
     
@@ -40,13 +44,21 @@ public:
      */
     virtual void eventUpdate(Event* e);
 
-    void spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    std::shared_ptr<GameObject> spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<GameObject> spawnAndRecordWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                        bool isPlayer,std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<GameObject> spawnAndNotifyWaveEntry(std::shared_ptr<WaveEntry> we,
+                                                        bool isPlayer,std::shared_ptr<GameState> state, float spawnTime);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
     
     void dispose();
     
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
+    
+    bool init(std::string levelDataKey, std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
     static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
@@ -56,6 +68,13 @@ public:
 	std::shared_ptr<World> getWorld() {
 		return _world;
 	}
+    
+	void initAfterResume(std::shared_ptr<GameState> state,
+                         std::shared_ptr<cugl::JsonValue> levelControlJson,
+                         std::shared_ptr<cugl::JsonValue> spawnControlJson);
+	std::string serialize(std::shared_ptr<GameState> state);
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };
 
 #endif /* LevelController_hpp */

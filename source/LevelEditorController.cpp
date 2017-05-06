@@ -146,7 +146,23 @@ void LevelEditorController::loadLevel(std::string file){
     saveLevel();
 }
 
+void setNameWaveDataEntries(std::shared_ptr<WaveData> wd,std::string waveName){
+    if (wd == nullptr){
+        return;
+    }
+    
+    wd->key = waveName;
+    for (int i = 0; i< wd->getWaveEntries().size();++i){
+        std::string weStr = waveName + " object " + std::to_string(i + 1);
+        wd->getWaveEntries().at(i)->key = weStr;
+    }
+}
+
+
 void LevelEditorController::ensureNameMatch() {
+    // update the key of the leveData
+    _levelData->key = _name;
+    
     for(int i = 0; i < _levelData->getNumberWaves(); i++){
         std::string key = _levelData->getWaveKey(i);
         std::string newKey = key;
@@ -158,7 +174,15 @@ void LevelEditorController::ensureNameMatch() {
             else {
                 newKey = _name + " " + arr.at(1) + " " +  Util::appendLeadingZero(2,arr.at(2));
             }
-            _world->_waveData[newKey] = _world->getWaveData(key);
+            
+            // update levelEntry Key
+            std::shared_ptr<LevelEntry> levelEntry = _levelData->getLevelEntry(i);
+            levelEntry->key = newKey;
+            
+            // update the waveData Key
+            std::shared_ptr<WaveData> wd = _world->getWaveData(key);
+            _world->_waveData[newKey] = wd;
+            setNameWaveDataEntries(wd, newKey);
             _levelData->setWaveKey(i, newKey);
         }
     }

@@ -1,25 +1,4 @@
 {
-  "templates":  {
-    "blobo": {
-      "name": "blobo",
-      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical","static"],
-      "objectKey":  "blobo_object"
-    }
-  },
-  "objects":{
-    "blobo_object":{
-      "shapeKey": "blobo_shape",
-      "blueAnimationKey": "blue_blobo_animation",
-      "goldAnimationKey": "yellow_blobo_animation",
-      "soundKey": "baseEnemySound",
-      "animationScale":2.0
-    }
-  },
-  "shapes":{
-    "blobo_shape": {
-      "vertices": [0,0,40,0,40,40,0,40]
-    }
-  },
   "animations":{
     "blue_blobo_animation": {
       "texture": "./textures/models/enemy_models/blobo/blobo_blue.png",
@@ -101,6 +80,47 @@
           }
       }
     }
-  }
+  }, 
+    "objects": {
+        "blobo_object": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blue_blobo_animation", 
+            "goldAnimationKey": "yellow_blobo_animation", 
+            "key": "blobo_object", 
+            "shapeKey": "blobo_shape", 
+            "soundKey": "baseEnemySound"
+        }
+    }, 
+    "shapes": {
+        "blobo_shape": {
+            "key": "blobo_shape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.25, 
+                0.0, 
+                1.25, 
+                1.25, 
+                0.0, 
+                1.25
+            ]
+        }
+    }, 
+    "templates": {
+        "blobo": {
+            "aiKeys": [
+                "homing", 
+                "horizontal", 
+                "horizontalLeft", 
+                "horizontalRight", 
+                "verticalUp", 
+                "verticalDown", 
+                "vertical", 
+                "static"
+            ], 
+            "key": "blobo", 
+            "name": "blobo", 
+            "objectKey": "blobo_object"
+        }
+    }
 }
-

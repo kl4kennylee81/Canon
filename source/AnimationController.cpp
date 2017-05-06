@@ -44,12 +44,26 @@ void AnimationController::eventUpdate(Event* e) {
         case Event::EventType::COLLISION: {
             CollisionEvent* collisionEvent = (CollisionEvent*)e;
             switch (collisionEvent->_collisionType) {
-                case CollisionEvent::CollisionEventType::OBJECT_GONE:
+                case CollisionEvent::CollisionEventType::OBJECT_GONE: {
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
                     handleAction(obj, AnimationAction::DEATH);
                     animationMap.at(obj)->setLastAnimation();
                     break;
+                }
+                case CollisionEvent::CollisionEventType::OBJECT_HIT: {
+                    ObjectHitEvent* objectHit = (ObjectHitEvent*)collisionEvent;
+                    GameObject* obj = objectHit->_obj;
+                    animationMap.at(obj)->setHitStun(true);
+                    break;
+                }
+                case CollisionEvent::CollisionEventType::HIT_FINISHED: {
+                    ObjectHitFinishedEvent* objectHitFinished = (ObjectHitFinishedEvent*)collisionEvent;
+                    GameObject* obj = objectHitFinished->_obj;
+                    animationMap.at(obj)->setHitStun(false);
+                    animationMap.at(obj)->getAnimationNode()->setColor(Color4::WHITE);
+                    break;
+                }
             }
             break;
         }
@@ -305,6 +319,17 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
                 anim->getAnimationNode()->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,alphascale));
             }
             
+        }
+        
+        if (anim->getHitStun()){
+            anim->flashIndex += GameState::_internalClock->getTimeDilation();
+            if (anim->flashIndex >= 10) {
+                anim->flashIndex = 0;
+                anim->lit = !anim->lit;
+            }
+            
+            Color4 color = anim->lit ? Color4::WHITE : Color4::RED;
+            anim->getAnimationNode()->setColor(color);
         }
         
         if (!anim->nextFrame()){

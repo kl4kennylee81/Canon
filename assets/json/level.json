@@ -1,140 +1,168 @@
 {
-  "templates":	{
-      "playerCharMale":	{
-          "name":	"playerCharMale",
-          "objectKey":	"playerCharMale",
-          "spawnTime": 0.0,
-          "zoneKeys":["playerZone"]
-      },
-      "playerCharFemale":	{
-          "name":	"playerCharFemale",
-          "objectKey":	"playerCharFemale",
-          "spawnTime": 0.0,
-          "zoneKeys":["playerZone"]
-      },
-      "object1": {
-          "name": "object1",
-          "objectKey":  "object1",
-          "aiKeys":  ["homing"],
-          "zoneKeys":["pulseZone"]
-      }
-  },
-  "objects": {
-    "playerCharMale":{
-      "shapeKey": "playerCharShape",
-      "blueAnimationKey": "blueCharAnimation",
-      "goldAnimationKey": "goldCharAnimation",
-      "soundKey": "male",
-      "animationScale": 2.5
-    },
-    "playerCharFemale":{
-      "shapeKey": "playerCharShape",
-      "blueAnimationKey": "blueCharAnimation",
-      "goldAnimationKey": "goldCharAnimation",
-      "soundKey": "female",
-      "animationScale": 2.5
-
-    },
-    "circle": {
-      "shapeKey": "circle",
-      "blueAnimationKey": "whiteCircle",
-      "goldAnimationKey": "whiteCircle"
-    },
-    "sector": {
-      "shapeKey": "sector",
-      "blueAnimationKey": "whiteSector",
-      "goldAnimationKey": "whiteSector"
-
-    },
-    "bar": {
-      "shapeKey": "bar",
-      "blueAnimationKey": "whiteBar",
-      "goldAnimationKey": "whiteBar"
-    },
-    "playerZoneObject":{
-      "shapeKey": "playerZoneShape",
-      "blueAnimationKey": "whiteCircle",
-      "goldAnimationKey": "whiteCircle"
-    }
-  },
-  "shapes": {
-    "playerCharShape": {
-      "vertices": [0,0,22,0,22,33,0,33]
-    },
-    "playerZoneShape":{
-      "vertices": [0.0, -32.4, 16.2, -28.0592230826016, 28.0592230826016, -16.2, 32.4, 0.0, 28.0592230826016, 16.2, 16.2, 28.0592230826016, 0.0, 32.4, -16.2, 28.0592230826016, -28.0592230826016, 16.2, -32.4, 0.0, -28.0592230826016, -16.2, -16.2, -28.0592230826016]
-    },
-    "circle": {
-      "vertices": [0, -100, 50.0, -86.6025403784, 86.6025403784, -50.0, 100, 0, 86.6025403784, 50.0, 50.0, 86.6025403784, 0, 100, -50.0, 86.6025403784, -86.6025403784, 50.0, -100, 0, -86.6025403784, -50.0, -50.0, -86.6025403784]
-    },
-    "sector": {
-      "vertices": [ 10, 0, 50, 0, 70, 45, 30, 55, -10, 45 ]
-    },
-    "bar": {
-      "vertices": [-20,400,20,400,20,-400,-20,-400]
-    }
-  },
-  "zones": {
-    "columnZone": {
-      "type": "STATIC",
-      "objectKey": "bar",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 0,
-      "duration": 100,
-      "element": "MATCH"
-    },
-    "staticZone": {
-      "type": "STATIC",
-      "objectKey": "circle",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 180,
-      "duration": 180,
-      "element": "MATCH"
-    },
-    "rotateZone": {
-      "type": "ROTATE",
-      "zoneEntries": {
-        "zone1": {
-          "objectKey": "sector",
-          "startingPosition": 0,
-          "element": "MATCH"
-        },
-        "zone2": {
-          "objectKey": "sector",
-          "startingPosition": 0.33,
-          "element": "MATCH"
-        },
-        "zone3": {
-          "objectKey": "sector",
-          "startingPosition": 0.67,
-          "element": "MATCH"
+    "objects": {
+        "bar": {
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "bar", 
+            "shapeKey": "bar"
+        }, 
+        "circle": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "circle", 
+            "shapeKey": "circle"
+        }, 
+        "playerCharFemale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "key": "playerCharFemale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "female",
+            "health": 2
+        }, 
+        "playerCharMale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "key": "playerCharMale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "male",
+            "health": 2
+        }, 
+        "playerZoneObject": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "playerZoneObject", 
+            "shapeKey": "playerZoneShape"
+        }, 
+        "sector": {
+            "blueAnimationKey": "whiteSector", 
+            "goldAnimationKey": "whiteSector", 
+            "key": "sector", 
+            "shapeKey": "sector"
         }
-      },
-      "radius": 50,
-      "speed": 0.5
-    },
-    "pulseZone": {
-      "type": "PULSE",
-      "objectKey": "bar",
-      "minSizeX": 0.8,
-      "minSizeY": 0.0,
-      "minTime": 60,
-      "maxSizeX": 1.0,
-      "maxSizeY": 1.0,
-      "maxTime": 60,
-      "lerpTime": 320,
-      "element": "MATCH"
-    },
-    "playerZone": {
-      "type": "STATIC",
-      "objectKey": "playerZoneObject",
-      "relX": 0,
-      "relY": 0,
-      "cooldown": 0,
-      "duration": 10,
-      "element": "MATCH"
+    }, 
+    "shapes": {
+        "bar": {
+            "key": "bar", 
+            "vertices": [-0.625, 12.5, 0.625, 12.5, 0.625, -12.5, -0.625, -12.5]
+        }, 
+        "circle": {
+            "key": "circle", 
+            "vertices": [0.0, -3.125, 1.5625, -2.706329386825, 2.706329386825, -1.5625, 3.125, 0.0, 2.706329386825, 1.5625, 1.5625, 2.706329386825, 0.0, 3.125, -1.5625, 2.706329386825, -2.706329386825, 1.5625, -3.125, 0.0, -2.706329386825, -1.5625, -1.5625, -2.706329386825]
+
+        }, 
+        "playerCharShape": {
+            "key": "playerCharShape", 
+            "vertices": [0.0, 0.0, 0.6875, 0.0, 0.6875, 1.03125, 0.0, 1.03125]
+        }, 
+        "playerZoneShape": {
+            "key": "playerZoneShape", 
+            "vertices": [0.0, -1.0125, 0.50625, -0.8768507213313, 0.8768507213313, -0.50625, 1.0125, 0.0, 0.8768507213313, 0.50625, 0.50625, 0.8768507213313, 0.0, 1.0125, -0.50625, 0.8768507213313, -0.8768507213313, 0.50625, -1.0125, 0.0, -0.8768507213313, -0.50625, -0.50625, -0.8768507213313]
+        }, 
+        "sector": {
+            "key": "sector", 
+            "vertices": [0.3125, 0.0, 1.5625, 0.0, 2.1875, 1.40625, 0.9375, 1.71875, -0.3125, 1.40625]
+        }
+    }, 
+    "templates": {
+        "object1": {
+            "aiKeys": [
+                "homing"
+            ], 
+            "key": "object1", 
+            "name": "object1", 
+            "objectKey": "object1", 
+            "zoneKeys": [
+                "pulseZone"
+            ]
+        }, 
+        "playerCharFemale": {
+            "key": "playerCharFemale", 
+            "name": "playerCharFemale", 
+            "objectKey": "playerCharFemale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }, 
+        "playerCharMale": {
+            "key": "playerCharMale", 
+            "name": "playerCharMale", 
+            "objectKey": "playerCharMale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }
+    }, 
+    "zones": {
+        "columnZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "MATCH", 
+            "key": "columnZone", 
+            "objectKey": "bar", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "playerZone": {
+            "cooldown": 0, 
+            "duration": 10, 
+            "element": "MATCH", 
+            "key": "playerZone", 
+            "objectKey": "playerZoneObject", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "pulseZone": {
+            "element": "MATCH", 
+            "key": "pulseZone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 0.8, 
+            "minSizeY": 0.0, 
+            "minTime": 60, 
+            "objectKey": "bar", 
+            "type": "PULSE"
+        }, 
+        "rotateZone": {
+            "key": "rotateZone", 
+            "radius": 1.5625, 
+            "speed": 0.5, 
+            "type": "ROTATE", 
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0
+                }, 
+                "zone2": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.33
+                }, 
+                "zone3": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.67
+                }
+            }
+        }, 
+        "staticZone": {
+            "cooldown": 180, 
+            "duration": 180, 
+            "element": "MATCH", 
+            "key": "staticZone", 
+            "objectKey": "circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }
     }
-  }
 }

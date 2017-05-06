@@ -15,10 +15,12 @@
 
 class Menu {
 private:
+	std::string _mKey;
     std::shared_ptr<cugl::Node> _menu;
 	std::shared_ptr<cugl::Node> _menuBackground;
     std::vector<std::shared_ptr<UIComponent>> _uiElements;
 public:
+	std::string getMenuKey();
 	std::shared_ptr<cugl::Node> getBackground();
 
 	void setBackground(std::shared_ptr<cugl::Node> node);
@@ -31,11 +33,11 @@ public:
     
     void detachFromScene();
     
-    virtual bool init(bool touch);
+    virtual bool init(bool touch, std::string mKey);
     
-    static std::shared_ptr<Menu> alloc(bool touch){
+    static std::shared_ptr<Menu> alloc(bool touch, std::string mKey){
         std::shared_ptr<Menu> result = std::make_shared<Menu>();
-        return (result->init(touch) ? result : nullptr);
+        return (result->init(touch, mKey) ? result : nullptr);
     }
 
 };

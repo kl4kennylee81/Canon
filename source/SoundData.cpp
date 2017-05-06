@@ -17,7 +17,7 @@ bool SoundData::init(){
 
 std::shared_ptr<JsonValue> SoundData::toJsonValue()
 {
-    std::shared_ptr<JsonValue> soundData = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> soundData = Data::toJsonValue();
     for (auto it : soundMap) {
         soundData->appendChild(actionToString(it.first), JsonValue::alloc(it.second));
     }
@@ -43,6 +43,7 @@ bool SoundData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         soundMap.insert({action,soundFxString});
     }
+	Data::preload(json);
     return true;
 }
 

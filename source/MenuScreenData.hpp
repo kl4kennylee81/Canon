@@ -20,23 +20,21 @@ private:
 	std::vector<std::string> _uiEntryKeys;
 
 public:
-	std::string menuKey;
 	std::string menuBackgroundKey;
 
 	std::vector<std::string> getUIEntryKeys() {
 		return _uiEntryKeys;
 	}
 
-	bool init(std::string mKey, std::string mbKey, std::vector<std::string> keys) {
-		menuKey = mKey;
+	bool init(std::string mbKey, std::vector<std::string> keys) {
 		menuBackgroundKey = mbKey;
 		_uiEntryKeys = keys;
 		return true;
 	}
 
-	static std::shared_ptr<MenuScreenData> alloc(std::string mKey, std::string mbKey, std::vector<std::string> keys) {
+	static std::shared_ptr<MenuScreenData> alloc(std::string mbKey, std::vector<std::string> keys) {
 		std::shared_ptr<MenuScreenData> result = std::make_shared<MenuScreenData>();
-		return (result->init(mKey, mbKey, keys) ? result : nullptr);
+		return (result->init(mbKey, keys) ? result : nullptr);
 	}
 
 	bool init() {

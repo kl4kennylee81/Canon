@@ -22,11 +22,10 @@ bool MenuScreenData::preload(const std::string& file){
 }
 
 bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	std::string mKey = json->getString("menuKey");
+    Data::preload(json);
 	std::string mbKey = json->getString("menuBackgroundKey");
 	std::vector<std::string> entries = json->get("UIEntries")->asStringArray();
-
-	init(mKey, mbKey, entries);
+	init(mbKey, entries);
 	return true;
 }
 

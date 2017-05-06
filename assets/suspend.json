@@ -1,0 +1,92 @@
+{
+	"menuGraph":	{
+		"currentMode":	"GAMEPLAY",
+		"nextMode":	"GAMEPLAY",
+		"activeMenu":	"gameScreen"
+	},
+	"gameplay":	{
+		"levelController":	{
+			"levelDataKey":	"blobos",
+			"currentWaveIndex":	0,
+			"framesElapsed":	90.599960,
+			"readyToSpawn":	0,
+			"playerSpawned":	1,
+			"players":	[{
+					"uid":	"1",
+					"currentPosX":	20.049189,
+					"currentPosY":	9.762983,
+					"waveID":	"player1"
+				}, {
+					"uid":	"3",
+					"currentPosX":	12.500000,
+					"currentPosY":	7.812500,
+					"waveID":	"player2"
+				}],
+			"enemyObjects":	[{
+					"uid":	"5",
+					"currentPosX":	13,
+					"currentPosY":	13.433333,
+					"waveID":	"object1"
+				}, {
+					"uid":	"6",
+					"currentPosX":	16.666666,
+					"currentPosY":	13.600000,
+					"waveID":	"object2"
+				}, {
+					"uid":	"7",
+					"currentPosX":	20.066668,
+					"currentPosY":	11.033333,
+					"waveID":	"object3"
+				}, {
+					"uid":	"8",
+					"currentPosX":	20.400000,
+					"currentPosY":	7.466666,
+					"waveID":	"object4"
+				}, {
+					"uid":	"9",
+					"currentPosX":	9.766666,
+					"currentPosY":	10.900000,
+					"waveID":	"object5"
+				}, {
+					"uid":	"10",
+					"currentPosX":	9.933333,
+					"currentPosY":	7.633333,
+					"waveID":	"object6"
+				}, {
+					"uid":	"11",
+					"currentPosX":	13,
+					"currentPosY":	4.366666,
+					"waveID":	"object7"
+				}, {
+					"uid":	"12",
+					"currentPosX":	17.166666,
+					"currentPosY":	4.433333,
+					"waveID":	"object8"
+				}],
+			"uidToWaveEntryMap":	{
+				"1":	"player1",
+				"3":	"player2",
+				"5":	"object1",
+				"6":	"object2",
+				"7":	"object3",
+				"8":	"object4",
+				"9":	"object5",
+				"10":	"object6",
+				"11":	"object7",
+				"12":	"object8"
+			}
+		},
+		"spawnController":	{
+			"spawnMap":	{
+				"7":	89.400040,
+				"8":	89.400040,
+				"6":	89.400040,
+				"9":	89.400040,
+				"11":	89.400040,
+				"5":	89.400040,
+				"10":	89.400040,
+				"12":	89.400040
+			}
+		}
+	}
+}

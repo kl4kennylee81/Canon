@@ -28,8 +28,8 @@ public:
     bool init(std::string objectKey, float relX, float relY, int cooldown, int duration, ElementDataType element) {
         ZoneData::init(ZoneType::STATIC);
         this->objectKey = objectKey;
-        this->relPos.x = relX/GAME_PHYSICS_SCALE;
-        this->relPos.y = relY/GAME_PHYSICS_SCALE;
+        this->relPos.x = relX;
+        this->relPos.y = relY;
         this->cooldown = cooldown;
         this->duration = duration;
         this->elementType = element;
