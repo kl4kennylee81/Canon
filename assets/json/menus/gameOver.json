@@ -5,7 +5,7 @@
                 "gameoverTextImg",
                 "tryAgainButton",
                 "homeButton",
-                "backToLevelEditor"
+                "MenubackToLevelEditor"
             ],
             "key": "gameover"
         }
@@ -34,7 +34,7 @@
             "x": 0.375,
             "y": 0.375
         },
-        "backToLevelEditor": {
+        "MenubackToLevelEditor": {
             "buttonAction": {
                 "buttonTarget": "LEVEL_EDIT",
                 "nextScreen": "blankScreen",

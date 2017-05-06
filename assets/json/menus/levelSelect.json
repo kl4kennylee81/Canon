@@ -2,24 +2,40 @@
     "MenuScreenData": {
         "levelSelect": {
             "UIEntries": [
-                "levelSelectTextImg",
-                "backToLevelEditor"
+                "levelSelectBackground",
+                "home",
+                "homeRing",
+                "levelSelectbackToLevelEditor"
             ],
             "menuBackgroundKey": "levelSelectBgFlat",
             "key": "levelSelect"
         }
     },
     "UIData": {
-        "levelSelectTextImg": {
-            "height": 0.261,
-            "key": "levelSelectTextImg",
-            "textureKey": "levelSelectTextImg",
-            "type": "IMAGE",
-            "width": 0.476,
-            "x": 0.257,
-            "y": 0.775
+        "home": {
+            "buttonAction": {
+                "buttonTarget": "levelSelect",
+                "type": "menuChange"
+            },
+            "buttonLabel": "",
+            "height": 0.1,
+            "key": "openOptions",
+            "type": "BUTTON",
+            "uiBackgroundKey": "home",
+            "width": 0.056,
+            "x": 0.475,
+            "y": 0.06
         },
-        "backToLevelEditor": {
+        "homeRing": {
+            "height": 0.15,
+            "key": "homeRing",
+            "textureKey": "homeRing",
+            "type": "IMAGE",
+            "width": 0.084,
+            "x": 0.46,
+            "y": 0.0375
+        },
+        "LevelSelectbackToLevelEditor": {
             "buttonAction": {
                 "buttonTarget": "LEVEL_EDIT",
                 "nextScreen": "blankScreen",
@@ -29,16 +45,18 @@
             "height": 0.1,
             "key": "backToLevelEditor",
             "type": "BUTTON",
-            "width": 0.25,
-            "x": 0.375,
-            "y": 0.05
+            "width": 0.15,
+            "x": 0.8,
+            "y": 0.1
         },
-        "levelBoxBorder": {
-            "height": 0.1,
-            "key": "levelBoxBorder",
-            "textureKey": "levelBoxBorder",
+        "levelSelectStarCircle": {
+            "height": 0.2,
+            "key": "levelSelectStarCircle",
+            "textureKey": "levelSelectStarCircle",
             "type": "IMAGE",
-            "width": 0.25
+            "width": 0.12,
+            "x": 0.257,
+            "y": 0.775
         },
         "levelLabelText": {
             "fontKey": "Charlemagne",
@@ -47,6 +65,15 @@
             "textValue": "",
             "type": "TEXT",
             "width": 0.36
+        },
+        "levelSelectBackground": {
+            "height": 1.0,
+            "key": "levelSelectBackground",
+            "textureKey": "levelSelectBackground",
+            "type": "IMAGE",
+            "width": 1.0,
+            "x": 0.0,
+            "y": 0.0
         }
     }
 }
