@@ -33,7 +33,6 @@ using namespace cugl;
 bool GameEngine::_touch;
 
 
-
 void loadFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string dirToRead, std::string path) {
 #ifdef __APPLE__
 	DIR *dir;
@@ -140,25 +139,22 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/save.json");
     //_assets->loadDirectory("json/level.json");
     
-    /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;
     std::string levelDir = assetDir + LEVEL_PATH;
-    
-    // std::cout << "current file directory: "<< __FILE__ << std::endl;
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    
-    // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
-    
+	std::string menuDir = assetDir + MENU_PATH;
+
     //load all template wave entries
 
 	#ifdef _WIN32
 	loadFilesWindows(_assets, templateDir, TEMPLATE_PATH);
     loadFilesWindows(_assets, levelDir, LEVEL_PATH);
+	loadFilesWindows(_assets, menuDir, MENU_PATH);
 	#elif __APPLE__
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);
+	loadFilesApple(_assets, menuDir, MENU_PATH);
 	#endif
 
     

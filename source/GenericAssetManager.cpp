@@ -13,6 +13,7 @@
 #include "ZoneData.hpp"
 #include "UIData.hpp"
 #include "SoundData.hpp"
+#include "MenuListData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -210,6 +211,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "animations") {
 			success = readCategory(typeid(AnimationData).hash_code(), child) && success;
+		}
+		else if (child->key() == "MenuListData") {
+			success = readCategory(typeid(MenuListData).hash_code(), child) && success;
 		}
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;

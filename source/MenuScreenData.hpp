@@ -15,27 +15,28 @@
 #include "Data.hpp"
 #include "UIData.hpp"
 
-class MenuScreenData : Data {
+class MenuScreenData : public Data {
+private:
+	std::vector<std::string> _uiEntryKeys;
 
 public:
 	std::string menuKey;
 	std::string menuBackgroundKey;
-	std::vector<std::string> _uiEntryKeys;
 
 	std::vector<std::string> getUIEntryKeys() {
 		return _uiEntryKeys;
 	}
 
-	bool init(const std::shared_ptr<cugl::JsonValue>& json) {
-		menuKey = json->getString("menuKey");
-		menuBackgroundKey = json->getString("menuBackgroundKey");
-		_uiEntryKeys = (json->get("UIEntries")->asStringArray());
+	bool init(std::string mKey, std::string mbKey, std::vector<std::string> keys) {
+		menuKey = mKey;
+		menuBackgroundKey = mbKey;
+		_uiEntryKeys = keys;
 		return true;
 	}
 
-	static std::shared_ptr<MenuScreenData> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
+	static std::shared_ptr<MenuScreenData> alloc(std::string mKey, std::string mbKey, std::vector<std::string> keys) {
 		std::shared_ptr<MenuScreenData> result = std::make_shared<MenuScreenData>();
-		return (result->init(json) ? result : nullptr);
+		return (result->init(mKey, mbKey, keys) ? result : nullptr);
 	}
 
 	bool init() {
@@ -50,14 +51,11 @@ public:
     void addUIEntry(std::string s);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
-
-    virtual std::string serialize();
     
     virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
-    virtual bool materialize();
 };
 
 #endif /* MenuScreenData_hpp */
