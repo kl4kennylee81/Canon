@@ -15,36 +15,28 @@
 #include "Data.hpp"
 #include "UIData.hpp"
 
-class MenuEntry {
+class MenuScreenData : Data {
+
 public:
 	std::string menuKey;
 	std::string menuBackgroundKey;
 	std::vector<std::string> _uiEntryKeys;
-    
-    std::vector<std::string> getUIEntryKeys(){
-        return _uiEntryKeys;
-    }
 
-	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+	std::vector<std::string> getUIEntryKeys() {
+		return _uiEntryKeys;
+	}
 
-	bool init(const std::shared_ptr<cugl::JsonValue>& json);
+	bool init(const std::shared_ptr<cugl::JsonValue>& json) {
+		menuKey = json->getString("menuKey");
+		menuBackgroundKey = json->getString("menuBackgroundKey");
+		_uiEntryKeys = (json->get("UIEntries")->asStringArray());
+		return true;
+	}
 
-	static std::shared_ptr<MenuEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
-		std::shared_ptr<MenuEntry> result = std::make_shared<MenuEntry>();
+	static std::shared_ptr<MenuScreenData> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
+		std::shared_ptr<MenuScreenData> result = std::make_shared<MenuScreenData>();
 		return (result->init(json) ? result : nullptr);
 	}
-};
-
-
-
-class MenuScreenData : Data {
-private:
-	std::map<std::string, std::shared_ptr<MenuEntry>> _menuEntries;
-    
-	std::string _startMenuKey; // use this as key inside _menuEntries to get the initial menu
-public:
-
-	MenuScreenData() : Data() {}
 
 	bool init() {
 		return true;
@@ -55,11 +47,7 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-    void addMenuEntry(std::shared_ptr<MenuEntry> w);
-
-    std::map<std::string, std::shared_ptr<MenuEntry>> getMenuEntries();
-
-    std::shared_ptr<MenuEntry> getEntry(std::string key);
+    void addUIEntry(std::string s);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 

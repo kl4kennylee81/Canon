@@ -10,19 +10,6 @@
 using namespace cugl;
 using std::string;
 
-bool MenuEntry::init(const std::shared_ptr<cugl::JsonValue>& json)
-{
-	menuKey = json->getString("menuKey");
-	menuBackgroundKey = json->getString("menuBackgroundKey");
-	_uiEntryKeys = (json->get("UIEntries")->asStringArray());
-	return true;
-}
-
-std::shared_ptr<cugl::JsonValue> MenuEntry::toJsonValue()
-{
-	return std::shared_ptr<cugl::JsonValue>();
-}
-
 std::shared_ptr<JsonValue> MenuScreenData::toJsonValue()
 {
 	return JsonValue::allocNull();
@@ -40,19 +27,7 @@ bool MenuScreenData::preload(const std::string& file){
 }
 
 bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init();
-	for (int i = 0; i < json->size(); i++) {
-		
-		auto child = json->get(i);
-		if (child->key() == "startMenuKey")
-		{
-			_startMenuKey = child->asString();
-			continue;
-		}
-		auto entry = MenuEntry::alloc(child);
-		addMenuEntry(entry);
-	}
-    
+	// todo    
 	return true;
 }
 
@@ -60,15 +35,7 @@ bool MenuScreenData::materialize(){
     return true;
 }
 
-void MenuScreenData::addMenuEntry(std::shared_ptr<MenuEntry> w) {
-    _menuEntries[w->menuKey] = w;
-}
-
-std::map<string, std::shared_ptr<MenuEntry>> MenuScreenData::getMenuEntries() {
-    return _menuEntries;
-}
-
-std::shared_ptr<MenuEntry> MenuScreenData::getEntry(string key) {
-    return _menuEntries[key];
+void MenuScreenData::addUIEntry(std::string s) {
+	_uiEntryKeys.push_back(s);
 }
 

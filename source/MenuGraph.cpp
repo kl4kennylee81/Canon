@@ -68,37 +68,37 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 }
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
-    
-    std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
-    
-    for (auto entry : menuScreens->getMenuEntries() ){
-        std::string menuKey = entry.first;
-        std::shared_ptr<MenuEntry> menuEntry = entry.second;
-        std::shared_ptr<Menu> menu = Menu::alloc(false);
+	//    std::shared_ptr<MenuScreenData> menuScreens = assets->get<MenuScreenData>("menus");
 
-		if (entry.second->menuBackgroundKey != "") {
-			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
-			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
-			cugl::Size imageSize = imageNode->getSize();
-			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
-			imageNode->setPosition(Vec2::ZERO);
+	//    for (auto entry : menuScreens->getMenuEntries() ){
+	//        std::string menuKey = entry.first;
+	//        std::shared_ptr<MenuEntry> menuEntry = entry.second;
+	//        std::shared_ptr<Menu> menu = Menu::alloc(false);
 
-			menu->setBackground(imageNode);
-		}
-        
-        for (std::string uiKey : menuEntry->getUIEntryKeys()){
-            auto uiData = assets->get<UIData>(uiKey);
-            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
-            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData,uiNode);
-            menu->addUIElement(uiComponent);
-			
-        }
+	// 	if (entry.second->menuBackgroundKey != "") {
+	// 		// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+	// 		std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(entry.second->menuBackgroundKey));
+	// 		cugl::Size imageSize = imageNode->getSize();
+	// 		imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	// 		imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
+	// 		imageNode->setPosition(Vec2::ZERO);
 
-        _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
-    }
-    
-	augmentLevelMenu(assets, _menuMap);
+	// 		menu->setBackground(imageNode);
+	// 	}
+
+	//        for (std::string uiKey : menuEntry->getUIEntryKeys()){
+	//            auto uiData = assets->get<UIData>(uiKey);
+	//            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
+	//            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData,uiNode);
+	//            menu->addUIElement(uiComponent);
+
+	//        }
+
+	//        _menuMap.insert(std::make_pair(menuEntry->menuKey,menu));
+	//    }
+
+	// augmentLevelMenu(assets, _menuMap);
+
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){
