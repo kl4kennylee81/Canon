@@ -235,11 +235,14 @@ void GameEngine::onSuspend() {
     
 //    // save the suspendJson to a file in the saveDirectory only exists when running the game
 //    // its in a temporary directory of the app
-//    std::string saveDir = Application::get()->getSaveDirectory();
     
+#if defined (CU_TOUCH_SCREEN)
+    std::string saveDir = Application::get()->getSaveDirectory();
+#else
     std::vector<std::string> vec = Util::split(__FILE__, '/');
     std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
-    
+#endif
+
     std::string filePath = "/"+saveDir+"/suspend.json";
     
     std::ofstream newFile;
