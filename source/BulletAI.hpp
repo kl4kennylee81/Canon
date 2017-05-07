@@ -46,6 +46,7 @@ public:
     void toggleActive();
     
     bool init(std::shared_ptr<GameObject> object, float velocity, float angle) {
+        
         _object = object;
         _isActive = false;
         this->velocity = velocity;
@@ -57,6 +58,16 @@ public:
         std::shared_ptr<BulletAI> result = std::make_shared<BulletAI>();
         return (result->init(object, velocity, angle) ? result : nullptr);
     }
+    
+    static std::shared_ptr<PathAI> allocWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state)
+    {
+        std::shared_ptr<BulletAI> result = std::make_shared<PathAI>();
+        return (result->initWithJson(json, state) ? result : nullptr);
+    }
+    
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+    
+    bool initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state);
 };
 
 #endif /* BulletAI_hpp */

@@ -16,6 +16,7 @@
 #include "PathAI.hpp"
 #include "StaticAI.hpp"
 #include "CompositeAI.hpp"
+#include "BulletAI.hpp"
 
 using namespace cugl;
 
@@ -164,6 +165,11 @@ void AIController::initAfterResume(std::shared_ptr<GameState> state, std::shared
 				_enemies.insert(enemy);
 				break;
 			}
+            case AIType::BULLET: {
+                std::shared_ptr<ActiveAI> enemy = BulletAI::allocWithJson(ai, state);
+                _enemies.insert(enemy);
+                break;
+            }
 			case AIType::STATIC: 
 			default: {
 				std::shared_ptr<ActiveAI> enemy = StaticAI::allocWithJson(ai, state); 
