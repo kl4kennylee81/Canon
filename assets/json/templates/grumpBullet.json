@@ -65,45 +65,26 @@
       "cols": 8,
       "size": 40,
       "statemap": {
-                "death": {
-                    "first": 1, 
-                    "frames": [
-                        10
-                    ], 
-                    "total": 1
-                }, 
-                "idle": {
-                    "first": 27, 
-                    "frames": [
-                        10
-                    ], 
-                    "total": 1
-                }, 
-                "spawn": {
-                    "first": 9, 
-                    "frames": [
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        25
-                    ], 
-                    "total": 9
-                }, 
-                "spawning": {
-                    "first": 0, 
-                    "frames": [
-                        12, 
-                        12, 
-                        12, 
-                        12
-                    ], 
-                    "total": 4
-                }
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 24,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 8,
+            "total": 8,
+            "frames": [9,9,9,12,12,12,9,9]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [10]
+          }
       },
       "actionmap": {
           "SPAWNING": {
@@ -124,45 +105,26 @@
       "cols": 8,
       "size": 40,
       "statemap": {
-                "death": {
-                    "first": 1, 
-                    "frames": [
-                        10
-                    ], 
-                    "total": 1
-                }, 
-                "idle": {
-                    "first": 27, 
-                    "frames": [
-                        10
-                    ], 
-                    "total": 1
-                }, 
-                "spawn": {
-                    "first": 9, 
-                    "frames": [
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        5, 
-                        25
-                    ], 
-                    "total": 9
-                }, 
-                "spawning": {
-                    "first": 0, 
-                    "frames": [
-                        12, 
-                        12, 
-                        12, 
-                        12
-                    ], 
-                    "total": 4
-                }
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 24,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 8,
+            "total": 8,
+            "frames": [9,9,9,12,12,12,9,9]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [10]
+          }
       },
       "actionmap": {
           "SPAWNING": {
