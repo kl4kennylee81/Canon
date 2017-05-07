@@ -90,6 +90,15 @@
                 "levelKey": "blobos",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
+            },
+            "test1": {
+                "name": "test1",
+                "unlocked": 1,
+                "complete": 0,
+                "menuKey": "lake_bg",
+                "levelKey": "test1",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
             }
         }
     }

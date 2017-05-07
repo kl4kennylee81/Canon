@@ -23,10 +23,28 @@
   },
   "shapes":{
     "grumpBullet_shape": {
-      "vertices": [0,0,25,0,25,25,0,25]
+        "vertices": [
+                     0.0,
+                     0.0,
+                     1.875,
+                     0.0,
+                     1.875,
+                     1.875,
+                     0.0,
+                     1.875
+                     ]
     },
     "grumpBullet_bulletShape":{
-      "vertices": [0,0,25,0,25,25,0,25]
+        "vertices": [
+                     0.0,
+                     0.0,
+                     1.875,
+                     0.0,
+                     1.875,
+                     1.875,
+                     0.0,
+                     1.875
+                     ]
     }
   },
   "bullets":{
@@ -35,8 +53,8 @@
           "startingAngle": 0.0,
           "angleVariance": 360.0,
           "numberShots": 4,
-          "cooldown": 120,
-          "velocity": 10,
+          "cooldown": 240,
+          "velocity": 3,
           "target": "false"
       }
   },

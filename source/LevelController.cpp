@@ -50,7 +50,7 @@ void LevelController::eventUpdate(Event* e) {
             
             auto ai = BulletAIData::alloc(bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
             //TODO: Change this shit
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x *32, pos.y*32, bulletEvent->element, "", "");
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x, pos.y, bulletEvent->element, "", "");
             
             std::shared_ptr<ObjectInitEvent> initevent =
                 ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, ai, {}, nullptr);

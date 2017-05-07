@@ -59,9 +59,9 @@ public:
         return (result->init(object, velocity, angle) ? result : nullptr);
     }
     
-    static std::shared_ptr<PathAI> allocWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state)
+    static std::shared_ptr<BulletAI> allocWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state)
     {
-        std::shared_ptr<BulletAI> result = std::make_shared<PathAI>();
+        std::shared_ptr<BulletAI> result = std::make_shared<BulletAI>();
         return (result->initWithJson(json, state) ? result : nullptr);
     }
     
