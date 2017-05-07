@@ -453,8 +453,6 @@ void GameEngine::initializeNextMode(){
     }
 }
 
-int hi = 0;
-
 /**
  * The method called to update the application data.
  *
@@ -507,13 +505,6 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-            if (hi == 1000){
-                onSuspend();
-                onResume();
-                hi+=1;
-            } else {
-                hi+=1;
-            }
             break;
         }
         case Mode::MAIN_MENU:
