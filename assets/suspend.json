@@ -13,19 +13,19 @@
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	2.550749,
-					"currentPosY":	1.434311,
+					"currentPosX":	21.312521,
+					"currentPosY":	5.385462,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
-					"currentPosX":	6.698279,
-					"currentPosY":	3.784385,
+					"currentPosX":	4.566623,
+					"currentPosY":	4.177195,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
 					"uid":	"5",
-					"currentPosX":	12.474807,
-					"currentPosY":	5.288838,
+					"currentPosX":	11.658133,
+					"currentPosY":	6.827375,
 					"waveID":	"test1 wave 20 object 1"
 				}],
 			"uidToWaveEntryMap":	{
@@ -50,26 +50,20 @@
 				}, {
 					"isActive":	true,
 					"velocity":	3,
+					"angle":	3.141593,
+					"uid":	"16",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
 					"angle":	1.570796,
 					"uid":	"15",
 					"aiType":	"BULLET"
 				}, {
 					"isActive":	true,
 					"velocity":	3,
-					"angle":	4.712389,
-					"uid":	"13",
-					"aiType":	"BULLET"
-				}, {
-					"isActive":	true,
-					"velocity":	3,
-					"angle":	3.141593,
-					"uid":	"12",
-					"aiType":	"BULLET"
-				}, {
-					"isActive":	true,
-					"velocity":	3,
 					"angle":	1.570796,
-					"uid":	"11",
+					"uid":	"7",
 					"aiType":	"BULLET"
 				}, {
 					"isActive":	true,
@@ -81,7 +75,25 @@
 					"isActive":	true,
 					"velocity":	3,
 					"angle":	3.141593,
-					"uid":	"16",
+					"uid":	"12",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	3.141593,
+					"uid":	"8",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	1.570796,
+					"uid":	"11",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	0,
+					"uid":	"10",
 					"aiType":	"BULLET"
 				}, {
 					"isActive":	true,
@@ -92,14 +104,8 @@
 				}, {
 					"isActive":	true,
 					"velocity":	3,
-					"angle":	1.570796,
-					"uid":	"7",
-					"aiType":	"BULLET"
-				}, {
-					"isActive":	true,
-					"velocity":	3,
-					"angle":	3.141593,
-					"uid":	"8",
+					"angle":	4.712389,
+					"uid":	"13",
 					"aiType":	"BULLET"
 				}, {
 					"aiType":	"HOMING",
