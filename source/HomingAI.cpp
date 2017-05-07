@@ -45,3 +45,22 @@ bool HomingAI::isActive(){
 void HomingAI::toggleActive(){
     _isActive = !_isActive;
 }
+
+std::shared_ptr<JsonValue> HomingAI::toJsonValue() {
+	std::shared_ptr<JsonValue> fullJson = JsonValue::allocObject();
+	fullJson->appendChild("aiType", JsonValue::alloc("HOMING"));
+	fullJson->appendChild("uid", JsonValue::alloc(std::to_string(_object->getUid())));
+
+	return fullJson;
+}
+
+bool HomingAI::initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state) {
+	//{
+	//	"aiType":	"HOMING",
+	//		"uid" : "9"
+	//}
+
+	std::shared_ptr<GameObject> gObj = state->getUID2GameObject(std::stoi(json->getString("uid")));
+	init(gObj);
+	return true;
+}

@@ -163,6 +163,8 @@ GameState():
             }
         }
     }
+
+	std::shared_ptr<GameObject> getUID2GameObject(int uid);
     
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();

@@ -98,9 +98,63 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
 /**
  * Return velocity vector with current time dilation applied
  */
-cugl::Vec2 MoveController::getVelocityVector(cugl::Vec2 start, cugl::Vec2 end, float velocity)
+Vec2 MoveController::getVelocityVector(Vec2 start, Vec2 end, float velocity)
 {
 	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
 	direction.normalize().scale(velocity * GameState::_internalClock->getTimeDilation());
 	return direction;
+}
+
+std::string MoveController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> MoveController::toJsonValue() {
+	std::shared_ptr<JsonValue> fullJson = JsonValue::allocObject();
+
+	for (auto entry : _activePaths) {
+		int uid = entry.first->getUid();
+		int pathIndex = entry.second->_pathIndex;
+		std::shared_ptr<JsonValue> pathVecs = entry.second->_path->toJsonValue();
+
+		std::shared_ptr<JsonValue> pathJson = JsonValue::allocObject();
+		pathJson->appendChild("pathIndex", JsonValue::alloc(std::to_string(pathIndex)));
+		pathJson->appendChild("pathVertices", pathVecs);
+		
+		fullJson->appendChild(std::to_string(uid), pathJson);
+
+	}
+	return fullJson;
+}
+
+void MoveController::initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<JsonValue> rJson) {
+	//{
+//		"1":	{
+	//		"pathIndex":	"3",
+	//			"pathVertices" : [[18.750000, 7.812500], [18.266668, 7.066667]]
+	//	}
+	//},
+
+	for (int i = 0; i < rJson->size(); i++) {
+		std::shared_ptr<JsonValue> obj = rJson->get(i);
+		
+		int uid = std::stoi(obj->key());
+		int pathIndex = std::stoi(obj->getString("pathIndex"));
+
+		std::shared_ptr<JsonValue> jv = obj->get("pathVertices");
+		std::vector<Vec2> vecList;
+		for (int j = 0; j < jv->size(); j++) {
+			std::shared_ptr<JsonValue> vertex = jv->get(j);
+			float x = vertex->getFloat("x");
+			float y = vertex->getFloat("y");
+			Vec2 temp = Vec2(x, y);
+			vecList.push_back(temp);
+		}
+
+		std::shared_ptr<GameObject> gObj = state->getUID2GameObject(uid);
+		_activePaths[gObj] = ActivePath::alloc(Path::alloc(vecList), pathIndex);
+
+		//std::unordered_map <std::shared_ptr<GameObject>, std::shared_ptr<ActivePath>> _activePaths;
+
+	}
 }

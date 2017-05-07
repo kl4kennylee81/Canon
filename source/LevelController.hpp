@@ -72,8 +72,9 @@ public:
 	void initAfterResume(std::shared_ptr<GameState> state,
                          std::shared_ptr<cugl::JsonValue> levelControlJson,
                          std::shared_ptr<cugl::JsonValue> spawnControlJson);
+
 	std::string serialize(std::shared_ptr<GameState> state);
-    
+
     std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
 };
 

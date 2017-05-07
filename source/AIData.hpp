@@ -38,5 +38,14 @@ public:
 
 	virtual std::shared_ptr<ActiveAI> newActiveAI(std::shared_ptr<GameObject> object) { return nullptr;  }
 
+	static AIType stringToAIType(std::string at) {
+		//HOMING, PATH, STATIC, COMPOSITE
+		if (at == "HOMING") return AIType::HOMING;
+		if (at == "PATH") return AIType::PATH;
+		if (at == "STATIC") return AIType::STATIC;
+		if (at == "COMPOSITE") return AIType::COMPOSITE;
+		return AIType::STATIC;
+	}
+
 };
 #endif /* AIData_hpp */

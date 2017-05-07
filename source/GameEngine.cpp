@@ -145,8 +145,7 @@ void GameEngine::onStartup() {
     std::string templateDir = assetDir + TEMPLATE_PATH;
     std::string levelDir = assetDir + LEVEL_PATH;
 	std::string menuDir = assetDir + MENU_PATH;
-
- 
+    
     //load all template wave entries
 
 	#ifdef _WIN32
@@ -232,14 +231,17 @@ void GameEngine::onSuspend() {
 //    // save the suspendJson to a file in the saveDirectory only exists when running the game
 //    // its in a temporary directory of the app
     
-#if defined (CU_TOUCH_SCREEN)
-    std::string saveDir = Application::get()->getSaveDirectory();
-#else
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
-#endif
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = saveDir + "\\suspend.json";
 
-    std::string filePath = "/"+saveDir+"/suspend.json";
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
     
     std::ofstream newFile;
     newFile.open(filePath);
@@ -259,11 +261,19 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
-    
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string saveDir = Util::join(vec,vec.size()-2,'/') + "/assets";
-    
-    std::string filePath = "/"+saveDir+"/suspend.json";
+   
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = saveDir + "\\suspend.json";
+
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
+
     auto reader = JsonReader::alloc(filePath);
     if(reader == nullptr) {
         return;
@@ -497,13 +507,13 @@ void GameEngine::update(float timestep) {
         {
 			_menu->update(timestep);
             _gameplay->update(timestep);
-//            if (hi == 100){
-//                onSuspend();
-//                onResume();
-//                hi+=1;
-//            } else {
-//                hi+=1;
-//            }
+            if (hi == 1000){
+                onSuspend();
+                onResume();
+                hi+=1;
+            } else {
+                hi+=1;
+            }
             break;
         }
         case Mode::MAIN_MENU:

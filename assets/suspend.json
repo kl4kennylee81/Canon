@@ -6,15 +6,15 @@
 	},
 	"gameplay":	{
 		"levelController":	{
-			"levelDataKey":	"blobos",
-			"currentWaveIndex":	0,
-			"framesElapsed":	90.599960,
+			"levelDataKey":	"squareLaser",
+			"currentWaveIndex":	1,
+			"framesElapsed":	21.600019,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	20.049189,
-					"currentPosY":	9.762983,
+					"currentPosX":	15.490450,
+					"currentPosY":	9.007615,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
@@ -23,70 +23,139 @@
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
-					"uid":	"5",
-					"currentPosX":	13,
-					"currentPosY":	13.433333,
-					"waveID":	"object1"
-				}, {
-					"uid":	"6",
-					"currentPosX":	16.666666,
-					"currentPosY":	13.600000,
+					"uid":	"7",
+					"currentPosX":	14.733334,
+					"currentPosY":	6.241665,
 					"waveID":	"object2"
 				}, {
-					"uid":	"7",
-					"currentPosX":	20.066668,
-					"currentPosY":	11.033333,
+					"uid":	"9",
+					"currentPosX":	14.633333,
+					"currentPosY":	11.758282,
 					"waveID":	"object3"
 				}, {
-					"uid":	"8",
-					"currentPosX":	20.400000,
-					"currentPosY":	7.466666,
+					"uid":	"13",
+					"currentPosX":	19.766666,
+					"currentPosY":	6.033334,
+					"waveID":	"object1"
+				}, {
+					"uid":	"15",
+					"currentPosX":	12.166667,
+					"currentPosY":	13.933333,
+					"waveID":	"object2"
+				}, {
+					"uid":	"17",
+					"currentPosX":	18.100000,
+					"currentPosY":	4.200000,
+					"waveID":	"object3"
+				}, {
+					"uid":	"19",
+					"currentPosX":	10.333333,
+					"currentPosY":	12,
 					"waveID":	"object4"
-				}, {
-					"uid":	"9",
-					"currentPosX":	9.766666,
-					"currentPosY":	10.900000,
-					"waveID":	"object5"
-				}, {
-					"uid":	"10",
-					"currentPosX":	9.933333,
-					"currentPosY":	7.633333,
-					"waveID":	"object6"
-				}, {
-					"uid":	"11",
-					"currentPosX":	13,
-					"currentPosY":	4.366666,
-					"waveID":	"object7"
-				}, {
-					"uid":	"12",
-					"currentPosX":	17.166666,
-					"currentPosY":	4.433333,
-					"waveID":	"object8"
 				}],
 			"uidToWaveEntryMap":	{
 				"1":	"player1",
 				"3":	"player2",
 				"5":	"object1",
-				"6":	"object2",
-				"7":	"object3",
-				"8":	"object4",
-				"9":	"object5",
-				"10":	"object6",
-				"11":	"object7",
-				"12":	"object8"
+				"7":	"object2",
+				"9":	"object3",
+				"11":	"object4",
+				"13":	"object1",
+				"15":	"object2",
+				"17":	"object3",
+				"19":	"object4"
 			}
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"7":	89.400040,
-				"8":	89.400040,
-				"6":	89.400040,
-				"9":	89.400040,
-				"11":	89.400040,
-				"5":	89.400040,
-				"10":	89.400040,
-				"12":	89.400040
+				"19":	157.400116,
+				"13":	157.400116,
+				"15":	157.400116,
+				"17":	157.400116
 			}
+		},
+		"moveController":	{
+		},
+		"aiController":	{
+			"activeAIMap":	[{
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	10.333333,
+							"y":	18
+						}, {
+							"x":	10.333333,
+							"y":	0
+						}],
+					"pathType":	"VERTICAL",
+					"pathDirection":	"UP",
+					"uid":	"19",
+					"aiType":	"PATH"
+				}, {
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	32,
+							"y":	4.200000
+						}, {
+							"x":	0,
+							"y":	4.200000
+						}],
+					"pathType":	"HORIZONTAL",
+					"pathDirection":	"RIGHT",
+					"uid":	"17",
+					"aiType":	"PATH"
+				}, {
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	19.766666,
+							"y":	0
+						}, {
+							"x":	19.766666,
+							"y":	18
+						}],
+					"pathType":	"VERTICAL",
+					"pathDirection":	"DOWN",
+					"uid":	"13",
+					"aiType":	"PATH"
+				}, {
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	14.633333,
+							"y":	0
+						}, {
+							"x":	14.633333,
+							"y":	18
+						}],
+					"pathType":	"VERTICAL",
+					"pathDirection":	"DOWN",
+					"uid":	"9",
+					"aiType":	"PATH"
+				}, {
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	0,
+							"y":	13.933333
+						}, {
+							"x":	32,
+							"y":	13.933333
+						}],
+					"pathType":	"HORIZONTAL",
+					"pathDirection":	"LEFT",
+					"uid":	"15",
+					"aiType":	"PATH"
+				}, {
+					"pathIndex":	"0",
+					"pathVertices":	[{
+							"x":	14.733334,
+							"y":	18
+						}, {
+							"x":	14.733334,
+							"y":	0
+						}],
+					"pathType":	"VERTICAL",
+					"pathDirection":	"UP",
+					"uid":	"7",
+					"aiType":	"PATH"
+				}]
 		}
 	}
 }
