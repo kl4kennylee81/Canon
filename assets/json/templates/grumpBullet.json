@@ -1,0 +1,172 @@
+{
+  "templates":  {
+    "grumpBullet": {
+      "name": "grumpBullet",
+      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
+      "objectKey":  "grumpBullet_object",
+      "bulletKey": "grumpBullet_bullet"
+    }
+  },
+  "objects":{
+    "grumpBullet_object":{
+      "shapeKey": "grumpBullet_shape",
+      "blueAnimationKey": "blue_grumpBullet_animation",
+      "goldAnimationKey": "yellow_grumpBullet_animation",
+      "soundKey": "baseEnemySound",
+      "animationScale": 2.5
+    },
+    "grumpBullet_bulletObject": {
+      "shapeKey": "grumpBullet_bulletShape",
+      "blueAnimationKey": "blue_grumpBullet_bulletanimation",
+      "goldAnimationKey": "yellow_grumpBullet_bulletanimation"
+    }
+  },
+  "shapes":{
+    "grumpBullet_shape": {
+      "vertices": [0,0,25,0,25,25,0,25]
+    },
+    "grumpBullet_bulletShape":{
+      "vertices": [0,0,25,0,25,25,0,25]
+    }
+  },
+  "bullets":{
+      "grumpBullet_bullet" : {
+          "objectKey": "grumpBullet_bulletObject",
+          "startingAngle": 0.0,
+          "angleVariance": 360.0,
+          "numberShots": 4,
+          "cooldown": 120,
+          "velocity": 10,
+          "target": "false"
+      }
+  },
+  "animations":{
+    "blue_grumpBullet_animation": {
+      "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png",
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 27,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [10]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "active": "spawn",
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+      }
+    },
+    "yellow_grumpBullet_animation": {
+      "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_yellow.png",
+      "rows": 5,
+      "cols": 9,
+      "size": 45,
+      "statemap": {
+          "spawning": {
+            "first": 0,
+            "total": 4,
+            "frames": [12,12,12,12]
+          },
+          "idle": {
+            "first": 27,
+            "total": 1,
+            "frames": [10]
+          },
+          "spawn": {
+            "first": 9,
+            "total": 9,
+            "frames": [5,5,5,5,5,5,5,5,25]
+          },
+          "death": {
+            "first": 1,
+            "total": 1,
+            "frames": [3]
+          }
+      },
+      "actionmap": {
+          "SPAWNING": {
+              "repeat": "spawning"
+          },
+          "SPAWN": {
+              "active": "spawn",
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "idle"
+          }
+      }
+    },
+    "blue_grumpBullet_bulletanimation": {
+        "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
+        "actionmap": {
+          "SPAWNING": {
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "idle"
+          }
+        }, 
+        "cols": 1, 
+        "rows": 1,
+        "size": 1,
+        "statemap": {
+            "idle": {
+                "first": 0, 
+                "frames": [
+                    10
+                ], 
+                "total": 1
+            }
+        }
+    },
+    "yellow_grumpBullet_bulletanimation": {
+        "actionmap": {
+          "SPAWNING": {
+              "repeat": "idle"
+          },
+          "DEATH": {
+              "active": "death"
+          }
+        }, 
+        "cols": 1, 
+        "rows": 1,
+        "size": 1,
+        "statemap": {
+            "idle": {
+                "first": 0, 
+                "frames": [
+                    10
+                ], 
+                "total": 1
+            }
+        }, 
+        "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
+    }
+  }
+}
+

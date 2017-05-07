@@ -18,7 +18,7 @@
 #include <map>
 #include "ProgressBarController.hpp"
 
-class LevelController : BaseController {
+class LevelController : public BaseController {
 protected:
     std::shared_ptr<World> _world;
     

@@ -10,18 +10,19 @@ bool TemplateWaveEntry::updateFile() {
 
 
 bool TemplateWaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json) {
-	return true;
+	return preload(json);
 }
 
 
-bool TemplateWaveEntry::init(std::string name, std::string obKey,
-     std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys,float spawnTime)
+bool TemplateWaveEntry::init(std::string name, std::string obKey, std::vector<std::string> aiKeys,
+    std::vector<std::string> zoneKeys,float spawnTime, std::string bullet)
 {
 	this->name = name;
     this->objectKey = obKey;
 	this->aiKeys = aiKeys;
 	this->zoneKeys = zoneKeys;
     this->_spawnTime = spawnTime;
+    this->bulletKey = bullet;
 	return true;
 }
 
@@ -69,9 +70,15 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if (json->has("zoneKeys")) {
         zones = json->get("zoneKeys")->asStringArray();
     }
+    
+    std::string bk = "";
+    if (json->has("bulletKey")) {
+        bk = json->getString("bulletKey");
+    }
+    
     float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
-    init(name, ob, ais, zones,sTime);
 	Data::preload(json);
+    init(name, ob, ais, zones, sTime, bk);
     return true;
 }
 

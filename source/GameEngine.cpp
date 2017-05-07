@@ -21,6 +21,7 @@
 #include <memory>
 #include <iostream>
 #include <fstream>
+#include "BulletData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -97,6 +98,7 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
     assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
 	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
+    assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
 }
 
 /**
@@ -160,8 +162,6 @@ void GameEngine::onStartup() {
 
     
     /** END OF TEMPORARY CODE TO WIPE **/
-
-
     
     // Activate mouse or touch screen input as appropriate
     // We have to do this BEFORE the scene, because the scene has a button
