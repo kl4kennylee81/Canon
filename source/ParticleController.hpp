@@ -25,21 +25,19 @@ private:
     /** The memory pool for future allocations */
     std::shared_ptr<cugl::FreeList<Particle>> _memory;
     
-    /** Character to the trail generator map */
-    std::unordered_map<GameObject*, std::shared_ptr<TrailParticleGenerator>> _character_map;
-    
     /** Can retreive specific particles by name */
     std::unordered_map<std::string, ParticleData> _particle_map;
     
     /** Generators */
     std::shared_ptr<DeathParticleGenerator> _death_gen;
     std::shared_ptr<ZoneParticleGenerator> _zone_gen;
+    std::shared_ptr<TrailParticleGenerator> _trail_gen;
     
-    /** Handlers for events */
+    /** Handlers for events. Replace all of these later with proper event handling. */
+    void handleCharacterSpawn(GameObject* obj);
+    void handleCharacterDeath(GameObject* obj);
     void handleDeathParticle(GameObject* obj);
     void handleZoneSpawn(GameObject* obj);
-    
-    void generateTrails();
     
 public:
     ParticleController();

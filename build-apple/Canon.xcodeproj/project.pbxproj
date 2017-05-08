@@ -577,9 +577,9 @@
 		829615561E9BC5BA00A731DB /* particle */ = {
 			isa = PBXGroup;
 			children = (
-				9F6F875C1EBCBCE100AD021D /* particleGenerators */,
 				829615501E9BC5B300A731DB /* ParticleController.cpp */,
 				829615511E9BC5B300A731DB /* ParticleController.hpp */,
+				9F6F875C1EBCBCE100AD021D /* particleGenerators */,
 				829615571E9BCA5500A731DB /* Particle.cpp */,
 				8296155B1E9BCACA00A731DB /* Particle.h */,
 				824E10AA1EA941B80068C0F5 /* ParticleData.cpp */,
@@ -1253,11 +1253,11 @@
 				TargetAttributes = {
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 4S972L8QNQ;
+						DevelopmentTeam = YX9S6B2J7Q;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 4S972L8QNQ;
+						DevelopmentTeam = YX9S6B2J7Q;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1555,14 +1555,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1578,7 +1578,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1586,7 +1586,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1692,7 +1692,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1712,7 +1712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",

@@ -44,7 +44,7 @@
                 "levelUrl": "level1assets.json",
                 "uiDataKey": "lake_bg",
                 "name": "overlap",
-                "unlocked": 1
+                "unlocked": 0
             },
             "interweave": {
                 "complete": 0, 
@@ -53,7 +53,7 @@
                 "levelUrl": "level1assets.json", 
                 "uiDataKey": "lake_bg", 
                 "name": "Weave", 
-                "unlocked": 1
+                "unlocked": 0
             },
             "sneakAttack": {
                 "complete": 0,
@@ -62,7 +62,7 @@
                 "levelUrl": "level1assets.json",
                 "uiDataKey": "lake_bg",
                 "name": "SneakAttack",
-                "unlocked": 1
+                "unlocked": 0
             },
             "squareLaser": {
                 "complete": 0,
@@ -71,7 +71,7 @@
                 "levelUrl": "level1assets.json",
                 "uiDataKey": "lake_bg",
                 "name": "Lasers",
-                "unlocked": 1
+                "unlocked": 0
             },
             "lure": {
                 "complete": 0, 
@@ -80,11 +80,11 @@
                 "levelUrl": "level1assets.json", 
                 "uiDataKey": "lake_bg", 
                 "name": "Lure", 
-                "unlocked": 1
+                "unlocked": 0
             },
             "blobos": {
                 "name": "Blobos",
-                "unlocked": 1,
+                "unlocked": 0,
                 "complete": 0,
                 "uiDataKey": "lake_bg",
                 "levelKey": "blobos",
@@ -93,7 +93,7 @@
             },
             "test1": {
                 "name": "test1",
-                "unlocked": 1,
+                "unlocked": 0,
                 "complete": 0,
                 "uiDataKey": "lake_bg",
                 "levelKey": "test1",

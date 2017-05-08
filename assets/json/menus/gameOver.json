@@ -19,7 +19,7 @@
             }, 
             "buttonLabel": "Level Edit", 
             "height": 0.1, 
-            "key": "backToLevelEditor", 
+            "key": "MenubackToLevelEditor", 
             "type": "BUTTON", 
             "width": 0.25, 
             "x": 0.375, 

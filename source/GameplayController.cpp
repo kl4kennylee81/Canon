@@ -171,6 +171,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _levelController->attach(_zoneController.get());
     _levelController->attach(_finishController.get());
     _levelController->attach(_soundController.get());
+    _levelController->attach(_particleController.get());
     
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
