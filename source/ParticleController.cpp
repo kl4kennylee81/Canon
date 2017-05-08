@@ -32,11 +32,21 @@ void ParticleController::notify(Event* e) {
 }
 void ParticleController::eventUpdate(Event* e) {
     switch (e->_eventType) {
+        case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_INIT: {
+                    ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
+                    handleCharacterSpawn(objectInit->object.get());
+                    break;
+                }
+            }
+            break;
+        }
         case Event::EventType::COLLISION: {
             CollisionEvent* collisionEvent = (CollisionEvent*)e;
             switch (collisionEvent->_collisionType) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
-                    std::cout << "sent\n";
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
                     handleDeathParticle(obj);
@@ -88,6 +98,12 @@ void ParticleController::eventUpdate(Event* e) {
     }
 }
 
+void ParticleController::handleCharacterSpawn(GameObject* obj) {
+    if (!obj->getIsPlayer()) return;
+    _trail_gen->add_character(obj);
+}
+
+// there is bug here where we get like 4 death events from collision controller per 1 monster death
 void ParticleController::handleDeathParticle(GameObject* obj) {
     if (obj->type != GameObject::ObjectType::CHARACTER) return;
     
@@ -100,38 +116,16 @@ void ParticleController::handleZoneSpawn(GameObject* obj) {
 }
 
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
-    // fill in trailparticle generator map if not initialized yet. This initialization is
-    // here instead of in init() because the player chars have not been initialized at init().
-    if (_character_map.size() == 0) {
-        
-        for (std::shared_ptr<GameObject> gameObj : state->getPlayerCharacters()){
-            ParticleData pd;
-            if (gameObj->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
-                pd = _particle_map.at("gold_particle");
-            } else {
-                pd = _particle_map.at("blue_particle");
-            }
-            
-            std::shared_ptr<TrailParticleGenerator> generator = TrailParticleGenerator::alloc(_memory, pd, gameObj, state);
-            
-            _character_map.insert(std::make_pair(gameObj.get(), generator));
-        }
-    }
-    
-    generateTrails();
     _death_gen->generate();
+    _trail_gen->generate();
 //    _zone_gen->generate();
-}
-
-void ParticleController::generateTrails() {
-    for (auto it = _character_map.begin(); it != _character_map.end(); it++) {
-        std::shared_ptr<TrailParticleGenerator> obj = it->second;
-        obj->generate();
-    }
 }
 
 bool ParticleController::init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
     _memory = FreeList<Particle>::alloc(MAX_PARTICLES);
+    
+    // everything here basically needs to be replaced with JSON loading
+    // i'm hardcoding the particle details in here for now and putting it into the particle map
     
     /** Particle for the Trail */
     ParticleData pd = ParticleData();
@@ -162,11 +156,11 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     pd2.color_duration = -1;
     pd2.alpha_fade = true;
     pd2.alpha_duration = 40;
-    pd2.start_alpha = 1.0;
+    pd2.start_alpha = 0.7;
     pd2.scale = true;
     pd2.current_scale = 1;
     pd2.start_scale = 1;
-    pd.end_scale = 0.1;
+    pd2.end_scale = 0.1;
     pd2.texture_name = "gold_particle";
     pd2.texture = assets->get<Texture>(pd2.texture_name);
     
@@ -250,8 +244,11 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _particle_map.insert(std::make_pair(circlepd_temp.texture_name, circlepd_temp)); // circle
     _particle_map.insert(std::make_pair(ringpd_temp.texture_name, ringpd_temp)); // ring
     
-    _death_gen = DeathParticleGenerator::alloc(_memory, pd, state, &_particle_map);
+    _death_gen = DeathParticleGenerator::alloc(_memory, state, &_particle_map);
     _death_gen->start();
+    
+    _trail_gen = TrailParticleGenerator::alloc(_memory, state, &_particle_map);
+    _trail_gen->start();
     
 //    _zone_gen = ZoneParticleGenerator::alloc(_memory, state, &_particle_map);
 //    _zone_gen->start();

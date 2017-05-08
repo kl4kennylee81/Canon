@@ -8,62 +8,91 @@
 
 #include "TrailParticleGenerator.hpp"
 
-bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd, std::shared_ptr<GameObject> ch, std::shared_ptr<GameState> state) {
+#define PARTICLE_DELAY 0
+
+bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _memory = mem;
-    _pd = pd;
-    _char = ch;
-    _respawn = 0;
-    _cooldown = _respawn;
+    _cooldown = PARTICLE_DELAY;
+    _particle_map = particle_map;
+    _active = false;
     
-    // initialize particle node and attach to the world node
-    _partnode = ParticleNode::allocWithTexture(_pd.texture);
-    _partnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    _partnode->setBlendEquation(GL_FUNC_ADD);
-    _partnode->setPosition(Vec2::ZERO);
-    state->getWorldNode()->addChild(_partnode);
+    // initialize separate ParticleNodes for blue and gold
+    _bluepd = _particle_map->at("blue_particle");
+    _bluepartnode = ParticleNode::allocWithTexture(_bluepd.texture);
+    _bluepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _bluepartnode->setBlendEquation(GL_FUNC_ADD);
+    _bluepartnode->setPosition(Vec2::ZERO);
+    state->getWorldNode()->addChild(_bluepartnode);
+    
+    _goldpd = _particle_map->at("gold_particle");
+    _goldpartnode = ParticleNode::allocWithTexture(_goldpd.texture);
+    _goldpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _goldpartnode->setBlendEquation(GL_FUNC_ADD);
+    _goldpartnode->setPosition(Vec2::ZERO);
+    state->getWorldNode()->addChild(_goldpartnode);
     
     return true;
 }
 
-void TrailParticleGenerator::generate() {
-    auto vel = _char->getPhysicsComponent()->getBody()->getLinearVelocity();
-    if (vel.isZero()) {
-        _active = false;
-    } else {
-        _active = true;
-    }
+void TrailParticleGenerator::add_character(GameObject* char_obj) {
+    std::cout<<"adding character\n";
+    _character_list.push_back(char_obj);
+}
+
+void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
+    ElementType element = char_obj->getPhysicsComponent()->getElementType();
+    Vec2 vel = char_obj->getPhysicsComponent()->getBody()->getLinearVelocity();
     
-    if (_active && _cooldown == 0) {
+    if (vel.isZero()) return;
+    
+    if (_cooldown == 0) {
         Particle* sprite = _memory->malloc();
-        
         if (sprite != nullptr) {
-            // Set random trajectory
-            std::random_device rd;
-            std::mt19937 mt(rd());
-            std::uniform_real_distribution<float> dist(0, 1.0f);
-            float rand = dist(mt);
+            float rand = getRandomFloat(0,1.0);
             auto angle = rand*2.0f*M_PI;
             
-            _pd.position = _char->getPosition() * Util::getGamePhysicsScale();
-            _pd.velocity = Vec2( ((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)) );
+            ParticleData pd;
+            std::shared_ptr<ParticleNode> partnode;
+            if (element == ElementType::BLUE) {
+                pd = _bluepd;
+                partnode = _bluepartnode;
+            }
+            else if (element == ElementType::GOLD) {
+                pd = _goldpd;
+                partnode = _goldpartnode;
+            }
             
-            sprite->init(_pd);
-            _partnode->addParticle(sprite);
+            pd.position = char_obj->getPosition() * Util::getGamePhysicsScale();
+            pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
             
-            _cooldown = _respawn;
+            sprite->init(pd);
+            partnode->addParticle(sprite);
+            
+            _cooldown = PARTICLE_DELAY;
         }
-        
     } else if (_cooldown > 0) {
         _cooldown--;
     }
+}
+
+void TrailParticleGenerator::generate() {
+    if (!_active) return;
+    
+    // Generate a trail for each character
+    for (auto it = _character_list.begin(); it != _character_list.end(); it++) {
+        GameObject* char_obj = (*it);
+        generate_trail(char_obj);
+    }
     
     // Move all of the particles according to velocity
-    _partnode->update(_particles);
+    _bluepartnode->update(_particles);
+    _goldpartnode->update(_particles);
     
-    // Garbage collect particles that go out of bounds
+    // Garbage collect particles
     for(auto it = _particles.begin(); it != _particles.end(); ++it) {
         Particle* p = *it;
-        _partnode->removeParticle(p);
+        _bluepartnode->removeParticle(p);
+        _goldpartnode->removeParticle(p);
         _memory->free(p);
     }
     
