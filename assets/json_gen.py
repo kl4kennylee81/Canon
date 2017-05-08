@@ -67,11 +67,18 @@ def modify_json(src_json, file_path_mapping):
           file_path_mapping[src_json['UIData'][menu_name][target]] = filename
 
           # detect if rename is necessary
-          if filename + "_" != src_json['UIData'][menu_name][target][:len(filename)] + "_":
-            append_name = filename + "_" + src_json['UIData'][menu_name][target]
-            
-            # update actual menu json
-            src_json['UIData'][menu_name][target] = append_name
+          if len(src_json['UIData'][menu_name][target]) > len(filename):
+            # condition reads: rename already happened
+            if filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]:
+              continue
+
+          append_name = filename + "_" + src_json['UIData'][menu_name][target]
+
+          # update actual menu json
+          src_json['UIData'][menu_name][target] = append_name
+
+          # bonus feature LOL make sure key field is correct
+          src_json['UIData'][menu_name]['key'] = menu_name
 
 
 def json_files():
@@ -98,10 +105,14 @@ def prepend_level_name(texture_map, file_path_mapping):
       folder = os.sep.join(splits[:-1])
       filename, ext = splits[-1].split('.')
 
-      if file_path_mapping[image_name] + "_" != filename[:len(file_path_mapping[image_name])] + "_":
-        new_file = file_path_mapping[image_name] + "_" + filename + '.' + ext
-        if not os.path.exists(folder + os.sep + new_file):
-          os.rename(filepath, folder + os.sep + new_file)
+      if len(filename) > len(file_path_mapping[image_name]):
+        if file_path_mapping[image_name] + "_" == filename[:len(file_path_mapping[image_name])+1]:
+          continue
+
+      new_file = file_path_mapping[image_name] + "_" + filename + '.' + ext
+
+      if not os.path.exists(folder + os.sep + new_file):
+        os.rename(filepath, folder + os.sep + new_file)
 
 
 # ACTUAL MAIN FUNCTION

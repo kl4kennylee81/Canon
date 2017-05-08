@@ -2,10 +2,10 @@
     "MenuScreenData": {
         "levelSelect": {
             "UIEntries": [
-                "levelSelectBackground", 
+                "levelSelect_Background", 
                 "home", 
                 "homeRing", 
-                "levelSelectbackToLevelEditor"
+                "levelSelect_backToLevelEditor"
             ], 
             "key": "levelSelect", 
             "menuBackgroundKey": "levelSelectBgFlat"
@@ -43,25 +43,25 @@
             "type": "TEXT", 
             "width": 0.36
         }, 
-        "levelSelectBackground": {
+        "levelSelect_Background": {
             "height": 1.0, 
             "key": "levelSelectBackground", 
-            "textureKey": "levelSelectBackground", 
+            "textureKey": "levelSelect_Background", 
             "type": "IMAGE", 
             "width": 1.0, 
             "x": 0.0, 
             "y": 0.0
         }, 
-        "levelSelectStarCircle": {
+        "levelSelect_StarCircle": {
             "height": 0.2, 
             "key": "levelSelectStarCircle", 
-            "textureKey": "levelSelectStarCircle", 
+            "textureKey": "levelSelect_StarCircle", 
             "type": "IMAGE", 
             "width": 0.12, 
             "x": 0.257, 
             "y": 0.775
         }, 
-        "levelSelectbackToLevelEditor": {
+        "levelSelect_backToLevelEditor": {
             "buttonAction": {
                 "buttonTarget": "LEVEL_EDIT", 
                 "nextScreen": "blankScreen", 

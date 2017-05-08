@@ -6,7 +6,7 @@
                 "highScore": 0,
                 "levelKey": "rapidSpawn",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "rapidSpawn",
                 "unlocked": 1
             },
@@ -15,7 +15,7 @@
                 "highScore": 0,
                 "levelKey": "separation",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "separation",
                 "unlocked": 1
             },
@@ -24,7 +24,7 @@
                 "highScore": 0,
                 "levelKey": "precision",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "precision",
                 "unlocked": 1
             },
@@ -32,7 +32,7 @@
                 "name": "The xx",
                 "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "levelKey": "xxxxxx",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
@@ -42,7 +42,7 @@
                 "highScore": 0,
                 "levelKey": "overlap",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "overlap",
                 "unlocked": 1
             },
@@ -51,7 +51,7 @@
                 "highScore": 0, 
                 "levelKey": "interweave", 
                 "levelUrl": "level1assets.json", 
-                "menuKey": "lake_bg", 
+                "uiDataKey": "lake_bg", 
                 "name": "Weave", 
                 "unlocked": 1
             },
@@ -60,7 +60,7 @@
                 "highScore": 0,
                 "levelKey": "sneakAttack",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "SneakAttack",
                 "unlocked": 1
             },
@@ -69,7 +69,7 @@
                 "highScore": 0,
                 "levelKey": "squareLaser",
                 "levelUrl": "level1assets.json",
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "name": "Lasers",
                 "unlocked": 1
             },
@@ -78,7 +78,7 @@
                 "highScore": 0, 
                 "levelKey": "lure", 
                 "levelUrl": "level1assets.json", 
-                "menuKey": "lake_bg", 
+                "uiDataKey": "lake_bg", 
                 "name": "Lure", 
                 "unlocked": 1
             },
@@ -86,7 +86,7 @@
                 "name": "Blobos",
                 "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "levelKey": "blobos",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
@@ -95,7 +95,7 @@
                 "name": "test1",
                 "unlocked": 1,
                 "complete": 0,
-                "menuKey": "lake_bg",
+                "uiDataKey": "lake_bg",
                 "levelKey": "test1",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
