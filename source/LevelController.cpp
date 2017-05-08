@@ -8,6 +8,9 @@
 
 #include "LevelController.hpp"
 #include "LevelEvent.hpp"
+#include "BulletInitEvent.hpp"
+#include "BulletSpawnEvent.hpp"
+#include "BulletAIData.hpp"
 #include <math.h>
 #include <string>
 
@@ -30,7 +33,45 @@ void LevelController::notify(Event* e) {
 /**
  * Update the observer state based on an event from the subject
  */
-void LevelController::eventUpdate(Event* e) {}
+void LevelController::eventUpdate(Event* e) {
+    switch (e->_eventType) {
+        case Event::EventType::BULLET:
+        {
+            BulletInitEvent* bulletEvent = (BulletInitEvent*)e;
+            Vec2 pos = bulletEvent->position;
+            std::shared_ptr<ObjectData> od = _world->getObjectData(bulletEvent->_bulletData->getObjectKey());
+            std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
+            std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(bulletEvent->element));
+            std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
+            
+            std::shared_ptr<GameObject> gameOb = GameObject::alloc();
+            gameOb->setIsPlayer(false);
+            gameOb->type = GameObject::ObjectType::BULLET;
+            
+            auto ai = BulletAIData::alloc(bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
+            //TODO: Change this shit
+            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x, pos.y, bulletEvent->element, "", "");
+            
+            std::shared_ptr<ObjectInitEvent> initevent =
+                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, ai, {}, nullptr);
+            notify(initevent.get());
+            
+            bulletEvent->state->addEnemyGameObject(gameOb);
+//            std::shared_ptr<ObjectSpawnEvent> spawn = ObjectSpawnEvent::alloc(gameOb);
+//            notify(spawn.get());
+//            
+            std::shared_ptr<ObjectSpawningEvent> spawningevent = ObjectSpawningEvent::alloc(gameOb,1);
+            
+//             notify the observers of the object that is spawned
+            notify(spawningevent.get());
+//            std::shared_ptr<BulletSpawnEvent> bulletSpawn =
+//                BulletSpawnEvent::alloc(gameOb, bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
+//            notify(bulletSpawn.get());
+            
+            break;
+        }
+    }
+}
 
 std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<WaveEntry> we, bool isPlayer,std::shared_ptr<GameState> state){
     std::shared_ptr<TemplateWaveEntry> templated = _world->getTemplate(we->getTemplateKey());
@@ -38,6 +79,7 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(we->getElement()));
     std::shared_ptr<AIData> aid = _world->getAIData(we); // aiKey is in the wave entry
+    std::shared_ptr<BulletData> bd = _world->getBulletData(we);
     std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
     if (sounddata == nullptr){
         sounddata = _world->getSoundData("baseEnemySound");
@@ -47,12 +89,13 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
         zds.push_back(_world->getZoneData(zoneKey));
     }
 
+
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     
     gameOb->setIsPlayer(isPlayer);
     
-    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds);
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds, bd);
     notify(initevent.get());
     
     if (isPlayer){

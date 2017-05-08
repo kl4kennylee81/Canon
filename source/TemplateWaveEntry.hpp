@@ -26,6 +26,8 @@ public:
     
     std::vector<std::string> zoneKeys;
     
+    std::string bulletKey;
+    
     TemplateWaveEntry() : Data(){}
 
 	/* update the data file which corresponds to this template*/
@@ -39,13 +41,14 @@ public:
 	}
 
 
-    bool init(std::string name, std::string obKey, std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys,float spawnTime);
+    bool init(std::string name, std::string obKey, std::vector<std::string> aiKeys,
+        std::vector<std::string> zoneKeys,float spawnTime, std::string bullet);
     
-    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey,
-                                                    std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys, float spawnTime)
+    static std::shared_ptr<TemplateWaveEntry> alloc(std::string name, std::string obKey, std::vector<std::string> aiKeys,
+        std::vector<std::string> zoneKeys, float spawnTime, std::string bullet)
 	{
 		std::shared_ptr<TemplateWaveEntry> result = std::make_shared<TemplateWaveEntry>();
-		return (result->init(name, obKey, aiKeys, zoneKeys,spawnTime) ? result : nullptr);
+		return (result->init(name, obKey, aiKeys, zoneKeys,spawnTime, bullet) ? result : nullptr);
 	}
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();

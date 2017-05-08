@@ -88,6 +88,7 @@ void SoundController::handleGeneralAction(SoundAction action) {
 
 void SoundController::handleObjectAction(GameObject* obj, SoundAction action) {
     std::shared_ptr<SoundData> sd = objectSoundMap.at(obj);
+    if(sd == nullptr) return;
     if (sd->soundMap.find(action) != sd->soundMap.end()) {
         std::string sound = sd->soundMap.at(action);
         std::string audioKey = sound + std::to_string(step);

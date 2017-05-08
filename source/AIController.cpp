@@ -16,6 +16,7 @@
 #include "PathAI.hpp"
 #include "StaticAI.hpp"
 #include "CompositeAI.hpp"
+#include "BulletAI.hpp"
 
 using namespace cugl;
 
@@ -50,6 +51,10 @@ void AIController::eventUpdate(Event* e){
                     return;
                 }
 				addAI(init->aiData->newActiveAI(init->object));
+//                if(init->object->type == GameObject::ObjectType::BULLET){
+//                    std::shared_ptr<ActiveAI> activeAi = _map.at(init->object.get());
+//                    activeAi->toggleActive();
+//                }
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
@@ -160,6 +165,11 @@ void AIController::initAfterResume(std::shared_ptr<GameState> state, std::shared
 				_enemies.insert(enemy);
 				break;
 			}
+            case AIType::BULLET: {
+                std::shared_ptr<ActiveAI> enemy = BulletAI::allocWithJson(ai, state);
+                _enemies.insert(enemy);
+                break;
+            }
 			case AIType::STATIC: 
 			default: {
 				std::shared_ptr<ActiveAI> enemy = StaticAI::allocWithJson(ai, state); 

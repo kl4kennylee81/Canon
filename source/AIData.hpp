@@ -17,7 +17,7 @@
 #include "StaticAI.hpp"
 
 enum class AIType : int {
-	HOMING, PATH, STATIC, COMPOSITE
+	HOMING, PATH, STATIC, COMPOSITE, BULLET
 };
 
 class AIData : public Data {
@@ -44,6 +44,7 @@ public:
 		if (at == "PATH") return AIType::PATH;
 		if (at == "STATIC") return AIType::STATIC;
 		if (at == "COMPOSITE") return AIType::COMPOSITE;
+        if (at == "BULLET") return AIType::BULLET;
 		return AIType::STATIC;
 	}
 

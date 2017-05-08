@@ -112,11 +112,6 @@ void PathAI::toggleActive() {
 }
 
 std::shared_ptr<JsonValue> PathAI::toJsonValue() {
-	//std::shared_ptr<GameObject> _object;
-	//PathType _type;
-	//std::shared_ptr<ActivePath> _activePath;
-	//PathDirection _direction;
-
 	std::shared_ptr<JsonValue> pathJson = JsonValue::allocObject();
 
 	// duplicate code from move controller rip
@@ -131,23 +126,6 @@ std::shared_ptr<JsonValue> PathAI::toJsonValue() {
 }
 
 bool PathAI::initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state) {
-	//{
-		// 					"pathIndex":	"0",
-		// 					"pathVertices":	[{
-		// 							"x":	0,
-		// 							"y":	9.266666
-		// 						}, {
-		// 							"x":	32,
-		// 							"y":	9.266666
-		// 						}],
-		// 					"pathType":	"HORIZONTAL",
-		// 					"pathDirection":	"LEFT",
-		// 					"uid":	"7",
-		// 					"aiType":	"PATH"
-		// 				}
-
-		// bool init(std::shared_ptr<GameObject> object, PathType type, std::vector<cugl::Vec2> path, PathDirection direction);
-
 	PathType pType = PathAIData::getPathTypeFromString(json->getString("pathType"));
 	PathDirection dir = PathAIData::getPathDirectionFromString(json->getString("pathDirection"));
 

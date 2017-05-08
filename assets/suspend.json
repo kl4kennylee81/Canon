@@ -2,279 +2,114 @@
 	"menuGraph":	{
 		"currentMode":	"GAMEPLAY",
 		"nextMode":	"GAMEPLAY",
-		"activeMenu":	"pauseScreen"
+		"activeMenu":	"gameScreen"
 	},
 	"gameplay":	{
 		"levelController":	{
-			"levelDataKey":	"interweave",
-			"currentWaveIndex":	0,
-			"framesElapsed":	93,
+			"levelDataKey":	"test1",
+			"currentWaveIndex":	1,
+			"framesElapsed":	0,
 			"readyToSpawn":	0,
 			"playerSpawned":	1,
 			"players":	[{
 					"uid":	"1",
-					"currentPosX":	18.750000,
-					"currentPosY":	7.812500,
+					"currentPosX":	21.312521,
+					"currentPosY":	5.385462,
 					"waveID":	"player1"
 				}, {
 					"uid":	"3",
-					"currentPosX":	12.500000,
-					"currentPosY":	7.812500,
+					"currentPosX":	4.566623,
+					"currentPosY":	4.177195,
 					"waveID":	"player2"
 				}],
 			"enemyObjects":	[{
 					"uid":	"5",
-					"currentPosX":	5.200000,
-					"currentPosY":	16.166666,
-					"waveID":	"object1"
-				}, {
-					"uid":	"6",
-					"currentPosX":	28.666666,
-					"currentPosY":	6.666667,
-					"waveID":	"object10"
-				}, {
-					"uid":	"7",
-					"currentPosX":	28.600000,
-					"currentPosY":	4.266666,
-					"waveID":	"object11"
-				}, {
-					"uid":	"8",
-					"currentPosX":	28.666666,
-					"currentPosY":	1.966666,
-					"waveID":	"object12"
-				}, {
-					"uid":	"9",
-					"currentPosX":	8.266666,
-					"currentPosY":	16.166666,
-					"waveID":	"object2"
-				}, {
-					"uid":	"10",
-					"currentPosX":	11.433333,
-					"currentPosY":	16.166666,
-					"waveID":	"object3"
-				}, {
-					"uid":	"11",
-					"currentPosX":	14.500000,
-					"currentPosY":	16.133333,
-					"waveID":	"object4"
-				}, {
-					"uid":	"12",
-					"currentPosX":	17.500000,
-					"currentPosY":	16.133333,
-					"waveID":	"object5"
-				}, {
-					"uid":	"13",
-					"currentPosX":	20.466667,
-					"currentPosY":	16.133333,
-					"waveID":	"object6"
-				}, {
-					"uid":	"14",
-					"currentPosX":	28.600000,
-					"currentPosY":	13.900000,
-					"waveID":	"object7"
-				}, {
-					"uid":	"15",
-					"currentPosX":	28.666666,
-					"currentPosY":	11.533334,
-					"waveID":	"object8"
-				}, {
-					"uid":	"16",
-					"currentPosX":	28.666666,
-					"currentPosY":	9.033334,
-					"waveID":	"object9"
+					"currentPosX":	11.658133,
+					"currentPosY":	6.827375,
+					"waveID":	"test1 wave 20 object 1"
 				}],
 			"uidToWaveEntryMap":	{
 				"1":	"player1",
 				"3":	"player2",
-				"5":	"object1",
-				"6":	"object10",
-				"7":	"object11",
-				"8":	"object12",
-				"9":	"object2",
-				"10":	"object3",
-				"11":	"object4",
-				"12":	"object5",
-				"13":	"object6",
-				"14":	"object7",
-				"15":	"object8",
-				"16":	"object9"
+				"5":	"test1 wave 20 object 1"
 			}
 		},
 		"spawnController":	{
 			"spawnMap":	{
-				"6":	87,
-				"5":	87,
-				"11":	87,
-				"7":	87,
-				"15":	87,
-				"13":	87,
-				"16":	87,
-				"12":	87,
-				"14":	87,
-				"10":	87,
-				"9":	87,
-				"8":	87
 			}
 		},
 		"moveController":	{
 		},
 		"aiController":	{
 			"activeAIMap":	[{
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	14.500000,
-							"y":	0
-						}, {
-							"x":	14.500000,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"11",
-					"aiType":	"PATH"
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	4.712389,
+					"uid":	"17",
+					"aiType":	"BULLET"
 				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	1.966666
-						}, {
-							"x":	32,
-							"y":	1.966666
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
-					"uid":	"8",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	8.266666,
-							"y":	0
-						}, {
-							"x":	8.266666,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"9",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	5.200000,
-							"y":	0
-						}, {
-							"x":	5.200000,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"5",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	6.666667
-						}, {
-							"x":	32,
-							"y":	6.666667
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
-					"uid":	"6",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	4.266666
-						}, {
-							"x":	32,
-							"y":	4.266666
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
-					"uid":	"7",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	11.433333,
-							"y":	0
-						}, {
-							"x":	11.433333,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"10",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	20.466667,
-							"y":	0
-						}, {
-							"x":	20.466667,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"13",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	17.500000,
-							"y":	0
-						}, {
-							"x":	17.500000,
-							"y":	18
-						}],
-					"pathType":	"VERTICAL",
-					"pathDirection":	"DOWN",
-					"uid":	"12",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	13.900000
-						}, {
-							"x":	32,
-							"y":	13.900000
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
-					"uid":	"14",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	11.533334
-						}, {
-							"x":	32,
-							"y":	11.533334
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
-					"uid":	"15",
-					"aiType":	"PATH"
-				}, {
-					"pathIndex":	"0",
-					"pathVertices":	[{
-							"x":	0,
-							"y":	9.033334
-						}, {
-							"x":	32,
-							"y":	9.033334
-						}],
-					"pathType":	"HORIZONTAL",
-					"pathDirection":	"LEFT",
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	3.141593,
 					"uid":	"16",
-					"aiType":	"PATH"
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	1.570796,
+					"uid":	"15",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	1.570796,
+					"uid":	"7",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	0,
+					"uid":	"14",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	3.141593,
+					"uid":	"12",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	3.141593,
+					"uid":	"8",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	1.570796,
+					"uid":	"11",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	0,
+					"uid":	"10",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	4.712389,
+					"uid":	"9",
+					"aiType":	"BULLET"
+				}, {
+					"isActive":	true,
+					"velocity":	3,
+					"angle":	4.712389,
+					"uid":	"13",
+					"aiType":	"BULLET"
+				}, {
+					"aiType":	"HOMING",
+					"uid":	"5"
 				}]
 		}
 	}
