@@ -35,6 +35,7 @@ private:
     
     /** Handlers for events. Replace all of these later with proper event handling. */
     void handleCharacterSpawn(GameObject* obj);
+    void handleCharacterDeath(GameObject* obj);
     void handleDeathParticle(GameObject* obj);
     void handleZoneSpawn(GameObject* obj);
     

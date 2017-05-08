@@ -39,6 +39,15 @@ void TrailParticleGenerator::add_character(GameObject* char_obj) {
     _character_list.push_back(char_obj);
 }
 
+void TrailParticleGenerator::remove_character(GameObject* char_obj) {
+    for(auto it = _character_list.begin() ; it != _character_list.end(); ++it) {
+        if ((*it) == char_obj){
+            it = _character_list.erase(it);
+            break;
+        }
+    }
+}
+
 void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
     ElementType element = char_obj->getPhysicsComponent()->getElementType();
     Vec2 vel = char_obj->getPhysicsComponent()->getBody()->getLinearVelocity();

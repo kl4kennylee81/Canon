@@ -50,6 +50,7 @@ void ParticleController::eventUpdate(Event* e) {
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
                     handleDeathParticle(obj);
+                    handleCharacterDeath(obj);
                     break;
             }
             break;
@@ -102,6 +103,12 @@ void ParticleController::handleCharacterSpawn(GameObject* obj) {
     if (!obj->getIsPlayer()) return;
     _trail_gen->add_character(obj);
 }
+
+void ParticleController::handleCharacterDeath(GameObject* obj) {
+    if (!obj->getIsPlayer()) return;
+    _trail_gen->remove_character(obj);
+}
+
 
 // there is bug here where we get like 4 death events from collision controller per 1 monster death
 void ParticleController::handleDeathParticle(GameObject* obj) {

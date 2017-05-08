@@ -57,6 +57,8 @@ public:
      */
     void add_character(GameObject* char_obj);
     
+    void remove_character(GameObject* char_obj);
+    
     void generate();
 };
 
