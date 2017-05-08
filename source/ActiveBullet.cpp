@@ -22,7 +22,8 @@ std::vector<std::shared_ptr<BulletInitEvent>> ActiveBullet::update(std::shared_p
 
 std::vector<std::shared_ptr<BulletInitEvent>> ActiveBullet::shootBullets(std::shared_ptr<GameState> state){
     float targetAngle = 0;
-    ElementType element = _object->getPhysicsComponent()->getElementType();
+    ElementType el = _object->getPhysicsComponent()->getElementType();
+    ElementType element = Element::elementDataTypeToElement(_bulletData->getElementDataType(), el);
     for(auto it: state->getPlayerCharacters()) {
         if(it->getPhysicsComponent()->getElementType() != element ){
             Vec2 targetVector = Vec2::Vec2(_object->getPosition()).subtract(it->getPosition());

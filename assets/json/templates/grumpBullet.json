@@ -51,11 +51,12 @@
       "grumpBullet_bullet" : {
           "objectKey": "grumpBullet_bulletObject",
           "startingAngle": 0.0,
-          "angleVariance": 360.0,
-          "numberShots": 4,
+          "angleVariance": 90,
+          "numberShots": 5,
           "cooldown": 240,
           "velocity": 3,
-          "target": "false"
+          "target": "true",
+          "element": "OPPOSITE"
       }
   },
   "animations":{
