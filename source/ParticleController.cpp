@@ -89,7 +89,7 @@ void ParticleController::eventUpdate(Event* e) {
 }
 
 void ParticleController::handleDeathParticle(GameObject* obj) {
-    if (obj->type != GameObject::ObjectType::CHARACTER) return;
+    if (obj->type == GameObject::ObjectType::ZONE) return;
     
     Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
     _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
