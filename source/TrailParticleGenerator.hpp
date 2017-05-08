@@ -37,6 +37,11 @@ private:
      */
     void generate_trail(GameObject* char_obj);
     
+    /**
+     * This creates the particles by num count and also inserts into the particle node
+     */
+    void createTrailParticle(int num, ParticleData pd, std::shared_ptr<ParticleNode> partnode, Vec2 world_pos);
+    
 public:
     TrailParticleGenerator() : ParticleGenerator() {}
     
