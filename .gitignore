@@ -4,4 +4,3 @@ assets/json/assets.json
 build-win10/
 */.DS_Store
 .DS_Store
-*project.pbxproj
