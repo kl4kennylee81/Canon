@@ -46,11 +46,22 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 	{
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
 		// TODO hacky setting of the uiKey
-		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelectStarCircle");
+		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
+		
         float x = 0.1 + (0.225*(i%4));
         float y = 0.45 - (0.26 * (i/4));
-		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelectStarCircle", x, y, boxData->width, boxData->height, action, "");
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_StarCircle", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+
+		// if locked add lock
+		if (!entry->unlocked) {
+			float x2 = (0.02*(i % 4)) - 0.20;
+			float y2 = 0.35 - (0.06 * (i / 4));
+			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_Lock");
+			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", x2, y2, lock->width, lock->height, action, "");
+			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets);
+			buttonNode->addChild(lockNode, 4);
+		}
 
 		// make label for level entry
 		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
@@ -72,10 +83,6 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
 
 	for (std::string key : menuList->getMenuKeys()) {
-		// hack: remove this later
-		if (key == "randomMenuAssets") {
-			continue;
-		}
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
         std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;

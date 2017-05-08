@@ -2,78 +2,87 @@
     "MenuScreenData": {
         "levelSelect": {
             "UIEntries": [
-                "levelSelectBackground",
-                "home",
-                "homeRing",
-                "levelSelectbackToLevelEditor"
-            ],
-            "menuBackgroundKey": "levelSelectBgFlat",
-            "key": "levelSelect"
+                "levelSelect_Background", 
+                "home", 
+                "homeRing", 
+                "levelSelect_backToLevelEditor"
+            ], 
+            "key": "levelSelect", 
+            "menuBackgroundKey": "levelSelectBgFlat"
         }
-    },
+    }, 
     "UIData": {
         "home": {
             "buttonAction": {
-                "buttonTarget": "startMenu",
+                "buttonTarget": "startMenu", 
                 "type": "menuChange"
-            },
-            "buttonLabel": "",
-            "height": 0.1,
-            "key": "openOptions",
-            "type": "BUTTON",
-            "uiBackgroundKey": "home",
-            "width": 0.056,
-            "x": 0.475,
+            }, 
+            "buttonLabel": "", 
+            "height": 0.1, 
+            "key": "home", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_home", 
+            "width": 0.056, 
+            "x": 0.475, 
             "y": 0.06
-        },
+        }, 
         "homeRing": {
-            "height": 0.15,
-            "key": "homeRing",
-            "textureKey": "homeRing",
-            "type": "IMAGE",
-            "width": 0.084,
-            "x": 0.46,
+            "height": 0.15, 
+            "key": "homeRing", 
+            "textureKey": "levelSelect_homeRing", 
+            "type": "IMAGE", 
+            "width": 0.084, 
+            "x": 0.46, 
             "y": 0.0375
-        },
-        "levelSelectbackToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT",
-                "nextScreen": "blankScreen",
-                "type": "modeChange"
-            },
-            "buttonLabel": "Level Edit",
-            "height": 0.1,
-            "key": "backToLevelEditor",
-            "type": "BUTTON",
-            "width": 0.15,
-            "x": 0.8,
-            "y": 0.05
-        },
-        "levelSelectStarCircle": {
-            "height": 0.2,
-            "key": "levelSelectStarCircle",
-            "textureKey": "levelSelectStarCircle",
-            "type": "IMAGE",
-            "width": 0.12,
-            "x": 0.257,
-            "y": 0.775
-        },
+        }, 
         "levelLabelText": {
-            "fontKey": "Charlemagne",
-            "height": 0.17,
-            "key": "levelLabelText",
-            "textValue": "",
-            "type": "TEXT",
+            "fontKey": "Charlemagne", 
+            "height": 0.17, 
+            "key": "levelLabelText", 
+            "textValue": "", 
+            "type": "TEXT", 
             "width": 0.36
-        },
-        "levelSelectBackground": {
-            "height": 1.0,
-            "key": "levelSelectBackground",
-            "textureKey": "levelSelectBackground",
-            "type": "IMAGE",
-            "width": 1.0,
-            "x": 0.0,
+        }, 
+        "levelSelect_Background": {
+            "height": 1.0, 
+            "key": "levelSelect_Background", 
+            "textureKey": "levelSelect_Background", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
             "y": 0.0
+        }, 
+        "levelSelect_Lock": {
+            "height": 2.00, 
+            "key": "levelSelect_Lock", 
+            "textureKey": "levelSelect_Lock", 
+            "type": "IMAGE", 
+            "width": 1.20, 
+            "x": 0.257, 
+            "y": 0.775
+        }, 
+        "levelSelect_StarCircle": {
+            "height": 0.2, 
+            "key": "levelSelect_StarCircle", 
+            "textureKey": "levelSelect_StarCircle", 
+            "type": "IMAGE", 
+            "width": 0.12, 
+            "x": 0.257, 
+            "y": 0.775
+        }, 
+        "levelSelect_backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.05
         }
     }
 }

@@ -141,6 +141,7 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/sounds.json");
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/save.json");
+	_assets->loadDirectory("json/randomMenuAssets.json");
     
     
     std::string assetDir = Application::get()->getAssetDirectory();
