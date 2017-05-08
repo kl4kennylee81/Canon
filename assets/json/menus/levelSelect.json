@@ -2,78 +2,78 @@
     "MenuScreenData": {
         "levelSelect": {
             "UIEntries": [
-                "levelSelectBackground",
-                "home",
-                "homeRing",
+                "levelSelectBackground", 
+                "home", 
+                "homeRing", 
                 "levelSelectbackToLevelEditor"
-            ],
-            "menuBackgroundKey": "levelSelectBgFlat",
-            "key": "levelSelect"
+            ], 
+            "key": "levelSelect", 
+            "menuBackgroundKey": "levelSelectBgFlat"
         }
-    },
+    }, 
     "UIData": {
         "home": {
             "buttonAction": {
-                "buttonTarget": "startMenu",
+                "buttonTarget": "startMenu", 
                 "type": "menuChange"
-            },
-            "buttonLabel": "",
-            "height": 0.1,
-            "key": "openOptions",
-            "type": "BUTTON",
-            "uiBackgroundKey": "home",
-            "width": 0.056,
-            "x": 0.475,
+            }, 
+            "buttonLabel": "", 
+            "height": 0.1, 
+            "key": "openOptions", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_home", 
+            "width": 0.056, 
+            "x": 0.475, 
             "y": 0.06
-        },
+        }, 
         "homeRing": {
-            "height": 0.15,
-            "key": "homeRing",
-            "textureKey": "homeRing",
-            "type": "IMAGE",
-            "width": 0.084,
-            "x": 0.46,
+            "height": 0.15, 
+            "key": "homeRing", 
+            "textureKey": "levelSelect_homeRing", 
+            "type": "IMAGE", 
+            "width": 0.084, 
+            "x": 0.46, 
             "y": 0.0375
-        },
+        }, 
+        "levelLabelText": {
+            "fontKey": "Charlemagne", 
+            "height": 0.17, 
+            "key": "levelLabelText", 
+            "textValue": "", 
+            "type": "TEXT", 
+            "width": 0.36
+        }, 
+        "levelSelectBackground": {
+            "height": 1.0, 
+            "key": "levelSelectBackground", 
+            "textureKey": "levelSelectBackground", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        }, 
+        "levelSelectStarCircle": {
+            "height": 0.2, 
+            "key": "levelSelectStarCircle", 
+            "textureKey": "levelSelectStarCircle", 
+            "type": "IMAGE", 
+            "width": 0.12, 
+            "x": 0.257, 
+            "y": 0.775
+        }, 
         "levelSelectbackToLevelEditor": {
             "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT",
-                "nextScreen": "blankScreen",
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
                 "type": "modeChange"
-            },
-            "buttonLabel": "Level Edit",
-            "height": 0.1,
-            "key": "backToLevelEditor",
-            "type": "BUTTON",
-            "width": 0.15,
-            "x": 0.8,
+            }, 
+            "buttonLabel": "Level Edit", 
+            "height": 0.1, 
+            "key": "backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
             "y": 0.05
-        },
-        "levelSelectStarCircle": {
-            "height": 0.2,
-            "key": "levelSelectStarCircle",
-            "textureKey": "levelSelectStarCircle",
-            "type": "IMAGE",
-            "width": 0.12,
-            "x": 0.257,
-            "y": 0.775
-        },
-        "levelLabelText": {
-            "fontKey": "Charlemagne",
-            "height": 0.17,
-            "key": "levelLabelText",
-            "textValue": "",
-            "type": "TEXT",
-            "width": 0.36
-        },
-        "levelSelectBackground": {
-            "height": 1.0,
-            "key": "levelSelectBackground",
-            "textureKey": "levelSelectBackground",
-            "type": "IMAGE",
-            "width": 1.0,
-            "x": 0.0,
-            "y": 0.0
         }
     }
 }
