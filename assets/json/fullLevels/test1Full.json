@@ -1,0 +1,964 @@
+{
+    "ai": {
+        "composite": {
+            "conditions": [
+                {
+                    "aiKey": "homing", 
+                    "condition": "RADIUS 200"
+                }
+            ], 
+            "key": "composite", 
+            "startAI": "static", 
+            "type": "COMPOSITE"
+        }, 
+        "homing": {
+            "key": "homing", 
+            "type": "HOMING"
+        }, 
+        "horizontal": {
+            "key": "horizontal", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalLeft": {
+            "direction": "LEFT", 
+            "key": "horizontalLeft", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalRight": {
+            "direction": "RIGHT", 
+            "key": "horizontalRight", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "square": {
+            "key": "square", 
+            "path": "(0,0) (100,0) (100,100) (0,100)", 
+            "pathType": "CUSTOM", 
+            "type": "PATH"
+        }, 
+        "static": {
+            "key": "static", 
+            "type": "STATIC"
+        }, 
+        "vertical": {
+            "key": "vertical", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "verticalDown": {
+            "direction": "DOWN", 
+            "key": "verticalDown", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
+        }, 
+        "verticalUp": {
+            "direction": "UP", 
+            "key": "verticalUp", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
+        }
+    }, 
+    "animations": {
+        "blueCharAnimation": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }, 
+                "ATTACK": {
+                    "active": "attack", 
+                    "repeat": "moving"
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "RETURN": {
+                    "active": "return", 
+                    "repeat": "active"
+                }, 
+                "SPAWN": {
+                    "repeat": "active"
+                }, 
+                "SPAWNING": {
+                    "repeat": "active"
+                }
+            }, 
+            "cols": 8, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 7, 
+            "size": 56, 
+            "statemap": {
+                "active": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9
+                    ], 
+                    "total": 7
+                }, 
+                "attack": {
+                    "first": 16, 
+                    "frames": [
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        5, 
+                        5
+                    ], 
+                    "total": 8
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10, 
+                        10, 
+                        10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 24, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 32, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6
+                    ], 
+                    "total": 7
+                }
+            }, 
+            "texture": "./textures/models/player_models/odette_spritesheet.png"
+        }, 
+        "blueEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 3, 
+            "key": "blueEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_blue.png"
+        }, 
+        "blue_grumpBullet_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 8, 
+            "rows": 5, 
+            "size": 40, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 27, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 9, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        25
+                    ], 
+                    "total": 9
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png"
+        }, 
+        "blue_grumpBullet_bulletanimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "idle"
+                }
+            }, 
+            "cols": 1, 
+            "rows": 1, 
+            "size": 1, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png"
+        }, 
+        "goldCharAnimation": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }, 
+                "ATTACK": {
+                    "active": "attack", 
+                    "repeat": "moving"
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "RETURN": {
+                    "active": "return", 
+                    "repeat": "active"
+                }, 
+                "SPAWN": {
+                    "repeat": "active"
+                }, 
+                "SPAWNING": {
+                    "repeat": "active"
+                }
+            }, 
+            "cols": 8, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 7, 
+            "size": 56, 
+            "statemap": {
+                "active": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9
+                    ], 
+                    "total": 7
+                }, 
+                "attack": {
+                    "first": 16, 
+                    "frames": [
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        5, 
+                        5
+                    ], 
+                    "total": 8
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10, 
+                        10, 
+                        10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 24, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 32, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        6, 
+                        6, 
+                        6, 
+                        6
+                    ], 
+                    "total": 7
+                }
+            }, 
+            "texture": "./textures/models/player_models/loide_spritesheet.png"
+        }, 
+        "redEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 4, 
+            "key": "redEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_red.png"
+        }, 
+        "whiteBar": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteBar", 
+            "nonUniformScale": 1, 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/square_spritesheet.png"
+        }, 
+        "whiteCircle": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteCircle", 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/circle_spritesheet.png"
+        }, 
+        "whiteSector": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteSector", 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/sector_spritesheet.png"
+        }, 
+        "yellow_grumpBullet_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "idle"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 8, 
+            "rows": 5, 
+            "size": 40, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 27, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 9, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        5, 
+                        25
+                    ], 
+                    "total": 9
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_yellow.png"
+        }, 
+        "yellow_grumpBullet_bulletanimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWNING": {
+                    "repeat": "idle"
+                }
+            }, 
+            "cols": 1, 
+            "rows": 1, 
+            "size": 1, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
+        }
+    }, 
+    "bullets": {
+        "grumpBullet_bullet": {
+            "angleVariance": 360.0, 
+            "cooldown": 240, 
+            "numberShots": 4, 
+            "objectKey": "grumpBullet_bulletObject", 
+            "startingAngle": 0.0, 
+            "target": "false", 
+            "velocity": 3
+        }
+    }, 
+    "counter": 20, 
+    "levels": {
+        "test1": {
+            "key": "test1", 
+            "levelEntries": {
+                "test1 wave 20": {
+                    "key": "test1 wave 20", 
+                    "time": 180, 
+                    "waveKey": "test1 wave 20"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "test1", 
+    "objects": {
+        "bar": {
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "bar", 
+            "shapeKey": "bar"
+        }, 
+        "circle": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "circle", 
+            "shapeKey": "circle"
+        }, 
+        "grumpBullet_bulletObject": {
+            "blueAnimationKey": "blue_grumpBullet_bulletanimation", 
+            "goldAnimationKey": "yellow_grumpBullet_bulletanimation", 
+            "shapeKey": "grumpBullet_bulletShape"
+        }, 
+        "grumpBullet_object": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blue_grumpBullet_animation", 
+            "goldAnimationKey": "yellow_grumpBullet_animation", 
+            "shapeKey": "grumpBullet_shape", 
+            "soundKey": "baseEnemySound"
+        }, 
+        "playerCharFemale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "health": 2, 
+            "key": "playerCharFemale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "female"
+        }, 
+        "playerCharMale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "health": 2, 
+            "key": "playerCharMale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "male"
+        }, 
+        "playerZoneObject": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "playerZoneObject", 
+            "shapeKey": "playerZoneShape"
+        }, 
+        "sector": {
+            "blueAnimationKey": "whiteSector", 
+            "goldAnimationKey": "whiteSector", 
+            "key": "sector", 
+            "shapeKey": "sector"
+        }
+    }, 
+    "shapes": {
+        "bar": {
+            "key": "bar", 
+            "vertices": [
+                -0.625, 
+                12.5, 
+                0.625, 
+                12.5, 
+                0.625, 
+                -12.5, 
+                -0.625, 
+                -12.5
+            ]
+        }, 
+        "circle": {
+            "key": "circle", 
+            "vertices": [
+                0.0, 
+                -3.125, 
+                1.5625, 
+                -2.706329386825, 
+                2.706329386825, 
+                -1.5625, 
+                3.125, 
+                0.0, 
+                2.706329386825, 
+                1.5625, 
+                1.5625, 
+                2.706329386825, 
+                0.0, 
+                3.125, 
+                -1.5625, 
+                2.706329386825, 
+                -2.706329386825, 
+                1.5625, 
+                -3.125, 
+                0.0, 
+                -2.706329386825, 
+                -1.5625, 
+                -1.5625, 
+                -2.706329386825
+            ]
+        }, 
+        "grumpBullet_bulletShape": {
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.875, 
+                0.0, 
+                1.875, 
+                1.875, 
+                0.0, 
+                1.875
+            ]
+        }, 
+        "grumpBullet_shape": {
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.875, 
+                0.0, 
+                1.875, 
+                1.875, 
+                0.0, 
+                1.875
+            ]
+        }, 
+        "playerCharShape": {
+            "key": "playerCharShape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                0.6875, 
+                0.0, 
+                0.6875, 
+                1.03125, 
+                0.0, 
+                1.03125
+            ]
+        }, 
+        "playerZoneShape": {
+            "key": "playerZoneShape", 
+            "vertices": [
+                0.0, 
+                -1.0125, 
+                0.50625, 
+                -0.8768507213313, 
+                0.8768507213313, 
+                -0.50625, 
+                1.0125, 
+                0.0, 
+                0.8768507213313, 
+                0.50625, 
+                0.50625, 
+                0.8768507213313, 
+                0.0, 
+                1.0125, 
+                -0.50625, 
+                0.8768507213313, 
+                -0.8768507213313, 
+                0.50625, 
+                -1.0125, 
+                0.0, 
+                -0.8768507213313, 
+                -0.50625, 
+                -0.50625, 
+                -0.8768507213313
+            ]
+        }, 
+        "sector": {
+            "key": "sector", 
+            "vertices": [
+                0.3125, 
+                0.0, 
+                1.5625, 
+                0.0, 
+                2.1875, 
+                1.40625, 
+                0.9375, 
+                1.71875, 
+                -0.3125, 
+                1.40625
+            ]
+        }
+    }, 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical", 
+        "grumpBullet"
+    ], 
+    "templates": {
+        "grumpBullet": {
+            "aiKeys": [
+                "homing", 
+                "horizontal", 
+                "horizontalLeft", 
+                "horizontalRight", 
+                "verticalUp", 
+                "verticalDown", 
+                "vertical"
+            ], 
+            "bulletKey": "grumpBullet_bullet", 
+            "name": "grumpBullet", 
+            "objectKey": "grumpBullet_object"
+        }, 
+        "object1": {
+            "aiKeys": [
+                "homing"
+            ], 
+            "key": "object1", 
+            "name": "object1", 
+            "objectKey": "object1", 
+            "zoneKeys": [
+                "pulseZone"
+            ]
+        }, 
+        "playerCharFemale": {
+            "key": "playerCharFemale", 
+            "name": "playerCharFemale", 
+            "objectKey": "playerCharFemale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }, 
+        "playerCharMale": {
+            "key": "playerCharMale", 
+            "name": "playerCharMale", 
+            "objectKey": "playerCharMale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }
+    }, 
+    "waves": {
+        "test1 wave 20": {
+            "key": "test1 wave 20", 
+            "waveEntries": {
+                "test1 wave 20 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "test1 wave 20 object 1", 
+                    "templateKey": "grumpBullet", 
+                    "x": 17.633333, 
+                    "y": 11.7
+                }
+            }
+        }
+    }, 
+    "zones": {
+        "columnZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "MATCH", 
+            "key": "columnZone", 
+            "objectKey": "bar", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "playerZone": {
+            "cooldown": 0, 
+            "duration": 10, 
+            "element": "MATCH", 
+            "key": "playerZone", 
+            "objectKey": "playerZoneObject", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "pulseZone": {
+            "element": "MATCH", 
+            "key": "pulseZone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 0.8, 
+            "minSizeY": 0.0, 
+            "minTime": 60, 
+            "objectKey": "bar", 
+            "type": "PULSE"
+        }, 
+        "rotateZone": {
+            "key": "rotateZone", 
+            "radius": 1.5625, 
+            "speed": 0.5, 
+            "type": "ROTATE", 
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0
+                }, 
+                "zone2": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.33
+                }, 
+                "zone3": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.67
+                }
+            }
+        }, 
+        "staticZone": {
+            "cooldown": 180, 
+            "duration": 180, 
+            "element": "MATCH", 
+            "key": "staticZone", 
+            "objectKey": "circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }
+    }
+}

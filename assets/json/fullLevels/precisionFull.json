@@ -1,0 +1,1062 @@
+{
+    "ai": {
+        "composite": {
+            "conditions": [
+                {
+                    "aiKey": "homing", 
+                    "condition": "RADIUS 200"
+                }
+            ], 
+            "key": "composite", 
+            "startAI": "static", 
+            "type": "COMPOSITE"
+        }, 
+        "homing": {
+            "key": "homing", 
+            "type": "HOMING"
+        }, 
+        "horizontal": {
+            "key": "horizontal", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalLeft": {
+            "direction": "LEFT", 
+            "key": "horizontalLeft", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalRight": {
+            "direction": "RIGHT", 
+            "key": "horizontalRight", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "square": {
+            "key": "square", 
+            "path": "(0,0) (100,0) (100,100) (0,100)", 
+            "pathType": "CUSTOM", 
+            "type": "PATH"
+        }, 
+        "static": {
+            "key": "static", 
+            "type": "STATIC"
+        }, 
+        "vertical": {
+            "key": "vertical", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "verticalDown": {
+            "direction": "DOWN", 
+            "key": "verticalDown", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
+        }, 
+        "verticalUp": {
+            "direction": "UP", 
+            "key": "verticalUp", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
+        }
+    }, 
+    "animations": {
+        "blueCharAnimation": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }, 
+                "ATTACK": {
+                    "active": "attack", 
+                    "repeat": "moving"
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "RETURN": {
+                    "active": "return", 
+                    "repeat": "active"
+                }, 
+                "SPAWN": {
+                    "repeat": "active"
+                }, 
+                "SPAWNING": {
+                    "repeat": "active"
+                }
+            }, 
+            "cols": 8, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 7, 
+            "size": 56, 
+            "statemap": {
+                "active": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9
+                    ], 
+                    "total": 7
+                }, 
+                "attack": {
+                    "first": 16, 
+                    "frames": [
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        5, 
+                        5
+                    ], 
+                    "total": 8
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10, 
+                        10, 
+                        10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 24, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 32, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6
+                    ], 
+                    "total": 7
+                }
+            }, 
+            "texture": "./textures/models/player_models/odette_spritesheet.png"
+        }, 
+        "blueEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 3, 
+            "key": "blueEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_blue.png"
+        }, 
+        "blue_blobo_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 8, 
+            "rows": 5, 
+            "size": 40, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 24, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        12, 
+                        12, 
+                        12, 
+                        9, 
+                        9
+                    ], 
+                    "total": 8
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/blobo/blobo_blue.png"
+        }, 
+        "goldCharAnimation": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }, 
+                "ATTACK": {
+                    "active": "attack", 
+                    "repeat": "moving"
+                }, 
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "RETURN": {
+                    "active": "return", 
+                    "repeat": "active"
+                }, 
+                "SPAWN": {
+                    "repeat": "active"
+                }, 
+                "SPAWNING": {
+                    "repeat": "active"
+                }
+            }, 
+            "cols": 8, 
+            "id": 2, 
+            "key": "goldCharAnimation", 
+            "rows": 7, 
+            "size": 56, 
+            "statemap": {
+                "active": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9, 
+                        9
+                    ], 
+                    "total": 7
+                }, 
+                "attack": {
+                    "first": 16, 
+                    "frames": [
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        6, 
+                        5, 
+                        5
+                    ], 
+                    "total": 8
+                }, 
+                "death": {
+                    "first": 40, 
+                    "frames": [
+                        10, 
+                        10, 
+                        10
+                    ], 
+                    "total": 3
+                }, 
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "moving": {
+                    "first": 24, 
+                    "frames": [
+                        1
+                    ], 
+                    "total": 1
+                }, 
+                "return": {
+                    "first": 32, 
+                    "frames": [
+                        5, 
+                        5, 
+                        5, 
+                        6, 
+                        6, 
+                        6, 
+                        6
+                    ], 
+                    "total": 7
+                }
+            }, 
+            "texture": "./textures/models/player_models/loide_spritesheet.png"
+        }, 
+        "redEnemyAnimation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "id": 4, 
+            "key": "redEnemyAnimation", 
+            "rows": 4, 
+            "size": 8, 
+            "statemap": {
+                "death": {
+                    "first": 4, 
+                    "frames": [
+                        15, 
+                        15
+                    ], 
+                    "total": 2
+                }, 
+                "idle": {
+                    "first": 2, 
+                    "frames": [
+                        5
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10, 
+                        10, 
+                        30
+                    ], 
+                    "total": 3
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/enemy_red.png"
+        }, 
+        "whiteBar": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteBar", 
+            "nonUniformScale": 1, 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/square_spritesheet.png"
+        }, 
+        "whiteCircle": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteCircle", 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/circle_spritesheet.png"
+        }, 
+        "whiteSector": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 1, 
+            "key": "whiteSector", 
+            "rows": 2, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawning": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }
+            }, 
+            "texture": "./textures/test/sector_spritesheet.png"
+        }, 
+        "yellow_blobo_animation": {
+            "actionmap": {
+                "DEATH": {
+                    "active": "death"
+                }, 
+                "SPAWN": {
+                    "active": "spawn", 
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 8, 
+            "rows": 5, 
+            "size": 40, 
+            "statemap": {
+                "death": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "idle": {
+                    "first": 24, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1
+                }, 
+                "spawn": {
+                    "first": 8, 
+                    "frames": [
+                        9, 
+                        9, 
+                        9, 
+                        12, 
+                        12, 
+                        12, 
+                        9, 
+                        9
+                    ], 
+                    "total": 8
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        12, 
+                        12, 
+                        12, 
+                        12
+                    ], 
+                    "total": 4
+                }
+            }, 
+            "texture": "./textures/models/enemy_models/blobo/blobo_yellow.png"
+        }
+    }, 
+    "counter": 11, 
+    "levels": {
+        "precision": {
+            "key": "precision", 
+            "levelEntries": {
+                "wave01": {
+                    "key": "wave01", 
+                    "time": 120, 
+                    "waveKey": "precision wave 07"
+                }, 
+                "wave02": {
+                    "key": "wave02", 
+                    "time": 120, 
+                    "waveKey": "precision wave 08"
+                }, 
+                "wave03": {
+                    "key": "wave03", 
+                    "time": 120, 
+                    "waveKey": "precision wave 09"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "precision", 
+    "objects": {
+        "bar": {
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "bar", 
+            "shapeKey": "bar"
+        }, 
+        "blobo_object": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blue_blobo_animation", 
+            "goldAnimationKey": "yellow_blobo_animation", 
+            "key": "blobo_object", 
+            "shapeKey": "blobo_shape", 
+            "soundKey": "baseEnemySound"
+        }, 
+        "circle": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "circle", 
+            "shapeKey": "circle"
+        }, 
+        "playerCharFemale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "health": 2, 
+            "key": "playerCharFemale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "female"
+        }, 
+        "playerCharMale": {
+            "animationScale": 2.5, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "health": 2, 
+            "key": "playerCharMale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "male"
+        }, 
+        "playerZoneObject": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "playerZoneObject", 
+            "shapeKey": "playerZoneShape"
+        }, 
+        "sector": {
+            "blueAnimationKey": "whiteSector", 
+            "goldAnimationKey": "whiteSector", 
+            "key": "sector", 
+            "shapeKey": "sector"
+        }
+    }, 
+    "shapes": {
+        "bar": {
+            "key": "bar", 
+            "vertices": [
+                -0.625, 
+                12.5, 
+                0.625, 
+                12.5, 
+                0.625, 
+                -12.5, 
+                -0.625, 
+                -12.5
+            ]
+        }, 
+        "blobo_shape": {
+            "key": "blobo_shape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.25, 
+                0.0, 
+                1.25, 
+                1.25, 
+                0.0, 
+                1.25
+            ]
+        }, 
+        "circle": {
+            "key": "circle", 
+            "vertices": [
+                0.0, 
+                -3.125, 
+                1.5625, 
+                -2.706329386825, 
+                2.706329386825, 
+                -1.5625, 
+                3.125, 
+                0.0, 
+                2.706329386825, 
+                1.5625, 
+                1.5625, 
+                2.706329386825, 
+                0.0, 
+                3.125, 
+                -1.5625, 
+                2.706329386825, 
+                -2.706329386825, 
+                1.5625, 
+                -3.125, 
+                0.0, 
+                -2.706329386825, 
+                -1.5625, 
+                -1.5625, 
+                -2.706329386825
+            ]
+        }, 
+        "playerCharShape": {
+            "key": "playerCharShape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                0.6875, 
+                0.0, 
+                0.6875, 
+                1.03125, 
+                0.0, 
+                1.03125
+            ]
+        }, 
+        "playerZoneShape": {
+            "key": "playerZoneShape", 
+            "vertices": [
+                0.0, 
+                -1.0125, 
+                0.50625, 
+                -0.8768507213313, 
+                0.8768507213313, 
+                -0.50625, 
+                1.0125, 
+                0.0, 
+                0.8768507213313, 
+                0.50625, 
+                0.50625, 
+                0.8768507213313, 
+                0.0, 
+                1.0125, 
+                -0.50625, 
+                0.8768507213313, 
+                -0.8768507213313, 
+                0.50625, 
+                -1.0125, 
+                0.0, 
+                -0.8768507213313, 
+                -0.50625, 
+                -0.50625, 
+                -0.8768507213313
+            ]
+        }, 
+        "sector": {
+            "key": "sector", 
+            "vertices": [
+                0.3125, 
+                0.0, 
+                1.5625, 
+                0.0, 
+                2.1875, 
+                1.40625, 
+                0.9375, 
+                1.71875, 
+                -0.3125, 
+                1.40625
+            ]
+        }
+    }, 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "templates": {
+        "blobo": {
+            "aiKeys": [
+                "homing", 
+                "horizontal", 
+                "horizontalLeft", 
+                "horizontalRight", 
+                "verticalUp", 
+                "verticalDown", 
+                "vertical", 
+                "static"
+            ], 
+            "key": "blobo", 
+            "name": "blobo", 
+            "objectKey": "blobo_object"
+        }, 
+        "object1": {
+            "aiKeys": [
+                "homing"
+            ], 
+            "key": "object1", 
+            "name": "object1", 
+            "objectKey": "object1", 
+            "zoneKeys": [
+                "pulseZone"
+            ]
+        }, 
+        "playerCharFemale": {
+            "key": "playerCharFemale", 
+            "name": "playerCharFemale", 
+            "objectKey": "playerCharFemale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }, 
+        "playerCharMale": {
+            "key": "playerCharMale", 
+            "name": "playerCharMale", 
+            "objectKey": "playerCharMale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }
+    }, 
+    "waves": {
+        "precision wave 07": {
+            "key": "precision wave 07", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "blobo", 
+                    "x": 29.6875, 
+                    "y": 16.875
+                }, 
+                "object2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "templateKey": "blobo", 
+                    "x": 29.6875, 
+                    "y": 13.125
+                }, 
+                "object3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "templateKey": "blobo", 
+                    "x": 29.6875, 
+                    "y": 9.0625
+                }, 
+                "object4": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "templateKey": "blobo", 
+                    "x": 29.6875, 
+                    "y": 5.0
+                }, 
+                "object5": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object5", 
+                    "templateKey": "blobo", 
+                    "x": 29.6875, 
+                    "y": 0.9375
+                }
+            }
+        }, 
+        "precision wave 08": {
+            "key": "precision wave 08", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "templateKey": "blobo", 
+                    "x": 1.5625, 
+                    "y": 16.875
+                }, 
+                "object2": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "blobo", 
+                    "x": 1.5625, 
+                    "y": 13.125
+                }, 
+                "object3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "templateKey": "blobo", 
+                    "x": 1.5625, 
+                    "y": 9.0625
+                }, 
+                "object4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "templateKey": "blobo", 
+                    "x": 1.5625, 
+                    "y": 5.0
+                }, 
+                "object5": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object5", 
+                    "templateKey": "blobo", 
+                    "x": 1.5625, 
+                    "y": 0.9375
+                }
+            }
+        }, 
+        "precision wave 09": {
+            "key": "precision wave 09", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "templateKey": "blobo", 
+                    "x": 17.1875, 
+                    "y": 16.875
+                }, 
+                "object10": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object10", 
+                    "templateKey": "blobo", 
+                    "x": 14.0625, 
+                    "y": 0.9375
+                }, 
+                "object2": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "blobo", 
+                    "x": 17.1875, 
+                    "y": 13.125
+                }, 
+                "object3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "templateKey": "blobo", 
+                    "x": 17.1875, 
+                    "y": 9.0625
+                }, 
+                "object4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "templateKey": "blobo", 
+                    "x": 17.1875, 
+                    "y": 5.0
+                }, 
+                "object5": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object5", 
+                    "templateKey": "blobo", 
+                    "x": 17.1875, 
+                    "y": 0.9375
+                }, 
+                "object6": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object6", 
+                    "templateKey": "blobo", 
+                    "x": 14.0625, 
+                    "y": 16.875
+                }, 
+                "object7": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object7", 
+                    "templateKey": "blobo", 
+                    "x": 14.0625, 
+                    "y": 13.125
+                }, 
+                "object8": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object8", 
+                    "templateKey": "blobo", 
+                    "x": 14.0625, 
+                    "y": 9.0625
+                }, 
+                "object9": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object9", 
+                    "templateKey": "blobo", 
+                    "x": 14.0625, 
+                    "y": 5.0
+                }
+            }
+        }
+    }, 
+    "zones": {
+        "columnZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "MATCH", 
+            "key": "columnZone", 
+            "objectKey": "bar", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "playerZone": {
+            "cooldown": 0, 
+            "duration": 10, 
+            "element": "MATCH", 
+            "key": "playerZone", 
+            "objectKey": "playerZoneObject", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "pulseZone": {
+            "element": "MATCH", 
+            "key": "pulseZone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 0.8, 
+            "minSizeY": 0.0, 
+            "minTime": 60, 
+            "objectKey": "bar", 
+            "type": "PULSE"
+        }, 
+        "rotateZone": {
+            "key": "rotateZone", 
+            "radius": 1.5625, 
+            "speed": 0.5, 
+            "type": "ROTATE", 
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0
+                }, 
+                "zone2": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.33
+                }, 
+                "zone3": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.67
+                }
+            }
+        }, 
+        "staticZone": {
+            "cooldown": 180, 
+            "duration": 180, 
+            "element": "MATCH", 
+            "key": "staticZone", 
+            "objectKey": "circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }
+    }
+}
