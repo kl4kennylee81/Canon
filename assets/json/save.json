@@ -91,12 +91,21 @@
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             },
-            "test1": {
-                "name": "test1",
+            "boss1": {
+                "name": "boss1",
                 "unlocked": 0,
                 "complete": 0,
                 "uiDataKey": "lake_bg",
-                "levelKey": "test1",
+                "levelKey": "boss1",
+                "levelUrl": "level1assets.json",
+                "highScore": 0
+            },
+            "boss2": {
+                "name": "boss2",
+                "unlocked": 0,
+                "complete": 0,
+                "uiDataKey": "lake_bg",
+                "levelKey": "boss2",
                 "levelUrl": "level1assets.json",
                 "highScore": 0
             }

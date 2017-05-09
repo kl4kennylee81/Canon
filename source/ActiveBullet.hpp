@@ -19,7 +19,7 @@
 class ActiveBullet {
 private:
     bool _isActive;
-    int _frameCount;
+    float _frameCount;
     std::shared_ptr<GameObject> _object;
     std::shared_ptr<BulletData> _bulletData;
     
@@ -52,7 +52,7 @@ public:
     bool init(std::shared_ptr<GameObject> object, std::shared_ptr<BulletData> data) {
         _object = object;
         _isActive = false;
-        _frameCount = 0;
+        _frameCount = data->getCooldown() - (float(data->getCooldown()) / 4.0);
         _bulletData = data;
         return true;
     }

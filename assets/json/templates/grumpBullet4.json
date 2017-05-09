@@ -1,10 +1,11 @@
 {
   "templates":  {
-    "grumpBullet": {
-      "name": "grumpBullet",
-      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
+    "grumpBullet4": {
+      "name": "grumpBullet4",
+      "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
       "objectKey":  "grumpBullet_object",
-      "bulletKey": "grumpBullet_bullet"
+      "bulletKey": "grumpBullet_bullet4",
+      "zoneKeys": ["grumpBullet_zoneMatch4","grumpBullet_zoneOpposite4"]
     }
   },
   "objects":{
@@ -48,17 +49,55 @@
     }
   },
   "bullets":{
-      "grumpBullet_bullet" : {
+      "grumpBullet_bullet4" : {
           "objectKey": "grumpBullet_bulletObject",
           "startingAngle": 0.0,
-          "angleVariance": 90,
+          "angleVariance": 60,
           "numberShots": 5,
-          "cooldown": 240,
-          "velocity": 3,
+          "cooldown": 200,
+          "velocity": 4,
           "target": "true",
           "element": "OPPOSITE"
       }
   },
+    "zones": {
+        "grumpBullet_zoneOpposite4": {
+            "key": "grumpBullet_zoneOpposite4",
+            "radius": 3.625,
+            "speed": 2.0,
+            "type": "ROTATE",
+            "zoneEntries": {
+                "zone1": {
+                    "element": "OPPOSITE",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0
+                },
+                "zone2": {
+                    "element": "OPPOSITE",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.5
+                }
+            }
+        },
+        "grumpBullet_zoneMatch4": {
+            "key": "grumpBullet_zoneMatch4",
+            "radius": 3.625,
+            "speed": 2.0,
+            "type": "ROTATE",
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.25
+                },
+                "zone2": {
+                    "element": "MATCH",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.75
+                }
+            }
+        }
+    },
   "animations":{
     "blue_grumpBullet_animation": {
       "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png",
@@ -169,7 +208,7 @@
               "repeat": "idle"
           },
           "DEATH": {
-              "active": "death"
+              "active": "idle"
           }
         }, 
         "cols": 1, 

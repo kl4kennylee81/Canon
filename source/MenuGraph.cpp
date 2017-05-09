@@ -48,15 +48,15 @@ void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const 
 		// TODO hacky setting of the uiKey
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
 		
-        float x = 0.1 + (0.225*(i%4));
-        float y = 0.45 - (0.26 * (i/4));
+        float x = 0.05 + (0.15*(i%6));
+        float y = 0.48 - (0.24 * (i/6));
 		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_StarCircle", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
 
 		// if locked add lock
 		if (!entry->unlocked) {
-			float x2 = (0.02*(i % 4)) - 0.20;
-			float y2 = 0.35 - (0.06 * (i / 4));
+			float x2 = - 0.20;
+			float y2 = 0.35 - (0.06 * (i / 6));
 			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_Lock");
 			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", x2, y2, lock->width, lock->height, action, "");
 			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets);

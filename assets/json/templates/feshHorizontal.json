@@ -131,7 +131,8 @@
             "aiKeys": [
                 "verticalUp", 
                 "verticalDown", 
-                "vertical"
+                "vertical",
+                "homing"
             ], 
             "key": "feshHorizontal", 
             "name": "feshHorizontal", 

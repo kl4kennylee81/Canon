@@ -1,14 +1,14 @@
 {
-	"name":	"test1",
+	"name":	"boss1",
 	"counter":	20,
-	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical", "grumpBullet"],
+	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical", "grumpBullet4", "grumpBullet6"],
 	"levels":	{
-		"test1":	{
-			"key":	"test1",
+		"boss1":	{
+			"key":	"boss1",
 			"levelEntries":	{
-				"test1 wave 20":	{
-					"key":	"test1 wave 20",
-					"waveKey":	"test1 wave 20",
+				"boss1 wave 20":	{
+					"key":	"boss1 wave 20",
+					"waveKey":	"boss1 wave 20",
 					"time":	180
 				}
 			},
@@ -33,16 +33,16 @@
 		}
 	},
 	"waves":	{
-		"test1 wave 20":	{
-			"key":	"test1 wave 20",
+		"boss1 wave 20":	{
+			"key":	"boss1 wave 20",
 			"waveEntries":	{
-				"test1 wave 20 object 1":	{
-					"key":	"test1 wave 20 object 1",
-					"x":	17.633333,
-					"y":	11.700000,
+				"boss1 wave 20 object 1":	{
+					"key":	"boss1 wave 20 object 1",
+					"x":	26.866667,
+					"y":	12.800000,
 					"element":	"BLUE",
 					"aiKey":	"homing",
-					"templateKey":	"grumpBullet"
+					"templateKey":	"grumpBullet6"
 				}
 			}
 		}
