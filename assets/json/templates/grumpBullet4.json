@@ -3,23 +3,26 @@
     "grumpBullet4": {
       "name": "grumpBullet4",
       "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
-      "objectKey":  "grumpBullet_object",
+      "objectKey":  "grumpBullet_object4",
       "bulletKey": "grumpBullet_bullet4",
       "zoneKeys": ["grumpBullet_zoneMatch4","grumpBullet_zoneOpposite4"]
     }
   },
   "objects":{
-    "grumpBullet_object":{
+    "grumpBullet_object4":{
       "shapeKey": "grumpBullet_shape",
       "blueAnimationKey": "blue_grumpBullet_animation",
       "goldAnimationKey": "yellow_grumpBullet_animation",
       "soundKey": "baseEnemySound",
-      "animationScale": 2.5
+      "animationScale": 2.5,
+      "health": 2,
+      "speed": 1.0
     },
     "grumpBullet_bulletObject": {
       "shapeKey": "grumpBullet_bulletShape",
       "blueAnimationKey": "blue_grumpBullet_bulletanimation",
-      "goldAnimationKey": "yellow_grumpBullet_bulletanimation"
+      "goldAnimationKey": "yellow_grumpBullet_bulletanimation",
+      "animationScale": 2.0
     }
   },
   "shapes":{
@@ -39,12 +42,12 @@
         "vertices": [
                      0.0,
                      0.0,
-                     1.875,
+                     0.78125,
                      0.0,
-                     1.875,
-                     1.875,
+                     0.78125,
+                     0.78125,
                      0.0,
-                     1.875
+                     0.78125
                      ]
     }
   },
@@ -55,7 +58,7 @@
           "angleVariance": 60,
           "numberShots": 5,
           "cooldown": 200,
-          "velocity": 4,
+          "velocity": 3.0,
           "target": "true",
           "element": "OPPOSITE"
       }

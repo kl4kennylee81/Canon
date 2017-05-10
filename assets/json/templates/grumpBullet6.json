@@ -3,13 +3,13 @@
         "grumpBullet6": {
             "name": "grumpBullet6",
             "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
-            "objectKey":  "grumpBullet_object",
+            "objectKey":  "grumpBullet_object6",
             "bulletKey": "grumpBullet_bullet6",
             "zoneKeys": ["grumpBullet_zoneMatch6","grumpBullet_zoneOpposite6"]
         }
     },
     "objects":{
-        "grumpBullet_object":{
+        "grumpBullet_object6":{
             "shapeKey": "grumpBullet_shape",
             "blueAnimationKey": "blue_grumpBullet_animation",
             "goldAnimationKey": "yellow_grumpBullet_animation",
@@ -19,7 +19,8 @@
         "grumpBullet_bulletObject": {
             "shapeKey": "grumpBullet_bulletShape",
             "blueAnimationKey": "blue_grumpBullet_bulletanimation",
-            "goldAnimationKey": "yellow_grumpBullet_bulletanimation"
+            "goldAnimationKey": "yellow_grumpBullet_bulletanimation",
+            "animationScale": 2.0
         }
     },
     "shapes":{
@@ -39,12 +40,12 @@
             "vertices": [
                          0.0,
                          0.0,
-                         1.875,
+                         0.78125,
                          0.0,
-                         1.875,
-                         1.875,
+                         0.78125,
+                         0.78125,
                          0.0,
-                         1.875
+                         0.78125
                          ]
         }
     },
@@ -55,7 +56,7 @@
             "angleVariance": 60,
             "numberShots": 5,
             "cooldown": 150,
-            "velocity": 4,
+            "velocity": 3.0,
             "target": "true",
             "element": "OPPOSITE"
         }

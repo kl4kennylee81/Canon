@@ -30,6 +30,10 @@ public:
     
     void dispose();
     
+    void setSpeed(float sp) {_speed = sp; }
+    
+    float getSpeed() { return _speed; }
+    
     virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element, int health);
     
     static std::shared_ptr<PhysicsComponent> alloc(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element, int health) {

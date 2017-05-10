@@ -256,6 +256,7 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->getPosition());
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
+    physics->setSpeed(objectInit->objectData->getSpeed());
     objectInit->object->setPhysicsComponent(physics);
 }
 
