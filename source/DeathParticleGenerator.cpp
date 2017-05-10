@@ -11,8 +11,7 @@
 #define PARTICLE_BASE_SPEED 5
 #define CLUSTER_SIZE 2
 
-bool DeathParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem,
-                                  ParticleData pd, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+bool DeathParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _memory = mem;
     _active = false; // default
     _particle_map = particle_map;
@@ -74,8 +73,6 @@ void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_
 }
 
 void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
-    std::cout<<"add_particle() called\n";
-    
     if (!_active) return;
     
     // create the wrapper

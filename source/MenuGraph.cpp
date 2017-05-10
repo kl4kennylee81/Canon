@@ -10,11 +10,12 @@
 #include "MenuScreenData.hpp"
 #include "UIComponent.hpp"
 #include "GameState.hpp"
-#include "SaveGameData.hpp"
 #include "Util.hpp"
 #include "MenuListData.hpp"
-
-#define SAVE_GAME_FILE "saveFile"
+#include "ListChapterData.hpp"
+#include "ListLevelData.hpp"
+#include "SaveLevelData.hpp"
+#include "SaveData.hpp"
 
 using namespace cugl;
 
@@ -35,27 +36,40 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
-void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map)
+void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
-	std::shared_ptr<SaveGameData> saveGame = assets->get<SaveGameData>(SAVE_GAME_FILE);
+	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(chapter);
 	// TODO replace the hardcoded name
 	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
 
 	int i = 0;
-	for (auto entry : saveGame->getSaveLevelEntries())
+	for (auto s : chapterData->getLevelKeys())
 	{
-		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen",entry->levelKey);
-		// TODO hacky setting of the uiKey
-		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelectStarCircle");
+		std::shared_ptr<ListLevelData> listEntry = assets->get<ListLevelData>(s);
+		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(s);
+
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->levelKey);
+		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
+		
         float x = 0.1 + (0.225*(i%4));
         float y = 0.45 - (0.26 * (i/4));
-		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelectStarCircle", x, y, boxData->width, boxData->height, action, "");
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_StarCircle", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+
+		// if locked add lock
+		if (!saveEntry->unlocked) {
+			float x2 = (0.02*(i % 4)) - 0.20;
+			float y2 = 0.35 - (0.06 * (i / 4));
+			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_Lock");
+			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", x2, y2, lock->width, lock->height, action, "");
+			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets);
+			buttonNode->addChild(lockNode, 4);
+		}
 
 		// make label for level entry
 		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
-		textData->textValue = entry->name;
+		textData->textValue = listEntry->name;
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
         labelNode->setPosition(x+225,y+300);
 		buttonNode->addChild(labelNode, 3);
@@ -72,10 +86,6 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
 
 	for (std::string key : menuList->getMenuKeys()) {
-		// hack: remove this later
-		if (key == "randomMenuAssets") {
-			continue;
-		}
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
         std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
@@ -103,7 +113,10 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		_menuMap.insert(std::make_pair(menuKey, menu));
 	}
 
-	augmentLevelMenu(assets, _menuMap);
+	// chapter shenanigans
+	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
+	std::string currentChapter = save->currentChapter;
+	augmentLevelMenu(assets, _menuMap, currentChapter);
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){

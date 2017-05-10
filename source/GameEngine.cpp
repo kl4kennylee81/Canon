@@ -8,10 +8,14 @@
 
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
+#include "SaveData.hpp";
+#include "SaveLevelData.hpp"
+#include "SaveChapterData.hpp"
+#include "ListChapterData.hpp"
+#include "ListLevelData.hpp"
 #include "MenuScreenData.hpp"
 #include "MenuListData.hpp"
 #include "MenuEvent.hpp"
-#include "SaveGameData.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
 #include "InputController.hpp"
@@ -81,7 +85,11 @@ void loadFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::s
 
 void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     // You have to attach the individual loaders for each asset type
-    assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
+    assets->attach<SaveLevelData>(GenericLoader<SaveLevelData>::alloc()->getHook());
+	assets->attach<SaveChapterData>(GenericLoader<SaveChapterData>::alloc()->getHook());
+	assets->attach<SaveData>(GenericLoader<SaveData>::alloc()->getHook());
+	assets->attach<ListChapterData>(GenericLoader<ListChapterData>::alloc()->getHook());
+	assets->attach<ListLevelData>(GenericLoader<ListLevelData>::alloc()->getHook());
     assets->attach<Texture>(TextureLoader::alloc()->getHook());
     assets->attach<Font>(FontLoader::alloc()->getHook());
     assets->attach<Sound>(SoundLoader::alloc()->getHook());
@@ -141,12 +149,14 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/sounds.json");
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/save.json");
+	_assets->loadDirectory("json/randomMenuAssets.json");
     
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;
     std::string levelDir = assetDir + LEVEL_PATH;
 	std::string menuDir = assetDir + MENU_PATH;
+	std::string chapterDir = assetDir + CHAPTER_PATH;
     
     //load all template wave entries
 
@@ -154,14 +164,13 @@ void GameEngine::onStartup() {
 	loadFilesWindows(_assets, templateDir, TEMPLATE_PATH);
     loadFilesWindows(_assets, levelDir, LEVEL_PATH);
 	loadFilesWindows(_assets, menuDir, MENU_PATH);
+	loadFilesWindows(_assets, chapterDir, CHAPTER_PATH);
 	#elif __APPLE__
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);
 	loadFilesApple(_assets, menuDir, MENU_PATH);
+	loadfilesWindows(_assets, chapterDir, CHAPTER_PATH);
 	#endif
-
-    
-    /** END OF TEMPORARY CODE TO WIPE **/
     
     // Activate mouse or touch screen input as appropriate
     // We have to do this BEFORE the scene, because the scene has a button
@@ -307,7 +316,7 @@ void GameEngine::onResume() {
     _menuGraph->populate(_assets);
     _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
     
-    _menu = MenuController::alloc(_scene,_menuGraph);
+    _menu = MenuController::alloc(_scene,_menuGraph, _assets);
     
     if (_gameplay != nullptr){
         // this is so that the menu can interact with the game screen
@@ -472,7 +481,7 @@ void GameEngine::update(float timestep) {
         initializeNextMode();
         cleanPreviousMode();
         
-        _menu = MenuController::alloc(_scene,_menuGraph);
+        _menu = MenuController::alloc(_scene,_menuGraph, _assets);
         if (_gameplay != nullptr){
             // this is so that the menu can interact with the game screen
             _menu->attach(_gameplay.get());

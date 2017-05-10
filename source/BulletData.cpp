@@ -10,7 +10,7 @@
 
 using namespace cugl;
 
-bool BulletData::init(std::string object, float start, float var, int num, int cool, float vel, bool tar){
+bool BulletData::init(std::string object, float start, float var, int num, int cool, float vel, bool tar, ElementDataType match){
     _objectKey = object;
     _startingAngle = start;
     _angleVariance = var;
@@ -18,6 +18,7 @@ bool BulletData::init(std::string object, float start, float var, int num, int c
     _cooldown = cool;
     _velocity = vel;
     _target = tar;
+    _element = match;
     return true;
 }
 
@@ -40,9 +41,11 @@ bool BulletData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     int cool = json->getInt("cooldown");
     float vel = json->getFloat("velocity");
     std::string tar = json->getString("target");
-    std::cout << tar <<std::endl;
     bool tarb = tar.compare("true") == 0 ? true : false;
-    init(ob, start, var, num, cool, vel, tarb);
+    std::string match = json->getString("element");
+    ElementDataType el = Element::stringToElementDataType(match);
+    
+    init(ob, start, var, num, cool, vel, tarb, el);
     return true;
 }
 

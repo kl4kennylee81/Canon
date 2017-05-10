@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "Element.hpp"
 
 class BulletData : public Data {
 private:
@@ -22,6 +23,7 @@ private:
     int _cooldown;
     float _velocity;
     bool _target;
+    ElementDataType _element;
     
 public:
     
@@ -34,12 +36,14 @@ public:
     int getCooldown() { return _cooldown; }
     float getVelocity() { return _velocity; }
     bool isTarget() { return _target; }
+    ElementDataType getElementDataType() { return _element; }
     
-    bool init(std::string object, float start, float var, int num, int cool, float vel, bool tar);
+    bool init(std::string object, float start, float var, int num, int cool, float vel, bool tar, ElementDataType match);
     
-    static std::shared_ptr<BulletData> alloc(std::string object, float start, float var, int num, int cool, float vel, bool tar){
+    static std::shared_ptr<BulletData> alloc(std::string object, float start, float var, int num, int cool, float vel, bool tar, ElementDataType match)
+    {
         std::shared_ptr<BulletData> result = std::make_shared<BulletData>();
-        return (result->init(object, start, var, num, cool, vel, tar) ? result : nullptr);
+        return (result->init(object, start, var, num, cool, vel, tar, match) ? result : nullptr);
     }
     
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();

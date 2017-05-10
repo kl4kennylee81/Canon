@@ -18,14 +18,14 @@ using namespace cugl;
 #define GAME_WIDTH 1024
 
 /** The reference to the play button (which is "inside" the claw)*/
-#define PLAY_TEXTURE    "textures/menus/loading/play.png"
-#define PLAY_KEY        "play"
+#define PLAY_TEXTURE    "textures/menus/loading/loading_play.png"
+#define PLAY_KEY        "loading_play"
 #define PLAY_SCALE      1.875f
 #define PLAY_VOFF       0.5f
 
 /** The reference to the progress bar textire */
-#define PROGRESS_TEXTURE "textures/menus/loading/progressbar.png"
-#define PROGRESS_KEY     "progressbar"
+#define PROGRESS_TEXTURE "textures/menus/loading/loading_progressbar.png"
+#define PROGRESS_KEY     "loading_progressbar"
 #define PROGRESS_VOFF   0.15f
 
 float BACK_RECT[] = {0.0f,  1.0f,  0.0625f, 0.4375f};

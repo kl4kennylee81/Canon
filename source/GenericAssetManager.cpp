@@ -7,7 +7,11 @@
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
 #include "TemplateWaveEntry.hpp"
-#include "SaveGameData.hpp"
+#include "SaveData.hpp"
+#include "SaveLevelData.hpp"
+#include "SaveChapterData.hpp"
+#include "ListLevelData.hpp"
+#include "ListChapterData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 #include "UIData.hpp"
@@ -218,8 +222,20 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		else if (child->key() == "UIData") {
 			success = readCategory(typeid(UIData).hash_code(), child) && success;
 		}
-		else if (child->key() == "SaveGameData") {
-			success = readCategory(typeid(SaveGameData).hash_code(), child) && success;
+		else if (child->key() == "SaveData") {
+			success = readCategory(typeid(SaveData).hash_code(), child) && success;
+		}
+		else if (child->key() == "SaveLevelData") {
+			success = readCategory(typeid(SaveLevelData).hash_code(), child) && success;
+		}
+		else if (child->key() == "SaveChapterData") {
+			success = readCategory(typeid(SaveChapterData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ListChapterData") {
+			success = readCategory(typeid(ListChapterData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ListLevelData") {
+			success = readCategory(typeid(ListLevelData).hash_code(), child) && success;
 		}
 		else if (child->key() == "ai"){
 			success = readCategory(typeid(AIData).hash_code(), child) && success;
