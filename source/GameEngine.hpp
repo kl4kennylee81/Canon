@@ -14,11 +14,13 @@
 #define TEMPLATE_PATH "json\\templates\\"
 #define LEVEL_PATH "json\\fullLevels\\"
 #define MENU_PATH "json\\menus\\"
+#define CHAPTER_PATH "json\\chapters\\"
 #elif __APPLE__
 #define CURRENT_OS "apple"
 #define TEMPLATE_PATH "json/templates/"
 #define LEVEL_PATH "json/fullLevels/"
 #define MENU_PATH "json/menus/"
+#define CHAPTER_PATH "json/chapters/"
 #include <dirent.h>
 #endif
 
