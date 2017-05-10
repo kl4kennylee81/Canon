@@ -14,7 +14,9 @@
             "blueAnimationKey": "blue_grumpBullet_animation",
             "goldAnimationKey": "yellow_grumpBullet_animation",
             "soundKey": "baseEnemySound",
-            "animationScale": 2.5
+            "animationScale": 2.5,
+            "health": 3,
+            "speed": 1.25
         },
         "grumpBullet_bulletObject": {
             "shapeKey": "grumpBullet_bulletShape",
@@ -53,10 +55,10 @@
         "grumpBullet_bullet6" : {
             "objectKey": "grumpBullet_bulletObject",
             "startingAngle": 0.0,
-            "angleVariance": 60,
-            "numberShots": 5,
-            "cooldown": 150,
-            "velocity": 3.0,
+            "angleVariance": 360,
+            "numberShots": 25,
+            "cooldown": 260,
+            "velocity": 4.0,
             "target": "true",
             "element": "OPPOSITE"
         }
