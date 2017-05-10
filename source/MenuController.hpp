@@ -24,6 +24,8 @@ protected:
     std::shared_ptr<MenuGraph> _menuGraph;
     
     std::string _selectedLevel;
+
+	std::shared_ptr<GenericAssetManager> _assets;
 public:
     
     MenuController();
@@ -50,7 +52,7 @@ public:
     /** this is to initialize a container for the menuGraph to receive events. Does not attach to the scene */
     virtual bool init(std::shared_ptr<MenuGraph> menuGraph);
     
-    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<MenuGraph> menuGraph);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<MenuGraph> menuGraph, std::shared_ptr<GenericAssetManager> assets);
     
     static std::shared_ptr<MenuController> alloc(std::shared_ptr<MenuGraph> menuGraph) {
         std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
@@ -58,9 +60,10 @@ public:
     }
     
     static std::shared_ptr<MenuController> alloc(std::shared_ptr<cugl::Scene> scene,
-                                                 std::shared_ptr<MenuGraph> menuGraph) {
+                                                 std::shared_ptr<MenuGraph> menuGraph,
+												std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<MenuController> result = std::make_shared<MenuController>();
-        return (result->init(scene,menuGraph) ? result : nullptr);
+        return (result->init(scene,menuGraph,assets) ? result : nullptr);
     }
     
     std::shared_ptr<MenuGraph> getMenuGraph() { return _menuGraph; };

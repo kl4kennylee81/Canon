@@ -15,8 +15,7 @@
 #include "ListChapterData.hpp"
 #include "ListLevelData.hpp"
 #include "SaveLevelData.hpp"
-
-#define SAVE_GAME_FILE "chapter01"
+#include "SaveData.hpp"
 
 using namespace cugl;
 
@@ -37,9 +36,9 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
-void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map)
+void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
-	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(SAVE_GAME_FILE);
+	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(chapter);
 	// TODO replace the hardcoded name
 	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
 
@@ -114,7 +113,10 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		_menuMap.insert(std::make_pair(menuKey, menu));
 	}
 
-	augmentLevelMenu(assets, _menuMap);
+	// chapter shenanigans
+	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
+	std::string currentChapter = save->currentChapter;
+	augmentLevelMenu(assets, _menuMap, currentChapter);
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){

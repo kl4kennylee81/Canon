@@ -23,6 +23,7 @@ bool ModeChangeButtonAction::preload(const std::shared_ptr<cugl::JsonValue>& jso
 bool FxTriggerButtonAction::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string fx = json->getString("fxKey");
     std::string nScreen = json->getString("nextScreen");
-    init(fx,nScreen);
+	std::string cData = json->getString("chapterData");
+    init(fx, nScreen, cData);
     return true;
 }

@@ -3,7 +3,7 @@
 #include "Mode.hpp"
 
 enum class ButtonActionType : int {
-	MENUCHANGE, MODECHANGE, FXTRIGGER
+	MENU_CHANGE, MODE_CHANGE, FX_TRIGGER
 };
 
 class ButtonAction {
@@ -32,7 +32,7 @@ public:
     std::string menuTarget;
     virtual bool init(std::string tar)
 	{
-        ButtonAction::init(ButtonActionType::MENUCHANGE);
+        ButtonAction::init(ButtonActionType::MENU_CHANGE);
 		menuTarget = tar;
 		return true;
 	}
@@ -53,7 +53,7 @@ public:
     std::string nextScreen;
     
     virtual bool init(Mode mode, std::string nextScreen = "",std::string nextLevel = ""){
-        ButtonAction::init(ButtonActionType::MODECHANGE);
+        ButtonAction::init(ButtonActionType::MODE_CHANGE);
         this->modeTarget = mode;
         this->nextScreen = nextScreen;
 		this->nextLevel = nextLevel;
@@ -90,24 +90,27 @@ class FxTriggerButtonAction : public ButtonAction {
 public:
     
     enum class FXType : int {
-        PAUSE, RESUME, RETRY, NONE
+        PAUSE, RESUME, RETRY, SWITCH_CHAPTER, NONE
     };
 
     FXType fxKey;
     std::string nextScreen;
+	std::string chapterData;
     
     static FXType stringToFXType(std::string event) {
         if (event == "PAUSE") return FXType::PAUSE;
         if (event == "RESUME") return FXType::RESUME;
         if (event == "RETRY") return FXType::RETRY;
+		if (event == "SWITCH_CHAPTER") return FXType::SWITCH_CHAPTER;
         return FXType::NONE;
     }
     
-    virtual bool init(std::string fx,std::string next)
+    virtual bool init(std::string fx, std::string next, std::string cd)
 	{
-        ButtonAction::init(ButtonActionType::FXTRIGGER);
+        ButtonAction::init(ButtonActionType::FX_TRIGGER);
 		fxKey = stringToFXType(fx);
-        this->nextScreen = next;
+        nextScreen = next;
+		chapterData = cd;
 		return true;
 	}
     
@@ -115,8 +118,8 @@ public:
     
     
 	FxTriggerButtonAction() : ButtonAction() {}
-    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx,std::string next) {
+    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx,std::string next, std::string cd) {
 		std::shared_ptr<FxTriggerButtonAction> result = std::make_shared<FxTriggerButtonAction>();
-		return (result->init(fx,next) ? result : nullptr);
+		return (result->init(fx, next, cd) ? result : nullptr);
 	}
 };

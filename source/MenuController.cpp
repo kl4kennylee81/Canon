@@ -103,13 +103,13 @@ void MenuController::update(float timestep) {
         
         // execute the appropriate action
         switch(uiElement->getAction()->type){
-            case ButtonActionType::MENUCHANGE:
+            case ButtonActionType::MENU_CHANGE:
             {
                 std::shared_ptr<MenuChangeButtonAction> action = std::dynamic_pointer_cast<MenuChangeButtonAction>(uiElement->getAction());
                 getMenuGraph()->setActiveMenu(action->menuTarget);
                 break;
             }
-            case ButtonActionType::MODECHANGE:
+            case ButtonActionType::MODE_CHANGE:
             {
                 std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
                 getMenuGraph()->setNextMode(action->modeTarget);
@@ -138,7 +138,7 @@ void MenuController::update(float timestep) {
                 
                 break;
             }
-            case ButtonActionType::FXTRIGGER:
+            case ButtonActionType::FX_TRIGGER:
             {
                 std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
 
@@ -164,6 +164,19 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
+					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
+					{
+						std::string nextChapter = action->chapterData;
+						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
+						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
+						getMenuGraph()->augmentLevelMenu(_assets, getMenuGraph()->getMenuMap(), nextChapter);
+						getMenuGraph()->setActiveMenu(action->nextScreen);
+						break;
+					}
+					default:
+					{
+						break;
+					}
                 }
                 break;
             }
@@ -190,10 +203,12 @@ bool MenuController::init(std::shared_ptr<MenuGraph> menuGraph){
 }
 
 bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
-                          std::shared_ptr<MenuGraph> menuGraph){
+                          std::shared_ptr<MenuGraph> menuGraph,
+						  std::shared_ptr<GenericAssetManager> assets){
     _scene = scene;
     _menuGraph = menuGraph;
     _selectedLevel = "";
+	_assets = assets;
     this->activate();
     return true;
 }

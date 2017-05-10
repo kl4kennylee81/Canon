@@ -21,7 +21,7 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	else if (buttonType == "fxTrigger")
     {
         auto buttonJson = json->get("buttonAction");
-        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"));
+        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"),buttonJson->getString("chapterData"));
     }
 
 	uiBackgroundKey = json->getString("uiBackgroundKey");

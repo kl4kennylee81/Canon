@@ -316,7 +316,7 @@ void GameEngine::onResume() {
     _menuGraph->populate(_assets);
     _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
     
-    _menu = MenuController::alloc(_scene,_menuGraph);
+    _menu = MenuController::alloc(_scene,_menuGraph, _assets);
     
     if (_gameplay != nullptr){
         // this is so that the menu can interact with the game screen
@@ -481,7 +481,7 @@ void GameEngine::update(float timestep) {
         initializeNextMode();
         cleanPreviousMode();
         
-        _menu = MenuController::alloc(_scene,_menuGraph);
+        _menu = MenuController::alloc(_scene,_menuGraph, _assets);
         if (_gameplay != nullptr){
             // this is so that the menu can interact with the game screen
             _menu->attach(_gameplay.get());

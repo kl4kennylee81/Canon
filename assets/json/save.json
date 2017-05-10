@@ -1,8 +1,10 @@
 {
-    "SaveGameData": {
-        "currentChapter": "chapter01",
-        "volumeOn:": 1,
-        "soundFXOn:": 1
+    "SaveData": {
+        "defaultPlayer": {
+            "currentChapter": "chapter01",
+            "volumeOn:": 1,
+            "soundFXOn:": 1
+        }
     },
     "SaveChapterData": {
         "chapter01": {
