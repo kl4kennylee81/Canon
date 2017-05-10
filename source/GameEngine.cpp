@@ -169,7 +169,7 @@ void GameEngine::onStartup() {
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);
 	loadFilesApple(_assets, menuDir, MENU_PATH);
-	loadfilesWindows(_assets, chapterDir, CHAPTER_PATH);
+	loadFilesApple(_assets, chapterDir, CHAPTER_PATH);
 	#endif
     
     // Activate mouse or touch screen input as appropriate
