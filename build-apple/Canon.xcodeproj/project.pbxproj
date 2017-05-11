@@ -169,6 +169,8 @@
 		9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */; };
 		9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
 		9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
+		9FF0B4301EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
+		9FF0B4311EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
 		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
 		9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */; };
@@ -399,6 +401,8 @@
 		9FF0B4161EC3B2190044F29B /* SaveLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveLevelData.hpp; sourceTree = "<group>"; };
 		9FF0B42A1EC421990044F29B /* TutorialController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialController.cpp; sourceTree = "<group>"; };
 		9FF0B42B1EC421990044F29B /* TutorialController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialController.hpp; sourceTree = "<group>"; };
+		9FF0B42E1EC423320044F29B /* TutorialStep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialStep.cpp; sourceTree = "<group>"; };
+		9FF0B42F1EC423320044F29B /* TutorialStep.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialStep.hpp; sourceTree = "<group>"; };
 		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -873,6 +877,8 @@
 			children = (
 				9FF0B42A1EC421990044F29B /* TutorialController.cpp */,
 				9FF0B42B1EC421990044F29B /* TutorialController.hpp */,
+				9FF0B42E1EC423320044F29B /* TutorialStep.cpp */,
+				9FF0B42F1EC423320044F29B /* TutorialStep.hpp */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -1409,6 +1415,7 @@
 				273CB3A41EBBF1E80042708C /* BulletController.cpp in Sources */,
 				273CB3B41EBC5DB50042708C /* BulletAI.cpp in Sources */,
 				9F3BA5E51E8BA575003138C0 /* AILoader.cpp in Sources */,
+				9FF0B4311EC423320044F29B /* TutorialStep.cpp in Sources */,
 				9F3BA6681EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F3BA5E61E8BA575003138C0 /* HomingAIData.cpp in Sources */,
 				9F3BA5E71E8BA575003138C0 /* PathAIData.cpp in Sources */,
@@ -1585,6 +1592,7 @@
 				273CB3A31EBBF1E80042708C /* BulletController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9F6F87581EBCBCCA00AD021D /* DeathParticleGenerator.cpp in Sources */,
+				9FF0B4301EC423320044F29B /* TutorialStep.cpp in Sources */,
 				273CB3A71EBBF20F0042708C /* ActiveBullet.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,

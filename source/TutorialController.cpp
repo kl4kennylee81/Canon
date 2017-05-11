@@ -62,3 +62,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
 bool TutorialController::init(std::shared_ptr<GameState> state) {
     return true;
 }
+
+void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
+    return;
+}

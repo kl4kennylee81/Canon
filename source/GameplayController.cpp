@@ -230,6 +230,7 @@ void GameplayController::dispose(){
     _animationController = nullptr;
     _zoneController = nullptr;
     _soundController = nullptr;
+    _tutorialController = nullptr;
 
     _gameState = nullptr;
 }

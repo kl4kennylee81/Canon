@@ -11,12 +11,17 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include <vector>
+#include "TutorialStep.hpp"
 #include "BaseController.hpp"
 #include "GameState.hpp"
 #include "Event.hpp"
 
 
 class TutorialController : public BaseController {
+private:
+    std::vector<std::shared_ptr<TutorialStep>> _steps;
+    
 public:
     TutorialController();
     
@@ -36,6 +41,8 @@ public:
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
     virtual bool init(std::shared_ptr<GameState> state);
+    
+    void populate(std::shared_ptr<GenericAssetManager> assets);
     
     static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state) {
         std::shared_ptr<TutorialController> result = std::make_shared<TutorialController>();
