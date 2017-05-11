@@ -11,11 +11,7 @@
                 "level05",
                 "level06",
                 "level07",
-                "level08",
-                "level09",
-                "level10",
-                "level11",
-                "level12"
+                "level08"
             ]
         }
     },
@@ -59,26 +55,6 @@
             "key": "level08",
             "levelKey": "squareLaser",
             "name": "Lasers"
-        },
-        "level09": {
-            "key": "level09",
-            "levelKey": "lure",
-            "name": "Lure"
-        },
-        "level10": {
-            "name": "Blobos",
-            "key": "level10",
-            "levelKey": "blobos"
-        },
-        "level11": {
-            "name": "level11",
-            "key": "test1",
-            "levelKey": "test1"
-        },
-        "level12": {
-            "name": "level12",
-            "key": "doubleGrump",
-            "levelKey": "doubleGrump"
         }
     }
 }

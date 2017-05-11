@@ -48,6 +48,7 @@ public:
     
 	void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter);
 
+	void populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string chapter);
     void populate(const std::shared_ptr<GenericAssetManager>& assets);
     
     void setActiveMenu(std::shared_ptr<Menu> menu);

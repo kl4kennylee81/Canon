@@ -169,7 +169,7 @@ void MenuController::update(float timestep) {
 						std::string nextChapter = action->chapterData;
 						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
 						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
-						getMenuGraph()->augmentLevelMenu(_assets, getMenuGraph()->getMenuMap(), nextChapter);
+						getMenuGraph()->populateChapter(_assets, nextChapter);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}

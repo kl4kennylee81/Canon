@@ -5,13 +5,47 @@
                 "levelSelect_Background", 
                 "home", 
                 "homeRing", 
-                "levelSelect_backToLevelEditor"
+                "levelSelect_backToLevelEditor", 
+                "chevron_right", 
+                "chevron_left"
             ], 
             "key": "levelSelect", 
             "menuBackgroundKey": "levelSelectBgFlat"
         }
     }, 
     "UIData": {
+        "chevron_left": {
+            "buttonAction": {
+                "chapterData": "chapter01", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "chevron_left", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_left", 
+            "width": 0.039, 
+            "x": 0.014, 
+            "y": 0.5
+        }, 
+        "chevron_right": {
+            "buttonAction": {
+                "chapterData": "chapter02", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "chevron_right", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_right", 
+            "width": 0.039, 
+            "x": 0.947, 
+            "y": 0.5
+        }, 
         "home": {
             "buttonAction": {
                 "buttonTarget": "startMenu", 
