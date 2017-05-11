@@ -26,7 +26,8 @@ _switchController(nullptr),
 _levelController(nullptr),
 _clockController(nullptr),
 _finishController(nullptr),
-_soundController(nullptr)
+_soundController(nullptr),
+_tutorialController(nullptr)
 {}
 
 GameplayController::~GameplayController(){
@@ -117,8 +118,9 @@ void GameplayController::update(float timestep) {
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
     _particleController->update(timestep, _gameState);
-    _finishController->update(timestep, _gameState);
     _soundController->update(timestep, _gameState);
+    _tutorialController->update(timestep, _gameState);
+    _finishController->update(timestep, _gameState);
 }
 
 /**
@@ -155,6 +157,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
     _soundController = SoundController::alloc(levelWorld);
+    _tutorialController = TutorialController::alloc(_gameState);
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());

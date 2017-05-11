@@ -167,6 +167,8 @@
 		9FF0B41A1EC3B2190044F29B /* SaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4131EC3B2190044F29B /* SaveData.cpp */; };
 		9FF0B41B1EC3B2190044F29B /* SaveLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */; };
 		9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */; };
+		9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
+		9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
 		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
 		9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */; };
@@ -395,6 +397,8 @@
 		9FF0B4141EC3B2190044F29B /* SaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveData.hpp; sourceTree = "<group>"; };
 		9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveLevelData.cpp; sourceTree = "<group>"; };
 		9FF0B4161EC3B2190044F29B /* SaveLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveLevelData.hpp; sourceTree = "<group>"; };
+		9FF0B42A1EC421990044F29B /* TutorialController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialController.cpp; sourceTree = "<group>"; };
+		9FF0B42B1EC421990044F29B /* TutorialController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialController.hpp; sourceTree = "<group>"; };
 		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -864,6 +868,15 @@
 			name = save;
 			sourceTree = "<group>";
 		};
+		9FF0B4291EC419880044F29B /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9FF0B42A1EC421990044F29B /* TutorialController.cpp */,
+				9FF0B42B1EC421990044F29B /* TutorialController.hpp */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
 		9FFA3F631E625E490029D648 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1200,6 +1213,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9FF0B4291EC419880044F29B /* tutorial */,
 				9FF0B4071EC3B1380044F29B /* save */,
 				9F8221051EA47EC3000EFCD0 /* finish */,
 				9F3BA64C1E932849003138C0 /* levelEditor */,
@@ -1469,6 +1483,7 @@
 				8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */,
 				9F3BA6101E8BA575003138C0 /* PhysicsComponent.cpp in Sources */,
 				9F3BA6111E8BA575003138C0 /* CollisionController.cpp in Sources */,
+				9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9F3BA6121E8BA575003138C0 /* Element.cpp in Sources */,
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
 				9FF0B40E1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */,
@@ -1498,6 +1513,7 @@
 				DF98288F1E8346F30026223D /* ZoneController.cpp in Sources */,
 				9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */,
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
+				9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
