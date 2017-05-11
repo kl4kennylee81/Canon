@@ -12,6 +12,7 @@
 #include "GameState.hpp"
 #include "Util.hpp"
 #include "MenuListData.hpp"
+#include "ChapterListData.hpp"
 #include "ChapterSelectData.hpp"
 #include "LevelSelectData.hpp"
 #include "SaveLevelData.hpp"
@@ -113,21 +114,25 @@ void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& asse
 	std::shared_ptr<Menu> menu = populateHelper(assets, "levelSelect");
 	// this overwrites the old associated value
 
+	//ptrdiff_t pos = find(Names.begin(), Names.end(), old_name_) - Names.begin();
+
 	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
 	std::string currentChapter = save->currentChapter;
-	std::string updatedChapter = currentChapter;
+	
+	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
+	int numChaps = chKeys.size();
+	auto iter = std::find(chKeys.begin(), chKeys.end(), currentChapter);
+	int chIndex = std::distance(chKeys.begin(), iter);
 
+	std::string updatedChapter = currentChapter;
 	if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::NEXT) {
-		// string parsing is kinda sloppy I guess
-		// need to replace 2 with number of chapters
-		// need a Book Data rip
-		int num = std::stoi(currentChapter.substr(7));
-		updatedChapter = "chapter0" + std::to_string((num+2)%2+1); // assuming we have less than 10 chapters rip
+		int newIndex = (chIndex + numChaps + 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
 	}
 
 	else if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::PREVIOUS) {
-		int num = std::stoi(currentChapter.substr(7));
-		updatedChapter = "chapter0" + std::to_string((num)%2+1);
+		int newIndex = (chIndex + numChaps - 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
 	}
 
 	// update save data...we should totes do this somewhere else / make a funciton for this

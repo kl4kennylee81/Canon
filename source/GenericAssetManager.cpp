@@ -18,6 +18,7 @@
 #include "SoundData.hpp"
 #include "MenuListData.hpp"
 #include "BulletData.hpp"
+#include "ChapterListData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -233,6 +234,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		}
 		else if (child->key() == "ChapterSelectData") {
 			success = readCategory(typeid(ChapterSelectData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ChapterListData") {
+			success = readCategory(typeid(ChapterListData).hash_code(), child) && success;
 		}
 		else if (child->key() == "LevelSelectData") {
 			success = readCategory(typeid(LevelSelectData).hash_code(), child) && success;
