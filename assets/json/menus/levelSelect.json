@@ -16,7 +16,7 @@
     "UIData": {
         "chevron_left": {
             "buttonAction": {
-                "chapterData": "chapter01", 
+                "chapterData": "PREVIOUS", 
                 "fxKey": "SWITCH_CHAPTER", 
                 "nextScreen": "levelSelect", 
                 "type": "fxTrigger"
@@ -32,7 +32,7 @@
         }, 
         "chevron_right": {
             "buttonAction": {
-                "chapterData": "chapter02", 
+                "chapterData": "NEXT", 
                 "fxKey": "SWITCH_CHAPTER", 
                 "nextScreen": "levelSelect", 
                 "type": "fxTrigger"

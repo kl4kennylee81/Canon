@@ -12,8 +12,8 @@
 #include "GameState.hpp"
 #include "Util.hpp"
 #include "MenuListData.hpp"
-#include "ListChapterData.hpp"
-#include "ListLevelData.hpp"
+#include "ChapterSelectData.hpp"
+#include "LevelSelectData.hpp"
 #include "SaveLevelData.hpp"
 #include "SaveData.hpp"
 
@@ -38,14 +38,14 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
 
 void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
-	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(chapter);
+	std::shared_ptr<ChapterSelectData> chapterData = assets->get<ChapterSelectData>(chapter);
 	// TODO replace the hardcoded name
 	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
 
 	int i = 0;
 	for (auto s : chapterData->getLevelKeys())
 	{
-		std::shared_ptr<ListLevelData> listEntry = assets->get<ListLevelData>(s);
+		std::shared_ptr<LevelSelectData> listEntry = assets->get<LevelSelectData>(s);
 		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(s);
 
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->levelKey);
@@ -109,11 +109,34 @@ std::shared_ptr<Menu> populateHelper(const std::shared_ptr<GenericAssetManager>&
 	return menu;
 }
 
-void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string chapter) {
+void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string cData) {
 	std::shared_ptr<Menu> menu = populateHelper(assets, "levelSelect");
 	// this overwrites the old associated value
+
+	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
+	std::string currentChapter = save->currentChapter;
+	std::string updatedChapter = currentChapter;
+
+	if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::NEXT) {
+		// string parsing is kinda sloppy I guess
+		// need to replace 2 with number of chapters
+		// need a Book Data rip
+		int num = std::stoi(currentChapter.substr(7));
+		updatedChapter = "chapter0" + std::to_string((num+2)%2+1); // assuming we have less than 10 chapters rip
+	}
+
+	else if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::PREVIOUS) {
+		int num = std::stoi(currentChapter.substr(7));
+		updatedChapter = "chapter0" + std::to_string((num)%2+1);
+	}
+
+	// update save data...we should totes do this somewhere else / make a funciton for this
+	save->currentChapter = updatedChapter;
+	assets->loadDirectory(save->toJsonValue());
+	// todo: write updated save state and current chapter to the save file upon game exit...or do it now
+
 	_menuMap["levelSelect"] = menu;
-	augmentLevelMenu(assets, _menuMap, chapter);
+	augmentLevelMenu(assets, _menuMap, updatedChapter);
 }
 
 

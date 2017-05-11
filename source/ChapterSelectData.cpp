@@ -1,7 +1,7 @@
-#include "ListChapterData.hpp"
+#include "ChapterSelectData.hpp"
 using namespace cugl;
 
-bool ListChapterData::preload(const std::string& file)
+bool ChapterSelectData::preload(const std::string& file)
 {
 	auto reader = JsonReader::allocWithAsset(file.c_str());
 	auto json = reader->readJson();
@@ -9,7 +9,7 @@ bool ListChapterData::preload(const std::string& file)
 	return true;
 }
 
-bool ListChapterData::preload(const std::shared_ptr<cugl::JsonValue>& json)
+bool ChapterSelectData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 {
 	init(json->getString("name"),
 		json->get("levels")->asStringArray());

@@ -1,5 +1,5 @@
 {
-    "ListChapterData": {
+    "ChapterSelectData": {
         "chapter02": {
             "chapterKey": "chapter02",
             "name": "The Girl and the Fire Lord",
@@ -11,7 +11,7 @@
             ]
         }
     },
-    "ListLevelData": {
+    "LevelSelectData": {
         "level09": {
             "key": "level09",
             "levelKey": "lure",
