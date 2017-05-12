@@ -16,12 +16,14 @@
 enum class TutorialTransition : int {
     ON_CLICK,
     ON_PATH_DRAWN,
-    ON_ENEMY_CLEARED
+    ON_ENEMY_CLEARED,
+    NONE
 };
 
 class TutorialStep {
 private:
-    TutorialTransition _transition;
+    TutorialTransition _startCondition;
+    TutorialTransition _endCondition;
     std::shared_ptr<UIComponent> _uiComponent;
     
 public:
@@ -32,10 +34,20 @@ public:
     
     bool init();
     
+    void setUIComponent(std::shared_ptr<UIComponent> ui) {
+        _uiComponent = ui;
+    }
+    
+    void setTransition(TutorialTransition start, TutorialTransition end){
+        _startCondition = start;
+        _endCondition = end;
+    }
+    
     static std::shared_ptr<TutorialStep> alloc() {
         std::shared_ptr<TutorialStep> result = std::make_shared<TutorialStep>();
         return (result->init() ? result : nullptr);
     };
+    
 };
 
 #endif /* TutorialStep_hpp */

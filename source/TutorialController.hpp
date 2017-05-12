@@ -14,13 +14,18 @@
 #include <vector>
 #include "TutorialStep.hpp"
 #include "BaseController.hpp"
+#include "GenericAssetManager.hpp"
 #include "GameState.hpp"
 #include "Event.hpp"
 
 
 class TutorialController : public BaseController {
 private:
+    std::shared_ptr<cugl::Node> _tutorialNode;
+    
     std::vector<std::shared_ptr<TutorialStep>> _steps;
+    
+    int _currentStep;
     
 public:
     TutorialController();
@@ -40,13 +45,13 @@ public:
     
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
-    virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets);
     
     void populate(std::shared_ptr<GenericAssetManager> assets);
     
-    static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state,std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<TutorialController> result = std::make_shared<TutorialController>();
-        return (result->init(state) ? result : nullptr);
+        return (result->init(state,assets) ? result : nullptr);
     }
 };
 

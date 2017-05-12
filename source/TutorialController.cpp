@@ -9,11 +9,14 @@
 #include "TutorialController.hpp"
 #include "PathEvent.hpp"
 #include "SwitchEvent.hpp"
+#include "UIData.hpp"
 
 using namespace cugl;
 
 TutorialController::TutorialController() :
-BaseController() {}
+BaseController(),
+_tutorialNode(nullptr),
+_currentStep(0){}
 
 void TutorialController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -59,7 +62,25 @@ void TutorialController::eventUpdate(Event* e) {
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
 }
 
-bool TutorialController::init(std::shared_ptr<GameState> state) {
+bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
+    _tutorialNode = Node::alloc();
+    _currentStep = 0;
+    
+    // make label for level entry
+    std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
+    std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
+    textData->textValue = "Tutorial Begins";
+    std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
+    labelNode->setPosition(225,300);
+    
+    std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
+    std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(nullptr, labelNode);
+    
+    step->setUIComponent(uiComponent);
+    step->setTransition(TutorialTransition::ON_PATH_DRAWN,TutorialTransition::ON_ENEMY_CLEARED);
+    
+    _steps.push_back(step);
+    
     return true;
 }
 
