@@ -3,30 +3,30 @@
         "grumpBullet6": {
             "name": "grumpBullet6",
             "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
-            "objectKey":  "grumpBullet_object6",
-            "bulletKey": "grumpBullet_bullet6",
-            "zoneKeys": ["grumpBullet_zoneMatch6","grumpBullet_zoneOpposite6"]
+            "objectKey":  "grumpBullet6_object",
+            "bulletKey": "grumpBullet6_bullet",
+            "zoneKeys": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite"]
         }
     },
     "objects":{
-        "grumpBullet_object6":{
-            "shapeKey": "grumpBullet_shape",
-            "blueAnimationKey": "blue_grumpBullet_animation",
-            "goldAnimationKey": "yellow_grumpBullet_animation",
+        "grumpBullet6_object":{
+            "shapeKey": "grumpBullet6_shape",
+            "blueAnimationKey": "blue_grumpBullet6_animation",
+            "goldAnimationKey": "yellow_grumpBullet6_animation",
             "soundKey": "baseEnemySound",
             "animationScale": 2.5,
             "health": 3,
             "speed": 1.25
         },
-        "grumpBullet_bulletObject": {
-            "shapeKey": "grumpBullet_bulletShape",
-            "blueAnimationKey": "blue_grumpBullet_bulletanimation",
-            "goldAnimationKey": "yellow_grumpBullet_bulletanimation",
+        "grumpBullet6_bulletObject": {
+            "shapeKey": "grumpBullet6_bulletShape",
+            "blueAnimationKey": "blue_grumpBullet6_bulletanimation",
+            "goldAnimationKey": "yellow_grumpBullet6_bulletanimation",
             "animationScale": 2.0
         }
     },
     "shapes":{
-        "grumpBullet_shape": {
+        "grumpBullet6_shape": {
             "vertices": [
                          0.0,
                          0.0,
@@ -38,7 +38,7 @@
                          1.875
                          ]
         },
-        "grumpBullet_bulletShape":{
+        "grumpBullet6_bulletShape":{
             "vertices": [
                          0.0,
                          0.0,
@@ -52,8 +52,8 @@
         }
     },
     "bullets":{
-        "grumpBullet_bullet6" : {
-            "objectKey": "grumpBullet_bulletObject",
+        "grumpBullet6_bullet" : {
+            "objectKey": "grumpBullet6_bulletObject",
             "startingAngle": 0.0,
             "angleVariance": 360,
             "numberShots": 25,
@@ -64,8 +64,8 @@
         }
     },
     "zones": {
-        "grumpBullet_zoneOpposite6": {
-            "key": "grumpBullet_zoneOpposite6",
+        "grumpBullet6_zoneOpposite": {
+            "key": "grumpBullet6_zoneOpposite",
             "radius": 3.625,
             "speed": 1.5,
             "type": "ROTATE",
@@ -87,8 +87,8 @@
                 }
             }
         },
-        "grumpBullet_zoneMatch6": {
-            "key": "grumpBullet_zoneMatch6",
+        "grumpBullet6_zoneMatch": {
+            "key": "grumpBullet6_zoneMatch",
             "radius": 3.625,
             "speed": 1.5,
             "type": "ROTATE",
@@ -112,7 +112,7 @@
         }
     },
     "animations":{
-        "blue_grumpBullet_animation": {
+        "blue_grumpBullet6_animation": {
             "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png",
             "rows": 5,
             "cols": 8,
@@ -152,7 +152,7 @@
                 }
             }
         },
-        "yellow_grumpBullet_animation": {
+        "yellow_grumpBullet6_animation": {
             "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_yellow.png",
             "rows": 5,
             "cols": 8,
@@ -192,7 +192,7 @@
                 }
             }
         },
-        "blue_grumpBullet_bulletanimation": {
+        "blue_grumpBullet6_bulletanimation": {
             "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
             "actionmap": {
                 "SPAWNING": {
@@ -215,7 +215,7 @@
                 }
             }
         },
-        "yellow_grumpBullet_bulletanimation": {
+        "yellow_grumpBullet6_bulletanimation": {
             "actionmap": {
                 "SPAWNING": {
                     "repeat": "idle"
