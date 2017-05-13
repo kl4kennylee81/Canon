@@ -48,6 +48,17 @@ public:
         return (result->init() ? result : nullptr);
     };
     
+    TutorialTransition getStartCondition(){
+        return _startCondition;
+    }
+    
+    TutorialTransition getEndCondition(){
+        return _endCondition;
+    }
+    
+    std::shared_ptr<UIComponent> getUIComponent(){
+        return _uiComponent;
+    }
 };
 
 #endif /* TutorialStep_hpp */

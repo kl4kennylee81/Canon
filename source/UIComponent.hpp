@@ -29,7 +29,7 @@ public:
     bool init(std::shared_ptr<UIData> uiData,std::shared_ptr<cugl::Node> node){
         _node = node;
         _action = nullptr;
-        if (uiData->type == UIDataType::BUTTON){
+        if (uiData != nullptr && uiData->type == UIDataType::BUTTON){
             std::shared_ptr<ButtonUIData> buttonData = std::dynamic_pointer_cast<ButtonUIData>(uiData);
             _action = buttonData->buttonAction;
         }

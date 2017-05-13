@@ -19,13 +19,16 @@
 #include "Event.hpp"
 
 enum class TutorialState : int {
-    ACTIVE,
-    INACTIVE,
-    OFF //
+    ACTIVE, // when it's waiting for an end transition condition
+    WAITING, // inactive is when it is waiting for the start transition condition
+    OFF, // this is not a tutorial level
+    DONE
 };
 
 class TutorialController : public BaseController {
 private:
+    TutorialState _state;
+    
     std::shared_ptr<cugl::Node> _tutorialNode;
     
     std::vector<std::shared_ptr<TutorialStep>> _steps;
@@ -58,6 +61,14 @@ public:
         std::shared_ptr<TutorialController> result = std::make_shared<TutorialController>();
         return (result->init(state,assets) ? result : nullptr);
     }
+    
+    std::shared_ptr<TutorialStep> getCurrentStep();
+    
+    void transitionNextStep();
+    
+    void transitionToActive();
+    
+    bool isInActive();
 };
 
 

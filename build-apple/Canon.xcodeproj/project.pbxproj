@@ -171,6 +171,10 @@
 		9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
 		9FF0B4301EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
 		9FF0B4311EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
+		9FF0B4491EC6B5E00044F29B /* TutorialStepData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */; };
+		9FF0B44A1EC6B5E00044F29B /* TutorialStepData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */; };
+		9FF0B44D1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */; };
+		9FF0B44E1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */; };
 		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
 		9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */; };
@@ -403,6 +407,10 @@
 		9FF0B42B1EC421990044F29B /* TutorialController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialController.hpp; sourceTree = "<group>"; };
 		9FF0B42E1EC423320044F29B /* TutorialStep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialStep.cpp; sourceTree = "<group>"; };
 		9FF0B42F1EC423320044F29B /* TutorialStep.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialStep.hpp; sourceTree = "<group>"; };
+		9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialStepData.cpp; sourceTree = "<group>"; };
+		9FF0B4481EC6B5E00044F29B /* TutorialStepData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialStepData.hpp; sourceTree = "<group>"; };
+		9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialLevelData.cpp; sourceTree = "<group>"; };
+		9FF0B44C1EC6B5F50044F29B /* TutorialLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialLevelData.hpp; sourceTree = "<group>"; };
 		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -785,6 +793,7 @@
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
+				9FF0B4441EC6B3B20044F29B /* tutorial */,
 				9FF0B4081EC3B19D0044F29B /* save */,
 				273CB39C1EBBD78E0042708C /* bullet */,
 				9F3BA64B1E90CAF5003138C0 /* object */,
@@ -879,6 +888,17 @@
 				9FF0B42B1EC421990044F29B /* TutorialController.hpp */,
 				9FF0B42E1EC423320044F29B /* TutorialStep.cpp */,
 				9FF0B42F1EC423320044F29B /* TutorialStep.hpp */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
+		9FF0B4441EC6B3B20044F29B /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */,
+				9FF0B4481EC6B5E00044F29B /* TutorialStepData.hpp */,
+				9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */,
+				9FF0B44C1EC6B5F50044F29B /* TutorialLevelData.hpp */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -1449,6 +1469,7 @@
 				9F3BA5FA1E8BA575003138C0 /* Level.cpp in Sources */,
 				9F3BA5FB1E8BA575003138C0 /* SpawnController.cpp in Sources */,
 				9F6F87741EBCBD7D00AD021D /* ParticleNode.cpp in Sources */,
+				9FF0B44A1EC6B5E00044F29B /* TutorialStepData.cpp in Sources */,
 				9F3BA5FC1E8BA575003138C0 /* GameState.cpp in Sources */,
 				9F3BA5FD1E8BA575003138C0 /* GameplayController.cpp in Sources */,
 				9F3BA5FE1E8BA575003138C0 /* GameEngine.cpp in Sources */,
@@ -1479,6 +1500,7 @@
 				9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */,
+				9FF0B44E1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
 				9F3BA60C1E8BA575003138C0 /* PathController.cpp in Sources */,
 				9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
 				273CB3A81EBBF20F0042708C /* ActiveBullet.cpp in Sources */,
@@ -1525,6 +1547,7 @@
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
+				9FF0B44D1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9F3BA63F1E90C902003138C0 /* Menu.cpp in Sources */,
 				824E10AC1EA941B80068C0F5 /* ParticleData.cpp in Sources */,
@@ -1540,6 +1563,7 @@
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
 				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
+				9FF0B4491EC6B5E00044F29B /* TutorialStepData.cpp in Sources */,
 				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,

@@ -157,7 +157,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
     _soundController = SoundController::alloc(levelWorld);
-    _tutorialController = TutorialController::alloc(_gameState);
+    _tutorialController = TutorialController::alloc(_gameState, levelWorld->getAssetManager());
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());
@@ -165,6 +165,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _pathController->attach(_clockController.get());
     _pathController->attach(_soundController.get());
     _pathController->attach(_zoneController.get());
+    _pathController->attach(_tutorialController.get());
     
     _levelController->attach(_collisionController.get());
     _levelController->attach(_animationController.get());
@@ -186,6 +187,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _collisionController->attach(_bulletController.get());
     _collisionController->attach(_soundController.get());
     _collisionController->attach(_particleController.get());
+    _collisionController->attach(_tutorialController.get());
     
     _spawnController->attach(_collisionController.get());
     _spawnController->attach(_animationController.get());
