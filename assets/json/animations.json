@@ -281,11 +281,11 @@
             }, 
             "cols": 1, 
             "key": "whiteCircle", 
-            "rows": 2, 
-            "size": 2, 
+            "rows": 3, 
+            "size": 3, 
             "statemap": {
                 "idle": {
-                    "first": 0, 
+                    "first": 2, 
                     "frames": [
                         10
                     ], 
