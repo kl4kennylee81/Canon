@@ -1,6 +1,7 @@
 import json
 import os
 import os.path
+import copy
 
 def get_asset_mapping():
 
@@ -51,7 +52,7 @@ def modify_json(src_json, file_path_mapping):
       filename = name   
 
     if 'UIData' in src_json.keys():
-      for menu_name in src_json['UIData']:
+      for menu_name in copy.deepcopy(src_json['UIData']):
         uidata = src_json['UIData'][menu_name]
 
         target = ''
@@ -69,16 +70,21 @@ def modify_json(src_json, file_path_mapping):
           # populate mapping of file_path_mapping
           file_path_mapping[src_json['UIData'][menu_name][target]] = filename
 
-          # detect if rename is necessary
-          if len(src_json['UIData'][menu_name][target]) > len(filename):
-            # condition reads: rename already happened
-            if filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]:
-              continue
-
           append_name = filename + "_" + src_json['UIData'][menu_name][target]
 
-          # update actual menu json
-          src_json['UIData'][menu_name][target] = append_name
+          # detect if rename is necessary
+          if not (len(src_json['UIData'][menu_name][target]) > len(filename) and 
+          filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]):
+
+            # update actual menu json
+            src_json['UIData'][menu_name][target] = append_name
+
+          # rename the key in overarching uiData json to the jsonObject
+          if not (len(src_json['UIData'][menu_name]) > len(filename) and 
+          filename + "_" == src_json['UIData'][menu_name][:len(filename)+1]):
+            src_json['UIData'][append_name] = src_json['UIData'].pop(menu_name,None)
+
+          
 
 
 def json_files():
