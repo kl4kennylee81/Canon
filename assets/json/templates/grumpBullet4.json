@@ -1,28 +1,32 @@
 {
   "templates":  {
-    "grumpBullet": {
-      "name": "grumpBullet",
-      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
-      "objectKey":  "grumpBullet_object",
-      "bulletKey": "grumpBullet_bullet"
+    "grumpBullet4": {
+      "name": "grumpBullet4",
+      "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
+      "objectKey":  "grumpBullet4_object",
+      "bulletKey": "grumpBullet4_bullet",
+      "zoneKeys": ["grumpBullet4_zoneMatch","grumpBullet4_zoneOpposite"]
     }
   },
   "objects":{
-    "grumpBullet_object":{
-      "shapeKey": "grumpBullet_shape",
-      "blueAnimationKey": "blue_grumpBullet_animation",
-      "goldAnimationKey": "yellow_grumpBullet_animation",
+    "grumpBullet4_object":{
+      "shapeKey": "grumpBullet4_shape",
+      "blueAnimationKey": "blue_grumpBullet4_animation",
+      "goldAnimationKey": "yellow_grumpBullet4_animation",
       "soundKey": "baseEnemySound",
-      "animationScale": 2.5
+      "animationScale": 2.5,
+      "health": 2,
+      "speed": 1.0
     },
-    "grumpBullet_bulletObject": {
-      "shapeKey": "grumpBullet_bulletShape",
-      "blueAnimationKey": "blue_grumpBullet_bulletanimation",
-      "goldAnimationKey": "yellow_grumpBullet_bulletanimation"
+    "grumpBullet4_bulletObject": {
+      "shapeKey": "grumpBullet4_bulletShape",
+      "blueAnimationKey": "blue_grumpBullet4_bulletanimation",
+      "goldAnimationKey": "yellow_grumpBullet4_bulletanimation",
+      "animationScale": 2.0
     }
   },
   "shapes":{
-    "grumpBullet_shape": {
+    "grumpBullet4_shape": {
         "vertices": [
                      0.0,
                      0.0,
@@ -34,33 +38,71 @@
                      1.875
                      ]
     },
-    "grumpBullet_bulletShape":{
+    "grumpBullet4_bulletShape":{
         "vertices": [
                      0.0,
                      0.0,
-                     1.875,
+                     0.78125,
                      0.0,
-                     1.875,
-                     1.875,
+                     0.78125,
+                     0.78125,
                      0.0,
-                     1.875
+                     0.78125
                      ]
     }
   },
   "bullets":{
-      "grumpBullet_bullet" : {
-          "objectKey": "grumpBullet_bulletObject",
+      "grumpBullet4_bullet" : {
+          "objectKey": "grumpBullet4_bulletObject",
           "startingAngle": 0.0,
-          "angleVariance": 90,
+          "angleVariance": 60,
           "numberShots": 5,
-          "cooldown": 240,
-          "velocity": 3,
+          "cooldown": 200,
+          "velocity": 3.0,
           "target": "true",
           "element": "OPPOSITE"
       }
   },
+    "zones": {
+        "grumpBullet4_zoneOpposite": {
+            "key": "grumpBullet4_zoneOpposite",
+            "radius": 3.625,
+            "speed": 2.0,
+            "type": "ROTATE",
+            "zoneEntries": {
+                "zone1": {
+                    "element": "OPPOSITE",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0
+                },
+                "zone2": {
+                    "element": "OPPOSITE",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.5
+                }
+            }
+        },
+        "grumpBullet4_zoneMatch": {
+            "key": "grumpBullet4_zoneMatch",
+            "radius": 3.625,
+            "speed": 2.0,
+            "type": "ROTATE",
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.25
+                },
+                "zone2": {
+                    "element": "MATCH",
+                    "objectKey": "grump_zoneObject",
+                    "startingPosition": 0.75
+                }
+            }
+        }
+    },
   "animations":{
-    "blue_grumpBullet_animation": {
+    "blue_grumpBullet4_animation": {
       "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png",
       "rows": 5,
       "cols": 8,
@@ -100,7 +142,7 @@
           }
       }
     },
-    "yellow_grumpBullet_animation": {
+    "yellow_grumpBullet4_animation": {
       "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_yellow.png",
       "rows": 5,
       "cols": 8,
@@ -140,7 +182,7 @@
           }
       }
     },
-    "blue_grumpBullet_bulletanimation": {
+    "blue_grumpBullet4_bulletanimation": {
         "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
         "actionmap": {
           "SPAWNING": {
@@ -163,13 +205,13 @@
             }
         }
     },
-    "yellow_grumpBullet_bulletanimation": {
+    "yellow_grumpBullet4_bulletanimation": {
         "actionmap": {
           "SPAWNING": {
               "repeat": "idle"
           },
           "DEATH": {
-              "active": "death"
+              "active": "idle"
           }
         }, 
         "cols": 1, 

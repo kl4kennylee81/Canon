@@ -8,13 +8,15 @@
 
 #include "ActiveBullet.hpp"
 #include "Element.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
 
 std::vector<std::shared_ptr<BulletInitEvent>> ActiveBullet::update(std::shared_ptr<GameState> state) {
-    _frameCount = (_frameCount + 1) % _bulletData->getCooldown();
-    if(_frameCount == 0){
+    _frameCount = _frameCount + (1.0 * GameState::_internalClock->getTimeDilation());
+    if(_frameCount > _bulletData->getCooldown()){
+        _frameCount = 0;
         return shootBullets(state);
     }
     return {};

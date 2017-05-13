@@ -67,12 +67,6 @@ void CollisionController::eventUpdate(Event* e) {
             }
             break;
         }
-        case Event::EventType::BULLET_SPAWN: {
-            BulletSpawnEvent* bulletSpawn = (BulletSpawnEvent*)e;
-            GameObject* obj = bulletSpawn->object.get();
-            addToWorld(bulletSpawn->object.get());
-            break;
-        }
         case Event::EventType::ZONE: {
             ZoneEvent* zoneEvent = (ZoneEvent*)e;
             switch (zoneEvent->zoneEventType) {
@@ -143,6 +137,17 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     
     if (inGame) {
         _world->update(timestep);
+        for(auto it: _world->getObstacles()) {
+            GameObject* obj = static_cast<GameObject*>(it->getBody()->GetUserData());
+            if(obj->type == GameObject::ObjectType::BULLET){
+                Vec2 pos = it->getPosition();
+                if(pos.x < -2 || pos.y < -2 || pos.x > GAME_PHYSICS_WIDTH + 2 || pos.y > GAME_PHYSICS_HEIGHT + 2) {
+                    objsScheduledForRemoval.push_back(obj);
+                    std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj);
+                    notify(objectGoneEvent.get());
+                }
+            }
+        }
         
         // update all obstacle after updating the world
         // check for resized dirty obstacles that need to be remade
@@ -256,6 +261,7 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->getPosition());
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
+    physics->setSpeed(objectInit->objectData->getSpeed());
     objectInit->object->setPhysicsComponent(physics);
 }
 

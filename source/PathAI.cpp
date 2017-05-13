@@ -33,8 +33,9 @@ void PathAI::update(std::shared_ptr<GameState> state) {
 		}
 	}
 
-
-	Vec2 velocity = MoveController::getVelocityVector(current, goal, AI_SPEED * 60);
+    auto physics = _object->getPhysicsComponent();
+    float speed = physics->getSpeed() == 0 ? AI_SPEED * 60 : physics->getSpeed();
+	Vec2 velocity = MoveController::getVelocityVector(current, goal, speed);
 	_object->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
 
 }

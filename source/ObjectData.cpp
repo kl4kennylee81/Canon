@@ -17,6 +17,10 @@ std::string ObjectData::getSoundKey(){
     return this->soundKey;
 }
 
+float ObjectData::getSpeed(){
+    return this->speed;
+}
+
 std::string ObjectData::getAnimationKey(ElementType e){
     if (e == ElementType::BLUE){
         return this->blueAnimationKey;
@@ -25,13 +29,14 @@ std::string ObjectData::getAnimationKey(ElementType e){
     }
 }
 
-bool ObjectData::init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string soundKey,float animScale,int health){
+bool ObjectData::init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string soundKey,float animScale,int health, float speed){
     this->shapeKey = shapeKey;
     this->soundKey = soundKey;
     this->blueAnimationKey = blueAnimKey;
     this->goldAnimationKey = goldAnimKey;
     this->animationScale = animScale;
     this->health = health;
+    this->speed = speed;
     return true;
 };
 
@@ -68,9 +73,13 @@ bool ObjectData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string soundKey = json->getString("soundKey");
     std::string banimKey = json->getString("blueAnimationKey");
     std::string ganimKey = json->getString("goldAnimationKey");
+    float speed = 0;
+    if(json->has("speed")) {
+        speed = json->getFloat("speed");
+    }
     float animScale = json->getFloat("animationScale",1.0f);
     int health = json->getInt("health",1);
-    init(sKey,banimKey,ganimKey,soundKey,animScale,health);
+    init(sKey,banimKey,ganimKey,soundKey,animScale,health, speed);
     return true;
 }
 

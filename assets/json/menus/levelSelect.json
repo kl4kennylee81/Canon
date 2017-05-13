@@ -3,8 +3,8 @@
         "levelSelect": {
             "UIEntries": [
                 "levelSelect_Background", 
-                "home", 
-                "homeRing", 
+                "levelSelect_home", 
+                "levelSelect_homeRing", 
                 "levelSelect_backToLevelEditor"
             ], 
             "key": "levelSelect", 
@@ -12,29 +12,6 @@
         }
     }, 
     "UIData": {
-        "home": {
-            "buttonAction": {
-                "buttonTarget": "startMenu", 
-                "type": "menuChange"
-            }, 
-            "buttonLabel": "", 
-            "height": 0.1, 
-            "key": "home", 
-            "type": "BUTTON", 
-            "uiBackgroundKey": "levelSelect_home", 
-            "width": 0.056, 
-            "x": 0.475, 
-            "y": 0.06
-        }, 
-        "homeRing": {
-            "height": 0.15, 
-            "key": "homeRing", 
-            "textureKey": "levelSelect_homeRing", 
-            "type": "IMAGE", 
-            "width": 0.084, 
-            "x": 0.46, 
-            "y": 0.0375
-        }, 
         "levelLabelText": {
             "fontKey": "Charlemagne", 
             "height": 0.17, 
@@ -83,6 +60,29 @@
             "width": 0.15, 
             "x": 0.8, 
             "y": 0.05
+        }, 
+        "levelSelect_home": {
+            "buttonAction": {
+                "buttonTarget": "startMenu", 
+                "type": "menuChange"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.1, 
+            "key": "levelSelect_home", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_home", 
+            "width": 0.056, 
+            "x": 0.475, 
+            "y": 0.06
+        }, 
+        "levelSelect_homeRing": {
+            "height": 0.15, 
+            "key": "levelSelect_homeRing", 
+            "textureKey": "levelSelect_homeRing", 
+            "type": "IMAGE", 
+            "width": 0.084, 
+            "x": 0.46, 
+            "y": 0.0375
         }
     }
 }
