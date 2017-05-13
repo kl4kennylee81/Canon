@@ -43,7 +43,11 @@ public:
         std::shared_ptr<MenuGraph> result = std::make_shared<MenuGraph>();
         return (result->init(assets) ? result : nullptr);
     }
+
+	std::unordered_map<std::string, std::shared_ptr<Menu>> getMenuMap() { return _menuMap; }
     
+	void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter);
+
     void populate(const std::shared_ptr<GenericAssetManager>& assets);
     
     void setActiveMenu(std::shared_ptr<Menu> menu);

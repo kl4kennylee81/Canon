@@ -1,0 +1,84 @@
+{
+    "ListChapterData": {
+        "chapter01": {
+            "chapterKey": "chapter01",
+            "name": "The Girl and the Firefly",
+            "levels": [
+                "level01",
+                "level02",
+                "level03",
+                "level04",
+                "level05",
+                "level06",
+                "level07",
+                "level08",
+                "level09",
+                "level10",
+                "level11",
+                "level12"
+            ]
+        }
+    },
+    "ListLevelData": {
+        "level01": {
+            "key": "level01",
+            "levelKey": "rapidSpawn",
+            "name": "rapidSpawn"
+        },
+        "level02": {
+            "key": "level02",
+            "levelKey": "separation",
+            "name": "separation"
+        },
+        "level03": {
+            "key": "level03",
+            "levelKey": "precision",
+            "name": "precision"
+        },
+        "level04": {
+            "name": "The xx",
+            "key": "level04",
+            "levelKey": "xxxxxx"
+        },
+        "level05": {
+            "key": "level05",
+            "levelKey": "overlap",
+            "name": "overlap"
+        },
+        "level06": {
+            "key": "level06",
+            "levelKey": "interweave",
+            "name": "Weave"
+        },
+        "level07": {
+            "key": "level07",
+            "levelKey": "sneakAttack",
+            "name": "SneakAttack"
+        },
+        "level08": {
+            "key": "level08",
+            "levelKey": "squareLaser",
+            "name": "Lasers"
+        },
+        "level09": {
+            "key": "level09",
+            "levelKey": "lure",
+            "name": "Lure"
+        },
+        "level10": {
+            "name": "Blobos",
+            "key": "level10",
+            "levelKey": "blobos"
+        },
+        "level11": {
+            "name": "level11",
+            "key": "test1",
+            "levelKey": "test1"
+        },
+        "level12": {
+            "name": "level12",
+            "key": "doubleGrump",
+            "levelKey": "doubleGrump"
+        }
+    }
+}

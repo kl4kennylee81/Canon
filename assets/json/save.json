@@ -1,114 +1,91 @@
 {
-    "SaveGameData": {
-        "saveFile": {
-            "rapidSpawn": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "rapidSpawn",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "rapidSpawn",
-                "unlocked": 1
-            },
-            "separation": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "separation",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "separation",
-                "unlocked": 1
-            },
-            "precision": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "precision",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "precision",
-                "unlocked": 1
-            },
-            "xxxxxx": {
-                "name": "The xx",
-                "unlocked": 1,
-                "complete": 0,
-                "uiDataKey": "lake_bg",
-                "levelKey": "xxxxxx",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "overlap": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "overlap",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "overlap",
-                "unlocked": 0
-            },
-            "interweave": {
-                "complete": 0, 
-                "highScore": 0, 
-                "levelKey": "interweave", 
-                "levelUrl": "level1assets.json", 
-                "uiDataKey": "lake_bg", 
-                "name": "Weave", 
-                "unlocked": 0
-            },
-            "sneakAttack": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "sneakAttack",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "SneakAttack",
-                "unlocked": 0
-            },
-            "squareLaser": {
-                "complete": 0,
-                "highScore": 0,
-                "levelKey": "squareLaser",
-                "levelUrl": "level1assets.json",
-                "uiDataKey": "lake_bg",
-                "name": "Lasers",
-                "unlocked": 0
-            },
-            "lure": {
-                "complete": 0, 
-                "highScore": 0, 
-                "levelKey": "lure", 
-                "levelUrl": "level1assets.json", 
-                "uiDataKey": "lake_bg", 
-                "name": "Lure", 
-                "unlocked": 0
-            },
-            "blobos": {
-                "name": "Blobos",
-                "unlocked": 0,
-                "complete": 0,
-                "uiDataKey": "lake_bg",
-                "levelKey": "blobos",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "boss1": {
-                "name": "boss1",
-                "unlocked": 0,
-                "complete": 0,
-                "uiDataKey": "lake_bg",
-                "levelKey": "boss1",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            },
-            "boss2": {
-                "name": "boss2",
-                "unlocked": 0,
-                "complete": 0,
-                "uiDataKey": "lake_bg",
-                "levelKey": "boss2",
-                "levelUrl": "level1assets.json",
-                "highScore": 0
-            }
+    "SaveData": {
+        "defaultPlayer": {
+            "currentChapter": "chapter01",
+            "volumeOn:": 1,
+            "soundFXOn:": 1
+        }
+    },
+    "SaveChapterData": {
+        "chapter01": {
+            "complete": 0,
+            "key": "chapter01",
+            "unlocked": 0
+        }
+    },
+    "SaveLevelData": {
+        "level01": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level01",
+            "unlocked": 1
+        },
+        "level02": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level02",
+            "unlocked": 1
+        },
+        "level03": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level03",
+            "unlocked": 1
+        },
+        "level04": {
+            "unlocked": 1,
+            "complete": 0,
+            "key": "level04",
+            "highScore": 0
+        },
+        "level05": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level05",
+            "unlocked": 0
+        },
+        "level06": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level06",
+            "unlocked": 0
+        },
+        "level07": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level07",
+            "unlocked": 0
+        },
+        "level08": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level08",
+            "unlocked": 0
+        },
+        "level09": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level09",
+            "unlocked": 0
+        },
+        "level10": {
+            "name": "Blobos",
+            "unlocked": 0,
+            "complete": 0,
+            "key": "level10",
+            "highScore": 0
+        },
+        "level11": {
+            "name": "level11",
+            "unlocked": 0,
+            "complete": 0,
+            "highScore": 0
+        },
+        "level12": {
+            "name": "level12",
+            "unlocked": 0,
+            "complete": 0,
+            "highScore": 0
         }
     }
 }
