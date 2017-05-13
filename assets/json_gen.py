@@ -70,6 +70,7 @@ def modify_json(src_json, file_path_mapping):
           # populate mapping of file_path_mapping
           file_path_mapping[src_json['UIData'][menu_name][target]] = filename
 
+          append_name = menu_name
           # detect if rename is necessary
           if not (len(src_json['UIData'][menu_name][target]) > len(filename) and 
           filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]):
@@ -86,7 +87,11 @@ def modify_json(src_json, file_path_mapping):
             src_json['UIData'][append_name] = child_json
 
           # bonus feature LOL make sure key field is correct
-          src_json['UIData'][menu_name]['key'] = menu_name
+          src_json['UIData'][append_name]['key'] = append_name
+
+          for uiEntry in copy.deepcopy(src_json['MenuScreenData'][filename]["UIEntries"]):
+            print uiEntry
+
 
 
 def json_files():
