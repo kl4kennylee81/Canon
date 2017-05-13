@@ -79,8 +79,8 @@ def modify_json(src_json, file_path_mapping):
             src_json['UIData'][menu_name][target] = append_name
 
           # rename the key in overarching uiData json to the jsonObject
-          if not (len(src_json['UIData'][menu_name]) > len(filename) and 
-          filename + "_" == src_json['UIData'][menu_name][:len(filename)+1]):
+          if not (len(menu_name) > len(filename) and 
+          filename + "_" == menu_name[:len(filename)+1]):
             append_name = filename + "_" + menu_name
             child_json = src_json['UIData'].pop(menu_name,None)
             src_json['UIData'][append_name] = child_json
