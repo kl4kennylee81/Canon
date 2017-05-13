@@ -1,0 +1,22 @@
+{
+	"particleStates": {
+		"genericChar": {
+			"statemap": {
+				"SPAWNING": ["PULSE"],
+				"SPAWN": [],
+				"ATTACK": ["TRAIL"],
+				"RETURN": [],
+				"DEATH": ["DEATH"]
+			},
+			"key": "genericChar"
+		},
+		"genericZone": {
+			"statemap": {
+				"SPAWNING": ["PULSE"],
+				"SPAWN": ["PULSE","ZONE"],
+				"DEATH": []
+			},
+			"key": "genericZone"
+		}
+	}
+}

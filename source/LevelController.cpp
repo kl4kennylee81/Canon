@@ -43,6 +43,7 @@ void LevelController::eventUpdate(Event* e) {
             std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
             std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(bulletEvent->element));
             std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
+            std::shared_ptr<ParticleStateData> partdata = _world->getParticleStateData(od->getParticleStateKey());
             
             std::shared_ptr<GameObject> gameOb = GameObject::alloc();
             gameOb->setIsPlayer(false);
@@ -53,7 +54,7 @@ void LevelController::eventUpdate(Event* e) {
             std::shared_ptr<WaveEntry> we = WaveEntry::alloc(pos.x, pos.y, bulletEvent->element, "", "");
             
             std::shared_ptr<ObjectInitEvent> initevent =
-                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, ai, {}, nullptr);
+                ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, ai, {}, nullptr,partdata);
             notify(initevent.get());
             
             bulletEvent->state->addEnemyGameObject(gameOb);
@@ -88,14 +89,17 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
     for (std::string zoneKey:_world->getZoneKeys(we)){
         zds.push_back(_world->getZoneData(zoneKey));
     }
-
+    std::shared_ptr<ParticleStateData> partdata = _world->getParticleStateData(od->getParticleStateKey());
+    if (partdata == nullptr){
+        partdata = _world->getParticleStateData("genericChar");
+    }
 
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
     
     gameOb->setIsPlayer(isPlayer);
     
-    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds, bd);
+    std::shared_ptr<ObjectInitEvent> initevent = ObjectInitEvent::alloc(gameOb, we, od, animationd, sd, sounddata, aid, zds, bd, partdata);
     notify(initevent.get());
     
     if (isPlayer){

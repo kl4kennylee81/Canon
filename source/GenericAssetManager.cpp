@@ -18,6 +18,7 @@
 #include "SoundData.hpp"
 #include "MenuListData.hpp"
 #include "BulletData.hpp"
+#include "ParticleStateData.hpp"
 using namespace cugl;
 
 #pragma mark -
@@ -251,6 +252,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
         }
         else if (child->key() == "bullets") {
             success = readCategory(typeid(BulletData).hash_code(), child) && success;
+        }
+        else if (child->key() == "particleStates") {
+            success = readCategory(typeid(ParticleStateData).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

@@ -25,6 +25,8 @@ private:
     
     float animationScale;
     int health;
+    
+    std::string particleStateKey;
 public:
     
     ObjectData() : Data(){}
@@ -35,17 +37,19 @@ public:
     
     std::string getAnimationKey(ElementType e);
     
+    std::string getParticleStateKey();
+    
     float getSpeed();
     
     float getAnimationScale();
     
     int getHealth();
     
-    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale, int health, float speed);
+    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale, int health, float speed, std::string partStateKey);
     
-    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale,int health, float speed){
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale,int health, float speed, std::string partStateKey){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(shapeKey,blueAnimKey, goldAnimKey,sound_key,animScale,health, speed) ? result : nullptr);
+        return (result->init(shapeKey,blueAnimKey, goldAnimKey,sound_key,animScale,health, speed, partStateKey) ? result : nullptr);
     }
 
     virtual std::shared_ptr<cugl::JsonValue> toJsonValue();

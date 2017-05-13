@@ -290,6 +290,9 @@ bool CollisionController::addToWorld(GameObject* obj) {
 }
 
 bool CollisionController::removeFromWorld(GameObject* obj) {
+    auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), obj);
+    if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+    
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
@@ -356,6 +359,7 @@ void CollisionController::beginContact(b2Contact* contact) {
         std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
         notify(objectHitEvent.get());
     } else {
+        objsToIgnore.push_back(gotHit);
         objsScheduledForRemoval.push_back(gotHit);
         std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
         notify(objectGoneEvent.get());

@@ -184,6 +184,13 @@ std::shared_ptr<SoundData> World::getSoundData(std::string soundKey){
     return _assets->get<SoundData>(soundKey);
 }
 
+std::shared_ptr<ParticleStateData> World::getParticleStateData(std::string partKey){
+    if (_isSandbox && _partStateData.count(partKey) > 0){
+        return _partStateData.at(partKey);
+    }
+    return _assets->get<ParticleStateData>(partKey);
+}
+
 void World::addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry> twe){
     _templateData.insert(std::make_pair(templateKey,twe));
 }

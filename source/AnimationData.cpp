@@ -51,7 +51,7 @@ std::shared_ptr<JsonValue> AnimationData::toJsonValue(){
 	}
 	for (auto const& entry : getActionMap())
 	{
-		actionMap->appendChild(AnimationData::actionToString(entry.first), entry.second->toJsonValue());
+		actionMap->appendChild(actionToString(entry.first), entry.second->toJsonValue());
 	}
 
 	animData->appendChild("statemap", stateMap);

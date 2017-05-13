@@ -21,6 +21,7 @@
 #include "SoundData.hpp"
 #include "AIData.hpp"
 #include "BulletData.hpp"
+#include "ParticleStateData.hpp"
 
 class LevelEvent : public Event {
 public:
@@ -51,12 +52,13 @@ public:
     std::shared_ptr<AIData> aiData;
     std::vector<std::shared_ptr<ZoneData>> zoneDatas;
     std::shared_ptr<BulletData> bulletData;
+    std::shared_ptr<ParticleStateData> partStateData;
     
     ObjectInitEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_INIT;
     }
     
-    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<SoundData> soundData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas, std::shared_ptr<BulletData> bulletData)
+    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<SoundData> soundData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas, std::shared_ptr<BulletData> bulletData, std::shared_ptr<ParticleStateData> partStateData)
     {
         this->levelEventType = LevelEventType::OBJECT_INIT;
         this->object = object;
@@ -68,14 +70,15 @@ public:
         this->aiData = aiData;
         this->zoneDatas = zoneDatas;
         this->bulletData = bulletData;
+        this->partStateData = partStateData;
         return true;
     }
     
     static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<SoundData> soundData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas,
-        std::shared_ptr<BulletData> bulletData)
+        std::shared_ptr<BulletData> bulletData, std::shared_ptr<ParticleStateData> partStateData)
     {
         std::shared_ptr<ObjectInitEvent> result = std::make_shared<ObjectInitEvent>();
-        return (result->init(object,waveEntry,objectData,animationData,shapeData,soundData,aiData,zoneDatas,bulletData) ? result : nullptr);
+        return (result->init(object,waveEntry,objectData,animationData,shapeData,soundData,aiData,zoneDatas,bulletData,partStateData) ? result : nullptr);
     }
 };
 
