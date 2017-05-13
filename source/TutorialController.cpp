@@ -18,8 +18,7 @@ using namespace cugl;
 TutorialController::TutorialController() :
 BaseController(),
 _tutorialNode(nullptr),
-_currentStep(0),
-_state(TutorialState::OFF){}
+_currentStep(0){}
 
 void TutorialController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -112,7 +111,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
         return;
     }
     
-    switch(_state){
+    switch(getCurrentStep()->getState()){
         case TutorialState::DONE:
         {
             return;
@@ -149,13 +148,8 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
-    _state = TutorialState::OFF;
-    
     populate(assets);
     
-    if (_steps.size() > 0){
-        _state = TutorialState::WAITING;
-    }
     // TODO 5 is a magic number just to get it to the front of the screen right now
     state->getScene()->addChild(_tutorialNode,5);
     return true;
@@ -198,26 +192,32 @@ std::shared_ptr<TutorialStep> TutorialController::getCurrentStep(){
 }
 
 void TutorialController::transitionNextStep(){
-    if (_state != TutorialState::ACTIVE){
+    if (getCurrentStep() == nullptr){
         return;
     }
     
+    if (getCurrentStep()->getState() != TutorialState::ACTIVE){
+        return;
+    }
+    
+    getCurrentStep()->setState(TutorialState::DONE);
     _currentStep+=1;
     _tutorialNode->setVisible(false);
     _tutorialNode->removeAllChildren();
-    _state = TutorialState::WAITING;
     
-    if (_currentStep >= _steps.size()){
-        _state = TutorialState::DONE;
-    }
+    getCurrentStep()->setState(TutorialState::WAITING);
     return;
 }
 
 void TutorialController::transitionToActive(){
-    if (_state != TutorialState::WAITING){
+    if (getCurrentStep() == nullptr){
         return;
     }
-    _state = TutorialState::ACTIVE;
+    
+    if (getCurrentStep()->getState() != TutorialState::WAITING){
+        return;
+    }
+    getCurrentStep()->setState(TutorialState::ACTIVE);
     _tutorialNode->setVisible(true);
     _tutorialNode->removeAllChildren();
     
@@ -227,5 +227,9 @@ void TutorialController::transitionToActive(){
 }
 
 bool TutorialController::isInActive(){
-    return _state == TutorialState::OFF || _state == TutorialState::DONE;
+    bool isStepsEmpty = _steps.size() == 0;
+    bool isStepsDone = _currentStep >= _steps.size();
+    bool isHintsDone = _activeHints.size() == 0;
+    
+    return isStepsEmpty && isStepsDone && isHintsDone;
 }

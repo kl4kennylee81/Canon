@@ -18,20 +18,15 @@
 #include "GameState.hpp"
 #include "Event.hpp"
 
-enum class TutorialState : int {
-    ACTIVE, // when it's waiting for an end transition condition
-    WAITING, // inactive is when it is waiting for the start transition condition
-    OFF, // this is not a tutorial level
-    DONE
-};
-
 class TutorialController : public BaseController {
 private:
-    TutorialState _state;
-    
     std::shared_ptr<cugl::Node> _tutorialNode;
     
     std::vector<std::shared_ptr<TutorialStep>> _steps;
+    
+    /** these are all waiting and/or active and are removed when endCondition is met 
+     *  loop through all active hints and see if they are met */
+    std::vector<std::shared_ptr<TutorialStep>> _activeHints;
     
     int _currentStep;
     

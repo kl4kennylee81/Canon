@@ -20,15 +20,27 @@ enum class TutorialTransition : int {
     NONE
 };
 
+enum class TutorialState : int {
+    ACTIVE, // when it's waiting for an end transition condition
+    WAITING, // inactive is when it is waiting for the start transition condition
+    OFF, // this step is inactive
+    DONE // this step is finished
+};
+
 class TutorialStep {
 private:
     TutorialTransition _startCondition;
     TutorialTransition _endCondition;
     std::shared_ptr<UIComponent> _uiComponent;
+    TutorialState _state;
     
 public:
     TutorialStep():
-    _uiComponent(nullptr){};
+    _uiComponent(nullptr),
+    _startCondition(TutorialTransition::NONE),
+    _endCondition(TutorialTransition::NONE),
+    _state(TutorialState::OFF)
+    {};
     
     ~TutorialStep(){};
     
@@ -58,6 +70,14 @@ public:
     
     std::shared_ptr<UIComponent> getUIComponent(){
         return _uiComponent;
+    }
+    
+    TutorialState getState(){
+        return _state;
+    }
+    
+    void setState(TutorialState state){
+        _state = state;
     }
 };
 

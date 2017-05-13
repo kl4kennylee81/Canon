@@ -26,6 +26,7 @@
 #include <iostream>
 #include <fstream>
 #include "BulletData.hpp"
+#include "TutorialLevelData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -107,6 +108,7 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
 	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
     assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
+    assets->attach<TutorialLevelData>(GenericLoader<TutorialLevelData>::alloc()->getHook());
 }
 
 /**
@@ -150,6 +152,8 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/save.json");
 	_assets->loadDirectory("json/randomMenuAssets.json");
+    
+    _assets->loadDirectory("json/tutorials/tutorial1.json");
     
     
     std::string assetDir = Application::get()->getAssetDirectory();
