@@ -18,6 +18,11 @@
 #include "GameState.hpp"
 #include "Event.hpp"
 
+enum class TutorialState : int {
+    ACTIVE,
+    INACTIVE,
+    OFF //
+};
 
 class TutorialController : public BaseController {
 private:

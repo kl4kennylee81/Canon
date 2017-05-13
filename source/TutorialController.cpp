@@ -60,6 +60,10 @@ void TutorialController::eventUpdate(Event* e) {
 }
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
+    
+    
+    
+    
 }
 
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
