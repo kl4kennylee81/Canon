@@ -141,6 +141,8 @@ GameState():
     
     size_t getNumberEnemyCharacters();
     
+    size_t getNumberNonBulletEnemyCharacters();
+    
     std::shared_ptr<GameObject> getClosestChar(cugl::Vec2 world_coord);
     
     void setClosestChar(cugl::Vec2 world_coord);
