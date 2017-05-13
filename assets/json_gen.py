@@ -89,8 +89,9 @@ def modify_json(src_json, file_path_mapping):
           # bonus feature LOL make sure key field is correct
           src_json['UIData'][append_name]['key'] = append_name
 
-          for uiEntry in copy.deepcopy(src_json['MenuScreenData'][filename]["UIEntries"]):
-            print uiEntry
+          for idx,uiEntry in enumerate(copy.deepcopy(src_json['MenuScreenData'][filename]["UIEntries"])):
+            if (menu_name == uiEntry):
+              src_json['MenuScreenData'][filename]["UIEntries"][idx] = append_name
 
 
 
