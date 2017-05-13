@@ -61,9 +61,6 @@ def modify_json(src_json, file_path_mapping):
         elif 'uiBackgroundKey' in uidata.keys():
           target = 'uiBackgroundKey' 
 
-        # bonus feature LOL make sure key field is correct
-        src_json['UIData'][menu_name]['key'] = menu_name
-
         # make sure appropriate keys exist
         if target != '':
 
@@ -84,6 +81,11 @@ def modify_json(src_json, file_path_mapping):
             append_name = filename + "_" + menu_name
             child_json = src_json['UIData'].pop(menu_name,None)
             src_json['UIData'][append_name] = child_json
+
+
+        # bonus feature LOL make sure key field is correct
+        # happens after updating the menu name key
+        src_json['UIData'][menu_name]['key'] = menu_name
 
 
 
