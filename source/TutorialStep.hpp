@@ -17,6 +17,7 @@ enum class TutorialTransition : int {
     ON_CLICK,
     ON_PATH_DRAWN,
     ON_ENEMY_CLEARED,
+    ON_START,  // at the beginning of init when gien a tutorialLevel will go to active
     NONE
 };
 
