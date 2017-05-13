@@ -83,7 +83,7 @@
   }, 
     "objects": {
         "birb_object": {
-            "animationScale": 2.5, 
+            "animationScale": 2.0,
             "blueAnimationKey": "blue_birb_animation", 
             "goldAnimationKey": "yellow_birb_animation", 
             "key": "birb_object", 
@@ -103,12 +103,12 @@
             "vertices": [
                 0.0, 
                 0.0, 
-                0.78125, 
+                1.25,
                 0.0, 
-                0.78125, 
-                0.78125, 
+                1.25,
+                1.25,
                 0.0, 
-                0.78125
+                1.25
             ]
         }, 
         "birb_zoneShape": {

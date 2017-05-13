@@ -57,6 +57,7 @@ void PathController::eventUpdate(Event* e) {
                 case MoveEvent::MoveEventType::MOVE_FINISHED:
                 {
                     // character is now done moving through the path
+                    _movingChars.erase(moveEvent->_character);
                     controllerState = IDLE;
                     break;
                 }
@@ -77,6 +78,21 @@ void PathController::eventUpdate(Event* e) {
 }
 
 
+std::shared_ptr<GameObject> PathController::getActiveCharacter(std::shared_ptr<GameState> state) {
+    std::shared_ptr<GameObject> active = state->getActiveCharacter();
+    if (active == nullptr){
+        return nullptr;
+    }
+    
+    if(std::find(_movingChars.begin(), _movingChars.end(), active) != _movingChars.end()) {
+        active = state->getOtherPlayer(active);
+        if(std::find(_movingChars.begin(), _movingChars.end(), active) != _movingChars.end()){
+            return nullptr;
+        }
+    }
+    return active;
+}
+
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
 	auto pathNode = TexturedPathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
@@ -88,16 +104,18 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
     
-    if (state->getActiveCharacter()== nullptr){
+    if (_drawingChar == nullptr){
         return;
     }
     
-    if (state->getActiveCharacter()->getPhysicsComponent() == nullptr){
+    if (_drawingChar->getPhysicsComponent() == nullptr){
         return;
     }
+    
+    
     
     // switch color of path depending on who's turn
-    if (state->getActiveCharacter()->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+    if (_drawingChar->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
         pathNode->setColor(Color4::ORANGE);
     } else {
         pathNode->setColor(Color4::BLUE);
@@ -132,9 +150,9 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     }
     
     // can't start drawing a path before a character is done moving through a previous path
-    if (controllerState == MOVING) {
-        return;
-    }
+    //if (controllerState == MOVING) {
+    //    return;
+    //}
 
 	// clear path on two finger touch
 	if (InputController::getDoubleTouch()) {
@@ -174,10 +192,13 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         
 		_path->clear();
         
-        if (state->getActiveCharacter() == nullptr){
+        std::shared_ptr<GameObject> active = getActiveCharacter(state);
+        if (active == nullptr){
             return;
         }
-        Vec2 currentLocation = state->getActiveCharacter()->getPosition();
+        
+        Vec2 currentLocation = active->getPosition();
+        _drawingChar = active;
 		
 		// can't start drawing a path if the touch is far away from the active character
 		if (physicsPosition.distance(currentLocation) > TOUCH_RADIUS) return;
@@ -207,11 +228,12 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene(state);
         
         // notify that the controller has finished drawing
-        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter(),state->getInactiveCharacter());
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, _drawingChar, state->getOtherPlayer(_drawingChar));
+        _movingChars.insert(_drawingChar);
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         
-        controllerState = MOVING;
+        controllerState = IDLE;
         _cooldown_frames = 0;
     }
 	_wasPressed = isPressed;

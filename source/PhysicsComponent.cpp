@@ -14,11 +14,16 @@ PhysicsComponent::PhysicsComponent() :
 _body(nullptr),
 _speed(0),
 _acceleration(0),
-_health(1)
+_health(1),
+_arrow(nullptr)
 {}
 
 void PhysicsComponent::dispose(){
+    if(_arrow != nullptr){
+        _arrow->removeFromParent();
+    }
     _body = nullptr;
+    _arrow = nullptr;
 }
 
 std::shared_ptr<cugl::PolygonObstacle> PhysicsComponent::getBody(){

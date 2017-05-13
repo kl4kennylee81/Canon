@@ -304,6 +304,12 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
  */
 void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
+        
+        GameObject* obj = it->first;
+        if(obj->type == GameObject::ObjectType::CHARACTER && !obj->getIsPlayer()){
+            obj->syncArrow(state->getGameplayNode());
+        }
+        
         std::shared_ptr<ActiveAnimation> anim = it->second;
         
         if (anim->getAnimationNode()->getParent() == nullptr){

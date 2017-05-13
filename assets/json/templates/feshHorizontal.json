@@ -83,7 +83,7 @@
   }, 
     "objects": {
         "feshHorizontal_object": {
-            "animationScale": 2.0, 
+            "animationScale": 2.25,
             "blueAnimationKey": "blue_feshHorizontal_animation", 
             "goldAnimationKey": "yellow_feshHorizontal_animation", 
             "key": "feshHorizontal_object", 

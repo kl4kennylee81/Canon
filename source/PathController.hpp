@@ -56,6 +56,10 @@ public:
 
 	bool _wasPressed;
     
+    std::unordered_set<std::shared_ptr<GameObject>> _movingChars;
+    
+    std::shared_ptr<GameObject> _drawingChar;
+    
     std::shared_ptr<cugl::Texture> _mainTexture;
     
     std::shared_ptr<cugl::Texture> _capTexture;
@@ -68,8 +72,10 @@ public:
     bool isOnCooldown();
 
 	void resetMinMax();
+    
+    std::shared_ptr<GameObject> getActiveCharacter(std::shared_ptr<GameState> state);
 
-	virtual void attach(Observer* obs);
+    virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 
