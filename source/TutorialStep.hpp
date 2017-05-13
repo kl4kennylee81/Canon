@@ -42,9 +42,16 @@ public:
     _state(TutorialState::OFF)
     {};
     
-    ~TutorialStep(){};
+    ~TutorialStep(){ dispose(); };
     
     bool init();
+    
+    void dispose(){
+        _uiComponent = nullptr;
+        _startCondition = TutorialTransition::NONE;
+        _endCondition = TutorialTransition::NONE;
+        _state = TutorialState::OFF;
+    }
     
     void setUIComponent(std::shared_ptr<UIComponent> ui) {
         _uiComponent = ui;
@@ -76,8 +83,25 @@ public:
         return _state;
     }
     
+    bool isDone(){
+        return _state == TutorialState::DONE;
+    }
+    
     void setState(TutorialState state){
         _state = state;
+    }
+    
+    void checkCondition(TutorialTransition transition){
+        if (_state == TutorialState::WAITING && _startCondition == transition){
+            _state = TutorialState::ACTIVE;
+            return;
+        }
+        
+        if (_state == TutorialState::ACTIVE && _endCondition == transition){
+            _state = TutorialState::DONE;
+            return;
+        }
+        return;
     }
 };
 

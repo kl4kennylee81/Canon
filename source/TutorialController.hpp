@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include <vector>
+#include <list>
 #include "TutorialStep.hpp"
 #include "BaseController.hpp"
 #include "GenericAssetManager.hpp"
@@ -26,14 +27,22 @@ private:
     
     /** these are all waiting and/or active and are removed when endCondition is met 
      *  loop through all active hints and see if they are met */
-    std::vector<std::shared_ptr<TutorialStep>> _activeHints;
+    std::list<std::shared_ptr<TutorialStep>> _activeHints;
     
     int _currentStep;
     
 public:
     TutorialController();
     
-    ~TutorialController(){};
+    ~TutorialController(){ dispose(); };
+    
+    void dispose(){
+        if (_tutorialNode != nullptr){
+            _tutorialNode->removeFromParent();
+        }
+        _tutorialNode = nullptr;
+        _currentStep = 0;
+    }
     
     virtual void attach(Observer* obs);
     
@@ -61,9 +70,9 @@ public:
     
     void transitionNextStep();
     
-    void transitionToActive();
-    
     bool isInActive();
+    
+    void checkTransitionCondition(TutorialTransition transition);
 };
 
 

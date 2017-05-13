@@ -41,14 +41,7 @@ void TutorialController::eventUpdate(Event* e) {
             	PathEvent* pe = (PathEvent*)e;
             	switch (pe->_pathType) {
             	case PathEvent::PathEventType::PATH_FINISHED:
-                        if (getCurrentStep()->getEndCondition() == TutorialTransition::ON_PATH_DRAWN){
-                            transitionNextStep();
-                            return;
-                        }
-                        else if (getCurrentStep()->getStartCondition() == TutorialTransition::ON_PATH_DRAWN){
-                            transitionToActive();
-                            return;
-                        }
+                        checkTransitionCondition(TutorialTransition::ON_PATH_DRAWN);
             		break;
             	default:
             		break;
@@ -74,14 +67,8 @@ void TutorialController::eventUpdate(Event* e) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
                 {
                     ObjectGoneEvent* ogEvent = (ObjectGoneEvent*)e;
-                    if (!ogEvent->_obj->getIsPlayer() && getCurrentStep()->getEndCondition() == TutorialTransition::ON_ENEMY_CLEARED){
-                        transitionNextStep();
-                        return;
-                    }
-                    
-                    else if (!ogEvent->_obj->getIsPlayer() && getCurrentStep()->getStartCondition() == TutorialTransition::ON_ENEMY_CLEARED){
-                        transitionToActive();
-                        return;
+                    if (!ogEvent->_obj->getIsPlayer()){
+                        checkTransitionCondition(TutorialTransition::ON_ENEMY_CLEARED);
                     }
                     break;
                 }
@@ -105,50 +92,68 @@ void TutorialController::eventUpdate(Event* e) {
     }
 }
 
+void removeFinishedHints(std::list<std::shared_ptr<TutorialStep>> items){
+    std::list<std::shared_ptr<TutorialStep>>::iterator i = items.begin();
+    while (i != items.end())
+    {
+        bool isActive = (*i)->isDone();
+        if (!isActive)
+        {
+            i = items.erase(i);
+        }
+        else
+        {
+            ++i;
+        }
+    }
+}
+
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
     // skip if tutorial isn't active
     if (isInActive()){
         return;
     }
     
-    switch(getCurrentStep()->getState()){
-        case TutorialState::DONE:
-        {
-            return;
-        }
-        case TutorialState::OFF:
-        {
-            return;
-        }
-        case TutorialState::WAITING:
-        {
-            switch(getCurrentStep()->getStartCondition()){
-                case TutorialTransition::ON_CLICK:
-                {
-                    if (!InputController::getIsPressed()){
-                        return;
-                    }
-                    
-                    transitionToActive();
-                    break;
-                }
-            }
-            return;
-        }
-        case TutorialState::ACTIVE:
-        {
-            return;
+    /** this is to update other transition Condition that get checked on the spot */
+    if (InputController::getIsPressed()){
+        checkTransitionCondition(TutorialTransition::ON_CLICK);
+    }
+    
+    /** update the currentStep if the condition has been met */
+    transitionNextStep();
+    
+    /** remove all TutorialState::DONE hints */
+    removeFinishedHints(_activeHints);
+    
+    /** remove all children of the tutorialNode */
+    _tutorialNode->removeAllChildren();
+    
+    /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
+    for(std::shared_ptr<TutorialStep> hints : _activeHints){
+        if (hints->getState() == TutorialState::ACTIVE){
+            _tutorialNode->addChild(hints->getUIComponent()->getNode(),5);
         }
     }
     
+    if (getCurrentStep() == nullptr){
+        return;
+    }
     
-    
+    /** add the current step if active */
+    if (getCurrentStep()->getState() == TutorialState::ACTIVE){
+        _tutorialNode->addChild(getCurrentStep()->getUIComponent()->getNode(),5);
+    }
 }
 
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
     populate(assets);
+    
+    if (_steps.size() > 0){
+        // start the initial step as waiting
+        getCurrentStep()->setState(TutorialState::WAITING);
+    }
     
     // TODO 5 is a magic number just to get it to the front of the screen right now
     state->getScene()->addChild(_tutorialNode,5);
@@ -188,6 +193,9 @@ void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
 }
 
 std::shared_ptr<TutorialStep> TutorialController::getCurrentStep(){
+    if (_currentStep >= _steps.size()){
+        return nullptr;
+    }
     return _steps.at(_currentStep);
 }
 
@@ -196,33 +204,21 @@ void TutorialController::transitionNextStep(){
         return;
     }
     
-    if (getCurrentStep()->getState() != TutorialState::ACTIVE){
+    if (getCurrentStep()->getState() != TutorialState::DONE){
         return;
     }
     
-    getCurrentStep()->setState(TutorialState::DONE);
+    /** TODO also add all the hints from this step into the activeHints */
+    
     _currentStep+=1;
-    _tutorialNode->setVisible(false);
-    _tutorialNode->removeAllChildren();
     
+    /** end of the steps */
+    if (_currentStep >= _steps.size()){
+        return;
+    }
+    
+    /** set the next step to waiting */
     getCurrentStep()->setState(TutorialState::WAITING);
-    return;
-}
-
-void TutorialController::transitionToActive(){
-    if (getCurrentStep() == nullptr){
-        return;
-    }
-    
-    if (getCurrentStep()->getState() != TutorialState::WAITING){
-        return;
-    }
-    getCurrentStep()->setState(TutorialState::ACTIVE);
-    _tutorialNode->setVisible(true);
-    _tutorialNode->removeAllChildren();
-    
-    std::shared_ptr<UIComponent> ui = getCurrentStep()->getUIComponent();
-    _tutorialNode->addChild(ui->getNode());
     return;
 }
 
@@ -232,4 +228,20 @@ bool TutorialController::isInActive(){
     bool isHintsDone = _activeHints.size() == 0;
     
     return isStepsEmpty && isStepsDone && isHintsDone;
+}
+
+void TutorialController::checkTransitionCondition(TutorialTransition transition){
+    
+    for (std::shared_ptr<TutorialStep> hint : _activeHints){
+        // check if the start/end condition is the same as the given condition
+        hint->checkCondition(transition);
+    }
+    
+    // check current Step exists
+    if (_currentStep >= _steps.size()) {
+        return;
+    }
+    
+    // update the state of the currentStep
+    getCurrentStep()->checkCondition(transition);
 }
