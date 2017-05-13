@@ -70,21 +70,22 @@ def modify_json(src_json, file_path_mapping):
           # populate mapping of file_path_mapping
           file_path_mapping[src_json['UIData'][menu_name][target]] = filename
 
-          append_name = filename + "_" + src_json['UIData'][menu_name][target]
-
           # detect if rename is necessary
           if not (len(src_json['UIData'][menu_name][target]) > len(filename) and 
           filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]):
 
+            append_name = filename + "_" + src_json['UIData'][menu_name][target]
             # update actual menu json
             src_json['UIData'][menu_name][target] = append_name
 
           # rename the key in overarching uiData json to the jsonObject
           if not (len(src_json['UIData'][menu_name]) > len(filename) and 
           filename + "_" == src_json['UIData'][menu_name][:len(filename)+1]):
-            src_json['UIData'][append_name] = src_json['UIData'].pop(menu_name,None)
+            append_name = filename + "_" + menu_name
+            child_json = src_json['UIData'].pop(menu_name,None)
+            src_json['UIData'][append_name] = child_json
 
-          
+
 
 
 def json_files():
