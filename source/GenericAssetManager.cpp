@@ -19,6 +19,7 @@
 #include "MenuListData.hpp"
 #include "BulletData.hpp"
 #include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
 
 using namespace cugl;
 
@@ -256,6 +257,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
         }
         else if (child->key() == "tutorialLevels") {
             success = readCategory(typeid(TutorialLevelData).hash_code(), child) && success;
+        }
+        else if (child->key() == "tutorialSteps") {
+            success = readCategory(typeid(TutorialStepData).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

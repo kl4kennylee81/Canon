@@ -27,6 +27,7 @@
 #include <fstream>
 #include "BulletData.hpp"
 #include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -109,6 +110,7 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
 	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
     assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
     assets->attach<TutorialLevelData>(GenericLoader<TutorialLevelData>::alloc()->getHook());
+    assets->attach<TutorialStepData>(GenericLoader<TutorialStepData>::alloc()->getHook());
 }
 
 /**

@@ -7,6 +7,8 @@
 //
 
 #include "TutorialController.hpp"
+#include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
 #include "PathEvent.hpp"
 #include "SwitchEvent.hpp"
 #include "UIData.hpp"
@@ -159,6 +161,21 @@ bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<
     // TODO 5 is a magic number just to get it to the front of the screen right now
     state->getScene()->addChild(_tutorialNode,5);
     return true;
+}
+
+void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManager> assets,std::string tutorialKey){
+    std::shared_ptr<TutorialLevelData> tutData = assets->get<TutorialLevelData>(tutorialKey);
+    for (std::string stepKey : tutData->getStepKeys()){
+        // create the tutorialStep from the stepData
+        std::shared_ptr<TutorialStepData> stepData = assets->get<TutorialStepData>(stepKey);
+        std::shared_ptr<Menu> screen = Menu::alloc(stepData->key);
+        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey);
+        
+        std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
+        step->setTransition(stepData->getStartCondition(),stepData->getEndCondition());
+        step->setMenu(screen);
+        _steps.push_back(step);
+    }
 }
 
 void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){

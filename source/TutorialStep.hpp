@@ -13,21 +13,7 @@
 #include <cugl/cugl.h>
 #include "UIComponent.hpp"
 #include "Menu.hpp"
-
-enum class TutorialTransition : int {
-    ON_CLICK,
-    ON_PATH_DRAWN,
-    ON_ENEMY_CLEARED,
-    ON_START,  // at the beginning of init when gien a tutorialLevel will go to active
-    NONE
-};
-
-enum class TutorialState : int {
-    ACTIVE, // when it's waiting for an end transition condition
-    WAITING, // inactive is when it is waiting for the start transition condition
-    OFF, // this step is inactive
-    DONE // this step is finished
-};
+#include "TutorialEnums.hpp"
 
 class TutorialStep {
 private:

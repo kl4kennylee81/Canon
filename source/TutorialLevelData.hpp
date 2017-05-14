@@ -34,6 +34,14 @@ public:
         std::shared_ptr<TutorialLevelData> result = std::make_shared<TutorialLevelData>();
         return (result->init(sKey,lKey) ? result : nullptr);
     }
+    
+    std::vector<std::string> getStepKeys(){
+        return _stepKeys;
+    }
+    
+    std::string getLevelKey(){
+        return _levelKey;
+    }
 };
 
 #endif /* TutorialLevelData_hpp */
