@@ -151,7 +151,9 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
-    populate(assets);
+    // TODO replace with getting it from the current level that is active
+    // or passed from the saveGameData file
+    populateFromTutorial(assets,"tutorial1");
     
     if (_steps.size() > 0){
         // start the initial step as waiting
