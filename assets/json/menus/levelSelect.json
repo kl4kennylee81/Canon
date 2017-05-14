@@ -54,10 +54,10 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "Level Edit", 
+            "fontKey": "Museo300-Regular", 
             "height": 0.1, 
             "key": "levelSelect_backToLevelEditor", 
             "type": "BUTTON", 
-			"fontKey": "Museo300-Regular", 
             "width": 0.15, 
             "x": 0.8, 
             "y": 0.05
@@ -68,10 +68,10 @@
                 "type": "menuChange"
             }, 
             "buttonLabel": "", 
+            "fontKey": "Museo300-Regular", 
             "height": 0.1, 
             "key": "levelSelect_home", 
             "type": "BUTTON", 
-			"fontKey": "Museo300-Regular", 
             "uiBackgroundKey": "levelSelect_home", 
             "width": 0.056, 
             "x": 0.475, 

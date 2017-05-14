@@ -61,10 +61,10 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 //			float x2 = - 0.20;
 //			float y2 = 0.35 - (0.06 * (i / 6));
 		if (!saveEntry->unlocked) {
-			float x2 = (0.02*(i % 4)) - 0.20;
-			float y2 = 0.35 - (0.06 * (i / 4));
+			float lockX = (0.02*(i % 4)) - 0.20;
+			float lockY = 0.35 - (0.06 * (i / 4));
 			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_Lock");
-			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", x2, y2, lock->width, lock->height, action, "");
+			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", lockX, lockY, lock->width, lock->height, action, "");
 			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets);
 			buttonNode->addChild(lockNode, 4);
 		}
@@ -74,13 +74,16 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
 		textData->textValue = listEntry->name;
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
-        labelNode->setPosition(x+225,y+300);
-		buttonNode->addChild(labelNode, 3);
+        labelNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+        float labelX = (boxData->width/2.0 + x) * GAME_SCENE_WIDTH;
+        float labelY = (boxData->height/2.0 + y) * Util::getGameSceneHeight();
+        labelNode->setPosition(labelX, labelY);
+//		buttonNode->addChild(labelNode, 3);
 
-		//std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
+		std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
 		std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button, buttonNode);
 		selectMenu->addUIElement(uiComponent);
-		//selectMenu->addUIElement(labelComponent);
+		selectMenu->addUIElement(labelComponent);
 		i++;
 	}
 }

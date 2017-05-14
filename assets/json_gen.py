@@ -40,7 +40,14 @@ def get_asset_mapping():
 
   {i:i for i in range(1, 11)}
   image_mapping = {key : {"file": image_files[key], "minfilter" : "nearest", "magfilter" : "linear", "wrapS" : "clamp", "wrapT" : "clamp"} for key in image_files.keys()}
-  font_mapping = {key : {"file": font_files[key], "size": 64} for key in font_files.keys()}
+  
+  font_sizes = [80,50,16]
+
+  font_mapping = dict()
+  for font_size in font_size:
+    for key in font_files.keys():
+      fontJson = {"file": font_files[key], "size": font_size}
+      font_mapping[key+"_"+str(font_size)] = fontJson
 
   mapping = {"textures": image_mapping, "fonts": font_mapping}
   return mapping

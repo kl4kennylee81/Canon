@@ -47,8 +47,6 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-
-
     // TODO cleanup this function
 	std::shared_ptr<Button> button;
 	std::shared_ptr<Label> label;
@@ -80,8 +78,8 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
 	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
 
-	cugl::Size size = label->getSize();
-	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
+//	cugl::Size size = label->getSize();
+//	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
     
     // scale to width and height
     return label;

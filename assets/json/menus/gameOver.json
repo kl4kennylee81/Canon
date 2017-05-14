@@ -18,10 +18,10 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "Level Edit", 
+            "fontKey": "Museo300-Regular", 
             "height": 0.1, 
             "key": "MenubackToLevelEditor", 
             "type": "BUTTON", 
-			"fontKey": "Museo300-Regular", 
             "width": 0.25, 
             "x": 0.375, 
             "y": 0.05
@@ -42,10 +42,10 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "home", 
+            "fontKey": "Museo300-Regular", 
             "height": 0.1, 
             "key": "homeButton", 
             "type": "BUTTON", 
-			"fontKey": "Museo300-Regular", 
             "width": 0.25, 
             "x": 0.375, 
             "y": 0.375
@@ -57,10 +57,10 @@
                 "type": "fxTrigger"
             }, 
             "buttonLabel": "try again", 
+            "fontKey": "Museo300-Regular", 
             "height": 0.1, 
             "key": "tryAgainButton", 
             "type": "BUTTON", 
-			"fontKey": "Museo300-Regular", 
             "width": 0.25, 
             "x": 0.375, 
             "y": 0.5
