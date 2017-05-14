@@ -44,7 +44,7 @@ def get_asset_mapping():
   font_sizes = [80,50,16]
 
   font_mapping = dict()
-  for font_size in font_size:
+  for font_size in font_sizes:
     for key in font_files.keys():
       fontJson = {"file": font_files[key], "size": font_size}
       font_mapping[key+"_"+str(font_size)] = fontJson

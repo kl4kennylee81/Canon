@@ -14,7 +14,7 @@
                 "nextScreen": "pauseScreen", 
                 "type": "fxTrigger"
             }, 
-            "fontKey": "Museo300-Regular", 
+            "fontKey": "Museo300-Regular_50", 
             "height": 0.08, 
             "key": "gameScreen_pauseButton", 
             "type": "BUTTON", 
