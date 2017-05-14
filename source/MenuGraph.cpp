@@ -92,26 +92,9 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
         std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
-		std::shared_ptr<Menu> menu = Menu::alloc(false,menuKey);
-
-		if (menuBackgroundKey != "") {
-			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
-			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(menuBackgroundKey));
-			cugl::Size imageSize = imageNode->getSize();
-			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
-			imageNode->setPosition(Vec2::ZERO);
-
-			menu->setBackground(imageNode);
-		}
-
-		for (std::string uiKey : menuData->getUIEntryKeys()) {
-			auto uiData = assets->get<UIData>(uiKey);
-			std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
-			std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
-			menu->addUIElement(uiComponent);
-
-		}
+		std::shared_ptr<Menu> menu = Menu::alloc(menuKey);
+        
+        menu->populate(assets, menuData->getUIEntryKeys(),menuBackgroundKey);
 
 		_menuMap.insert(std::make_pair(menuKey, menu));
 	}

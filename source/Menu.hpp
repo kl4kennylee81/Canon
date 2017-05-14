@@ -20,6 +20,28 @@ private:
 	std::shared_ptr<cugl::Node> _menuBackground;
     std::vector<std::shared_ptr<UIComponent>> _uiElements;
 public:
+    
+    Menu():
+    _menu(nullptr),
+    _menuBackground(nullptr),
+    _mKey("")
+    {}
+    
+    ~Menu(){ dispose(); }
+    
+    void dispose(){
+        if (_menu != nullptr){
+            _menu->removeFromParent();
+        }
+        
+        if (_menuBackground != nullptr){
+            _menuBackground->removeFromParent();
+        }
+        _menu = nullptr;
+        _menuBackground = nullptr;
+        _mKey = "";
+    }
+    
 	std::string getMenuKey();
 	std::shared_ptr<cugl::Node> getBackground();
 
@@ -33,11 +55,13 @@ public:
     
     void detachFromScene();
     
-    virtual bool init(bool touch, std::string mKey);
+    virtual bool init(std::string mKey);
     
-    static std::shared_ptr<Menu> alloc(bool touch, std::string mKey){
+    void populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey);
+    
+    static std::shared_ptr<Menu> alloc(std::string mKey){
         std::shared_ptr<Menu> result = std::make_shared<Menu>();
-        return (result->init(touch, mKey) ? result : nullptr);
+        return (result->init(mKey) ? result : nullptr);
     }
 
 };

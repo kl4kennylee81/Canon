@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "UIComponent.hpp"
+#include "Menu.hpp"
 
 enum class TutorialTransition : int {
     ON_CLICK,
@@ -32,12 +33,12 @@ class TutorialStep {
 private:
     TutorialTransition _startCondition;
     TutorialTransition _endCondition;
-    std::shared_ptr<UIComponent> _uiComponent;
+    std::shared_ptr<Menu> _menu;
     TutorialState _state;
     
 public:
     TutorialStep():
-    _uiComponent(nullptr),
+    _menu(nullptr),
     _startCondition(TutorialTransition::NONE),
     _endCondition(TutorialTransition::NONE),
     _state(TutorialState::OFF)
@@ -48,14 +49,14 @@ public:
     bool init();
     
     void dispose(){
-        _uiComponent = nullptr;
+        _menu = nullptr;
         _startCondition = TutorialTransition::NONE;
         _endCondition = TutorialTransition::NONE;
         _state = TutorialState::OFF;
     }
     
-    void setUIComponent(std::shared_ptr<UIComponent> ui) {
-        _uiComponent = ui;
+    void setMenu(std::shared_ptr<Menu> menu) {
+        _menu = menu;
     }
     
     void setTransition(TutorialTransition start, TutorialTransition end){
@@ -76,8 +77,8 @@ public:
         return _endCondition;
     }
     
-    std::shared_ptr<UIComponent> getUIComponent(){
-        return _uiComponent;
+    std::shared_ptr<Menu> getMenu(){
+        return _menu;
     }
     
     TutorialState getState(){
@@ -103,6 +104,10 @@ public:
             return;
         }
         return;
+    }
+    
+    void addToNode(std::shared_ptr<cugl::Node> node){
+        _menu->attachToScene(node);
     }
 };
 

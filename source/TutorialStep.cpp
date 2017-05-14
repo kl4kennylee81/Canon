@@ -9,7 +9,7 @@
 #include "TutorialStep.hpp"
 
 bool TutorialStep::init(){
-    _uiComponent = nullptr;
+    _menu = nullptr;
     _startCondition = TutorialTransition::NONE;
     _endCondition = TutorialTransition::NONE;
     _state = TutorialState::OFF;

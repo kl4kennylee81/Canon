@@ -11,6 +11,7 @@
 #include "SwitchEvent.hpp"
 #include "UIData.hpp"
 #include "InputController.hpp"
+#include "Menu.hpp"
 #include "CollisionEvent.hpp"
 
 using namespace cugl;
@@ -131,7 +132,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
     for(std::shared_ptr<TutorialStep> hints : _activeHints){
         if (hints->getState() == TutorialState::ACTIVE){
-            _tutorialNode->addChild(hints->getUIComponent()->getNode(),5);
+            hints->addToNode(_tutorialNode);
         }
     }
     
@@ -141,7 +142,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     
     /** add the current step if active */
     if (getCurrentStep()->getState() == TutorialState::ACTIVE){
-        _tutorialNode->addChild(getCurrentStep()->getUIComponent()->getNode(),5);
+        getCurrentStep()->addToNode(_tutorialNode);
     }
 }
 
@@ -171,7 +172,13 @@ void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
     std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(nullptr, labelNode);
     
-    step->setUIComponent(uiComponent);
+    
+    std::shared_ptr<Menu> tutorialScreen = Menu::alloc("tutorialStep1");
+    
+    tutorialScreen->addUIElement(uiComponent);
+    
+    step->setMenu(tutorialScreen);
+    
     step->setTransition(TutorialTransition::ON_PATH_DRAWN,TutorialTransition::ON_ENEMY_CLEARED);
     
     _steps.push_back(step);
@@ -185,7 +192,12 @@ void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
     step = TutorialStep::alloc();
     uiComponent = UIComponent::alloc(nullptr, labelNode);
     
-    step->setUIComponent(uiComponent);
+    tutorialScreen = Menu::alloc("tutorialStep2");
+    
+    tutorialScreen->addUIElement(uiComponent);
+    
+    step->setMenu(tutorialScreen);
+    
     step->setTransition(TutorialTransition::ON_CLICK,TutorialTransition::ON_ENEMY_CLEARED);
     
     _steps.push_back(step);
