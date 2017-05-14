@@ -35,6 +35,8 @@ def get_asset_mapping():
         image_files[name] = os.path.join(newPath, filename)
       if ext == 'ttf':
         font_files[name] = os.path.join(newPath, filename)
+      if ext == 'otf':
+        font_files[name] = os.path.join(newPath, filename)
 
   {i:i for i in range(1, 11)}
   image_mapping = {key : {"file": image_files[key], "minfilter" : "nearest", "magfilter" : "linear", "wrapS" : "clamp", "wrapT" : "clamp"} for key in image_files.keys()}

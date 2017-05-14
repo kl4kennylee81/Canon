@@ -23,7 +23,7 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
         auto buttonJson = json->get("buttonAction");
         buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"),buttonJson->getString("chapterData"));
     }
-
+    fontKey = json->getString("fontKey");
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
     type = UIDataType::BUTTON;
@@ -58,12 +58,7 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 		button = Button::alloc(buttonTexture);
 	}
 	else if (buttonLabel != "") {
-		label = Label::alloc(buttonLabel, assets->get<Font>("Charlemagne"));
-		label->setForeground(Color4::WHITE);
-		button = Button::alloc(label);
-	}
-	else {
-		label = Label::alloc("stub button", assets->get<Font>("Charlemagne"));
+		label = Label::alloc(buttonLabel, assets->get<Font>(this->fontKey));
 		label->setForeground(Color4::WHITE);
 		button = Button::alloc(label);
 	}

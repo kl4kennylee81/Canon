@@ -136,6 +136,8 @@
 		9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */; };
 		9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
 		9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
+		9F9A76731EC8E2F80055D471 /* TutorialEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */; };
+		9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */; };
 		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
@@ -358,6 +360,8 @@
 		9F82210E1EA48049000EFCD0 /* FinishEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FinishEvent.hpp; sourceTree = "<group>"; };
 		9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationEvent.cpp; sourceTree = "<group>"; };
 		9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationEvent.hpp; sourceTree = "<group>"; };
+		9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialEnums.cpp; sourceTree = "<group>"; };
+		9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialEnums.hpp; sourceTree = "<group>"; };
 		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
 		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateWaveEntry.cpp; sourceTree = "<group>"; };
@@ -888,6 +892,8 @@
 				9FF0B42B1EC421990044F29B /* TutorialController.hpp */,
 				9FF0B42E1EC423320044F29B /* TutorialStep.cpp */,
 				9FF0B42F1EC423320044F29B /* TutorialStep.hpp */,
+				9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */,
+				9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -1337,7 +1343,7 @@
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = H26RD7FXNA;
+						DevelopmentTeam = 4S972L8QNQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1459,6 +1465,7 @@
 				9F6F87681EBCBD1E00AD021D /* ZoneParticleGenerator.cpp in Sources */,
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
 				9F6F87641EBCBD1100AD021D /* TrailParticleGenerator.cpp in Sources */,
+				9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
 				DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */,
@@ -1601,6 +1608,7 @@
 				9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */,
 				9FF0B40D1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */,
 				DF909EF81E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
+				9F9A76731EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
 				9F6F876F1EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */,
 				273CB3B31EBC5DB50042708C /* BulletAI.cpp in Sources */,
 				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
@@ -1788,7 +1796,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1808,7 +1816,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",

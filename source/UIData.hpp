@@ -58,6 +58,7 @@ class ButtonUIData : public UIData {
 public:
 	std::shared_ptr<ButtonAction> buttonAction;
 	std::string buttonLabel;
+    std::string fontKey;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
 
