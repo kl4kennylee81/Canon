@@ -31,6 +31,7 @@ std::shared_ptr<JsonValue> AnimationState::toJsonValue()
 		frameArray->appendValue(static_cast<float>(frames.at(i)));
 	}
 	state->appendChild("frames", frameArray);
+    state->appendChild("alpha", JsonValue::alloc(alpha));
 	return state;
 }
 
@@ -81,7 +82,11 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         int first = statejson->getInt("first");
         int total = statejson->getInt("total");
         std::vector<int> frames = statejson->get("frames")->asIntArray();
-        auto animationstate = AnimationState::alloc(first,total,frames);
+        float alpha = 1.0;
+        if(statejson->has("alpha")){
+            alpha = statejson->getFloat("alpha",1.0);
+        }
+        auto animationstate = AnimationState::alloc(first,total,frames, alpha);
         _statemap.insert({state,animationstate});
     }
     
