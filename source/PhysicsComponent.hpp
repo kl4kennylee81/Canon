@@ -22,6 +22,9 @@ protected:
     ElementType _elementType;
     int _maxHealth;
     int _health;
+    float _arrowWidth;
+    bool _hasArrow;
+    std::shared_ptr<cugl::Node> _arrow;
 public:
     
     PhysicsComponent();
@@ -30,9 +33,22 @@ public:
     
     void dispose();
     
+    void setArrowNode(std::shared_ptr<cugl::Node> arrow) {
+        _arrow = arrow;
+        _arrowWidth = arrow->getWidth();
+    }
+    
+    bool hasArrow() { return _hasArrow; }
+    
+    void setHasArrow(bool a) { _hasArrow = a; }
+    
+    std::shared_ptr<cugl::Node> getArrowNode() { return _arrow; }
+    
     void setSpeed(float sp) {_speed = sp; }
     
     float getSpeed() { return _speed; }
+    
+    float getArrowWidth() { return _arrowWidth; }
     
     virtual bool init(std::shared_ptr<cugl::PolygonObstacle> body, ElementType element, int health);
     

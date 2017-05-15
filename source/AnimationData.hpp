@@ -20,17 +20,19 @@ public:
     int first;
     int total;
     std::vector<int> frames;
+    float alpha;
     
-    bool init(int f, int t, std::vector<int> fs) {
+    bool init(int f, int t, std::vector<int> fs, float a) {
         first = f;
         total = t;
         frames = fs;
+        alpha = a;
         return true;
     }
     
-    static std::shared_ptr<AnimationState> alloc(int f, int t, std::vector<int> fs) {
+    static std::shared_ptr<AnimationState> alloc(int f, int t, std::vector<int> fs, float a) {
         std::shared_ptr<AnimationState> result = std::make_shared<AnimationState>();
-        return (result->init(f,t,fs) ? result : nullptr);
+        return (result->init(f,t,fs,a) ? result : nullptr);
     }
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue();

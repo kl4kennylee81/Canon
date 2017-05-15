@@ -45,7 +45,6 @@ void LevelController::eventUpdate(Event* e) {
             std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
             std::shared_ptr<AnimationData> animationd = _world->getAnimationData(od->getAnimationKey(bulletEvent->element));
             std::shared_ptr<SoundData> sounddata = _world->getSoundData(od->getSoundKey());
-            
             std::shared_ptr<GameObject> gameOb = GameObject::alloc();
             gameOb->setIsPlayer(false);
             gameOb->type = GameObject::ObjectType::BULLET;

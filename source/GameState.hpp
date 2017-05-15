@@ -113,6 +113,8 @@ GameState():
 
     std::shared_ptr<GameObject> getInactiveCharacter();
     
+    std::shared_ptr<GameObject> getOtherPlayer(std::shared_ptr<GameObject> player);
+    
     std::vector<std::shared_ptr<GameObject>> getInactiveCharacters();
 
     bool getReset();
@@ -122,8 +124,6 @@ GameState():
     void toggleActiveCharacter();
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
-    
-    
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;

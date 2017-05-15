@@ -126,6 +126,14 @@ std::shared_ptr<GameObject> GameState::getActiveCharacter()
     return _playerCharacters.at(_activeCharacterPosition);
 }
 
+std::shared_ptr<GameObject> GameState::getOtherPlayer(std::shared_ptr<GameObject> player)
+{
+    if (_playerCharacters.size() < 2){
+        return nullptr;
+    }
+    return _playerCharacters.at(0) == player ? _playerCharacters.at(1) : _playerCharacters.at(0);
+}
+
 std::vector<std::shared_ptr<GameObject>> GameState::getInactiveCharacters(){
     std::vector<std::shared_ptr<GameObject>> inactives = std::vector<std::shared_ptr<GameObject>>();
     for (int i = 0; i<getPlayerCharacters().size();++i){
