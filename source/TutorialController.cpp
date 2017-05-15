@@ -123,11 +123,8 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
         checkTransitionCondition(TutorialTransition::ON_CLICK);
     }
     
-    /** update the currentStep if the condition has been met */
-    transitionNextStep();
-    
     /** check step is preactive and play its effect */
-    if (getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
+    if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
         /** play the start effects */
         handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
         getCurrentStep()->setState(TutorialState::ACTIVE);
@@ -151,9 +148,13 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     }
     
     /** add the current step if active */
-    if (getCurrentStep()->getState() == TutorialState::ACTIVE){
+    if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::ACTIVE){
         getCurrentStep()->addToNode(_tutorialNode);
     }
+    
+    /** update the currentStep if the condition has been met */
+    /** updates at the end of update for next iteration */
+    transitionNextStep();
 }
 
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
@@ -232,7 +233,7 @@ bool TutorialController::isInActive(){
     bool isStepsDone = _currentStep >= _steps.size();
     bool isHintsDone = _activeHints.size() == 0;
     
-    return isStepsEmpty && isStepsDone && isHintsDone;
+    return (isStepsEmpty) || (isStepsDone && isHintsDone);
 }
 
 void TutorialController::checkTransitionCondition(TutorialTransition transition){
