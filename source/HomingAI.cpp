@@ -30,7 +30,10 @@ void HomingAI::update(std::shared_ptr<GameState> state) {
     cugl::Vec2 enemyPos = _object->getPosition();
     
     //We should get speed from ai data file
-    cugl::Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, AI_SPEED * 60);
+    // multiplied by 60 so that
+    auto physics = _object->getPhysicsComponent();
+    float speed = physics->getSpeed() == 0 ? AI_SPEED * 60 : physics->getSpeed();
+    cugl::Vec2 direction = MoveController::getVelocityVector(enemyPos, playerPos, speed);
     _object->getPhysicsComponent()->getBody()->setLinearVelocity(direction);
 }
 

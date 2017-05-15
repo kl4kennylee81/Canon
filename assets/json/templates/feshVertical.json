@@ -130,7 +130,8 @@
             "aiKeys": [
                 "horizontalLeft", 
                 "horizontalRight", 
-                "horizontal"
+                "horizontal",
+                "homing"
             ], 
             "key": "feshVertical", 
             "name": "feshVertical", 

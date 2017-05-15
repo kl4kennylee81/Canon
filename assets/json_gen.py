@@ -1,6 +1,7 @@
 import json
 import os
 import os.path
+import copy
 
 def get_asset_mapping():
 
@@ -51,7 +52,7 @@ def modify_json(src_json, file_path_mapping):
       filename = name   
 
     if 'UIData' in src_json.keys():
-      for menu_name in src_json['UIData']:
+      for menu_name in copy.deepcopy(src_json['UIData']):
         uidata = src_json['UIData'][menu_name]
 
         target = ''
@@ -69,16 +70,29 @@ def modify_json(src_json, file_path_mapping):
           # populate mapping of file_path_mapping
           file_path_mapping[src_json['UIData'][menu_name][target]] = filename
 
+          append_name = menu_name
           # detect if rename is necessary
-          if len(src_json['UIData'][menu_name][target]) > len(filename):
-            # condition reads: rename already happened
-            if filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]:
-              continue
+          if not (len(src_json['UIData'][menu_name][target]) > len(filename) and 
+          filename + "_" == src_json['UIData'][menu_name][target][:len(filename)+1]):
 
-          append_name = filename + "_" + src_json['UIData'][menu_name][target]
+            append_name = filename + "_" + src_json['UIData'][menu_name][target]
+            # update actual menu json
+            src_json['UIData'][menu_name][target] = append_name
 
-          # update actual menu json
-          src_json['UIData'][menu_name][target] = append_name
+          # rename the key in overarching uiData json to the jsonObject
+          if not (len(menu_name) > len(filename) and 
+          filename + "_" == menu_name[:len(filename)+1]):
+            append_name = filename + "_" + menu_name
+            child_json = src_json['UIData'].pop(menu_name,None)
+            src_json['UIData'][append_name] = child_json
+
+          # bonus feature LOL make sure key field is correct
+          src_json['UIData'][append_name]['key'] = append_name
+
+          for idx,uiEntry in enumerate(copy.deepcopy(src_json['MenuScreenData'][filename]["UIEntries"])):
+            if (menu_name == uiEntry):
+              src_json['MenuScreenData'][filename]["UIEntries"][idx] = append_name
+
 
 
 def json_files():

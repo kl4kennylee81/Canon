@@ -55,6 +55,26 @@
             "key": "level08",
             "levelKey": "squareLaser",
             "name": "Lasers"
+        },
+        "level09": {
+            "key": "level09",
+            "levelKey": "lure",
+            "name": "Lure"
+        },
+        "level10": {
+            "name": "Blobos",
+            "key": "level10",
+            "levelKey": "blobos"
+        },
+        "level11": {
+            "name": "Boss1",
+            "key": "level11",
+            "levelKey": "boss1"
+        },
+        "level12": {
+            "name": "Boss2",
+            "key": "level12",
+            "levelKey": "boss2"
         }
     }
 }

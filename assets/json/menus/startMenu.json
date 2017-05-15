@@ -2,58 +2,58 @@
     "MenuScreenData": {
         "startMenu": {
             "UIEntries": [
-                "infoButton", 
-                "settingsButton", 
-                "title", 
-                "playButton"
+                "startMenu_infoButton", 
+                "startMenu_settingsButton", 
+                "startMenu_title", 
+                "startMenu_playButton"
             ], 
             "key": "startMenu", 
             "menuBackgroundKey": "lakebg"
         }
     }, 
     "UIData": {
-        "infoButton": {
+        "startMenu_infoButton": {
             "buttonAction": {
                 "buttonTarget": "", 
                 "type": "menuChange"
             }, 
             "height": 0.171, 
-            "key": "infoButton", 
+            "key": "startMenu_infoButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "startMenu_infosymbol", 
             "width": 0.096, 
             "x": 0.9, 
             "y": 0.008
         }, 
-        "playButton": {
+        "startMenu_playButton": {
             "buttonAction": {
                 "buttonTarget": "levelSelect", 
                 "type": "menuChange"
             }, 
             "height": 0.157, 
-            "key": "playButton", 
+            "key": "startMenu_playButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "startMenu_swipetoplay", 
             "width": 0.339, 
             "x": 0.339, 
             "y": 0.217
         }, 
-        "settingsButton": {
+        "startMenu_settingsButton": {
             "buttonAction": {
                 "buttonTarget": "", 
                 "type": "menuChange"
             }, 
             "height": 0.171, 
-            "key": "settingsButton", 
+            "key": "startMenu_settingsButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "startMenu_settingsymbol", 
             "width": 0.096, 
             "x": 0.005, 
             "y": 0.008
         }, 
-        "title": {
+        "startMenu_title": {
             "height": 0.545, 
-            "key": "title", 
+            "key": "startMenu_title", 
             "textureKey": "startMenu_title", 
             "type": "IMAGE", 
             "width": 0.796, 

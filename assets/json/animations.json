@@ -268,7 +268,7 @@
                     "total": 1
                 }
             }, 
-            "texture": "./textures/test/square_spritesheet.png"
+            "texture": "./textures/models/zones/square_spritesheet.png"
         }, 
         "whiteCircle": {
             "actionmap": {
@@ -281,11 +281,11 @@
             }, 
             "cols": 1, 
             "key": "whiteCircle", 
-            "rows": 2, 
-            "size": 2, 
+            "rows": 3, 
+            "size": 3, 
             "statemap": {
                 "idle": {
-                    "first": 0, 
+                    "first": 2, 
                     "frames": [
                         10
                     ], 
@@ -299,7 +299,7 @@
                     "total": 1
                 }
             }, 
-            "texture": "./textures/test/circle_spritesheet.png"
+            "texture": "./textures/models/zones/circle_spritesheet.png"
         }, 
         "whiteSector": {
             "actionmap": {
@@ -330,7 +330,7 @@
                     "total": 1
                 }
             }, 
-            "texture": "./textures/test/sector_spritesheet.png"
+            "texture": "./textures/models/zones/sector_spritesheet.png"
         }
     }
 }

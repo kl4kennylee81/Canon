@@ -2,20 +2,20 @@
     "MenuScreenData": {
         "gameScreen": {
             "UIEntries": [
-                "pauseButton"
+                "gameScreen_pauseButton"
             ], 
             "key": "gameScreen"
         }
     }, 
     "UIData": {
-        "pauseButton": {
+        "gameScreen_pauseButton": {
             "buttonAction": {
                 "fxKey": "PAUSE", 
                 "nextScreen": "pauseScreen", 
                 "type": "fxTrigger"
             }, 
             "height": 0.08, 
-            "key": "pauseButton", 
+            "key": "gameScreen_pauseButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "gameScreen_pauseButton", 
             "width": 0.06, 

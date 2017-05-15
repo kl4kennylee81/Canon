@@ -2,7 +2,7 @@
     "MenuScreenData": {
         "gameOver": {
             "UIEntries": [
-                "gameoverTextImg", 
+                "gameOver_gameoverTextImg", 
                 "tryAgainButton", 
                 "homeButton", 
                 "MenubackToLevelEditor"
@@ -25,9 +25,9 @@
             "x": 0.375, 
             "y": 0.05
         }, 
-        "gameoverTextImg": {
+        "gameOver_gameoverTextImg": {
             "height": 0.261, 
-            "key": "gameoverTextImg", 
+            "key": "gameOver_gameoverTextImg", 
             "textureKey": "gameOver_gameover", 
             "type": "IMAGE", 
             "width": 0.476, 

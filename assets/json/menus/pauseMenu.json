@@ -2,22 +2,22 @@
     "MenuScreenData": {
         "pauseMenu": {
             "UIEntries": [
-                "pauseTextImg", 
-                "resumeButton", 
-                "homeButton2", 
-                "LevelButton", 
-                "RetryButton", 
-                "volumeIcon2", 
-                "pianoIcon", 
-                "sideEnds", 
-                "swirls", 
-                "stars"
+                "pauseMenu_pauseTextImg", 
+                "pauseMenu_resumeButton", 
+                "pauseMenu_homeButton2", 
+                "pauseMenu_LevelButton", 
+                "pauseMenu_RetryButton", 
+                "pauseMenu_volumeIcon2", 
+                "pauseMenu_pianoIcon", 
+                "pauseMenu_sideEnds", 
+                "pauseMenu_swirls", 
+                "pauseMenu_stars"
             ], 
             "key": "pauseScreen"
         }
     }, 
     "UIData": {
-        "LevelButton": {
+        "pauseMenu_LevelButton": {
             "buttonAction": {
                 "buttonTarget": "LEVEL_EDIT", 
                 "nextScreen": "blankScreen", 
@@ -25,60 +25,60 @@
             }, 
             "buttonLabel": " ", 
             "height": 0.322, 
-            "key": "LevelButton", 
+            "key": "pauseMenu_LevelButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "pauseMenu_LevelButton", 
             "width": 0.181, 
             "x": 0.467, 
             "y": 0.323
         }, 
-        "RetryButton": {
+        "pauseMenu_RetryButton": {
             "buttonAction": {
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
             "height": 0.322, 
-            "key": "RetryButton", 
+            "key": "pauseMenu_RetryButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "pauseMenu_RetryButton", 
             "width": 0.181, 
             "x": 0.327, 
             "y": 0.323
         }, 
-        "homeButton2": {
+        "pauseMenu_homeButton2": {
             "buttonAction": {
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
             }, 
             "height": 0.322, 
-            "key": "homeButton2", 
+            "key": "pauseMenu_homeButton2", 
             "type": "BUTTON", 
             "uiBackgroundKey": "pauseMenu_HomeButton", 
             "width": 0.181, 
             "x": 0.607, 
             "y": 0.323
         }, 
-        "pauseTextImg": {
+        "pauseMenu_pauseTextImg": {
             "height": 0.261, 
-            "key": "pauseTextImg", 
+            "key": "pauseMenu_pauseTextImg", 
             "textureKey": "pauseMenu_Paused", 
             "type": "IMAGE", 
             "width": 0.476, 
             "x": 0.257, 
             "y": 0.675
         }, 
-        "pianoIcon": {
+        "pauseMenu_pianoIcon": {
             "height": 0.073, 
-            "key": "pianoIcon", 
+            "key": "pauseMenu_pianoIcon", 
             "textureKey": "pauseMenu_Pianoicon", 
             "type": "IMAGE", 
             "width": 0.051, 
             "x": 0.515, 
             "y": 0.075
         }, 
-        "resumeButton": {
+        "pauseMenu_resumeButton": {
             "buttonAction": {
                 "fxKey": "RESUME", 
                 "nextScreen": "gameScreen", 
@@ -86,43 +86,43 @@
             }, 
             "buttonLabel": "resume", 
             "height": 0.322, 
-            "key": "resumeButton", 
+            "key": "pauseMenu_resumeButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "pauseMenu_ResumeButton", 
             "width": 0.181, 
             "x": 0.187, 
             "y": 0.323
         }, 
-        "sideEnds": {
+        "pauseMenu_sideEnds": {
             "height": 0.5, 
-            "key": "sideEnds", 
+            "key": "pauseMenu_sideEnds", 
             "textureKey": "pauseMenu_SideEnds", 
             "type": "IMAGE", 
             "width": 0.775, 
             "x": 0.119, 
             "y": 0.247
         }, 
-        "stars": {
+        "pauseMenu_stars": {
             "height": 0.5, 
-            "key": "stars", 
+            "key": "pauseMenu_stars", 
             "textureKey": "pauseMenu_Bunchofstars", 
             "type": "IMAGE", 
             "width": 0.775, 
             "x": 0.119, 
             "y": 0.247
         }, 
-        "swirls": {
+        "pauseMenu_swirls": {
             "height": 0.5, 
-            "key": "swirls", 
+            "key": "pauseMenu_swirls", 
             "textureKey": "pauseMenu_4CornerSwirls", 
             "type": "IMAGE", 
             "width": 0.775, 
             "x": 0.119, 
             "y": 0.247
         }, 
-        "volumeIcon2": {
+        "pauseMenu_volumeIcon2": {
             "height": 0.073, 
-            "key": "volumeIcon2", 
+            "key": "pauseMenu_volumeIcon2", 
             "textureKey": "pauseMenu_Soundicon", 
             "type": "IMAGE", 
             "width": 0.049, 

@@ -188,6 +188,16 @@ size_t GameState::getNumberEnemyCharacters(){
     return _enemyObjects.size();
 }
 
+size_t GameState::getNumberNonBulletEnemyCharacters(){
+    size_t nonBullets = 0;
+    for(auto it: _enemyObjects){
+        if(it->type != GameObject::ObjectType::BULLET){
+            nonBullets++;
+        }
+    }
+    return nonBullets;
+}
+
 int getClosestCharIndex(std::vector<std::shared_ptr<GameObject>> objs, Vec2 physCoord){
     if (objs.size() <= 0){
         return -1;
