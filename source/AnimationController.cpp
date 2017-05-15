@@ -23,7 +23,7 @@ using namespace cugl;
 #define DEBUG_COLOR  Color4::GREEN
 
 /** The alpha of the zones on/off */
-#define ZONE_ON_ALPHA 0.6
+#define ZONE_ON_ALPHA 1.0
 #define ZONE_OFF_ALPHA 0.1
 
 AnimationController::AnimationController():
