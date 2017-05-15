@@ -276,9 +276,9 @@ void TexturedPathNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat
     Poly2* source = (_stroke > 0 ? &_extrusion : &_polygon);
     for (int i = 1; i < _path->size(); i++) {
         Vec2 pos1;
-        Util::physicsToSceneCoords(_path->get(i-1),pos1);
+        Util::physicsToSceneCoords(_path->get(i),pos1);
         Vec2 pos2;
-        Util::physicsToSceneCoords(_path->get(i),pos2);
+        Util::physicsToSceneCoords(_path->get(i-1),pos2);
         
         Vec2 pos3 = Vec2(pos1.x - pos2.x, pos1.y - pos2.y);
         float distance = pos1.distance(pos2);
