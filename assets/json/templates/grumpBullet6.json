@@ -22,7 +22,7 @@
             "shapeKey": "grumpBullet6_bulletShape",
             "blueAnimationKey": "blue_grumpBullet6_bulletanimation",
             "goldAnimationKey": "yellow_grumpBullet6_bulletanimation",
-            "animationScale": 2.0
+            "animationScale": 2.5
         }
     },
     "shapes":{
@@ -193,27 +193,32 @@
             }
         },
         "blue_grumpBullet6_bulletanimation": {
-            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
             "actionmap": {
                 "SPAWNING": {
                     "repeat": "idle"
                 },
                 "DEATH": {
-                    "active": "idle"
+                    "active": "death"
                 }
             },
-            "cols": 1,
+            "cols": 5, 
             "rows": 1,
-            "size": 1,
+            "size": 5,
             "statemap": {
                 "idle": {
                     "first": 0, 
                     "frames": [
-                               10
-                               ], 
-                    "total": 1
+                        9,9,9,9,9
+                    ], 
+                    "total": 5
+                },
+                "death": {
+                    "first": 0,
+                    "total": 1,
+                    "frames": [2]
                 }
-            }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/bullet_blue.png"
         },
         "yellow_grumpBullet6_bulletanimation": {
             "actionmap": {
@@ -221,22 +226,27 @@
                     "repeat": "idle"
                 },
                 "DEATH": {
-                    "active": "idle"
+                    "active": "death"
                 }
             }, 
-            "cols": 1, 
+            "cols": 5, 
             "rows": 1,
-            "size": 1,
+            "size": 5,
             "statemap": {
                 "idle": {
                     "first": 0, 
                     "frames": [
-                               10
-                               ], 
-                    "total": 1
+                        9,9,9,9,9
+                    ], 
+                    "total": 5
+                },
+                "death": {
+                    "first": 0,
+                    "total": 1,
+                    "frames": [2]
                 }
             }, 
-            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
+            "texture": "./textures/models/enemy_models/grumpBullet/bullet_yellow.png"
         }
     }
 }
