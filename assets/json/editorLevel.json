@@ -1,339 +1,382 @@
 {
-    "name": "tutorial1",
-    "counter": 18, 
-    "levels": {
-        "sneakAttack": {
-            "levelEntries": {
-                "wave1": {
-                    "time": 500, 
-                    "waveKey": "sneakAttack wave 16"
-                }, 
-                "wave2": {
-                    "time": 400, 
-                    "waveKey": "sneakAttack wave 17"
-                }, 
-                "wave3": {
-                    "time": 180, 
-                    "waveKey": "sneakAttack wave 18"
-                }
-            }, 
-            "playerChars": {
-                "player1": {
-                    "aiKey": "", 
-                    "element": "GOLD", 
-                    "templateKey": "playerCharMale", 
-                    "x": 18.75, 
-                    "y": 7.8125
-                }, 
-                "player2": {
-                    "aiKey": "", 
-                    "element": "BLUE", 
-                    "templateKey": "playerCharFemale", 
-                    "x": 12.5, 
-                    "y": 7.8125
-                }
-            }
-        }
-    }, 
-    "template names": [
-        "birb", 
-        "blobo", 
-        "grump", 
-        "feshHorizontal", 
-        "feshVertical"
-    ], 
-    "waves": {
-        "sneakAttack wave 16": {
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "verticalDown", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 15.8000001875, 
-                    "y": 17.06666565625
-                }, 
-                "object10": {
-                    "aiKey": "verticalDown", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 8.833333, 
-                    "y": 17.36666678125
-                }, 
-                "object11": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 8.833333, 
-                    "y": 2.90000009375
-                }, 
-                "object12": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 2.3000001875, 
-                    "y": 2.79999971875
-                }, 
-                "object13": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 15.0, 
-                    "y": 3.09999990625
-                }, 
-                "object14": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 21.899999625, 
-                    "y": 2.5
-                }, 
-                "object15": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 28.9333324375, 
-                    "y": 2.76666640625
-                }, 
-                "object16": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 29.0666675625, 
-                    "y": 15.899999625
-                }, 
-                "object17": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 22.76666640625, 
-                    "y": 15.46666621875
-                }, 
-                "object18": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 15.8000001875, 
-                    "y": 15.70000075
-                }, 
-                "object19": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 8.8000001875, 
-                    "y": 16.0
-                }, 
-                "object2": {
-                    "aiKey": "verticalDown", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 22.70000075, 
-                    "y": 17.09999846875
-                }, 
-                "object20": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 2.23333359375, 
-                    "y": 15.79999925
-                }, 
-                "object3": {
-                    "aiKey": "verticalDown", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 2.3000001875, 
-                    "y": 17.29999925
-                }, 
-                "object4": {
-                    "aiKey": "verticalDown", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 29.13333321875, 
-                    "y": 17.13333321875
-                }, 
-                "object5": {
-                    "aiKey": "verticalUp", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 8.76666640625, 
-                    "y": 1.666667
-                }, 
-                "object6": {
-                    "aiKey": "verticalUp", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 15.13333321875, 
-                    "y": 1.666667
-                }, 
-                "object7": {
-                    "aiKey": "verticalUp", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 22.0333328125, 
-                    "y": 1.40000009375
-                }, 
-                "object8": {
-                    "aiKey": "verticalUp", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 28.9666671875, 
-                    "y": 1.5333328125
-                }, 
-                "object9": {
-                    "aiKey": "verticalUp", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 2.26666640625, 
-                    "y": 1.666667
-                }
-            }
-        }, 
-        "sneakAttack wave 17": {
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "horizontalRight", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 1.666667, 
-                    "y": 15.4333324375
-                }, 
-                "object10": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 27.73333359375, 
-                    "y": 8.5
-                }, 
-                "object11": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 27.66666603125, 
-                    "y": 15.100000375
-                }, 
-                "object12": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 27.73333359375, 
-                    "y": 1.73333359375
-                }, 
-                "object2": {
-                    "aiKey": "horizontalRight", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 1.5333328125, 
-                    "y": 9.03333378125
-                }, 
-                "object3": {
-                    "aiKey": "horizontalRight", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 1.86666678125, 
-                    "y": 2.43333340625
-                }, 
-                "object4": {
-                    "aiKey": "horizontalLeft", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 29.73333359375, 
-                    "y": 15.33333396875
-                }, 
-                "object5": {
-                    "aiKey": "horizontalLeft", 
-                    "element": "BLUE", 
-                    "templateKey": "birb", 
-                    "x": 29.63333321875, 
-                    "y": 8.76666640625
-                }, 
-                "object6": {
-                    "aiKey": "horizontalLeft", 
-                    "element": "GOLD", 
-                    "templateKey": "birb", 
-                    "x": 29.86666678125, 
-                    "y": 2.3000001875
-                }, 
-                "object7": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 3.899999625, 
-                    "y": 15.63333321875
-                }, 
-                "object8": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 3.76666640625, 
-                    "y": 9.100000375
-                }, 
-                "object9": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 4.06666659375, 
-                    "y": 2.399999625
-                }
-            }
-        }, 
-        "sneakAttack wave 18": {
-            "waveEntries": {
-                "object1": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 28.4333324375, 
-                    "y": 16.29999925
-                }, 
-                "object2": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 31.16666603125, 
-                    "y": 13.600000375
-                }, 
-                "object3": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 3.833333, 
-                    "y": 16.83333396875
-                }, 
-                "object4": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 1.4666671875, 
-                    "y": 14.56666565625
-                }, 
-                "object5": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 2.13333321875, 
-                    "y": 3.766666875
-                }, 
-                "object6": {
-                    "aiKey": "homing", 
-                    "element": "GOLD", 
-                    "templateKey": "blobo", 
-                    "x": 27.76666640625, 
-                    "y": 0.93333340625
-                }, 
-                "object7": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 30.70000075, 
-                    "y": 4.5333333125
-                }, 
-                "object8": {
-                    "aiKey": "homing", 
-                    "element": "BLUE", 
-                    "templateKey": "blobo", 
-                    "x": 4.86666678125, 
-                    "y": 1.13333321875
-                }
-            }
-        }
-    }
+	"name":	"tutorial1",
+	"counter":	18,
+	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+	"levels":	{
+		"tutorial1":	{
+			"key":	"tutorial1",
+			"levelEntries":	{
+				"tutorial1 wave 16":	{
+					"key":	"tutorial1 wave 16",
+					"waveKey":	"tutorial1 wave 16",
+					"time":	500
+				},
+				"tutorial1 wave 17":	{
+					"key":	"tutorial1 wave 17",
+					"waveKey":	"tutorial1 wave 17",
+					"time":	400
+				},
+				"tutorial1 wave 18":	{
+					"key":	"tutorial1 wave 18",
+					"waveKey":	"tutorial1 wave 18",
+					"time":	180
+				}
+			},
+			"playerChars":	{
+				"player1":	{
+					"key":	"",
+					"x":	18.750000,
+					"y":	7.812500,
+					"element":	"GOLD",
+					"aiKey":	"",
+					"templateKey":	"playerCharMale"
+				},
+				"player2":	{
+					"key":	"",
+					"x":	12.500000,
+					"y":	7.812500,
+					"element":	"BLUE",
+					"aiKey":	"",
+					"templateKey":	"playerCharFemale"
+				}
+			}
+		}
+	},
+	"waves":	{
+		"tutorial1 wave 16":	{
+			"key":	"tutorial1 wave 16",
+			"waveEntries":	{
+				"tutorial1 wave 16 object 1":	{
+					"key":	"tutorial1 wave 16 object 1",
+					"x":	15.800000,
+					"y":	17.066666,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 2":	{
+					"key":	"tutorial1 wave 16 object 2",
+					"x":	8.833333,
+					"y":	17.366667,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 3":	{
+					"key":	"tutorial1 wave 16 object 3",
+					"x":	8.833333,
+					"y":	2.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 4":	{
+					"key":	"tutorial1 wave 16 object 4",
+					"x":	2.300000,
+					"y":	2.800000,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 5":	{
+					"key":	"tutorial1 wave 16 object 5",
+					"x":	15,
+					"y":	3.100000,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 6":	{
+					"key":	"tutorial1 wave 16 object 6",
+					"x":	21.900000,
+					"y":	2.500000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 7":	{
+					"key":	"tutorial1 wave 16 object 7",
+					"x":	28.933332,
+					"y":	2.766666,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 8":	{
+					"key":	"tutorial1 wave 16 object 8",
+					"x":	29.066668,
+					"y":	15.900000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 9":	{
+					"key":	"tutorial1 wave 16 object 9",
+					"x":	22.766666,
+					"y":	15.466666,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 10":	{
+					"key":	"tutorial1 wave 16 object 10",
+					"x":	15.800000,
+					"y":	15.700001,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 11":	{
+					"key":	"tutorial1 wave 16 object 11",
+					"x":	8.800000,
+					"y":	16,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 12":	{
+					"key":	"tutorial1 wave 16 object 12",
+					"x":	22.700001,
+					"y":	17.099998,
+					"element":	"GOLD",
+					"aiKey":	"verticalDown",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 13":	{
+					"key":	"tutorial1 wave 16 object 13",
+					"x":	2.233334,
+					"y":	15.799999,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 16 object 14":	{
+					"key":	"tutorial1 wave 16 object 14",
+					"x":	2.300000,
+					"y":	17.299999,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 15":	{
+					"key":	"tutorial1 wave 16 object 15",
+					"x":	29.133333,
+					"y":	17.133333,
+					"element":	"BLUE",
+					"aiKey":	"verticalDown",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 16":	{
+					"key":	"tutorial1 wave 16 object 16",
+					"x":	8.766666,
+					"y":	1.666667,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 17":	{
+					"key":	"tutorial1 wave 16 object 17",
+					"x":	15.133333,
+					"y":	1.666667,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 18":	{
+					"key":	"tutorial1 wave 16 object 18",
+					"x":	22.033333,
+					"y":	1.400000,
+					"element":	"BLUE",
+					"aiKey":	"verticalUp",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 19":	{
+					"key":	"tutorial1 wave 16 object 19",
+					"x":	28.966667,
+					"y":	1.533333,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 16 object 20":	{
+					"key":	"tutorial1 wave 16 object 20",
+					"x":	2.266666,
+					"y":	1.666667,
+					"element":	"GOLD",
+					"aiKey":	"verticalUp",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"tutorial1 wave 17":	{
+			"key":	"tutorial1 wave 17",
+			"waveEntries":	{
+				"tutorial1 wave 17 object 1":	{
+					"key":	"tutorial1 wave 17 object 1",
+					"x":	1.666667,
+					"y":	15.433332,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 2":	{
+					"key":	"tutorial1 wave 17 object 2",
+					"x":	27.733334,
+					"y":	8.500000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 17 object 3":	{
+					"key":	"tutorial1 wave 17 object 3",
+					"x":	27.666666,
+					"y":	15.100000,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 17 object 4":	{
+					"key":	"tutorial1 wave 17 object 4",
+					"x":	27.733334,
+					"y":	1.733334,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 17 object 5":	{
+					"key":	"tutorial1 wave 17 object 5",
+					"x":	1.533333,
+					"y":	9.033334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 6":	{
+					"key":	"tutorial1 wave 17 object 6",
+					"x":	1.866667,
+					"y":	2.433333,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 7":	{
+					"key":	"tutorial1 wave 17 object 7",
+					"x":	29.733334,
+					"y":	15.333334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 8":	{
+					"key":	"tutorial1 wave 17 object 8",
+					"x":	29.633333,
+					"y":	8.766666,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 9":	{
+					"key":	"tutorial1 wave 17 object 9",
+					"x":	29.866667,
+					"y":	2.300000,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 17 object 10":	{
+					"key":	"tutorial1 wave 17 object 10",
+					"x":	3.900000,
+					"y":	15.633333,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 17 object 11":	{
+					"key":	"tutorial1 wave 17 object 11",
+					"x":	3.766666,
+					"y":	9.100000,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 17 object 12":	{
+					"key":	"tutorial1 wave 17 object 12",
+					"x":	4.066667,
+					"y":	2.400000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"tutorial1 wave 18":	{
+			"key":	"tutorial1 wave 18",
+			"waveEntries":	{
+				"tutorial1 wave 18 object 1":	{
+					"key":	"tutorial1 wave 18 object 1",
+					"x":	28.433332,
+					"y":	16.299999,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 2":	{
+					"key":	"tutorial1 wave 18 object 2",
+					"x":	31.166666,
+					"y":	13.600000,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 3":	{
+					"key":	"tutorial1 wave 18 object 3",
+					"x":	3.833333,
+					"y":	16.833334,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 4":	{
+					"key":	"tutorial1 wave 18 object 4",
+					"x":	1.466667,
+					"y":	14.566666,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 5":	{
+					"key":	"tutorial1 wave 18 object 5",
+					"x":	2.133333,
+					"y":	3.766667,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 6":	{
+					"key":	"tutorial1 wave 18 object 6",
+					"x":	27.766666,
+					"y":	0.933333,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 7":	{
+					"key":	"tutorial1 wave 18 object 7",
+					"x":	30.700001,
+					"y":	4.533333,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				},
+				"tutorial1 wave 18 object 8":	{
+					"key":	"tutorial1 wave 18 object 8",
+					"x":	4.866667,
+					"y":	1.133333,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"blobo"
+				}
+			}
+		}
+	}
 }

@@ -431,13 +431,13 @@ void LevelEditorController::updateWaveNodes() {
         
         std::string waveKey = _levelData->getWaveKey(i);
         std::vector<std::string> vec = Util::split(waveKey, ' ');
-        auto label = Label::alloc(vec.at(vec.size()-1), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.17);
+        auto label = Label::alloc(vec.at(vec.size()-1), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.3);
         label->setPosition(200 + 60 * i, 230);
         
         int time = int(_levelData->getTime(i));
-        auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne"));
-        timeLabel->setScale(0.2);
+        auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        timeLabel->setScale(0.3);
         timeLabel->setForeground(Color4::PAPYRUS);
         timeLabel->setPosition(200 + 60 * i, 200);
         

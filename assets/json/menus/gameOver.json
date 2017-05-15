@@ -3,8 +3,8 @@
         "gameOver": {
             "UIEntries": [
                 "gameOver_gameoverTextImg", 
-                "tryAgainButton",
-                "homeButton",
+                "tryAgainButton", 
+                "homeButton", 
                 "MenubackToLevelEditor"
             ], 
             "fontMap": {

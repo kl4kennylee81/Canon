@@ -114,9 +114,9 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     
     _levelEditNode->removeChildByName("label");
     std::string str = getStateAsString();
-    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne"));
+    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne_40"));
     label->setPosition(400,20);
-    label->setScale(0.5);
+    label->setScale(0.6);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
 }
@@ -538,8 +538,8 @@ void WaveEditorController::updateTemplateNodes() {
     deactivateAndClear(templateNode);
     for (int i = 0; i < _templates.size(); i++) {
         auto button = getButtonFromTemplate(30, 500 - (i * 75), _templates.at(i), ElementType::BLUE);
-        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.3);
+        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.35);
         label->setPosition(90, 500 - (i * 75));
         button->setListener(
         [=](const std::string& name, bool down) {
@@ -572,8 +572,8 @@ void WaveEditorController::updateWaveEntryNodes(){
             entryNode->addChild(zoneNode,0);
         }
 
-        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.18);
+        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.25);
         label->setPosition(pos.x, pos.y);
         
         button->setListener(
@@ -627,8 +627,8 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
     
-    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne"));
-    label->setScale(0.4);
+    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne_40"));
+    label->setScale(0.5);
     label->setPosition(500,550);
     _levelEditNode->addChild(label);
     
