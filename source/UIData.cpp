@@ -74,6 +74,7 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 		label->setForeground(Color4::WHITE);
         float labelX = (this->width/2.0 + this->x) * GAME_SCENE_WIDTH;
         float labelY = (this->height/2.0 + this->y) * Util::getGameSceneHeight();
+        label->setAnchor(Vec2::ANCHOR_MIDDLE);
         label->setPosition(labelX,labelY);
         buttonContainer->addChild(label);
     }
@@ -86,7 +87,7 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
     std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(actualFont));
 	// maybe consider having option to set color in data file
 	label->setForeground(Color4::WHITE);
-	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	label->setAnchor(Vec2::ANCHOR_MIDDLE);
     label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
     
     // don't scale to width and height to keep font size uniform

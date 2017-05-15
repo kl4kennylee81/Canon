@@ -60,8 +60,6 @@ public:
     
     virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets);
     
-    void populate(std::shared_ptr<GenericAssetManager> assets);
-    
     void populateFromTutorial(std::shared_ptr<GenericAssetManager> assets,std::string tutorialKey);
     
     static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state,std::shared_ptr<GenericAssetManager> assets) {

@@ -172,59 +172,13 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
         std::shared_ptr<TutorialStepData> stepData = assets->get<TutorialStepData>(stepKey);
         std::shared_ptr<Menu> screen = Menu::alloc(stepData->key);
         
-        std::map<std::string,std::string> temp;
-        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,temp);
+        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,tutData->getFontMap());
         
         std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
         step->setTransition(stepData->getStartCondition(),stepData->getEndCondition());
         step->setMenu(screen);
         _steps.push_back(step);
     }
-}
-
-void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
-    // make label for level entry
-    std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
-    std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
-    textData->textValue = "Tutorial Begins";
-    
-    std::map<std::string,std::string> temp;
-    std::shared_ptr<Node> labelNode = textData->dataToNode(assets,temp);
-    labelNode->setPosition(225,300);
-    
-    std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
-    std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(nullptr, labelNode);
-    
-    
-    std::shared_ptr<Menu> tutorialScreen = Menu::alloc("tutorialStep1");
-    
-    tutorialScreen->addUIElement(uiComponent);
-    
-    step->setMenu(tutorialScreen);
-    
-    step->setTransition(TutorialTransition::ON_PATH_DRAWN,TutorialTransition::ON_ENEMY_CLEARED);
-    
-    _steps.push_back(step);
-    
-    labelText = assets->get<UIData>("levelLabelText");
-    textData = std::dynamic_pointer_cast<TextUIData>(labelText);
-    textData->textValue = "Tutorial Ends";
-    labelNode = textData->dataToNode(assets,temp);
-    labelNode->setPosition(500,300);
-    
-    step = TutorialStep::alloc();
-    uiComponent = UIComponent::alloc(nullptr, labelNode);
-    
-    tutorialScreen = Menu::alloc("tutorialStep2");
-    
-    tutorialScreen->addUIElement(uiComponent);
-    
-    step->setMenu(tutorialScreen);
-    
-    step->setTransition(TutorialTransition::ON_CLICK,TutorialTransition::ON_ENEMY_CLEARED);
-    
-    _steps.push_back(step);
-    return;
 }
 
 std::shared_ptr<TutorialStep> TutorialController::getCurrentStep(){

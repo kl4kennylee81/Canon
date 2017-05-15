@@ -19,6 +19,13 @@ std::shared_ptr<JsonValue> TutorialLevelData::toJsonValue()
     }
     tutorialJson->appendChild("stepKeys",stepList);
     tutorialJson->appendChild("levelKey",JsonValue::alloc(this->_levelKey));
+    
+    std::shared_ptr<JsonValue> fontMapJson = JsonValue::allocObject();
+    for(std::pair<std::string,std::string> const &ent : _fontMap) {
+        std::string const &menuFont = ent.first;
+        std::string const &actualFont = ent.second;
+        fontMapJson->appendChild(menuFont,JsonValue::alloc(actualFont));
+    }
     return tutorialJson;
 }
 
@@ -36,5 +43,18 @@ bool TutorialLevelData::preload(const std::shared_ptr<cugl::JsonValue>& json)
     Data::preload(json);
 	std::vector<std::string> sKeys = json->get("stepKeys")->asStringArray();
     std::string lKey = json->getString("levelKey");
-    return init(sKeys,lKey);
+    
+    std::shared_ptr<JsonValue> fontMapJson = json->get("fontMap");
+    
+    std::map<std::string,std::string> tempFontMap;
+    if (fontMapJson != nullptr){
+        for (int i =0;i < fontMapJson->size();i++){
+            std::shared_ptr<JsonValue> jsonEntry = fontMapJson->get(i);
+            std::string uiDataFontKey = jsonEntry->key();
+            std::string actualFontKey = fontMapJson->getString(jsonEntry->key());
+            tempFontMap.insert(std::make_pair(uiDataFontKey,actualFontKey));
+        }
+    }
+    
+    return init(sKeys,lKey,tempFontMap);
 }

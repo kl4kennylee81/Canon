@@ -4,6 +4,10 @@
             "stepKeys": [
                 "tutorial1_step1"
             ],
+            "fontMap" : {
+                "hint_font" : "Museo300-Regular_24",
+                "bottom_font" : "Museo300-Regular_40"
+            },
             "levelKey": "tutorial1",
             "key": "tutorial1"
         }
@@ -30,14 +34,12 @@
             "y": 0.0
         },
         "tutorial1_step1_text": {
-            "fontKey": "Museo300-Regular_40", 
-            "height": 0.10, 
+            "fontKey": "bottom_font", 
             "key": "tutorial1_step1_text", 
             "textValue": "I am ready to kill", 
             "type": "TEXT", 
-            "width": 0.6,
-            "x": 0.2, 
-            "y": 0.05
+            "x": 0.5, 
+            "y": 0.125
         }
     }
 }
