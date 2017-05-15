@@ -8,6 +8,7 @@
 
 #include "TexturedPathNode.hpp"
 #include "GameState.hpp"
+#include "Util.hpp"
 
 
 using namespace cugl;
@@ -274,8 +275,11 @@ void TexturedPathNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat
         
     Poly2* source = (_stroke > 0 ? &_extrusion : &_polygon);
     for (int i = 1; i < _path->size(); i++) {
-        Vec2 pos1 = Vec2(_path->get(i)).scale(GAME_PHYSICS_WIDTH);
-        Vec2 pos2 = Vec2(_path->get(i-1)).scale(GAME_PHYSICS_WIDTH);
+        Vec2 pos1;
+        Util::physicsToSceneCoords(_path->get(i-1),pos1);
+        Vec2 pos2;
+        Util::physicsToSceneCoords(_path->get(i),pos2);
+        
         Vec2 pos3 = Vec2(pos1.x - pos2.x, pos1.y - pos2.y);
         float distance = pos1.distance(pos2);
         
@@ -284,8 +288,11 @@ void TexturedPathNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat
         
         batch->draw(_capTexture, tint, Poly2::createEllipse(Vec2(0, 0), Size(_stroke,_stroke), 30), pos2);
     }
+    
+    Vec2 capPos;
+    Util::physicsToSceneCoords(_path->get(_path->size()-1),capPos);
     batch->draw(_capTexture, tint, Poly2::createEllipse(Vec2(0, 0), Size(_stroke,_stroke), 30),
-                Vec2::Vec2(_path->get(_path->size()-1)).scale(GAME_PHYSICS_WIDTH));
+                capPos);
 }
 
 /**

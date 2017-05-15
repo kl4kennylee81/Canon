@@ -104,6 +104,12 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
     
+//    Poly2 pathPoly = _path->getPoly();
+//    auto pathNode = PathNode::allocWithPoly(pathPoly, 0.5, PathJoint::ROUND, PathCap::ROUND);
+//    pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+//    Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
+//    pathNode->setPosition(midPoint);
+    
     if (_drawingChar == nullptr){
         return;
     }
