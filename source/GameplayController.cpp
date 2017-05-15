@@ -211,6 +211,9 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     // attach the gameplayController to the finishController
     _finishController->attach(this);
     
+    /** have to pause spawning */
+    _tutorialController->attach(_levelController.get());
+    
 	_paused = false;
 
     activate();

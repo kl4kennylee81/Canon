@@ -11,6 +11,7 @@
 #include "BulletInitEvent.hpp"
 #include "BulletSpawnEvent.hpp"
 #include "BulletAIData.hpp"
+#include "TutorialEvent.hpp"
 #include <math.h>
 #include <string>
 
@@ -18,7 +19,8 @@ using namespace cugl;
 
 LevelController::LevelController():
 BaseController(),
-_world(nullptr){}
+_world(nullptr),
+_levelState(LevelState::PAUSED){}
 
 void LevelController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -68,6 +70,23 @@ void LevelController::eventUpdate(Event* e) {
 //                BulletSpawnEvent::alloc(gameOb, bulletEvent->_bulletData->getVelocity(), bulletEvent->angle);
 //            notify(bulletSpawn.get());
             
+            break;
+        }
+        case Event::EventType::TUTORIAL:
+        {
+            TutorialEvent* tutEvent = (TutorialEvent*)e;
+            switch (tutEvent->_TutorialType){
+                case TutorialEvent::TutorialEventType::PAUSE_SPAWNING:
+                {
+                    _levelState = LevelState::PAUSED;
+                    break;
+                }
+                case TutorialEvent::TutorialEventType::RESUME_SPAWNING:
+                {
+                    _levelState = LevelState::ACTIVE;
+                    break;
+                }
+            }
             break;
         }
     }
@@ -143,6 +162,11 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
         }
     }
     
+    // if the level spawning is paused don't update
+    if (_levelState == LevelState::PAUSED){
+        return;
+    }
+    
     _level.update(timestep);
     _progressBarController->update(state,_level);
     if (_level.isReadyToSpawn()){
@@ -165,6 +189,7 @@ bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<Wor
     _world = world;
     _level.init(world->getLevelData());
     _progressBarController = ProgressBarController::alloc(state,world);
+    _levelState = LevelState::ACTIVE;
     return true;
 }
 
@@ -173,6 +198,7 @@ bool LevelController::init(std::string levelDataKey, std::shared_ptr<GameState> 
     _world->setLevelData(_world->getAssetManager()->get<LevelData>(levelDataKey));
     _level.init(_world->getLevelData());
     _progressBarController = ProgressBarController::alloc(state,world);
+    _levelState = LevelState::ACTIVE;
     return true;
 }
 

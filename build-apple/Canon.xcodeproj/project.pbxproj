@@ -140,6 +140,8 @@
 		9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */; };
 		9F9A76831ECA28FB0055D471 /* TutorialEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */; };
 		9F9A76841ECA28FB0055D471 /* TutorialEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */; };
+		9F9A76871ECA2E460055D471 /* LevelEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76851ECA2E460055D471 /* LevelEnums.cpp */; };
+		9F9A76881ECA2E460055D471 /* LevelEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76851ECA2E460055D471 /* LevelEnums.cpp */; };
 		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
@@ -366,6 +368,8 @@
 		9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialEnums.hpp; sourceTree = "<group>"; };
 		9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialEvent.cpp; sourceTree = "<group>"; };
 		9F9A76821ECA28FB0055D471 /* TutorialEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialEvent.hpp; sourceTree = "<group>"; };
+		9F9A76851ECA2E460055D471 /* LevelEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEnums.cpp; sourceTree = "<group>"; };
+		9F9A76861ECA2E460055D471 /* LevelEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEnums.hpp; sourceTree = "<group>"; };
 		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
 		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateWaveEntry.cpp; sourceTree = "<group>"; };
@@ -1090,6 +1094,8 @@
 				9FFA3FBD1E636CF90029D648 /* Level.hpp */,
 				DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */,
 				DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */,
+				9F9A76851ECA2E460055D471 /* LevelEnums.cpp */,
+				9F9A76861ECA2E460055D471 /* LevelEnums.hpp */,
 			);
 			name = level;
 			sourceTree = "<group>";
@@ -1520,6 +1526,7 @@
 				9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */,
 				824E10B31EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */,
 				9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
+				9F9A76881ECA2E460055D471 /* LevelEnums.cpp in Sources */,
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */,
 				9FF0B44E1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
@@ -1612,6 +1619,7 @@
 				DFEACF3B1EA42206003836B7 /* SoundData.cpp in Sources */,
 				DF9828951E834C210026223D /* ActiveZone.cpp in Sources */,
 				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
+				9F9A76871ECA2E460055D471 /* LevelEnums.cpp in Sources */,
 				273CB3AF1EBC38550042708C /* BulletSpawnEvent.cpp in Sources */,
 				DF9828851E80E0250026223D /* PulseZoneData.cpp in Sources */,
 				9FFA3F7D1E6357E00029D648 /* Observer.cpp in Sources */,
