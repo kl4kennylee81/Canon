@@ -3,16 +3,33 @@
         "gameOver": {
             "UIEntries": [
                 "gameOver_gameoverTextImg", 
-                "tryAgainButton"
-            ],
-            "fontMap" : {
-                "menu_body_font" : "Museo300-Regular_16",
-                "menu_header_font" : "Museo300-Regular_40"
-            },
+                "tryAgainButton",
+                "homeButton",
+                "MenubackToLevelEditor"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }, 
             "key": "gameover"
         }
     }, 
     "UIData": {
+        "MenubackToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "MenubackToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.25, 
+            "x": 0.375, 
+            "y": 0.3
+        }, 
         "gameOver_gameoverTextImg": {
             "height": 0.261, 
             "key": "gameOver_gameoverTextImg", 
@@ -21,21 +38,6 @@
             "width": 0.476, 
             "x": 0.257, 
             "y": 0.65
-        },
-        "tryAgainButton": {
-            "buttonAction": {
-                "fxKey": "RETRY", 
-                "nextScreen": "gameScreen", 
-                "type": "fxTrigger"
-            }, 
-            "buttonLabel": "ty again", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "tryAgainButton", 
-            "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.5
         }, 
         "homeButton": {
             "buttonAction": {
@@ -51,21 +53,21 @@
             "width": 0.25, 
             "x": 0.375, 
             "y": 0.4
-        },
-        "MenubackToLevelEditor": {
+        }, 
+        "tryAgainButton": {
             "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
             }, 
-            "buttonLabel": "Level Edit", 
+            "buttonLabel": "try again", 
             "fontKey": "menu_header_font", 
             "height": 0.1, 
-            "key": "MenubackToLevelEditor", 
+            "key": "tryAgainButton", 
             "type": "BUTTON", 
             "width": 0.25, 
             "x": 0.375, 
-            "y": 0.3
+            "y": 0.5
         }
     }
 }

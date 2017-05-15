@@ -6,11 +6,11 @@
                 "levelSelect_home", 
                 "levelSelect_homeRing", 
                 "levelSelect_backToLevelEditor"
-            ],
-            "fontMap" : {
-                "menu_body_font" : "Museo300-Regular_16",
-                "menu_header_font" : "Museo300-Regular_40"
-            },
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }, 
             "key": "levelSelect", 
             "menuBackgroundKey": "levelSelectBgFlat"
         }

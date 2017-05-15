@@ -12,10 +12,10 @@
                 "pauseMenu_sideEnds", 
                 "pauseMenu_swirls", 
                 "pauseMenu_stars"
-            ],
-            "fontMap" : {
-                "menu_body_font" : "Museo300-Regular_16",
-                "menu_header_font" : "Museo300-Regular_40"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
             }, 
             "key": "pauseScreen"
         }
@@ -27,7 +27,7 @@
                 "nextScreen": "blankScreen", 
                 "type": "modeChange"
             }, 
-            "buttonLabel": "",  
+            "buttonLabel": "", 
             "height": 0.322, 
             "key": "pauseMenu_LevelButton", 
             "type": "BUTTON", 
@@ -88,7 +88,7 @@
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
-            "buttonLabel": "",  
+            "buttonLabel": "", 
             "height": 0.322, 
             "key": "pauseMenu_resumeButton", 
             "type": "BUTTON", 
