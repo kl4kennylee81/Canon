@@ -27,6 +27,32 @@ enum class TutorialState : int {
     DONE // this step is finished
 };
 
+enum class TutorialEffect : int {
+    PAUSE_SPAWNING, // pause spawning in levelController
+    RESUME_SPAWNING, // resume spawning in levelController
+    NONE
+};
+
+static TutorialEffect strToTutorialEffect(std::string effect){
+    if (effect == "PAUSE_SPAWNING"){
+        return TutorialEffect::PAUSE_SPAWNING;
+    }
+    if (effect == "RESUME_SPAWNING"){
+        return TutorialEffect::RESUME_SPAWNING;
+    }
+    return TutorialEffect::NONE;
+}
+
+static std::string tutorialEffectToStr (TutorialEffect effect){
+    if (effect == TutorialEffect::PAUSE_SPAWNING){
+        return "PAUSE_SPAWNING";
+    }
+    if (effect == TutorialEffect::RESUME_SPAWNING){
+        return "RESUME_SPAWNING";
+    }
+    return "";
+}
+
 static TutorialTransition strToTransition(std::string trans){
     if (trans == "ON_CLICK") {
         return TutorialTransition::ON_CLICK;

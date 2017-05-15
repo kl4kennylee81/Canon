@@ -20,6 +20,7 @@
 class TutorialStepData : public Data {
 private:
     std::vector<std::string> _uiEntryKeys;
+    std::vector<TutorialEffect> _effects;
     
 public:
     std::string menuBackgroundKey; // replace the background for narrative start screens
@@ -31,18 +32,21 @@ public:
         return _uiEntryKeys;
     }
     
-    bool init(std::string mbKey, std::vector<std::string> keys,TutorialTransition start,TutorialTransition end) {
+    bool init(std::string mbKey, std::vector<std::string> keys,
+              TutorialTransition start,TutorialTransition end, std::vector<TutorialEffect> effects) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
         _endCondition = end;
+        _effects = effects;
         return true;
     }
     
     static std::shared_ptr<TutorialStepData> alloc(std::string mbKey, std::vector<std::string> keys,
-                                                   TutorialTransition start,TutorialTransition end) {
+                                                   TutorialTransition start,TutorialTransition end,
+                                                   std::vector<TutorialEffect> effect) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,effect) ? result : nullptr);
     }
     
     bool init() {
@@ -68,6 +72,10 @@ public:
     
     TutorialTransition getEndCondition(){
         return _endCondition;
+    }
+    
+    std::vector<TutorialEffect> getEffects(){
+        return _effects;
     }
 };
 
