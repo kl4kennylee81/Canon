@@ -277,6 +277,9 @@
                 }, 
                 "SPAWNING": {
                     "repeat": "spawning"
+                },
+                "HIT":{
+                    "repeat": "hit"
                 }
             }, 
             "cols": 1, 
@@ -285,11 +288,12 @@
             "size": 4, 
             "statemap": {
                 "idle": {
-                    "first": 3, 
+                    "first": 3,
                     "frames": [
                         10
                     ], 
-                    "total": 1
+                    "total": 1,
+                    "alpha": 0.9
                 }, 
                 "spawning": {
                     "first": 1, 
@@ -297,6 +301,14 @@
                         10
                     ], 
                     "total": 1
+                },
+                "hit": {
+                    "first": 2,
+                    "frames": [
+                        10
+                    ],
+                    "total": 1,
+                    "alpha": 0.4
                 }
             }, 
             "texture": "./textures/models/zones/circle_spritesheet.png"
