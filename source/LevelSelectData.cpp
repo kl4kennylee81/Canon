@@ -11,6 +11,7 @@ bool LevelSelectData::preload(const std::string& file)
 
 bool LevelSelectData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 {
+	Data::preload(json);
 	init(json->getString("name"),
 		json->getString("levelKey"));
 	return true;
