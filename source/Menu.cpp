@@ -46,6 +46,9 @@ bool Menu::init(std::string mKey){
 }
 
 void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey,std::map<std::string,std::string> fontMap){
+    // make sure the fontmap is set
+    this->setFontMap(fontMap);
+    
     if (bgKey != "") {
         // texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
         std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(bgKey));

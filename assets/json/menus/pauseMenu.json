@@ -88,7 +88,7 @@
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
-            "buttonLabel": "resume", 
+            "buttonLabel": "",  
             "height": 0.322, 
             "key": "pauseMenu_resumeButton", 
             "type": "BUTTON", 

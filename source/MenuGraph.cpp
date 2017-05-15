@@ -95,6 +95,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
 		std::shared_ptr<Menu> menu = Menu::alloc(menuKey);
+        menu->setFontMap(menuData->getFontMap());
         
         menu->populate(assets, menuData->getUIEntryKeys(),menuBackgroundKey,menuData->getFontMap());
 
