@@ -157,7 +157,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
     _soundController = SoundController::alloc(levelWorld);
-    _tutorialController = TutorialController::alloc(_gameState, levelWorld->getAssetManager());
+    _tutorialController = TutorialController::alloc(_gameState, levelWorld);
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());

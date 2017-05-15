@@ -148,12 +148,12 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     }
 }
 
-bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
+bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
     // TODO replace with getting it from the current level that is active
     // or passed from the saveGameData file
-    populateFromTutorial(assets,"tutorial1");
+    populateFromTutorial(levelWorld->getAssetManager(), levelWorld->getLevelData()->key);
     
     if (_steps.size() > 0){
         // start the initial step as waiting
@@ -167,6 +167,12 @@ bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<
 
 void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManager> assets,std::string tutorialKey){
     std::shared_ptr<TutorialLevelData> tutData = assets->get<TutorialLevelData>(tutorialKey);
+    
+    // there is no tutorial for this level
+    if (tutData == nullptr){
+        return;
+    }
+    
     for (std::string stepKey : tutData->getStepKeys()){
         // create the tutorialStep from the stepData
         std::shared_ptr<TutorialStepData> stepData = assets->get<TutorialStepData>(stepKey);

@@ -19,6 +19,7 @@
 #include "GameState.hpp"
 #include "Event.hpp"
 #include "TutorialEnums.hpp"
+#include "World.hpp"
 
 class TutorialController : public BaseController {
 private:
@@ -58,13 +59,15 @@ public:
     
     virtual void update(float timestep, std::shared_ptr<GameState> state);
     
-    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets);
+    virtual bool init(std::shared_ptr<GameState> state,
+                      std::shared_ptr<World> levelWorld);
     
     void populateFromTutorial(std::shared_ptr<GenericAssetManager> assets,std::string tutorialKey);
     
-    static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state,std::shared_ptr<GenericAssetManager> assets) {
+    static std::shared_ptr<TutorialController> alloc(std::shared_ptr<GameState> state,
+                                                     std::shared_ptr<World> levelWorld){
         std::shared_ptr<TutorialController> result = std::make_shared<TutorialController>();
-        return (result->init(state,assets) ? result : nullptr);
+        return (result->init(state,levelWorld) ? result : nullptr);
     }
     
     std::shared_ptr<TutorialStep> getCurrentStep();
