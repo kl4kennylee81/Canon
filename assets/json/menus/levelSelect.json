@@ -13,7 +13,7 @@
     }, 
     "UIData": {
         "levelLabelText": {
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.17, 
             "key": "levelLabelText", 
             "textValue": "", 
@@ -54,7 +54,7 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "Level Edit", 
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.1, 
             "key": "levelSelect_backToLevelEditor", 
             "type": "BUTTON", 
@@ -68,7 +68,7 @@
                 "type": "menuChange"
             }, 
             "buttonLabel": "", 
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.1, 
             "key": "levelSelect_home", 
             "type": "BUTTON", 

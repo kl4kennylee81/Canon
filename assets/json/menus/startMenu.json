@@ -17,7 +17,7 @@
                 "buttonTarget": "", 
                 "type": "menuChange"
             }, 
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.171, 
             "key": "startMenu_infoButton", 
             "type": "BUTTON", 
@@ -31,7 +31,7 @@
                 "buttonTarget": "levelSelect", 
                 "type": "menuChange"
             }, 
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.157, 
             "key": "startMenu_playButton", 
             "type": "BUTTON", 
@@ -45,7 +45,7 @@
                 "buttonTarget": "", 
                 "type": "menuChange"
             }, 
-            "fontKey": "Museo300-Regular_50", 
+            "fontKey": "Museo300-Regular_16", 
             "height": 0.171, 
             "key": "startMenu_settingsButton", 
             "type": "BUTTON", 

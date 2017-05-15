@@ -48,27 +48,36 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
     // TODO cleanup this function
+    std::shared_ptr<Node> buttonContainer = Node::alloc();
+    
 	std::shared_ptr<Button> button;
 	std::shared_ptr<Label> label;
 
 	if (uiBackgroundKey != "") {
 		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
 		button = Button::alloc(buttonTexture);
+        button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
+        
+        // scale to width and height
+        cugl::Size size = button->getSize();
+        button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
+        
+        // label it a button so menuController can retrieve it
+        buttonContainer->addChildWithName(button,"button");
 	}
-	else if (buttonLabel != "") {
+	
+    // we put the label as a seperate entity from the button so we don't scale the font
+    if (buttonLabel != "") {
 		label = Label::alloc(buttonLabel, assets->get<Font>(this->fontKey));
 		label->setForeground(Color4::WHITE);
-		button = Button::alloc(label);
-	}
+        float labelX = (this->width/2.0 + this->x) * GAME_SCENE_WIDTH;
+        float labelY = (this->height/2.0 + this->y) * Util::getGameSceneHeight();
+        label->setPosition(labelX,labelY);
+        buttonContainer->addChild(label);
+    }
 
-	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
-
-	// scale to width and height
-	cugl::Size size = button->getSize();
-	button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
-
-    return button;
+    return buttonContainer;
 }
 
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
@@ -77,11 +86,9 @@ std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetM
 	label->setForeground(Color4::WHITE);
 	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
-
-//	cugl::Size size = label->getSize();
-//	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
     
-    // scale to width and height
+    // don't scale to width and height to keep font size uniform
+    
     return label;
 }
 

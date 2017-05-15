@@ -88,11 +88,15 @@ void MenuController::update(float timestep) {
         }
         
         // check if the uiElement is a button
-        if (std::dynamic_pointer_cast<Button>(uiElement->getNode()) == nullptr){
+        if (uiElement->getNode()->getChildByName("button") == nullptr){
             continue;
         }
         
-        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode()->getChildByName("button"));
+        
+        if (button == nullptr){
+            continue;
+        }
         
         Vec2 vec = InputController::getPrevVector();
         

@@ -78,7 +78,6 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
         float labelX = (boxData->width/2.0 + x) * GAME_SCENE_WIDTH;
         float labelY = (boxData->height/2.0 + y) * Util::getGameSceneHeight();
         labelNode->setPosition(labelX, labelY);
-//		buttonNode->addChild(labelNode, 3);
 
 		std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
 		std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button, buttonNode);

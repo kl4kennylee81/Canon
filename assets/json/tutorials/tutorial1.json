@@ -30,7 +30,7 @@
             "y": 0.0
         },
         "tutorial1_step1_text": {
-            "fontKey": "Museo300-Regular", 
+            "fontKey": "Museo300-Regular_40", 
             "height": 0.10, 
             "key": "tutorial1_step1_text", 
             "textValue": "I am ready to kill", 
