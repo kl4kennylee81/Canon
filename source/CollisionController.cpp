@@ -355,10 +355,14 @@ void CollisionController::beginContact(b2Contact* contact) {
             if (gotHit == bluePlayer) {
                 objsToIgnore.push_back(blueZone);
                 hitStunMap.insert({blueZone,HIT_STUN});
+                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(blueZone);
+                notify(zoneHit.get());
             }
             if (gotHit == goldPlayer) {
                 objsToIgnore.push_back(goldZone);
                 hitStunMap.insert({goldZone,HIT_STUN});
+                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
+                notify(zoneHit.get());
             }
             std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
             notify(objectHitEvent.get());

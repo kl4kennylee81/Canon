@@ -15,6 +15,7 @@
 #include "AnimationData.hpp"
 #include "AnimationAction.hpp"
 #include "GameState.hpp"
+#include "Element.hpp"
 
 class ActiveAnimation {
 private:
@@ -103,6 +104,8 @@ public:
     void handleAction(AnimationAction action);
     
     bool nextFrame();
+    
+    std::shared_ptr<cugl::AnimationNode> getNode() { return _node; }
     
     void setLastAnimation() {_last = true;};
     
