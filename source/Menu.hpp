@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "UIComponent.hpp"
+#include <map>
 
 class Menu {
 private:
@@ -19,6 +20,7 @@ private:
     std::shared_ptr<cugl::Node> _menu;
 	std::shared_ptr<cugl::Node> _menuBackground;
     std::vector<std::shared_ptr<UIComponent>> _uiElements;
+    std::map<std::string,std::string> _fontMap;
 public:
     
     Menu():
@@ -46,6 +48,14 @@ public:
 	std::shared_ptr<cugl::Node> getBackground();
 
 	void setBackground(std::shared_ptr<cugl::Node> node);
+    
+    void setFontMap(std::map<std::string,std::string> fontMap){
+        _fontMap = fontMap;
+    }
+    
+    std::map<std::string,std::string> getFontMap(){
+        return _fontMap;
+    }
 
     void addUIElement(std::shared_ptr<UIComponent> element);
     
@@ -57,7 +67,7 @@ public:
     
     virtual bool init(std::string mKey);
     
-    void populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey);
+    void populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey,std::map<std::string,std::string> fontMap);
     
     static std::shared_ptr<Menu> alloc(std::string mKey){
         std::shared_ptr<Menu> result = std::make_shared<Menu>();

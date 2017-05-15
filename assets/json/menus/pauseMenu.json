@@ -12,7 +12,11 @@
                 "pauseMenu_sideEnds", 
                 "pauseMenu_swirls", 
                 "pauseMenu_stars"
-            ], 
+            ],
+            "fontMap" : {
+                "menu_body_font" : "Museo300-Regular_16",
+                "menu_header_font" : "Museo300-Regular_40"
+            }, 
             "key": "pauseScreen"
         }
     }, 
@@ -23,8 +27,7 @@
                 "nextScreen": "blankScreen", 
                 "type": "modeChange"
             }, 
-            "buttonLabel": " ", 
-            "fontKey": "Museo300-Regular_16", 
+            "buttonLabel": "",  
             "height": 0.322, 
             "key": "pauseMenu_LevelButton", 
             "type": "BUTTON", 
@@ -39,7 +42,6 @@
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
-            "fontKey": "Museo300-Regular_16", 
             "height": 0.322, 
             "key": "pauseMenu_RetryButton", 
             "type": "BUTTON", 
@@ -54,7 +56,6 @@
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
             }, 
-            "fontKey": "Museo300-Regular_16", 
             "height": 0.322, 
             "key": "pauseMenu_homeButton2", 
             "type": "BUTTON", 
@@ -88,7 +89,6 @@
                 "type": "fxTrigger"
             }, 
             "buttonLabel": "resume", 
-            "fontKey": "Museo300-Regular_16", 
             "height": 0.322, 
             "key": "pauseMenu_resumeButton", 
             "type": "BUTTON", 

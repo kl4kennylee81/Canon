@@ -6,7 +6,11 @@
                 "tryAgainButton", 
                 "homeButton", 
                 "MenubackToLevelEditor"
-            ], 
+            ],
+            "fontMap" : {
+                "menu_body_font" : "Museo300-Regular_16",
+                "menu_header_font" : "Museo300-Regular_40"
+            },
             "key": "gameover"
         }
     }, 
@@ -18,7 +22,7 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "Level Edit", 
-            "fontKey": "Museo300-Regular_16", 
+            "fontKey": "menu_header_font", 
             "height": 0.1, 
             "key": "MenubackToLevelEditor", 
             "type": "BUTTON", 
@@ -42,7 +46,7 @@
                 "type": "modeChange"
             }, 
             "buttonLabel": "home", 
-            "fontKey": "Museo300-Regular_16", 
+            "fontKey": "menu_header_font", 
             "height": 0.1, 
             "key": "homeButton", 
             "type": "BUTTON", 
@@ -57,7 +61,7 @@
                 "type": "fxTrigger"
             }, 
             "buttonLabel": "try again", 
-            "fontKey": "Museo300-Regular_16", 
+            "fontKey": "menu_header_font", 
             "height": 0.1, 
             "key": "tryAgainButton", 
             "type": "BUTTON", 

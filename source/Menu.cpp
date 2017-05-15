@@ -45,7 +45,7 @@ bool Menu::init(std::string mKey){
     return true;
 }
 
-void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey){
+void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey,std::map<std::string,std::string> fontMap){
     if (bgKey != "") {
         // texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
         std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(bgKey));
@@ -59,7 +59,7 @@ void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std
     
     for (std::string uiKey : uiDataKeys) {
         auto uiData = assets->get<UIData>(uiKey);
-        std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
+        std::shared_ptr<Node> uiNode = uiData->dataToNode(assets,fontMap);
         std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
         this->addUIElement(uiComponent);
         

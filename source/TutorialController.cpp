@@ -171,7 +171,9 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
         // create the tutorialStep from the stepData
         std::shared_ptr<TutorialStepData> stepData = assets->get<TutorialStepData>(stepKey);
         std::shared_ptr<Menu> screen = Menu::alloc(stepData->key);
-        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey);
+        
+        std::map<std::string,std::string> temp;
+        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,temp);
         
         std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
         step->setTransition(stepData->getStartCondition(),stepData->getEndCondition());
@@ -185,7 +187,9 @@ void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
     std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
     std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
     textData->textValue = "Tutorial Begins";
-    std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
+    
+    std::map<std::string,std::string> temp;
+    std::shared_ptr<Node> labelNode = textData->dataToNode(assets,temp);
     labelNode->setPosition(225,300);
     
     std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
@@ -205,7 +209,7 @@ void TutorialController::populate(std::shared_ptr<GenericAssetManager> assets){
     labelText = assets->get<UIData>("levelLabelText");
     textData = std::dynamic_pointer_cast<TextUIData>(labelText);
     textData->textValue = "Tutorial Ends";
-    labelNode = textData->dataToNode(assets);
+    labelNode = textData->dataToNode(assets,temp);
     labelNode->setPosition(500,300);
     
     step = TutorialStep::alloc();
