@@ -13,7 +13,7 @@
             "shapeKey": "circle"
         }, 
         "playerCharFemale": {
-            "animationScale": 2.5, 
+            "animationScale": 2.0, 
             "blueAnimationKey": "blueCharAnimation", 
             "goldAnimationKey": "goldCharAnimation", 
             "key": "playerCharFemale", 
@@ -22,7 +22,7 @@
             "health": 2
         }, 
         "playerCharMale": {
-            "animationScale": 2.5, 
+            "animationScale": 2.0, 
             "blueAnimationKey": "blueCharAnimation", 
             "goldAnimationKey": "goldCharAnimation", 
             "key": "playerCharMale", 
@@ -55,7 +55,7 @@
         }, 
         "playerCharShape": {
             "key": "playerCharShape", 
-            "vertices": [0.0, 0.0, 0.6875, 0.0, 0.6875, 1.1125, 0.0, 1.13125]
+            "vertices": [0.0, 0.0, 0.6875, 0.0, 0.6875, 1.25, 0.0, 1.25]
         }, 
         "playerZoneShape": {
             "key": "playerZoneShape", 
