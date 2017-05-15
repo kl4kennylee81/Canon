@@ -6,6 +6,10 @@ enum class ButtonActionType : int {
 	MENU_CHANGE, MODE_CHANGE, FX_TRIGGER
 };
 
+enum class ChapterSwitchData : int {
+	NEXT, PREVIOUS
+};
+
 class ButtonAction {
 public:
 
@@ -104,6 +108,12 @@ public:
 		if (event == "SWITCH_CHAPTER") return FXType::SWITCH_CHAPTER;
         return FXType::NONE;
     }
+
+	static ChapterSwitchData stringToChapterSwitchData(std::string cData) {
+		if (cData == "NEXT") return ChapterSwitchData::NEXT;
+		if (cData == "PREVIOUS") return ChapterSwitchData::PREVIOUS;
+		return ChapterSwitchData::NEXT;
+	}
     
     virtual bool init(std::string fx, std::string next, std::string cd)
 	{

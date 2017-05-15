@@ -12,8 +12,9 @@
 #include "GameState.hpp"
 #include "Util.hpp"
 #include "MenuListData.hpp"
-#include "ListChapterData.hpp"
-#include "ListLevelData.hpp"
+#include "ChapterListData.hpp"
+#include "ChapterSelectData.hpp"
+#include "LevelSelectData.hpp"
 #include "SaveLevelData.hpp"
 #include "SaveData.hpp"
 
@@ -38,15 +39,13 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
 
 void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
-	// TODO replace the hardcoded name
-	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
+	std::shared_ptr<ChapterSelectData> chapterData = assets->get<ChapterSelectData>(chapter);
+    std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
     
-	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(chapter);
-
     for (int i = 0;i < chapterData->getLevelKeys().size();i++)
 	{
         std::string levelKey = chapterData->getLevelKeys().at(i);
-		std::shared_ptr<ListLevelData> listEntry = assets->get<ListLevelData>(levelKey);
+		std::shared_ptr<LevelSelectData> listEntry = assets->get<LevelSelectData>(levelKey);
 		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(levelKey);
 
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->levelKey);
@@ -87,6 +86,43 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 	}
 }
 
+void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string cData) {
+    std::shared_ptr<Menu> menu = _menuMap.at("levelSelect");
+    std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>("levelSelect");
+    menu->populate(assets,menuData->getUIEntryKeys(),menuData->menuBackgroundKey,menuData->getFontMap());
+	// this overwrites the old associated value
+
+	//ptrdiff_t pos = find(Names.begin(), Names.end(), old_name_) - Names.begin();
+
+	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
+	std::string currentChapter = save->currentChapter;
+	
+	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
+	int numChaps = chKeys.size();
+	auto iter = std::find(chKeys.begin(), chKeys.end(), currentChapter);
+	int chIndex = std::distance(chKeys.begin(), iter);
+
+	std::string updatedChapter = currentChapter;
+	if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::NEXT) {
+		int newIndex = (chIndex + numChaps + 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
+	}
+
+	else if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::PREVIOUS) {
+		int newIndex = (chIndex + numChaps - 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
+	}
+
+	// update save data...we should totes do this somewhere else / make a funciton for this
+	save->currentChapter = updatedChapter;
+	assets->loadDirectory(save->toJsonValue());
+	// todo: write updated save state and current chapter to the save file upon game exit...or do it now
+
+	_menuMap["levelSelect"] = menu;
+	augmentLevelMenu(assets, _menuMap, updatedChapter);
+}
+
+
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
 
@@ -98,7 +134,7 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
         menu->setFontMap(menuData->getFontMap());
         
         menu->populate(assets, menuData->getUIEntryKeys(),menuBackgroundKey,menuData->getFontMap());
-
+        
 		_menuMap.insert(std::make_pair(menuKey, menu));
 	}
 

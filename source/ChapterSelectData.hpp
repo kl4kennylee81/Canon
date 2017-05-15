@@ -1,5 +1,5 @@
-#ifndef ListChapterData_hpp
-#define ListChapterData_hpp
+#ifndef ChapterSelectData_hpp
+#define ChapterSelectData_hpp
 
 #include <stdio.h>
 #include <cugl/cugl.h>
@@ -8,7 +8,7 @@
 #include "LevelData.hpp"
 
 
-class ListChapterData : public Data {
+class ChapterSelectData : public Data {
 protected:
 	std::vector<std::string> _levelKeys;
 public:
@@ -28,10 +28,10 @@ public:
 		return _levelKeys;
 	}
 
-	static std::shared_ptr<ListChapterData> alloc(std::string n, std::vector<std::string> lKeys) {
-		std::shared_ptr<ListChapterData> result = std::make_shared<ListChapterData>();
+	static std::shared_ptr<ChapterSelectData> alloc(std::string n, std::vector<std::string> lKeys) {
+		std::shared_ptr<ChapterSelectData> result = std::make_shared<ChapterSelectData>();
 		return (result->init(n, lKeys) ? result : nullptr);
 	}
 };
 
-#endif /* ListChapterData_hpp */
+#endif /* ChapterSelectData_hpp */

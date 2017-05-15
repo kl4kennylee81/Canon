@@ -165,10 +165,10 @@ void MenuController::update(float timestep) {
                     }
 					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
 					{
-						std::string nextChapter = action->chapterData;
+						std::string cData = action->chapterData;
 						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
 						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
-						getMenuGraph()->augmentLevelMenu(_assets, getMenuGraph()->getMenuMap(), nextChapter);
+						getMenuGraph()->populateChapter(_assets, cData);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}

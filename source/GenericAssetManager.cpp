@@ -10,8 +10,8 @@
 #include "SaveData.hpp"
 #include "SaveLevelData.hpp"
 #include "SaveChapterData.hpp"
-#include "ListLevelData.hpp"
-#include "ListChapterData.hpp"
+#include "LevelSelectData.hpp"
+#include "ChapterSelectData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 #include "UIData.hpp"
@@ -20,6 +20,7 @@
 #include "BulletData.hpp"
 #include "TutorialLevelData.hpp"
 #include "TutorialStepData.hpp"
+#include "ChapterListData.hpp"
 
 using namespace cugl;
 
@@ -234,11 +235,14 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		else if (child->key() == "SaveChapterData") {
 			success = readCategory(typeid(SaveChapterData).hash_code(), child) && success;
 		}
-		else if (child->key() == "ListChapterData") {
-			success = readCategory(typeid(ListChapterData).hash_code(), child) && success;
+		else if (child->key() == "ChapterSelectData") {
+			success = readCategory(typeid(ChapterSelectData).hash_code(), child) && success;
 		}
-		else if (child->key() == "ListLevelData") {
-			success = readCategory(typeid(ListLevelData).hash_code(), child) && success;
+		else if (child->key() == "ChapterListData") {
+			success = readCategory(typeid(ChapterListData).hash_code(), child) && success;
+		}
+		else if (child->key() == "LevelSelectData") {
+			success = readCategory(typeid(LevelSelectData).hash_code(), child) && success;
 		}
 		else if (child->key() == "ai"){
 			success = readCategory(typeid(AIData).hash_code(), child) && success;

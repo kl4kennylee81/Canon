@@ -1,5 +1,5 @@
 {
-    "ListChapterData": {
+    "ChapterSelectData": {
         "chapter01": {
             "chapterKey": "chapter01",
             "name": "The Girl and the Firefly",
@@ -11,15 +11,11 @@
                 "level05",
                 "level06",
                 "level07",
-                "level08",
-                "level09",
-                "level10",
-                "level11",
-                "level12"
+                "level08"
             ]
         }
     },
-    "ListLevelData": {
+    "LevelSelectData": {
         "level01": {
             "key": "level01",
             "levelKey": "rapidSpawn",

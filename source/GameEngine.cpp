@@ -11,8 +11,9 @@
 #include "SaveData.hpp";
 #include "SaveLevelData.hpp"
 #include "SaveChapterData.hpp"
-#include "ListChapterData.hpp"
-#include "ListLevelData.hpp"
+#include "ChapterSelectData.hpp"
+#include "ChapterListData.hpp"
+#include "LevelSelectData.hpp"
 #include "MenuScreenData.hpp"
 #include "MenuListData.hpp"
 #include "MenuEvent.hpp"
@@ -90,8 +91,9 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<SaveLevelData>(GenericLoader<SaveLevelData>::alloc()->getHook());
 	assets->attach<SaveChapterData>(GenericLoader<SaveChapterData>::alloc()->getHook());
 	assets->attach<SaveData>(GenericLoader<SaveData>::alloc()->getHook());
-	assets->attach<ListChapterData>(GenericLoader<ListChapterData>::alloc()->getHook());
-	assets->attach<ListLevelData>(GenericLoader<ListLevelData>::alloc()->getHook());
+	assets->attach<ChapterListData>(GenericLoader<ChapterListData>::alloc()->getHook());
+	assets->attach<ChapterSelectData>(GenericLoader<ChapterSelectData>::alloc()->getHook());
+	assets->attach<LevelSelectData>(GenericLoader<LevelSelectData>::alloc()->getHook());
     assets->attach<Texture>(TextureLoader::alloc()->getHook());
     assets->attach<Font>(FontLoader::alloc()->getHook());
     assets->attach<Sound>(SoundLoader::alloc()->getHook());
@@ -152,6 +154,7 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/assets.json");
     _assets->loadDirectory("json/sounds.json");
 	_assets->loadDirectory("json/menuList.json");
+	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
 	_assets->loadDirectory("json/randomMenuAssets.json");
     

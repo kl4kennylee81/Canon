@@ -5,7 +5,9 @@
                 "levelSelect_Background", 
                 "levelSelect_home", 
                 "levelSelect_homeRing", 
-                "levelSelect_backToLevelEditor"
+                "levelSelect_backToLevelEditor", 
+                "levelSelect_chevron_right", 
+                "levelSelect_chevron_left"
             ], 
             "fontMap": {
                 "menu_body_font": "Museo300-Regular_16", 
@@ -65,6 +67,38 @@
             "width": 0.15, 
             "x": 0.8, 
             "y": 0.05
+        }, 
+        "levelSelect_chevron_left": {
+            "buttonAction": {
+                "chapterData": "PREVIOUS", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "levelSelect_chevron_left", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_left", 
+            "width": 0.039, 
+            "x": 0.014, 
+            "y": 0.5
+        }, 
+        "levelSelect_chevron_right": {
+            "buttonAction": {
+                "chapterData": "NEXT", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "levelSelect_chevron_right", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_right", 
+            "width": 0.039, 
+            "x": 0.947, 
+            "y": 0.5
         }, 
         "levelSelect_home": {
             "buttonAction": {

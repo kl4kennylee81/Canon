@@ -1,5 +1,5 @@
-#ifndef ListLevelData_hpp
-#define ListLevelData_hpp
+#ifndef LevelSelectData_hpp
+#define LevelSelectData_hpp
 
 #include <stdio.h>
 #include <cugl/cugl.h>
@@ -7,12 +7,12 @@
 #include "MenuScreenData.hpp"
 #include "LevelData.hpp"
 
-class ListLevelData : public Data {
+class LevelSelectData : public Data {
 public:
     std::string name;
     std::string levelKey;
 
-	ListLevelData() {}
+	LevelSelectData() {}
 
     bool init(std::string n, std::string k) {
 		this->name = n;
@@ -20,8 +20,8 @@ public:
 		return true;
 	}
 
-    static std::shared_ptr<ListLevelData> alloc(std::string n, std::string k) {
-		std::shared_ptr<ListLevelData> result = std::make_shared<ListLevelData>();
+    static std::shared_ptr<LevelSelectData> alloc(std::string n, std::string k) {
+		std::shared_ptr<LevelSelectData> result = std::make_shared<LevelSelectData>();
 		return (result->init(n, k) ? result : nullptr);
 	}
 
@@ -31,4 +31,4 @@ public:
 
 };
 
-#endif /* ListLevelData_hpp */
+#endif /* LevelSelectData_hpp */
