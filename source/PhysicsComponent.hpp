@@ -23,6 +23,7 @@ protected:
     int _maxHealth;
     int _health;
     float _arrowWidth;
+    bool _hasArrow;
     std::shared_ptr<cugl::Node> _arrow;
 public:
     
@@ -36,6 +37,10 @@ public:
         _arrow = arrow;
         _arrowWidth = arrow->getWidth();
     }
+    
+    bool hasArrow() { return _hasArrow; }
+    
+    void setHasArrow(bool a) { _hasArrow = a; }
     
     std::shared_ptr<cugl::Node> getArrowNode() { return _arrow; }
     

@@ -266,6 +266,9 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     obst->setPosition(objectInit->waveEntry->getPosition());
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
     physics->setSpeed(objectInit->objectData->getSpeed());
+    if(objectInit->aiData != nullptr && objectInit->aiData->type == AIType::HOMING){
+        physics->setHasArrow(true);
+    }
     objectInit->object->setPhysicsComponent(physics);
 }
 
@@ -285,7 +288,9 @@ bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
     
     //this allows the arrow to appear after spawn
-    obj->getPhysicsComponent()->setArrowNode(PolygonNode::allocWithTexture(_arrowTexture));
+    if(obj->getPhysicsComponent()->hasArrow()){
+        obj->getPhysicsComponent()->setArrowNode(PolygonNode::allocWithTexture(_arrowTexture));
+    }
 
     obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);

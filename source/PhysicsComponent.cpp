@@ -15,6 +15,7 @@ _body(nullptr),
 _speed(0),
 _acceleration(0),
 _health(1),
+_hasArrow(false),
 _arrow(nullptr)
 {}
 

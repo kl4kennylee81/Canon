@@ -306,7 +306,7 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         
         GameObject* obj = it->first;
-        if(obj->type == GameObject::ObjectType::CHARACTER && !obj->getIsPlayer()){
+        if(obj->getPhysicsComponent()->hasArrow()){
             obj->syncArrow(state->getGameplayNode());
         }
         
