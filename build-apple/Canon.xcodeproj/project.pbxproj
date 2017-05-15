@@ -140,6 +140,8 @@
 		9F9A76921ECA38BB0055D471 /* ChapterSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */; };
 		9F9A76931ECA38BB0055D471 /* LevelSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */; };
 		9F9A76941ECA38BB0055D471 /* LevelSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */; };
+		9F9A76971ECA39210055D471 /* ChapterListData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76951ECA39210055D471 /* ChapterListData.cpp */; };
+		9F9A76981ECA39210055D471 /* ChapterListData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76951ECA39210055D471 /* ChapterListData.cpp */; };
 		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
@@ -354,6 +356,8 @@
 		9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChapterSelectData.hpp; sourceTree = "<group>"; };
 		9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelSelectData.cpp; sourceTree = "<group>"; };
 		9F9A76901ECA38BB0055D471 /* LevelSelectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelSelectData.hpp; sourceTree = "<group>"; };
+		9F9A76951ECA39210055D471 /* ChapterListData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChapterListData.cpp; sourceTree = "<group>"; };
+		9F9A76961ECA39210055D471 /* ChapterListData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChapterListData.hpp; sourceTree = "<group>"; };
 		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
 		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateWaveEntry.cpp; sourceTree = "<group>"; };
@@ -850,6 +854,8 @@
 		9FF0B4081EC3B19D0044F29B /* save */ = {
 			isa = PBXGroup;
 			children = (
+				9F9A76951ECA39210055D471 /* ChapterListData.cpp */,
+				9F9A76961ECA39210055D471 /* ChapterListData.hpp */,
 				9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */,
 				9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */,
 				9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */,
@@ -1431,6 +1437,7 @@
 				9F6F87741EBCBD7D00AD021D /* ParticleNode.cpp in Sources */,
 				9F3BA5FC1E8BA575003138C0 /* GameState.cpp in Sources */,
 				9F3BA5FD1E8BA575003138C0 /* GameplayController.cpp in Sources */,
+				9F9A76981ECA39210055D471 /* ChapterListData.cpp in Sources */,
 				9F3BA5FE1E8BA575003138C0 /* GameEngine.cpp in Sources */,
 				9F3BA5FF1E8BA575003138C0 /* BaseController.cpp in Sources */,
 				9F6F87591EBCBCCA00AD021D /* DeathParticleGenerator.cpp in Sources */,
@@ -1532,6 +1539,7 @@
 				829615521E9BC5B300A731DB /* ParticleController.cpp in Sources */,
 				9FA275F51EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
 				DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */,
+				9F9A76971ECA39210055D471 /* ChapterListData.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
 				9F82210F1EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
