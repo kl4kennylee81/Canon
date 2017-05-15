@@ -87,12 +87,7 @@ void MenuController::update(float timestep) {
             continue;
         }
         
-        // check if the uiElement is a button
-        if (uiElement->getNode()->getChildByName("button") == nullptr){
-            continue;
-        }
-        
-        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode()->getChildByName("button"));
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
         
         if (button == nullptr){
             continue;

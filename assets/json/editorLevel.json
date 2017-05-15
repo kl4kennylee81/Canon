@@ -1,4 +1,5 @@
 {
+    "name": "tutorial1",
     "counter": 18, 
     "levels": {
         "sneakAttack": {
@@ -34,7 +35,6 @@
             }
         }
     }, 
-    "name": "sneakAttack", 
     "template names": [
         "birb", 
         "blobo", 

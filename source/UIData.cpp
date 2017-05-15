@@ -47,11 +47,8 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 }
 
 std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
-    // TODO cleanup this function
-    std::shared_ptr<Node> buttonContainer = Node::alloc();
     
 	std::shared_ptr<Button> button;
-	std::shared_ptr<Label> label;
 
 	if (uiBackgroundKey != "") {
 		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
@@ -62,24 +59,25 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
         // scale to width and height
         cugl::Size size = button->getSize();
         button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
-        
-        // label it a button so menuController can retrieve it
-        buttonContainer->addChildWithName(button,"button");
 	}
 	
     // we put the label as a seperate entity from the button so we don't scale the font
-    if (buttonLabel != "") {
+    // we also want labels to be centered like textData
+    else if (buttonLabel != "") {
+        std::shared_ptr<Label> label;
         std::string actualFont = fontMap.at(this->fontKey);
 		label = Label::alloc(buttonLabel, assets->get<Font>(actualFont));
 		label->setForeground(Color4::WHITE);
+        
+		button = Button::alloc(label);
         float labelX = (this->width/2.0 + this->x) * GAME_SCENE_WIDTH;
         float labelY = (this->height/2.0 + this->y) * Util::getGameSceneHeight();
-        label->setAnchor(Vec2::ANCHOR_MIDDLE);
-        label->setPosition(labelX,labelY);
-        buttonContainer->addChild(label);
+        
+        button->setPosition(labelX,labelY);
+        button->setAnchor(Vec2::ANCHOR_MIDDLE);
     }
 
-    return buttonContainer;
+    return button;
 }
 
 std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
