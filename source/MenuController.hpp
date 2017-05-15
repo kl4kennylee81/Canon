@@ -23,7 +23,7 @@ protected:
     
     std::shared_ptr<MenuGraph> _menuGraph;
     
-    std::string _selectedLevel;
+    std::string _selectedLevel; // key to the levelSelectData chosen
 
 	std::shared_ptr<GenericAssetManager> _assets;
 public:
