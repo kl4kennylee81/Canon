@@ -129,18 +129,19 @@
         "feshVertical": {
             "aiKeys": [
                 "horizontalLeft", 
-                "horizontalRight", 
-                "horizontal",
-                "homing"
+                "horizontalRight"
             ], 
             "key": "feshVertical", 
             "name": "feshVertical", 
             "objectKey": "feshVertical_object", 
             "zoneKeys": [
                 "feshVertical_zone"
-            ]
+            ],
+            "zones": {
+                "feshVertical_zone": ["feshVertical_zone"]
+            }
         }
-    }, 
+    },
     "zones": {
         "feshVertical_zone": {
             "element": "MATCH", 

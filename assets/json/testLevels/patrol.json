@@ -1,278 +1,308 @@
 {
-    "name":	"patrol",
-    "counter":	25,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "patrol":	{
-            "key":	"patrol",
-            "levelEntries":	{
-                "patrol wave 14":	{
-                    "key":	"patrol wave 14",
-                    "waveKey":	"patrol wave 14",
-                    "time":	420
-                },
-                "patrol wave 21":	{
-                    "key":	"patrol wave 21",
-                    "waveKey":	"patrol wave 21",
-                    "time":	300
-                },
-                "patrol wave 23":	{
-                    "key":	"patrol wave 23",
-                    "waveKey":	"patrol wave 23",
-                    "time":	300
-                },
-                "patrol wave 25":	{
-                    "key":	"patrol wave 25",
-                    "waveKey":	"patrol wave 25",
-                    "time":	180
+    "counter": 25, 
+    "levels": {
+        "patrol": {
+            "key": "patrol", 
+            "levelEntries": {
+                "patrol wave 14": {
+                    "key": "patrol wave 14", 
+                    "time": 420, 
+                    "waveKey": "patrol wave 14"
+                }, 
+                "patrol wave 21": {
+                    "key": "patrol wave 21", 
+                    "time": 300, 
+                    "waveKey": "patrol wave 21"
+                }, 
+                "patrol wave 23": {
+                    "key": "patrol wave 23", 
+                    "time": 300, 
+                    "waveKey": "patrol wave 23"
+                }, 
+                "patrol wave 25": {
+                    "key": "patrol wave 25", 
+                    "time": 180, 
+                    "waveKey": "patrol wave 25"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"player1",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"player2",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "patrol wave 14":	{
-            "key":	"patrol wave 14",
-            "waveEntries":	{
-                "patrol wave 14 object 1":	{
-                    "key":	"patrol wave 14 object 1",
-                    "x":	16.533333,
-                    "y":	10.633333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 14 object 2":	{
-                    "key":	"patrol wave 14 object 2",
-                    "x":	13.200000,
-                    "y":	10.633333,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 14 object 3":	{
-                    "key":	"patrol wave 14 object 3",
-                    "x":	13.100000,
-                    "y":	7.400000,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 14 object 4":	{
-                    "key":	"patrol wave 14 object 4",
-                    "x":	16.600000,
-                    "y":	7.400000,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 14 object 5":	{
-                    "key":	"patrol wave 14 object 5",
-                    "x":	17.833334,
-                    "y":	12.033334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 14 object 6":	{
-                    "key":	"patrol wave 14 object 6",
-                    "x":	17.733334,
-                    "y":	5.733334,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 14 object 7":	{
-                    "key":	"patrol wave 14 object 7",
-                    "x":	12.066667,
-                    "y":	5.633333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 14 object 8":	{
-                    "key":	"patrol wave 14 object 8",
-                    "x":	11.633333,
-                    "y":	12.066668,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
+    }, 
+    "name": "patrol", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "patrol wave 14": {
+            "key": "patrol wave 14", 
+            "waveEntries": {
+                "patrol wave 14 object 1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 14 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 16.533333, 
+                    "y": 10.633333, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 14 object 2": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 14 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 13.2, 
+                    "y": 10.633333, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 14 object 3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 14 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 13.1, 
+                    "y": 7.4, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 14 object 4": {
+                    "aiKey": "verticalUp", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 14 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 16.6, 
+                    "y": 7.4, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 14 object 5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 14 object 5", 
+                    "templateKey": "birb", 
+                    "x": 17.833334, 
+                    "y": 12.033334
+                }, 
+                "patrol wave 14 object 6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 14 object 6", 
+                    "templateKey": "birb", 
+                    "x": 17.733334, 
+                    "y": 5.733334
+                }, 
+                "patrol wave 14 object 7": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 14 object 7", 
+                    "templateKey": "birb", 
+                    "x": 12.066667, 
+                    "y": 5.633333
+                }, 
+                "patrol wave 14 object 8": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 14 object 8", 
+                    "templateKey": "birb", 
+                    "x": 11.633333, 
+                    "y": 12.066668
                 }
             }
-        },
-        "patrol wave 21":	{
-            "key":	"patrol wave 21",
-            "waveEntries":	{
-                "patrol wave 21 object 1":	{
-                    "key":	"patrol wave 21 object 1",
-                    "x":	7.366667,
-                    "y":	12.433334,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 21 object 2":	{
-                    "key":	"patrol wave 21 object 2",
-                    "x":	24.666666,
-                    "y":	5.666667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 21 object 3":	{
-                    "key":	"patrol wave 21 object 3",
-                    "x":	24.633333,
-                    "y":	12.233334,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"birb"
-                },
-                "patrol wave 21 object 4":	{
-                    "key":	"patrol wave 21 object 4",
-                    "x":	7.433333,
-                    "y":	5.800000,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"birb"
+        }, 
+        "patrol wave 21": {
+            "key": "patrol wave 21", 
+            "waveEntries": {
+                "patrol wave 21 object 1": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 21 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 7.366667, 
+                    "y": 12.433334, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 21 object 2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 21 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 24.666666, 
+                    "y": 5.666667, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 21 object 3": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 21 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 24.633333, 
+                    "y": 12.233334, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
+                }, 
+                "patrol wave 21 object 4": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 21 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 7.433333, 
+                    "y": 5.8, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
                 }
             }
-        },
-        "patrol wave 23":	{
-            "key":	"patrol wave 23",
-            "waveEntries":	{
-                "patrol wave 23 object 1":	{
-                    "key":	"patrol wave 23 object 1",
-                    "x":	14.866667,
-                    "y":	13.166667,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 23 object 2":	{
-                    "key":	"patrol wave 23 object 2",
-                    "x":	10.500000,
-                    "y":	6.800000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 23 object 3":	{
-                    "key":	"patrol wave 23 object 3",
-                    "x":	19.266666,
-                    "y":	6.866666,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 23 object 4":	{
-                    "key":	"patrol wave 23 object 4",
-                    "x":	10.500000,
-                    "y":	10.700000,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 23 object 5":	{
-                    "key":	"patrol wave 23 object 5",
-                    "x":	14.900000,
-                    "y":	4.300000,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 23 object 6":	{
-                    "key":	"patrol wave 23 object 6",
-                    "x":	19.166666,
-                    "y":	10.666667,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
+        }, 
+        "patrol wave 23": {
+            "key": "patrol wave 23", 
+            "waveEntries": {
+                "patrol wave 23 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 23 object 1", 
+                    "templateKey": "birb", 
+                    "x": 14.866667, 
+                    "y": 13.166667
+                }, 
+                "patrol wave 23 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 23 object 2", 
+                    "templateKey": "birb", 
+                    "x": 10.5, 
+                    "y": 6.8
+                }, 
+                "patrol wave 23 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 23 object 3", 
+                    "templateKey": "birb", 
+                    "x": 19.266666, 
+                    "y": 6.866666
+                }, 
+                "patrol wave 23 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 23 object 4", 
+                    "templateKey": "birb", 
+                    "x": 10.5, 
+                    "y": 10.7
+                }, 
+                "patrol wave 23 object 5": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 23 object 5", 
+                    "templateKey": "birb", 
+                    "x": 14.9, 
+                    "y": 4.3
+                }, 
+                "patrol wave 23 object 6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 23 object 6", 
+                    "templateKey": "birb", 
+                    "x": 19.166666, 
+                    "y": 10.666667
                 }
             }
-        },
-        "patrol wave 25":	{
-            "key":	"patrol wave 25",
-            "waveEntries":	{
-                "patrol wave 25 object 1":	{
-                    "key":	"patrol wave 25 object 1",
-                    "x":	13.866667,
-                    "y":	3.233333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 2":	{
-                    "key":	"patrol wave 25 object 2",
-                    "x":	15.666667,
-                    "y":	14.700000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 3":	{
-                    "key":	"patrol wave 25 object 3",
-                    "x":	13.800000,
-                    "y":	14.666666,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 4":	{
-                    "key":	"patrol wave 25 object 4",
-                    "x":	15.733334,
-                    "y":	3.266666,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 5":	{
-                    "key":	"patrol wave 25 object 5",
-                    "x":	7.066667,
-                    "y":	10.333334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 6":	{
-                    "key":	"patrol wave 25 object 6",
-                    "x":	7.033333,
-                    "y":	8.700000,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 7":	{
-                    "key":	"patrol wave 25 object 7",
-                    "x":	22.866667,
-                    "y":	10.066667,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
-                },
-                "patrol wave 25 object 8":	{
-                    "key":	"patrol wave 25 object 8",
-                    "x":	22.833334,
-                    "y":	8.466667,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"blobo"
+        }, 
+        "patrol wave 25": {
+            "key": "patrol wave 25", 
+            "waveEntries": {
+                "patrol wave 25 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 25 object 1", 
+                    "templateKey": "birb", 
+                    "x": 13.866667, 
+                    "y": 3.233333
+                }, 
+                "patrol wave 25 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 25 object 2", 
+                    "templateKey": "birb", 
+                    "x": 15.666667, 
+                    "y": 14.7
+                }, 
+                "patrol wave 25 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 25 object 3", 
+                    "templateKey": "birb", 
+                    "x": 13.8, 
+                    "y": 14.666666
+                }, 
+                "patrol wave 25 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 25 object 4", 
+                    "templateKey": "birb", 
+                    "x": 15.733334, 
+                    "y": 3.266666
+                }, 
+                "patrol wave 25 object 5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 25 object 5", 
+                    "templateKey": "birb", 
+                    "x": 7.066667, 
+                    "y": 10.333334
+                }, 
+                "patrol wave 25 object 6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 25 object 6", 
+                    "templateKey": "birb", 
+                    "x": 7.033333, 
+                    "y": 8.7
+                }, 
+                "patrol wave 25 object 7": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "patrol wave 25 object 7", 
+                    "templateKey": "birb", 
+                    "x": 22.866667, 
+                    "y": 10.066667
+                }, 
+                "patrol wave 25 object 8": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "patrol wave 25 object 8", 
+                    "templateKey": "birb", 
+                    "x": 22.833334, 
+                    "y": 8.466667
                 }
             }
         }

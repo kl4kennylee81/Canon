@@ -109,17 +109,23 @@
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "object7", 
-                    "templateKey": "birb", 
+                    "templateKey": "blobo", 
                     "x": 3.0333328125, 
-                    "y": 8.666667
+                    "y": 8.666667, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
                 }, 
                 "object8": {
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "object8", 
-                    "templateKey": "birb", 
+                    "templateKey": "blobo", 
                     "x": 29.13333321875, 
-                    "y": 9.06666659375
+                    "y": 9.06666659375, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
                 }
             }
         }, 
@@ -178,17 +184,23 @@
                     "aiKey": "verticalUp", 
                     "element": "BLUE", 
                     "key": "object7", 
-                    "templateKey": "birb", 
+                    "templateKey": "blobo", 
                     "x": 15.666667, 
-                    "y": 1.100000375
+                    "y": 1.100000375, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
                 }, 
                 "object8": {
                     "aiKey": "verticalDown", 
                     "element": "GOLD", 
                     "key": "object8", 
-                    "templateKey": "birb", 
+                    "templateKey": "blobo", 
                     "x": 15.1999998125, 
-                    "y": 16.5333328125
+                    "y": 16.5333328125, 
+                    "zoneKeys": [
+                        "blobo_zone"
+                    ]
                 }
             }
         }, 
@@ -201,7 +213,10 @@
                     "key": "object1", 
                     "templateKey": "birb", 
                     "x": 3.166667, 
-                    "y": 10.33333396875
+                    "y": 10.33333396875, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object2": {
                     "aiKey": "homing", 
@@ -209,7 +224,10 @@
                     "key": "object2", 
                     "templateKey": "birb", 
                     "x": 3.166667, 
-                    "y": 7.93333340625
+                    "y": 7.93333340625, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object3": {
                     "aiKey": "homing", 
@@ -217,7 +235,10 @@
                     "key": "object3", 
                     "templateKey": "birb", 
                     "x": 28.33333396875, 
-                    "y": 10.6999998125
+                    "y": 10.6999998125, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object4": {
                     "aiKey": "homing", 
@@ -225,7 +246,10 @@
                     "key": "object4", 
                     "templateKey": "birb", 
                     "x": 28.20000075, 
-                    "y": 8.03333378125
+                    "y": 8.03333378125, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }
             }
         }, 
@@ -238,7 +262,10 @@
                     "key": "object1", 
                     "templateKey": "birb", 
                     "x": 0.76666640625, 
-                    "y": 1.06666659375
+                    "y": 1.06666659375, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object2": {
                     "aiKey": "homing", 
@@ -246,7 +273,10 @@
                     "key": "object2", 
                     "templateKey": "birb", 
                     "x": 30.63333321875, 
-                    "y": 16.9666671875
+                    "y": 16.9666671875, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object3": {
                     "aiKey": "homing", 
@@ -254,7 +284,10 @@
                     "key": "object3", 
                     "templateKey": "birb", 
                     "x": 1.100000375, 
-                    "y": 17.09999846875
+                    "y": 17.09999846875, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }, 
                 "object4": {
                     "aiKey": "homing", 
@@ -262,7 +295,10 @@
                     "key": "object4", 
                     "templateKey": "birb", 
                     "x": 30.4666671875, 
-                    "y": 1.3666663125
+                    "y": 1.3666663125, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
                 }
             }
         }

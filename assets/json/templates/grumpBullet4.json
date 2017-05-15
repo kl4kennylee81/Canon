@@ -5,7 +5,10 @@
       "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
       "objectKey":  "grumpBullet4_object",
       "bulletKey": "grumpBullet4_bullet",
-      "zoneKeys": ["grumpBullet4_zoneMatch","grumpBullet4_zoneOpposite"]
+      "zoneKeys": ["grumpBullet4_zoneMatch","grumpBullet4_zoneOpposite"],
+        "zones": {
+            "grumpBullet4_zone": ["grumpBullet4_zoneMatch","grumpBullet4_zoneOpposite"]
+        }
     }
   },
   "objects":{
@@ -199,9 +202,9 @@
             "idle": {
                 "first": 0, 
                 "frames": [
-                    9,9,9,9,9
+                    9,9
                 ], 
-                "total": 5
+                "total": 2
             },
             "death": {
                 "first": 0,
@@ -226,9 +229,9 @@
             "idle": {
                 "first": 0, 
                 "frames": [
-                    9,9,9,9,9
+                    9,9
                 ], 
-                "total": 5
+                "total": 2
             },
             "death": {
                 "first": 0,

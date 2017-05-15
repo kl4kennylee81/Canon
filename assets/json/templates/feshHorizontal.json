@@ -130,16 +130,17 @@
         "feshHorizontal": {
             "aiKeys": [
                 "verticalUp", 
-                "verticalDown", 
-                "vertical",
-                "homing"
+                "verticalDown"
             ], 
             "key": "feshHorizontal", 
             "name": "feshHorizontal", 
             "objectKey": "feshHorizontal_object", 
             "zoneKeys": [
                 "feshHorizontal_zone"
-            ]
+            ],
+            "zones": {
+                "feshHorizontal_zone": ["feshHorizontal_zone"]
+            }
         }
     }, 
     "zones": {
