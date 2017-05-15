@@ -14,9 +14,9 @@
 #include <unordered_map>
 #include "ObjectData.hpp"
 #include "AnimationData.hpp"
-#include "PathData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
+#include "BulletData.hpp"
 #include "LevelData.hpp"
 #include "ZoneData.hpp"
 #include "SoundData.hpp"
@@ -49,13 +49,13 @@ public:
     // static prototypes used to spawn units into the gameState
     std::unordered_map<std::string, std::shared_ptr<ObjectData>> _objectData;
     std::unordered_map<std::string, std::shared_ptr<AnimationData>> _animationData;
-    std::unordered_map<std::string, std::shared_ptr<PathData>> _pathData;
     std::unordered_map<std::string, std::shared_ptr<ShapeData>> _shapeData;
     std::unordered_map<std::string, std::shared_ptr<WaveData>> _waveData;
     std::unordered_map<std::string, std::shared_ptr<AIData>> _aiData;
     std::unordered_map<std::string, std::shared_ptr<ZoneData>> _zoneData;
     std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
     std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
+    std::unordered_map<std::string, std::shared_ptr<BulletData>> _bulletData;
     
     std::unordered_set<std::string> _tempKeys;
 
@@ -101,13 +101,13 @@ public:
     
     std::shared_ptr<AnimationData> getAnimationData(std::string aKey);
     
-    std::shared_ptr<PathData> getPathData(std::string pathKey);
-    
     std::shared_ptr<ShapeData> getShapeData(std::string shapeKey);
     
     std::shared_ptr<WaveData> getWaveData(std::string waveKey);
     
     std::shared_ptr<AIData> getAIData(std::string aiKey);
+    
+    std::shared_ptr<BulletData> getBulletData(std::string bulletKey);
     
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
@@ -120,6 +120,8 @@ public:
     std::shared_ptr<AIData> getAIData(std::shared_ptr<WaveEntry> we);
     
     std::vector<std::string> getZoneKeys(std::shared_ptr<WaveEntry> we);
+    
+    std::shared_ptr<BulletData> getBulletData(std::shared_ptr<WaveEntry> we);
     
     std::shared_ptr<LevelData> getLevelData(){
         return _levelData;
@@ -138,9 +140,7 @@ public:
     void populate();
     
     bool isValid();
-    
-    void presetPlayerCharacters();
-	
+    	
     void copyWave(std::string copiedWaveKey, std::string newWaveKey);
     
 };

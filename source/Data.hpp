@@ -16,15 +16,13 @@ class Data : cugl::Asset {
 public:
     Data():Asset(){};
     
+	std::string key;
+
     bool init(){
         return true;
     };
     
-	virtual std::shared_ptr<cugl::JsonValue> toJsonValue()
-	{
-		std::cout << "using default definition of toJsonValue in Data.hpp" << std::endl;
-		return cugl::JsonValue::allocNull();
-	}
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 
     // setting equal to 0 is a pure virtual function equivalent to an abstract function
 	virtual std::string serialize()

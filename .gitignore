@@ -1,0 +1,6 @@
+# this is because we have a githook to regenerate these files whenever you pull
+assets/json/fullLevels/*.json
+assets/json/assets.json
+build-win10/
+*/.DS_Store
+.DS_Store

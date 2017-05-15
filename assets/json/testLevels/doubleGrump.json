@@ -1,0 +1,138 @@
+{
+    "counter": 14, 
+    "levels": {
+        "doubleGrump": {
+            "key": "doubleGrump", 
+            "levelEntries": {
+                "wave01": {
+                    "key": "wave01", 
+                    "time": 330, 
+                    "waveKey": "doubleGrump wave 12"
+                }, 
+                "wave02": {
+                    "key": "wave02", 
+                    "time": 180, 
+                    "waveKey": "doubleGrump wave 13"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "doubleGrump", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "doubleGrump wave 12": {
+            "key": "doubleGrump wave 12", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "static", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "templateKey": "grump", 
+                    "x": 15.73333359375, 
+                    "y": 6.0
+                }, 
+                "object2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "templateKey": "blobo", 
+                    "x": 20.66666603125, 
+                    "y": 5.9666666875
+                }, 
+                "object3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "templateKey": "blobo", 
+                    "x": 10.53333378125, 
+                    "y": 11.66666603125
+                }, 
+                "object4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "templateKey": "blobo", 
+                    "x": 10.5, 
+                    "y": 5.73333359375
+                }, 
+                "object5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object5", 
+                    "templateKey": "blobo", 
+                    "x": 20.5333328125, 
+                    "y": 11.4666671875
+                }, 
+                "object6": {
+                    "aiKey": "static", 
+                    "element": "GOLD", 
+                    "key": "object6", 
+                    "templateKey": "grump", 
+                    "x": 15.666667, 
+                    "y": 11.6999998125
+                }
+            }
+        }, 
+        "doubleGrump wave 13": {
+            "key": "doubleGrump wave 13", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object1", 
+                    "templateKey": "feshVertical", 
+                    "x": 0.76666640625, 
+                    "y": 9.20000075
+                }, 
+                "object2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "feshVertical", 
+                    "x": 31.20000075, 
+                    "y": 9.06666659375
+                }, 
+                "object3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "templateKey": "feshVertical", 
+                    "x": 14.100000375, 
+                    "y": 3.1666665
+                }, 
+                "object4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "templateKey": "feshVertical", 
+                    "x": 16.33333396875, 
+                    "y": 15.600000375
+                }
+            }
+        }
+    }
+}

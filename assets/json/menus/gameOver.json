@@ -1,0 +1,73 @@
+{
+    "MenuScreenData": {
+        "gameOver": {
+            "UIEntries": [
+                "gameOver_gameoverTextImg", 
+                "tryAgainButton", 
+                "homeButton", 
+                "MenubackToLevelEditor"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }, 
+            "key": "gameover"
+        }
+    }, 
+    "UIData": {
+        "MenubackToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "MenubackToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.25, 
+            "x": 0.375, 
+            "y": 0.3
+        }, 
+        "gameOver_gameoverTextImg": {
+            "height": 0.261, 
+            "key": "gameOver_gameoverTextImg", 
+            "textureKey": "gameOver_gameover", 
+            "type": "IMAGE", 
+            "width": 0.476, 
+            "x": 0.257, 
+            "y": 0.65
+        }, 
+        "homeButton": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "home", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "homeButton", 
+            "type": "BUTTON", 
+            "width": 0.25, 
+            "x": 0.375, 
+            "y": 0.4
+        }, 
+        "tryAgainButton": {
+            "buttonAction": {
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "try again", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "tryAgainButton", 
+            "type": "BUTTON", 
+            "width": 0.25, 
+            "x": 0.375, 
+            "y": 0.5
+        }
+    }
+}

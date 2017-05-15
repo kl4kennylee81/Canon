@@ -4,15 +4,24 @@
 #include "LevelData.hpp"
 #include "ObjectData.hpp"
 #include "ShapeData.hpp"
-#include "pathData.hpp"
 #include "AnimationData.hpp"
 #include "MenuScreenData.hpp"
 #include "TemplateWaveEntry.hpp"
-#include "SaveGameData.hpp"
+#include "SaveData.hpp"
+#include "SaveLevelData.hpp"
+#include "SaveChapterData.hpp"
+#include "LevelSelectData.hpp"
+#include "ChapterSelectData.hpp"
 #include "AIData.hpp"
 #include "ZoneData.hpp"
 #include "UIData.hpp"
 #include "SoundData.hpp"
+#include "MenuListData.hpp"
+#include "BulletData.hpp"
+#include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
+#include "ChapterListData.hpp"
+
 using namespace cugl;
 
 #pragma mark -
@@ -205,11 +214,11 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		else if (child->key() == "shapes") {
 			success = readCategory(typeid(ShapeData).hash_code(), child) && success;
 		}
-		else if (child->key() == "paths") {
-			success = readCategory(typeid(PathData).hash_code(), child) && success;
-		}
 		else if (child->key() == "animations") {
 			success = readCategory(typeid(AnimationData).hash_code(), child) && success;
+		}
+		else if (child->key() == "MenuListData") {
+			success = readCategory(typeid(MenuListData).hash_code(), child) && success;
 		}
 		else if (child->key() == "MenuScreenData") {
 			success = readCategory(typeid(MenuScreenData).hash_code(), child) && success;
@@ -217,8 +226,23 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
 		else if (child->key() == "UIData") {
 			success = readCategory(typeid(UIData).hash_code(), child) && success;
 		}
-		else if (child->key() == "SaveGameData") {
-			success = readCategory(typeid(SaveGameData).hash_code(), child) && success;
+		else if (child->key() == "SaveData") {
+			success = readCategory(typeid(SaveData).hash_code(), child) && success;
+		}
+		else if (child->key() == "SaveLevelData") {
+			success = readCategory(typeid(SaveLevelData).hash_code(), child) && success;
+		}
+		else if (child->key() == "SaveChapterData") {
+			success = readCategory(typeid(SaveChapterData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ChapterSelectData") {
+			success = readCategory(typeid(ChapterSelectData).hash_code(), child) && success;
+		}
+		else if (child->key() == "ChapterListData") {
+			success = readCategory(typeid(ChapterListData).hash_code(), child) && success;
+		}
+		else if (child->key() == "LevelSelectData") {
+			success = readCategory(typeid(LevelSelectData).hash_code(), child) && success;
 		}
 		else if (child->key() == "ai"){
 			success = readCategory(typeid(AIData).hash_code(), child) && success;
@@ -231,6 +255,15 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
         }
         else if (child->key() == "templates") {
             success = readCategory(typeid(TemplateWaveEntry).hash_code(), child) && success;
+        }
+        else if (child->key() == "bullets") {
+            success = readCategory(typeid(BulletData).hash_code(), child) && success;
+        }
+        else if (child->key() == "tutorialLevels") {
+            success = readCategory(typeid(TutorialLevelData).hash_code(), child) && success;
+        }
+        else if (child->key() == "tutorialSteps") {
+            success = readCategory(typeid(TutorialStepData).hash_code(), child) && success;
         }
 		else {
 			CULogError("Unknown asset category '%s'", child->key().c_str());

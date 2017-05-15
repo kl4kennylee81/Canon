@@ -16,6 +16,7 @@
 #include "LevelEvent.hpp"
 #include "InputController.hpp"
 #include "Util.hpp"
+#include "TexturedPathNode.hpp"
 
 using namespace cugl;
 
@@ -51,8 +52,15 @@ void PathController::eventUpdate(Event* e) {
     switch (e->_eventType) {
         case Event::EventType::MOVE:
         {
-            // character is now done moving through the path
-            controllerState = IDLE;
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    // character is now done moving through the path
+                    controllerState = IDLE;
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::LEVEL: {
@@ -71,8 +79,12 @@ void PathController::eventUpdate(Event* e) {
 
 void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
-	auto pathNode = PathNode::allocWithPoly(pathPoly, 0.5, PathJoint::ROUND, PathCap::ROUND);
-	pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+	auto pathNode = TexturedPathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
+    pathNode->setPath(_path->clone());
+    pathNode->setStroke(15);
+    pathNode->setTexture(_mainTexture);
+    pathNode->setCapTexture(_capTexture);
+    pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
 	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
     
@@ -115,22 +127,8 @@ bool PathController::isOnCooldown() {
 }
 
 void PathController::update(float timestep,std::shared_ptr<GameState> state){
-    if (!_spawnStart) return;
-    _cooldown_frames += GameState::_internalClock->getTimeDilation();
-	bool isPressed = InputController::getIsPressed();
-	Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
-    
-    Vec2 physicsPosition = Vec2::Vec2();
-    
-    if (isPressed){
-        Util::screenToPhysicsCoords(position,physicsPosition);
-		float buffer = GAME_PHYSICS_WIDTH * 0.02;
-		float x2 = GAME_PHYSICS_WIDTH - buffer;
-		float y2 = GAME_PHYSICS_HEIGHT - buffer;
-		physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
-
-        Vec2 scenePosition = Vec2::Vec2();
-        Util::screenToSceneCoords(position, scenePosition);
+    if (!_spawnStart){
+        return;
     }
     
     // can't start drawing a path before a character is done moving through a previous path
@@ -140,11 +138,33 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 
 	// clear path on two finger touch
 	if (InputController::getDoubleTouch()) {
+        controllerState = IDLE;
 		_path->clear();
 		_wasPressed = false;
 		_pathSceneNode->removeAllChildren();
 		return;
 	}
+    
+    _cooldown_frames += GameState::_internalClock->getTimeDilation();
+    bool isPressed = InputController::getIsPressed();
+    Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
+    
+    Vec2 physicsPosition = Vec2::Vec2();
+    
+    if (isPressed){
+        Util::screenToPhysicsCoords(position,physicsPosition);
+        float buffer = GAME_PHYSICS_WIDTH * 0.02;
+        float x2 = GAME_PHYSICS_WIDTH - buffer;
+        float y2 = GAME_PHYSICS_HEIGHT - buffer;
+        physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
+        
+        Vec2 physicPosition = Vec2::Vec2();
+        Util::screenToPhysicsCoords(position, physicPosition);
+        
+        if (controllerState == IDLE){
+            state->setClosestChar(physicPosition);
+        }
+    }
     
 	if (!_wasPressed && isPressed) {
         
@@ -153,6 +173,10 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         }
         
 		_path->clear();
+        
+        if (state->getActiveCharacter() == nullptr){
+            return;
+        }
         Vec2 currentLocation = state->getActiveCharacter()->getPosition();
 		
 		// can't start drawing a path if the touch is far away from the active character
@@ -183,7 +207,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		addPathToScene(state);
         
         // notify that the controller has finished drawing
-        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter());
+        std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, state->getActiveCharacter(),state->getInactiveCharacter());
         notify(pathEvent.get());
         _pathSceneNode->removeAllChildren();
         
@@ -193,7 +217,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 	_wasPressed = isPressed;
 }
     
-bool PathController::init(std::shared_ptr<GameState> state) {
+bool PathController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
 	_pathSceneNode = Node::alloc();
 	_pathSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
 	_pathSceneNode->setPosition(Vec2::ZERO);
@@ -207,8 +231,12 @@ bool PathController::init(std::shared_ptr<GameState> state) {
     controllerState = IDLE;
 	_wasPressed = false;
 	_cooldown_frames = SWIPE_COOLDOWN_FRAMES;
+    _world = world;
     
     _spawnStart = false;
+    
+    _capTexture = _world->getAssetManager()->get<Texture>("square");
+    _mainTexture = _world->getAssetManager()->get<Texture>("square");
 
 	return true;
 }

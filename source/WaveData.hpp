@@ -14,11 +14,11 @@
 #include "Data.hpp"
 #include "AIData.hpp"
 
-class WaveEntry {
+class WaveEntry : public Data{
 private:
     ElementType element;
     
-    cugl::Vec2 position;
+    cugl::Vec2 position; //physics coordinates
     
     std::string templateKey;
     
@@ -26,7 +26,7 @@ private:
     
 public:
     
-    WaveEntry(){}
+    WaveEntry():Data(){}
     
     ElementType getElement();
     
@@ -48,13 +48,13 @@ public:
         element = element == ElementType::BLUE ? ElementType::GOLD : ElementType::BLUE;
     }
     
-    bool init(const std::shared_ptr<cugl::JsonValue>& json);
+    bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     bool init(float x, float y,ElementType element,std::string templateKey, std::string aiKey);
     
     static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(json) ? result : nullptr);
+        return (result->preload(json) ? result : nullptr);
     }
 
     static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey, std::string aiKey) {
@@ -73,12 +73,27 @@ public:
     WaveData() : Data(){}
     
     bool init() {
+        Data::init();
+        return true;
+    }
+    
+    bool init(std::shared_ptr<WaveData> data) {
+        for(auto it: data->getWaveEntries()){
+            auto we = WaveEntry::alloc(0, 0, it->getElement(), it->getTemplateKey(), it->getAIKey());
+            we->setPosition(it->getPosition()); //already in physics coordinates
+            _waveEntries.push_back(we);
+        }
         return true;
     }
     
     static std::shared_ptr<WaveData> alloc() {
         std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
         return (result->init() ? result : nullptr);
+    }
+    
+    static std::shared_ptr<WaveData> alloc(std::shared_ptr<WaveData> data) {
+        std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
+        return (result->init(data) ? result : nullptr);
     }
     
     void addWaveEntry(std::shared_ptr<WaveEntry> w){

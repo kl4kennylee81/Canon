@@ -11,7 +11,7 @@ bool PathAIData::init(PathType pathType, std::vector<cugl::Vec2> path, PathDirec
 
     // scale to physics coordinates
     for (auto vec : _path){
-        vec = vec / (GAME_PHYSICS_SCALE);
+        vec = vec;
     }
     
     return true;
@@ -35,14 +35,6 @@ PathType getPathTypeFromString(const std::string& str) {
 		return PathType::CUSTOM;
 	}
 	return PathType::NONE;
-}
-
-std::string getStringFromPathType(const PathType pt)
-{
-	if (pt == PathType::HORIZONTAL) return "HORIZONTAL";
-	if (pt == PathType::VERTICAL) return "VERTICAL";
-	if (pt == PathType::CUSTOM) return "CUSTOM";
-	return "NONE";
 }
 
 std::vector<std::string> split(const std::string& s, const char& c)
@@ -131,9 +123,9 @@ std::string getStringFromPath(std::vector<Vec2> vecPath)
 }
 
 std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
-	std::shared_ptr<JsonValue> data = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("PATH"));
-	data->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_pathType)));
+	data->appendChild("pathType", JsonValue::alloc(PathAI::getStringFromPathType(_pathType)));
     switch (_pathType){
         case PathType::HORIZONTAL:
         {
@@ -164,6 +156,7 @@ bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	std::vector<Vec2> path = getPathFromString(json->getString("path"));
 	PathDirection direction = getDirectionFromString(json->getString("direction"));
 	init(pathType, path, direction);
+	Data::preload(json);
 	return true;
 }
 

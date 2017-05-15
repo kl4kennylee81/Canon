@@ -13,14 +13,18 @@
 #include "MoveEvent.hpp"
 #include "SwitchEvent.hpp"
 #include "AnimationEvent.hpp"
+#include "BulletSpawnEvent.hpp"
 #include <cugl/cugl.h>
 
 using namespace cugl;
 
-#define ANIMATION_SCALE_BUFFER     1.0 // a constant needed to make the animation a bit bigger than the bounding box.
-#define BLUE_COLOR   Color4::BLUE
+#define BLUE_COLOR   Color4::CYAN
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
+
+/** The alpha of the zones on/off */
+#define ZONE_ON_ALPHA 0.8
+#define ZONE_OFF_ALPHA 0.1
 
 AnimationController::AnimationController():
 BaseController(){}
@@ -41,12 +45,26 @@ void AnimationController::eventUpdate(Event* e) {
         case Event::EventType::COLLISION: {
             CollisionEvent* collisionEvent = (CollisionEvent*)e;
             switch (collisionEvent->_collisionType) {
-                case CollisionEvent::CollisionEventType::OBJECT_GONE:
+                case CollisionEvent::CollisionEventType::OBJECT_GONE: {
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
                     handleAction(obj, AnimationAction::DEATH);
                     animationMap.at(obj)->setLastAnimation();
                     break;
+                }
+                case CollisionEvent::CollisionEventType::OBJECT_HIT: {
+                    ObjectHitEvent* objectHit = (ObjectHitEvent*)collisionEvent;
+                    GameObject* obj = objectHit->_obj;
+                    animationMap.at(obj)->setHitStun(true);
+                    break;
+                }
+                case CollisionEvent::CollisionEventType::HIT_FINISHED: {
+                    ObjectHitFinishedEvent* objectHitFinished = (ObjectHitFinishedEvent*)collisionEvent;
+                    GameObject* obj = objectHitFinished->_obj;
+                    animationMap.at(obj)->setHitStun(false);
+                    animationMap.at(obj)->getAnimationNode()->setColor(Color4::WHITE);
+                    break;
+                }
             }
             break;
         }
@@ -56,7 +74,7 @@ void AnimationController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    addAnimation(objectInit->object.get(), objectInit->animationData);
+                    addAnimation(objectInit->object.get(), objectInit->animationData, objectInit->objectData->getAnimationScale());
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
@@ -74,12 +92,18 @@ void AnimationController::eventUpdate(Event* e) {
             }
             break;
         }
+        case Event::EventType::BULLET_SPAWN: {
+            BulletSpawnEvent* bulletSpawn = (BulletSpawnEvent*)e;
+            GameObject* obj = bulletSpawn->object.get();
+            handleAction(obj, AnimationAction::SPAWN);
+            break;
+        }
         case Event::EventType::PATH: {
             PathEvent* pathEvent = (PathEvent*)e;
             switch (pathEvent->_pathType) {
                 case PathEvent::PathEventType::PATH_FINISHED:
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
-                    GameObject* obj = pathFinished->_character.get();
+                    GameObject* obj = pathFinished->_activeChar.get();
                     handleAction(obj, AnimationAction::ATTACK);
                     break;
             }
@@ -87,8 +111,14 @@ void AnimationController::eventUpdate(Event* e) {
         }
         case Event::EventType::MOVE: {
             MoveEvent* moveEvent = (MoveEvent*)e;
-            GameObject* obj = moveEvent->_character.get();
-            handleAction(obj, AnimationAction::RETURN);
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    GameObject* obj = moveEvent->_character.get();
+                    handleAction(obj, AnimationAction::RETURN);
+                    break;
+                }
+            }
             break;
         }
         case Event::EventType::SWITCH: {
@@ -105,6 +135,19 @@ void AnimationController::eventUpdate(Event* e) {
                     addAnimation(zoneInit->object.get(), zoneInit->animationData);
                     break;
                 }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
+                    ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
+                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
+                    std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawning->object)->getAnimationNode();
+                    
+                    // TODO change the colors to a macro
+                    if (zoneSpawning->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    } else {
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                    }
+                    break;
+                }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
                     handleAction(zoneSpawn->object, AnimationAction::SPAWN);
@@ -112,9 +155,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     }
                     break;
                 }
@@ -125,9 +168,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.5));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
                     }
                     animationMap.at(zoneOn->object)->setFlash(false);
                     break;
@@ -139,9 +182,9 @@ void AnimationController::eventUpdate(Event* e) {
                     
                     // TODO change the colors to a macro
                     if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,0.1));
+                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
                     }
                     break;
                 }
@@ -170,8 +213,8 @@ void AnimationController::update(float timestep,std::shared_ptr<GameState> state
 /**
  * Adds the animation data to the active animation map.
  */
-void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data) {
-    std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
+void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<AnimationData> data,float animScale) {
+    std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc(animScale);
     anim->setAnimationData(data);
     animationMap.insert({obj, anim});
 }
@@ -180,7 +223,14 @@ void AnimationController::addAnimation(GameObject* obj, std::shared_ptr<Animatio
  * Defers handling to the active animation handleEvent()
  */
 void AnimationController::handleAction(GameObject* obj, AnimationAction action) {
+    if (obj == nullptr){
+        return;
+    }
     std::shared_ptr<ActiveAnimation> anim = animationMap.at(obj);
+    if (anim == nullptr){
+        return;
+    }
+    
     if (anim->isLastAnimation()){ return;}
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
@@ -233,7 +283,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
         
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        float animationScale = std::max(scaleX,scaleY) * ANIMATION_SCALE_BUFFER; // to make the animation bigger than the bounding box
+        float animationScale = std::max(scaleX,scaleY) * activeAnim->getAnimationScale(); // to make the animation bigger than the bounding box
         anim->setScale(animationScale);
     } else {
         Size animationSize = anim->getContentSize();
@@ -263,12 +313,12 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
         
         if (anim->getFlash()){
             anim->flashIndex += GameState::_internalClock->getTimeDilation();
-            if (anim->flashIndex >= 10) {
+            if (anim->flashIndex >= 30) {
                 anim->flashIndex = 0;
                 anim->lit = !anim->lit;
             }
             
-            float alphascale = anim->lit ? 0.5 : 0.1;
+            float alphascale = anim->lit ? ZONE_ON_ALPHA : ZONE_OFF_ALPHA;
             
             if (it->first->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
                 anim->getAnimationNode()->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,alphascale));
@@ -276,6 +326,17 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
                 anim->getAnimationNode()->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,alphascale));
             }
             
+        }
+        
+        if (anim->getHitStun()){
+            anim->flashIndex += GameState::_internalClock->getTimeDilation();
+            if (anim->flashIndex >= 10) {
+                anim->flashIndex = 0;
+                anim->lit = !anim->lit;
+            }
+            
+            Color4 color = anim->lit ? Color4::WHITE : Color4::RED;
+            anim->getAnimationNode()->setColor(color);
         }
         
         if (!anim->nextFrame()){
@@ -290,9 +351,21 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
 
 void AnimationController::removeAnimation(std::shared_ptr<GameState> state, GameObject* obj,std::shared_ptr<ActiveAnimation> anim){
     if (obj->getIsPlayer()){
-        // send the event to notify that the player character is dead
-        std::shared_ptr<Event> prEvent = PlayerRemovedEvent::alloc();
-        this->notify(prEvent.get());
+        switch(obj->type){
+            case GameObject::ObjectType::CHARACTER:
+            {
+                // send the event to notify that the player character is dead
+                std::shared_ptr<Event> prEvent = PlayerRemovedEvent::alloc();
+                this->notify(prEvent.get());
+                break;
+            }
+            case GameObject::ObjectType::ZONE:
+            {
+                break;
+            }
+            break;
+            
+        }
     }
     
     anim->getAnimationNode()->removeFromParent();
@@ -309,4 +382,13 @@ bool AnimationController::init(std::shared_ptr<GameState> state, const std::shar
     std::vector<std::shared_ptr<GameObject>> playerObjects = state->getPlayerCharacters();
     
     return true;
+}
+
+std::string AnimationController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> AnimationController::toJsonValue() {
+	std::shared_ptr<JsonValue> fullJson = JsonValue::allocObject();
+	return fullJson;
 }

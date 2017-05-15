@@ -24,10 +24,13 @@
 #include "SpawnController.hpp"
 #include "ZoneController.hpp"
 #include "ClockController.hpp"
+#include "ParticleController.hpp"
 #include "FinishController.hpp"
 #include "SoundController.hpp"
 #include "Observer.hpp"
 #include "Event.hpp"
+#include "BulletController.hpp"
+#include "TutorialController.hpp"
 
 class GameplayController : public BaseController {
 protected:
@@ -36,15 +39,17 @@ protected:
 	std::shared_ptr<MoveController> _moveController;
 	std::shared_ptr<CollisionController> _collisionController;
 	std::shared_ptr<AIController> _aiController;
+    std::shared_ptr<BulletController> _bulletController;
     std::shared_ptr<SwitchController> _switchController;
     std::shared_ptr<LevelController>  _levelController;
     std::shared_ptr<SpawnController> _spawnController;
     std::shared_ptr<ZoneController> _zoneController;
     std::shared_ptr<AnimationController> _animationController;
     std::shared_ptr<ClockController> _clockController;
+    std::shared_ptr<ParticleController> _particleController;
     std::shared_ptr<FinishController> _finishController;
     std::shared_ptr<SoundController> _soundController;
-
+    std::shared_ptr<TutorialController> _tutorialController;
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;
@@ -81,6 +86,9 @@ public:
 		return (result->init(scene,levelWorld) ? result : nullptr);
 	}
 
+    std::shared_ptr<cugl::JsonValue> toJsonValue();
+    
+    void onResume(const std::shared_ptr<cugl::JsonValue>);
 
 };
 

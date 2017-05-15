@@ -56,7 +56,7 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
 	}
 	case WaveEditorState::NEW_TEMPLATE: {
         std::string name = "kyle" + std::to_string(_templates.size());
-        auto newTemplate = TemplateWaveEntry::alloc(name, "object1", {"static"}, {},90.0);
+        auto newTemplate = TemplateWaveEntry::alloc(name, "object1", {"static"}, {},90.0, "");
 
 		_templates.push_back(newTemplate);
         _world->addTemplate(name, newTemplate);
@@ -72,8 +72,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
         break;
     }
 	case WaveEditorState::DRAG: {
-        updateTemplateNodes();
         updateDragAndDrop();
+        if(_showTemplates){
+            updateTemplateNodes();
+        }
+        else {
+            deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        }
 		break;
 	}
 	case WaveEditorState::REMOVE: {
@@ -109,9 +114,9 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     
     _levelEditNode->removeChildByName("label");
     std::string str = getStateAsString();
-    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne"));
+    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne_40"));
     label->setPosition(400,20);
-    label->setScale(0.5);
+    label->setScale(0.6);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
 }
@@ -292,6 +297,16 @@ void WaveEditorController::checkKeyboardInput() {
             _state = WaveEditorState::AI_TOGGLE;
             return;
         }
+        if(key == KeyCode::NUM_1){
+            if(_state == WaveEditorState::DRAG){
+                _showTemplates = true;
+            }
+        }
+        if(key == KeyCode::NUM_2){
+            if(_state == WaveEditorState::DRAG){
+                _showTemplates = false;
+            }
+        }
     }
 
 }
@@ -363,9 +378,10 @@ void WaveEditorController::templateButtonListenerFunction(const std::string& nam
 std::shared_ptr<Button> WaveEditorController::getButtonFromTemplate(float x, float y,
                                                                     std::shared_ptr<TemplateWaveEntry> templ, ElementType color)
 {
-    auto activeAnim = ActiveAnimation::alloc();
     auto objectData = _world->getObjectData(templ->getObjectKey());
     auto animData = _world->getAnimationData(objectData->getAnimationKey(color));
+    
+    auto activeAnim = ActiveAnimation::alloc(objectData->getAnimationScale());
     activeAnim->setAnimationData(animData);
     auto button = Button::alloc(activeAnim->getAnimationNode());
     button->setPosition(x, y);
@@ -386,7 +402,7 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     // TODO replace this hacky multiply by physics scale
     Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
     
-    auto activeAnim = ActiveAnimation::alloc();
+    auto activeAnim = ActiveAnimation::alloc(obj->getAnimationScale());
     auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
     activeAnim->setAnimationData(animData);
     
@@ -400,12 +416,12 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     if (isNonUniform){
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY) * activeAnim->getAnimationScale();
         return animationScale;
     } else {
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        float animationScale = std::max(scaleX,scaleY);
+        float animationScale = std::max(scaleX,scaleY) * activeAnim->getAnimationScale();
         return Vec2::Vec2(animationScale,animationScale);
     }
 
@@ -414,13 +430,13 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
 std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is in physicsCoordinates of the owner of the zone
                                                            float y, // this is in physicsCoordinates of the owner of the zone
                                                            std::string zoneKey, ElementType parentColor){
-    auto zoneAnim = ActiveAnimation::alloc();
     auto zoneD = _world->getZoneData(zoneKey);
     switch(zoneD->type){
         case ZoneType::STATIC:
         {
             auto staticZoneD =  std::dynamic_pointer_cast<StaticZoneData>(zoneD);
             auto zoneObjData = _world->getObjectData(staticZoneD->objectKey);
+            auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
             ElementType zoneElement = Element::elementDataTypeToElement(staticZoneD->elementType,parentColor);
             auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(staticAnimD);
@@ -446,6 +462,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
                 auto zoneObjData = _world->getObjectData(zEntry->objectKey);
                 ElementType zoneElement = Element::elementDataTypeToElement(zEntry->elementType,parentColor);
                 auto zEntryAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
+                auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
                 zoneAnim->setAnimationData(zEntryAnimD);
                 std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
                 Vec2 zonePos = zEntry->getPosition(Vec2::Vec2(x,y),rotateZoneD->radius);
@@ -472,6 +489,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             
             auto pulseZoneD =  std::dynamic_pointer_cast<PulseZoneData>(zoneD);
             auto zoneObjData = _world->getObjectData(pulseZoneD->objectKey);
+            auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
             ElementType zoneElement = Element::elementDataTypeToElement(pulseZoneD->elementType,parentColor);
             auto pulseAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(pulseAnimD);
@@ -520,8 +538,8 @@ void WaveEditorController::updateTemplateNodes() {
     deactivateAndClear(templateNode);
     for (int i = 0; i < _templates.size(); i++) {
         auto button = getButtonFromTemplate(30, 500 - (i * 75), _templates.at(i), ElementType::BLUE);
-        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.3);
+        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.35);
         label->setPosition(90, 500 - (i * 75));
         button->setListener(
         [=](const std::string& name, bool down) {
@@ -530,6 +548,7 @@ void WaveEditorController::updateTemplateNodes() {
         );
         button->activate(getUid());
         templateNode->addChildWithTag(button, i);
+        templateNode->setZOrder(5000);
         templateNode->addChild(label);
     }
 }
@@ -553,8 +572,8 @@ void WaveEditorController::updateWaveEntryNodes(){
             entryNode->addChild(zoneNode,0);
         }
 
-        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.18);
+        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.25);
         label->setPosition(pos.x, pos.y);
         
         button->setListener(
@@ -608,8 +627,8 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
     
-    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne"));
-    label->setScale(0.4);
+    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne_40"));
+    label->setScale(0.5);
     label->setPosition(500,550);
     _levelEditNode->addChild(label);
     
@@ -659,6 +678,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     _colorChanged = false;
     _aiChanged = false;
     _entryRemoved = false;
+    _showTemplates = true;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");
     if (reader == nullptr) {
@@ -666,7 +686,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     }
 	std::shared_ptr<JsonValue> json = reader->readJson();
     
-    for(std::string tName :json->get("templates")->asStringArray()){
+    for(std::string tName :json->get("template names")->asStringArray()){
         auto temp = world->getAssetManager()->get<TemplateWaveEntry>(tName);
         _templates.push_back(temp);
     }

@@ -8,7 +8,7 @@
 class MenuEvent : public Event {
 public:
 	enum class MenuEventType : int {
-		PAUSEGAME,RESETGAME
+		PAUSEGAME, RESETGAME, CHAPTERSWITCH
 	};
 
 	MenuEventType _menuEventType;
@@ -59,6 +59,22 @@ public:
         std::shared_ptr<ResetGameEvent> result = std::make_shared<ResetGameEvent>();
         return (result->init() ? result : nullptr);
     }
+};
+
+class ChapterSwitchEvent : public MenuEvent {
+public:
+	ChapterSwitchEvent() : MenuEvent() {}
+
+	bool init() {
+		MenuEvent::init();
+		_menuEventType = MenuEventType::CHAPTERSWITCH;
+		return true;
+	}
+
+	static std::shared_ptr<ChapterSwitchEvent> alloc() {
+		std::shared_ptr<ChapterSwitchEvent> result = std::make_shared<ChapterSwitchEvent>();
+		return (result->init() ? result : nullptr);
+	}
 };
 
 

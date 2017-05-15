@@ -16,6 +16,7 @@
 #include "Event.hpp"
 #include "GameState.hpp"
 #include "Path.hpp"
+#include "World.hpp"
 
 enum PathControllerState
 {
@@ -45,6 +46,8 @@ public:
     //Do not start looking for input until player object has spawned
     bool _spawnStart;
     
+    std::shared_ptr<World> _world;
+    
     PathControllerState controllerState;
 
 	std::shared_ptr<Path> _path;
@@ -52,10 +55,14 @@ public:
 	std::shared_ptr<cugl::Node> _pathSceneNode;
 
 	bool _wasPressed;
+    
+    std::shared_ptr<cugl::Texture> _mainTexture;
+    
+    std::shared_ptr<cugl::Texture> _capTexture;
 
 	void addPathToScene(std::shared_ptr<GameState> state);
 
-	void updateMinMax(cugl::Vec2 vec);
+    void updateMinMax(cugl::Vec2 vec);
     
     
     bool isOnCooldown();
@@ -74,15 +81,20 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep,std::shared_ptr<GameState> state);
+    virtual void update(float timestep, std::shared_ptr<GameState> state);
     
     void dispose();
+    
+    void setTextures(std::shared_ptr<cugl::Texture> main, std::shared_ptr<cugl::Texture> cap){
+        _mainTexture = main;
+        _capTexture = cap;
+    }
 
-	virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
 
-	static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<PathController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
 		std::shared_ptr<PathController> result = std::make_shared<PathController>();
-		return (result->init(state) ? result : nullptr);
+		return (result->init(state, world) ? result : nullptr);
     }
 };
 

@@ -8,28 +8,10 @@
 
 #include "MenuScreenData.hpp"
 using namespace cugl;
-using std::string;
-
-bool MenuEntry::init(const std::shared_ptr<cugl::JsonValue>& json)
-{
-	menuKey = json->getString("menuKey");
-	menuBackgroundKey = json->getString("menuBackgroundKey");
-	_uiEntryKeys = (json->get("UIEntries")->asStringArray());
-	return true;
-}
-
-std::shared_ptr<cugl::JsonValue> MenuEntry::toJsonValue()
-{
-	return std::shared_ptr<cugl::JsonValue>();
-}
 
 std::shared_ptr<JsonValue> MenuScreenData::toJsonValue()
 {
 	return JsonValue::allocNull();
-}
-
-std::string MenuScreenData::serialize(){
-    return toJsonValue()->toString();
 }
 
 bool MenuScreenData::preload(const std::string& file){
@@ -40,35 +22,26 @@ bool MenuScreenData::preload(const std::string& file){
 }
 
 bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
-	init();
-	for (int i = 0; i < json->size(); i++) {
-		
-		auto child = json->get(i);
-		if (child->key() == "startMenuKey")
-		{
-			_startMenuKey = child->asString();
-			continue;
-		}
-		auto entry = MenuEntry::alloc(child);
-		addMenuEntry(entry);
-	}
+    Data::preload(json);
+    std::shared_ptr<JsonValue> fontMapJson = json->get("fontMap");
     
+    std::map<std::string,std::string> tempFontMap;
+    if (fontMapJson != nullptr){
+        for (int i =0;i < fontMapJson->size();i++){
+            std::shared_ptr<JsonValue> jsonEntry = fontMapJson->get(i);
+            std::string uiDataFontKey = jsonEntry->key();
+            std::string actualFontKey = fontMapJson->getString(jsonEntry->key());
+            tempFontMap.insert(std::make_pair(uiDataFontKey,actualFontKey));
+        }
+    }
+    
+	std::string mbKey = json->getString("menuBackgroundKey");
+	std::vector<std::string> entries = json->get("UIEntries")->asStringArray();
+	init(mbKey, entries,tempFontMap);
 	return true;
 }
 
-bool MenuScreenData::materialize(){
-    return true;
-}
-
-void MenuScreenData::addMenuEntry(std::shared_ptr<MenuEntry> w) {
-    _menuEntries[w->menuKey] = w;
-}
-
-std::map<string, std::shared_ptr<MenuEntry>> MenuScreenData::getMenuEntries() {
-    return _menuEntries;
-}
-
-std::shared_ptr<MenuEntry> MenuScreenData::getEntry(string key) {
-    return _menuEntries[key];
+void MenuScreenData::addUIEntry(std::string s) {
+	_uiEntryKeys.push_back(s);
 }
 

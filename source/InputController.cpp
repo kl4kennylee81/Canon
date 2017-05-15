@@ -12,21 +12,31 @@
 using namespace cugl;
 
 bool InputController::_touch;
-bool InputController::_wasPressed;
 bool InputController::_isPressed;
+Vec2 InputController::_curPos;
+
+bool InputController::_wasPressed;
+Vec2 InputController::_prevPos;
 
 void InputController::setTouch(bool touch) {
     InputController::_touch = touch;
 }
 
+/**
+ * Returns the screen coordinates of the input. If the input is a 
+ * touch screen, return the screen coordinates of the first touch.
+ */
 cugl::Vec2 InputController::getInputVector() {
     if (_touch) {
-        auto set = Input::get<Touchscreen>()->touchSet();
-        return set.size() > 0 ? Input::get<Touchscreen>()->touchPosition(set.at(0)) : Vec2::Vec2();
+        return _curPos;
     }
     else {
         return Input::get<Mouse>()->pointerPosition();
     }
+}
+
+cugl::Vec2 InputController::getPrevVector(){
+    return _prevPos;
 }
 
 bool InputController::getIsPressed() {
@@ -40,10 +50,19 @@ bool InputController::getIsPressedUp(){
 void InputController::update(){
     _wasPressed = _isPressed;
     if (_touch) {
-        _isPressed = Input::get<Touchscreen>()->touchSet().size() > 0;
+        auto set = Input::get<Touchscreen>()->touchSet();
+        _isPressed = set.size() > 0;
+        if (_isPressed){
+            _prevPos = _curPos;
+            _curPos = Input::get<Touchscreen>()->touchPosition(set.at(0));
+        }
     }
     else {
         _isPressed = Input::get<Mouse>()->buttonDown().hasLeft();
+        if (_isPressed){
+            _prevPos = _curPos;
+            _curPos = Input::get<Mouse>()->pointerPosition();
+        }
     }
 }
 

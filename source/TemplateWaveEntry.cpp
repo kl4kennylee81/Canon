@@ -10,24 +10,25 @@ bool TemplateWaveEntry::updateFile() {
 
 
 bool TemplateWaveEntry::init(const std::shared_ptr<cugl::JsonValue>& json) {
-	return true;
+	return preload(json);
 }
 
 
-bool TemplateWaveEntry::init(std::string name, std::string obKey,
-     std::vector<std::string> aiKeys, std::vector<std::string> zoneKeys,float spawnTime)
+bool TemplateWaveEntry::init(std::string name, std::string obKey, std::vector<std::string> aiKeys,
+    std::vector<std::string> zoneKeys,float spawnTime, std::string bullet)
 {
 	this->name = name;
     this->objectKey = obKey;
 	this->aiKeys = aiKeys;
 	this->zoneKeys = zoneKeys;
     this->_spawnTime = spawnTime;
+    this->bulletKey = bullet;
 	return true;
 }
 
 std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
 {
-    std::shared_ptr<JsonValue> object = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> object = Data::toJsonValue();
     object->appendChild("name", JsonValue::alloc(name));
     
     std::shared_ptr<JsonValue> ais = JsonValue::allocArray();
@@ -45,6 +46,7 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
         zones->appendChild(JsonValue::alloc(zoneKeys.at(i)));
     }
     if (zoneKeys.size() > 0) object->appendChild("zoneKeys", zones);
+	
     return object;
 }
 
@@ -68,8 +70,15 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     if (json->has("zoneKeys")) {
         zones = json->get("zoneKeys")->asStringArray();
     }
+    
+    std::string bk = "";
+    if (json->has("bulletKey")) {
+        bk = json->getString("bulletKey");
+    }
+    
     float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
-    init(name, ob, ais, zones,sTime);
+	Data::preload(json);
+    init(name, ob, ais, zones, sTime, bk);
     return true;
 }
 

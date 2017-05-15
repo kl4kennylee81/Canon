@@ -98,22 +98,42 @@ void LevelEditorController::update(float timestep,std::shared_ptr<MenuGraph> men
 void LevelEditorController::loadLevel(std::string file){
     _levelData = LevelData::alloc();
     _world->setLevelData(_levelData);
+
+	std::string delim = "";
+	std::string dirprefix = "";
+
+#ifdef _WIN32
+	delim = "\\";
+	dirprefix = "";
+#elif __APPLE__
+	delim = "/";
+	dirprefix = delim;
+#endif
     
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    std::string canonDir = Util::join(vec,vec.size()-2,'/');
-    auto reader = JsonReader::alloc("/"+canonDir+"/assets/json/"+file);
+#if defined (CU_TOUCH_SCREEN)
+    std::string editorFileStr = Application::get()->getAssetDirectory()+"json"+delim+file;
+#else
+    std::vector<std::string> vec = Util::split(__FILE__, delim);
+    std::string canonDir = Util::join(vec,vec.size()-2, delim);
+    std::string editorFileStr = dirprefix+canonDir+delim+"assets"+delim+"json"+delim+file;
+#endif
+    std::cout << editorFileStr << std::endl;
+
+    auto reader = JsonReader::alloc(editorFileStr);
     if(reader == nullptr) {
         _waveEditorController->setTemplates({"homing","horizontal","vertical"});
         return;
     }
     auto json = reader->readJson();
     
+    _name = json->getString("name");
     _waveCounter = json->getInt("counter");
     
-    auto templates = json->get("templates");
+    auto templates = json->get("template names");
     _waveEditorController->setTemplates(templates->asStringArray());
     
-    _levelData->preload(json->get("level"));
+    std::shared_ptr<JsonValue> levels = json->get("levels");
+    _levelData->preload(levels->get(0));
     
     std::shared_ptr<JsonValue> waves = json->get("waves");
     for(int i = 0; i < _levelData->getNumberWaves(); i++){
@@ -122,20 +142,70 @@ void LevelEditorController::loadLevel(std::string file){
         _world->_waveData[_levelData->getWaveKey(i)] = waveData;
     }
     
+    ensureNameMatch();
+    saveLevel();
+}
+
+void setNameWaveDataEntries(std::shared_ptr<WaveData> wd,std::string waveName){
+    if (wd == nullptr){
+        return;
+    }
+    
+    wd->key = waveName;
+    for (int i = 0; i< wd->getWaveEntries().size();++i){
+        std::string weStr = waveName + " object " + std::to_string(i + 1);
+        wd->getWaveEntries().at(i)->key = weStr;
+    }
+}
+
+
+void LevelEditorController::ensureNameMatch() {
+    // update the key of the leveData
+    _levelData->key = _name;
+    
+    for(int i = 0; i < _levelData->getNumberWaves(); i++){
+        std::string key = _levelData->getWaveKey(i);
+        std::string newKey = key;
+        std::vector<std::string> arr = Util::split(key, ' ');
+        if(key.compare(arr.at(0)) != 0) {
+            if(arr.at(0).compare("wave") == 0) {
+                newKey = _name + " " + arr.at(0) + " " + Util::appendLeadingZero(2,arr.at(1));
+            }
+            else {
+                newKey = _name + " " + arr.at(1) + " " +  Util::appendLeadingZero(2,arr.at(2));
+            }
+            
+            // update levelEntry Key
+            std::shared_ptr<LevelEntry> levelEntry = _levelData->getLevelEntry(i);
+            levelEntry->key = newKey;
+            
+            // update the waveData Key
+            std::shared_ptr<WaveData> wd = _world->getWaveData(key);
+            _world->_waveData[newKey] = wd;
+            setNameWaveDataEntries(wd, newKey);
+            _levelData->setWaveKey(i, newKey);
+        }
+    }
 }
 
 void LevelEditorController::saveLevel() {
+    ensureNameMatch();
+    
     auto json = JsonValue::allocObject();
     
     auto templates = JsonValue::allocArray();
     for(auto it: _waveEditorController->getTemplates()){
         templates->appendValue(it->getName());
     }
+    json->appendValue("name", _name);
     json->appendValue("counter", long(_waveCounter));
                       
-    json->appendChild("templates", templates);
+    json->appendChild("template names", templates);
     
-    json->appendChild("level", _levelData->toJsonValue());
+    auto levels = JsonValue::allocObject();
+    levels->appendChild(_name, _levelData->toJsonValue());
+    
+    json->appendChild("levels", levels);
     
     auto waves = JsonValue::allocObject();
     for(int i = 0; i < _levelData->getNumberWaves(); i++){
@@ -199,14 +269,14 @@ void LevelEditorController::setSceneGraph() {
 }
 
 void LevelEditorController::addNewWave() {
-    std::string waveName = "wave "+ std::to_string(increment());
+    std::string waveName = _name+" wave "+ Util::appendLeadingZero(2,std::to_string(increment()));
 	std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(waveName, 180);
     _world->_waveData[waveName] = WaveData::alloc();
 	_levelData->addLevelEntry(entry);
 }
 
 void LevelEditorController::copyWave(int index) {
-    std::string newWaveName = "wave "+ std::to_string(increment());
+    std::string newWaveName = _name+" wave "+ Util::appendLeadingZero(2,std::to_string(increment()));
     std::shared_ptr<LevelEntry> entry = LevelEntry::alloc(newWaveName, 180);
     _world->_waveData[newWaveName] = WaveData::alloc();
     _levelData->addLevelEntry(entry);
@@ -359,13 +429,15 @@ void LevelEditorController::updateWaveNodes() {
         );
         timeButton->activate(getUid());
         
-        auto label = Label::alloc(_levelData->getWaveKey(i), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.17);
+        std::string waveKey = _levelData->getWaveKey(i);
+        std::vector<std::string> vec = Util::split(waveKey, ' ');
+        auto label = Label::alloc(vec.at(vec.size()-1), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.3);
         label->setPosition(200 + 60 * i, 230);
         
         int time = int(_levelData->getTime(i));
-        auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne"));
-        timeLabel->setScale(0.2);
+        auto timeLabel = Label::alloc(std::to_string(time), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        timeLabel->setScale(0.3);
         timeLabel->setForeground(Color4::PAPYRUS);
         timeLabel->setPosition(200 + 60 * i, 200);
         

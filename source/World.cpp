@@ -72,81 +72,6 @@ std::string World::serialize(std::string levelName)
 }
 
 void World::populate() {
-//    this->_isSandbox = true;
-//	_levelData = LevelData::alloc();
-//	std::mt19937 rng;
-//	rng.seed(std::random_device()());
-//	// distribution width and height
-//
-//	std::uniform_int_distribution<std::mt19937::result_type> dist9(1, 9);
-//	std::uniform_int_distribution<std::mt19937::result_type> distWidth(0, GAME_SCENE_WIDTH);
-//	std::uniform_int_distribution<std::mt19937::result_type> distHeight(0, GAME_SCENE_WIDTH*GAME_SCENE_ASPECT);
-//
-//	for (int i = 0; i < 10; i++) {
-//        std::shared_ptr<LevelEntry> e = LevelEntry::alloc("level1wave"+std::to_string(dist9(rng)), TIME_BETWEEN_SPAWN);
-//		_levelData->addLevelEntry(e);
-//	}
-//    
-//    // create player characters
-//    // TODO fix when template player characters are created
-//    auto player1 = WaveEntry::alloc("playerChar1", "", 500, 200, Element::BLUE, {});
-//    _levelData->addPlayerChars(player1);
-//    
-//    auto player1Obj = _assets->get<ObjectData>("playerChar1");
-//    _objectData.insert({"playerChar1",player1Obj});
-//    
-//    auto player1Anim = _assets->get<AnimationData>("blueCharAnimation");
-//    _animationData.insert({ "blueCharAnimation",player1Anim });
-//    
-//    auto player2Obj = _assets->get<ObjectData>("playerChar2");
-//    _objectData.insert({"playerChar2",player2Obj});
-//    
-//    auto player2Anim = _assets->get<AnimationData>("redCharAnimation");
-//    _animationData.insert({ "redCharAnimation",player2Anim });
-//    
-//    // TODO fix when templates are made
-//    auto player2 = WaveEntry::alloc("playerChar2", "", 550, 250, Element::GOLD, {});
-//    _levelData->addPlayerChars(player2);
-//
-//    std::shared_ptr<WaveEntry> we;
-//	for (int i = 1; i < 10; i++) {
-//		auto wd = WaveData::alloc();
-//		for (int j = 0; j<NUMBER_SPAWNS; j++) {
-//			std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-//            if (dist2(rng) == 1){
-//                we = WaveEntry::alloc("object1", "vertical", distWidth(rng), distHeight(rng),Element::BLUE,{});
-//            } else {
-//                we = WaveEntry::alloc("object2", "homing", distWidth(rng), distHeight(rng),Element::GOLD,{});
-//            }
-//			wd->addWaveEntry(we);
-//		}
-//		_waveData.insert(std::make_pair("level1wave"+std::to_string(i), wd));
-//	}
-//    
-//
-//	auto od1 = ObjectData::alloc("shape1","blueEnemyAnimation");
-//	_objectData.insert(std::make_pair("object1", od1));
-//
-//    auto od2 = ObjectData::alloc("shape1", "redEnemyAnimation");
-//	_objectData.insert(std::make_pair("object2", od2));
-//
-//	std::shared_ptr<ShapeData> sd = _assets->get<ShapeData>("shape1");
-//	_shapeData.insert({"shape1",sd });
-//
-//	std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
-//	_animationData.insert({ "blueEnemyAnimation",blueEnemy });
-//
-//	std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
-//	_animationData.insert({ "redEnemyAnimation",yellowEnemy });
-//    
-//	std::shared_ptr<AIData> homingAI = _assets->get<AIData>("homing");
-//    _aiData.insert({"homing",homingAI});
-//	std::shared_ptr<AIData> squareAI = _assets->get<AIData>("square");
-//    _aiData.insert({"square",squareAI});
-//    
-//
-//    std::shared_ptr<ZoneData> staticZone = _assets->get<ZoneData>("staticZone");
-//    _zoneData.insert({"staticZone", staticZone});
 }
 
 bool World::init(std::shared_ptr<GenericAssetManager> assets, std::string levelName){
@@ -170,13 +95,6 @@ std::shared_ptr<AnimationData> World::getAnimationData(std::string aKey){
         return _animationData.at(aKey);
     }
     return _assets->get<AnimationData>(aKey);
-}
-
-std::shared_ptr<PathData> World::getPathData(std::string pathKey){
-    if (_isSandbox && _pathData.count(pathKey) > 0){
-        return _pathData.at(pathKey);
-    }
-    return _assets->get<PathData>(pathKey);
 }
 
 std::shared_ptr<ShapeData> World::getShapeData(std::string shapeKey){
@@ -212,6 +130,15 @@ std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
     return getAIData(we->getAIKey());
 }
 
+std::shared_ptr<BulletData> World::getBulletData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if(templData == nullptr){
+        return nullptr;
+    }
+    return getBulletData(templData->bulletKey);
+}
+
+
 std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
     std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
     if (templData == nullptr) {
@@ -243,6 +170,13 @@ std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
     return _assets->get<ZoneData>(zoneKey);
 }
 
+std::shared_ptr<BulletData> World::getBulletData(std::string bulletKey){
+    if (_isSandbox && _bulletData.count(bulletKey) > 0){
+        return _bulletData.at(bulletKey);
+    }
+    return _assets->get<BulletData>(bulletKey);
+}
+
 std::shared_ptr<SoundData> World::getSoundData(std::string soundKey){
     if (_isSandbox && _soundData.count(soundKey) > 0){
         return _soundData.at(soundKey);
@@ -266,24 +200,9 @@ bool World::isValid(){
     return _levelData->isValid();
 }
 
-void World::presetPlayerCharacters(){
-    if(isValid()){
-        return;
-    }
-    // TODO hacky function need to remove when a better solution comes up
-    // better solution will be when initialize level stub give default value for the player characters
-    
-    // add two player characters
-    std::shared_ptr<WaveEntry> playerChar2 = WaveEntry::alloc(600,250,ElementType::GOLD,"playerCharMale", "");
-    _levelData->addPlayerChars(playerChar2);
-    
-    std::shared_ptr<WaveEntry> playerChar1 = WaveEntry::alloc(400,250,ElementType::BLUE,"playerCharFemale", "");
-    _levelData->addPlayerChars(playerChar1);
-    
-    return;
-}
 
 void World::copyWave(std::string copiedWaveKey, std::string newWaveKey){
-    _waveData.at(newWaveKey) = _waveData.at(copiedWaveKey);
+    auto newWaveData = WaveData::alloc(getWaveData(copiedWaveKey));
+    _waveData.at(newWaveKey) = newWaveData;
 }
 

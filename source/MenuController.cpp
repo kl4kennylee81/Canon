@@ -87,27 +87,28 @@ void MenuController::update(float timestep) {
             continue;
         }
         
-        // check if the uiElement is a button
-        if (std::dynamic_pointer_cast<Button>(uiElement->getNode()) == nullptr){
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        
+        if (button == nullptr){
             continue;
         }
         
-        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        Vec2 vec = InputController::getPrevVector();
         
         // check if this button was clicked
-        if (!button->containsScreen(InputController::getInputVector())){
+        if (!button->containsScreen(vec)){
             continue;
         }
         
         // execute the appropriate action
         switch(uiElement->getAction()->type){
-            case ButtonActionType::MENUCHANGE:
+            case ButtonActionType::MENU_CHANGE:
             {
                 std::shared_ptr<MenuChangeButtonAction> action = std::dynamic_pointer_cast<MenuChangeButtonAction>(uiElement->getAction());
                 getMenuGraph()->setActiveMenu(action->menuTarget);
                 break;
             }
-            case ButtonActionType::MODECHANGE:
+            case ButtonActionType::MODE_CHANGE:
             {
                 std::shared_ptr<ModeChangeButtonAction> action = std::dynamic_pointer_cast<ModeChangeButtonAction>(uiElement->getAction());
                 getMenuGraph()->setNextMode(action->modeTarget);
@@ -121,10 +122,12 @@ void MenuController::update(float timestep) {
                     case Mode::MAIN_MENU:
                     {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
+                        break;
                     }
                     case Mode::LEVEL_EDIT:
                     {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
+                        break;
                     }
                     default:
                     {
@@ -134,7 +137,7 @@ void MenuController::update(float timestep) {
                 
                 break;
             }
-            case ButtonActionType::FXTRIGGER:
+            case ButtonActionType::FX_TRIGGER:
             {
                 std::shared_ptr<FxTriggerButtonAction> action = std::dynamic_pointer_cast<FxTriggerButtonAction>(uiElement->getAction());
 
@@ -160,10 +163,25 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
-				}
+					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
+					{
+						std::string cData = action->chapterData;
+						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
+						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
+						getMenuGraph()->populateChapter(_assets, cData);
+						getMenuGraph()->setActiveMenu(action->nextScreen);
+						break;
+					}
+					default:
+					{
+						break;
+					}
+                }
                 break;
             }
+            break;
         }
+        break;
     }
     
 }
@@ -184,10 +202,12 @@ bool MenuController::init(std::shared_ptr<MenuGraph> menuGraph){
 }
 
 bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
-                          std::shared_ptr<MenuGraph> menuGraph){
+                          std::shared_ptr<MenuGraph> menuGraph,
+						  std::shared_ptr<GenericAssetManager> assets){
     _scene = scene;
     _menuGraph = menuGraph;
     _selectedLevel = "";
+	_assets = assets;
     this->activate();
     return true;
 }

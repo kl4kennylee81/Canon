@@ -21,9 +21,9 @@ bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	else if (buttonType == "fxTrigger")
     {
         auto buttonJson = json->get("buttonAction");
-        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"));
+        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"),buttonJson->getString("chapterData"));
     }
-
+    fontKey = json->getString("fontKey");
 	uiBackgroundKey = json->getString("uiBackgroundKey");
 	buttonLabel = json->getString("buttonLabel");
     type = UIDataType::BUTTON;
@@ -46,53 +46,54 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	return true;
 }
 
-std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-
-
-    // TODO cleanup this function
+std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
+    
 	std::shared_ptr<Button> button;
-	std::shared_ptr<Label> label;
 
 	if (uiBackgroundKey != "") {
 		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
 		button = Button::alloc(buttonTexture);
+        button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
+        
+        // scale to width and height
+        cugl::Size size = button->getSize();
+        button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
 	}
-	else if (buttonLabel != "") {
-		label = Label::alloc(buttonLabel, assets->get<Font>("Charlemagne"));
+	
+    // we put the label as a seperate entity from the button so we don't scale the font
+    // we also want labels to be centered like textData
+    else if (buttonLabel != "") {
+        std::shared_ptr<Label> label;
+        std::string actualFont = fontMap.at(this->fontKey);
+		label = Label::alloc(buttonLabel, assets->get<Font>(actualFont));
 		label->setForeground(Color4::WHITE);
+        
 		button = Button::alloc(label);
-	}
-	else {
-		label = Label::alloc("stub button", assets->get<Font>("Charlemagne"));
-		label->setForeground(Color4::WHITE);
-		button = Button::alloc(label);
-	}
-
-	button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-	button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
-
-	// scale to width and height
-	cugl::Size size = button->getSize();
-	button->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
+        float labelX = (this->width/2.0 + this->x) * GAME_SCENE_WIDTH;
+        float labelY = (this->height/2.0 + this->y) * Util::getGameSceneHeight();
+        
+        button->setPosition(labelX,labelY);
+        button->setAnchor(Vec2::ANCHOR_MIDDLE);
+    }
 
     return button;
 }
 
-std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
-    std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(fontKey));
+std::shared_ptr<cugl::Node> TextUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
+    std::string actualFont = fontMap.at(this->fontKey);
+    std::shared_ptr<Label> label = Label::alloc(textValue, assets->get<Font>(actualFont));
 	// maybe consider having option to set color in data file
 	label->setForeground(Color4::WHITE);
-	label->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	label->setAnchor(Vec2::ANCHOR_MIDDLE);
     label->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
-
-	cugl::Size size = label->getSize();
-	label->setScale(Vec2(this->width * GAME_SCENE_WIDTH / size.width, this->height * Util::getGameSceneHeight() / size.height));
     
-    // scale to width and height
+    // don't scale to width and height to keep font size uniform
+    
     return label;
 }
 
-std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+std::shared_ptr<cugl::Node> ImageUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
     std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(this->textureKey));
 	imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     imageNode->setPosition(Vec2(this->x * GAME_SCENE_WIDTH , this->y * Util::getGameSceneHeight()));
@@ -126,6 +127,7 @@ bool UIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	y = json->getFloat("y");
 	width = json->getFloat("width");
 	height = json->getFloat("height");
+	Data::preload(json);
 	return true;
 }
 
@@ -133,6 +135,6 @@ bool UIData::materialize() {
 	return true;
 }
 
-std::shared_ptr<cugl::Node> UIData::dataToNode(std::shared_ptr<GenericAssetManager> assets){
+std::shared_ptr<cugl::Node> UIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
     return Node::alloc();
 }

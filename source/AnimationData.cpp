@@ -35,7 +35,7 @@ std::shared_ptr<JsonValue> AnimationState::toJsonValue()
 }
 
 std::shared_ptr<JsonValue> AnimationData::toJsonValue(){
-	std::shared_ptr<JsonValue> animData = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> animData = Data::toJsonValue();
 	animData->appendChild("texture", JsonValue::alloc(texture->getName()));
 	animData->appendChild("rows", JsonValue::alloc(static_cast<float>(rows)));
 	animData->appendChild("cols", JsonValue::alloc(static_cast<float>(cols)));
@@ -104,6 +104,7 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         
         _actionmap.insert({action,animationupdate});
     }
+	Data::preload(json);
 	return true;
 }
 

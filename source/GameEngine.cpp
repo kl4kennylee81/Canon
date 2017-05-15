@@ -8,8 +8,15 @@
 
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
+#include "SaveData.hpp";
+#include "SaveLevelData.hpp"
+#include "SaveChapterData.hpp"
+#include "ChapterSelectData.hpp"
+#include "ChapterListData.hpp"
+#include "LevelSelectData.hpp"
 #include "MenuScreenData.hpp"
-#include "SaveGameData.hpp"
+#include "MenuListData.hpp"
+#include "MenuEvent.hpp"
 #include "ZoneLoader.hpp"
 #include "AILoader.hpp"
 #include "InputController.hpp"
@@ -17,6 +24,11 @@
 #include "UIDataLoader.hpp"
 #include "Util.hpp"
 #include <memory>
+#include <iostream>
+#include <fstream>
+#include "BulletData.hpp"
+#include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -33,18 +45,17 @@ using namespace cugl;
 bool GameEngine::_touch;
 
 
-
-void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+void loadFilesApple(const std::shared_ptr<GenericAssetManager> &assets, std::string dirToRead, std::string path) {
 #ifdef __APPLE__
 	DIR *dir;
 	struct dirent *ent;
-	if ((dir = opendir(templateDir.c_str())) != NULL) {
+	if ((dir = opendir(dirToRead.c_str())) != NULL) {
 		/* print all the files and directories within directory */
 		while ((ent = readdir(dir)) != NULL) {
 			if (ent->d_name[0] != '.') {
-				std::string templatePath = TEMPLATE_PATH;
-				templatePath.append(ent->d_name);
-				assets->loadDirectory(templatePath);
+				std::string pathToLoad = path;
+				pathToLoad.append(ent->d_name);
+				assets->loadDirectory(pathToLoad);
 			}
 		}
 		closedir(dir);
@@ -52,7 +63,7 @@ void loadTemplateFilesApple(const std::shared_ptr<GenericAssetManager> &assets, 
 #endif
 }
 
-void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir) {
+void loadFilesWindows(const std::shared_ptr<GenericAssetManager> &assets, std::string templateDir, std::string path) {
 #ifdef _WIN32
 	WIN32_FIND_DATA file;
 	HANDLE hndl = FindFirstFile((templateDir + "*").c_str(), &file);
@@ -64,7 +75,7 @@ void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets
 				// directory logic
 			}
 			else {
-				std::string templatePath = TEMPLATE_PATH;
+				std::string templatePath = path;
 				templatePath.append(filename);
 				assets->loadDirectory(templatePath);
 			}
@@ -77,7 +88,12 @@ void loadTemplateFilesWindows(const std::shared_ptr<GenericAssetManager> &assets
 
 void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     // You have to attach the individual loaders for each asset type
-    assets->attach<SaveGameData>(GenericLoader<SaveGameData>::alloc()->getHook());
+    assets->attach<SaveLevelData>(GenericLoader<SaveLevelData>::alloc()->getHook());
+	assets->attach<SaveChapterData>(GenericLoader<SaveChapterData>::alloc()->getHook());
+	assets->attach<SaveData>(GenericLoader<SaveData>::alloc()->getHook());
+	assets->attach<ChapterListData>(GenericLoader<ChapterListData>::alloc()->getHook());
+	assets->attach<ChapterSelectData>(GenericLoader<ChapterSelectData>::alloc()->getHook());
+	assets->attach<LevelSelectData>(GenericLoader<LevelSelectData>::alloc()->getHook());
     assets->attach<Texture>(TextureLoader::alloc()->getHook());
     assets->attach<Font>(FontLoader::alloc()->getHook());
     assets->attach<Sound>(SoundLoader::alloc()->getHook());
@@ -85,7 +101,6 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<LevelData>(GenericLoader<LevelData>::alloc()->getHook());
     assets->attach<WaveData>(GenericLoader<WaveData>::alloc()->getHook());
     assets->attach<ObjectData>(GenericLoader<ObjectData>::alloc()->getHook());
-    assets->attach<PathData>(GenericLoader<PathData>::alloc()->getHook());
     assets->attach<ShapeData>(GenericLoader<ShapeData>::alloc()->getHook());
     assets->attach<AnimationData>(GenericLoader<AnimationData>::alloc()->getHook());
     assets->attach<MenuScreenData>(GenericLoader<MenuScreenData>::alloc()->getHook());
@@ -94,6 +109,10 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<ZoneData>(ZoneLoader::alloc()->getHook());
     assets->attach<SoundData>(GenericLoader<SoundData>::alloc()->getHook());
     assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
+	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
+    assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
+    assets->attach<TutorialLevelData>(GenericLoader<TutorialLevelData>::alloc()->getHook());
+    assets->attach<TutorialStepData>(GenericLoader<TutorialStepData>::alloc()->getHook());
 }
 
 /**
@@ -133,35 +152,34 @@ void GameEngine::onStartup() {
     // This reads the given JSON file and uses it to load all other assets
 
     _assets->loadDirectory("json/assets.json");
-    _assets->loadDirectory("json/animations.json");
     _assets->loadDirectory("json/sounds.json");
-	_assets->loadDirectory("json/ai.json");
-	_assets->loadDirectory("json/menu.json");
+	_assets->loadDirectory("json/menuList.json");
+	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
-    _assets->loadDirectory("json/level.json");
+	_assets->loadDirectory("json/randomMenuAssets.json");
     
-    /** THIS IS TEMPORARY CODE TO SHOWCASE EXAMPLE */
+    _assets->loadDirectory("json/tutorials/tutorial1.json");
     
-    std::string templateDir = Application::get()->getAssetDirectory();
-    templateDir.append(TEMPLATE_PATH);
     
-    // std::cout << "current file directory: "<< __FILE__ << std::endl;
-    std::vector<std::string> vec = Util::split(__FILE__, '/');
-    
-    // std::cout << "Retrieve Key "<< Util::join(vec,vec.size()-2,'/') << std::endl;
+    std::string assetDir = Application::get()->getAssetDirectory();
+    std::string templateDir = assetDir + TEMPLATE_PATH;
+    std::string levelDir = assetDir + LEVEL_PATH;
+	std::string menuDir = assetDir + MENU_PATH;
+	std::string chapterDir = assetDir + CHAPTER_PATH;
     
     //load all template wave entries
 
 	#ifdef _WIN32
-	loadTemplateFilesWindows(_assets, templateDir);
+	loadFilesWindows(_assets, templateDir, TEMPLATE_PATH);
+    loadFilesWindows(_assets, levelDir, LEVEL_PATH);
+	loadFilesWindows(_assets, menuDir, MENU_PATH);
+	loadFilesWindows(_assets, chapterDir, CHAPTER_PATH);
 	#elif __APPLE__
-	loadTemplateFilesApple(_assets, templateDir);
+	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
+    loadFilesApple(_assets, levelDir, LEVEL_PATH);
+	loadFilesApple(_assets, menuDir, MENU_PATH);
+	loadFilesApple(_assets, chapterDir, CHAPTER_PATH);
 	#endif
-
-    
-    /** END OF TEMPORARY CODE TO WIPE **/
-
-
     
     // Activate mouse or touch screen input as appropriate
     // We have to do this BEFORE the scene, because the scene has a button
@@ -218,6 +236,35 @@ void GameEngine::onShutdown() {
  */
 void GameEngine::onSuspend() {
     AudioEngine::get()->pauseAll();
+    
+    std::shared_ptr<JsonValue> suspendJson = JsonValue::allocObject();
+    suspendJson->appendChild("menuGraph", _menuGraph->toJsonValue());
+    switch(_menuGraph->getMode()){
+        case Mode::GAMEPLAY:
+        {
+            suspendJson->appendChild("gameplay",_gameplay->toJsonValue());
+        }
+    }
+    
+//    // save the suspendJson to a file in the saveDirectory only exists when running the game
+//    // its in a temporary directory of the app
+    
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = saveDir + "\\suspend.json";
+
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
+    
+    std::ofstream newFile;
+    newFile.open(filePath);
+    newFile << suspendJson->toString();
+    newFile.close();
 }
 
 /**
@@ -232,6 +279,68 @@ void GameEngine::onSuspend() {
  */
 void GameEngine::onResume() {
     AudioEngine::get()->resumeAll();
+   
+	#ifdef _WIN32
+	std::vector<std::string> vec = Util::split(__FILE__, '\\');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '\\') + "\\assets";
+	std::string filePath = saveDir + "\\suspend.json";
+
+	#elif __APPLE__
+	std::vector<std::string> vec = Util::split(__FILE__, '/');
+	std::string saveDir = Util::join(vec, vec.size() - 2, '/') + "/assets";
+	std::string filePath = "/" + saveDir + "/suspend.json";
+
+	#endif
+
+    auto reader = JsonReader::alloc(filePath);
+    if(reader == nullptr) {
+        return;
+    }
+    std::shared_ptr<JsonValue> resumeJson = reader->readJson();
+    
+    // have to reload all data files
+    this->onStartup();
+    
+    // poll while loading
+    while (_assets->progress() < 1.0){
+    }
+    
+    // this is to clear the outdated screen when resuming
+    if (_menu!=nullptr){
+        _menu->deactivate();
+        _menu = nullptr;
+    }
+    if (_gameplay != nullptr){
+        _gameplay->deactivate();
+        _gameplay = nullptr;
+    }
+    // possibly call all the load methods again
+    std::shared_ptr<World> levelWorld = World::alloc(_assets);
+    
+    // TODO replace with allocing the menuGraph and also reloading in all the files
+    _gameplay = GameplayController::alloc(_scene,levelWorld);
+    
+    _gameplay->onResume(resumeJson->get("gameplay"));
+    
+    _menuGraph->populate(_assets);
+    _menuGraph->initAfterResume(resumeJson->get("menuGraph"));
+    
+    _menu = MenuController::alloc(_scene,_menuGraph, _assets);
+    
+    if (_gameplay != nullptr){
+        // this is so that the menu can interact with the game screen
+        _menu->attach(_gameplay.get());
+        _gameplay->attach(_menu.get());
+    }
+    
+    if (_levelEditor != nullptr){
+        _levelEditor = LevelEditorController::alloc(_scene, _assets);
+        _levelEditor->attach(_menu.get());
+    }
+    
+    // send an event to gameplayController to pause the game
+    std::shared_ptr<Event> pauseEvent = PauseGameEvent::alloc(true);
+    _menu->notify(pauseEvent.get());
 }
 
 std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
@@ -285,7 +394,6 @@ std::shared_ptr<World> GameEngine::getNextWorld(){
         {
             std::shared_ptr<World> levelWorld = _levelEditor->getWorld();
             // TODO will replace once we give a default value to the levelStubs
-            levelWorld->presetPlayerCharacters();
             return levelWorld;
             break;
         }
@@ -363,8 +471,6 @@ void GameEngine::initializeNextMode(){
     }
 }
 
-
-
 /**
  * The method called to update the application data.
  *
@@ -380,13 +486,11 @@ void GameEngine::update(float timestep) {
     // update the touch input
     InputController::update();
     
-    std::cout << timestep << std::endl;
-    
     if (_menuGraph->needsUpdate()){
         initializeNextMode();
         cleanPreviousMode();
         
-        _menu = MenuController::alloc(_scene,_menuGraph);
+        _menu = MenuController::alloc(_scene,_menuGraph, _assets);
         if (_gameplay != nullptr){
             // this is so that the menu can interact with the game screen
             _menu->attach(_gameplay.get());
@@ -411,7 +515,7 @@ void GameEngine::update(float timestep) {
                 // so it can transition after loading to other screens when needed
                 // ex. useful in loading before a level
                 _menuGraph->populate(_assets);
-                _menuGraph->setNextMode(Mode::LEVEL_EDIT);
+                _menuGraph->setNextMode(Mode::MAIN_MENU);
             }
             break;
         }

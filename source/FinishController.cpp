@@ -70,7 +70,7 @@ void FinishController::update(float timestep, std::shared_ptr<GameState> state){
         this->notified = true;
     }
     
-    if (wavesFinished && state->getNumberEnemyCharacters() == 0) //all enemies are dead
+    if (wavesFinished && state->getNumberNonBulletEnemyCharacters() == 0) //all enemies are dead
     {
         // notify the gameplayController that the game is won
         // notify the gameplay controller the game is lost

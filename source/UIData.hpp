@@ -6,6 +6,7 @@
 #include "Data.hpp"
 #include "GenericAssetManager.hpp"
 #include "ButtonAction.hpp"
+#include <map>
 
 enum class UIDataType : int {
 	BUTTON, TEXT, IMAGE
@@ -41,7 +42,7 @@ public:
 		return (result->init(uiKey, bg, t, x, y, w, h) ? result : nullptr);
 	}
 
-	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets);
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap);
 
 	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
 
@@ -58,10 +59,11 @@ class ButtonUIData : public UIData {
 public:
 	std::shared_ptr<ButtonAction> buttonAction;
 	std::string buttonLabel;
+    std::string fontKey;
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
 
-	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap) override;
 
 	bool init(std::string uiKey, std::string bg, float x, float y, float w, float h, std::shared_ptr<ButtonAction> ba, std::string bLabel)
 	{
@@ -86,7 +88,7 @@ public:
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
 
-	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap) override;
 
 	static std::shared_ptr<TextUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tv, std::string fKey) {
 		std::shared_ptr<TextUIData> result = std::make_shared<TextUIData>();
@@ -109,7 +111,7 @@ public:
 
 	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
 
-	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets) override;
+	virtual std::shared_ptr<cugl::Node> dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap) override;
 
 	static std::shared_ptr<ImageUIData> alloc(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tKey) {
 		std::shared_ptr<ImageUIData> result = std::make_shared<ImageUIData>();

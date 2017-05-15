@@ -25,6 +25,9 @@ protected:
     bool _isPlayer;
     
 public:
+    // static int to give Uid to gameObjects
+    static int _atomicUidCounter;
+    
     enum class ObjectType : int {
         CHARACTER,
         ZONE,
@@ -82,6 +85,18 @@ public:
     cugl::Vec2 getPosition() {return _body->getBody()->getPosition();};
 
     void sync(float scale);
+    
+#pragma static methods
+    
+    static void resetAtomicUidCounter(){
+        _atomicUidCounter = 0;
+    }
+    
+    static int getAtomicUid(){
+        _atomicUidCounter+=1;
+        return _atomicUidCounter;
+    }
+
 };
 
 #endif /* GameObject_hpp */

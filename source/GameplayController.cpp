@@ -21,11 +21,13 @@ _pathController(nullptr),
 _moveController(nullptr),
 _collisionController(nullptr),
 _aiController(nullptr),
+_bulletController(nullptr),
 _switchController(nullptr),
 _levelController(nullptr),
 _clockController(nullptr),
 _finishController(nullptr),
-_soundController(nullptr)
+_soundController(nullptr),
+_tutorialController(nullptr)
 {}
 
 GameplayController::~GameplayController(){
@@ -111,11 +113,14 @@ void GameplayController::update(float timestep) {
     _pathController->update(timestep, _gameState);
     _moveController->update(timestep, _gameState);
     _aiController->update(timestep, _gameState);
+    _bulletController->update(timestep, _gameState);
     _zoneController->update(timestep);
     _collisionController->update(timestep, _gameState);
     _animationController->update(timestep, _gameState);
-    _finishController->update(timestep, _gameState);
+    _particleController->update(timestep, _gameState);
     _soundController->update(timestep, _gameState);
+    _tutorialController->update(timestep, _gameState);
+    _finishController->update(timestep, _gameState);
 }
 
 /**
@@ -138,32 +143,39 @@ void GameplayController::deactivate(){
 
 bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld) {
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
-	_pathController = PathController::alloc(_gameState);
+	_pathController = PathController::alloc(_gameState, levelWorld);
 	_moveController = MoveController::alloc(_gameState);
 	_collisionController = CollisionController::alloc(_gameState);
 	_aiController = AIController::alloc();
+    _bulletController = BulletController::alloc();
     _switchController = SwitchController::alloc(_gameState);
     _spawnController = SpawnController::alloc();
     _zoneController = ZoneController::alloc(_gameState,levelWorld);
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
+    _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
     _soundController = SoundController::alloc(levelWorld);
+    _tutorialController = TutorialController::alloc(_gameState, levelWorld);
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());
     _pathController->attach(_animationController.get());
     _pathController->attach(_clockController.get());
     _pathController->attach(_soundController.get());
+    _pathController->attach(_zoneController.get());
+    _pathController->attach(_tutorialController.get());
     
     _levelController->attach(_collisionController.get());
     _levelController->attach(_animationController.get());
     _levelController->attach(_spawnController.get());
 	_levelController->attach(_aiController.get());
+    _levelController->attach(_bulletController.get());
     _levelController->attach(_zoneController.get());
     _levelController->attach(_finishController.get());
     _levelController->attach(_soundController.get());
+    _levelController->attach(_particleController.get());
     
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
@@ -172,25 +184,35 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _collisionController->attach(_animationController.get());
     _collisionController->attach(_zoneController.get());
     _collisionController->attach(_aiController.get());
+    _collisionController->attach(_bulletController.get());
     _collisionController->attach(_soundController.get());
+    _collisionController->attach(_particleController.get());
+    _collisionController->attach(_tutorialController.get());
     
     _spawnController->attach(_collisionController.get());
     _spawnController->attach(_animationController.get());
     _spawnController->attach(_switchController.get());
+    _spawnController->attach(_bulletController.get());
     _spawnController->attach(_aiController.get());
     _spawnController->attach(_zoneController.get());
     _spawnController->attach(_soundController.get());
     _spawnController->attach(_pathController.get());
     
+    _bulletController->attach(_levelController.get());
+    
     _switchController->attach(_animationController.get());
     
     _zoneController->attach(_collisionController.get());
     _zoneController->attach(_animationController.get());
+    _zoneController->attach(_particleController.get());
     
     _animationController->attach(_finishController.get());
     
     // attach the gameplayController to the finishController
     _finishController->attach(this);
+    
+    /** have to pause spawning */
+    _tutorialController->attach(_levelController.get());
     
 	_paused = false;
 
@@ -208,10 +230,12 @@ void GameplayController::dispose(){
     _pathController = nullptr;
     _moveController = nullptr;
     _aiController = nullptr;
+    _bulletController = nullptr;
     _collisionController = nullptr;
     _animationController = nullptr;
     _zoneController = nullptr;
     _soundController = nullptr;
+    _tutorialController = nullptr;
 
     _gameState = nullptr;
 }
@@ -222,4 +246,24 @@ std::shared_ptr<LevelData> GameplayController::getCurrentLevel(){
 
 std::shared_ptr<World> GameplayController::getWorld(){
     return _levelController->getWorld();
+}
+
+std::shared_ptr<cugl::JsonValue> GameplayController::toJsonValue(){
+    // TODO kelly
+    // call the toJsonValue for eachController that needs serialization
+    // and collect into one big gameplayController json and return it
+    
+    std::shared_ptr<JsonValue> gameplayJson = JsonValue::allocObject();
+    gameplayJson->appendChild("levelController", _levelController->toJsonValue(_gameState));
+    gameplayJson->appendChild("spawnController", _spawnController->toJsonValue());
+	gameplayJson->appendChild("moveController", _moveController->toJsonValue());
+	gameplayJson->appendChild("aiController", _aiController->toJsonValue());
+    return gameplayJson;
+}
+
+void GameplayController::onResume(const std::shared_ptr<cugl::JsonValue> resumeJson){
+    // give level controller the full json since it uses spawn and level
+    _levelController->initAfterResume(_gameState,resumeJson->get("levelController"), resumeJson->get("spawnController"));
+	_moveController->initAfterResume(_gameState, resumeJson->get("moveController"));
+	_aiController->initAfterResume(_gameState, resumeJson->get("aiController"));
 }

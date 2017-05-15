@@ -15,6 +15,8 @@
 #include "CollisionEvent.hpp"
 #include "PathAI.hpp"
 #include "StaticAI.hpp"
+#include "CompositeAI.hpp"
+#include "BulletAI.hpp"
 
 using namespace cugl;
 
@@ -49,6 +51,10 @@ void AIController::eventUpdate(Event* e){
                     return;
                 }
 				addAI(init->aiData->newActiveAI(init->object));
+//                if(init->object->type == GameObject::ObjectType::BULLET){
+//                    std::shared_ptr<ActiveAI> activeAi = _map.at(init->object.get());
+//                    activeAi->toggleActive();
+//                }
                 break;
             }
             case LevelEvent::LevelEventType::OBJECT_SPAWN:
@@ -113,4 +119,71 @@ void AIController::update(float timestep,std::shared_ptr<GameState> state){
 
 bool AIController::init() {
 	return true;
+}
+
+std::string AIController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> AIController::toJsonValue() {
+	std::shared_ptr<JsonValue> fullJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> activeAIMap = JsonValue::allocArray();
+
+	for (auto entry : _map) {
+		GameObject* gameObj = entry.first;
+		int uid = entry.first->getUid();
+
+		activeAIMap->appendChild(entry.second->toJsonValue());
+	}
+
+	fullJson->appendChild("activeAIMap", activeAIMap);
+	return fullJson;
+}
+
+void AIController::initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<JsonValue> rJson) {
+	//std::unordered_set<std::shared_ptr<ActiveAI>> _enemies;
+	//std::unordered_map<GameObject*, std::shared_ptr<ActiveAI>> _map;
+
+	for (int i = 0; i < rJson->get("activeAIMap")->size(); i++) {
+		std::shared_ptr<JsonValue> ai = rJson->get("activeAIMap")->get(i);
+
+		AIType aiType = AIData::stringToAIType(ai->getString("aiType"));
+
+		switch (aiType) {
+			case AIType::COMPOSITE: { 
+				std::shared_ptr<ActiveAI> enemy = CompositeAI::allocWithJson(ai, state); 
+				_enemies.insert(enemy);
+				break;
+			}
+			case AIType::HOMING:{ 
+				std::shared_ptr<ActiveAI> enemy = HomingAI::allocWithJson(ai, state); 
+				_enemies.insert(enemy); 
+				break;
+			}
+			case AIType::PATH: { 
+				std::shared_ptr<ActiveAI> enemy = PathAI::allocWithJson(ai, state); 
+				_enemies.insert(enemy);
+				break;
+			}
+            case AIType::BULLET: {
+                std::shared_ptr<ActiveAI> enemy = BulletAI::allocWithJson(ai, state);
+                _enemies.insert(enemy);
+                break;
+            }
+			case AIType::STATIC: 
+			default: {
+				std::shared_ptr<ActiveAI> enemy = StaticAI::allocWithJson(ai, state); 
+				_enemies.insert(enemy);
+				break;
+			}
+		}	
+	}
+
+	// generate map using gameobject inside the active ai
+	for (auto entry : _enemies) {
+		std::vector<std::shared_ptr<GameObject>> gObjList = entry->getObjects();
+		for (auto gObj : gObjList) {
+			_map[gObj.get()] = entry;
+		}
+	}
 }

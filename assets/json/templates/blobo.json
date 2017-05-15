@@ -1,30 +1,10 @@
 {
-  "templates":  {
-    "blobo": {
-      "name": "blobo",
-      "aiKeys":  ["homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
-      "objectKey":  "blobo_object"
-    }
-  },
-  "objects":{
-    "blobo_object":{
-      "shapeKey": "blobo_shape",
-      "blueAnimationKey": "blue_blobo_animation",
-      "goldAnimationKey": "yellow_blobo_animation",
-      "soundKey": "baseEnemySound"
-    }
-  },
-  "shapes":{
-    "blobo_shape": {
-      "vertices": [0,0,100,0,100,100,0,100]
-    }
-  },
   "animations":{
     "blue_blobo_animation": {
       "texture": "./textures/models/enemy_models/blobo/blobo_blue.png",
       "rows": 5,
-      "cols": 9,
-      "size": 45,
+      "cols": 8,
+      "size": 40,
       "statemap": {
           "spawning": {
             "first": 0,
@@ -32,14 +12,14 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 27,
+            "first": 24,
             "total": 1,
             "frames": [10]
           },
           "spawn": {
-            "first": 9,
-            "total": 9,
-            "frames": [5,5,5,5,5,5,5,5,25]
+            "first": 8,
+            "total": 8,
+            "frames": [9,9,9,12,12,12,9,9]
           },
           "death": {
             "first": 1,
@@ -63,8 +43,8 @@
     "yellow_blobo_animation": {
       "texture": "./textures/models/enemy_models/blobo/blobo_yellow.png",
       "rows": 5,
-      "cols": 9,
-      "size": 45,
+      "cols": 8,
+      "size": 40,
       "statemap": {
           "spawning": {
             "first": 0,
@@ -72,14 +52,14 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 27,
+            "first": 24,
             "total": 1,
             "frames": [10]
           },
           "spawn": {
-            "first": 9,
-            "total": 9,
-            "frames": [5,5,5,5,5,5,5,5,25]
+            "first": 8,
+            "total": 8,
+            "frames": [9,9,9,12,12,12,9,9]
           },
           "death": {
             "first": 1,
@@ -100,6 +80,47 @@
           }
       }
     }
-  }
+  }, 
+    "objects": {
+        "blobo_object": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blue_blobo_animation", 
+            "goldAnimationKey": "yellow_blobo_animation", 
+            "key": "blobo_object", 
+            "shapeKey": "blobo_shape", 
+            "soundKey": "baseEnemySound"
+        }
+    }, 
+    "shapes": {
+        "blobo_shape": {
+            "key": "blobo_shape", 
+            "vertices": [
+                0.0, 
+                0.0, 
+                1.25, 
+                0.0, 
+                1.25, 
+                1.25, 
+                0.0, 
+                1.25
+            ]
+        }
+    }, 
+    "templates": {
+        "blobo": {
+            "aiKeys": [
+                "homing", 
+                "horizontal", 
+                "horizontalLeft", 
+                "horizontalRight", 
+                "verticalUp", 
+                "verticalDown", 
+                "vertical", 
+                "static"
+            ], 
+            "key": "blobo", 
+            "name": "blobo", 
+            "objectKey": "blobo_object"
+        }
+    }
 }
-

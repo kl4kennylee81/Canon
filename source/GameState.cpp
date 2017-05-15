@@ -7,6 +7,7 @@
 //
 
 #include "GameState.hpp"
+#include "Util.hpp"
 
 std::unique_ptr<InternalClock> GameState::_internalClock(new InternalClock());
 
@@ -25,6 +26,10 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     }
     // reinitialize the static clock
     GameState::_internalClock->init();
+    
+    // reset the gameObjects atomic counter
+    GameObject::resetAtomicUidCounter();
+    
     _reset = false;
     _activeCharacterPosition = 0;
     
@@ -115,10 +120,54 @@ void GameState::detachFromScene(){
 
 std::shared_ptr<GameObject> GameState::getActiveCharacter()
 {
-    if (_playerCharacters.size() != NUM_PLAYER_CHARS){
+    if (_playerCharacters.size() < NUM_PLAYER_CHARS * 2){
         return nullptr;
     }
     return _playerCharacters.at(_activeCharacterPosition);
+}
+
+std::vector<std::shared_ptr<GameObject>> GameState::getInactiveCharacters(){
+    std::vector<std::shared_ptr<GameObject>> inactives = std::vector<std::shared_ptr<GameObject>>();
+    for (int i = 0; i<getPlayerCharacters().size();++i){
+        if (i == _activeCharacterPosition){
+            continue;
+        }
+        
+        std::shared_ptr<GameObject> playerOb = getPlayerCharacters().at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
+        
+        inactives.push_back(playerOb);
+    }
+    return inactives;
+}
+
+std::shared_ptr<GameObject> GameState::getInactiveCharacter(){
+    for (int i = 0; i<getPlayerCharacters().size();++i){
+        if (i == _activeCharacterPosition){
+            continue;
+        }
+        
+        std::shared_ptr<GameObject> playerOb = getPlayerCharacters().at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
+        
+        return playerOb;
+    }
+    return nullptr;
+}
+
+void GameState::toggleActiveCharacter()
+{
+    for (int i =1;i<=_playerCharacters.size();i++){
+        int charIndex = (_activeCharacterPosition + i) % _playerCharacters.size();
+        if (_playerCharacters.at(charIndex)->type == GameObject::ObjectType::CHARACTER){
+            _activeCharacterPosition = charIndex;
+            break;
+        }
+    }
 }
 
 bool GameState::getReset(){
@@ -162,12 +211,64 @@ size_t GameState::getNumberEnemyCharacters(){
     return _enemyObjects.size();
 }
 
+size_t GameState::getNumberNonBulletEnemyCharacters(){
+    size_t nonBullets = 0;
+    for(auto it: _enemyObjects){
+        if(it->type != GameObject::ObjectType::BULLET){
+            nonBullets++;
+        }
+    }
+    return nonBullets;
+}
+
+int getClosestCharIndex(std::vector<std::shared_ptr<GameObject>> objs, Vec2 physCoord){
+    if (objs.size() <= 0){
+        return -1;
+    }
+    float minDist = FLT_MAX;
+    int closerIndex = -1;
+    for (int i=0 ; i<objs.size() ; ++i){
+        std::shared_ptr<GameObject> playerOb = objs.at(i);
+        if (playerOb->type != GameObject::ObjectType::CHARACTER){
+            continue;
+        }
+        
+        float playerDist = playerOb->getPosition().distance(physCoord);
+        if (playerDist < minDist){
+            closerIndex = i;
+            minDist = playerDist;
+        }
+    }
+    return closerIndex;
+}
+
+
+std::shared_ptr<GameObject> GameState::getClosestChar(Vec2 phys_coord) {
+    
+    int closerIndex = getClosestCharIndex(_playerCharacters, phys_coord);
+    return _playerCharacters.at(closerIndex);
+};
+
+void GameState::setClosestChar(cugl::Vec2 phys_coord) {
+    int closerIndex = getClosestCharIndex(_playerCharacters, phys_coord);
+    _activeCharacterPosition = closerIndex;
+};
+
+
 #pragma mark Coordinate Conversions
 
 float GameState::getPhysicsScale(){
     return GAME_PHYSICS_SCALE;
 }
 
-
-
+std::shared_ptr<GameObject> GameState::getUID2GameObject(int uid) {
+	// search
+	for (auto entry : getPlayerCharacters()) {
+		if (entry->getUid() == uid) { return entry; }
+	}
+	for (auto entry : getEnemyObjects()) {
+		if (entry->getUid() == uid) { return entry; }
+	}
+    return nullptr;
+}
 

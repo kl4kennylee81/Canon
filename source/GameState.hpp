@@ -99,7 +99,7 @@ GameState():
 	}
     
     void draw(const std::shared_ptr<cugl::SpriteBatch>& batch);
-        
+    
     /**
      * Return the vector by reference
      */
@@ -111,11 +111,15 @@ GameState():
 
     std::shared_ptr<GameObject> getActiveCharacter();
 
+    std::shared_ptr<GameObject> getInactiveCharacter();
+    
+    std::vector<std::shared_ptr<GameObject>> getInactiveCharacters();
+
     bool getReset();
     
     void toggleReset();
     
-	void toggleActiveCharacter() { _activeCharacterPosition = _activeCharacterPosition == 0 ? 1 : 0; }
+    void toggleActiveCharacter();
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
     
@@ -139,6 +143,12 @@ GameState():
     
     size_t getNumberEnemyCharacters();
     
+    size_t getNumberNonBulletEnemyCharacters();
+    
+    std::shared_ptr<GameObject> getClosestChar(cugl::Vec2 world_coord);
+    
+    void setClosestChar(cugl::Vec2 world_coord);
+    
     std::shared_ptr<cugl::Node> getWorldNode() {
         return _worldnode;
     }
@@ -157,6 +167,8 @@ GameState():
             }
         }
     }
+
+	std::shared_ptr<GameObject> getUID2GameObject(int uid);
     
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();

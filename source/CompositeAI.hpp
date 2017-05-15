@@ -19,8 +19,6 @@
 
 class CompositeAI : public ActiveAI {
 private:
-	bool _isActive;
-	std::shared_ptr<GameObject> _object;
 	std::shared_ptr<ActiveAI> _activeAI;
 	std::vector<std::shared_ptr<Condition>> _conditions;
 	std::vector<std::shared_ptr<AIData>> _datas;
@@ -67,6 +65,16 @@ public:
 		std::shared_ptr<CompositeAI> result = std::make_shared<CompositeAI>();
 		return (result->init(object, startData, conditions, datas) ? result : nullptr);
 	}
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
+
+	static std::shared_ptr<CompositeAI> allocWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state)
+	{
+		std::shared_ptr<CompositeAI> result = std::make_shared<CompositeAI>();
+		return (result->initWithJson(json, state) ? result : nullptr);
+	}
+
+	bool initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state);
 };
 
 #endif /* CompositeAI_hpp */

@@ -29,8 +29,21 @@ protected:
     bool _playerSpawned;
 public:
     Level(){}
+
+	bool isReadyToSpawn() { return _readyToSpawn; }
+	bool hasPlayerSpawned() { return _playerSpawned; }
+	std::string getLevelKey() { return _levelData->key; }
+	float getFramesElapsed() { return _framesElapsed; }
+    
+    void setLevelData(std::shared_ptr<LevelData> levelData){
+        _levelData = levelData;
+    }
     
     bool init(std::shared_ptr<LevelData> levelData);
+    
+    bool init(int currentWave,int framesElapsed,bool readyToSpawn,bool playerSpawned);
+    
+    bool init(const std::shared_ptr<cugl::JsonValue> json);
     
     int getNextTime();
     
@@ -41,11 +54,7 @@ public:
     
     float getProgress();
     
-    bool isReadyToSpawn();
-    
     void toggleReadyToSpawn();
-    
-    bool hasPlayerSpawned();
     
     void togglePlayerSpawned();
     

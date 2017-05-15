@@ -27,12 +27,15 @@ public:
 		/** Move **/
 		MOVE,
         SWITCH,
+        BULLET,
+        BULLET_SPAWN,
         ZONE,
         ANIMATION,
         /** menu transition system */
         FINISH,
 		MENU,
-        LEVEL_EDITOR
+        LEVEL_EDITOR,
+        TUTORIAL
     };
     
     EventType _eventType;

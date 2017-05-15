@@ -1,53 +1,63 @@
 {
-  "ai": {
-    "horizontal": {
-      "type": "PATH",
-      "pathType": "HORIZONTAL"
-    },
-    "horizontalRight": {
-      "type": "PATH",
-      "pathType": "HORIZONTAL",
-      "direction": "RIGHT"
-    },
-    "horizontalLeft": {
-      "type": "PATH",
-      "pathType": "HORIZONTAL",
-      "direction": "LEFT"
-    },
-    "vertical": {
-      "type": "PATH",
-      "pathType": "HORIZONTAL"
-    },
-    "verticalUp": {
-      "type": "PATH",
-      "pathType": "VERTICAL",
-      "direction": "UP"
-    },
-    "verticalDown": {
-      "type": "PATH",
-      "pathType": "VERTICAL",
-      "direction": "DOWN"
-    },
-    "static": {
-      "type": "STATIC"
-    },
-    "homing": {
-      "type": "HOMING"
-    },
-    "square": {
-      "type": "PATH",
-      "pathType": "CUSTOM",
-      "path": "(0,0) (100,0) (100,100) (0,100)"
-    },
-    "composite": {
-      "type": "COMPOSITE",
-      "startAI": "static",
-      "conditions": [
-        {
-          "condition": "RADIUS 200",
-          "aiKey": "homing"
+    "ai": {
+        "composite": {
+            "conditions": [
+                {
+                    "aiKey": "homing", 
+                    "condition": "RADIUS 200"
+                }
+            ], 
+            "key": "composite", 
+            "startAI": "static", 
+            "type": "COMPOSITE"
+        }, 
+        "homing": {
+            "key": "homing", 
+            "type": "HOMING"
+        }, 
+        "horizontal": {
+            "key": "horizontal", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalLeft": {
+            "direction": "LEFT", 
+            "key": "horizontalLeft", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "horizontalRight": {
+            "direction": "RIGHT", 
+            "key": "horizontalRight", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "square": {
+            "key": "square", 
+            "path": "(0,0) (100,0) (100,100) (0,100)", 
+            "pathType": "CUSTOM", 
+            "type": "PATH"
+        }, 
+        "static": {
+            "key": "static", 
+            "type": "STATIC"
+        }, 
+        "vertical": {
+            "key": "vertical", 
+            "pathType": "HORIZONTAL", 
+            "type": "PATH"
+        }, 
+        "verticalDown": {
+            "direction": "DOWN", 
+            "key": "verticalDown", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
+        }, 
+        "verticalUp": {
+            "direction": "UP", 
+            "key": "verticalUp", 
+            "pathType": "VERTICAL", 
+            "type": "PATH"
         }
-      ]
     }
-  }
 }

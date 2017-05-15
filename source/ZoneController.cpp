@@ -10,6 +10,7 @@
 #include "ZoneEvent.hpp"
 #include "LevelEvent.hpp"
 #include "CollisionEvent.hpp"
+#include "PathEvent.hpp"
 #include "Element.hpp"
 #include <math.h>
 
@@ -39,6 +40,12 @@ void ZoneController::eventUpdate(Event* e) {
                     addToMap(objectInit->object.get(), objectInit->zoneDatas);
                     break;
                 }
+                case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
+                    ObjectSpawningEvent* objectSpawning = (ObjectSpawningEvent*)levelEvent;
+                    GameObject* obj = objectSpawning->object.get();
+                    handleObjectSpawning(obj);
+                    break;
+                }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
@@ -57,6 +64,17 @@ void ZoneController::eventUpdate(Event* e) {
                     break;
             }
             break;
+        }
+        case Event::EventType::PATH:{
+            PathEvent* pathEvent = (PathEvent*) e;
+            switch(pathEvent->_pathType){
+                case PathEvent::PathEventType::PATH_FINISHED:
+                {
+//                    PathFinished* pathFinish = (PathFinished*) pathEvent;
+//                    std::shared_ptr<ActiveZone> zone = zoneMap.at(pathFinish->_inactiveChar.get());
+//                    toggleZone(zone);
+                }
+            }
         }
     }
 }
@@ -97,6 +115,31 @@ void ZoneController::update(float timestep) {
 void ZoneController::dispose(){
     _world = nullptr;
     state = nullptr;
+}
+
+void ZoneController::toggleZone(std::shared_ptr<ActiveZone> zone){
+    if (zone->isOn){
+        zone->isOn = false;
+        zone->curIndex = 0;
+        for (std::pair<std::shared_ptr<ZoneData>,std::vector<GameObject*>> pair: zone->datas) {
+            for (GameObject* gameObj : pair.second)
+            {
+                std::shared_ptr<ZoneOffEvent> offEvent = ZoneOffEvent::alloc(gameObj);
+                notify(offEvent.get());
+            }
+        }
+    } else {
+        zone->isOn = true;
+        zone->curIndex = 0;
+        zone->blinking = false;
+        for (std::pair<std::shared_ptr<ZoneData>,std::vector<GameObject*>> pair: zone->datas) {
+            for (GameObject* gameObj : pair.second)
+            {
+                std::shared_ptr<ZoneOnEvent> OnEvent = ZoneOnEvent::alloc(gameObj);
+                notify(OnEvent.get());
+            }
+        }
+    }
 }
 
 void ZoneController::updateStaticZone(GameObject* charObj, std::shared_ptr<ActiveZone> zone, std::shared_ptr<StaticZoneData> data, std::vector<GameObject*> zoneObjs) {
@@ -226,12 +269,17 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
+    zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
     std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
-    state->addEnemyGameObject(zone);
+    if (zone->getIsPlayer()){
+        state->addPlayerGameObject(zone);
+    } else {
+        state->addEnemyGameObject(zone);
+    }
     
     std::vector<GameObject*> objs = {zone.get()};
     activeZone->datas.push_back(std::make_pair(data,objs));
@@ -249,6 +297,7 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
         std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
         std::shared_ptr<GameObject> zone = GameObject::alloc();
+        zone->setIsPlayer(gameObj->getIsPlayer());
         zone->type = GameObject::ObjectType::ZONE;
     
         std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,zEntry->getPosition(objPos,data->radius),zoneElement);
@@ -274,6 +323,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
     std::shared_ptr<GameObject> zone = GameObject::alloc();
+    zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
     std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,data->getPosition(objPos),zoneElement);
@@ -287,6 +337,22 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     activeZone->curIndex = 0;
     activeZone->origSize = zone->getPhysicsComponent()->getBody()->getSize();
     activeZone->sizeScale = Vec2::Vec2(data->minSize);
+}
+
+void ZoneController::handleObjectSpawning(GameObject* obj) {
+    if (zoneMap.find(obj) == zoneMap.end()) {
+        return;
+    }
+    
+    std::shared_ptr<ActiveZone> activeZone = zoneMap.at(obj);
+    
+    //temp
+    for (auto it : activeZone->datas){
+        for (auto obj : it.second) {
+            std::shared_ptr<ZoneSpawningEvent> spawningEvent = ZoneSpawningEvent::alloc(obj);
+            notify(spawningEvent.get());
+        }
+    }
 }
 
 void ZoneController::handleObjectSpawn(GameObject* obj) {

@@ -3,6 +3,7 @@
 #include "GameState.hpp"
 #include "MoveController.hpp"
 #include "PathParameters.h"
+#include "PathAIData.hpp"
 #include <random>
 
 using namespace cugl;
@@ -15,9 +16,28 @@ void PathAI::update(std::shared_ptr<GameState> state) {
 		int newIndex = (index + 1) % _activePath->_path->size();
 		_activePath->_pathIndex = newIndex;
 		goal = _activePath->_path->get(newIndex);
+		switch (_direction) {
+			case PathDirection::LEFT:
+				_direction = PathDirection::RIGHT;
+				break;
+			case PathDirection::RIGHT:
+				_direction = PathDirection::LEFT;
+				break;
+			case PathDirection::UP:
+				_direction = PathDirection::DOWN;
+				break;
+			case PathDirection::DOWN:
+			default:
+				_direction = PathDirection::UP;
+				break;
+		}
 	}
-	Vec2 velocity = MoveController::getVelocityVector(current, goal, AI_SPEED * 60);
+
+    auto physics = _object->getPhysicsComponent();
+    float speed = physics->getSpeed() == 0 ? AI_SPEED * 60 : physics->getSpeed();
+	Vec2 velocity = MoveController::getVelocityVector(current, goal, speed);
 	_object->getPhysicsComponent()->getBody()->setLinearVelocity(velocity);
+
 }
 
 bool PathAI::garbageCollect(GameObject* obj) {
@@ -90,4 +110,36 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 
 void PathAI::toggleActive() {
 	_isActive = !_isActive;
+}
+
+std::shared_ptr<JsonValue> PathAI::toJsonValue() {
+	std::shared_ptr<JsonValue> pathJson = JsonValue::allocObject();
+
+	// duplicate code from move controller rip
+	pathJson->appendChild("pathIndex", JsonValue::alloc(std::to_string(_activePath->_pathIndex)));
+	pathJson->appendChild("pathVertices", _activePath->_path->toJsonValue());
+	pathJson->appendChild("pathType", JsonValue::alloc(getStringFromPathType(_type)));
+	pathJson->appendChild("pathDirection", JsonValue::alloc(PathAIData::getStringFromPathDirection(_direction)));
+
+	pathJson->appendChild("uid", JsonValue::alloc(std::to_string(_object->getUid())));
+	pathJson->appendChild("aiType", cugl::JsonValue::alloc("PATH"));
+	return pathJson;
+}
+
+bool PathAI::initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state) {
+	PathType pType = PathAIData::getPathTypeFromString(json->getString("pathType"));
+	PathDirection dir = PathAIData::getPathDirectionFromString(json->getString("pathDirection"));
+
+	std::vector<Vec2> path;
+	for (int i = 0; i < json->get("pathVertices")->size(); i++) {
+		std::shared_ptr<JsonValue> vec = json->get("pathVertices")->get(i);
+		path.push_back(Vec2(vec->getFloat("x"), vec->getFloat("y")));
+	}
+
+	int uid = std::stoi(json->getString("uid"));
+	std::shared_ptr<GameObject> gObj = state->getUID2GameObject(uid);
+
+	init(gObj, pType, path, dir);
+	return true;
+
 }

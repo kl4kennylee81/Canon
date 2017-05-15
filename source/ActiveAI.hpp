@@ -15,7 +15,10 @@
 #include "GameObject.hpp"
 
 class ActiveAI {
-    
+protected:
+	bool _isActive;
+	std::shared_ptr<GameObject> _object;
+
 public:
     virtual void update(std::shared_ptr<GameState> state) = 0;
     
@@ -26,6 +29,8 @@ public:
     virtual bool isActive() = 0;
     
     virtual void toggleActive() = 0;
+
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue() = 0;
 };
 
 #endif /* ActiveAI_hpp */

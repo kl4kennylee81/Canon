@@ -151,6 +151,7 @@ tree.write('build-win10/HelloWorld/HelloWorld.vcxproj', encoding="utf-8", xml_de
 
 
 ## STEP THREE: SYNC FILTERS
+import os # lol this file is so disorganized
 
 filtertree = ET.parse('build-win10/HelloWorld/HelloWorld.vcxproj.filters')
 filterroot = filtertree.getroot()
@@ -205,6 +206,19 @@ parent_folder = 'Source'
 unique_paths = set()
 for k,v in flat_child_parent_map.items():
 	unique_paths.add(v)
+
+# make sure folders of folders are included aka prototypes
+subpath_set = set()
+for path in unique_paths:
+	splits = path.split(os.sep)
+	for i in xrange(len(splits)):
+		# make sure every build-up of the path is in unique paths
+		subpath = os.sep.join(splits[:i+1])
+		if subpath not in unique_paths:
+			subpath_set.add(subpath)
+
+# extend unique_paths set
+unique_paths.update(subpath_set)
 
 ET.SubElement(filter_parent, 'Filter', attrib={'Include': 'Resource Files'}).text=' '
 for path in unique_paths:

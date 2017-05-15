@@ -15,8 +15,14 @@
 #include <sstream>
 
 
+
 class Util {
 public:
+    
+    static std::string appendLeadingZero(int n_zero,std::string in){
+        std::string new_string = std::string(n_zero - in.length(), '0') + in;
+        return new_string;
+    }
 
     static std::vector<std::string> split(const std::string& s, const char& c)
     {
@@ -35,6 +41,33 @@ public:
         if (buff != "") v.push_back(buff);
         return v;
     }
+
+	static std::vector<std::string> split(const std::string& str, const std::string& delim)
+	{
+		std::vector<std::string> tokens;
+		size_t prev = 0, pos = 0;
+		do
+		{
+			pos = str.find(delim, prev);
+			if (pos == std::string::npos) pos = str.length();
+			std::string token = str.substr(prev, pos - prev);
+			if (!token.empty()) tokens.push_back(token);
+			prev = pos + delim.length();
+		} while (pos < str.length() && prev < str.length());
+		return tokens;
+	}
+
+	static std::string join(const std::vector<std::string> & v, size_t n, const std::string& c) {
+		std::stringstream ss;
+		for (size_t i = 0; i < std::min(n, v.size()); ++i)
+		{
+			if (i != 0)
+			ss << c;
+			ss << v[i];
+		}
+		std::string s = ss.str();
+		return s;
+	}
     
     static std::string join(const std::vector<std::string>& v,size_t n, const char& c)
     {

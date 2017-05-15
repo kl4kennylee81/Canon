@@ -72,9 +72,13 @@ public:
     
     void pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::shared_ptr<PulseZoneData> data, GameObject* gameObj);
     
+    void handleObjectSpawning(GameObject* obj);
+    
     void handleObjectSpawn(GameObject* obj);
     
     void removeObjectZones(GameObject* obj);
+    
+    void toggleZone(std::shared_ptr<ActiveZone> zone);
 };
 
 #endif /* ZoneController_hpp */

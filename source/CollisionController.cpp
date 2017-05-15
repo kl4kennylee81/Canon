@@ -14,6 +14,8 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
+#include "BulletSpawnEvent.hpp"
+#include <list>
 
 using namespace cugl;
 
@@ -25,6 +27,8 @@ BaseController(){}
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
 #define DEBUG_OFF_COLOR Color4::RED
+
+#define HIT_STUN 70
 
 void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
@@ -47,6 +51,12 @@ void CollisionController::eventUpdate(Event* e) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
                     initPhysicsComponent(objectInit);
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        bluePlayer = objectInit->object.get();
+                    }
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldPlayer = objectInit->object.get();
+                    }
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
@@ -64,6 +74,12 @@ void CollisionController::eventUpdate(Event* e) {
                 case ZoneEvent::ZoneEventType::ZONE_INIT: {
                     ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
                     initPhysicsComponent(zoneInit);
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        blueZone = zoneInit->object.get();
+                    }
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldZone = zoneInit->object.get();
+                    }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
@@ -103,6 +119,8 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
         setDebug(!isDebug());
     }
     
+    updateHitStun();
+    
     //remove duplicates
     sort(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() );
     objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
@@ -110,6 +128,7 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     for (auto obj : objsScheduledForRemoval) {
         if (obj->getIsPlayer()){
             // TODO check if we actually need this inGame flag
+            // added so things dont keep moving during death animation
             inGame = false;
         }
         removeFromWorld(obj);
@@ -119,6 +138,17 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
     
     if (inGame) {
         _world->update(timestep);
+        for(auto it: _world->getObstacles()) {
+            GameObject* obj = static_cast<GameObject*>(it->getBody()->GetUserData());
+            if(obj->type == GameObject::ObjectType::BULLET){
+                Vec2 pos = it->getPosition();
+                if(pos.x < -2 || pos.y < -2 || pos.x > GAME_PHYSICS_WIDTH + 2 || pos.y > GAME_PHYSICS_HEIGHT + 2) {
+                    objsScheduledForRemoval.push_back(obj);
+                    std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj);
+                    notify(objectGoneEvent.get());
+                }
+            }
+        }
         
         // update all obstacle after updating the world
         // check for resized dirty obstacles that need to be remade
@@ -143,6 +173,28 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
                 continue;
             }
             gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
+    }
+}
+
+void CollisionController::updateHitStun(){
+    auto itr = hitStunMap.begin();
+    while (itr != hitStunMap.end()) {
+        itr->second -= GameState::_internalClock->getTimeDilation();
+        if (itr->second <= 0) {
+            //remove from ignore list
+            auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), itr->first);
+            if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+            
+            //send event
+            if(itr->first->type == GameObject::ObjectType::CHARACTER) {
+                std::shared_ptr<ObjectHitFinishedEvent> objectHitFinishedEvent = ObjectHitFinishedEvent::alloc(itr->first);
+                notify(objectHitFinishedEvent.get());
+            }
+            
+            itr = hitStunMap.erase(itr);
+        } else {
+            ++itr;
         }
     }
 }
@@ -209,8 +261,8 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     poly.setIndices(triangulator.getTriangulation());
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(objectInit->waveEntry->getPosition());
-    
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement());
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
+    physics->setSpeed(objectInit->objectData->getSpeed());
     objectInit->object->setPhysicsComponent(physics);
 }
 
@@ -222,8 +274,7 @@ void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
     poly.setIndices(triangulator.getTriangulation());
     auto obst = PolygonObstacle::alloc(poly);
     obst->setPosition(zoneInit->pos);
-    
-    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element);
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element,1);
     zoneInit->object->setPhysicsComponent(physics);
 }
 
@@ -259,38 +310,63 @@ void CollisionController::beginContact(b2Contact* contact) {
     
     bool sameElement = (obj1->getPhysicsComponent()->getElementType() ==
                         obj2->getPhysicsComponent()->getElementType());
-    int remove = 0;
+    
+    std::list<GameObject*> removes;
     
     if (obj1->getIsPlayer() && !obj2->getIsPlayer()) {
         if (sameElement) {
-            remove = 2;
+            removes.push_back(obj2);
         } else {
-            remove = 1;
+            removes.push_back(obj1);
         }
     }
     if (obj2->getIsPlayer() && !obj1->getIsPlayer()) {
         if (sameElement) {
-            remove = 1;
+            removes.push_back(obj1);
         } else {
-            remove = 2;
+            removes.push_back(obj2);
         }
     }
     
-    if (remove == 1) {
-        if (obj1->type == GameObject::ObjectType::ZONE) {
+    // player can kill each other
+    if (obj1->getIsPlayer() && obj2->getIsPlayer()){
+        // don't let them kill each other just with zones
+        if (obj1->type == GameObject::ObjectType::ZONE || obj2->type == GameObject::ObjectType::ZONE) {
             return;
         }
-        objsScheduledForRemoval.push_back(obj1);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
-        notify(objectGoneEvent.get());
+        if (!sameElement){
+            removes.push_back(bluePlayer);
+            removes.push_back(goldPlayer);
+        }
     }
-    if (remove == 2) {
-        if (obj2->type == GameObject::ObjectType::ZONE) {
+    
+    if (removes.size() == 0) {
+        return;
+    }
+    for (GameObject* gotHit : removes){
+        
+        if (gotHit->type == GameObject::ObjectType::ZONE) {
             return;
         }
-        objsScheduledForRemoval.push_back(obj2);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
-        notify(objectGoneEvent.get());
+        gotHit->getPhysicsComponent()->getHit();
+        if (gotHit->getPhysicsComponent()->isAlive()) {
+            objsToIgnore.push_back(gotHit);
+            hitStunMap.insert({gotHit,HIT_STUN});
+            if (gotHit == bluePlayer) {
+                objsToIgnore.push_back(blueZone);
+                hitStunMap.insert({blueZone,HIT_STUN});
+            }
+            if (gotHit == goldPlayer) {
+                objsToIgnore.push_back(goldZone);
+                hitStunMap.insert({goldZone,HIT_STUN});
+            }
+            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
+            notify(objectHitEvent.get());
+        } else {
+            objsScheduledForRemoval.push_back(gotHit);
+            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
+            notify(objectGoneEvent.get());
+        }
     }
 }
 
