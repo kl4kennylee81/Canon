@@ -15,6 +15,7 @@
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
 #include "BulletSpawnEvent.hpp"
+#include <list>
 
 using namespace cugl;
 
@@ -309,56 +310,63 @@ void CollisionController::beginContact(b2Contact* contact) {
     
     bool sameElement = (obj1->getPhysicsComponent()->getElementType() ==
                         obj2->getPhysicsComponent()->getElementType());
-    int remove = 0;
+    
+    std::list<GameObject*> removes;
     
     if (obj1->getIsPlayer() && !obj2->getIsPlayer()) {
         if (sameElement) {
-            remove = 2;
+            removes.push_back(obj2);
         } else {
-            remove = 1;
+            removes.push_back(obj1);
         }
     }
     if (obj2->getIsPlayer() && !obj1->getIsPlayer()) {
         if (sameElement) {
-            remove = 1;
+            removes.push_back(obj1);
         } else {
-            remove = 2;
+            removes.push_back(obj2);
         }
     }
     
-    if (remove == 0) {
+    // player can kill each other
+    if (obj1->getIsPlayer() && obj2->getIsPlayer()){
+        // don't let them kill each other just with zones
+        if (obj1->type == GameObject::ObjectType::ZONE || obj2->type == GameObject::ObjectType::ZONE) {
+            return;
+        }
+        if (!sameElement){
+            removes.push_back(bluePlayer);
+            removes.push_back(goldPlayer);
+        }
+    }
+    
+    if (removes.size() == 0) {
         return;
     }
-    
-    GameObject* gotHit;
-    
-    if (remove == 1) {
-        gotHit = obj1;
-    } else {
-        gotHit = obj2;
-    }
-    
-    if (gotHit->type == GameObject::ObjectType::ZONE) {
-        return;
-    }
-    gotHit->getPhysicsComponent()->getHit();
-    if (gotHit->getPhysicsComponent()->isAlive()) {
-        objsToIgnore.push_back(gotHit);
-        hitStunMap.insert({gotHit,HIT_STUN});
-        if (gotHit == bluePlayer) {
-            objsToIgnore.push_back(blueZone);
-            hitStunMap.insert({blueZone,HIT_STUN});
+    for (GameObject* gotHit : removes){
+        
+        if (gotHit->type == GameObject::ObjectType::ZONE) {
+            return;
         }
-        if (gotHit == goldPlayer) {
-            objsToIgnore.push_back(goldZone);
-            hitStunMap.insert({goldZone,HIT_STUN});
+        gotHit->getPhysicsComponent()->getHit();
+        if (gotHit->getPhysicsComponent()->isAlive()) {
+            objsToIgnore.push_back(gotHit);
+            hitStunMap.insert({gotHit,HIT_STUN});
+            if (gotHit == bluePlayer) {
+                objsToIgnore.push_back(blueZone);
+                hitStunMap.insert({blueZone,HIT_STUN});
+            }
+            if (gotHit == goldPlayer) {
+                objsToIgnore.push_back(goldZone);
+                hitStunMap.insert({goldZone,HIT_STUN});
+            }
+            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
+            notify(objectHitEvent.get());
+        } else {
+            objsScheduledForRemoval.push_back(gotHit);
+            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
+            notify(objectGoneEvent.get());
         }
-        std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
-        notify(objectHitEvent.get());
-    } else {
-        objsScheduledForRemoval.push_back(gotHit);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
-        notify(objectGoneEvent.get());
     }
 }
 
