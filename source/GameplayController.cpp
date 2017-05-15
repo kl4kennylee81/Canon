@@ -145,7 +145,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
 	_pathController = PathController::alloc(_gameState, levelWorld);
 	_moveController = MoveController::alloc(_gameState);
-	_collisionController = CollisionController::alloc(_gameState);
+	_collisionController = CollisionController::alloc(_gameState, levelWorld->getAssetManager());
 	_aiController = AIController::alloc();
     _bulletController = BulletController::alloc();
     _switchController = SwitchController::alloc(_gameState);

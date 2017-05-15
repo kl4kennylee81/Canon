@@ -202,6 +202,7 @@ void CollisionController::updateHitStun(){
 void CollisionController::dispose(){
     _world = nullptr;
     _debugnode = nullptr;
+    _arrowTexture = nullptr;
 }
 
 
@@ -209,7 +210,7 @@ bool CollisionController::init() {
 	return true;
 }
     
-bool CollisionController::init(std::shared_ptr<GameState> state){
+bool CollisionController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets){
     Rect bounds = state->getRect();
     
     // 2nd arguement is setting gravity to 0
@@ -228,6 +229,9 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     _world->setStepsize(1.f/Application::get()->getFPS());
     
     _debugnode = state->getDebugNode();
+    
+    
+    _arrowTexture = assets->get<Texture>("greyArrow");
     
     std::vector<std::shared_ptr<GameObject>> enemyObjects = state->getEnemyObjects();
 
@@ -263,6 +267,9 @@ void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
     obst->setPosition(objectInit->waveEntry->getPosition());
     std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
     physics->setSpeed(objectInit->objectData->getSpeed());
+    if(objectInit->aiData != nullptr && objectInit->aiData->type == AIType::HOMING){
+        physics->setHasArrow(true);
+    }
     objectInit->object->setPhysicsComponent(physics);
 }
 
@@ -280,6 +287,12 @@ void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
 
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
+    
+    //this allows the arrow to appear after spawn
+    if(obj->getPhysicsComponent()->hasArrow()){
+        obj->getPhysicsComponent()->setArrowNode(PolygonNode::allocWithTexture(_arrowTexture));
+    }
+
     obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
     

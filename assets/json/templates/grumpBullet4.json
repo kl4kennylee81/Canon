@@ -14,7 +14,7 @@
       "blueAnimationKey": "blue_grumpBullet4_animation",
       "goldAnimationKey": "yellow_grumpBullet4_animation",
       "soundKey": "baseEnemySound",
-      "animationScale": 2.5,
+      "animationScale": 2.0,
       "health": 2,
       "speed": 1.0
     },
@@ -33,9 +33,9 @@
                      1.875,
                      0.0,
                      1.875,
-                     1.875,
+                     2.75,
                      0.0,
-                     1.875
+                     2.75
                      ]
     },
     "grumpBullet4_bulletShape":{
