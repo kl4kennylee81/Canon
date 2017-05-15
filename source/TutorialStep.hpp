@@ -14,30 +14,28 @@
 #include "UIComponent.hpp"
 #include "Menu.hpp"
 #include "TutorialEnums.hpp"
+#include "TutorialStepData.hpp"
 
 class TutorialStep {
 private:
-    TutorialTransition _startCondition;
-    TutorialTransition _endCondition;
+    std::shared_ptr<TutorialStepData> _tutStepData;
     std::shared_ptr<Menu> _menu;
     TutorialState _state;
     
 public:
     TutorialStep():
     _menu(nullptr),
-    _startCondition(TutorialTransition::NONE),
-    _endCondition(TutorialTransition::NONE),
+    _tutStepData(nullptr),
     _state(TutorialState::OFF)
     {};
     
     ~TutorialStep(){ dispose(); };
     
-    bool init();
+    bool init(std::shared_ptr<TutorialStepData> stepData);
     
     void dispose(){
         _menu = nullptr;
-        _startCondition = TutorialTransition::NONE;
-        _endCondition = TutorialTransition::NONE;
+        _tutStepData = nullptr;
         _state = TutorialState::OFF;
     }
     
@@ -45,22 +43,17 @@ public:
         _menu = menu;
     }
     
-    void setTransition(TutorialTransition start, TutorialTransition end){
-        _startCondition = start;
-        _endCondition = end;
-    }
-    
-    static std::shared_ptr<TutorialStep> alloc() {
+    static std::shared_ptr<TutorialStep> alloc(std::shared_ptr<TutorialStepData> stepData) {
         std::shared_ptr<TutorialStep> result = std::make_shared<TutorialStep>();
-        return (result->init() ? result : nullptr);
+        return (result->init(stepData) ? result : nullptr);
     };
     
     TutorialTransition getStartCondition(){
-        return _startCondition;
+        return _tutStepData->getStartCondition();
     }
     
     TutorialTransition getEndCondition(){
-        return _endCondition;
+        return _tutStepData->getEndCondition();
     }
     
     std::shared_ptr<Menu> getMenu(){
@@ -80,12 +73,16 @@ public:
     }
     
     void checkCondition(TutorialTransition transition){
-        if (_state == TutorialState::WAITING && _startCondition == transition){
-            _state = TutorialState::ACTIVE;
+        if (_tutStepData == nullptr){
             return;
         }
         
-        if (_state == TutorialState::ACTIVE && _endCondition == transition){
+        if (_state == TutorialState::WAITING && getStartCondition() == transition){
+            _state = TutorialState::PRE_ACTIVE;
+            return;
+        }
+        
+        if (_state == TutorialState::ACTIVE && getEndCondition() == transition){
             _state = TutorialState::DONE;
             return;
         }
@@ -94,6 +91,10 @@ public:
     
     void addToNode(std::shared_ptr<cugl::Node> node){
         _menu->attachToScene(node);
+    }
+    
+    const std::shared_ptr<TutorialStepData> getStepData(){
+        return _tutStepData;
     }
 };
 

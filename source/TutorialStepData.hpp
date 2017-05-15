@@ -20,7 +20,8 @@
 class TutorialStepData : public Data {
 private:
     std::vector<std::string> _uiEntryKeys;
-    std::vector<TutorialEffect> _effects;
+    std::vector<TutorialEffect> _startEffects;
+    std::vector<TutorialEffect> _endEffects;
     
 public:
     std::string menuBackgroundKey; // replace the background for narrative start screens
@@ -33,20 +34,24 @@ public:
     }
     
     bool init(std::string mbKey, std::vector<std::string> keys,
-              TutorialTransition start,TutorialTransition end, std::vector<TutorialEffect> effects) {
+              TutorialTransition start,TutorialTransition end,
+              std::vector<TutorialEffect> startEffects,
+              std::vector<TutorialEffect> endEffects) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
         _endCondition = end;
-        _effects = effects;
+        _startEffects = startEffects;
+        _endEffects = endEffects;
         return true;
     }
     
     static std::shared_ptr<TutorialStepData> alloc(std::string mbKey, std::vector<std::string> keys,
                                                    TutorialTransition start,TutorialTransition end,
-                                                   std::vector<TutorialEffect> effect) {
+                                                   std::vector<TutorialEffect> startEffect,
+                                                   std::vector<TutorialEffect> endEffect) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end,effect) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,startEffect,endEffect) ? result : nullptr);
     }
     
     bool init() {
@@ -74,8 +79,12 @@ public:
         return _endCondition;
     }
     
-    std::vector<TutorialEffect> getEffects(){
-        return _effects;
+    std::vector<TutorialEffect> getStartEffects(){
+        return _startEffects;
+    }
+    
+    std::vector<TutorialEffect> getEndEffects(){
+        return _endEffects;
     }
 };
 

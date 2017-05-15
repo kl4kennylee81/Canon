@@ -21,6 +21,7 @@ enum class TutorialTransition : int {
 };
 
 enum class TutorialState : int {
+    PRE_ACTIVE, // when start condition is met and needs start effects to play
     ACTIVE, // when it's waiting for an end transition condition
     WAITING, // inactive is when it is waiting for the start transition condition
     OFF, // this step is inactive

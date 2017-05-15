@@ -77,6 +77,10 @@ public:
     bool isInActive();
     
     void checkTransitionCondition(TutorialTransition transition);
+    
+    void handleTutorialEffects(std::vector<TutorialEffect> effects);
+    
+    void handleTutorialEffect(TutorialEffect effect);
 };
 
 

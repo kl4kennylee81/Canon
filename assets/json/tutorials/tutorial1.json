@@ -19,7 +19,13 @@
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step1_text"
-            ], 
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
             "menuBackgroundKey": ""
         }
     },

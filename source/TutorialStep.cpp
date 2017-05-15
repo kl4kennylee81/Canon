@@ -8,10 +8,9 @@
 
 #include "TutorialStep.hpp"
 
-bool TutorialStep::init(){
+bool TutorialStep::init(std::shared_ptr<TutorialStepData> stepData){
     _menu = nullptr;
-    _startCondition = TutorialTransition::NONE;
-    _endCondition = TutorialTransition::NONE;
+    _tutStepData = stepData;
     _state = TutorialState::OFF;
     return true;
 }

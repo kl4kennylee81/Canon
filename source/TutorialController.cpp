@@ -15,6 +15,7 @@
 #include "InputController.hpp"
 #include "Menu.hpp"
 #include "CollisionEvent.hpp"
+#include "TutorialEvent.hpp"
 
 using namespace cugl;
 
@@ -125,6 +126,13 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     /** update the currentStep if the condition has been met */
     transitionNextStep();
     
+    /** check step is preactive and play its effect */
+    if (getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
+        /** play the start effects */
+        handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
+        getCurrentStep()->setState(TutorialState::ACTIVE);
+    }
+    
     /** remove all TutorialState::DONE hints */
     removeFinishedHints(_activeHints);
     
@@ -180,8 +188,7 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
         
         screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,tutData->getFontMap());
         
-        std::shared_ptr<TutorialStep> step = TutorialStep::alloc();
-        step->setTransition(stepData->getStartCondition(),stepData->getEndCondition());
+        std::shared_ptr<TutorialStep> step = TutorialStep::alloc(stepData);
         step->setMenu(screen);
         _steps.push_back(step);
     }
@@ -202,6 +209,9 @@ void TutorialController::transitionNextStep(){
     if (getCurrentStep()->getState() != TutorialState::DONE){
         return;
     }
+    
+    /** play the post effects of the current step */
+    handleTutorialEffects(getCurrentStep()->getStepData()->getEndEffects());
     
     /** TODO also add all the hints from this step into the activeHints */
     
@@ -239,4 +249,31 @@ void TutorialController::checkTransitionCondition(TutorialTransition transition)
     
     // update the state of the currentStep
     getCurrentStep()->checkCondition(transition);
+}
+
+void TutorialController::handleTutorialEffects(std::vector<TutorialEffect> effects){
+    for (TutorialEffect e : effects) {
+        handleTutorialEffect(e);
+    }
+}
+
+void TutorialController::handleTutorialEffect(TutorialEffect effect){
+    switch(effect){
+        case TutorialEffect::PAUSE_SPAWNING:
+        {
+            std::shared_ptr<Event> pauseEvent = PauseSpawningEvent::alloc();
+            notify(pauseEvent.get());
+            break;
+        }
+        case TutorialEffect::RESUME_SPAWNING:
+        {
+            std::shared_ptr<Event> resumeEvent = ResumeSpawningEvent::alloc();
+            notify(resumeEvent.get());
+            break;
+        }
+        case TutorialEffect::NONE:
+        {
+            break;
+        }
+    }
 }
