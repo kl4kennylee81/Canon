@@ -22,6 +22,7 @@ private:
     std::vector<std::string> _uiEntryKeys;
     std::vector<TutorialEffect> _startEffects;
     std::vector<TutorialEffect> _endEffects;
+    float _minTime; // minimum time to stay on this step
     
 public:
     std::string menuBackgroundKey; // replace the background for narrative start screens
@@ -36,22 +37,25 @@ public:
     bool init(std::string mbKey, std::vector<std::string> keys,
               TutorialTransition start,TutorialTransition end,
               std::vector<TutorialEffect> startEffects,
-              std::vector<TutorialEffect> endEffects) {
+              std::vector<TutorialEffect> endEffects,
+              float minTime) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
         _endCondition = end;
         _startEffects = startEffects;
         _endEffects = endEffects;
+        _minTime = minTime;
         return true;
     }
     
     static std::shared_ptr<TutorialStepData> alloc(std::string mbKey, std::vector<std::string> keys,
                                                    TutorialTransition start,TutorialTransition end,
                                                    std::vector<TutorialEffect> startEffect,
-                                                   std::vector<TutorialEffect> endEffect) {
+                                                   std::vector<TutorialEffect> endEffect,
+                                                   float minTime) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end,startEffect,endEffect) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime) ? result : nullptr);
     }
     
     bool init() {
@@ -85,6 +89,10 @@ public:
     
     std::vector<TutorialEffect> getEndEffects(){
         return _endEffects;
+    }
+    
+    float getMinTime(){
+        return _minTime;
     }
 };
 

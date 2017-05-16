@@ -96,6 +96,10 @@ public:
     const std::shared_ptr<TutorialStepData> getStepData(){
         return _tutStepData;
     }
+    
+    bool isActive(){
+        return _state == TutorialState::POST_ACTIVE || _state == TutorialState::ACTIVE;
+    }
 };
 
 #endif /* TutorialStep_hpp */
