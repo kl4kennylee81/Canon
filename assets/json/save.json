@@ -18,28 +18,28 @@
             "complete": 0,
             "highScore": 0,
             "key": "tutorial01",
-            "unlocked": 1
+            "unlocked" : 0
         },
         "level01": {
             "complete": 0,
             "highScore": 0,
             "key": "level01",
-            "unlocked": 1
+            "unlocked" : 0
         },
         "level02": {
             "complete": 0,
             "highScore": 0,
             "key": "level02",
-            "unlocked": 1
+            "unlocked" : 0
         },
         "level03": {
             "complete": 0,
             "highScore": 0,
             "key": "level03",
-            "unlocked": 1
+            "unlocked" : 0
         },
         "level04": {
-            "unlocked": 1,
+            "unlocked" : 0,
             "complete": 0,
             "key": "level04",
             "highScore": 0
