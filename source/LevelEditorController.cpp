@@ -11,6 +11,7 @@
 #include "LevelEditorController.hpp"
 #include "LevelEditorEvent.hpp"
 #include "Util.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -234,6 +235,16 @@ void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
 
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
+    
+    auto bottomBorder = PolygonNode::alloc(Rect::Rect(0,0,GAME_SCENE_WIDTH,Util::getSceneToWorldTranslateY()));
+    bottomBorder->setColor(Color4::BLACK);
+    auto topBorder = PolygonNode::alloc(Rect::Rect(0,Util::getGameSceneHeight()-Util::getSceneToWorldTranslateY(),GAME_SCENE_WIDTH,Util::getSceneToWorldTranslateY()));
+    topBorder->setColor(Color4::BLACK);
+
+    _levelEditNode->addChild(bottomBorder);
+    _levelEditNode->addChild(topBorder);
+
+    
 	auto backButton = Util::makeBoxButton(100, 160, 30, 30, Color4::RED, Color4::PAPYRUS);
 
     backButton->setListener(
