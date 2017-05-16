@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <typeinfo>
 #include <sstream>
+#include "GameState.hpp"
 
 
 

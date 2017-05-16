@@ -356,7 +356,8 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
         }
         case Mode::MAIN_MENU:
         {
-            std::shared_ptr<LevelData> level = _assets->get<LevelData>(_menu->getSelectedLevel());
+            std::shared_ptr<LevelSelectData> lsData = _assets->get<LevelSelectData>(_menu->getSelectedLevel());
+            std::shared_ptr<LevelData> level = _assets->get<LevelData>(lsData->levelKey);
             return level;
         }
         case Mode::LEVEL_EDIT:

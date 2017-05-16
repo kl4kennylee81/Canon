@@ -14,6 +14,7 @@ bool ChapterListData::preload(const std::string& file) {
 }
 
 bool ChapterListData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
+	Data::preload(json);
 	std::vector<std::string> entries = json->get("chapterEntries")->asStringArray();
 	init(entries);
 	return true;

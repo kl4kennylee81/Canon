@@ -17,6 +17,7 @@ using namespace cugl;
 // HACK replace with level loading sending event
 
 #define BACKGROUND_TEXTURE       "bg_blue_sky"
+
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets){
@@ -37,20 +38,41 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     // magic numbers are okay as long as 16:9
     _bounds = Rect::Rect(0,0,GAME_PHYSICS_WIDTH,GAME_PHYSICS_HEIGHT);
     
-    float world_yPos = (size.getMaxY() - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2;
+    float world_yPos = Util::getSceneToWorldTranslateY();
     Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
     // set the bkgd texture in the levelData
-    auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
-    auto bkgdTextureNode = PolygonNode::allocWithTexture(image);
+    auto bkgdImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto bkgdTextureNode = PolygonNode::allocWithTexture(bkgdImage);
     bkgdTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bkgdTextureNode->setPosition(Vec2::ZERO);
-    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/image->getWidth());
+    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bkgdImage->getWidth());
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _bgnode->setPosition(world_pos);
+    _bgnode->setPosition(0,0);
     _bgnode->addChild(bkgdTextureNode);
+    
+    // set textures in levelData + remove set color
+    auto topBorderImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto topBorderTextureNode = PolygonNode::allocWithTexture(topBorderImage);
+    topBorderTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    topBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/topBorderImage->getWidth());
+    topBorderTextureNode->setPosition(0, world_yPos-topBorderTextureNode->getHeight());
+    topBorderTextureNode->setColor(Color4::RED);
+    
+    auto bottomBorderImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto bottomBorderTextureNode = PolygonNode::allocWithTexture(bottomBorderImage);
+    bottomBorderTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bottomBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bottomBorderImage->getWidth());
+    bottomBorderTextureNode->setPosition(0,size.getMaxY()-world_yPos);
+    bottomBorderTextureNode->setColor(Color4::RED);
+    
+    _bordernode = Node::alloc();
+    _bordernode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _bordernode->setPosition(0,0);
+    _bordernode->addChild(topBorderTextureNode);
+    _bordernode->addChild(bottomBorderTextureNode);
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
@@ -67,8 +89,9 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     
     // we don't attach to scene directly have the game engine handle when to attach
     _gameplayNode->addChild(_bgnode,0);
-    _gameplayNode->addChild(_worldnode,1);
-    _gameplayNode->addChild(_debugnode,2);
+    _gameplayNode->addChild(_bordernode,1);
+    _gameplayNode->addChild(_worldnode,2);
+    _gameplayNode->addChild(_debugnode,3);
     
     return true;
 }
