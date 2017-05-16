@@ -24,6 +24,7 @@ public:
     BulletAIData() : AIData() {}
     
     bool init(float velocity, float angle) {
+        type = AIType::BULLET;
         this->velocity = velocity;
         this->angle = angle;
         return true;

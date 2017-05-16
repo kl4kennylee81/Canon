@@ -21,6 +21,10 @@ bool WaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
         json->getString("element") == "BLUE" ? ElementType::BLUE : ElementType::GOLD,
         json->getString("templateKey"),
         json->getString("aiKey"));
+    
+    if(json->has("zoneKeys")){
+        zoneKeys = json->get("zoneKeys")->asStringArray();
+    }
 	Data::preload(json);
     return true;
 }
@@ -47,6 +51,10 @@ std::shared_ptr<JsonValue> WaveEntry::toJsonValue()
     }
 	
 	std::shared_ptr<JsonValue> zones = JsonValue::allocArray();
+    for(int i = 0; i < zoneKeys.size(); i++){
+        zones->appendValue(zoneKeys.at(i));
+    }
+    if(zoneKeys.size()>0) object->appendChild("zoneKeys", zones);
 	return object;
 }
 

@@ -125,6 +125,26 @@ std::string TemplateWaveEntry::getNextAIKey(std::string currentKey){
     return aiKeys.at(0);
 }
 
+bool vectorEqual(std::vector<std::string> v1, std::vector<std::string> v2){
+    if(v1.size() != v2.size()) return false;
+    for(int i = 0; i < v1.size(); i++){
+        if(v1.at(i).compare(v2.at(i)) != 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<std::string> TemplateWaveEntry::getNextZoneKeys(std::vector<std::string> currentKeys){
+    for(int i = 0; i < allZoneKeys.size() - 1; i++) {
+        if(vectorEqual(currentKeys, allZoneKeys.at(i))){
+            return allZoneKeys.at(i+1);
+        }
+    }    
+    return allZoneKeys.at(0);
+}
+
+
 std::vector<std::string> TemplateWaveEntry::getZoneKeys(){
     return zoneKeys;
 }

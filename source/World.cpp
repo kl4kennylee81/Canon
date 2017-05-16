@@ -140,6 +140,9 @@ std::shared_ptr<BulletData> World::getBulletData(std::shared_ptr<WaveEntry> we){
 
 
 std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
+    if(we->getZoneKeys().size() > 0){
+        return we->getZoneKeys();
+    }
     std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
     if (templData == nullptr) {
         return {};

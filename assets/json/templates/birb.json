@@ -149,9 +149,6 @@
             "key": "birb", 
             "name": "birb", 
             "objectKey": "birb_object", 
-            "zoneKeys": [
-                "birb_zone"
-            ],
             "zones": [[],["birb_zone"]]
         }
     },

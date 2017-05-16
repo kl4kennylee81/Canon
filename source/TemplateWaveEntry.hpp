@@ -69,6 +69,8 @@ public:
     
     std::string getNextAIKey(std::string currentKey);
     
+    std::vector<std::string> getNextZoneKeys(std::vector<std::string> currentKeys);
+    
     std::vector<std::string> getZoneKeys();
     
     void addZoneKeys(std::vector<std::string> zk){

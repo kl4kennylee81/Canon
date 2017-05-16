@@ -97,6 +97,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
             _aiChanged = false;
         }
     }
+    case WaveEditorState::ZONE_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        if(_zoneChanged) {
+            updateWaveEntryNodes();
+            _zoneChanged = false;
+        }
+    }
     case WaveEditorState::COLOR_TOGGLE: {
         deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_colorChanged) {
@@ -274,6 +281,9 @@ std::string WaveEditorController::getStateAsString(){
         case WaveEditorState::AI_TOGGLE: {
             return "AI TOGGLE";
         }
+        case WaveEditorState::ZONE_TOGGLE: {
+            return "ZONE TOGGLE";
+        }
     }
     return "";
 }
@@ -295,6 +305,10 @@ void WaveEditorController::checkKeyboardInput() {
         }
         if(key == KeyCode::A){
             _state = WaveEditorState::AI_TOGGLE;
+            return;
+        }
+        if(key == KeyCode::Z){
+            _state = WaveEditorState::ZONE_TOGGLE;
             return;
         }
         if(key == KeyCode::NUM_1){
@@ -343,6 +357,13 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
                 auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
                 waveEntry->setAIKey(templateEntry->getNextAIKey(waveEntry->getAIKey()));
                 _aiChanged = true;
+                break;
+            }
+            case WaveEditorState::ZONE_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
+                waveEntry->setZoneKeys(templateEntry->getNextZoneKeys(waveEntry->getZoneKeys()));
+                _zoneChanged = true;
                 break;
             }
             default:{
@@ -567,7 +588,7 @@ void WaveEditorController::updateWaveEntryNodes(){
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
         
         // create the zones
-        for (std::string zoneKey :templateData->getZoneKeys()){
+        for (std::string zoneKey : _world->getZoneKeys(entry)){
             std::shared_ptr<Node> zoneNode = createZoneNode(entry->getPosition().x,entry->getPosition().y,zoneKey,entry->getElement());
             entryNode->addChild(zoneNode,0);
         }
@@ -679,6 +700,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     _aiChanged = false;
     _entryRemoved = false;
     _showTemplates = true;
+    _zoneChanged = false;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");
     if (reader == nullptr) {
