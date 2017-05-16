@@ -1,0 +1,164 @@
+{
+    "counter": 10, 
+    "levels": {
+        "separation": {
+            "key": "separation", 
+            "levelEntries": {
+                "separation wave 06": {
+                    "key": "separation wave 06", 
+                    "time": 360, 
+                    "waveKey": "separation wave 06"
+                }, 
+                "separation wave 07": {
+                    "key": "separation wave 07", 
+                    "time": 480, 
+                    "waveKey": "separation wave 07"
+                }, 
+                "separation wave 10": {
+                    "key": "separation wave 10", 
+                    "time": 360, 
+                    "waveKey": "separation wave 10"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "separation", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "separation wave 06": {
+            "key": "separation wave 06", 
+            "waveEntries": {
+                "separation wave 06 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 06 object 1", 
+                    "templateKey": "birb", 
+                    "x": 25.666666, 
+                    "y": 7.1
+                }, 
+                "separation wave 06 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 06 object 2", 
+                    "templateKey": "birb", 
+                    "x": 25.666666, 
+                    "y": 9.566668
+                }, 
+                "separation wave 06 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 06 object 3", 
+                    "templateKey": "birb", 
+                    "x": 5.966667, 
+                    "y": 9.933333
+                }, 
+                "separation wave 06 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 06 object 4", 
+                    "templateKey": "birb", 
+                    "x": 6.033333, 
+                    "y": 7.4
+                }
+            }
+        }, 
+        "separation wave 07": {
+            "key": "separation wave 07", 
+            "waveEntries": {
+                "separation wave 07 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 07 object 1", 
+                    "templateKey": "birb", 
+                    "x": 13.966666, 
+                    "y": 13.833333
+                }, 
+                "separation wave 07 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 07 object 2", 
+                    "templateKey": "birb", 
+                    "x": 15.333333, 
+                    "y": 13.833333
+                }, 
+                "separation wave 07 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 07 object 3", 
+                    "templateKey": "birb", 
+                    "x": 14, 
+                    "y": 3.733334
+                }, 
+                "separation wave 07 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 07 object 4", 
+                    "templateKey": "birb", 
+                    "x": 15.433333, 
+                    "y": 3.733334
+                }
+            }
+        }, 
+        "separation wave 10": {
+            "key": "separation wave 10", 
+            "waveEntries": {
+                "separation wave 10 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 10 object 1", 
+                    "templateKey": "birb", 
+                    "x": 12.533334, 
+                    "y": 11
+                }, 
+                "separation wave 10 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 10 object 2", 
+                    "templateKey": "birb", 
+                    "x": 16.833334, 
+                    "y": 11
+                }, 
+                "separation wave 10 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "separation wave 10 object 3", 
+                    "templateKey": "birb", 
+                    "x": 12.6, 
+                    "y": 7.066667
+                }, 
+                "separation wave 10 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "separation wave 10 object 4", 
+                    "templateKey": "birb", 
+                    "x": 16.866667, 
+                    "y": 7
+                }
+            }
+        }
+    }
+}

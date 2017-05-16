@@ -17,6 +17,10 @@
 #include "AnimationData.hpp"
 #include "ShapeData.hpp"
 #include "WaveData.hpp"
+#include "ZoneData.hpp"
+#include "SoundData.hpp"
+#include "AIData.hpp"
+#include "BulletData.hpp"
 
 class LevelEvent : public Event {
 public:
@@ -24,7 +28,8 @@ public:
         /** Signal that a path is done */
         OBJECT_INIT,
         OBJECT_SPAWNING,
-        OBJECT_SPAWN
+        OBJECT_SPAWN,
+        LEVEL_FINISHED
     };
     
     LevelEventType levelEventType;
@@ -42,24 +47,35 @@ public:
     std::shared_ptr<ObjectData> objectData;
     std::shared_ptr<AnimationData> animationData;
     std::shared_ptr<ShapeData> shapeData;
+    std::shared_ptr<SoundData> soundData;
+    std::shared_ptr<AIData> aiData;
+    std::vector<std::shared_ptr<ZoneData>> zoneDatas;
+    std::shared_ptr<BulletData> bulletData;
     
     ObjectInitEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_INIT;
     }
     
-    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData){
+    bool init(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<SoundData> soundData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas, std::shared_ptr<BulletData> bulletData)
+    {
         this->levelEventType = LevelEventType::OBJECT_INIT;
         this->object = object;
         this->waveEntry = waveEntry;
         this->objectData = objectData;
         this->animationData = animationData;
         this->shapeData = shapeData;
+        this->soundData = soundData;
+        this->aiData = aiData;
+        this->zoneDatas = zoneDatas;
+        this->bulletData = bulletData;
         return true;
     }
     
-    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData){
+    static std::shared_ptr<ObjectInitEvent> alloc(std::shared_ptr<GameObject> object, std::shared_ptr<WaveEntry> waveEntry, std::shared_ptr<ObjectData> objectData, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<SoundData> soundData, std::shared_ptr<AIData> aiData, std::vector<std::shared_ptr<ZoneData>> zoneDatas,
+        std::shared_ptr<BulletData> bulletData)
+    {
         std::shared_ptr<ObjectInitEvent> result = std::make_shared<ObjectInitEvent>();
-        return (result->init(object,waveEntry,objectData,animationData,shapeData) ? result : nullptr);
+        return (result->init(object,waveEntry,objectData,animationData,shapeData,soundData,aiData,zoneDatas,bulletData) ? result : nullptr);
     }
 };
 
@@ -67,20 +83,22 @@ class ObjectSpawningEvent : public LevelEvent {
 public:
     
     std::shared_ptr<GameObject> object;
+    float spawnTime;
     
     ObjectSpawningEvent() : LevelEvent() {
         levelEventType = LevelEventType::OBJECT_SPAWNING;
     }
     
-    bool init(std::shared_ptr<GameObject> object){
+    bool init(std::shared_ptr<GameObject> object,float sTime){
         this->levelEventType = LevelEventType::OBJECT_SPAWNING;
         this->object = object;
+        this->spawnTime = sTime;
         return true;
     }
     
-    static std::shared_ptr<ObjectSpawningEvent> alloc(std::shared_ptr<GameObject> object){
+    static std::shared_ptr<ObjectSpawningEvent> alloc(std::shared_ptr<GameObject> object,float sTime){
         std::shared_ptr<ObjectSpawningEvent> result = std::make_shared<ObjectSpawningEvent>();
-        return (result->init(object) ? result : nullptr);
+        return (result->init(object,sTime) ? result : nullptr);
     }
 };
 
@@ -105,4 +123,21 @@ public:
     }
 };
 
+class LevelFinishedEvent : public LevelEvent {
+public:
+    
+    LevelFinishedEvent() : LevelEvent() {
+        levelEventType = LevelEventType::LEVEL_FINISHED;
+    }
+    
+    bool init(){
+        this->levelEventType = LevelEventType::LEVEL_FINISHED;
+        return true;
+    }
+    
+    static std::shared_ptr<LevelFinishedEvent> alloc(){
+        std::shared_ptr<LevelFinishedEvent> result = std::make_shared<LevelFinishedEvent>();
+        return (result->init() ? result : nullptr);
+    }
+};
 #endif /* LevelEvent_hpp */

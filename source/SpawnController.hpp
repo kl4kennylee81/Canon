@@ -14,15 +14,26 @@
 #include <map>
 #include "BaseController.hpp"
 #include "GameObject.hpp"
+#include "GameState.hpp"
 
+/**
+ * The purpose of this controller is to delay spawning for 
+ * SPAWN_FRAMES number of frames.
+ */
 class SpawnController : public BaseController {
 protected:
-    std::map<std::shared_ptr<GameObject>, int> spawnMap;
+    
+    /**
+     * Object that is about to spawn, and the frames that it waited so far
+     */
+    std::map<std::shared_ptr<GameObject>, float> spawnMap;
     
 public:
     SpawnController();
     
-    virtual void attach(std::shared_ptr<Observer> obs);
+    ~SpawnController(){ dispose(); }
+    
+    virtual void attach(Observer* obs);
     
     virtual void detach(Observer* obs);
     
@@ -33,7 +44,9 @@ public:
      */
     virtual void eventUpdate(Event* e);
     
-    virtual void update(float timestep);
+    virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void dispose() {};
     
     virtual bool init();
     
@@ -41,6 +54,9 @@ public:
         std::shared_ptr<SpawnController> result = std::make_shared<SpawnController>();
         return (result->init() ? result : nullptr);
     }
+    
+	std::string serialize();
+    std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 #endif /* SpawnController_hpp */

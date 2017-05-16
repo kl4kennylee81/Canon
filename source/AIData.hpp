@@ -3,7 +3,7 @@
 //  Canon
 //
 //  Created by Kenneth Lee on 2/28/17.
-//  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
+//  Copyright ï¿½ 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
 #ifndef AIData_hpp
@@ -12,36 +12,41 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "ActiveAI.hpp"
+#include "GameObject.hpp"
+#include "StaticAI.hpp"
 
 enum class AIType : int {
-	HOMING, PATH
+	HOMING, PATH, STATIC, COMPOSITE, BULLET
 };
 
-enum class PathType : int {
-	HORIZONTAL, VERTICAL, CUSTOM, NONE
-};
-
-class AIData {
+class AIData : public Data {
 public:
 
-	AIType _aiType;
+	AIType type;
 
-	PathType _pathType;
+	AIData() : Data() {}
 
-	std::vector<cugl::Vec2> _path;
+	virtual bool preload(const std::string& file) { return true;  }
 
-	AIData() {}
-
-	bool init(AIType aiType, PathType pathType , std::vector<cugl::Vec2> path) {
-		_aiType = aiType;
-		_pathType = pathType;
-		_path = path;
-		return true;
+	virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) {
+		Data::preload(json); 
+		return true;  
 	}
 
-	static std::shared_ptr<AIData> alloc(AIType aiType, PathType pathType, std::vector<cugl::Vec2> path = std::vector<cugl::Vec2>()) {
-		std::shared_ptr<AIData> result = std::make_shared<AIData>();
-		return (result->init(aiType, pathType, path) ? result : nullptr);
+	virtual bool materialize() { return true;  }
+
+	virtual std::shared_ptr<ActiveAI> newActiveAI(std::shared_ptr<GameObject> object) { return nullptr;  }
+
+	static AIType stringToAIType(std::string at) {
+		//HOMING, PATH, STATIC, COMPOSITE
+		if (at == "HOMING") return AIType::HOMING;
+		if (at == "PATH") return AIType::PATH;
+		if (at == "STATIC") return AIType::STATIC;
+		if (at == "COMPOSITE") return AIType::COMPOSITE;
+        if (at == "BULLET") return AIType::BULLET;
+		return AIType::STATIC;
 	}
+
 };
 #endif /* AIData_hpp */

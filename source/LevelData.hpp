@@ -12,58 +12,116 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Data.hpp"
+#include "WaveData.hpp"
 #include <vector>
 
-class LevelEntry {
+class LevelEntry : public Data {
 public:
-    int waveKey;
-    float time;
+    std::string waveKey;
+    float time; // frames
     
-    LevelEntry(){}
+    LevelEntry():Data(){}
     
-    bool init(int wkey,int t){
+    bool init(){
+        Data::init();
+        this->waveKey = "";
+        this->time = 0;
+        return true;
+    }
+    
+    bool init(std::string wkey,int t){
+        init();
         this->waveKey = wkey;
         this->time = t;
         return true;
     }
+    
+    static std::shared_ptr<LevelEntry> alloc() {
+        std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
+        return (result->init() ? result : nullptr);
+    }
 
-    static std::shared_ptr<LevelEntry> alloc(int waveKey,int time) {
+    static std::shared_ptr<LevelEntry> alloc(std::string waveKey,int time) {
         std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
         return (result->init(waveKey,time) ? result : nullptr);
     }
+    
+    static std::shared_ptr<LevelEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json) {
+        std::shared_ptr<LevelEntry> result = std::make_shared<LevelEntry>();
+        return (result->preload(json) ? result : nullptr);
+    }
+    
+    std::shared_ptr<cugl::JsonValue> toJsonValue() override;
+    
+    virtual bool preload(const std::string& file) override;
+    
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
+    
+    virtual bool materialize() override;
 };
 
 class LevelData : public Data {
 protected:
+    
+    // wave entries for the initial position of the player characters
+    std::vector<std::shared_ptr<WaveEntry>> _playerChars;
+    
     std::vector<std::shared_ptr<LevelEntry>> _levelEntries;
 public:
     LevelData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
         return true;
     }
-    
-    static std::shared_ptr<LevelData> alloc(int uid) {
+
+	std::vector<std::shared_ptr<LevelEntry>> getLevelEntries() { return _levelEntries; }
+
+    static std::shared_ptr<LevelData> alloc() {
         std::shared_ptr<LevelData> result = std::make_shared<LevelData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
     
     void addLevelEntry(std::shared_ptr<LevelEntry> entry);
     
+    void updateEntryTime(int index, float time);
+    
+    void addPlayerChars(std::shared_ptr<WaveEntry> entry);
+    
+    std::vector<std::shared_ptr<WaveEntry>>& getPlayerChars() {
+        return _playerChars;
+    }
+    
+    void removeWave(int index){
+        std::vector<std::shared_ptr<LevelEntry>> newEntries;
+        for(int i = 0; i < _levelEntries.size(); i++){
+            if(i != index){
+                newEntries.push_back(_levelEntries.at(i));
+            }
+        }
+        _levelEntries = newEntries;
+    }
+    
     float getTime(int index);
     
-    int getWaveKey(int index);
+    std::string getWaveKey(int index);
+    
+    std::shared_ptr<LevelEntry> getLevelEntry(int index);
+    
+    void setWaveKey(int index, std::string newKey){
+        _levelEntries.at(index)->waveKey = newKey;
+    }
     
     size_t getNumberWaves();
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
-    virtual std::string serialize();
+    virtual bool preload(const std::string& file) override;
     
-    virtual bool preload(const std::string& file);
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
-    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    virtual bool materialize() override;
     
-    virtual bool materialize();
+    bool isValid();
 };
 
 #endif /* LevelData_hpp */

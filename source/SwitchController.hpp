@@ -14,18 +14,20 @@
 #include "BaseController.hpp"
 #include "GameState.hpp"
 #include "Event.hpp"
-//#include "PathEvent.hpp"
 
 
 class SwitchController : public BaseController {
 public:
     bool switchFlag;
+    bool spawnSwitch;
 
 	std::unordered_map <std::shared_ptr<GameObject>, cugl::Color4> _baseColors;
 
 	SwitchController();
+    
+    ~SwitchController(){};
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 

@@ -14,30 +14,51 @@
 #include <list>
 #include "LevelData.hpp"
 
+
+/**
+ * Abstracts away the spawning and keeping track of total time
+ */
 class Level {
 protected:
     std::shared_ptr<LevelData> _levelData;
     /** current index of the wave */
     int _currentWave;
     /** time elapsed since last wave */
-    float _timeElapsed;
+    float _framesElapsed;
     bool _readyToSpawn;
+    bool _playerSpawned;
 public:
     Level(){}
+
+	bool isReadyToSpawn() { return _readyToSpawn; }
+	bool hasPlayerSpawned() { return _playerSpawned; }
+	std::string getLevelKey() { return _levelData->key; }
+	float getFramesElapsed() { return _framesElapsed; }
+    
+    void setLevelData(std::shared_ptr<LevelData> levelData){
+        _levelData = levelData;
+    }
     
     bool init(std::shared_ptr<LevelData> levelData);
     
+    bool init(int currentWave,int framesElapsed,bool readyToSpawn,bool playerSpawned);
+    
+    bool init(const std::shared_ptr<cugl::JsonValue> json);
+    
     int getNextTime();
     
-    int getCurrentWaveKey();
+    std::string getCurrentWaveKey();
     
+    /** returns the current wave and -1 if there are no waves */
     int getCurrentWave();
     
     float getProgress();
     
-    /** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
-     *  after returning it, it will return -1 again until the next wave */
-    int pollWave();
+    void toggleReadyToSpawn();
+    
+    void togglePlayerSpawned();
+    
+    std::vector<std::shared_ptr<WaveEntry>> getPlayerChars();
     
     void setCurrentWave(int waveNum);
 

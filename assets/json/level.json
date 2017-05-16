@@ -1,53 +1,168 @@
 {
-  "levels": {
-    "level1": {
-      "wave1": {
-        "waveKey": 1,
-        "time": 1
-      },
-      "wave2": {
-        "waveKey": 1,
-        "time": 2
-      }
+    "objects": {
+        "bar": {
+            "blueAnimationKey": "whiteBar", 
+            "goldAnimationKey": "whiteBar", 
+            "key": "bar", 
+            "shapeKey": "bar"
+        }, 
+        "circle": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "circle", 
+            "shapeKey": "circle"
+        }, 
+        "playerCharFemale": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "key": "playerCharFemale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "female",
+            "health": 2
+        }, 
+        "playerCharMale": {
+            "animationScale": 2.0, 
+            "blueAnimationKey": "blueCharAnimation", 
+            "goldAnimationKey": "goldCharAnimation", 
+            "key": "playerCharMale", 
+            "shapeKey": "playerCharShape", 
+            "soundKey": "male",
+            "health": 2
+        }, 
+        "playerZoneObject": {
+            "blueAnimationKey": "whiteCircle", 
+            "goldAnimationKey": "whiteCircle", 
+            "key": "playerZoneObject", 
+            "shapeKey": "playerZoneShape"
+        }, 
+        "sector": {
+            "blueAnimationKey": "whiteSector", 
+            "goldAnimationKey": "whiteSector", 
+            "key": "sector", 
+            "shapeKey": "sector"
+        }
+    }, 
+    "shapes": {
+        "bar": {
+            "key": "bar", 
+            "vertices": [-0.625, 12.5, 0.625, 12.5, 0.625, -12.5, -0.625, -12.5]
+        }, 
+        "circle": {
+            "key": "circle", 
+            "vertices": [0.0, -3.125, 1.5625, -2.706329386825, 2.706329386825, -1.5625, 3.125, 0.0, 2.706329386825, 1.5625, 1.5625, 2.706329386825, 0.0, 3.125, -1.5625, 2.706329386825, -2.706329386825, 1.5625, -3.125, 0.0, -2.706329386825, -1.5625, -1.5625, -2.706329386825]
+
+        }, 
+        "playerCharShape": {
+            "key": "playerCharShape", 
+            "vertices": [0.0, 0.0, 0.6875, 0.0, 0.6875, 1.25, 0.0, 1.25]
+        }, 
+        "playerZoneShape": {
+            "key": "playerZoneShape", 
+            "vertices": [0.0, -1.225125, 0.6125625, -1.0609893728108732, 1.0609893728108732, -0.6125625, 1.225125, 0.0, 1.0609893728108732, 0.6125625, 0.6125625, 1.0609893728108732, 0.0, 1.225125, -0.6125625, 1.0609893728108732, -1.0609893728108732, 0.6125625, -1.225125, 0.0, -1.0609893728108732, -0.6125625, -0.6125625, -1.0609893728108732]
+        }, 
+        "sector": {
+            "key": "sector", 
+            "vertices": [0.3125, 0.0, 1.5625, 0.0, 2.1875, 1.40625, 0.9375, 1.71875, -0.3125, 1.40625]
+        }
+    }, 
+    "templates": {
+        "object1": {
+            "aiKeys": [
+                "homing"
+            ], 
+            "key": "object1", 
+            "name": "object1", 
+            "objectKey": "object1", 
+            "zoneKeys": [
+                "pulseZone"
+            ]
+        }, 
+        "playerCharFemale": {
+            "key": "playerCharFemale", 
+            "name": "playerCharFemale", 
+            "objectKey": "playerCharFemale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }, 
+        "playerCharMale": {
+            "key": "playerCharMale", 
+            "name": "playerCharMale", 
+            "objectKey": "playerCharMale", 
+            "spawnTime": 0.0, 
+            "zoneKeys": [
+                "playerZone"
+            ]
+        }
+    }, 
+    "zones": {
+        "columnZone": {
+            "cooldown": 0, 
+            "duration": 100, 
+            "element": "MATCH", 
+            "key": "columnZone", 
+            "objectKey": "bar", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "playerZone": {
+            "cooldown": 0, 
+            "duration": 10, 
+            "element": "MATCH", 
+            "key": "playerZone", 
+            "objectKey": "playerZoneObject", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }, 
+        "pulseZone": {
+            "element": "MATCH", 
+            "key": "pulseZone", 
+            "lerpTime": 320, 
+            "maxSizeX": 1.0, 
+            "maxSizeY": 1.0, 
+            "maxTime": 60, 
+            "minSizeX": 0.8, 
+            "minSizeY": 0.0, 
+            "minTime": 60, 
+            "objectKey": "bar", 
+            "type": "PULSE"
+        }, 
+        "rotateZone": {
+            "key": "rotateZone", 
+            "radius": 1.5625, 
+            "speed": 0.5, 
+            "type": "ROTATE", 
+            "zoneEntries": {
+                "zone1": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0
+                }, 
+                "zone2": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.33
+                }, 
+                "zone3": {
+                    "element": "MATCH", 
+                    "objectKey": "sector", 
+                    "startingPosition": 0.67
+                }
+            }
+        }, 
+        "staticZone": {
+            "cooldown": 180, 
+            "duration": 180, 
+            "element": "MATCH", 
+            "key": "staticZone", 
+            "objectKey": "circle", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }
     }
-  },
-  "waves": {
-    "wave1": {
-      "object1": {
-        "objectKey": 1,
-        "x": 100,
-        "y": 100
-      },
-      "object2": {
-        "objectKey": 2,
-        "x": 200,
-        "y": 200
-      }
-    }
-  },
-  "objects": {
-    "object1": {
-      "id": 1,
-      "shape_id": 1,
-      "animation_id": 3,
-      "speed": 5,
-      "acceleration": 5,
-      "Element": "BLUE"
-    },
-    "object2": {
-      "id": 2,
-      "shape_id": 1,
-      "animation_id": 4,
-      "speed": 5,
-      "acceleration": 5,
-      "Element": "GOLD"
-    }
-  },
-  "shapes": {
-    "shape1": {
-      "id": 1,
-      "width": 100,
-      "height": 100
-    }
-  }
 }

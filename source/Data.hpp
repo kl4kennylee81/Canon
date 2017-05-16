@@ -13,27 +13,28 @@
 #include <cugl/cugl.h>
 
 class Data : cugl::Asset {
-protected:
-    int _uid;
 public:
-    Data() :
-    Asset(),
-    _uid(0){}
+    Data():Asset(){};
     
+	std::string key;
+
     bool init(){
         return true;
-    }
+    };
     
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
+
     // setting equal to 0 is a pure virtual function equivalent to an abstract function
-    virtual std::string serialize() = 0;
+	virtual std::string serialize()
+	{
+		return toJsonValue()->toString();
+	}
         
 	virtual bool preload(const std::string& file);
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
     
     virtual bool materialize();
-    
-    int getUID(){ return _uid;};
 };
 
 #endif /* Data_hpp */

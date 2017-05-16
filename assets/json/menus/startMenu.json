@@ -1,0 +1,64 @@
+{
+    "MenuScreenData": {
+        "startMenu": {
+            "UIEntries": [
+                "startMenu_infoButton", 
+                "startMenu_settingsButton", 
+                "startMenu_title", 
+                "startMenu_playButton"
+            ], 
+            "key": "startMenu", 
+            "menuBackgroundKey": "lakebg"
+        }
+    }, 
+    "UIData": {
+        "startMenu_infoButton": {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "type": "menuChange"
+            }, 
+            "height": 0.171, 
+            "key": "startMenu_infoButton", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "startMenu_infosymbol", 
+            "width": 0.096, 
+            "x": 0.9, 
+            "y": 0.008
+        }, 
+        "startMenu_playButton": {
+            "buttonAction": {
+                "buttonTarget": "levelSelect", 
+                "type": "menuChange"
+            }, 
+            "height": 0.157, 
+            "key": "startMenu_playButton", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "startMenu_swipetoplay", 
+            "width": 0.339, 
+            "x": 0.339, 
+            "y": 0.217
+        }, 
+        "startMenu_settingsButton": {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "type": "menuChange"
+            }, 
+            "height": 0.171, 
+            "key": "startMenu_settingsButton", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "startMenu_settingsymbol", 
+            "width": 0.096, 
+            "x": 0.005, 
+            "y": 0.008
+        }, 
+        "startMenu_title": {
+            "height": 0.545, 
+            "key": "startMenu_title", 
+            "textureKey": "startMenu_title", 
+            "type": "IMAGE", 
+            "width": 0.796, 
+            "x": 0.104, 
+            "y": 0.33
+        }
+    }
+}

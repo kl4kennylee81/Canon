@@ -10,11 +10,18 @@
 #include "Element.hpp"
 #include <random>
 #include "AIData.hpp"
+#include "CompositeAIData.hpp"
+#include <iostream>
+#include <fstream>
+#include "StaticZoneData.hpp"
+#include "PathAIData.hpp"
+#include "AIData.hpp"
+#include "GameEngine.hpp"
 
 #define TIME_BETWEEN_SPAWN       500
-#define NUMBER_SPAWNS            3
+#define NUMBER_SPAWNS            4
 
-
+using std::string;
 using namespace cugl;
 
 World::World() :
@@ -30,58 +37,175 @@ std::shared_ptr<GenericAssetManager> World::getAssetManager(){
     return _assets;
 }
 
-/** testing function to populate the world without the data files */
-void World::populate(){
-    _levelData = LevelData::alloc(1);
-    std::mt19937 rng;
-    rng.seed(std::random_device()());
-    // distribution width and height
+std::shared_ptr<JsonValue> World::toJsonValue(std::string levelName)
+{
+    // TODO need to update world serialize
+	std::shared_ptr<JsonValue> completeJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> levelDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> waveDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> objectDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> shapeDataJson = JsonValue::allocObject();
+	std::shared_ptr<JsonValue> zoneDataJson = JsonValue::allocObject();
+    std::shared_ptr<JsonValue> animationDataJson = JsonValue::allocObject();
+
+	for (auto const& x : _waveData) { waveDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _objectData) { objectDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _shapeData) { shapeDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _zoneData) { zoneDataJson->appendChild(x.first, x.second->toJsonValue()); }
+	for (auto const& x : _animationData) { animationDataJson->appendChild(x.first, x.second->toJsonValue()); }
     
-    std::uniform_int_distribution<std::mt19937::result_type> dist9(1,9);
-    std::uniform_int_distribution<std::mt19937::result_type> distWidth(0,31);
-    std::uniform_int_distribution<std::mt19937::result_type> distHeight(0,17);
-    
-    for (int i = 0;i < 10;i++){
-        std::shared_ptr<LevelEntry> e = LevelEntry::alloc(dist9(rng),TIME_BETWEEN_SPAWN);
-        _levelData->addLevelEntry(e);
-    }
-    
-    for (int i = 1;i < 10;i++){
-        auto wd = WaveData::alloc(1);
-        for (int j = 0;j<NUMBER_SPAWNS;j++){
-            std::uniform_int_distribution<std::mt19937::result_type> dist2(1,2);
-			auto ai = AIData::alloc(AIType::HOMING, PathType::NONE);
-            std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng),distWidth(rng),distHeight(rng), ai);
-            wd->addWaveEntry(we);
-        }
-		std::uniform_int_distribution<std::mt19937::result_type> dist2(1, 2);
-		auto ai = AIData::alloc(AIType::PATH, PathType::HORIZONTAL);
-		std::shared_ptr<WaveEntry> we = WaveEntry::alloc(dist2(rng), distWidth(rng), distHeight(rng), ai);
-		wd->addWaveEntry(we);
-        _waveData.insert(std::make_pair(i,wd));
-    }
-    
-    auto od1 = ObjectData::alloc(1,1,3,5,5,Element::BLUE);
-    _objectData.insert(std::make_pair(1,od1));
-    
-    auto od2 = ObjectData::alloc(2,1,4,5,5,Element::GOLD);
-    _objectData.insert(std::make_pair(2,od2));
-    
-    auto sd = ShapeData::alloc(1,50,50);
-    _shapeData.insert(std::make_pair(1,sd));
-    
-    std::shared_ptr<AnimationData> blueEnemy = _assets->get<AnimationData>("blueEnemyAnimation");
-    _animationData.insert({blueEnemy->getUID(),blueEnemy});
-    
-    std::shared_ptr<AnimationData> yellowEnemy = _assets->get<AnimationData>("redEnemyAnimation");
-    _animationData.insert({yellowEnemy->getUID(),yellowEnemy});
-    
-    
+	levelDataJson->appendChild(levelName, _levelData->toJsonValue());
+	
+	completeJson->appendChild("levels", levelDataJson);
+	completeJson->appendChild("waves", waveDataJson);
+	completeJson->appendChild("objects", objectDataJson);
+	completeJson->appendChild("shapes", shapeDataJson);
+	completeJson->appendChild("zones", zoneDataJson);
+    completeJson->appendChild("animations", animationDataJson);
+	
+	return completeJson;
 }
 
-bool World::init(std::shared_ptr<GenericAssetManager> assets){
+std::string World::serialize(std::string levelName)
+{
+	return toJsonValue(levelName)->toString();
+}
+
+void World::populate() {
+}
+
+bool World::init(std::shared_ptr<GenericAssetManager> assets, std::string levelName){
     _assets = assets;
-    populate();
+    this->_levelData = assets->get<LevelData>(levelName);
+    _isSandbox = false;
+    
     return true;
+}
+
+std::shared_ptr<ObjectData> World::getObjectData(std::string obKey){
+    if (_isSandbox && _objectData.count(obKey) > 0){
+        return _objectData.at(obKey);
+    }
+    // default to the asset if can't find in sandbox
+    return _assets->get<ObjectData>(obKey);
+}
+
+std::shared_ptr<AnimationData> World::getAnimationData(std::string aKey){
+    if (_isSandbox && _animationData.count(aKey) > 0){
+        return _animationData.at(aKey);
+    }
+    return _assets->get<AnimationData>(aKey);
+}
+
+std::shared_ptr<ShapeData> World::getShapeData(std::string shapeKey){
+    if (_isSandbox && _shapeData.count(shapeKey) > 0){
+        return _shapeData.at(shapeKey);
+    }
+    return _assets->get<ShapeData>(shapeKey);
+}
+
+std::shared_ptr<WaveData> World::getWaveData(std::string waveKey){
+    if (_isSandbox && _waveData.count(waveKey) > 0){
+        return _waveData.at(waveKey);
+    }
+    return _assets->get<WaveData>(waveKey);
+}
+
+std::shared_ptr<TemplateWaveEntry> World::getTemplate(std::string templateKey){
+    if (_isSandbox && _templateData.count(templateKey) > 0){
+        return _templateData.at(templateKey);
+    }
+    return _assets->get<TemplateWaveEntry>(templateKey);
+}
+
+std::shared_ptr<ObjectData> World::getObjectData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if (templData == nullptr) {
+        return nullptr;
+    }
+    return getObjectData(templData->getObjectKey());
+}
+
+std::shared_ptr<AIData> World::getAIData(std::shared_ptr<WaveEntry> we){
+    return getAIData(we->getAIKey());
+}
+
+std::shared_ptr<BulletData> World::getBulletData(std::shared_ptr<WaveEntry> we){
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if(templData == nullptr){
+        return nullptr;
+    }
+    return getBulletData(templData->bulletKey);
+}
+
+
+std::vector<std::string> World::getZoneKeys(std::shared_ptr<WaveEntry> we){
+    if(we->getZoneKeys().size() > 0){
+        return we->getZoneKeys();
+    }
+    std::shared_ptr<TemplateWaveEntry> templData = getTemplate(we->getTemplateKey());
+    if (templData == nullptr) {
+        return {};
+    }
+    return templData->getZoneKeys();
+}
+
+std::shared_ptr<AIData> World::getAIData(std::string aiKey){
+	bool sandbox = _isSandbox && _aiData.count(aiKey) > 0;
+	auto data = sandbox ? _aiData[aiKey] : _assets->get<AIData>(aiKey);
+	if (data != nullptr && data->type == AIType::COMPOSITE) {
+		auto compositeData = std::static_pointer_cast<CompositeAIData>(data);
+		std::string startKey = compositeData->_startKey;
+		compositeData->_startData = sandbox ? _aiData[startKey] : _assets->get<AIData>(startKey);
+		for (int i = 0; i < compositeData->_aiKeys.size(); i++) {
+			std::shared_ptr<AIData> subData = getAIData(compositeData->_aiKeys.at(i));
+			compositeData->_aiDatas.push_back(subData);
+		}
+		return compositeData;
+	}
+	return data;
+}
+
+std::shared_ptr<ZoneData> World::getZoneData(std::string zoneKey){
+    if (_isSandbox && _zoneData.count(zoneKey) > 0){
+        return _zoneData.at(zoneKey);
+    }
+    return _assets->get<ZoneData>(zoneKey);
+}
+
+std::shared_ptr<BulletData> World::getBulletData(std::string bulletKey){
+    if (_isSandbox && _bulletData.count(bulletKey) > 0){
+        return _bulletData.at(bulletKey);
+    }
+    return _assets->get<BulletData>(bulletKey);
+}
+
+std::shared_ptr<SoundData> World::getSoundData(std::string soundKey){
+    if (_isSandbox && _soundData.count(soundKey) > 0){
+        return _soundData.at(soundKey);
+    }
+    return _assets->get<SoundData>(soundKey);
+}
+
+void World::addTemplate(std::string templateKey, std::shared_ptr<TemplateWaveEntry> twe){
+    _templateData.insert(std::make_pair(templateKey,twe));
+}
+
+bool World::isValid(){
+    if (_levelData == nullptr){
+        return false;
+    }
+    
+    if (_assets == nullptr) {
+        return false;
+    }
+    
+    return _levelData->isValid();
+}
+
+
+void World::copyWave(std::string copiedWaveKey, std::string newWaveKey){
+    auto newWaveData = WaveData::alloc(getWaveData(copiedWaveKey));
+    _waveData.at(newWaveKey) = newWaveData;
 }
 

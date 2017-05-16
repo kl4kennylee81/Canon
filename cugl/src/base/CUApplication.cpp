@@ -459,8 +459,7 @@ void Application::processCallbacks(Uint32 millis) {
                 actives.push_back(it->second);
                 it->second.timer -= std::min(it->second.timer, millis);
                 it->second.timer += it->second.period;
-            }
-            else {
+            } else {
                 it->second.timer -= millis;
             }
         }
@@ -468,7 +467,7 @@ void Application::processCallbacks(Uint32 millis) {
     
     // These can take a while, so do them outside lock
     for (int ii = 0; ii < actives.size(); ii++) {
-        if (!actives[ii].callback()) {
+        if (actives[ii].callback()) {
             indeces[ii] = (Uint32)-1;
         }
     }
@@ -829,6 +828,4 @@ bool Application::initOpenGL() {
     
     return true;
 }
-
-
 

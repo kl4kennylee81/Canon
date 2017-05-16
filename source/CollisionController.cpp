@@ -10,9 +10,12 @@
 #include "Element.hpp"
 #include "CollisionEvent.hpp"
 #include "LevelEvent.hpp"
+#include "ZoneEvent.hpp"
 #include <Box2D/Dynamics/b2World.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Collision/b2Collision.h>
+#include "BulletSpawnEvent.hpp"
+#include <list>
 
 using namespace cugl;
 
@@ -23,8 +26,11 @@ BaseController(){}
 #define BLUE_COLOR   Color4::BLUE
 #define GOLD_COLOR   Color4::YELLOW
 #define DEBUG_COLOR  Color4::GREEN
+#define DEBUG_OFF_COLOR Color4::RED
 
-void CollisionController::attach(std::shared_ptr<Observer> obs) {
+#define HIT_STUN 70
+
+void CollisionController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void CollisionController::detach(Observer* obs) {
@@ -44,15 +50,61 @@ void CollisionController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    auto box = BoxObstacle::alloc(objectInit->waveEntry->position, objectInit->shapeData->getSize()/GameState::_physicsScale);
-                    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(box, objectInit->objectData->getElement());
-                    objectInit->object->setPhysicsComponent(physics);
+                    initPhysicsComponent(objectInit);
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        bluePlayer = objectInit->object.get();
+                    }
+                    if (objectInit->object->getIsPlayer() && objectInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldPlayer = objectInit->object.get();
+                    }
                     break;
                 }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
                     GameObject* obj = objectSpawn->object.get();
                     addToWorld(obj);
+                    break;
+                }
+            }
+            break;
+        }
+        case Event::EventType::ZONE: {
+            ZoneEvent* zoneEvent = (ZoneEvent*)e;
+            switch (zoneEvent->zoneEventType) {
+                case ZoneEvent::ZoneEventType::ZONE_INIT: {
+                    ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
+                    initPhysicsComponent(zoneInit);
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+                        blueZone = zoneInit->object.get();
+                    }
+                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+                        goldZone = zoneInit->object.get();
+                    }
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
+                    ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
+                    addToWorld(zoneSpawn->object);
+                    zoneSpawn->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_OFF_COLOR);
+                    objsToIgnore.push_back(zoneSpawn->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_ON: {
+                    ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
+                    zoneOn->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_COLOR);
+                    auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), zoneOn->object);
+                    if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_OFF: {
+                    ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
+                    zoneOff->object->getPhysicsComponent()->getBody()->setDebugColor(DEBUG_OFF_COLOR);
+                    objsToIgnore.push_back(zoneOff->object);
+                    break;
+                }
+                case ZoneEvent::ZoneEventType::ZONE_DELETE: {
+                    ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
+                    removeFromWorld(zoneDelete->object);
                     break;
                 }
             }
@@ -67,16 +119,90 @@ void CollisionController::update(float timestep,std::shared_ptr<GameState> state
         setDebug(!isDebug());
     }
     
+    updateHitStun();
+    
+    //remove duplicates
+    sort(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() );
+    objsScheduledForRemoval.erase(unique(objsScheduledForRemoval.begin(), objsScheduledForRemoval.end() ), objsScheduledForRemoval.end() );
+    
     for (auto obj : objsScheduledForRemoval) {
-        if(!obj->getIsPlayer()) {
-            removeFromWorld(state, obj);
-        } else {
-            state->reset = true;
+        if (obj->getIsPlayer()){
+            // TODO check if we actually need this inGame flag
+            // added so things dont keep moving during death animation
+            inGame = false;
         }
+        removeFromWorld(obj);
     }
+    
     objsScheduledForRemoval.clear();
     
-    _world->update(timestep);
+    if (inGame) {
+        _world->update(timestep);
+        for(auto it: _world->getObstacles()) {
+            GameObject* obj = static_cast<GameObject*>(it->getBody()->GetUserData());
+            if(obj->type == GameObject::ObjectType::BULLET){
+                Vec2 pos = it->getPosition();
+                if(pos.x < -2 || pos.y < -2 || pos.x > GAME_PHYSICS_WIDTH + 2 || pos.y > GAME_PHYSICS_HEIGHT + 2) {
+                    objsScheduledForRemoval.push_back(obj);
+                    std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj);
+                    notify(objectGoneEvent.get());
+                }
+            }
+        }
+        
+        // update all obstacle after updating the world
+        // check for resized dirty obstacles that need to be remade
+        for (std::shared_ptr<GameObject> gameObj : state->getEnemyObjects()){
+            if (gameObj->getPhysicsComponent() == nullptr){
+                continue;
+            }
+            
+            if (gameObj->getPhysicsComponent()->getBody() == nullptr){
+                continue;
+            }
+            gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
+        
+        // check for resized dirty obstacles that need to be remade
+        for (std::shared_ptr<GameObject> gameObj : state->getPlayerCharacters()){
+            if (gameObj->getPhysicsComponent() == nullptr){
+                continue;
+            }
+            
+            if (gameObj->getPhysicsComponent()->getBody() == nullptr){
+                continue;
+            }
+            gameObj->getPhysicsComponent()->getBody()->update(timestep);
+        }
+    }
+}
+
+void CollisionController::updateHitStun(){
+    auto itr = hitStunMap.begin();
+    while (itr != hitStunMap.end()) {
+        itr->second -= GameState::_internalClock->getTimeDilation();
+        if (itr->second <= 0) {
+            //remove from ignore list
+            auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), itr->first);
+            if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+            
+            //send event
+            if(itr->first->type == GameObject::ObjectType::CHARACTER) {
+                std::shared_ptr<ObjectHitFinishedEvent> objectHitFinishedEvent = ObjectHitFinishedEvent::alloc(itr->first);
+                notify(objectHitFinishedEvent.get());
+            }
+            
+            itr = hitStunMap.erase(itr);
+        } else {
+            ++itr;
+        }
+    }
+}
+
+void CollisionController::dispose(){
+    _world = nullptr;
+    _debugnode = nullptr;
+    _arrowTexture = nullptr;
 }
 
 
@@ -84,7 +210,7 @@ bool CollisionController::init() {
 	return true;
 }
     
-bool CollisionController::init(std::shared_ptr<GameState> state){
+bool CollisionController::init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets){
     Rect bounds = state->getRect();
     
     // 2nd arguement is setting gravity to 0
@@ -97,7 +223,15 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
         beforeSolve(contact,oldManifold);
     };
     
+    // keep the world update to 60 fps without lockstep it simulates up until it is called again
+    // which is not garunteed to be within our set timeframe for example when using the debugger.
+    _world->setLockStep(true);
+    _world->setStepsize(1.f/Application::get()->getFPS());
+    
     _debugnode = state->getDebugNode();
+    
+    
+    _arrowTexture = assets->get<Texture>("greyArrow");
     
     std::vector<std::shared_ptr<GameObject>> enemyObjects = state->getEnemyObjects();
 
@@ -116,16 +250,51 @@ bool CollisionController::init(std::shared_ptr<GameState> state){
     }
     
     Input::activate<Keyboard>();
-    setDebug(true);
+    setDebug(false);
+    
+    inGame = true;
     
     return true;
 }
 
+void CollisionController::initPhysicsComponent(ObjectInitEvent* objectInit) {
+    Poly2 poly(objectInit->shapeData->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    auto obst = PolygonObstacle::alloc(poly);
+    obst->setPosition(objectInit->waveEntry->getPosition());
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, objectInit->waveEntry->getElement(),objectInit->objectData->getHealth());
+    physics->setSpeed(objectInit->objectData->getSpeed());
+    if(objectInit->aiData != nullptr && objectInit->aiData->type == AIType::HOMING){
+        physics->setHasArrow(true);
+    }
+    objectInit->object->setPhysicsComponent(physics);
+}
+
+void CollisionController::initPhysicsComponent(ZoneInitEvent* zoneInit) {
+    Poly2 poly(zoneInit->shapeData->vertices);
+    SimpleTriangulator triangulator;
+    triangulator.set(poly);
+    triangulator.calculate();
+    poly.setIndices(triangulator.getTriangulation());
+    auto obst = PolygonObstacle::alloc(poly);
+    obst->setPosition(zoneInit->pos);
+    std::shared_ptr<PhysicsComponent> physics = PhysicsComponent::alloc(obst, zoneInit->element,1);
+    zoneInit->object->setPhysicsComponent(physics);
+}
+
 bool CollisionController::addToWorld(GameObject* obj) {
     auto obst = obj->getPhysicsComponent()->getBody();
+    
+    //this allows the arrow to appear after spawn
+    if(obj->getPhysicsComponent()->hasArrow()){
+        obj->getPhysicsComponent()->setArrowNode(PolygonNode::allocWithTexture(_arrowTexture));
+    }
+
     obst->setDebugColor(DEBUG_COLOR);
     obst->setSensor(true);
-    
     
     _world->addObstacle(obst);
     obst->setDebugScene(_debugnode);
@@ -134,16 +303,10 @@ bool CollisionController::addToWorld(GameObject* obj) {
     return true;
 }
 
-bool CollisionController::removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj) {
-	if (obj->getIsPlayer()) {
-		state->reset = true;
-		return true;
-	}
+bool CollisionController::removeFromWorld(GameObject* obj) {
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
-    // HACK jon i don't think you need to do this the destructor sets it to the nullptr
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
-    
     return true;
 }
 
@@ -152,35 +315,75 @@ void CollisionController::beginContact(b2Contact* contact) {
     b2Body* body2 = contact->GetFixtureB()->GetBody();
     auto obj1 = static_cast<GameObject*>(body1->GetUserData());
     auto obj2 = static_cast<GameObject*>(body2->GetUserData());
+    
+    if (std::find(objsToIgnore.begin(), objsToIgnore.end(), obj1) != objsToIgnore.end() || std::find(objsToIgnore.begin(), objsToIgnore.end(), obj2) != objsToIgnore.end())
+    {
+        return;
+    }
+    
     bool sameElement = (obj1->getPhysicsComponent()->getElementType() ==
                         obj2->getPhysicsComponent()->getElementType());
-    int remove = 0;
+    
+    std::list<GameObject*> removes;
     
     if (obj1->getIsPlayer() && !obj2->getIsPlayer()) {
         if (sameElement) {
-            remove = 2;
+            removes.push_back(obj2);
         } else {
-            remove = 1;
+            removes.push_back(obj1);
         }
     }
     if (obj2->getIsPlayer() && !obj1->getIsPlayer()) {
         if (sameElement) {
-            remove = 1;
+            removes.push_back(obj1);
         } else {
-            remove = 2;
+            removes.push_back(obj2);
         }
     }
     
-    if (remove == 1) {
-        objsScheduledForRemoval.push_back(obj1);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj1);
-        notify(objectGoneEvent.get());
-        
+    // player can kill each other
+    if (obj1->getIsPlayer() && obj2->getIsPlayer()){
+        // don't let them kill each other just with zones
+        if (obj1->type == GameObject::ObjectType::ZONE || obj2->type == GameObject::ObjectType::ZONE) {
+            return;
+        }
+        if (!sameElement){
+            removes.push_back(bluePlayer);
+            removes.push_back(goldPlayer);
+        }
     }
-    if (remove == 2) {
-        objsScheduledForRemoval.push_back(obj2);
-        std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(obj2);
-        notify(objectGoneEvent.get());
+    
+    if (removes.size() == 0) {
+        return;
+    }
+    for (GameObject* gotHit : removes){
+        
+        if (gotHit->type == GameObject::ObjectType::ZONE) {
+            return;
+        }
+        gotHit->getPhysicsComponent()->getHit();
+        if (gotHit->getPhysicsComponent()->isAlive()) {
+            objsToIgnore.push_back(gotHit);
+            hitStunMap.insert({gotHit,HIT_STUN});
+            if (gotHit == bluePlayer) {
+                objsToIgnore.push_back(blueZone);
+                hitStunMap.insert({blueZone,HIT_STUN});
+                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(blueZone);
+                notify(zoneHit.get());
+            }
+            if (gotHit == goldPlayer) {
+                objsToIgnore.push_back(goldZone);
+                hitStunMap.insert({goldZone,HIT_STUN});
+                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
+                notify(zoneHit.get());
+            }
+            std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
+            notify(objectHitEvent.get());
+        } else {
+            objsScheduledForRemoval.push_back(gotHit);
+            std::shared_ptr<ObjectGoneEvent> objectGoneEvent = ObjectGoneEvent::alloc(gotHit);
+            notify(objectGoneEvent.get());
+        }
     }
 }
 

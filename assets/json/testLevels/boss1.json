@@ -1,0 +1,58 @@
+{
+    "counter": 20, 
+    "levels": {
+        "boss1": {
+            "key": "boss1", 
+            "levelEntries": {
+                "boss1 wave 20": {
+                    "key": "boss1 wave 20", 
+                    "time": 180, 
+                    "waveKey": "boss1 wave 20"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "boss1", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical", 
+        "grumpBullet4", 
+        "grumpBullet6"
+    ], 
+    "waves":	{
+        "boss1 wave 20":	{
+            "key":	"boss1 wave 20",
+            "waveEntries":	{
+                "boss1 wave 20 object 1":	{
+                    "key":	"boss1 wave 20 object 1",
+                    "x":	26.866667,
+                    "y":	10.0,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"grumpBullet6"
+                }
+            }
+        }
+    }
+}

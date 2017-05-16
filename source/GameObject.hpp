@@ -22,15 +22,31 @@ protected:
     int _uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
+    bool _hasArrow;
     bool _isPlayer;
     
 public:
+    // static int to give Uid to gameObjects
+    static int _atomicUidCounter;
+    
+    enum class ObjectType : int {
+        CHARACTER,
+        ZONE,
+        BULLET
+    };
+    
+    ObjectType type;
     
     GameObject() :
     _uid(0),
     _body(nullptr),
     _node(nullptr),
+    _hasArrow(false),
     _isPlayer(false){}
+    
+    ~GameObject(){ dispose(); }
+    
+    void dispose();
     
     bool init();
     
@@ -53,6 +69,8 @@ public:
         return (result->init(body,node) ? result : nullptr);
     }
     
+    void syncArrow(std::shared_ptr<cugl::Node> node);
+    
     bool getIsPlayer() { return _isPlayer; };
     
     int getUid() { return _uid; }
@@ -71,6 +89,18 @@ public:
     cugl::Vec2 getPosition() {return _body->getBody()->getPosition();};
 
     void sync(float scale);
+    
+#pragma static methods
+    
+    static void resetAtomicUidCounter(){
+        _atomicUidCounter = 0;
+    }
+    
+    static int getAtomicUid(){
+        _atomicUidCounter+=1;
+        return _atomicUidCounter;
+    }
+
 };
 
 #endif /* GameObject_hpp */

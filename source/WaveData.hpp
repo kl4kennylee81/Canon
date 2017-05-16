@@ -14,28 +14,61 @@
 #include "Data.hpp"
 #include "AIData.hpp"
 
-class WaveEntry {
+class WaveEntry : public Data{
+private:
+    ElementType element;
+    
+    cugl::Vec2 position; //physics coordinates
+    
+    std::string templateKey;
+    
+    std::string aiKey;
+    
+    std::vector<std::string> zoneKeys;
+    
 public:
-    int objectKey;
     
-    cugl::Vec2 position;
-
-	std::shared_ptr<AIData> aiData;
+    WaveEntry():Data(){}
     
-    WaveEntry(){}
+    std::vector<std::string> getZoneKeys() { return zoneKeys; }
     
-    bool init(int oKey, float x, float y, std::shared_ptr<AIData> ai){
-        this->objectKey = oKey;
-        this->position.x = x;
-        this->position.y = y;
-		this->aiData = ai;
-        return true;
+    void setZoneKeys(std::vector<std::string> birb) { zoneKeys = birb; }
+    
+    ElementType getElement();
+    
+    cugl::Vec2 getPosition();
+    
+    std::string getAIKey() {
+        return aiKey;
     }
     
-    static std::shared_ptr<WaveEntry> alloc(int objectKey, float x, float y, std::shared_ptr<AIData> ai) {
+    std::string getTemplateKey();
+    
+    void setTemplateKey(std::string tKey);
+    
+    void setPosition(cugl::Vec2 pos);
+    
+    void setAIKey(std::string aKey) { aiKey = aKey; }
+    
+    void switchElement() {
+        element = element == ElementType::BLUE ? ElementType::GOLD : ElementType::BLUE;
+    }
+    
+    bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    
+    bool init(float x, float y,ElementType element,std::string templateKey, std::string aiKey);
+    
+    static std::shared_ptr<WaveEntry> alloc(const std::shared_ptr<cugl::JsonValue>& json){
         std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
-        return (result->init(objectKey,x,y,ai) ? result : nullptr);
+        return (result->preload(json) ? result : nullptr);
     }
+
+    static std::shared_ptr<WaveEntry> alloc(float x, float y,ElementType element,std::string templateKey, std::string aiKey) {
+        std::shared_ptr<WaveEntry> result = std::make_shared<WaveEntry>();
+        return (result->init(x,y,element,templateKey, aiKey) ? result : nullptr);
+    }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class WaveData : public Data {
@@ -45,14 +78,28 @@ protected:
 public:
     WaveData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
+        Data::init();
         return true;
     }
     
-    static std::shared_ptr<WaveData> alloc(int uid) {
+    bool init(std::shared_ptr<WaveData> data) {
+        for(auto it: data->getWaveEntries()){
+            auto we = WaveEntry::alloc(0, 0, it->getElement(), it->getTemplateKey(), it->getAIKey());
+            we->setPosition(it->getPosition()); //already in physics coordinates
+            _waveEntries.push_back(we);
+        }
+        return true;
+    }
+    
+    static std::shared_ptr<WaveData> alloc() {
         std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
+    }
+    
+    static std::shared_ptr<WaveData> alloc(std::shared_ptr<WaveData> data) {
+        std::shared_ptr<WaveData> result = std::make_shared<WaveData>();
+        return (result->init(data) ? result : nullptr);
     }
     
     void addWaveEntry(std::shared_ptr<WaveEntry> w){
@@ -67,9 +114,19 @@ public:
 		return _waveEntries.at(index);
 	}
     
+    void removeEntry(int index) {
+        std::vector<std::shared_ptr<WaveEntry>> newEntries;
+        for(int i = 0; i < _waveEntries.size(); i++) {
+            if(i != index){
+                newEntries.push_back(_waveEntries.at(i));
+            }
+        }
+        _waveEntries = newEntries;
+    }
     
     
-    virtual std::string serialize();
+    
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     virtual bool preload(const std::string& file);
     

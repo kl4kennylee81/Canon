@@ -13,35 +13,29 @@
 #include <cugl/cugl.h>
 #include <map>
 #include "Data.hpp"
-
-enum class AnimationEvent : int {
-    SPAWNING,
-    SPAWN,
-    ACTIVE,
-    ATTACK,
-    RETURN,
-    HIT,
-    DEATH,
-    DEFAULT
-};
+#include "AnimationAction.hpp"
 
 class AnimationState {
 public:
     int first;
     int total;
     std::vector<int> frames;
+    float alpha;
     
-    bool init(int f, int t, std::vector<int> fs) {
+    bool init(int f, int t, std::vector<int> fs, float a) {
         first = f;
         total = t;
         frames = fs;
+        alpha = a;
         return true;
     }
     
-    static std::shared_ptr<AnimationState> alloc(int f, int t, std::vector<int> fs) {
+    static std::shared_ptr<AnimationState> alloc(int f, int t, std::vector<int> fs, float a) {
         std::shared_ptr<AnimationState> result = std::make_shared<AnimationState>();
-        return (result->init(f,t,fs) ? result : nullptr);
+        return (result->init(f,t,fs,a) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class AnimationUpdate {
@@ -60,63 +54,88 @@ public:
         std::shared_ptr<AnimationUpdate> result = std::make_shared<AnimationUpdate>();
         return (result->init(active, repeat) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
 };
 
 class AnimationData : public Data {
 protected:
     std::map<std::string, std::shared_ptr<AnimationState>> _statemap;
     
-    std::map<AnimationEvent, std::shared_ptr<AnimationUpdate>> _eventmap;
+    std::map<AnimationAction, std::shared_ptr<AnimationUpdate>> _actionmap;
     
 public:
     std::shared_ptr<cugl::Texture> texture;
     int rows;
     int cols;
     int size;
+    bool nonUniformScale;
     
     AnimationData() : Data(){}
     
-    bool init(int uid) {
-        this->_uid = uid;
+    bool init() {
         return true;
     }
     
-    static std::shared_ptr<AnimationData> alloc(int uid) {
+    static std::shared_ptr<AnimationData> alloc() {
         std::shared_ptr<AnimationData> result = std::make_shared<AnimationData>();
-        return (result->init(uid) ? result : nullptr);
+        return (result->init() ? result : nullptr);
     }
     
     std::shared_ptr<AnimationState> getAnimationState(std::string state) {
         return _statemap.at(state);
     }
     
-    bool eventExists(AnimationEvent event) {
-        return _eventmap.find(event) != _eventmap.end();
+    bool actionExists(AnimationAction action) {
+        return _actionmap.find(action) != _actionmap.end();
     }
     
-    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationEvent event) {
-        return _eventmap.at(event);
+    std::shared_ptr<AnimationUpdate> getAnimationUpdate(AnimationAction action) {
+        return _actionmap.at(action);
     }
+
+	std::map<std::string, std::shared_ptr<AnimationState>> getStateMap()
+	{
+		return _statemap;
+	}
     
-    virtual std::string serialize();
+	std::map<AnimationAction, std::shared_ptr<AnimationUpdate>> getActionMap()
+	{
+		return _actionmap;
+	}
+
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
-    virtual bool preload(const std::string& file);
+    virtual bool preload(const std::string& file) override;
     
-    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
-    virtual bool materialize();
+    virtual bool materialize() override;
     
-    static AnimationEvent stringToEvent(std::string event){
-        if (event == "SPAWNING") return AnimationEvent::SPAWNING;
-        if (event == "SPAWN") return AnimationEvent::SPAWN;
-        if (event == "ACTIVE") return AnimationEvent::ACTIVE;
-        if (event == "ATTACK") return AnimationEvent::ATTACK;
-        if (event == "RETURN") return AnimationEvent::RETURN;
-        if (event == "HIT") return AnimationEvent::HIT;
-        if (event == "DEATH") return AnimationEvent::DEATH;
-        std::cout << "AnimationData: default event?\n";
-        return AnimationEvent::DEFAULT;
+    static AnimationAction stringToAction(std::string action){
+        if (action == "SPAWNING") return AnimationAction::SPAWNING;
+        if (action == "SPAWN") return AnimationAction::SPAWN;
+        if (action == "ACTIVE") return AnimationAction::ACTIVE;
+        if (action == "ATTACK") return AnimationAction::ATTACK;
+        if (action == "RETURN") return AnimationAction::RETURN;
+        if (action == "HIT") return AnimationAction::HIT;
+        if (action == "DEATH") return AnimationAction::DEATH;
+        std::cout << "stringToAction: AnimationData: default action?\n";
+        return AnimationAction::DEFAULT;
     }
+
+	static std::string actionToString(AnimationAction action)
+	{
+		if (action == AnimationAction::SPAWNING) return "SPAWNING";
+		if (action == AnimationAction::SPAWN) return "SPAWN";
+		if (action == AnimationAction::ACTIVE) return "ACTIVE";
+		if (action == AnimationAction::ATTACK) return "ATTACK";
+		if (action == AnimationAction::RETURN) return "RETURN";
+		if (action == AnimationAction::HIT) return "HIT";
+		if (action == AnimationAction::DEATH) return "DEATH";
+		std::cout << "actionToString: AnimationData: default action?\n";
+		return "DEFAULT";
+	}
 };
 
 #endif /* AnimationData_hpp */

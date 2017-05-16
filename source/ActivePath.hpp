@@ -28,9 +28,20 @@ public:
 
 	}
 
+	bool init(std::shared_ptr<Path> path, int index) {
+		_path = path;
+		_pathIndex = index;
+		return true;
+	}
+
 	static std::shared_ptr<ActivePath> alloc(std::shared_ptr<Path> path) {
 		std::shared_ptr<ActivePath> result = std::make_shared<ActivePath>();
 		return (result->init(path) ? result : nullptr);
+	}
+
+	static std::shared_ptr<ActivePath> alloc(std::shared_ptr<Path> path, int index) {
+		std::shared_ptr<ActivePath> result = std::make_shared<ActivePath>();
+		return (result->init(path, index) ? result : nullptr);
 	}
 };
 

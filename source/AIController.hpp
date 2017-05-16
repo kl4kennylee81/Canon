@@ -27,7 +27,7 @@ public:
 
     AIController();
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 
 	virtual void detach(Observer* obs);
 
@@ -44,14 +44,17 @@ public:
 
 	void addAI(std::shared_ptr<ActiveAI> ai);
 
-	std::shared_ptr<ActiveAI> getAIFromWaveEntry(std::shared_ptr<WaveEntry> entry, std::shared_ptr<GameObject> object);
-
 	void removeAI(GameObject* obj);
 
 	static std::shared_ptr<AIController> alloc() {
 		std::shared_ptr<AIController> result = std::make_shared<AIController>();
 		return (result->init() ? result : nullptr);
 	}
+
+	std::string serialize();
+	std::shared_ptr<cugl::JsonValue> toJsonValue();
+
+	void initAfterResume(std::shared_ptr<GameState> state, std::shared_ptr<cugl::JsonValue> rJson);
 };
 
 #endif /* AIController_hpp */

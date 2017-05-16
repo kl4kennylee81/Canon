@@ -1,0 +1,124 @@
+{
+    "counter": 39, 
+    "levels": {
+        "overlap": {
+            "key": "overlap", 
+            "levelEntries": {
+                "wave01": {
+                    "key": "wave01", 
+                    "time": 420, 
+                    "waveKey": "overlap wave 36"
+                }, 
+                "wave02": {
+                    "key": "wave02", 
+                    "time": 450, 
+                    "waveKey": "overlap wave 38"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "overlap", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "overlap wave 36": {
+            "key": "overlap wave 36", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "birb", 
+                    "x": 15.899999625, 
+                    "y": 16.83333396875, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }, 
+                "object2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "birb", 
+                    "x": 14.3000001875, 
+                    "y": 16.83333396875, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }
+            }
+        }, 
+        "overlap wave 38": {
+            "key": "overlap wave 38", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "birb", 
+                    "x": 28.79999925, 
+                    "y": 14.86666678125, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }, 
+                "object2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object2", 
+                    "templateKey": "birb", 
+                    "x": 3.13333321875, 
+                    "y": 14.9000005625, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }, 
+                "object3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "templateKey": "birb", 
+                    "x": 4.399999625, 
+                    "y": 15.26666640625, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }, 
+                "object4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "templateKey": "birb", 
+                    "x": 27.4333324375, 
+                    "y": 15.23333359375, 
+                    "zoneKeys": [
+                        "birb_zone"
+                    ]
+                }
+            }
+        }
+    }
+}

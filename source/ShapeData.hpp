@@ -15,34 +15,24 @@
 
 class ShapeData : public Data {
 public:
-    int height;
-    int width;
+    std::vector<float> vertices;
     
-    ShapeData(): Data(),height(0),width(0){};
+    ShapeData(): Data(){};
     
-    bool init(int uid,int h,int w){
-        this->_uid = uid;
-        this->height = h;
-        this->width = w;
-        return true;
-    }
+    bool init(std::vector<float> v);
     
-    static std::shared_ptr<ShapeData> alloc(int uid,int height,int width) {
+    static std::shared_ptr<ShapeData> alloc(std::vector<float> vertices) {
         std::shared_ptr<ShapeData> result = std::make_shared<ShapeData>();
-        return (result->init(uid,height,width) ? result : nullptr);
+        return (result->init(vertices) ? result : nullptr);
     }
+
+	virtual std::shared_ptr<cugl::JsonValue> toJsonValue() override;
     
-    cugl::Size getSize(){
-        return cugl::Size(width, height);
-    }
+    virtual bool preload(const std::string& file) override;
     
-    virtual std::string serialize();
+    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
-    virtual bool preload(const std::string& file);
-    
-    virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json);
-    
-    virtual bool materialize();
+    virtual bool materialize() override;
 
 };
 

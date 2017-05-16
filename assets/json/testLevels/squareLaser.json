@@ -1,0 +1,196 @@
+{
+    "counter": 9, 
+    "levels": {
+        "squareLaser": {
+            "key": "squareLaser", 
+            "levelEntries": {
+                "wave01": {
+                    "key": "wave01", 
+                    "time": 330, 
+                    "waveKey": "squareLaser wave 06"
+                }, 
+                "wave02": {
+                    "key": "wave02", 
+                    "time": 510, 
+                    "waveKey": "squareLaser wave 07"
+                }, 
+                "wave03": {
+                    "key": "wave03", 
+                    "time": 180, 
+                    "waveKey": "squareLaser wave 09"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "squareLaser", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "squareLaser wave 06": {
+            "key": "squareLaser wave 06", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "feshVertical", 
+                    "x": 28.79999925, 
+                    "y": 9.03333378125
+                }, 
+                "object2": {
+                    "aiKey": "verticalUp", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 14.73333359375, 
+                    "y": 0.86666678125
+                }, 
+                "object3": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 14.63333321875, 
+                    "y": 17.13333321875
+                }, 
+                "object4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "templateKey": "feshVertical", 
+                    "x": 3.399999625, 
+                    "y": 9.29999925
+                }
+            }
+        }, 
+        "squareLaser wave 07": {
+            "key": "squareLaser wave 07", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 19.76666640625, 
+                    "y": 6.03333378125
+                }, 
+                "object2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "feshVertical", 
+                    "x": 12.166667, 
+                    "y": 13.93333340625
+                }, 
+                "object3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "object3", 
+                    "templateKey": "feshVertical", 
+                    "x": 18.100000375, 
+                    "y": 4.20000028125
+                }, 
+                "object4": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "object4", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 10.333333, 
+                    "y": 12.0
+                }
+            }
+        }, 
+        "squareLaser wave 09": {
+            "key": "squareLaser wave 09", 
+            "waveEntries": {
+                "object1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object1", 
+                    "templateKey": "birb", 
+                    "x": 10.26666640625, 
+                    "y": 10.56666659375
+                }, 
+                "object2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object2", 
+                    "templateKey": "birb", 
+                    "x": 16.0333328125, 
+                    "y": 5.06666659375
+                }, 
+                "object3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object3", 
+                    "templateKey": "birb", 
+                    "x": 16.0666675625, 
+                    "y": 12.8000001875
+                }, 
+                "object4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object4", 
+                    "templateKey": "birb", 
+                    "x": 12.666667, 
+                    "y": 12.73333359375
+                }, 
+                "object5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object5", 
+                    "templateKey": "birb", 
+                    "x": 18.33333396875, 
+                    "y": 10.46666621875
+                }, 
+                "object6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object6", 
+                    "templateKey": "birb", 
+                    "x": 12.600000375, 
+                    "y": 5.13333321875
+                }, 
+                "object7": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "object7", 
+                    "templateKey": "birb", 
+                    "x": 10.23333359375, 
+                    "y": 7.333333
+                }, 
+                "object8": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "object8", 
+                    "templateKey": "birb", 
+                    "x": 18.399999625, 
+                    "y": 7.43333340625
+                }
+            }
+        }
+    }
+}

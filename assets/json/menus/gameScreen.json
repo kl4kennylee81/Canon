@@ -1,0 +1,27 @@
+{
+    "MenuScreenData": {
+        "gameScreen": {
+            "UIEntries": [
+                "gameScreen_pauseButton"
+            ], 
+            "key": "gameScreen"
+        }
+    }, 
+    "UIData": {
+        "gameScreen_pauseButton": {
+            "buttonAction": {
+                "fxKey": "PAUSE", 
+                "nextScreen": "pauseScreen", 
+                "type": "fxTrigger"
+            }, 
+            "fontKey": "Museo300-Regular_16", 
+            "height": 0.08, 
+            "key": "gameScreen_pauseButton", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "gameScreen_pauseButton", 
+            "width": 0.06, 
+            "x": 0.02, 
+            "y": 0.02
+        }
+    }
+}

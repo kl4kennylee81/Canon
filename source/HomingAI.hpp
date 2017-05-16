@@ -16,10 +16,16 @@
 #include "GameObject.hpp"
 
 class HomingAI : public ActiveAI {
-private:
-    bool _isActive;
-    std::shared_ptr<GameObject> _object;
+
 public:
+    
+    HomingAI(){}
+    
+    ~HomingAI(){ dispose(); }
+    
+    void dispose(){
+        _object = nullptr;
+    }
     
     void update(std::shared_ptr<GameState> state);
     
@@ -45,6 +51,16 @@ public:
         std::shared_ptr<HomingAI> result = std::make_shared<HomingAI>();
         return (result->init(object) ? result : nullptr);
     }
+
+	std::shared_ptr<cugl::JsonValue> toJsonValue() override;
+
+	static std::shared_ptr<HomingAI> allocWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state)
+	{
+		std::shared_ptr<HomingAI> result = std::make_shared<HomingAI>();
+		return (result->initWithJson(json, state) ? result : nullptr);
+	}
+
+	bool initWithJson(std::shared_ptr<cugl::JsonValue> json, std::shared_ptr<GameState> state);
 };
 
 #endif /* HomingAI_hpp */

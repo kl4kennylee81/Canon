@@ -1,0 +1,12 @@
+{
+    "templates": {
+        "vertical": {
+            "aiKeys": [
+                "vertical"
+            ], 
+            "key": "vertical", 
+            "name": "vertical", 
+            "objectKey": "blobo_object"
+        }
+    }
+}

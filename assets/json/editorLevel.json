@@ -1,0 +1,286 @@
+{
+	"name":	"precision",
+	"counter":	19,
+	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+	"levels":	{
+		"precision":	{
+			"key":	"precision",
+			"levelEntries":	{
+				"precision wave 16":	{
+					"key":	"precision wave 16",
+					"waveKey":	"precision wave 16",
+					"time":	120
+				},
+				"precision wave 17":	{
+					"key":	"precision wave 17",
+					"waveKey":	"precision wave 17",
+					"time":	160
+				},
+				"precision wave 19":	{
+					"key":	"precision wave 19",
+					"waveKey":	"precision wave 19",
+					"time":	120
+				}
+			},
+			"playerChars":	{
+				"player1":	{
+					"key":	"player1",
+					"x":	18.750000,
+					"y":	7.812500,
+					"element":	"GOLD",
+					"aiKey":	"",
+					"templateKey":	"playerCharMale"
+				},
+				"player2":	{
+					"key":	"player2",
+					"x":	12.500000,
+					"y":	7.812500,
+					"element":	"BLUE",
+					"aiKey":	"",
+					"templateKey":	"playerCharFemale"
+				}
+			}
+		}
+	},
+	"waves":	{
+		"precision wave 16":	{
+			"key":	"precision wave 16",
+			"waveEntries":	{
+				"precision wave 16 object 1":	{
+					"key":	"precision wave 16 object 1",
+					"x":	29.700001,
+					"y":	16.666666,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 16 object 2":	{
+					"key":	"precision wave 16 object 2",
+					"x":	29.687500,
+					"y":	13.125000,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 16 object 3":	{
+					"key":	"precision wave 16 object 3",
+					"x":	29.687500,
+					"y":	9.062500,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 16 object 4":	{
+					"key":	"precision wave 16 object 4",
+					"x":	29.687500,
+					"y":	5,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 16 object 5":	{
+					"key":	"precision wave 16 object 5",
+					"x":	29.733334,
+					"y":	1.300000,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"precision wave 17":	{
+			"key":	"precision wave 17",
+			"waveEntries":	{
+				"precision wave 17 object 1":	{
+					"key":	"precision wave 17 object 1",
+					"x":	1.666667,
+					"y":	12.700000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 17 object 2":	{
+					"key":	"precision wave 17 object 2",
+					"x":	1.733334,
+					"y":	9.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 17 object 3":	{
+					"key":	"precision wave 17 object 3",
+					"x":	1.733334,
+					"y":	5.300000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 17 object 4":	{
+					"key":	"precision wave 17 object 4",
+					"x":	1.666667,
+					"y":	16.400000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 17 object 5":	{
+					"key":	"precision wave 17 object 5",
+					"x":	1.733334,
+					"y":	1.666667,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"precision wave 19":	{
+			"key":	"precision wave 19",
+			"waveEntries":	{
+				"precision wave 19 object 1":	{
+					"key":	"precision wave 19 object 1",
+					"x":	17.187500,
+					"y":	16.875000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 2":	{
+					"key":	"precision wave 19 object 2",
+					"x":	14.062500,
+					"y":	5,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 3":	{
+					"key":	"precision wave 19 object 3",
+					"x":	17.166666,
+					"y":	15.033333,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 4":	{
+					"key":	"precision wave 19 object 4",
+					"x":	14.066667,
+					"y":	15.100000,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 5":	{
+					"key":	"precision wave 19 object 5",
+					"x":	17.266666,
+					"y":	11.200001,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 6":	{
+					"key":	"precision wave 19 object 6",
+					"x":	14.100000,
+					"y":	11.166667,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 7":	{
+					"key":	"precision wave 19 object 7",
+					"x":	17.233334,
+					"y":	7.033334,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 8":	{
+					"key":	"precision wave 19 object 8",
+					"x":	14,
+					"y":	7.033334,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 9":	{
+					"key":	"precision wave 19 object 9",
+					"x":	17.166666,
+					"y":	3,
+					"element":	"BLUE",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 10":	{
+					"key":	"precision wave 19 object 10",
+					"x":	14.133333,
+					"y":	3,
+					"element":	"GOLD",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 11":	{
+					"key":	"precision wave 19 object 11",
+					"x":	14.062500,
+					"y":	0.937500,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 12":	{
+					"key":	"precision wave 19 object 12",
+					"x":	17.187500,
+					"y":	13.125000,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 13":	{
+					"key":	"precision wave 19 object 13",
+					"x":	17.187500,
+					"y":	9.062500,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 14":	{
+					"key":	"precision wave 19 object 14",
+					"x":	17.187500,
+					"y":	5,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 15":	{
+					"key":	"precision wave 19 object 15",
+					"x":	17.187500,
+					"y":	0.937500,
+					"element":	"BLUE",
+					"aiKey":	"horizontalRight",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 16":	{
+					"key":	"precision wave 19 object 16",
+					"x":	14.133333,
+					"y":	16.900002,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 17":	{
+					"key":	"precision wave 19 object 17",
+					"x":	14.062500,
+					"y":	13.125000,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				},
+				"precision wave 19 object 18":	{
+					"key":	"precision wave 19 object 18",
+					"x":	14.062500,
+					"y":	9.062500,
+					"element":	"GOLD",
+					"aiKey":	"horizontalLeft",
+					"templateKey":	"blobo"
+				}
+			}
+		}
+	}
+}

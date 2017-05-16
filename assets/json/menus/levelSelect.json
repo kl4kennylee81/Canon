@@ -1,0 +1,128 @@
+{
+    "MenuScreenData": {
+        "levelSelect": {
+            "UIEntries": [
+                "levelSelect_Background", 
+                "levelSelect_home", 
+                "levelSelect_homeRing", 
+                "levelSelect_backToLevelEditor", 
+                "levelSelect_chevron_right", 
+                "levelSelect_chevron_left"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }, 
+            "key": "levelSelect", 
+            "menuBackgroundKey": "levelSelectBgFlat"
+        }
+    }, 
+    "UIData": {
+        "levelLabelText": {
+            "fontKey": "menu_body_font", 
+            "height": 0.17, 
+            "key": "levelLabelText", 
+            "textValue": "", 
+            "type": "TEXT", 
+            "width": 0.36
+        }, 
+        "levelSelect_Background": {
+            "height": 1.0, 
+            "key": "levelSelect_Background", 
+            "textureKey": "levelSelect_Background", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        }, 
+        "levelSelect_Lock": {
+            "height": 2.0, 
+            "key": "levelSelect_Lock", 
+            "textureKey": "levelSelect_Lock", 
+            "type": "IMAGE", 
+            "width": 1.2, 
+            "x": 0.257, 
+            "y": 0.775
+        }, 
+        "levelSelect_StarCircle": {
+            "height": 0.2, 
+            "key": "levelSelect_StarCircle", 
+            "textureKey": "levelSelect_StarCircle", 
+            "type": "IMAGE", 
+            "width": 0.12, 
+            "x": 0.257, 
+            "y": 0.775
+        }, 
+        "levelSelect_backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.05
+        }, 
+        "levelSelect_chevron_left": {
+            "buttonAction": {
+                "chapterData": "PREVIOUS", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "levelSelect_chevron_left", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_left", 
+            "width": 0.039, 
+            "x": 0.014, 
+            "y": 0.5
+        }, 
+        "levelSelect_chevron_right": {
+            "buttonAction": {
+                "chapterData": "NEXT", 
+                "fxKey": "SWITCH_CHAPTER", 
+                "nextScreen": "levelSelect", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "", 
+            "height": 0.124, 
+            "key": "levelSelect_chevron_right", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_chevron_right", 
+            "width": 0.039, 
+            "x": 0.947, 
+            "y": 0.5
+        }, 
+        "levelSelect_home": {
+            "buttonAction": {
+                "buttonTarget": "startMenu", 
+                "type": "menuChange"
+            }, 
+            "buttonLabel": "", 
+            "fontKey": "menu_body_font", 
+            "height": 0.1, 
+            "key": "levelSelect_home", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "levelSelect_home", 
+            "width": 0.056, 
+            "x": 0.475, 
+            "y": 0.06
+        }, 
+        "levelSelect_homeRing": {
+            "height": 0.15, 
+            "key": "levelSelect_homeRing", 
+            "textureKey": "levelSelect_homeRing", 
+            "type": "IMAGE", 
+            "width": 0.084, 
+            "x": 0.46, 
+            "y": 0.0375
+        }
+    }
+}

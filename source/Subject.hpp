@@ -15,7 +15,7 @@
 
 class Subject {
 public:
-    virtual void attach (std::shared_ptr<Observer> obs) = 0;
+    virtual void attach (Observer* obs) = 0;
     
     virtual void detach (Observer* obs) = 0;
     

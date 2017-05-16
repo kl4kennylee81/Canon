@@ -11,12 +11,10 @@
 
 using namespace cugl;
 
-#define SPAWN_FRAMES 30
-
 SpawnController::SpawnController():
 BaseController(){}
 
-void SpawnController::attach(std::shared_ptr<Observer> obs) {
+void SpawnController::attach(Observer* obs) {
     BaseController::attach(obs);
 }
 void SpawnController::detach(Observer* obs) {
@@ -32,7 +30,8 @@ void SpawnController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
                     ObjectSpawningEvent* objectSpawning = (ObjectSpawningEvent*)levelEvent;
-                    spawnMap.insert({objectSpawning->object,0});
+                    
+                    spawnMap.insert({objectSpawning->object,objectSpawning->spawnTime});
                     break;
                 }
             }
@@ -41,16 +40,16 @@ void SpawnController::eventUpdate(Event* e) {
     }
 }
 
-void SpawnController::update(float timestep) {
+void SpawnController::update(float timestep,std::shared_ptr<GameState> state) {
     for (auto it = spawnMap.begin(); it != spawnMap.end();) {
         auto obj = it->first;
         auto frames = it->second;
-        if (frames == SPAWN_FRAMES){
+        if (frames <= 0){
             std::shared_ptr<ObjectSpawnEvent> objectSpawn = ObjectSpawnEvent::alloc(obj);
             notify(objectSpawn.get());
             spawnMap.erase(it++);
         } else {
-            it->second = frames + 1;
+            it->second = frames - GameState::_internalClock->getTimeDilation();
             it++;
         }
     }
@@ -58,4 +57,27 @@ void SpawnController::update(float timestep) {
 
 bool SpawnController::init() {
     return true;
+}
+
+std::string SpawnController::serialize() {
+	return toJsonValue()->toString();
+}
+
+std::shared_ptr<JsonValue> SpawnController::toJsonValue(){
+    // TODO kelly
+    // the spawnController needs to serialize its map of spawnMap
+    // save it as gameObject uid -> float
+    // IMPORTANT: spawnController json is actually used by the LevelController not by itself
+    // since levelController has the mapping of gameObjectUid -> waveEntryID
+    // it will call initEvent and SpawningEvent with the modified time according to what
+    // it is currently at based on the serialized json value
+
+	std::shared_ptr<JsonValue> sc = JsonValue::allocObject();
+
+	std::shared_ptr<JsonValue> sMap = JsonValue::allocObject();
+	for (auto entry : spawnMap) {
+		sMap->appendChild(std::to_string(entry.first->getUid()), JsonValue::alloc(entry.second));
+	}
+	sc->appendChild("spawnMap", sMap);
+	return sc;
 }

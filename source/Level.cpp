@@ -13,23 +13,59 @@ using namespace cugl;
 bool Level::init(std::shared_ptr<LevelData> levelData){
     _levelData = levelData;
     _currentWave = 0;
-    _timeElapsed = 0;
-    _readyToSpawn = true;
+    _framesElapsed = 0;
+    _playerSpawned = false;
+    _readyToSpawn = false;
+    
+    if (_levelData == nullptr){
+        return true;
+    }
+    
+    if (isLastWave()){
+        _readyToSpawn = false;
+    } else {
+        _readyToSpawn = true;
+    }
+    
     return true;
 }
 
+bool Level::init(int currentWave,int framesElapsed,bool readyToSpawn,bool playerSpawned){
+    _currentWave = currentWave;
+    _framesElapsed = framesElapsed;
+    _readyToSpawn = readyToSpawn;
+    _playerSpawned = playerSpawned;
+    return true;
+}
+
+bool Level::init(const std::shared_ptr<JsonValue> json){
+    return init(json->getInt("currentWaveIndex"),
+                 json->getInt("framesElapsed"),
+                 json->getBool("readyToSpawn"),
+                 json->getBool("playerSpawned"));
+}
+
+/**
+ * Gets the frames of when the next wave is supposed to spawn
+ */
 int Level::getNextTime(){
     return _levelData->getTime(_currentWave);
 }
 
-int Level::getCurrentWaveKey(){
+std::string Level::getCurrentWaveKey(){
     return _levelData->getWaveKey(_currentWave);
 }
 
 int Level::getCurrentWave(){
+    if (_levelData->getNumberWaves() == 0){
+        return -1;
+    }
     return _currentWave;
 }
 
+/**
+ * Gets percentage of how much of the wave is finished
+ */
 float Level::getProgress(){
     float allTime = 0;
     float currentTime = 0;
@@ -41,20 +77,19 @@ float Level::getProgress(){
         allTime+=_levelData->getTime(i);
     }
     // time elapsed is how much in the current wave
-    return (currentTime+_timeElapsed)/allTime;
+    return (currentTime+_framesElapsed)/allTime;
 }
 
-/** return -1 if not ready to spawn the wave. If it is ready returns the current wave key 
- *  after returning it will not return the wave key until the next wave. To refer to the
- *  active wave key call getCurrentWaveKey
- */
-int Level::pollWave() {
-    if (_readyToSpawn){
-        _readyToSpawn = false;
-        return getCurrentWaveKey();
-    } else {
-        return -1;
-    }
+void Level::toggleReadyToSpawn(){
+    this->_readyToSpawn = !this->_readyToSpawn;
+}
+
+std::vector<std::shared_ptr<WaveEntry>> Level::getPlayerChars(){
+    return this->_levelData->getPlayerChars();
+}
+
+void Level::togglePlayerSpawned(){
+    this->_playerSpawned = !this->_playerSpawned;
 }
 
 void Level::setCurrentWave(int waveNum){
@@ -63,23 +98,28 @@ void Level::setCurrentWave(int waveNum){
 
 
 bool Level::isLastWave(){
-    return _currentWave >= _levelData->getNumberWaves() - 1;
+    return _currentWave >= (int)_levelData->getNumberWaves();
 }
 
 bool Level::isSpawningFinished(){
-    return isLastWave() && (_timeElapsed == getNextTime());
+    return getCurrentWave() < 0 || // the level has no waves
+    (_currentWave ==_levelData->getNumberWaves());
 }
 
 void Level::update(float timestep){
-    if (_timeElapsed < getNextTime()){
-        _timeElapsed+=1;
+    
+    if (isLastWave()){
         return;
     }
     
+    if (_framesElapsed < getNextTime()){
+        _framesElapsed += GameState::_internalClock->getTimeDilation();
+        return;
+    }
+    _framesElapsed = 0; // reset frames for next waves
+    _currentWave+=1;
     if (!isLastWave()){
-        _timeElapsed = 0;
         _readyToSpawn = true;
-        _currentWave+=1;
     }
 }
 

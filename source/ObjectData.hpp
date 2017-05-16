@@ -15,44 +15,40 @@
 #include "Element.hpp"
 
 class ObjectData : public Data {
+private:
+    std::string shapeKey;
+    std::string soundKey;
+    std::string blueAnimationKey;
+    std::string goldAnimationKey;
+    
+    float speed;
+    
+    float animationScale;
+    int health;
 public:
-    // key uid to a path data preloaded into the world
-    // used to create an activePath
-//    int path_id;
-    
-    // used to spawn the physics component shape_id,speed,acceleration
-    
-    // key uid to a shape data preloaded into the world
-    
-    int object_id;
-    
-    int shape_id;
-    int animation_id;
-    
-    int speed;
-    int acceleration;
-    
-    Element element;
-    
-    // key uid to animation/texture data preloaded into the world.
-    // for example filmstrip texture will be passed
-    // to reate the scene graph animationNode
-    // and the information about different animation state
-    // and how many frames to stay there
-    // will be in the ActiveAnimation
-    
-//    int animation_id;
     
     ObjectData() : Data(){}
     
-    bool init(int uid, int shape_id, int animation_id,int speed,int acceleration, Element element);
+    std::string getShapeKey();
     
-    static std::shared_ptr<ObjectData> alloc(int uid, int shape_id,int animation_id, int speed,int acceleration, Element element) {
+    std::string getSoundKey();
+    
+    std::string getAnimationKey(ElementType e);
+    
+    float getSpeed();
+    
+    float getAnimationScale();
+    
+    int getHealth();
+    
+    bool init(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale, int health, float speed);
+    
+    static std::shared_ptr<ObjectData> alloc(std::string shapeKey,std::string blueAnimKey, std::string goldAnimKey, std::string sound_key,float animScale,int health, float speed){
         std::shared_ptr<ObjectData> result = std::make_shared<ObjectData>();
-        return (result->init(uid,shape_id,animation_id,speed,acceleration,element) ? result : nullptr);
+        return (result->init(shapeKey,blueAnimKey, goldAnimKey,sound_key,animScale,health, speed) ? result : nullptr);
     }
 
-    virtual std::string serialize();
+    virtual std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     virtual bool preload(const std::string& file);
     
@@ -60,9 +56,6 @@ public:
     
     virtual bool materialize();
     
-    Element getElement(){
-        return element;
-    }
 };
 
 #endif /* ObjectData_hpp */

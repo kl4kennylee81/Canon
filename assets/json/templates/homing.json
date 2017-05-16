@@ -1,0 +1,12 @@
+{
+    "templates": {
+        "homing": {
+            "aiKeys": [
+                "homing"
+            ], 
+            "key": "homing", 
+            "name": "homing", 
+            "objectKey": "object1"
+        }
+    }
+}

@@ -15,7 +15,7 @@ using namespace cugl;
 SwitchController::SwitchController() :
 	BaseController() {}
 
-void SwitchController::attach(std::shared_ptr<Observer> obs) {
+void SwitchController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 void SwitchController::detach(Observer* obs) {
@@ -40,28 +40,43 @@ void SwitchController::eventUpdate(Event* e) {
 
 	//	break;
 	//}
-	case Event::EventType::MOVE:
-		SwitchController::switchFlag = true;
-		break;
+        case Event::EventType::MOVE: {
+            SwitchController::switchFlag = true;
+            break;
+        }
+        case Event::EventType::LEVEL: {
+            LevelEvent* levelEvent = (LevelEvent*)e;
+            switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    if (spawnSwitch) {
+                        switchFlag = true;
+                        spawnSwitch = false;
+                    }
+                    break;
+                }
+            }
+            break;
+        }
 	default:
 		break;
 	}
 }
 
 void SwitchController::update(float timestep, std::shared_ptr<GameState> state) {
-	if (switchFlag) {
-        
-        if (state->getActiveCharacter() == nullptr){
-            return;
-        }
-		state->toggleActiveCharacter(); // new active character
-        std::shared_ptr<SwitchEvent> switchevent = SwitchEvent::alloc(state->getActiveCharacter());
-        notify(switchevent.get());
-        switchFlag = false;
-	}
+//	if (switchFlag) {
+//        
+//        if (state->getActiveCharacter() == nullptr){
+//            return;
+//        }
+//		state->toggleActiveCharacter(); // new active character
+//        std::shared_ptr<SwitchEvent> switchevent = SwitchEvent::alloc(state->getActiveCharacter());
+//        notify(switchevent.get());
+//        switchFlag = false;
+//	}
 }
 
 bool SwitchController::init(std::shared_ptr<GameState> state) {
-    switchFlag = true;
+    switchFlag = false;
+    spawnSwitch = true;
 	return true;
 }

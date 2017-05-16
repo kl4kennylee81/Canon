@@ -617,7 +617,7 @@ void Node::removeAllChildren() {
 void Node::pushScene(Scene* scene) {
     setScene(scene);
     for(auto it = _children.begin(); it != _children.end(); ++it) {
-        (*it)->pushScene(nullptr);
+        (*it)->pushScene(scene);
     }
 }
 
@@ -763,6 +763,13 @@ void Node::render(const std::shared_ptr<SpriteBatch>& batch, const Mat4& transfo
     for(auto it = _children.begin(); it != _children.end(); ++it) {
         (*it)->render(batch, matrix, color);
     }
+}
+
+/**
+ * Custom code
+ */
+Mat4 Node::getCombined() {
+    return _combined;
 }
 
 /**

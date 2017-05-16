@@ -21,15 +21,28 @@
 #include "Observer.hpp"
 #include "Event.hpp"
 #include "GameState.hpp"
+#include "LevelEvent.hpp"
+#include "ZoneEvent.hpp"
 
 class CollisionController : public BaseController {
 protected:
+    bool inGame;
     /** The Box2D world */
     std::shared_ptr<cugl::ObstacleWorld> _world;
     
     std::shared_ptr<cugl::Node> _debugnode;
     
+    std::shared_ptr<cugl::Texture> _arrowTexture;
+    
     std::vector<GameObject*> objsScheduledForRemoval;
+    std::vector<GameObject*> objsToIgnore;
+    
+    std::map<GameObject*,float> hitStunMap;
+    
+    GameObject* bluePlayer;
+    GameObject* goldPlayer;
+    GameObject* blueZone;
+    GameObject* goldZone;
     
     /** Whether or not debug mode is active */
     bool _debug;
@@ -58,8 +71,10 @@ protected:
 public:
     
     CollisionController();
+    
+    ~CollisionController() { dispose(); }
 
-	virtual void attach(std::shared_ptr<Observer> obs);
+	virtual void attach(Observer* obs);
 	virtual void detach(Observer* obs);
 	virtual void notify(Event* e);
 
@@ -69,23 +84,31 @@ public:
 	virtual void eventUpdate(Event* e);
     
     virtual void update(float timestep,std::shared_ptr<GameState> state);
+    
+    void updateHitStun();
+    
+    void dispose();
 
 	virtual bool init();
 
-    virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets);
+    
+    void initPhysicsComponent(ObjectInitEvent* objectInit);
+    
+    void initPhysicsComponent(ZoneInitEvent* zoneInit);
 
     bool addToWorld(GameObject* obj);
     
-    bool removeFromWorld(std::shared_ptr<GameState> state, GameObject* obj);
+    bool removeFromWorld(GameObject* obj);
     
 	static std::shared_ptr<CollisionController> alloc() {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
 		return (result->init() ? result : nullptr);
 	}
 
-    static std::shared_ptr<CollisionController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<CollisionController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
-		return (result->init(state) ? result : nullptr);
+		return (result->init(state, assets) ? result : nullptr);
 	}
     
     void beginContact(b2Contact* contact);

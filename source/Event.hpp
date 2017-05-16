@@ -26,7 +26,16 @@ public:
 		PATH,
 		/** Move **/
 		MOVE,
-        SWITCH
+        SWITCH,
+        BULLET,
+        BULLET_SPAWN,
+        ZONE,
+        ANIMATION,
+        /** menu transition system */
+        FINISH,
+		MENU,
+        LEVEL_EDITOR,
+        TUTORIAL
     };
     
     EventType _eventType;

@@ -22,7 +22,7 @@ using namespace cugl;
 
 ProgressBarController::ProgressBarController():BaseController(){}
 
-void ProgressBarController::attach(std::shared_ptr<Observer> obs) {
+void ProgressBarController::attach(Observer* obs) {
 	BaseController::attach(obs);
 }
 
@@ -40,8 +40,17 @@ void ProgressBarController::eventUpdate(Event* e) {
 
 void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 {
+    if (index < 0){
+        return;
+    }
+    
+    if (level.isSpawningFinished()){
+        return;
+    }
+    
     // TODO fix this hack hold onto the main progress bar
     std::shared_ptr<cugl::Node> child = _pBarSceneNode->getChildren().at(0);
+
     std::shared_ptr<cugl::ProgressBarModel> waveBar = std::static_pointer_cast<cugl::ProgressBarModel>(child);
     waveBar->toggleActive();
     waveBar->setProgress(level.getProgress());
@@ -49,6 +58,11 @@ void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 
 bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world)
 {
+    // in case when resuming initially levelData empty
+    if (world->getLevelData() == nullptr){
+        return true;
+    }
+    
     cugl::Size cameraSize = state->getScene()->getCamera()->getViewport().size;
     
 	// Constants
@@ -64,7 +78,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
         _pBarSceneNode = Node::alloc();
         _pBarSceneNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         _pBarSceneNode->setPosition(Vec2::ZERO);
-        state->getScene()->addChild(_pBarSceneNode, 3);
+        state->getGameplayNode()->addChild(_pBarSceneNode, 3);
     }
     
     auto manager = world->getAssetManager();
@@ -84,6 +98,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	// not all waves are the same length, so we use the total length of the level to adjust spacing.
 	float levelNetTime = 0.f;
 	for (int i = 0; i < level->getNumberWaves(); i++) { levelNetTime += level->getTime(i); }
+<<<<<<< HEAD
 
 	float spacePerUnitTime = BAR_WIDTH/ levelNetTime;
 
@@ -101,6 +116,35 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     
     // add to parent node
     _pBarSceneNode->addChild(progressBar, 3);
+=======
+    
+    size_t numberWaves = level->getNumberWaves();
+	float spacePerUnitTime = (BAR_WIDTH - numberWaves*INTER_BAR_GAP) / levelNetTime;
+
+	// creation of actual progress bars
+	float nextBarXPos = 0;
+	for (int i = 0; i < numberWaves; i++)
+	{
+		// make progress bar object
+		Size size = Size(level->getTime(i) * spacePerUnitTime, BAR_HEIGHT);
+        
+        // since progress bar is anchored in the middle add half the width size;
+        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f;
+        
+        std::shared_ptr<ProgressBarModel> progressBar = ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
+                                                                                   barForeground,beginCap_f,finalCap_f,size);
+
+		// anchor and pos
+		float barXPos = nextBarXPos + barXPadding;
+		progressBar->setPosition(barXPos, barYPos);
+
+		// add to parent node
+		_pBarSceneNode->addChild(progressBar, 3);
+
+		// after drawing the bar add the latter half and the gap between bars
+        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f + INTER_BAR_GAP;
+	}
+>>>>>>> templateRefactor
 	return true;
 }
 

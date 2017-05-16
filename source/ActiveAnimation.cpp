@@ -8,11 +8,19 @@
 
 #include "ActiveAnimation.hpp"
 
-void ActiveAnimation::handleEvent(AnimationEvent event) {
-    if (!eventExists(event)) {
+void ActiveAnimation::dispose(){
+    _node = nullptr;
+    _data = nullptr;
+    _last = false;
+    curFrames = 0;
+    curIndex = 0;
+}
+
+void ActiveAnimation::handleAction(AnimationAction action) {
+    if (!eventExists(action)) {
         return;
     }
-    std::shared_ptr<AnimationUpdate> upd = getAnimationUpdate(event);
+    std::shared_ptr<AnimationUpdate> upd = getAnimationUpdate(action);
     active = upd->active;
     if (!upd->repeat.empty()){
         repeat = upd->repeat;
@@ -22,10 +30,11 @@ void ActiveAnimation::handleEvent(AnimationEvent event) {
 }
 
 bool ActiveAnimation::nextFrame() {
-    curFrames++;
+    curFrames += GameState::_internalClock->getTimeDilation();
+    
     std::shared_ptr<AnimationState> animState = getAnimationState();
     int totNumFrames = animState->frames.at(curIndex);
-    if (curFrames == totNumFrames){
+    if (curFrames >= totNumFrames){
         curFrames = 0;
         curIndex++;
     }
@@ -40,4 +49,8 @@ bool ActiveAnimation::nextFrame() {
     }
     _node->setFrame(getAnimationState()->first+curIndex);
     return true;
+}
+
+bool ActiveAnimation::isUniformScaling(){
+    return !this->_data->nonUniformScale;
 }
