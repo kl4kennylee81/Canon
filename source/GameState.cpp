@@ -17,6 +17,8 @@ using namespace cugl;
 // HACK replace with level loading sending event
 
 #define BACKGROUND_TEXTURE       "bg_blue_sky"
+#define TOP_BORDER_TEXTURE       "clouds_bottom"
+#define BOTTOM_BORDER_TEXTURE    "clouds_top"
 
 #define NUM_PLAYER_CHARS         2
 
@@ -54,19 +56,17 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     _bgnode->addChild(bkgdTextureNode);
     
     // set textures in levelData + remove set color
-    auto topBorderImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto topBorderImage = assets->get<Texture>(TOP_BORDER_TEXTURE);
     auto topBorderTextureNode = PolygonNode::allocWithTexture(topBorderImage);
     topBorderTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     topBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/topBorderImage->getWidth());
     topBorderTextureNode->setPosition(0, world_yPos-topBorderTextureNode->getHeight());
-    topBorderTextureNode->setColor(Color4::RED);
     
-    auto bottomBorderImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto bottomBorderImage = assets->get<Texture>(BOTTOM_BORDER_TEXTURE);
     auto bottomBorderTextureNode = PolygonNode::allocWithTexture(bottomBorderImage);
     bottomBorderTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bottomBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bottomBorderImage->getWidth());
     bottomBorderTextureNode->setPosition(0,size.getMaxY()-world_yPos);
-    bottomBorderTextureNode->setColor(Color4::RED);
     
     _bordernode = Node::alloc();
     _bordernode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
