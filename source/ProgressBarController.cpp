@@ -40,10 +40,6 @@ void ProgressBarController::eventUpdate(Event* e) {
 
 void ProgressBarController::update(std::shared_ptr<GameState> state,Level level)
 {
-    if (index < 0){
-        return;
-    }
-    
     if (level.isSpawningFinished()){
         return;
     }
