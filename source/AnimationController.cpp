@@ -198,7 +198,7 @@ void AnimationController::eventUpdate(Event* e) {
 
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
-    syncAll();
+    syncAll(state);
     updateFrames(state);
 }
 
@@ -249,12 +249,17 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
  * Syncs the location of the animatino node to the world coordinates of
  * the corresponding location of the node's physics body.
  */
-void AnimationController::syncAll() {
+void AnimationController::syncAll(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end(); it++) {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
             syncAnimation(anim,obj);
+        }
+        
+        /** sync the arrow */
+        if(obj->getPhysicsComponent()->hasArrow()){
+            obj->syncArrow(state->getWorldNode());
         }
     }
 }
@@ -304,10 +309,6 @@ void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
         
         GameObject* obj = it->first;
-        if(obj->getPhysicsComponent()->hasArrow()){
-            obj->syncArrow(state->getGameplayNode());
-        }
-        
         std::shared_ptr<ActiveAnimation> anim = it->second;
         
         if (anim->getAnimationNode()->getParent() == nullptr){
