@@ -1,29 +1,29 @@
 {
-	"name":	"tutorial1",
+	"name":	"tutorial01",
 	"counter":	39,
 	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"levels":	{
-		"tutorial1":	{
-			"key":	"tutorial1",
+		"tutorial01":	{
+			"key":	"tutorial01",
 			"levelEntries":	{
-				"tutorial1 wave 20":	{
-					"key":	"tutorial1 wave 20",
-					"waveKey":	"tutorial1 wave 20",
+				"tutorial01 wave 20":	{
+					"key":	"tutorial01 wave 20",
+					"waveKey":	"tutorial01 wave 20",
 					"time":	10
 				},
-				"tutorial1 wave 36":	{
-					"key":	"tutorial1 wave 36",
-					"waveKey":	"tutorial1 wave 36",
+				"tutorial01 wave 36":	{
+					"key":	"tutorial01 wave 36",
+					"waveKey":	"tutorial01 wave 36",
 					"time":	240
 				},
-				"tutorial1 wave 37":	{
-					"key":	"tutorial1 wave 37",
-					"waveKey":	"tutorial1 wave 37",
+				"tutorial01 wave 37":	{
+					"key":	"tutorial01 wave 37",
+					"waveKey":	"tutorial01 wave 37",
 					"time":	500
 				},
-				"tutorial1 wave 38":	{
-					"key":	"tutorial1 wave 38",
-					"waveKey":	"tutorial1 wave 38",
+				"tutorial01 wave 38":	{
+					"key":	"tutorial01 wave 38",
+					"waveKey":	"tutorial01 wave 38",
 					"time":	300
 				}
 			},
@@ -48,16 +48,16 @@
 		}
 	},
 	"waves":	{
-		"tutorial1 wave 20":	{
-			"key":	"tutorial1 wave 20",
+		"tutorial01 wave 20":	{
+			"key":	"tutorial01 wave 20",
 			"waveEntries":	{
 			}
 		},
-		"tutorial1 wave 36":	{
-			"key":	"tutorial1 wave 36",
+		"tutorial01 wave 36":	{
+			"key":	"tutorial01 wave 36",
 			"waveEntries":	{
-				"tutorial1 wave 36 object 1":	{
-					"key":	"tutorial1 wave 36 object 1",
+				"tutorial01 wave 36 object 1":	{
+					"key":	"tutorial01 wave 36 object 1",
 					"x":	7.366667,
 					"y":	8.233333,
 					"element":	"BLUE",
@@ -66,11 +66,11 @@
 				}
 			}
 		},
-		"tutorial1 wave 37":	{
-			"key":	"tutorial1 wave 37",
+		"tutorial01 wave 37":	{
+			"key":	"tutorial01 wave 37",
 			"waveEntries":	{
-				"tutorial1 wave 37 object 1":	{
-					"key":	"tutorial1 wave 37 object 1",
+				"tutorial01 wave 37 object 1":	{
+					"key":	"tutorial01 wave 37 object 1",
 					"x":	26.500000,
 					"y":	7.966666,
 					"element":	"GOLD",
@@ -79,19 +79,19 @@
 				}
 			}
 		},
-		"tutorial1 wave 38":	{
-			"key":	"tutorial1 wave 38",
+		"tutorial01 wave 38":	{
+			"key":	"tutorial01 wave 38",
 			"waveEntries":	{
-				"tutorial1 wave 38 object 1":	{
-					"key":	"tutorial1 wave 38 object 1",
+				"tutorial01 wave 38 object 1":	{
+					"key":	"tutorial01 wave 38 object 1",
 					"x":	4.733334,
 					"y":	13.866667,
 					"element":	"GOLD",
 					"aiKey":	"homing",
 					"templateKey":	"birb"
 				},
-				"tutorial1 wave 38 object 2":	{
-					"key":	"tutorial1 wave 38 object 2",
+				"tutorial01 wave 38 object 2":	{
+					"key":	"tutorial01 wave 38 object 2",
 					"x":	26.766666,
 					"y":	13.800000,
 					"element":	"BLUE",

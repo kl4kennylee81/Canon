@@ -1,6 +1,6 @@
 {
     "tutorialLevels": {
-        "tutorial1": {
+        "tutorial01": {
             "stepKeys": [
                 "tutorial1_step1",
                 "tutorial1_step2",

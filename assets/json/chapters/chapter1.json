@@ -4,6 +4,7 @@
             "chapterKey": "chapter01",
             "name": "The Girl and the Firefly",
             "levels": [
+                "tutorial01",
                 "level01",
                 "level02",
                 "level03",
@@ -16,6 +17,11 @@
         }
     },
     "LevelSelectData": {
+        "tutorial01": {
+            "key": "tutorial01",
+            "levelKey": "tutorial01",
+            "name": "tutorial01"
+        },
         "level01": {
             "key": "level01",
             "levelKey": "rapidSpawn",
