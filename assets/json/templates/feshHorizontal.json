@@ -138,9 +138,7 @@
             "zoneKeys": [
                 "feshHorizontal_zone"
             ],
-            "zones": {
-                "feshHorizontal_zone": ["feshHorizontal_zone"]
-            }
+            "zones": [["feshHorizontal_zone"]]
         }
     }, 
     "zones": {

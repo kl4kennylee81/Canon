@@ -152,9 +152,7 @@
             "zoneKeys": [
                 "birb_zone"
             ],
-            "zones": {
-                "birb_zone": ["birb_zone"]
-            }
+            "zones": [[],["birb_zone"]]
         }
     },
     "zones": {

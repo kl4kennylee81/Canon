@@ -6,9 +6,7 @@
             "objectKey":  "grumpBullet6_object",
             "bulletKey": "grumpBullet6_bullet",
             "zoneKeys": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite"],
-            "zones": {
-                "grumpBullet6_zone": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite"]
-            }
+            "zones": [["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite"]]
         }
     },
     "objects":{

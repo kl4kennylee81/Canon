@@ -137,9 +137,7 @@
             "zoneKeys": [
                 "feshVertical_zone"
             ],
-            "zones": {
-                "feshVertical_zone": ["feshVertical_zone"]
-            }
+            "zones": [["feshVertical_zone"]]
         }
     },
     "zones": {

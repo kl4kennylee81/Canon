@@ -120,9 +120,7 @@
             "key": "blobo", 
             "name": "blobo", 
             "objectKey": "blobo_object",
-            "zones": {
-                "blobo_zone": ["blobo_zone"]
-            }
+            "zones": [[],["blobo_zone"]]
         }
     },
     "zones": {
