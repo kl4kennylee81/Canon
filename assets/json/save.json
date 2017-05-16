@@ -14,6 +14,12 @@
         }
     },
     "SaveLevelData": {
+        "tutorial01": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "tutorial01",
+            "unlocked": 1
+        },
         "level01": {
             "complete": 0,
             "highScore": 0,

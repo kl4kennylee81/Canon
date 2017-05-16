@@ -13,10 +13,21 @@
 #include <cugl/cugl.h>
 
 enum class TutorialTransition : int {
+    // self check
     ON_CLICK,
+    IMMEDIATE,  // always passes to start
+    // path controller
     ON_PATH_DRAWN,
+    ON_PATH_START,
+    // collision controller
     ON_ENEMY_CLEARED,
-    ON_START,  // at the beginning of init when gien a tutorialLevel will go to active
+    ON_PLAYER_HIT,
+    // spawn controller
+    ON_ENEMY_SPAWN,
+    // level controller
+    ON_ENEMY_SPAWNING,
+    // move controller
+    ON_MOVE_FINISHED,
     NONE
 };
 
@@ -55,6 +66,21 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
 }
 
 static TutorialTransition strToTransition(std::string trans){
+    if (trans == "ON_MOVE_FINISHED"){
+        return TutorialTransition::ON_MOVE_FINISHED;
+    }
+    if (trans == "ON_PATH_START"){
+        return TutorialTransition::ON_PATH_START;
+    }
+    if (trans == "ON_PLAYER_HIT"){
+        return TutorialTransition::ON_PLAYER_HIT;
+    }
+    if (trans == "ON_ENEMY_SPAWN"){
+        return TutorialTransition::ON_ENEMY_SPAWN;
+    }
+    if (trans == "ON_ENEMY_SPAWNING"){
+        return TutorialTransition::ON_ENEMY_SPAWNING;
+    }
     if (trans == "ON_CLICK") {
         return TutorialTransition::ON_CLICK;
     }
@@ -64,14 +90,29 @@ static TutorialTransition strToTransition(std::string trans){
     if (trans == "ON_ENEMY_CLEARED") {
         return TutorialTransition::ON_ENEMY_CLEARED;
     }
-    if (trans == "ON_START") {
-        return TutorialTransition::ON_START;
+    if (trans == "IMMEDIATE") {
+        return TutorialTransition::IMMEDIATE;
     }
     // default to NONE
     return TutorialTransition::NONE;
 }
 
 static std::string transitionToStr(TutorialTransition trans){
+    if (trans == TutorialTransition::ON_MOVE_FINISHED){
+        return "ON_MOVE_FINISHED";
+    }
+    if (trans == TutorialTransition::ON_PATH_START) {
+        return "ON_PATH_START";
+    }
+    if (trans == TutorialTransition::ON_PLAYER_HIT){
+        return "ON_PLAYER_HIT";
+    }
+    if (trans == TutorialTransition::ON_ENEMY_SPAWNING){
+        return "ON_ENEMY_SPAWNING";
+    }
+    if (trans == TutorialTransition::ON_ENEMY_SPAWN){
+        return "ON_ENEMY_SPAWN";
+    }
     if (trans == TutorialTransition::ON_CLICK) {
         return "ON_CLICK";
     }
@@ -81,8 +122,8 @@ static std::string transitionToStr(TutorialTransition trans){
     if (trans == TutorialTransition::ON_ENEMY_CLEARED) {
         return "ON_ENEMY_CLEARED";
     }
-    if (trans == TutorialTransition::ON_START) {
-        return "ON_START";
+    if (trans == TutorialTransition::IMMEDIATE) {
+        return "IMMEDIATE";
     }
     return "";
 }

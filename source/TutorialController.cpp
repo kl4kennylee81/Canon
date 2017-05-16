@@ -16,6 +16,7 @@
 #include "Menu.hpp"
 #include "CollisionEvent.hpp"
 #include "TutorialEvent.hpp"
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -44,22 +45,49 @@ void TutorialController::eventUpdate(Event* e) {
             { // scoped brace for pe variable
             	PathEvent* pe = (PathEvent*)e;
             	switch (pe->_pathType) {
-            	case PathEvent::PathEventType::PATH_FINISHED:
+                    case PathEvent::PathEventType::PATH_FINISHED:
+                    {
                         checkTransitionCondition(TutorialTransition::ON_PATH_DRAWN);
-            		break;
-            	default:
-            		break;
-            	}
-            
-            	break;
+                        break;
+                    }
+                    case PathEvent::PathEventType::DRAWING:
+                    {
+                        checkTransitionCondition(TutorialTransition::ON_PATH_START);
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                break;
             }
         case Event::EventType::MOVE: {
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    checkTransitionCondition(TutorialTransition::ON_MOVE_FINISHED);
+                }
+            }
             break;
         }
         case Event::EventType::LEVEL: {
             LevelEvent* levelEvent = (LevelEvent*)e;
             switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
+                    ObjectSpawnEvent* objSpawnEvent = (ObjectSpawnEvent*)levelEvent;
+                    std::shared_ptr<GameObject> obj = objSpawnEvent->object;
+                    if (!obj->getIsPlayer() && obj->type == GameObject::ObjectType::CHARACTER){
+                        checkTransitionCondition(TutorialTransition::ON_ENEMY_SPAWNING);
+                    }
+                    break;
+                }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    ObjectSpawnEvent* objSpawnEvent = (ObjectSpawnEvent*)levelEvent;
+                    std::shared_ptr<GameObject> obj = objSpawnEvent->object;
+                    if (!obj->getIsPlayer() && obj->type == GameObject::ObjectType::CHARACTER){
+                        checkTransitionCondition(TutorialTransition::ON_ENEMY_SPAWN);
+                    }
                     break;
                 }
             }
@@ -78,6 +106,11 @@ void TutorialController::eventUpdate(Event* e) {
                 }
                 case CollisionEvent::CollisionEventType::OBJECT_HIT:
                 {
+                    ObjectHitEvent* ohEvent = (ObjectHitEvent*)e;
+                    if (ohEvent->_obj->getIsPlayer()){
+                        checkTransitionCondition(TutorialTransition::ON_PLAYER_HIT);
+                    }
+                    
                     break;
                 }
                 case CollisionEvent::CollisionEventType::GAME_LOST:
@@ -117,11 +150,18 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     if (isInActive()){
         return;
     }
-    
+
+///////////////////////////////Check_conditions/////////////////////////////////////
+
     /** this is to update other transition Condition that get checked on the spot */
     if (InputController::getIsPressed()){
         checkTransitionCondition(TutorialTransition::ON_CLICK);
     }
+    
+    /** check any immediate condition to go off */
+    checkTransitionCondition(TutorialTransition::IMMEDIATE);
+    
+////////////////////////////////////////////////////////////////////////////////////
     
     /** check step is preactive and play its effect */
     if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
