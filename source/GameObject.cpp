@@ -47,11 +47,12 @@ void GameObject::syncArrow(std::shared_ptr<Node> node){
     
     if(!_hasArrow) { node->addChildWithName(arrow, "arrow"+std::to_string(_uid)); }
     
-    float characterSize = std::fmax(_body->getBody()->getWidth(), _body->getBody()->getHeight()) * GAME_PHYSICS_SCALE;
+    float characterSize = std::fmax(_body->getBody()->getWidth(), _body->getBody()->getHeight());
+    
     arrow->setZOrder(5);
     arrow->setScale(characterSize*2.0/_body->getArrowWidth());
     arrow->setAngle(velocity.getAngle());
-    arrow->setPosition(getPosition() * GAME_PHYSICS_SCALE);
+    arrow->setPosition(getPosition());
     arrow->setVisible(true);
     _hasArrow = true;
 }

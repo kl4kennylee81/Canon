@@ -39,7 +39,7 @@
                 "boss1 wave 20 object 1":	{
                     "key":	"boss1 wave 20 object 1",
                     "x":	26.866667,
-                    "y":	12.800000,
+                    "y":	10.0,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"grumpBullet6"
