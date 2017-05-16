@@ -67,7 +67,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     
 	// Constants
 	float PERCENT_WIDTH = 0.7f;
-	float PERCENT_HEIGHT = 0.96f;
+	float PERCENT_HEIGHT = 0.98f;
 	float BAR_WIDTH = cameraSize.getIWidth() *PERCENT_WIDTH;
     
     // world coordinates are fixed bar will be same height in all screen aspect ratios
