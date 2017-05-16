@@ -23,8 +23,8 @@
     "UIData": {
         "pauseMenu_LevelButton": {
             "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
                 "type": "modeChange"
             }, 
             "buttonLabel": "", 

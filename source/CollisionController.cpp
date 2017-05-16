@@ -341,17 +341,17 @@ void CollisionController::beginContact(b2Contact* contact) {
         }
     }
     
-    // player can kill each other
-    if (obj1->getIsPlayer() && obj2->getIsPlayer()){
-        // don't let them kill each other just with zones
-        if (obj1->type == GameObject::ObjectType::ZONE || obj2->type == GameObject::ObjectType::ZONE) {
-            return;
-        }
-        if (!sameElement){
-            removes.push_back(bluePlayer);
-            removes.push_back(goldPlayer);
-        }
-    }
+//    // player can kill each other
+//    if (obj1->getIsPlayer() && obj2->getIsPlayer()){
+//        // don't let them kill each other just with zones
+//        if (obj1->type == GameObject::ObjectType::ZONE || obj2->type == GameObject::ObjectType::ZONE) {
+//            return;
+//        }
+//        if (!sameElement){
+//            removes.push_back(bluePlayer);
+//            removes.push_back(goldPlayer);
+//        }
+//    }
     
     if (removes.size() == 0) {
         return;
