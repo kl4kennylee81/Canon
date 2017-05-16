@@ -258,14 +258,16 @@
                     "frames": [
                         10
                     ], 
-                    "total": 1
+                    "total": 1,
+                    "alpha": 0.6
                 }, 
                 "spawning": {
                     "first": 1, 
                     "frames": [
                         10
                     ], 
-                    "total": 1
+                    "total": 1,
+                    "alpha": 0.7
                 }
             }, 
             "texture": "./textures/models/zones/square_spritesheet.png"
@@ -332,14 +334,16 @@
                     "frames": [
                         10
                     ], 
-                    "total": 1
+                    "total": 1,
+                    "alpha": 0.6
                 }, 
                 "spawning": {
                     "first": 1, 
                     "frames": [
                         10
                     ], 
-                    "total": 1
+                    "total": 1,
+                    "alpha": 0.7
                 }
             }, 
             "texture": "./textures/models/zones/sector_spritesheet.png"
