@@ -8,34 +8,40 @@
                 "level09",
                 "level10",
                 "level11",
-                "level12"
+                "level12",
+                "level13"
             ]
         }
     },
     "LevelSelectData": {
         "level08": {
             "key": "level08",
-            "levelKey": "squareLaser",
-            "name": "Lasers"
+            "levelKey": "sneakAttack",
+            "name": "SneakAttack"
         },
         "level09": {
             "key": "level09",
+            "levelKey": "patrol",
+            "name": "Patrol"
+        },
+        "level10": {
+            "key": "level10",
+            "levelKey": "squareLaser",
+            "name": "Lasers"
+        },
+        "level11": {
+            "key": "level11",
             "levelKey": "lure",
             "name": "Lure"
         },
-        "level10": {
-            "name": "Blobos",
-            "key": "level10",
-            "levelKey": "blobos"
-        },
-        "level11": {
+        "level12": {
             "name": "Boss1",
-            "key": "level11",
+            "key": "level12",
             "levelKey": "boss1"
         },
-        "level12": {
+        "level13": {
             "name": "Boss2",
-            "key": "level12",
+            "key": "level13",
             "levelKey": "boss2"
         }
     }

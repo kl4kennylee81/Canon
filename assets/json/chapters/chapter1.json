@@ -42,19 +42,19 @@
             "levelKey": "xxxxxx"
         },
         "level05": {
+            "name": "Blobos",
             "key": "level05",
-            "levelKey": "overlap",
-            "name": "overlap"
+            "levelKey": "blobos"
         },
         "level06": {
             "key": "level06",
-            "levelKey": "interweave",
-            "name": "Weave"
+            "levelKey": "overlap",
+            "name": "overlap"
         },
         "level07": {
             "key": "level07",
-            "levelKey": "sneakAttack",
-            "name": "SneakAttack"
+            "levelKey": "interweave",
+            "name": "Weave"
         }
     }
 }
