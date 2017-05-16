@@ -13,11 +13,18 @@
 #include <cugl/cugl.h>
 
 enum class TutorialTransition : int {
+    // self check
     ON_CLICK,
-    ON_PATH_DRAWN,
-    ON_ENEMY_CLEARED,
     IMMEDIATE,  // always passes to start
+    // path controller
+    ON_PATH_DRAWN,
+    // collision controller
+    ON_ENEMY_CLEARED,
+    ON_PLAYER_HIT,
+    // spawn controller
     ON_ENEMY_SPAWN,
+    // level controller
+    ON_ENEMY_SPAWNING,
     NONE
 };
 
@@ -56,8 +63,14 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
 }
 
 static TutorialTransition strToTransition(std::string trans){
+    if (trans == "ON_PLAYER_HIT"){
+        return TutorialTransition::ON_PLAYER_HIT;
+    }
     if (trans == "ON_ENEMY_SPAWN"){
         return TutorialTransition::ON_ENEMY_SPAWN;
+    }
+    if (trans == "ON_ENEMY_SPAWNING"){
+        return TutorialTransition::ON_ENEMY_SPAWNING;
     }
     if (trans == "ON_CLICK") {
         return TutorialTransition::ON_CLICK;
@@ -76,6 +89,12 @@ static TutorialTransition strToTransition(std::string trans){
 }
 
 static std::string transitionToStr(TutorialTransition trans){
+    if (trans == TutorialTransition::ON_PLAYER_HIT){
+        return "ON_PLAYER_HIT";
+    }
+    if (trans == TutorialTransition::ON_ENEMY_SPAWNING){
+        return "ON_ENEMY_SPAWNING";
+    }
     if (trans == TutorialTransition::ON_ENEMY_SPAWN){
         return "ON_ENEMY_SPAWN";
     }

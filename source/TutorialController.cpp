@@ -59,6 +59,14 @@ void TutorialController::eventUpdate(Event* e) {
         case Event::EventType::LEVEL: {
             LevelEvent* levelEvent = (LevelEvent*)e;
             switch (levelEvent->levelEventType) {
+                case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
+                    ObjectSpawnEvent* objSpawnEvent = (ObjectSpawnEvent*)levelEvent;
+                    std::shared_ptr<GameObject> obj = objSpawnEvent->object;
+                    if (!obj->getIsPlayer() && obj->type == GameObject::ObjectType::CHARACTER){
+                        checkTransitionCondition(TutorialTransition::ON_ENEMY_SPAWNING);
+                    }
+                    break;
+                }
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
                     ObjectSpawnEvent* objSpawnEvent = (ObjectSpawnEvent*)levelEvent;
                     std::shared_ptr<GameObject> obj = objSpawnEvent->object;
@@ -83,6 +91,11 @@ void TutorialController::eventUpdate(Event* e) {
                 }
                 case CollisionEvent::CollisionEventType::OBJECT_HIT:
                 {
+                    ObjectHitEvent* ohEvent = (ObjectHitEvent*)e;
+                    if (ohEvent->_obj->getIsPlayer()){
+                        checkTransitionCondition(TutorialTransition::ON_PLAYER_HIT);
+                    }
+                    
                     break;
                 }
                 case CollisionEvent::CollisionEventType::GAME_LOST:

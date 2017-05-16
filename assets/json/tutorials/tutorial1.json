@@ -14,8 +14,8 @@
     },
     "tutorialSteps": {
         "tutorial1_step1":{
-            "start": "IMMEDIATE",
-            "end": "ON_ENEMY_SPAWN",
+            "start": "ON_ENEMY_SPAWNING",
+            "end": "ON_PLAYER_HIT",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step1_text"
