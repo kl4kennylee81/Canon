@@ -98,8 +98,6 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
 	// not all waves are the same length, so we use the total length of the level to adjust spacing.
 	float levelNetTime = 0.f;
 	for (int i = 0; i < level->getNumberWaves(); i++) { levelNetTime += level->getTime(i); }
-<<<<<<< HEAD
-
 	float spacePerUnitTime = BAR_WIDTH/ levelNetTime;
 
 	// creation of actual progress bars
@@ -116,35 +114,6 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     
     // add to parent node
     _pBarSceneNode->addChild(progressBar, 3);
-=======
-    
-    size_t numberWaves = level->getNumberWaves();
-	float spacePerUnitTime = (BAR_WIDTH - numberWaves*INTER_BAR_GAP) / levelNetTime;
-
-	// creation of actual progress bars
-	float nextBarXPos = 0;
-	for (int i = 0; i < numberWaves; i++)
-	{
-		// make progress bar object
-		Size size = Size(level->getTime(i) * spacePerUnitTime, BAR_HEIGHT);
-        
-        // since progress bar is anchored in the middle add half the width size;
-        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f;
-        
-        std::shared_ptr<ProgressBarModel> progressBar = ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
-                                                                                   barForeground,beginCap_f,finalCap_f,size);
-
-		// anchor and pos
-		float barXPos = nextBarXPos + barXPadding;
-		progressBar->setPosition(barXPos, barYPos);
-
-		// add to parent node
-		_pBarSceneNode->addChild(progressBar, 3);
-
-		// after drawing the bar add the latter half and the gap between bars
-        nextBarXPos += level->getTime(i)*spacePerUnitTime/2.f + INTER_BAR_GAP;
-	}
->>>>>>> templateRefactor
 	return true;
 }
 
