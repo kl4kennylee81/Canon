@@ -60,6 +60,11 @@ void TutorialController::eventUpdate(Event* e) {
             LevelEvent* levelEvent = (LevelEvent*)e;
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    ObjectSpawnEvent* objSpawnEvent = (ObjectSpawnEvent*)levelEvent;
+                    std::shared_ptr<GameObject> obj = objSpawnEvent->object;
+                    if (!obj->getIsPlayer() && obj->type == GameObject::ObjectType::CHARACTER){
+                        checkTransitionCondition(TutorialTransition::ON_ENEMY_SPAWN);
+                    }
                     break;
                 }
             }
@@ -117,11 +122,18 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     if (isInActive()){
         return;
     }
-    
+
+///////////////////////////////Check_conditions/////////////////////////////////////
+
     /** this is to update other transition Condition that get checked on the spot */
     if (InputController::getIsPressed()){
         checkTransitionCondition(TutorialTransition::ON_CLICK);
     }
+    
+    /** check any immediate condition to go off */
+    checkTransitionCondition(TutorialTransition::IMMEDIATE);
+    
+////////////////////////////////////////////////////////////////////////////////////
     
     /** check step is preactive and play its effect */
     if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){

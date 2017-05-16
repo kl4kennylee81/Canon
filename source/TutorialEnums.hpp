@@ -16,7 +16,8 @@ enum class TutorialTransition : int {
     ON_CLICK,
     ON_PATH_DRAWN,
     ON_ENEMY_CLEARED,
-    ON_START,  // at the beginning of init when gien a tutorialLevel will go to active
+    IMMEDIATE,  // always passes to start
+    ON_ENEMY_SPAWN,
     NONE
 };
 
@@ -55,6 +56,9 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
 }
 
 static TutorialTransition strToTransition(std::string trans){
+    if (trans == "ON_ENEMY_SPAWN"){
+        return TutorialTransition::ON_ENEMY_SPAWN;
+    }
     if (trans == "ON_CLICK") {
         return TutorialTransition::ON_CLICK;
     }
@@ -64,14 +68,17 @@ static TutorialTransition strToTransition(std::string trans){
     if (trans == "ON_ENEMY_CLEARED") {
         return TutorialTransition::ON_ENEMY_CLEARED;
     }
-    if (trans == "ON_START") {
-        return TutorialTransition::ON_START;
+    if (trans == "IMMEDIATE") {
+        return TutorialTransition::IMMEDIATE;
     }
     // default to NONE
     return TutorialTransition::NONE;
 }
 
 static std::string transitionToStr(TutorialTransition trans){
+    if (trans == TutorialTransition::ON_ENEMY_SPAWN){
+        return "ON_ENEMY_SPAWN";
+    }
     if (trans == TutorialTransition::ON_CLICK) {
         return "ON_CLICK";
     }
@@ -81,8 +88,8 @@ static std::string transitionToStr(TutorialTransition trans){
     if (trans == TutorialTransition::ON_ENEMY_CLEARED) {
         return "ON_ENEMY_CLEARED";
     }
-    if (trans == TutorialTransition::ON_START) {
-        return "ON_START";
+    if (trans == TutorialTransition::IMMEDIATE) {
+        return "IMMEDIATE";
     }
     return "";
 }
