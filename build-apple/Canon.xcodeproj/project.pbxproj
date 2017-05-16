@@ -797,6 +797,19 @@
 			name = tutorialEvent;
 			sourceTree = "<group>";
 		};
+		9F9A789F1ECA663F0055D471 /* chapter */ = {
+			isa = PBXGroup;
+			children = (
+				9F9A76951ECA39210055D471 /* ChapterListData.cpp */,
+				9F9A76961ECA39210055D471 /* ChapterListData.hpp */,
+				9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */,
+				9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */,
+				9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */,
+				9F9A76901ECA38BB0055D471 /* LevelSelectData.hpp */,
+			);
+			name = chapter;
+			sourceTree = "<group>";
+		};
 		9FA275CE1EA4BFE3003D8C03 /* menuEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +831,7 @@
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
+				9F9A789F1ECA663F0055D471 /* chapter */,
 				9FF0B4441EC6B3B20044F29B /* tutorial */,
 				9FF0B4081EC3B19D0044F29B /* save */,
 				273CB39C1EBBD78E0042708C /* bullet */,
@@ -892,12 +906,6 @@
 		9FF0B4081EC3B19D0044F29B /* save */ = {
 			isa = PBXGroup;
 			children = (
-				9F9A76951ECA39210055D471 /* ChapterListData.cpp */,
-				9F9A76961ECA39210055D471 /* ChapterListData.hpp */,
-				9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */,
-				9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */,
-				9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */,
-				9F9A76901ECA38BB0055D471 /* LevelSelectData.hpp */,
 				9FF0B4111EC3B2190044F29B /* SaveChapterData.cpp */,
 				9FF0B4121EC3B2190044F29B /* SaveChapterData.hpp */,
 				9FF0B4131EC3B2190044F29B /* SaveData.cpp */,
@@ -1369,7 +1377,7 @@
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = H26RD7FXNA;
+						DevelopmentTeam = 4S972L8QNQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1828,7 +1836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1848,7 +1856,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",

@@ -18,13 +18,13 @@
 /** This is adjusted by screen aspect ratio to get the height */
 #define GAME_SCENE_WIDTH 1024
 /** This is the aspect ratio for physics */
-#define GAME_SCENE_ASPECT (9.0/16.0)
+//#define GAME_SCENE_ASPECT (9.0/16.0)
 
 /** This is the logical physics width of the game **/
 #define GAME_PHYSICS_WIDTH 32.f
 
 /** This is the logical physics height of the game **/
-#define GAME_PHYSICS_HEIGHT 18.f
+#define GAME_PHYSICS_HEIGHT 16.f
 
 /** The scaling from physics coordinates to the game scene **/
 #define GAME_PHYSICS_SCALE (GAME_SCENE_WIDTH/GAME_PHYSICS_WIDTH)
@@ -49,6 +49,8 @@ protected:
     std::shared_ptr<cugl::Node> _debugnode;
     
     std::shared_ptr<cugl::Node> _bgnode;
+    
+    std::shared_ptr<cugl::Node> _bordernode;
     
     cugl::Rect _bounds;
     

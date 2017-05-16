@@ -48,7 +48,9 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 		std::shared_ptr<LevelSelectData> listEntry = assets->get<LevelSelectData>(levelKey);
 		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(levelKey);
 
-		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->levelKey);
+        // instead of having the levelKey we will have a reference to the levelSelectData key which can be retrieved
+        // to find the levelKey
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->key);
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
 		
         float x = 0.05 + (0.15*(i%6));
@@ -87,7 +89,7 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 }
 
 void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string cData) {
-    std::shared_ptr<Menu> menu = _menuMap.at("levelSelect");
+    std::shared_ptr<Menu> menu = Menu::alloc("levelSelect");
     std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>("levelSelect");
     menu->populate(assets,menuData->getUIEntryKeys(),menuData->menuBackgroundKey,menuData->getFontMap());
 	// this overwrites the old associated value

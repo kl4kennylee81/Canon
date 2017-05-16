@@ -12,6 +12,7 @@
 #include "MenuEvent.hpp"
 #include "FinishEvent.hpp"
 #include "LevelEditorEvent.hpp"
+#include "LevelSelectData.hpp"
 
 using namespace cugl;
 
@@ -115,7 +116,7 @@ void MenuController::update(float timestep) {
                 switch(action->modeTarget){
                     case Mode::GAMEPLAY:
                     {
-                        _selectedLevel = action->nextLevel;
+                        _selectedLevel = action->levelSelectDataKey;
 						getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
@@ -167,7 +168,10 @@ void MenuController::update(float timestep) {
 					{
 						std::string cData = action->chapterData;
 						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
+                        
+                        // gameplay controller is listening to menuController
 						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
+                        
 						getMenuGraph()->populateChapter(_assets, cData);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;

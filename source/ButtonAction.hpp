@@ -53,14 +53,15 @@ public:
 class ModeChangeButtonAction : public ButtonAction {
 public:
     Mode modeTarget;
-	std::string nextLevel;
+    std::string levelSelectDataKey; // key to the static levelSelectData selected (the next level)
     std::string nextScreen;
     
-    virtual bool init(Mode mode, std::string nextScreen = "",std::string nextLevel = ""){
+    
+    virtual bool init(Mode mode, std::string nextScreen = "",std::string lsdKey = ""){
         ButtonAction::init(ButtonActionType::MODE_CHANGE);
         this->modeTarget = mode;
         this->nextScreen = nextScreen;
-		this->nextLevel = nextLevel;
+        this->levelSelectDataKey = lsdKey;
         return true;
     }
     
@@ -84,9 +85,9 @@ public:
 	}
 
 
-	static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode, std::string nextLevel, std::string nextScreen) {
+	static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode, std::string nextScreen, std::string lsdKey) {
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-		return (result->init(mode, nextLevel, nextScreen) ? result : nullptr);
+		return (result->init(mode, nextScreen, lsdKey) ? result : nullptr);
 	}
 };
 
