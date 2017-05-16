@@ -18,6 +18,7 @@ enum class TutorialTransition : int {
     IMMEDIATE,  // always passes to start
     // path controller
     ON_PATH_DRAWN,
+    ON_PATH_START,
     // collision controller
     ON_ENEMY_CLEARED,
     ON_PLAYER_HIT,
@@ -25,6 +26,8 @@ enum class TutorialTransition : int {
     ON_ENEMY_SPAWN,
     // level controller
     ON_ENEMY_SPAWNING,
+    // move controller
+    ON_MOVE_FINISHED,
     NONE
 };
 
@@ -63,6 +66,12 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
 }
 
 static TutorialTransition strToTransition(std::string trans){
+    if (trans == "ON_MOVE_FINISHED"){
+        return TutorialTransition::ON_MOVE_FINISHED;
+    }
+    if (trans == "ON_PATH_START"){
+        return TutorialTransition::ON_PATH_START;
+    }
     if (trans == "ON_PLAYER_HIT"){
         return TutorialTransition::ON_PLAYER_HIT;
     }
@@ -89,6 +98,12 @@ static TutorialTransition strToTransition(std::string trans){
 }
 
 static std::string transitionToStr(TutorialTransition trans){
+    if (trans == TutorialTransition::ON_MOVE_FINISHED){
+        return "ON_MOVE_FINISHED";
+    }
+    if (trans == TutorialTransition::ON_PATH_START) {
+        return "ON_PATH_START";
+    }
     if (trans == TutorialTransition::ON_PLAYER_HIT){
         return "ON_PLAYER_HIT";
     }

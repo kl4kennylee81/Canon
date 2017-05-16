@@ -2,7 +2,15 @@
     "tutorialLevels": {
         "tutorial1": {
             "stepKeys": [
-                "tutorial1_step1"
+                "tutorial1_step1",
+                "tutorial1_step2",
+                "tutorial1_step3",
+                "tutorial1_step4",
+                "tutorial1_step5",
+                "tutorial1_step6",
+                "tutorial1_step7",
+                "tutorial1_step8",
+                "tutorial1_step9"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
@@ -14,8 +22,8 @@
     },
     "tutorialSteps": {
         "tutorial1_step1":{
-            "start": "ON_ENEMY_SPAWNING",
-            "end": "ON_PLAYER_HIT",
+            "start": "IMMEDIATE",
+            "end": "ON_PATH_START",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step1_text"
@@ -24,7 +32,117 @@
                 "PAUSE_SPAWNING"
             ],
             "endEffects": [
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step2":{
+            "start": "IMMEDIATE",
+            "end": "ON_MOVE_FINISHED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step2_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
                 "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step3":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_ENEMY_CLEARED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step3_text"
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step4":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_ENEMY_CLEARED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step4_text"
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step5":{
+            "start": "IMMEDIATE",
+            "end": "ON_ENEMY_SPAWNING",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step5_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step6":{
+            "start": "IMMEDIATE",
+            "end": "ON_ENEMY_SPAWN",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step6_text"
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step7":{
+            "start": "IMMEDIATE",
+            "end": "ON_PATH_START",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step7_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step8":{
+            "start": "ON_PATH_START",
+            "end": "ON_MOVE_FINISHED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step8_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": ""
+        },
+        "tutorial1_step9":{
+            "start": "IMMEDIATE",
+            "end": "NONE",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_step9_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
             ],
             "menuBackgroundKey": ""
         }
@@ -42,7 +160,71 @@
         "tutorial1_step1_text": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_step1_text", 
-            "textValue": "I am ready to kill", 
+            "textValue": "Draw a path starting from either character", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step2_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step2_text", 
+            "textValue": "Your character will move along the path you draw", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step3_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step3_text", 
+            "textValue": "Using blue draw a path through the blue enemy", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step4_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step4_text", 
+            "textValue": "Try with the yellow character now", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step5_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step5_text", 
+            "textValue": "kill same color enemies hurt by opposite", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step6_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step6_text", 
+            "textValue": "Beware of sparkling spawning enemies", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step7_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step7_text", 
+            "textValue": "Defeat the enemies!", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step8_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step8_text", 
+            "textValue": "Time slows when planning moves", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
+        },
+        "tutorial1_step9_text": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_step8_text", 
+            "textValue": "Good luck on the journey ahead!", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.125

@@ -1,6 +1,6 @@
 {
 	"name":	"tutorial1",
-	"counter":	35,
+	"counter":	39,
 	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"levels":	{
 		"tutorial1":	{
@@ -9,7 +9,22 @@
 				"tutorial1 wave 20":	{
 					"key":	"tutorial1 wave 20",
 					"waveKey":	"tutorial1 wave 20",
-					"time":	60
+					"time":	10
+				},
+				"tutorial1 wave 36":	{
+					"key":	"tutorial1 wave 36",
+					"waveKey":	"tutorial1 wave 36",
+					"time":	240
+				},
+				"tutorial1 wave 37":	{
+					"key":	"tutorial1 wave 37",
+					"waveKey":	"tutorial1 wave 37",
+					"time":	500
+				},
+				"tutorial1 wave 38":	{
+					"key":	"tutorial1 wave 38",
+					"waveKey":	"tutorial1 wave 38",
+					"time":	300
 				}
 			},
 			"playerChars":	{
@@ -36,10 +51,49 @@
 		"tutorial1 wave 20":	{
 			"key":	"tutorial1 wave 20",
 			"waveEntries":	{
-				"tutorial1 wave 20 object 1":	{
-					"key":	"tutorial1 wave 20 object 1",
-					"x":	7.812500,
-					"y":	10.937500,
+			}
+		},
+		"tutorial1 wave 36":	{
+			"key":	"tutorial1 wave 36",
+			"waveEntries":	{
+				"tutorial1 wave 36 object 1":	{
+					"key":	"tutorial1 wave 36 object 1",
+					"x":	7.366667,
+					"y":	8.233333,
+					"element":	"BLUE",
+					"aiKey":	"static",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"tutorial1 wave 37":	{
+			"key":	"tutorial1 wave 37",
+			"waveEntries":	{
+				"tutorial1 wave 37 object 1":	{
+					"key":	"tutorial1 wave 37 object 1",
+					"x":	26.500000,
+					"y":	7.966666,
+					"element":	"GOLD",
+					"aiKey":	"static",
+					"templateKey":	"blobo"
+				}
+			}
+		},
+		"tutorial1 wave 38":	{
+			"key":	"tutorial1 wave 38",
+			"waveEntries":	{
+				"tutorial1 wave 38 object 1":	{
+					"key":	"tutorial1 wave 38 object 1",
+					"x":	4.733334,
+					"y":	13.866667,
+					"element":	"GOLD",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				},
+				"tutorial1 wave 38 object 2":	{
+					"key":	"tutorial1 wave 38 object 2",
+					"x":	26.766666,
+					"y":	13.800000,
 					"element":	"BLUE",
 					"aiKey":	"homing",
 					"templateKey":	"birb"

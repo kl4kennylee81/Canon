@@ -16,6 +16,7 @@
 #include "Menu.hpp"
 #include "CollisionEvent.hpp"
 #include "TutorialEvent.hpp"
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -44,16 +45,30 @@ void TutorialController::eventUpdate(Event* e) {
             { // scoped brace for pe variable
             	PathEvent* pe = (PathEvent*)e;
             	switch (pe->_pathType) {
-            	case PathEvent::PathEventType::PATH_FINISHED:
+                    case PathEvent::PathEventType::PATH_FINISHED:
+                    {
                         checkTransitionCondition(TutorialTransition::ON_PATH_DRAWN);
-            		break;
-            	default:
-            		break;
-            	}
-            
-            	break;
+                        break;
+                    }
+                    case PathEvent::PathEventType::DRAWING:
+                    {
+                        checkTransitionCondition(TutorialTransition::ON_PATH_START);
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+                break;
             }
         case Event::EventType::MOVE: {
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    checkTransitionCondition(TutorialTransition::ON_MOVE_FINISHED);
+                }
+            }
             break;
         }
         case Event::EventType::LEVEL: {
