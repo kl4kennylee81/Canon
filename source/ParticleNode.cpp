@@ -7,6 +7,7 @@
 //
 
 #include "ParticleNode.hpp"
+#include "Util.hpp"
 
 void ParticleNode::update(std::set<Particle*>& reset) {
     for (auto it=_particles.begin(); it !=_particles.end(); ++it) {
@@ -21,6 +22,9 @@ void ParticleNode::update(std::set<Particle*>& reset) {
 
 Mat4 ParticleNode::updateTransformLocal(Mat4 combined, float scale, float angle) {
     Vec2 offset = _anchor*getContentSize();
+    
+    // Hacky taking into account the offset of the cloud/black border on top and bottom
+    offset-= Util::getWorldTranslateY();
     
     Mat4::createTranslation(-offset.x, -offset.y, 0.0f, &combined);
     combined.scale(scale, scale, 1.0f);
