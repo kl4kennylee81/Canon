@@ -24,7 +24,7 @@
 #define GAME_PHYSICS_WIDTH 32.f
 
 /** This is the logical physics height of the game **/
-#define GAME_PHYSICS_HEIGHT 15.f
+#define GAME_PHYSICS_HEIGHT 16.f
 
 /** The scaling from physics coordinates to the game scene **/
 #define GAME_PHYSICS_SCALE (GAME_SCENE_WIDTH/GAME_PHYSICS_WIDTH)
