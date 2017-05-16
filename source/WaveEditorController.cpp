@@ -611,6 +611,20 @@ void WaveEditorController::updateWaveEntryNodes(){
 void WaveEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 
+    Vec2 screen1;
+    Vec2 scene1 = Vec2::Vec2(GAME_SCENE_WIDTH, Util::getSceneToWorldTranslateY());
+    auto topBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
+    auto bottomBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
+
+    topBorder->setColor(Color4::PAPYRUS);
+    bottomBorder->setColor(Color4::PAPYRUS);
+    _levelEditNode->addChild(topBorder);
+    _levelEditNode->addChild(bottomBorder);
+    topBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bottomBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    topBorder->setPosition(Vec2::Vec2(0, Util::getGameSceneHeight()-Util::getSceneToWorldTranslateY()));
+    bottomBorder->setPosition(Vec2::Vec2(0,0));
+    
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 	backButton->setListener(
 		[=](const std::string& name, bool down) {

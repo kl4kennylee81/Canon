@@ -11,6 +11,7 @@
 #include "LevelEditorController.hpp"
 #include "LevelEditorEvent.hpp"
 #include "Util.hpp"
+#include "GameState.hpp"
 
 using namespace cugl;
 
@@ -234,6 +235,7 @@ void LevelEditorController::deactivate(std::shared_ptr<Scene> scene){
 
 void LevelEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
+    
 	auto backButton = Util::makeBoxButton(100, 160, 30, 30, Color4::RED, Color4::PAPYRUS);
 
     backButton->setListener(
