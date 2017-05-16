@@ -4,6 +4,7 @@
             "chapterKey": "chapter02",
             "name": "The Girl and the Fire Lord",
             "levels": [
+                "level08",
                 "level09",
                 "level10",
                 "level11",
@@ -12,6 +13,11 @@
         }
     },
     "LevelSelectData": {
+        "level08": {
+            "key": "level08",
+            "levelKey": "squareLaser",
+            "name": "Lasers"
+        },
         "level09": {
             "key": "level09",
             "levelKey": "lure",
@@ -23,14 +29,14 @@
             "levelKey": "blobos"
         },
         "level11": {
-            "name": "level11",
-            "key": "test1",
-            "levelKey": "test1"
+            "name": "Boss1",
+            "key": "level11",
+            "levelKey": "boss1"
         },
         "level12": {
-            "name": "level12",
-            "key": "doubleGrump",
-            "levelKey": "doubleGrump"
+            "name": "Boss2",
+            "key": "level12",
+            "levelKey": "boss2"
         }
     }
 }

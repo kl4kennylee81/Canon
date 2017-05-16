@@ -896,13 +896,6 @@
 			name = animation;
 			sourceTree = "<group>";
 		};
-		9FF0B4071EC3B1380044F29B /* save */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = save;
-			sourceTree = "<group>";
-		};
 		9FF0B4081EC3B19D0044F29B /* save */ = {
 			isa = PBXGroup;
 			children = (
@@ -1280,7 +1273,6 @@
 			isa = PBXGroup;
 			children = (
 				9FF0B4291EC419880044F29B /* tutorial */,
-				9FF0B4071EC3B1380044F29B /* save */,
 				9F8221051EA47EC3000EFCD0 /* finish */,
 				9F3BA64C1E932849003138C0 /* levelEditor */,
 				9FFA3FA31E6367AA0029D648 /* ai */,

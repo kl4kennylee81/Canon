@@ -82,7 +82,7 @@
             "uiBackgroundKey": "levelSelect_chevron_left", 
             "width": 0.039, 
             "x": 0.014, 
-            "y": 0.5
+            "y": 0.37
         }, 
         "levelSelect_chevron_right": {
             "buttonAction": {
@@ -98,7 +98,7 @@
             "uiBackgroundKey": "levelSelect_chevron_right", 
             "width": 0.039, 
             "x": 0.947, 
-            "y": 0.5
+            "y": 0.37
         }, 
         "levelSelect_home": {
             "buttonAction": {

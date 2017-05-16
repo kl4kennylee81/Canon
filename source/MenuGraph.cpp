@@ -34,6 +34,7 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     init();
     // TODO prepopulate the menu graph
     this->populate(assets);
+    // TODO this is a little hacky rn to switch back to the main menu
     return true;
 }
 
@@ -53,8 +54,8 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->key);
 		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
 		
-        float x = 0.05 + (0.15*(i%6));
-        float y = 0.48 - (0.24 * (i/6));
+        float x = 0.15 + (0.2*(i%4));
+        float y = 0.48 - (0.3 * (i/4));
 		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_StarCircle", x, y, boxData->width, boxData->height, action, "");
 		std::shared_ptr<Node> buttonNode = button->dataToNode(assets,selectMenu->getFontMap());
 
@@ -173,8 +174,9 @@ void MenuGraph::setMode(Mode mode){
         }
         case Mode::MAIN_MENU:
         {
-            // TODO this is a little hacky rn to switch back to the main menu
-            this->setActiveMenu(_menuMap.at("levelSelect"));
+            if (_activeMenu == nullptr){
+                this->setActiveMenu(_menuMap.at("startMenu"));
+            }
             break;
         }
         default:
