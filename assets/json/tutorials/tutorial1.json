@@ -33,7 +33,8 @@
             ],
             "endEffects": [
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime" : 140
         },
         "tutorial1_step2":{
             "start": "IMMEDIATE",
@@ -47,7 +48,8 @@
             "endEffects": [
                 "RESUME_SPAWNING"
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime" : 120
         },
         "tutorial1_step3":{
             "start": "ON_ENEMY_SPAWN",
@@ -94,7 +96,7 @@
         },
         "tutorial1_step6":{
             "start": "IMMEDIATE",
-            "end": "ON_ENEMY_SPAWN",
+            "end": "IMMEDIATE",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step6_text"
@@ -105,11 +107,12 @@
             "endEffects": [
                 "RESUME_SPAWNING"
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime": 140
         },
         "tutorial1_step7":{
             "start": "IMMEDIATE",
-            "end": "ON_PATH_START",
+            "end": "IMMEDIATE",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step7_text"
@@ -118,7 +121,8 @@
             ],
             "endEffects": [
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime": 120
         },
         "tutorial1_step8":{
             "start": "ON_PATH_START",
@@ -128,14 +132,16 @@
                 "tutorial1_step8_text"
             ],
             "startEffects":[
+                "PAUSE_SPAWNING"
             ],
             "endEffects": [
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime": 140
         },
         "tutorial1_step9":{
             "start": "IMMEDIATE",
-            "end": "NONE",
+            "end": "IMMEDIATE",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step9_text"
@@ -143,8 +149,10 @@
             "startEffects":[
             ],
             "endEffects": [
+                "RESUME_SPAWNING"
             ],
-            "menuBackgroundKey": ""
+            "menuBackgroundKey": "",
+            "minTime": 120
         }
     },
     "UIData": {

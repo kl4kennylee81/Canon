@@ -178,15 +178,19 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
     for(std::shared_ptr<TutorialStep> hints : _activeHints){
+        // update the hints minTime
+        hints->update();
         if (hints->isActive()){
             hints->addToNode(_tutorialNode);
         }
     }
     
+    /** update the current step */
     if (getCurrentStep() == nullptr){
         return;
     }
     
+    getCurrentStep()->update();
     /** add the current step if active */
     if (getCurrentStep() != nullptr && getCurrentStep()->isActive()){
         getCurrentStep()->addToNode(_tutorialNode);

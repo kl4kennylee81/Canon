@@ -15,18 +15,21 @@
 #include "Menu.hpp"
 #include "TutorialEnums.hpp"
 #include "TutorialStepData.hpp"
+#include "GameState.hpp"
 
 class TutorialStep {
 private:
     std::shared_ptr<TutorialStepData> _tutStepData;
     std::shared_ptr<Menu> _menu;
     TutorialState _state;
+    float _currentActiveTime; // time this current step has been active in frames
     
 public:
     TutorialStep():
     _menu(nullptr),
     _tutStepData(nullptr),
-    _state(TutorialState::OFF)
+    _state(TutorialState::OFF),
+    _currentActiveTime(0)
     {};
     
     ~TutorialStep(){ dispose(); };
@@ -83,7 +86,12 @@ public:
         }
         
         if (_state == TutorialState::ACTIVE && getEndCondition() == transition){
-            _state = TutorialState::DONE;
+            if (_currentActiveTime >= _tutStepData->getMinTime()){
+                _state = TutorialState::DONE;
+            } else {
+                // condition is met but we still need to wait for min time
+                _state = TutorialState::POST_ACTIVE;
+            }
             return;
         }
         return;
@@ -100,6 +108,8 @@ public:
     bool isActive(){
         return _state == TutorialState::POST_ACTIVE || _state == TutorialState::ACTIVE;
     }
+    
+    void update();
 };
 
 #endif /* TutorialStep_hpp */
