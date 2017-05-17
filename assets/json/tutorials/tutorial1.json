@@ -29,7 +29,7 @@
                 "tutorial1_step1_text"
             ],
             "startEffects":[
-                "PAUSE_SPAWNING"
+                "PAUSE_GAME"
             ],
             "endEffects": [
             ],

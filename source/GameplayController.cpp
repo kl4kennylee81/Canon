@@ -74,7 +74,7 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
-                    _state->setPaused();
+                    _gameState->setPaused();
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -82,7 +82,7 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
-                    _state->setPaused();
+                    _gameState->setPaused();
                     break;
                 }
             }
@@ -104,7 +104,7 @@ void GameplayController::update(float timestep) {
         return;
     }
     // TODO hacky way to pause the game
-    if (_state->getGameplayState() == GameplayState::TOTAL_PAUSE){
+    if (_gameState->getGameplayState() == GameplayState::TOTAL_PAUSE){
         return;
     }
     

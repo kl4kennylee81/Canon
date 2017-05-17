@@ -77,29 +77,29 @@ public:
     std::shared_ptr<TutorialStep> getCurrentStep();
     
     /** triggers the post effects */
-    void transitionNextStep();
+    void transitionNextStep(std::shared_ptr<GameState> state);
     
     bool isInActive();
     
     void checkTransitionCondition(TutorialTransition transition);
     
-    void handleTutorialEffects(std::vector<TutorialEffect> effects);
+    void handleTutorialEffects(std::shared_ptr<GameState> state, std::vector<TutorialEffect> effects);
     
-    void handleTutorialEffect(TutorialEffect effect);
+    void handleTutorialEffect(std::shared_ptr<GameState> state, TutorialEffect effect);
     
-    void updateConditions();
+    void updateConditions(std::shared_ptr<GameState> state);
     
-    void updateHint();
+    void updateHint(std::shared_ptr<GameState> state);
     
-    void updateStep();
+    void updateStep(std::shared_ptr<GameState> state);
     
-    void updateHandMovement();
+    void updateHandMovement(std::shared_ptr<GameState> state);
     
     /** update when step first becomes active */
-    void updateStartStep(std::shared_ptr<TutorialStep> step);
+    void updateStartStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step);
     
     /** update when step ends */
-    void updateEndStep(std::shared_ptr<TutorialStep> step);
+    void updateEndStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step);
     
     void removeSteps(std::list<std::shared_ptr<TutorialStep>> hints);
 };
