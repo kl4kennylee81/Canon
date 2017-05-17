@@ -44,6 +44,7 @@ enum class TutorialEffect : int {
     PAUSE_SPAWNING, // pause spawning in levelController
     RESUME_SPAWNING, // resume spawning in levelController
     PAUSE_GAME, // pause every controller but the tutorialController
+    RESUME_GAME,
     NONE
 };
 
@@ -57,6 +58,9 @@ static TutorialEffect strToTutorialEffect(std::string effect){
     if (effect == "PAUSE_GAME"){
         return TutorialEffect::PAUSE_GAME;
     }
+    if (effect == "RESUME_GAME"){
+        return TutorialEffect::RESUME_GAME;
+    }
     return TutorialEffect::NONE;
 }
 
@@ -69,6 +73,9 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
     }
     if (effect == TutorialEffect::PAUSE_GAME){
         return "PAUSE_GAME";
+    }
+    if (effect == TutorialEffect::RESUME_GAME){
+        return "RESUME_GAME";
     }
     return "";
 }

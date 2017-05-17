@@ -23,7 +23,7 @@
     "tutorialSteps": {
         "tutorial1_step1":{
             "start": "IMMEDIATE",
-            "end": "ON_PATH_START",
+            "end": "IMMEDIATE",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_step1_text"
@@ -32,6 +32,7 @@
                 "PAUSE_GAME"
             ],
             "endEffects": [
+                "RESUME_GAME"
             ],
             "menuBackgroundKey": "",
             "minTime" : 140,

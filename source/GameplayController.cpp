@@ -74,7 +74,7 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
-                    _gameState->setPaused();
+                    _paused = true;
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -82,7 +82,7 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
                     this->notify(e);
-                    _gameState->setPaused();
+                    _paused = true;
                     break;
                 }
             }
@@ -107,22 +107,29 @@ void GameplayController::update(float timestep) {
     if (_gameState->getGameplayState() == GameplayState::TOTAL_PAUSE){
         return;
     }
-    
-    _clockController->update(timestep);
-    _levelController->update(timestep, _gameState);
-    _spawnController->update(timestep, _gameState);
-    _switchController->update(timestep, _gameState);
-    _pathController->update(timestep, _gameState);
-    _moveController->update(timestep, _gameState);
-    _aiController->update(timestep, _gameState);
-    _bulletController->update(timestep, _gameState);
-    _zoneController->update(timestep);
-    _collisionController->update(timestep, _gameState);
-    _animationController->update(timestep, _gameState);
-    _particleController->update(timestep, _gameState);
-    _soundController->update(timestep, _gameState);
-    _tutorialController->update(timestep, _gameState);
-    _finishController->update(timestep, _gameState);
+    else if (_gameState->getGameplayState() == GameplayState::NORMAL){
+        _clockController->update(timestep);
+        _levelController->update(timestep, _gameState);
+        _spawnController->update(timestep, _gameState);
+        _switchController->update(timestep, _gameState);
+        _pathController->update(timestep, _gameState);
+        _moveController->update(timestep, _gameState);
+        _aiController->update(timestep, _gameState);
+        _bulletController->update(timestep, _gameState);
+        _zoneController->update(timestep);
+        _collisionController->update(timestep, _gameState);
+        _animationController->update(timestep, _gameState);
+        _particleController->update(timestep, _gameState);
+        _soundController->update(timestep, _gameState);
+        _tutorialController->update(timestep, _gameState);
+        _finishController->update(timestep, _gameState);
+    }
+    else if (_gameState->getGameplayState() == GameplayState::TUTORIAL_PAUSE){
+        _clockController->update(timestep);
+        _tutorialController->update(timestep, _gameState);
+        _finishController->update(timestep, _gameState);
+
+    }
 }
 
 /**

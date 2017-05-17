@@ -173,14 +173,13 @@ GameState():
 
 	std::shared_ptr<GameObject> getUID2GameObject(int uid);
     
-    /** all controllers are paused */
-    void setPaused(){
-        _state = GameplayState::TOTAL_PAUSE;
-    }
-    
     /** tutorial controller is still active */
-    void setTutorialPause(){
-        _state = GameplayState::TUTORIAL_PAUSE;
+    void toggleTutorialPause(){
+        if (_state != GameplayState::TUTORIAL_PAUSE){
+            _state = GameplayState::TUTORIAL_PAUSE;
+        } else {
+            _state = GameplayState::NORMAL;
+        }
     }
     
     GameplayState getGameplayState(){
