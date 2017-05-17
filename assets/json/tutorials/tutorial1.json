@@ -34,7 +34,13 @@
             "endEffects": [
             ],
             "menuBackgroundKey": "",
-            "minTime" : 140
+            "minTime" : 140,
+            "handMovement":{
+                "texture": "tutorial1_textbox_bottom",
+                "path": "(100,100) (300,300)",
+                "repeat": 1,
+                "speed": 5
+            }
         },
         "tutorial1_step2":{
             "start": "IMMEDIATE",
