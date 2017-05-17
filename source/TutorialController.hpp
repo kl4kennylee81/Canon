@@ -20,6 +20,7 @@
 #include "Event.hpp"
 #include "TutorialEnums.hpp"
 #include "World.hpp"
+#include "ActiveHandMovement.hpp"
 
 class TutorialController : public BaseController {
 private:
@@ -30,6 +31,9 @@ private:
     /** these are all waiting and/or active and are removed when endCondition is met 
      *  loop through all active hints and see if they are met */
     std::list<std::shared_ptr<TutorialStep>> _activeHints;
+    
+    /** list of active hand components that are actively moving onscreen */
+    std::list<std::shared_ptr<ActiveHandMovement>> _activeHandMovement;
     
     int _currentStep;
     

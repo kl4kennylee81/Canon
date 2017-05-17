@@ -35,6 +35,8 @@
 		8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
 		9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
 		9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
+		9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
+		9F2139321ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
 		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
 		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
@@ -321,6 +323,8 @@
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandMovementComponent.cpp; sourceTree = "<group>"; };
 		9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HandMovementComponent.hpp; sourceTree = "<group>"; };
+		9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveHandMovement.cpp; sourceTree = "<group>"; };
+		9F2139301ECC48B500A60F62 /* ActiveHandMovement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveHandMovement.hpp; sourceTree = "<group>"; };
 		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
 		9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAIData.cpp; sourceTree = "<group>"; };
 		9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAIData.hpp; sourceTree = "<group>"; };
@@ -930,6 +934,8 @@
 				9FF0B42F1EC423320044F29B /* TutorialStep.hpp */,
 				9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */,
 				9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */,
+				9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */,
+				9F2139301ECC48B500A60F62 /* ActiveHandMovement.hpp */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -1561,6 +1567,7 @@
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
 				9F3BA6401E90C902003138C0 /* Menu.cpp in Sources */,
 				9F3BA6141E8BA575003138C0 /* Event.cpp in Sources */,
+				9F2139321ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */,
 				9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9F3BA6151E8BA575003138C0 /* Subject.cpp in Sources */,
 				9F3BA6161E8BA575003138C0 /* Observer.cpp in Sources */,
@@ -1584,6 +1591,7 @@
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
 				DF98288F1E8346F30026223D /* ZoneController.cpp in Sources */,
 				9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */,
+				9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */,
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
 				9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
