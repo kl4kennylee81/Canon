@@ -171,8 +171,10 @@ void TutorialController::updateHint(){
 
 void TutorialController::updateHandMovement(){
     for (std::shared_ptr<ActiveHandMovement> activeH : _activeHandMovement){
-        activeH->update();
-        _tutorialNode->addChild(activeH->_node);
+        // returns true if path is done
+        if (!activeH->update()){
+            _tutorialNode->addChild(activeH->_node);
+        }
     }
 }
 
@@ -217,6 +219,11 @@ void TutorialController::updateEndStep(){
     /** play the post effects of the current step */
     handleTutorialEffects(getCurrentStep()->getStepData()->getEndEffects());
     
+    /** clear the handmovement from this step since it has finished */
+    if (getCurrentStep()->getActiveHand() != nullptr){
+        _activeHandMovement.remove(getCurrentStep()->getActiveHand());
+    }
+    
     /** TODO also add all the hints from this step into the activeHints when step ends */
 }
 
@@ -229,7 +236,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     _tutorialNode->removeAllChildren();
     
     updateConditions();
-    
+    updateHandMovement();
     updateStep();
     updateHint();
 }

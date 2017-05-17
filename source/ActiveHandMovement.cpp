@@ -26,6 +26,10 @@ bool ActiveHandMovement::init(std::shared_ptr<GenericAssetManager> assets, std::
 }
 
 bool ActiveHandMovement::update(){
+    if (_activePath->isDone()){
+        return true;
+    }
+    
     Vec2 current = _node->getPosition();
     Vec2 goal = _activePath->_path->get(_activePath->_pathIndex);
     Vec2 velocity = MoveController::getVelocityVector(current, goal, _component->_speed);
