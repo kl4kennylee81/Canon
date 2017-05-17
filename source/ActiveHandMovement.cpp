@@ -9,14 +9,18 @@
 #include "ActiveHandMovement.hpp"
 #include "GameState.hpp"
 #include "MoveController.hpp"
+#include "UIData.hpp"
 
 using namespace cugl;
 
-bool ActiveHandMovement::init(std::shared_ptr<GenericAssetManager> assets, std::shared_ptr<HandMovementComponent> c){
+bool ActiveHandMovement::init(std::shared_ptr<GenericAssetManager> assets,
+                              std::shared_ptr<HandMovementComponent> c,
+                              std::map<std::string,std::string> fontMap){
     _component = c;
-    std::shared_ptr<Texture> t = assets->get<Texture>(_component->_textureKey);
     _activePath = ActivePath::alloc(_component->_path);
-    _node = PolygonNode::allocWithTexture(t);
+    
+    std::shared_ptr<UIData> uiData = assets->get<UIData>(c->_uiDataKey);
+    _node = uiData->dataToNode(assets,fontMap);
     if (_component->_path->_coordinates.size() <= 0){
         return false;
     }

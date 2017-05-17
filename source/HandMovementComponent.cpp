@@ -12,7 +12,7 @@
 using namespace cugl;
 
 bool HandMovementComponent::init(std::shared_ptr<cugl::JsonValue> json){
-    _textureKey = json->getString("texture");
+    _uiDataKey = json->getString("uiKey");
     _path = Path::alloc(Path::getPathFromString(json->getString("path")));
     _repeat = json->getBool("repeat");
     _speed = json->getFloat("speed");

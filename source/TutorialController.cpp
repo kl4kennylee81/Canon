@@ -284,7 +284,7 @@ std::shared_ptr<TutorialStep> createTutorialStep(std::shared_ptr<GenericAssetMan
     
     /** create from handComponent active hand */
     if (stepData->getHandMovementComponent() != nullptr){
-        std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(assets, stepData->getHandMovementComponent());
+        std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(assets, stepData->getHandMovementComponent(),fontMap);
         step->setActiveHand(hand);
     }
     return step;

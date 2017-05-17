@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include <map>
 #include "HandMovementComponent.hpp"
 #include "ActivePath.hpp"
 
@@ -21,12 +22,14 @@ public:
     std::shared_ptr<ActivePath> _activePath; // active path for the handMovementPath
     
     bool init(std::shared_ptr<GenericAssetManager> assets,
-              std::shared_ptr<HandMovementComponent> c);
+              std::shared_ptr<HandMovementComponent> c,
+              std::map<std::string,std::string> fontMap);
     
     static std::shared_ptr<ActiveHandMovement> alloc(std::shared_ptr<GenericAssetManager> assets,
-                                                     std::shared_ptr<HandMovementComponent> component) {
+                                                     std::shared_ptr<HandMovementComponent> component,
+                                                     std::map<std::string,std::string> fontMap) {
         std::shared_ptr<ActiveHandMovement> result = std::make_shared<ActiveHandMovement>();
-        return (result->init(assets,component) ? result : nullptr);
+        return (result->init(assets,component,fontMap) ? result : nullptr);
     };
     
     /** returns true if the active hand movement is done drawing */

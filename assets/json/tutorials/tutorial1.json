@@ -37,7 +37,7 @@
             "menuBackgroundKey": "",
             "minTime" : 140,
             "handMovement":{
-                "texture": "one_tap",
+                "uiKey": "tutorial1_one_tap",
                 "path": "(100,100) (300,300)",
                 "repeat": 1,
                 "speed": 3
@@ -179,6 +179,15 @@
         }
     },
     "UIData": {
+        "tutorial1_one_tap": {
+            "height": 0.25, 
+            "key": "tutorial1_one_tap", 
+            "textureKey": "one_tap", 
+            "type": "IMAGE", 
+            "width": 0.10, 
+            "x": 0.0, 
+            "y": 0.0
+        },
         "tutorial1_textbox_bottom": {
             "height": 0.25, 
             "key": "tutorial1_textbox_bottom", 

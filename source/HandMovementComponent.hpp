@@ -15,7 +15,7 @@
 
 class HandMovementComponent {
 public:
-    std::string _textureKey;
+    std::string _uiDataKey; // key to uiData
     
     std::shared_ptr<Path> _path;
     
@@ -24,7 +24,7 @@ public:
     float _speed; // magnitude of the speed of travel for scene cordinates
     
     HandMovementComponent():
-    _textureKey(""),
+    _uiDataKey(""),
     _path(nullptr),
     _repeat(false),
     _speed(0){}
