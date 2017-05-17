@@ -36,7 +36,7 @@
             "menuBackgroundKey": "",
             "minTime" : 140,
             "handMovement":{
-                "texture": "tutorial1_textbox_bottom",
+                "texture": "tutorial_textbox_bottom",
                 "path": "(100,100) (300,300)",
                 "repeat": 1,
                 "speed": 5
