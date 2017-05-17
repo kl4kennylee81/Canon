@@ -41,7 +41,7 @@ def get_asset_mapping():
   {i:i for i in range(1, 11)}
   image_mapping = {key : {"file": image_files[key], "minfilter" : "nearest", "magfilter" : "linear", "wrapS" : "clamp", "wrapT" : "clamp"} for key in image_files.keys()}
   
-  font_sizes = [40,24,16]
+  font_sizes = [40,32,24,16]
 
   font_mapping = dict()
   for font_size in font_sizes:

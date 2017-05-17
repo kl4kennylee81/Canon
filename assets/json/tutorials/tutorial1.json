@@ -14,7 +14,7 @@
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
-                "bottom_font" : "Museo300-Regular_40"
+                "bottom_font" : "Museo300-Regular_32"
             },
             "levelKey": "tutorial1",
             "key": "tutorial1"
@@ -36,10 +36,10 @@
             "menuBackgroundKey": "",
             "minTime" : 140,
             "handMovement":{
-                "texture": "tutorial_textbox_bottom",
+                "texture": "one_tap",
                 "path": "(100,100) (300,300)",
                 "repeat": 1,
-                "speed": 5
+                "speed": 3
             }
         },
         "tutorial1_step2":{
