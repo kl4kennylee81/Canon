@@ -185,7 +185,7 @@ void TutorialController::updateConditions(std::shared_ptr<GameState> state){
             clicked |= checkButtonClicked(hint, &buttonExist);
         }
         
-        if (!buttonExist){
+        if (!buttonExist||clicked){
             checkTransitionCondition(TutorialTransition::ON_CLICK);
         }
     }
