@@ -173,6 +173,20 @@ GameState():
 
 	std::shared_ptr<GameObject> getUID2GameObject(int uid);
     
+    /** all controllers are paused */
+    void setPaused(){
+        _state = GameplayState::TOTAL_PAUSE;
+    }
+    
+    /** tutorial controller is still active */
+    void setTutorialPause(){
+        _state = GameplayState::TUTORIAL_PAUSE;
+    }
+    
+    GameplayState getGameplayState(){
+        return _state;
+    }
+    
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();
 };
