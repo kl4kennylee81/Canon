@@ -23,10 +23,11 @@
     "tutorialSteps": {
         "tutorial1_step1":{
             "start": "IMMEDIATE",
-            "end": "IMMEDIATE",
+            "end": "ON_CLICK",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
-                "tutorial1_step1_text"
+                "tutorial1_step1_text",
+                "tutorial1_hintCheckButton"
             ],
             "startEffects":[
                 "PAUSE_GAME"
@@ -179,6 +180,21 @@
         }
     },
     "UIData": {
+        "tutorial1_hintCheckButton": {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "hint_font", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.625, 
+            "y": 0.5
+        }, 
         "tutorial1_one_tap": {
             "height": 0.25, 
             "key": "tutorial1_one_tap", 

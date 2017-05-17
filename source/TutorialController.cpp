@@ -148,8 +148,35 @@ void TutorialController::removeSteps(std::list<std::shared_ptr<TutorialStep>> st
 
 void TutorialController::updateConditions(std::shared_ptr<GameState> state){
     /** this is to update other transition Condition that get checked on the spot */
+    
     if (InputController::getIsPressed()){
-        checkTransitionCondition(TutorialTransition::ON_CLICK);
+        /** if there exist a button ui element we want to make sure that we clicked that button
+          * to continue instead of just registering any click as a success */
+        
+        // check if there exists a button
+        bool buttonExist = false;
+        for (std::shared_ptr<UIComponent> ui : getCurrentStep()->getMenu()->getUIElements()){
+            // check if its a button
+            std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(ui->getNode());
+            
+            if (button == nullptr){
+                continue;
+            }
+            
+            buttonExist = true;
+            Vec2 vec = InputController::getPrevVector();
+            
+            // check if this button was clicked
+            if (!button->containsScreen(vec)){
+                continue;
+            }
+            /** found a button that is clicked */ 
+            checkTransitionCondition(TutorialTransition::ON_CLICK);
+            break;
+        }
+        if (!buttonExist){
+            checkTransitionCondition(TutorialTransition::ON_CLICK);
+        }
     }
     
     /** check any immediate condition to go off */
@@ -246,13 +273,15 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     if (isInActive()){
         return;
     }
+    
     /** start off by clearing the tutorial Node */
     _tutorialNode->removeAllChildren();
-    
-    updateConditions(state);
+
+    /** addes nodes back to tutorial node */
     updateHandMovement(state);
     updateStep(state);
     updateHint(state);
+    updateConditions(state);
 }
 
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
