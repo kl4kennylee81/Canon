@@ -27,8 +27,9 @@ bool TutorialStepData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     
     float minTime = json->getFloat("minTime");
     
+    std::shared_ptr<HandMovementComponent> hmovement = nullptr;
     if (json->get("handMovement") != nullptr){
-        std::shared_ptr<HandMovementComponent> hmovement = HandMovementComponent::alloc(json->get("handMovement"));
+        hmovement = HandMovementComponent::alloc(json->get("handMovement"));
     }
     
     std::vector<TutorialEffect> startEffects;
@@ -51,7 +52,7 @@ bool TutorialStepData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         }
     }
     
-    return init(mbKey,entries,start,end,startEffects,endEffects,minTime);
+    return init(mbKey,entries,start,end,startEffects,endEffects,minTime,hmovement);
 }
 
 std::shared_ptr<cugl::JsonValue> TutorialStepData::toJsonValue(){

@@ -12,7 +12,7 @@ using namespace cugl;
 
 bool ActiveHandMovement::init(std::shared_ptr<HandMovementComponent> component){
     component = component;
-    _node = PolygonNode::allocWithTexture(component->_texture);
+    _node = PolygonNode::allocWithTexture(component->_textureKey);
     _activePath = ActivePath::alloc(component->_path);
     return true;
 }

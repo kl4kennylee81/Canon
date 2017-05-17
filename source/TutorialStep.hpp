@@ -16,6 +16,7 @@
 #include "TutorialEnums.hpp"
 #include "TutorialStepData.hpp"
 #include "GameState.hpp"
+#include "ActiveHandMovement.hpp"
 
 class TutorialStep {
 private:
@@ -23,13 +24,16 @@ private:
     std::shared_ptr<Menu> _menu;
     TutorialState _state;
     float _currentActiveTime; // time this current step has been active in frames
+    std::shared_ptr<ActiveHandMovement> _activeHand;
     
 public:
+    
     TutorialStep():
     _menu(nullptr),
     _tutStepData(nullptr),
     _state(TutorialState::OFF),
-    _currentActiveTime(0)
+    _currentActiveTime(0),
+    _activeHand(nullptr)
     {};
     
     ~TutorialStep(){ dispose(); };
@@ -110,6 +114,14 @@ public:
     }
     
     void update();
+    
+    void setActiveHand(std::shared_ptr<ActiveHandMovement> hand){
+        _activeHand = hand;
+    }
+    
+    std::shared_ptr<ActiveHandMovement> getActiveHand(){
+        return _activeHand;
+    }
 };
 
 #endif /* TutorialStep_hpp */

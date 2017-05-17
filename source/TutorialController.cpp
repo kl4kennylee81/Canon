@@ -203,11 +203,9 @@ void TutorialController::updateStartStep(){
     handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
     getCurrentStep()->setState(TutorialState::ACTIVE);
     
-    /** add hand movement if it exists */
-    std::shared_ptr<HandMovementComponent> hmComp = getCurrentStep()->getStepData()->getHandMovementComponent();
-    if (hmComp != nullptr){
-        std::shared_ptr<ActiveHandMovement> active = ActiveHandMovement::alloc(hmComp);
-        _activeHandMovement.push_back(active);
+    if (getCurrentStep()->getActiveHand() != nullptr){
+        // add the active hand to the tutorial
+        _activeHandMovement.push_back(getCurrentStep()->getActiveHand());
     }
 }
 
@@ -267,6 +265,12 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
         
         std::shared_ptr<TutorialStep> step = TutorialStep::alloc(stepData);
         step->setMenu(screen);
+        
+        /** create from handComponent active hand */
+        if (stepData->getHandMovementComponent() == nullptr){
+            std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(stepData->getHandMovementComponent());
+            step->setActiveHand(hand);
+        }
         _steps.push_back(step);
     }
 }

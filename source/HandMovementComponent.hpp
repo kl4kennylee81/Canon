@@ -15,7 +15,7 @@
 
 class HandMovementComponent {
 public:
-    std::shared_ptr<cugl::Texture> _texture;
+    std::string _textureKey;
     
     std::shared_ptr<Path> _path;
     
@@ -24,7 +24,7 @@ public:
     float _speed; // magnitude of the speed of travel for scene cordinates
     
     HandMovementComponent():
-    _texture(nullptr),
+    _textureKey(""),
     _path(nullptr),
     _repeat(false),
     _speed(0){}
@@ -32,7 +32,6 @@ public:
     ~HandMovementComponent(){ dispose ();}
     
     void dispose(){
-        _texture = nullptr;
         _path = nullptr;
     }
     

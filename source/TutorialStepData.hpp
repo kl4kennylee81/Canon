@@ -56,7 +56,8 @@ public:
               TutorialTransition start,TutorialTransition end,
               std::vector<TutorialEffect> startEffects,
               std::vector<TutorialEffect> endEffects,
-              float minTime) {
+              float minTime,
+              std::shared_ptr<HandMovementComponent> hmovement) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
@@ -64,6 +65,7 @@ public:
         _startEffects = startEffects;
         _endEffects = endEffects;
         _minTime = minTime;
+        _handMovement = hmovement;
         return true;
     }
     
@@ -71,9 +73,10 @@ public:
                                                    TutorialTransition start,TutorialTransition end,
                                                    std::vector<TutorialEffect> startEffect,
                                                    std::vector<TutorialEffect> endEffect,
-                                                   float minTime) {
+                                                   float minTime,
+                                                   std::shared_ptr<HandMovementComponent> hmovement) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime,hmovement) ? result : nullptr);
     }
     
     bool init() {
