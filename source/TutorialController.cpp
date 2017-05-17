@@ -268,7 +268,7 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
         
         /** create from handComponent active hand */
         if (stepData->getHandMovementComponent() == nullptr){
-            std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(stepData->getHandMovementComponent());
+            std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(assets, stepData->getHandMovementComponent());
             step->setActiveHand(hand);
         }
         _steps.push_back(step);

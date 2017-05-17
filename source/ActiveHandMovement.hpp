@@ -20,11 +20,13 @@ public:
     std::shared_ptr<cugl::Node> _node; // texture for the hand node
     std::shared_ptr<ActivePath> _activePath; // active path for the handMovementPath
     
-    bool init(std::shared_ptr<HandMovementComponent> component);
+    bool init(std::shared_ptr<GenericAssetManager> assets,
+              std::shared_ptr<HandMovementComponent> component);
     
-    static std::shared_ptr<ActiveHandMovement> alloc(std::shared_ptr<HandMovementComponent> component) {
+    static std::shared_ptr<ActiveHandMovement> alloc(std::shared_ptr<GenericAssetManager> assets,
+                                                     std::shared_ptr<HandMovementComponent> component) {
         std::shared_ptr<ActiveHandMovement> result = std::make_shared<ActiveHandMovement>();
-        return (result->init(component) ? result : nullptr);
+        return (result->init(assets,component) ? result : nullptr);
     };
     
 };
