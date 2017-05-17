@@ -21,7 +21,7 @@ public:
     std::shared_ptr<ActivePath> _activePath; // active path for the handMovementPath
     
     bool init(std::shared_ptr<GenericAssetManager> assets,
-              std::shared_ptr<HandMovementComponent> component);
+              std::shared_ptr<HandMovementComponent> c);
     
     static std::shared_ptr<ActiveHandMovement> alloc(std::shared_ptr<GenericAssetManager> assets,
                                                      std::shared_ptr<HandMovementComponent> component) {
@@ -29,6 +29,10 @@ public:
         return (result->init(assets,component) ? result : nullptr);
     };
     
+    /** returns true if the active hand movement is done drawing */
+    bool update();
+    
+    void reset();
 };
 
 #endif /* ActiveHandMovement_hpp */

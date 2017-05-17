@@ -170,7 +170,10 @@ void TutorialController::updateHint(){
 }
 
 void TutorialController::updateHandMovement(){
-
+    for (std::shared_ptr<ActiveHandMovement> activeH : _activeHandMovement){
+        activeH->update();
+        _tutorialNode->addChild(activeH->_node);
+    }
 }
 
 void TutorialController::updateStep(){
