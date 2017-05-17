@@ -32,7 +32,7 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     // reset the gameObjects atomic counter
     GameObject::resetAtomicUidCounter();
     
-    _reset = false;
+    _state = GameplayState::NORMAL;
     _activeCharacterPosition = 0;
     
     Rect size = scene->getCamera()->getViewport();
@@ -100,7 +100,7 @@ void GameState::dispose(){
     if (_scene->getChildByName("gameplay") != nullptr){
         detachFromScene();
     }
-    _reset = false;
+    _state = GameplayState::NORMAL;
     _scene = nullptr;
     _gameplayNode = nullptr;
     _worldnode = nullptr;
@@ -179,11 +179,15 @@ void GameState::toggleActiveCharacter()
 }
 
 bool GameState::getReset(){
-    return _reset;
+    return _state == GameplayState::RESET;
 }
 
 void GameState::toggleReset(){
-    _reset = !_reset;
+    if (_state != GameplayState::RESET){
+        _state = GameplayState::RESET;
+    } else {
+        _state = GameplayState::NORMAL;
+    }
 }
 
 /**

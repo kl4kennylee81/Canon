@@ -14,6 +14,7 @@
 #include "GameObject.hpp"
 #include "GenericAssetManager.hpp"
 #include "InternalClock.hpp"
+#include "GameStateEnums.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
 #define GAME_SCENE_WIDTH 1024
@@ -65,6 +66,8 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
     
     bool _reset;
+    
+    GameplayState _state; // the state machine of the gameplay controller
 public:
     static std::unique_ptr<InternalClock> _internalClock;
     

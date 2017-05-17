@@ -15,7 +15,8 @@
 enum class GameplayState : int {
     TOTAL_PAUSE, // all controllers are paused
     RESET, // game will reset
-    TUTORIAL_PAUSE // tutorial is still playing but rest is paused
+    TUTORIAL_PAUSE, // tutorial is still playing but rest is paused
+    NORMAL // when game is playing normally
 };
 
 #endif /* GameStateEnums_hpp */
