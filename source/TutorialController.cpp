@@ -389,10 +389,12 @@ void TutorialController::handleTutorialEffect(std::shared_ptr<GameState> state, 
         case TutorialEffect::PAUSE_GAME:
         {
             state->toggleTutorialPause();
+            break;
         }
         case TutorialEffect::RESUME_GAME:
         {
             state->toggleTutorialPause();
+            break;
         }
         case TutorialEffect::NONE:
         {

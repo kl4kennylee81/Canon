@@ -104,7 +104,7 @@ void GameplayController::update(float timestep) {
         return;
     }
     // TODO hacky way to pause the game
-    if (_gameState->getGameplayState() == GameplayState::TOTAL_PAUSE){
+    if (_paused){
         return;
     }
     else if (_gameState->getGameplayState() == GameplayState::NORMAL){
