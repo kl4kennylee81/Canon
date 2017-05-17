@@ -21,6 +21,8 @@ public:
     std::shared_ptr<cugl::Node> _node; // texture for the hand node
     std::shared_ptr<ActivePath> _activePath; // active path for the handMovementPath
     
+    int _cooldownFrames;
+    
     bool init(std::shared_ptr<GenericAssetManager> assets,
               std::shared_ptr<HandMovementComponent> c,
               std::map<std::string,std::string> fontMap);

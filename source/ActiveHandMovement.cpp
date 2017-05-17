@@ -16,6 +16,7 @@ using namespace cugl;
 bool ActiveHandMovement::init(std::shared_ptr<GenericAssetManager> assets,
                               std::shared_ptr<HandMovementComponent> c,
                               std::map<std::string,std::string> fontMap){
+    _cooldownFrames = 0;
     _component = c;
     _activePath = ActivePath::alloc(_component->_path);
     
@@ -31,7 +32,15 @@ bool ActiveHandMovement::init(std::shared_ptr<GenericAssetManager> assets,
 
 bool ActiveHandMovement::update(){
     if (_activePath->isDone()){
-        return true;
+        if (_component->_repeat){
+            _cooldownFrames+=1;
+        }
+        
+        if (_cooldownFrames >= _component->_cooldown) {
+            _cooldownFrames = 0;
+            reset();
+        }
+        return !_component->_repeat;
     }
     
     Vec2 current = _node->getPosition();
@@ -42,10 +51,9 @@ bool ActiveHandMovement::update(){
     _node->setPosition(newPos);
     if (_activePath->updateActivePath(newPos)){
         if (_component->_repeat){
-            reset();
-            return false;
+            _node->setVisible(false);
         }
-        return true;
+        return !_component->_repeat;
     }
     return false;
 }
@@ -53,4 +61,5 @@ bool ActiveHandMovement::update(){
 void ActiveHandMovement::reset(){
     _activePath->_pathIndex = 0;
     _node->setPosition(_component->_path->get(0));
+    _node->setVisible(true);
 }

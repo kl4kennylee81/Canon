@@ -23,11 +23,14 @@ public:
     
     float _speed; // magnitude of the speed of travel for scene cordinates
     
+    float _cooldown;
+    
     HandMovementComponent():
     _uiDataKey(""),
     _path(nullptr),
     _repeat(false),
-    _speed(0){}
+    _speed(0),
+    _cooldown(0){}
     
     ~HandMovementComponent(){ dispose ();}
     

@@ -16,5 +16,6 @@ bool HandMovementComponent::init(std::shared_ptr<cugl::JsonValue> json){
     _path = Path::alloc(Path::getPathFromString(json->getString("path")));
     _repeat = json->getBool("repeat");
     _speed = json->getFloat("speed");
+    _cooldown = json->getFloat("cooldown");
     return true;
 }
