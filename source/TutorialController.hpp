@@ -76,6 +76,7 @@ public:
     
     std::shared_ptr<TutorialStep> getCurrentStep();
     
+    /** triggers the post effects */
     void transitionNextStep();
     
     bool isInActive();
@@ -91,6 +92,14 @@ public:
     void updateHint();
     
     void updateStep();
+    
+    void updateHandMovement();
+    
+    /** update when step first becomes active */
+    void updateStartStep();
+    
+    /** update when step ends */
+    void updateEndStep();
 };
 
 

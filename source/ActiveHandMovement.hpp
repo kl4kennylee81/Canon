@@ -15,7 +15,7 @@
 #include "ActivePath.hpp"
 
 class ActiveHandMovement {
-    
+public:
     std::shared_ptr<HandMovementComponent> _component;
     std::shared_ptr<cugl::Node> _node; // texture for the hand node
     std::shared_ptr<ActivePath> _activePath; // active path for the handMovementPath

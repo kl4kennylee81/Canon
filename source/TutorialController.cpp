@@ -169,6 +169,10 @@ void TutorialController::updateHint(){
     removeFinishedHints(_activeHints);
 }
 
+void TutorialController::updateHandMovement(){
+
+}
+
 void TutorialController::updateStep(){
     /** update the current step */
     if (getCurrentStep() == nullptr){
@@ -180,9 +184,7 @@ void TutorialController::updateStep(){
     
     /** check step is preactive and play its effect */
     if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
-        /** play the start effects */
-        handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
-        getCurrentStep()->setState(TutorialState::ACTIVE);
+        updateStartStep();
     }
     
     /** add the current step if active */
@@ -193,6 +195,28 @@ void TutorialController::updateStep(){
     /** update the currentStep if the condition has been met */
     /** updates at the end of update for next iteration */
     transitionNextStep();
+}
+
+/** update when step first becomes active */
+void TutorialController::updateStartStep(){
+    /** play the start effects */
+    handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
+    getCurrentStep()->setState(TutorialState::ACTIVE);
+    
+    /** add hand movement if it exists */
+    std::shared_ptr<HandMovementComponent> hmComp = getCurrentStep()->getStepData()->getHandMovementComponent();
+    if (hmComp != nullptr){
+        std::shared_ptr<ActiveHandMovement> active = ActiveHandMovement::alloc(hmComp);
+        _activeHandMovement.push_back(active);
+    }
+}
+
+/** update when step ends */
+void TutorialController::updateEndStep(){
+    /** play the post effects of the current step */
+    handleTutorialEffects(getCurrentStep()->getStepData()->getEndEffects());
+    
+    /** TODO also add all the hints from this step into the activeHints when step ends */
 }
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
@@ -254,6 +278,7 @@ std::shared_ptr<TutorialStep> TutorialController::getCurrentStep(){
     return _steps.at(_currentStep);
 }
 
+/** handle post condition of each tutorial step */
 void TutorialController::transitionNextStep(){
     if (getCurrentStep() == nullptr){
         return;
@@ -263,10 +288,7 @@ void TutorialController::transitionNextStep(){
         return;
     }
     
-    /** play the post effects of the current step */
-    handleTutorialEffects(getCurrentStep()->getStepData()->getEndEffects());
-    
-    /** TODO also add all the hints from this step into the activeHints */
+    updateEndStep();
     
     _currentStep+=1;
     
