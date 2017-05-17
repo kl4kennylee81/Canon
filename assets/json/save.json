@@ -20,81 +20,87 @@
             "key": "tutorial01",
             "unlocked" : 1
         },
-        "level01": {
+        "level11": {
             "complete": 0,
             "highScore": 0,
-            "key": "level01",
+            "key": "level11",
             "unlocked" : 1
         },
-        "level02": {
+        "level12": {
             "complete": 0,
             "highScore": 0,
-            "key": "level02",
+            "key": "level12",
             "unlocked" : 1
         },
-        "level03": {
+        "level13": {
             "complete": 0,
             "highScore": 0,
-            "key": "level03",
+            "key": "level13",
             "unlocked" : 1
         },
-        "level04": {
+        "level14": {
             "unlocked" : 1,
             "complete": 0,
-            "key": "level04",
+            "key": "level14",
             "highScore": 0
         },
-        "level05": {
+        "level15": {
             "complete": 0,
             "highScore": 0,
-            "key": "level05",
+            "key": "level15",
             "unlocked" : 1
         },
-        "level06": {
+        "level21": {
             "complete": 0,
             "highScore": 0,
-            "key": "level06",
+            "key": "level21",
             "unlocked" : 1
         },
-        "level07": {
+        "level22": {
             "complete": 0,
             "highScore": 0,
-            "key": "level07",
+            "key": "level22",
             "unlocked" : 1
         },
-        "level08": {
+        "level23": {
             "complete": 0,
             "highScore": 0,
-            "key": "level08",
+            "key": "level23",
             "unlocked" : 1
         },
-        "level09": {
+        "level24": {
             "complete": 0,
             "highScore": 0,
-            "key": "level09",
+            "key": "level24",
             "unlocked" : 1
         },
-        "level10": {
+        "level25": {
             "name": "Blobos",
             "unlocked" : 1,
             "complete": 0,
-            "key": "level10",
+            "key": "level25",
             "highScore": 0
         },
-        "level11": {
-            "name": "level11",
+        "level31": {
+            "name": "level31",
             "unlocked" : 1,
             "complete": 0,
             "highScore": 0
         },
-        "level12": {
-            "name": "level12",
+        "level32": {
+            "name": "level32",
             "unlocked" : 1,
             "complete": 0,
             "highScore": 0
         },
-        "level13": {
-            "name": "level13",
+        "level51": {
+            "name": "level51",
+            "unlocked" : 1,
+            "complete": 0,
+            "highScore": 0
+        },
+        "level52": {
+            "name": "level52",
             "unlocked" : 1,
             "complete": 0,
             "highScore": 0

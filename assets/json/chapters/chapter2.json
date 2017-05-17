@@ -4,45 +4,39 @@
             "chapterKey": "chapter02",
             "name": "The Girl and the Fire Lord",
             "levels": [
-                "level08",
-                "level09",
-                "level10",
-                "level11",
-                "level12",
-                "level13"
+                "level21",
+                "level22",
+                "level23",
+                "level24",
+                "level25"
             ]
         }
     },
     "LevelSelectData": {
-        "level08": {
-            "key": "level08",
+        "level21": {
+            "key": "level21",
+            "levelKey": "overlap",
+            "name": "Overlap"
+        },
+        "level22": {
+            "key": "level22",
+            "levelKey": "interweave",
+            "name": "Weave"
+        },
+        "level23": {
+            "key": "level23",
             "levelKey": "sneakAttack",
             "name": "SneakAttack"
         },
-        "level09": {
-            "key": "level09",
+        "level24": {
+            "key": "level24",
             "levelKey": "patrol",
             "name": "Patrol"
         },
-        "level10": {
-            "key": "level10",
-            "levelKey": "squareLaser",
-            "name": "Lasers"
-        },
-        "level11": {
-            "key": "level11",
-            "levelKey": "lure",
-            "name": "Lure"
-        },
-        "level12": {
-            "name": "Boss1",
-            "key": "level12",
-            "levelKey": "boss1"
-        },
-        "level13": {
-            "name": "Boss2",
-            "key": "level13",
-            "levelKey": "boss2"
+        "level25": {
+            "key": "level25",
+            "levelKey": "collapse",
+            "name": "Collapse"
         }
     }
 }
