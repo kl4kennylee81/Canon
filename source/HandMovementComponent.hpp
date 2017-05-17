@@ -15,20 +15,34 @@
 
 class HandMovementComponent {
 public:
-    std::shared_ptr<cugl::Texture> texture;
+    std::shared_ptr<cugl::Texture> _texture;
     
-    std::shared_ptr<Path> path;
+    std::shared_ptr<Path> _path;
     
-    bool repeat;
+    bool _repeat;
     
-    float speed; // magnitude of the speed of travel for scene cordinates
+    float _speed; // magnitude of the speed of travel for scene cordinates
+    
+    HandMovementComponent():
+    _texture(nullptr),
+    _path(nullptr),
+    _repeat(false),
+    _speed(0){}
+    
+    ~HandMovementComponent(){ dispose ();}
+    
+    void dispose(){
+        _texture = nullptr;
+        _path = nullptr;
+    }
     
     bool init(std::shared_ptr<cugl::JsonValue> json);
     
-    std::shared_ptr<HandMovementComponent> alloc(std::shared_ptr<cugl::JsonValue> json){
+    static std::shared_ptr<HandMovementComponent> alloc(std::shared_ptr<cugl::JsonValue> json){
         std::shared_ptr<HandMovementComponent> result = std::make_shared<HandMovementComponent>();
         return (result->init(json) ? result : nullptr);
     }
+    
     
 };
 

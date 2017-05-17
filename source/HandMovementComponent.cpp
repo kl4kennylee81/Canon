@@ -7,26 +7,14 @@
 //
 
 #include "HandMovementComponent.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 
 bool HandMovementComponent::init(std::shared_ptr<cugl::JsonValue> json){
-    texture = Texture::allocWithFile(json->getString("texture"));
-    
-    
-    
-//    
-//    std::shared_ptr<cugl::Texture> texture;
-//    
-//    std::shared_ptr<Path> path;
-//    
-//    bool repeat;
-//    
-//    float speed; // magnitude of the speed of travel for scene cordinates
-    
-    
-    
-    
-    
+    _texture = Texture::allocWithFile(json->getString("texture"));
+    _path = Path::alloc(Path::getPathFromString(json->getString("path")));
+    _repeat = json->getBool("repeat");
+    _speed = json->getFloat("speed");
     return true;
 }

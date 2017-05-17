@@ -16,6 +16,7 @@
 #include "Data.hpp"
 #include "UIData.hpp"
 #include "TutorialEnums.hpp"
+#include "HandMovementComponent.hpp"
 
 class TutorialStepData : public Data {
 private:
@@ -24,11 +25,28 @@ private:
     std::vector<TutorialEffect> _endEffects;
     float _minTime; // minimum time to stay on this step
     
+    std::shared_ptr<HandMovementComponent> _handMovement;
+    
 public:
+    
     std::string menuBackgroundKey; // replace the background for narrative start screens
     
     TutorialTransition _startCondition;
     TutorialTransition _endCondition;
+    
+    TutorialStepData():
+    Data(),
+    _minTime(0),
+    _handMovement(nullptr){};
+    
+    ~TutorialStepData(){
+        dispose();
+    }
+    
+    void dispose(){
+        _minTime = 0;
+        _handMovement = nullptr;
+    }
     
     std::vector<std::string> getUIEntryKeys() {
         return _uiEntryKeys;
@@ -93,6 +111,10 @@ public:
     
     float getMinTime(){
         return _minTime;
+    }
+    
+    std::shared_ptr<HandMovementComponent> getHandMovementComponent(){
+        return _handMovement;
     }
 };
 
