@@ -41,7 +41,7 @@ void MenuController::eventUpdate(Event* e) {
             switch(fEvent->_finishType){
                 case FinishEvent::FinishEventType::GAME_WON:
                 {
-                    this->getMenuGraph()->setActiveMenu("gameover");
+                    this->getMenuGraph()->setActiveMenu("victory");
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:

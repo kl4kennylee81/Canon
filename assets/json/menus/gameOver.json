@@ -2,10 +2,15 @@
     "MenuScreenData": {
         "gameOver": {
             "UIEntries": [
-                "gameOver_gameoverTextImg", 
-                "tryAgainButton", 
                 "homeButton", 
-                "MenubackToLevelEditor"
+                "MenubackToLevelEditor", 
+                "levelsButton", 
+                "retryButton", 
+                "gameOver_homepainte", 
+                "gameOver_levelSelect", 
+                "gameOver_SideEnds", 
+                "gameOver_GameOverText", 
+                "gameOver_retryIcon"
             ], 
             "fontMap": {
                 "menu_body_font": "Museo300-Regular_16", 
@@ -28,16 +33,67 @@
             "type": "BUTTON", 
             "width": 0.25, 
             "x": 0.375, 
-            "y": 0.3
+            "y": 0.025
         }, 
-        "gameOver_gameoverTextImg": {
-            "height": 0.261, 
-            "key": "gameOver_gameoverTextImg", 
-            "textureKey": "gameOver_gameover", 
+        "gameOver_GameOverText": {
+            "height": 0.29307568438003223, 
+            "key": "gameOver_GameOverText", 
+            "textureKey": "gameOver_GameOverText", 
             "type": "IMAGE", 
-            "width": 0.476, 
-            "x": 0.257, 
-            "y": 0.65
+            "width": 0.6618379357175193, 
+            "x": 0.16885468537799908, 
+            "y": 0.5483091787439613
+        }, 
+        "gameOver_SideEnds": {
+            "height": 0.43156199677938806, 
+            "key": "gameOver_SideEnds", 
+            "textureKey": "gameOver_SideEnds", 
+            "type": "IMAGE", 
+            "width": 0.612494341330919, 
+            "x": 0.18741511996378452, 
+            "y": 0.043478260869565244
+        }, 
+        "gameOver_homepainte": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "height": 0.5861513687600645, 
+            "key": "gameOver_homepainte", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "gameOver_homepainte", 
+            "width": 0.33046627433227704, 
+            "x": 0.4765504753282028, 
+            "y": -0.005636070853462183
+        }, 
+        "gameOver_levelSelect": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.5214170692431562, 
+            "key": "gameOver_levelSelect", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "gameOver_levelselect", 
+            "width": 0.29320959710276145, 
+            "x": 0.3395201448619285, 
+            "y": 0.02753623188405785
+        }, 
+        "gameOver_retryIcon": {
+            "buttonAction": {
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
+            }, 
+            "height": 0.4341384863123994, 
+            "key": "gameOver_retryIcon", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "gameOver_retryIcon", 
+            "width": 0.24368492530556812, 
+            "x": 0.21367134449977365, 
+            "y": 0.07286634460547503
         }, 
         "homeButton": {
             "buttonAction": {
@@ -47,27 +103,42 @@
             }, 
             "buttonLabel": "home", 
             "fontKey": "menu_header_font", 
-            "height": 0.1, 
+            "height": 0.05636070853462158, 
             "key": "homeButton", 
             "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.4
+            "width": 0.06478044363965595, 
+            "x": 0.6090538705296514, 
+            "y": 0.1400966183574879
         }, 
-        "tryAgainButton": {
+        "levelsButton": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "levels", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "levelsButton", 
+            "type": "BUTTON", 
+            "width": 0.0819375282933454, 
+            "x": 0.4573110004526936, 
+            "y": 0.1400966183574879
+        }, 
+        "retryButton": {
             "buttonAction": {
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
-            "buttonLabel": "try again", 
+            "buttonLabel": "retry", 
             "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "tryAgainButton", 
+            "height": 0.05636070853462158, 
+            "key": "retryButton", 
             "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.5
+            "width": 0.07505658669081032, 
+            "x": 0.30276143051154364, 
+            "y": 0.1400966183574879
         }
     }
 }

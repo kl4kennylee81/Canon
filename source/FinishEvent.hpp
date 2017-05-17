@@ -64,8 +64,8 @@ public:
         return true;
     }
     
-    static std::shared_ptr<GameLostEvent> alloc() {
-        std::shared_ptr<GameLostEvent> result = std::make_shared<GameLostEvent>();
+    static std::shared_ptr<GameWonEvent> alloc() {
+        std::shared_ptr<GameWonEvent> result = std::make_shared<GameWonEvent>();
         return (result->init() ? result : nullptr);
     }
     

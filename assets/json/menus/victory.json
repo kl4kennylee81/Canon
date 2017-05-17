@@ -1,0 +1,173 @@
+{
+    "MenuScreenData": {
+        "victory": {
+            "UIEntries": [
+                "victory_4CornerSwirls",
+                "victory_Bunchofstars",
+                "victory_levelselect",
+                "victory_yext",
+                "levelsButton",
+                "retryButton",
+                "nextlevel",
+                "victory_rere",
+                "victory_SideEnds",
+                "victory_loideasset",
+                "victory_odetteasset"
+            ],
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16",
+                "menu_header_font": "Museo300-Regular_40"
+            },
+            "key": "victory"
+        }
+    },
+    "UIData": {
+        "MenubackToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT",
+                "nextScreen": "blankScreen",
+                "type": "modeChange"
+            },
+            "buttonLabel": "Level Edit",
+            "fontKey": "menu_header_font",
+            "height": 0.1,
+            "key": "MenubackToLevelEditor",
+            "type": "BUTTON",
+            "width": 0.25,
+            "x": 0.375,
+            "y": 0.025
+        },
+        "levelsButton": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "levelSelect",
+                "type": "modeChange"
+            },
+            "buttonLabel": "levels",
+            "fontKey": "menu_header_font",
+            "height": 0.05636070853462158,
+            "key": "levelsButton",
+            "type": "BUTTON",
+            "width": 0.0819375282933454,
+            "x": 0.4573110004526936,
+            "y": 0.1400966183574879
+        },
+        "nextlevel": {
+            "buttonAction": {
+                "fxKey": "NEXTLEVEL",
+                "nextScreen": "gameScreen",
+                "type": "fxTrigger"
+            },
+            "buttonLabel": "next",
+            "fontKey": "menu_header_font",
+            "height": 0.05636070853462158,
+            "key": "nextlevel",
+            "type": "BUTTON",
+            "width": 0.06478044363965595,
+            "x": 0.6090538705296514,
+            "y": 0.143317230273752
+        },
+        "retryButton": {
+            "buttonAction": {
+                "fxKey": "RETRY",
+                "nextScreen": "gameScreen",
+                "type": "fxTrigger"
+            },
+            "buttonLabel": "retry",
+            "fontKey": "menu_header_font",
+            "height": 0.05636070853462158,
+            "key": "retryButton",
+            "type": "BUTTON",
+            "width": 0.07505658669081032,
+            "x": 0.30276143051154364,
+            "y": 0.1400966183574879
+        },
+        "victory_4CornerSwirls": {
+            "height": 0.43156199677938806,
+            "key": "victory_4CornerSwirls",
+            "textureKey": "victory_4CornerSwirls",
+            "type": "IMAGE",
+            "width": 0.612494341330919,
+            "x": 0.18741511996378452,
+            "y": 0.043478260869565244
+        },
+        "victory_Bunchofstars": {
+            "height": 0.43156199677938806,
+            "key": "victory_Bunchofstars",
+            "textureKey": "victory_Bunchofstars",
+            "type": "IMAGE",
+            "width": 0.612494341330919,
+            "x": 0.18741511996378452,
+            "y": 0.043478260869565244
+        },
+        "victory_SideEnds": {
+            "height": 0.43156199677938806,
+            "key": "victory_SideEnds",
+            "textureKey": "victory_SideEnds",
+            "type": "IMAGE",
+            "width": 0.612494341330919,
+            "x": 0.18741511996378452,
+            "y": 0.043478260869565244
+        },
+        "victory_levelselect": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU",
+                "nextScreen": "levelSelect",
+                "type": "modeChange"
+            },
+            "height": 0.5214170692431562,
+            "key": "victory_levelselect",
+            "type": "BUTTON",
+            "uiBackgroundKey": "victory_levelselect",
+            "width": 0.29320959710276145,
+            "x": 0.3395201448619285,
+            "y": 0.02753623188405785
+        },
+        "victory_loideasset": {
+            "height": 0.178743961352657,
+            "key": "victory_loideasset",
+            "textureKey": "victory_loideasset",
+            "type": "IMAGE",
+            "width": 0.06971480307831598,
+            "x": 0.2145767315527388,
+            "y": 0.5998389694041868
+        },
+        "victory_odetteasset": {
+            "height": 0.178743961352657,
+            "key": "victory_odetteasset",
+            "textureKey": "victory_odetteasset",
+            "type": "IMAGE",
+            "width": 0.06926210955183341,
+            "x": 0.7211407876867361,
+            "y": 0.5837359098228664
+        },
+        "victory_rere": {
+            "buttonAction": {
+                "fxKey": "RETRY",
+                "nextScreen": "gameScreen",
+                "type": "fxTrigger"
+            },
+            "height": 0.4341384863123994,
+            "key": "victory_rere",
+            "type": "BUTTON",
+            "uiBackgroundKey": "victory_rere",
+            "width": 0.24368492530556812,
+            "x": 0.21367134449977365,
+            "y": 0.07286634460547503
+        },
+        "victory_yext": {
+            "buttonAction": {
+                "fxKey": "NEXTLEVEL",
+                "nextScreen": "gameScreen",
+                "type": "fxTrigger"
+            },
+            "height": 0.5466988727858293,
+            "key": "victory_yext",
+            "type": "BUTTON",
+            "uiBackgroundKey": "victory_yext",
+            "width": 0.30737890448166594,
+            "x": 0.4934359438660027,
+            "y": 0.016103059581320522
+        }
+    }
+}
