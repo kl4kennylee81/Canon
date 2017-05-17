@@ -33,6 +33,8 @@
 		829615531E9BC5B300A731DB /* ParticleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615501E9BC5B300A731DB /* ParticleController.cpp */; };
 		829615591E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
 		8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
+		9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
+		9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
 		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
 		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
@@ -317,6 +319,8 @@
 		8296155B1E9BCACA00A731DB /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
+		9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandMovementComponent.cpp; sourceTree = "<group>"; };
+		9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HandMovementComponent.hpp; sourceTree = "<group>"; };
 		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
 		9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAIData.cpp; sourceTree = "<group>"; };
 		9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAIData.hpp; sourceTree = "<group>"; };
@@ -937,6 +941,8 @@
 				9FF0B4481EC6B5E00044F29B /* TutorialStepData.hpp */,
 				9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */,
 				9FF0B44C1EC6B5F50044F29B /* TutorialLevelData.hpp */,
+				9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */,
+				9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */,
 			);
 			name = tutorial;
 			sourceTree = "<group>";
@@ -967,7 +973,6 @@
 		9FFA3F771E6357AE0029D648 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FA01E6367590029D648 /* path */,
 				9FFA3F7E1E6357FE0029D648 /* observer */,
 				9F7668361E8388DF003A06E8 /* Util.hpp */,
 			);
@@ -1025,15 +1030,6 @@
 			name = PathEvent;
 			sourceTree = "<group>";
 		};
-		9FFA3FA01E6367590029D648 /* path */ = {
-			isa = PBXGroup;
-			children = (
-				9FFA3F931E6364C70029D648 /* Path.cpp */,
-				9FFA3F941E6364C70029D648 /* Path.hpp */,
-			);
-			name = path;
-			sourceTree = "<group>";
-		};
 		9FFA3FA11E6367820029D648 /* movement */ = {
 			isa = PBXGroup;
 			children = (
@@ -1042,6 +1038,8 @@
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,
 				9FFA3FA51E6367C60029D648 /* ActivePath.hpp */,
 				9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */,
+				9FFA3F931E6364C70029D648 /* Path.cpp */,
+				9FFA3F941E6364C70029D648 /* Path.hpp */,
 			);
 			name = movement;
 			sourceTree = "<group>";
@@ -1541,6 +1539,7 @@
 				9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */,
 				824E10B31EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */,
 				9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
+				9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */,
 				9F9A76881ECA2E460055D471 /* LevelEnums.cpp in Sources */,
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */,
@@ -1628,6 +1627,7 @@
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
 				9F82210F1EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9FFA3FA61E6367C60029D648 /* ActivePath.cpp in Sources */,
+				9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */,
 				9F3BA61F1E8BA9D9003138C0 /* InputController.cpp in Sources */,
 				9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */,
 				DF909EF01E80BEEA003BB459 /* AIData.cpp in Sources */,

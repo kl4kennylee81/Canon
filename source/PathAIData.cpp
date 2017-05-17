@@ -1,6 +1,7 @@
 #include "PathAIData.hpp"
 #include "PathAI.hpp"
 #include "GameState.hpp"
+#include "Util.hpp"
 
 using namespace cugl;
 
@@ -35,39 +36,6 @@ PathType getPathTypeFromString(const std::string& str) {
 		return PathType::CUSTOM;
 	}
 	return PathType::NONE;
-}
-
-std::vector<std::string> split(const std::string& s, const char& c)
-{
-	std::string buff{ "" };
-	std::vector<std::string> v;
-
-	for (auto n : s)
-	{
-		if (n != c) {
-			buff += n;
-		}
-		else if (n == c && buff != "") {
-			v.push_back(buff); buff = "";
-		}
-	}
-	if (buff != "") v.push_back(buff);
-	return v;
-}
-
-Vec2 getTupleFromString(const std::string& s) {
-	std::string str = s.substr(1, s.size() - 2);
-	auto nums = split(str, ',');
-	return Vec2::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
-}
-
-std::vector<Vec2> getPathFromString(const std::string& str) {
-	auto strings = split(str, ' ');
-	std::vector<Vec2> path;
-	for (auto it : strings) {
-		path.push_back(getTupleFromString(it));
-	}
-	return path;
 }
 
 PathDirection getDirectionFromString(const std::string& str) {
@@ -111,17 +79,6 @@ std::string getStringFromDirection(PathDirection direction){
     }
 }
 
-std::string getStringFromPath(std::vector<Vec2> vecPath)
-{
-	std::string acc = "";
-	for (int i = 0; i < vecPath.size(); i++)
-	{
-		acc += "(" + std::to_string(vecPath.at(i).x) + "," + std::to_string(vecPath.at(i).y) + ")";
-		if (i < vecPath.size() - 1) acc += " ";
-	}
-	return acc;
-}
-
 std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
 	std::shared_ptr<JsonValue> data = Data::toJsonValue();
 	data->appendChild("type", JsonValue::alloc("PATH"));
@@ -139,7 +96,7 @@ std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
         }
         case PathType::CUSTOM:
         {
-        	data->appendChild("path", JsonValue::alloc(getStringFromPath(_path)));
+            data->appendChild("path", JsonValue::alloc(Path::getStringFromPath(_path)));
             break;
         }
         case PathType::NONE:
@@ -153,7 +110,7 @@ std::shared_ptr<JsonValue> PathAIData::toJsonValue() {
 bool PathAIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	type = AIType::PATH;
 	PathType pathType = getPathTypeFromString(json->getString("pathType"));
-	std::vector<Vec2> path = getPathFromString(json->getString("path"));
+    std::vector<Vec2> path = Path::getPathFromString(json->getString("path"));
 	PathDirection direction = getDirectionFromString(json->getString("direction"));
 	init(pathType, path, direction);
 	Data::preload(json);

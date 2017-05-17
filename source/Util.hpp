@@ -20,6 +20,12 @@
 class Util {
 public:
     
+    static cugl::Vec2 getTupleFromString(const std::string& s) {
+        std::string str = s.substr(1, s.size() - 2);
+        auto nums = split(str, ',');
+        return cugl::Vec2::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
+    }
+    
     static std::string appendLeadingZero(int n_zero,std::string in){
         std::string new_string = std::string(n_zero - in.length(), '0') + in;
         return new_string;
