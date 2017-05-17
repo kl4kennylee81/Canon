@@ -85,6 +85,12 @@ public:
     void handleTutorialEffects(std::vector<TutorialEffect> effects);
     
     void handleTutorialEffect(TutorialEffect effect);
+    
+    void updateConditions();
+    
+    void updateHint();
+    
+    void updateStep();
 };
 
 

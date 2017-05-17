@@ -145,14 +145,7 @@ void removeFinishedHints(std::list<std::shared_ptr<TutorialStep>> items){
     }
 }
 
-void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
-    // skip if tutorial isn't active
-    if (isInActive()){
-        return;
-    }
-
-///////////////////////////////Check_conditions/////////////////////////////////////
-
+void TutorialController::updateConditions(){
     /** this is to update other transition Condition that get checked on the spot */
     if (InputController::getIsPressed()){
         checkTransitionCondition(TutorialTransition::ON_CLICK);
@@ -160,22 +153,9 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     
     /** check any immediate condition to go off */
     checkTransitionCondition(TutorialTransition::IMMEDIATE);
-    
-////////////////////////////////////////////////////////////////////////////////////
-    
-    /** check step is preactive and play its effect */
-    if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
-        /** play the start effects */
-        handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
-        getCurrentStep()->setState(TutorialState::ACTIVE);
-    }
-    
-    /** remove all TutorialState::DONE hints */
-    removeFinishedHints(_activeHints);
-    
-    /** remove all children of the tutorialNode */
-    _tutorialNode->removeAllChildren();
-    
+}
+
+void TutorialController::updateHint(){
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
     for(std::shared_ptr<TutorialStep> hints : _activeHints){
         // update the hints minTime
@@ -185,12 +165,26 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
         }
     }
     
+    /** remove all TutorialState::DONE hints */
+    removeFinishedHints(_activeHints);
+}
+
+void TutorialController::updateStep(){
     /** update the current step */
     if (getCurrentStep() == nullptr){
         return;
     }
     
+    /** update first */
     getCurrentStep()->update();
+    
+    /** check step is preactive and play its effect */
+    if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
+        /** play the start effects */
+        handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
+        getCurrentStep()->setState(TutorialState::ACTIVE);
+    }
+    
     /** add the current step if active */
     if (getCurrentStep() != nullptr && getCurrentStep()->isActive()){
         getCurrentStep()->addToNode(_tutorialNode);
@@ -199,6 +193,20 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
     /** update the currentStep if the condition has been met */
     /** updates at the end of update for next iteration */
     transitionNextStep();
+}
+
+void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
+    // skip if tutorial isn't active
+    if (isInActive()){
+        return;
+    }
+    /** start off by clearing the tutorial Node */
+    _tutorialNode->removeAllChildren();
+    
+    updateConditions();
+    
+    updateStep();
+    updateHint();
 }
 
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
