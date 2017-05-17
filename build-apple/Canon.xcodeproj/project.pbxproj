@@ -37,6 +37,8 @@
 		9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
 		9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
 		9F2139321ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
+		9F2139351ECC712600A60F62 /* GameStateEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139331ECC712600A60F62 /* GameStateEnums.cpp */; };
+		9F2139361ECC712600A60F62 /* GameStateEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139331ECC712600A60F62 /* GameStateEnums.cpp */; };
 		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
 		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
@@ -325,6 +327,8 @@
 		9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HandMovementComponent.hpp; sourceTree = "<group>"; };
 		9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveHandMovement.cpp; sourceTree = "<group>"; };
 		9F2139301ECC48B500A60F62 /* ActiveHandMovement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveHandMovement.hpp; sourceTree = "<group>"; };
+		9F2139331ECC712600A60F62 /* GameStateEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateEnums.cpp; sourceTree = "<group>"; };
+		9F2139341ECC712600A60F62 /* GameStateEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameStateEnums.hpp; sourceTree = "<group>"; };
 		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
 		9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAIData.cpp; sourceTree = "<group>"; };
 		9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAIData.hpp; sourceTree = "<group>"; };
@@ -1097,6 +1101,8 @@
 				9FFA3FAC1E636B430029D648 /* GameState.hpp */,
 				DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */,
 				DFBD546E1E60E62D0027FCC1 /* GameplayController.hpp */,
+				9F2139331ECC712600A60F62 /* GameStateEnums.cpp */,
+				9F2139341ECC712600A60F62 /* GameStateEnums.hpp */,
 			);
 			name = gameplay;
 			sourceTree = "<group>";
@@ -1491,6 +1497,7 @@
 				273CB3B81EBC62FC0042708C /* BulletAIData.cpp in Sources */,
 				9F3BA5EA1E8BA575003138C0 /* CompositeAIData.cpp in Sources */,
 				273CB3A01EBBD7B70042708C /* BulletData.cpp in Sources */,
+				9F2139361ECC712600A60F62 /* GameStateEnums.cpp in Sources */,
 				9F3BA5EB1E8BA575003138C0 /* MenuScreenData.cpp in Sources */,
 				9F3BA5EC1E8BA575003138C0 /* AnimationData.cpp in Sources */,
 				273CB39B1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */,
@@ -1619,6 +1626,7 @@
 				9F9A76931ECA38BB0055D471 /* LevelSelectData.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
+				9F2139351ECC712600A60F62 /* GameStateEnums.cpp in Sources */,
 				273CB3AB1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */,
 				9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,
