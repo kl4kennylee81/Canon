@@ -159,12 +159,14 @@ void TutorialController::updateConditions(){
 void TutorialController::updateHint(){
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
     for(std::shared_ptr<TutorialStep> hint : _activeHints){
-        /** check step is preactive and play its effect */
-        if (getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
-            updateStartStep(hint);
-        }
         // update the hints minTime
         hint->update();
+        
+        /** check step is preactive and play its effect */
+        if (hint->getState() == TutorialState::PRE_ACTIVE){
+            updateStartStep(hint);
+        }
+        
         if (hint->isActive()){
             hint->addToNode(_tutorialNode);
         }
