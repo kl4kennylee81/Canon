@@ -36,7 +36,7 @@
                 "RESUME_GAME"
             ],
             "menuBackgroundKey": "",
-            "minTime" : 140,
+            "minTime" : 0,
             "handMovement":{
                 "uiKey": "tutorial1_one_tap",
                 "path": "(100,100) (300,300)",
@@ -165,18 +165,18 @@
         },
         "tutorial1_hint1":{
             "start": "ON_PLAYER_HIT",
-            "end": "IMMEDIATE",
+            "end": "ON_CLICK",
             "UIEntries": [
                 "tutorial1_textbox_hint",
-                "tutorial1_hint1_text"
+                "tutorial1_hint1_text",
+                "tutorial1_hintCheckButton"
             ],
             "startEffects":[
             ],
             "endEffects": [
-                "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
-            "minTime": 180
+            "minTime": 0
         }
     },
     "UIData": {
