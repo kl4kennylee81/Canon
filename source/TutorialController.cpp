@@ -146,6 +146,30 @@ void TutorialController::removeSteps(std::list<std::shared_ptr<TutorialStep>> st
     }
 }
 
+bool checkButtonClicked(std::shared_ptr<TutorialStep> step, bool* buttonExist) {
+    for (std::shared_ptr<UIComponent> ui : step->getMenu()->getUIElements()){
+        // check if its a button
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(ui->getNode());
+        
+        if (button == nullptr){
+            continue;
+        }
+        
+        *buttonExist = true;
+        Vec2 vec = InputController::getPrevVector();
+        
+        // check if this button was clicked
+        if (!button->containsScreen(vec)){
+            continue;
+        }
+        return true;
+    }
+    if (!*buttonExist){
+        return true;
+    }
+    return false;
+}
+
 void TutorialController::updateConditions(std::shared_ptr<GameState> state){
     /** this is to update other transition Condition that get checked on the spot */
     
@@ -155,25 +179,12 @@ void TutorialController::updateConditions(std::shared_ptr<GameState> state){
         
         // check if there exists a button
         bool buttonExist = false;
-        for (std::shared_ptr<UIComponent> ui : getCurrentStep()->getMenu()->getUIElements()){
-            // check if its a button
-            std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(ui->getNode());
-            
-            if (button == nullptr){
-                continue;
-            }
-            
-            buttonExist = true;
-            Vec2 vec = InputController::getPrevVector();
-            
-            // check if this button was clicked
-            if (!button->containsScreen(vec)){
-                continue;
-            }
-            /** found a button that is clicked */ 
-            checkTransitionCondition(TutorialTransition::ON_CLICK);
-            break;
+        bool clicked = checkButtonClicked(getCurrentStep(),&buttonExist);
+        
+        for (std::shared_ptr<TutorialStep> hint : _activeHints){
+            clicked |= checkButtonClicked(hint, &buttonExist);
         }
+        
         if (!buttonExist){
             checkTransitionCondition(TutorialTransition::ON_CLICK);
         }
