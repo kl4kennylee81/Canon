@@ -27,6 +27,8 @@ private:
     
     std::shared_ptr<HandMovementComponent> _handMovement;
     
+    std::vector<std::string> _hintKeys; // hints are just other tutorialStepData
+    
 public:
     
     std::string menuBackgroundKey; // replace the background for narrative start screens
@@ -57,7 +59,8 @@ public:
               std::vector<TutorialEffect> startEffects,
               std::vector<TutorialEffect> endEffects,
               float minTime,
-              std::shared_ptr<HandMovementComponent> hmovement) {
+              std::shared_ptr<HandMovementComponent> hmovement,
+              std::vector<std::string> hintKeys) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
@@ -66,6 +69,8 @@ public:
         _endEffects = endEffects;
         _minTime = minTime;
         _handMovement = hmovement;
+        _hintKeys = hintKeys;
+        
         return true;
     }
     
@@ -74,9 +79,10 @@ public:
                                                    std::vector<TutorialEffect> startEffect,
                                                    std::vector<TutorialEffect> endEffect,
                                                    float minTime,
-                                                   std::shared_ptr<HandMovementComponent> hmovement) {
+                                                   std::shared_ptr<HandMovementComponent> hmovement,
+                                                   std::vector<std::string> hintKeys) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime,hmovement) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime,hmovement,hintKeys) ? result : nullptr);
     }
     
     bool init() {
@@ -118,6 +124,10 @@ public:
     
     std::shared_ptr<HandMovementComponent> getHandMovementComponent(){
         return _handMovement;
+    }
+    
+    std::vector<std::string> getHintKeys(){
+        return _hintKeys;
     }
 };
 

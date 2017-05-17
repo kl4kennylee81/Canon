@@ -52,7 +52,12 @@ bool TutorialStepData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         }
     }
     
-    return init(mbKey,entries,start,end,startEffects,endEffects,minTime,hmovement);
+    std::vector<std::string> hints;
+    if (json->get("hints") != nullptr){
+        hints = json->get("hints")->asStringArray();
+    }
+    
+    return init(mbKey,entries,start,end,startEffects,endEffects,minTime,hmovement,hints);
 }
 
 std::shared_ptr<cugl::JsonValue> TutorialStepData::toJsonValue(){

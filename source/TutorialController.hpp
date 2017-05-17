@@ -96,10 +96,12 @@ public:
     void updateHandMovement();
     
     /** update when step first becomes active */
-    void updateStartStep();
+    void updateStartStep(std::shared_ptr<TutorialStep> step);
     
     /** update when step ends */
-    void updateEndStep();
+    void updateEndStep(std::shared_ptr<TutorialStep> step);
+    
+    void removeSteps(std::list<std::shared_ptr<TutorialStep>> hints);
 };
 
 

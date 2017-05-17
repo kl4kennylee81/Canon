@@ -26,6 +26,9 @@ private:
     float _currentActiveTime; // time this current step has been active in frames
     std::shared_ptr<ActiveHandMovement> _activeHand;
     
+    // create hint steps
+    std::vector<std::shared_ptr<TutorialStep>> _hints;
+    
 public:
     
     TutorialStep():
@@ -121,6 +124,14 @@ public:
     
     std::shared_ptr<ActiveHandMovement> getActiveHand(){
         return _activeHand;
+    }
+    
+    std::vector<std::shared_ptr<TutorialStep>> getHints(){
+        return _hints;
+    }
+
+    void addHint(std::shared_ptr<TutorialStep> hint){
+        _hints.push_back(hint);
     }
 };
 

@@ -129,14 +129,15 @@ void TutorialController::eventUpdate(Event* e) {
     }
 }
 
-void removeFinishedHints(std::list<std::shared_ptr<TutorialStep>> items){
-    std::list<std::shared_ptr<TutorialStep>>::iterator i = items.begin();
-    while (i != items.end())
+void TutorialController::removeSteps(std::list<std::shared_ptr<TutorialStep>> steps){
+    std::list<std::shared_ptr<TutorialStep>>::iterator i = steps.begin();
+    while (i != steps.end())
     {
-        bool isActive = (*i)->isDone();
-        if (!isActive)
+        std::shared_ptr<TutorialStep> step = *i;
+        bool isDone = step->isDone();
+        if (isDone)
         {
-            i = items.erase(i);
+            i = steps.erase(i);
         }
         else
         {
@@ -157,16 +158,23 @@ void TutorialController::updateConditions(){
 
 void TutorialController::updateHint(){
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
-    for(std::shared_ptr<TutorialStep> hints : _activeHints){
+    for(std::shared_ptr<TutorialStep> hint : _activeHints){
+        /** check step is preactive and play its effect */
+        if (getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
+            updateStartStep(hint);
+        }
         // update the hints minTime
-        hints->update();
-        if (hints->isActive()){
-            hints->addToNode(_tutorialNode);
+        hint->update();
+        if (hint->isActive()){
+            hint->addToNode(_tutorialNode);
+        }
+        else if (hint->isDone()){
+            updateEndStep(hint);
         }
     }
     
     /** remove all TutorialState::DONE hints */
-    removeFinishedHints(_activeHints);
+    removeSteps(_activeHints);
 }
 
 void TutorialController::updateHandMovement(){
@@ -189,7 +197,7 @@ void TutorialController::updateStep(){
     
     /** check step is preactive and play its effect */
     if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
-        updateStartStep();
+        updateStartStep(getCurrentStep());
     }
     
     /** add the current step if active */
@@ -203,28 +211,32 @@ void TutorialController::updateStep(){
 }
 
 /** update when step first becomes active */
-void TutorialController::updateStartStep(){
+void TutorialController::updateStartStep(std::shared_ptr<TutorialStep> step){
     /** play the start effects */
-    handleTutorialEffects(getCurrentStep()->getStepData()->getStartEffects());
-    getCurrentStep()->setState(TutorialState::ACTIVE);
+    handleTutorialEffects(step->getStepData()->getStartEffects());
+    step->setState(TutorialState::ACTIVE);
     
-    if (getCurrentStep()->getActiveHand() != nullptr){
+    if (step->getActiveHand() != nullptr){
         // add the active hand to the tutorial
-        _activeHandMovement.push_back(getCurrentStep()->getActiveHand());
+        _activeHandMovement.push_back(step->getActiveHand());
     }
 }
 
 /** update when step ends */
-void TutorialController::updateEndStep(){
+void TutorialController::updateEndStep(std::shared_ptr<TutorialStep> step){
     /** play the post effects of the current step */
-    handleTutorialEffects(getCurrentStep()->getStepData()->getEndEffects());
+    handleTutorialEffects(step->getStepData()->getEndEffects());
     
     /** clear the handmovement from this step since it has finished */
-    if (getCurrentStep()->getActiveHand() != nullptr){
+    if (step->getActiveHand() != nullptr){
         _activeHandMovement.remove(getCurrentStep()->getActiveHand());
     }
     
     /** TODO also add all the hints from this step into the activeHints when step ends */
+    for (std::shared_ptr<TutorialStep> hint : step->getHints()){
+        hint->setState(TutorialState::WAITING);
+        _activeHints.push_back(hint);
+    }
 }
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
@@ -258,6 +270,24 @@ bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<
     return true;
 }
 
+std::shared_ptr<TutorialStep> createTutorialStep(std::shared_ptr<GenericAssetManager> assets,
+                                                 std::shared_ptr<TutorialStepData> stepData,
+                                                 std::map<std::string,std::string> fontMap){
+    std::shared_ptr<Menu> screen = Menu::alloc(stepData->key);
+    
+    screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,fontMap);
+    
+    std::shared_ptr<TutorialStep> step = TutorialStep::alloc(stepData);
+    step->setMenu(screen);
+    
+    /** create from handComponent active hand */
+    if (stepData->getHandMovementComponent() != nullptr){
+        std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(assets, stepData->getHandMovementComponent());
+        step->setActiveHand(hand);
+    }
+    return step;
+}
+
 void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManager> assets,std::string tutorialKey){
     std::shared_ptr<TutorialLevelData> tutData = assets->get<TutorialLevelData>(tutorialKey);
     
@@ -267,19 +297,13 @@ void TutorialController::populateFromTutorial(std::shared_ptr<GenericAssetManage
     }
     
     for (std::string stepKey : tutData->getStepKeys()){
-        // create the tutorialStep from the stepData
         std::shared_ptr<TutorialStepData> stepData = assets->get<TutorialStepData>(stepKey);
-        std::shared_ptr<Menu> screen = Menu::alloc(stepData->key);
+        std::shared_ptr<TutorialStep> step = createTutorialStep(assets,stepData,tutData->getFontMap());
         
-        screen->populate(assets,stepData->getUIEntryKeys(),stepData->menuBackgroundKey,tutData->getFontMap());
-        
-        std::shared_ptr<TutorialStep> step = TutorialStep::alloc(stepData);
-        step->setMenu(screen);
-        
-        /** create from handComponent active hand */
-        if (stepData->getHandMovementComponent() != nullptr){
-            std::shared_ptr<ActiveHandMovement> hand = ActiveHandMovement::alloc(assets, stepData->getHandMovementComponent());
-            step->setActiveHand(hand);
+        for (std::string hintKey : stepData->getHintKeys()){
+            std::shared_ptr<TutorialStepData> hintData = assets->get<TutorialStepData>(hintKey);
+            std::shared_ptr<TutorialStep> hint = createTutorialStep(assets,hintData,tutData->getFontMap());
+            step->addHint(hint);
         }
         _steps.push_back(step);
     }
@@ -302,7 +326,7 @@ void TutorialController::transitionNextStep(){
         return;
     }
     
-    updateEndStep();
+    updateEndStep(getCurrentStep());
     
     _currentStep+=1;
     

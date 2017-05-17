@@ -40,7 +40,8 @@
                 "path": "(100,100) (300,300)",
                 "repeat": 1,
                 "speed": 3
-            }
+            },
+            "hints": ["tutorial1_hint1"]
         },
         "tutorial1_step2":{
             "start": "IMMEDIATE",
@@ -159,6 +160,21 @@
             ],
             "menuBackgroundKey": "",
             "minTime": 120
+        },
+        "tutorial1_hint1":{
+            "start": "ON_PLAYER_HIT",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+                "tutorial1_textbox_hint",
+                "tutorial1_hint1_text"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": "",
+            "minTime": 180
         }
     },
     "UIData": {
@@ -170,6 +186,23 @@
             "width": 1.0, 
             "x": 0.0, 
             "y": 0.0
+        },
+        "tutorial1_textbox_hint": {
+            "height": 0.24, 
+            "key": "tutorial1_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.5, 
+            "y": 0.5
+        },
+        "tutorial1_hint1_text": {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_step1_text", 
+            "textValue": "oh no you're dead", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.125
         },
         "tutorial1_step1_text": {
             "fontKey": "bottom_font", 
