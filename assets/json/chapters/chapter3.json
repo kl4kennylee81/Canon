@@ -6,7 +6,9 @@
             "levels": [
                        "level31",
                        "level32",
-                       "level33"
+                       "level33",
+                       "level34",
+                       "level35"
                        ]
         }
     },
@@ -25,6 +27,16 @@
             "key": "level33",
             "levelKey": "unwind",
             "name": "Unwind"
+        },
+        "level34": {
+            "key": "level34",
+            "levelKey": "maneuver",
+            "name": "Maneuver"
+        },
+        "level35": {
+            "key": "level35",
+            "levelKey": "madness",
+            "name": "Madness"
         }
     }
 }
