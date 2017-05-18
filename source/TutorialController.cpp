@@ -179,7 +179,10 @@ void TutorialController::updateConditions(std::shared_ptr<GameState> state){
         
         // check if there exists a button
         bool buttonExist = false;
-        bool clicked = checkButtonClicked(getCurrentStep(),&buttonExist);
+        bool clicked = false;
+        if (getCurrentStep() != nullptr){
+            clicked = checkButtonClicked(getCurrentStep(),&buttonExist);
+        }
         
         for (std::shared_ptr<TutorialStep> hint : _activeHints){
             clicked |= checkButtonClicked(hint, &buttonExist);
@@ -269,6 +272,8 @@ void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::sh
     
     /** clear the handmovement from this step since it has finished */
     if (step->getActiveHand() != nullptr){
+        // set the handComponent node to not visible
+        getCurrentStep()->getActiveHand()->_node->setVisible(false);
         _activeHandMovement.remove(getCurrentStep()->getActiveHand());
     }
     

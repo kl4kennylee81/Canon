@@ -5,7 +5,8 @@
                 "tutorial1_draw_path",
                 "tutorial1_move_any",
                 "tutorial1_swipe_other",
-                "tutorial1_cancel_path"
+                "tutorial1_cancel_path",
+                "tutorial1_killRip_modal"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
@@ -82,22 +83,49 @@
                 "tutorial1_cancel_path"
             ],
             "startEffects":[
+                "PAUSE_SPAWNING"
             ],
             "endEffects": [
                 "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
-            "minTime" : 150,
+            "minTime" : 0,
             "handMovement":{
                 "uiKey": "tutorial1_multi_tap",
-                "path": "(450,160)",
+                "path": "(460,160) (460,180)",
                 "repeat": 1,
-                "speed": 2.0,
-                "cooldown": 0
+                "speed": 1.0,
+                "cooldown": 20
             }
+        },
+        "tutorial1_killRip_modal":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "tutorial1_gradientDim",
+                "tutorial1_killRip_modal",
+                "tutorial1_hintCheckButton"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 120
         }
     },
     "UIData": {
+        "tutorial1_gradientDim": {
+            "height": 1.0, 
+            "key": "tutorial1_gradientDim", 
+            "textureKey": "tutorial_gradientDim", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
         "tutorial1_hintCheckButton": {
             "buttonAction": {
                 "buttonTarget": "", 
@@ -105,13 +133,13 @@
                 "type": ""
             }, 
             "buttonLabel": "Continue", 
-            "fontKey": "hint_font", 
+            "fontKey": "bottom_font", 
             "height": 0.1, 
             "key": "levelSelect_backToLevelEditor", 
             "type": "BUTTON", 
             "width": 0.15, 
-            "x": 0.625, 
-            "y": 0.5
+            "x": 0.425, 
+            "y": 0.175
         },
         "tutorial1_textbox_hint": {
             "height": 0.24, 
@@ -180,6 +208,15 @@
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
+        },
+        "tutorial1_killRip_modal": {
+            "height": 0.75, 
+            "key": "tutorial1_killRip_modal", 
+            "textureKey": "killRip_modal", 
+            "type": "IMAGE", 
+            "width": 0.8, 
+            "x": 0.1, 
+            "y": 0.125
         }
     }
 }
