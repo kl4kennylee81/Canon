@@ -6,22 +6,21 @@ using namespace cugl;
 
 
 bool ButtonUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
-    std::string buttonType = json->get("buttonAction")->getString("type");
+	auto buttonJson = json->get("buttonAction");
+    std::string buttonType = buttonJson->getString("type");
+	std::string activeKey = buttonJson->getString("active");
     
 	if (buttonType == "menuChange")
     {
-        auto buttonJson = json->get("buttonAction");
-        buttonAction = MenuChangeButtonAction::alloc(buttonJson->getString("buttonTarget"));
+        buttonAction = MenuChangeButtonAction::alloc(activeKey, buttonJson->getString("buttonTarget"));
     }
 	else if (buttonType == "modeChange")
     {
-        auto buttonJson = json->get("buttonAction");
-        buttonAction = ModeChangeButtonAction::alloc(buttonJson->getString("buttonTarget"),buttonJson->getString("nextScreen"));
+        buttonAction = ModeChangeButtonAction::alloc(activeKey, buttonJson->getString("buttonTarget"),buttonJson->getString("nextScreen"));
     }
 	else if (buttonType == "fxTrigger")
     {
-        auto buttonJson = json->get("buttonAction");
-        buttonAction = FxTriggerButtonAction::alloc(buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"),buttonJson->getString("chapterData"));
+        buttonAction = FxTriggerButtonAction::alloc(activeKey, buttonJson->getString("fxKey"),buttonJson->getString("nextScreen"),buttonJson->getString("chapterData"));
     }
     fontKey = json->getString("fontKey");
 	uiBackgroundKey = json->getString("uiBackgroundKey");
@@ -46,7 +45,7 @@ bool ImageUIData::preload(const std::shared_ptr<cugl::JsonValue>& json) {
 	return true;
 }
 
-std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
+std::shared_ptr<Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAssetManager> assets,std::map<std::string,std::string> fontMap){
     
 	std::shared_ptr<Button> button;
 
@@ -55,8 +54,6 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 
 		if (buttonAction->active != "") {
 			auto buttonDownNode = assets->get<UIData>(buttonAction->active)->dataToNode(assets, fontMap);
-
-			buttonDownNode->addChild(buttonTexture); 
 			button = Button::alloc(buttonTexture, buttonDownNode);
 		}
 		else {

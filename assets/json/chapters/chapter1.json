@@ -12,7 +12,8 @@
                 "level05",
                 "level06",
                 "level07"
-            ]
+            ],
+            "chapterTexture": "chapter01_texture"
         }
     },
     "LevelSelectData": {
@@ -55,6 +56,17 @@
             "key": "level07",
             "levelKey": "interweave",
             "name": "Weave"
+        }
+    },
+    "UIData": {
+        "chapter01_texture": {
+            "height": 0.2745571658615137,
+            "key": "chapter01_texture",
+            "textureKey": "chapter01_texture",
+            "type": "IMAGE",
+            "width": 0.4712539610683567,
+            "x": 0.2684472612041648,
+            "y": 0.6876006441223833
         }
     }
 }
