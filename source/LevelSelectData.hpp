@@ -11,18 +11,20 @@ class LevelSelectData : public Data {
 public:
     std::string name;
     std::string levelKey;
+    std::string songKey;
 
 	LevelSelectData() {}
 
-    bool init(std::string n, std::string k) {
+    bool init(std::string n, std::string k, std::string s) {
 		this->name = n;
 		this->levelKey = k;
+        this->songKey = s;
 		return true;
 	}
 
-    static std::shared_ptr<LevelSelectData> alloc(std::string n, std::string k) {
+    static std::shared_ptr<LevelSelectData> alloc(std::string n, std::string k, std::string s) {
 		std::shared_ptr<LevelSelectData> result = std::make_shared<LevelSelectData>();
-		return (result->init(n, k) ? result : nullptr);
+		return (result->init(n, k, s) ? result : nullptr);
 	}
 
 	virtual bool preload(const std::string& file) override;

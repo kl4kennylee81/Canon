@@ -230,8 +230,6 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 
     activate();
     
-    AudioEngine::get()->playMusic(levelWorld->getAssetManager()->get<Music>("rustling_leaves"),true);
-    
 	return true;
 }
 

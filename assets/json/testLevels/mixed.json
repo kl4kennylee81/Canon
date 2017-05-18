@@ -9,17 +9,17 @@
                 "mixed wave 06":	{
                     "key":	"mixed wave 06",
                     "waveKey":	"mixed wave 06",
-                    "time":	120
+                    "time":	300
                 },
                 "mixed wave 14":	{
                     "key":	"mixed wave 14",
                     "waveKey":	"mixed wave 14",
-                    "time":	360
+                    "time":	420
                 },
                 "mixed wave 17":	{
                     "key":	"mixed wave 17",
                     "waveKey":	"mixed wave 17",
-                    "time":	300
+                    "time":	180
                 }
             },
             "playerChars":	{
@@ -202,64 +202,64 @@
             "waveEntries":	{
                 "mixed wave 17 object 1":	{
                     "key":	"mixed wave 17 object 1",
-                    "x":	7.933333,
-                    "y":	6.466666,
+                    "x":	1.800000,
+                    "y":	3.633333,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 2":	{
                     "key":	"mixed wave 17 object 2",
-                    "x":	8.100000,
-                    "y":	13.400000,
+                    "x":	3.533333,
+                    "y":	14.333334,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 3":	{
                     "key":	"mixed wave 17 object 3",
-                    "x":	8.033334,
-                    "y":	10.233334,
+                    "x":	1.500000,
+                    "y":	12.866667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 4":	{
                     "key":	"mixed wave 17 object 4",
-                    "x":	7.866667,
-                    "y":	2.966666,
+                    "x":	3.366667,
+                    "y":	1.866667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 5":	{
                     "key":	"mixed wave 17 object 5",
-                    "x":	22.400000,
-                    "y":	13.133333,
+                    "x":	28.266666,
+                    "y":	14.200001,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 6":	{
                     "key":	"mixed wave 17 object 6",
-                    "x":	22.433332,
-                    "y":	9.833334,
+                    "x":	30,
+                    "y":	12.766666,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 7":	{
                     "key":	"mixed wave 17 object 7",
-                    "x":	22.533333,
-                    "y":	6.400000,
+                    "x":	30.100000,
+                    "y":	3.533333,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "mixed wave 17 object 8":	{
                     "key":	"mixed wave 17 object 8",
-                    "x":	22.566668,
-                    "y":	3,
+                    "x":	28.533333,
+                    "y":	1.866667,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"

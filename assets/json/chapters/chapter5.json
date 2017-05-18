@@ -13,12 +13,14 @@
         "level51": {
             "name": "Boss1",
             "key": "level51",
-            "levelKey": "boss1"
+            "levelKey": "boss1",
+            "songKey": "boss1"
         },
         "level52": {
             "name": "Boss2",
             "key": "level52",
-            "levelKey": "boss2"
+            "levelKey": "boss2",
+            "songKey": "boss2"
         }
     }
 }

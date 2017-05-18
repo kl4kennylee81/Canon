@@ -50,6 +50,12 @@
             "key": "level15",
             "unlocked" : 1
         },
+        "level16": {
+            "complete": 0,
+            "highScore": 0,
+            "key": "level16",
+            "unlocked" : 1
+        },
         "level21": {
             "complete": 0,
             "highScore": 0,
