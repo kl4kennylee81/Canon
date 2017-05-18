@@ -8,7 +8,8 @@
                 "level22",
                 "level23",
                 "level24",
-                "level25"
+                "level25",
+                "level26"
             ]
         }
     },
@@ -35,6 +36,11 @@
         },
         "level25": {
             "key": "level25",
+            "levelKey": "cornered",
+            "name": "Cornered"
+        },
+        "level26": {
+            "key": "level26",
             "levelKey": "collapse",
             "name": "Collapse"
         }

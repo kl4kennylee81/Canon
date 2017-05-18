@@ -75,10 +75,15 @@
             "unlocked" : 1
         },
         "level25": {
-            "name": "Blobos",
             "unlocked" : 1,
             "complete": 0,
             "key": "level25",
+            "highScore": 0
+        },
+        "level26": {
+            "unlocked" : 1,
+            "complete": 0,
+            "key": "level26",
             "highScore": 0
         },
         "level31": {
