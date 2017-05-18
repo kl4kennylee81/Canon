@@ -40,19 +40,20 @@ public:
 class MenuChangeButtonAction : public ButtonAction {
 public:
     std::string menuTarget;
-    virtual bool init(std::string tar)
+	virtual bool init(std::string act, std::string tar)
 	{
         ButtonAction::init(ButtonActionType::MENU_CHANGE);
 		menuTarget = tar;
+		active = act;
 		return true;
 	}
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
 	MenuChangeButtonAction() : ButtonAction() {}
-    static std::shared_ptr<MenuChangeButtonAction> alloc(std::string tar) {
+    static std::shared_ptr<MenuChangeButtonAction> alloc(std::string act, std::string tar) {
 		std::shared_ptr<MenuChangeButtonAction> result = std::make_shared<MenuChangeButtonAction>();
-		return (result->init(tar) ? result : nullptr);
+		return (result->init(act, tar) ? result : nullptr);
 	}
 };
 
@@ -63,37 +64,32 @@ public:
     std::string nextScreen;
     
     
-    virtual bool init(Mode mode, std::string nextScreen = "",std::string lsdKey = ""){
+    virtual bool init(std::string act, Mode mode, std::string nextScreen = "",std::string lsdKey = ""){
         ButtonAction::init(ButtonActionType::MODE_CHANGE);
+		this->active = act;
         this->modeTarget = mode;
         this->nextScreen = nextScreen;
         this->levelSelectDataKey = lsdKey;
         return true;
     }
     
-    virtual bool init(std::string mode,std::string nextScreen = "",std::string nextLevel = "")
+    virtual bool init(std::string act, std::string mode,std::string nextScreen = "",std::string nextLevel = "")
 	{
-        return init(stringToMode(mode),nextScreen);
+        return init(act, stringToMode(mode),nextScreen);
 	}
     
     virtual bool preload(const std::shared_ptr<cugl::JsonValue>& json) override;
     
 	ModeChangeButtonAction() : ButtonAction() {}
     
-    static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode,std::string nextScreen) {
-        std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-        return (result->init(mode,nextScreen) ? result : nullptr);
-    }
-    
-    static std::shared_ptr<ModeChangeButtonAction> alloc(std::string mode,std::string nextScreen) {
+    static std::shared_ptr<ModeChangeButtonAction> alloc(std::string act, std::string mode,std::string nextScreen) {
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-		return (result->init(mode,nextScreen) ? result : nullptr);
+		return (result->init(act, mode, nextScreen) ? result : nullptr);
 	}
 
-
-	static std::shared_ptr<ModeChangeButtonAction> alloc(Mode mode, std::string nextScreen, std::string lsdKey) {
+	static std::shared_ptr<ModeChangeButtonAction> alloc(std::string act, Mode mode, std::string nextScreen, std::string lsdKey) {
 		std::shared_ptr<ModeChangeButtonAction> result = std::make_shared<ModeChangeButtonAction>();
-		return (result->init(mode, nextScreen, lsdKey) ? result : nullptr);
+		return (result->init(act, mode, nextScreen, lsdKey) ? result : nullptr);
 	}
 };
 
@@ -122,9 +118,10 @@ public:
 		return ChapterSwitchData::NEXT;
 	}
     
-    virtual bool init(std::string fx, std::string next, std::string cd)
+    virtual bool init(std::string act, std::string fx, std::string next, std::string cd)
 	{
         ButtonAction::init(ButtonActionType::FX_TRIGGER);
+		active = act;
 		fxKey = stringToFXType(fx);
         nextScreen = next;
 		chapterData = cd;
@@ -135,8 +132,8 @@ public:
     
     
 	FxTriggerButtonAction() : ButtonAction() {}
-    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string fx,std::string next, std::string cd) {
+    static std::shared_ptr<FxTriggerButtonAction> alloc(std::string act, std::string fx, std::string next, std::string cd) {
 		std::shared_ptr<FxTriggerButtonAction> result = std::make_shared<FxTriggerButtonAction>();
-		return (result->init(fx, next, cd) ? result : nullptr);
+		return (result->init(act, fx, next, cd) ? result : nullptr);
 	}
 };

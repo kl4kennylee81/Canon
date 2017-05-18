@@ -527,15 +527,11 @@ void GameEngine::update(float timestep) {
     switch(_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            if (!_loading->isComplete()){
-                _loading->update(0.01f);
-            } else {
-                // TODO loadController should also holds onto the next mode
-                // so it can transition after loading to other screens when needed
-                // ex. useful in loading before a level
-                _menuGraph->populate(_assets);
-                _menuGraph->setNextMode(Mode::MAIN_MENU);
-            }
+            // TODO loadController should also holds onto the next mode
+            // so it can transition after loading to other screens when needed
+            // ex. useful in loading before a level
+            _menuGraph->populate(_assets);
+            _menuGraph->setNextMode(Mode::MAIN_MENU);
             break;
         }
         case Mode::GAMEPLAY:

@@ -48,6 +48,8 @@ for layer in json_text['artboards'][0]['layers']:
 	# layer_dict['y'] = (layer['rect']['y'] - layer['rect']['height']/2)/float(SKETCH_HEIGHT)
 
 	layer_dict['x'] = layer['rect']['x']/float(SKETCH_WIDTH)
+
+	print layer['rect']['y']/float(SKETCH_HEIGHT) - layer_dict['height']
 	layer_dict['y'] = 1.0 - layer['rect']['y']/float(SKETCH_HEIGHT) - layer_dict['height']
 
 	layer_dict['key'] = new_id

@@ -118,8 +118,9 @@ bool Button::init(const std::shared_ptr<Node>& up, const std::shared_ptr<Node>& 
         addChild(_downnode);
         _downnode->setVisible(_upnode == nullptr);
         Size dsize  = _downnode->getContentSize();
-        size.width  = dsize.width  > size.width  ? dsize.width  : size.width;
-        size.height = dsize.height > size.height ? dsize.height : size.height;
+		// change by KYU: I wanted the button size to be determined by its neutral, non-pressed state
+        size.width  = dsize.width  < size.width  ? dsize.width  : size.width;
+        size.height = dsize.height < size.height ? dsize.height : size.height;
     } else {
         _downcolor = Color4::GRAY*_upcolor;
     }
