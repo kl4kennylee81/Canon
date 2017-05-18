@@ -2,7 +2,8 @@
     "tutorialLevels": {
         "separation": {
             "stepKeys": [
-                "separation_homing_modal"
+                "separation_homing_modal",
+                "separation_twoHealth_hint"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
@@ -30,6 +31,24 @@
             "menuBackgroundKey": "",
             "minTime" : 0,
             "hints": []
+        },
+        "separation_twoHealth_hint" : {
+            "start": "ON_PLAYER_HIT",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "separation_textbox_twoHealth",
+                "separation_twoHealthline1",
+                "separation_twoHealthline2",
+                "separation_twoHealthline3",
+                "separation_textbox_twoHealthConfirm"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "minTime" : 0
         }
     },
     "UIData": {
@@ -65,6 +84,54 @@
             "width": 0.8, 
             "x": 0.1, 
             "y": 0.125
+        },
+        "separation_textbox_twoHealth" : {
+            "height": 0.24, 
+            "key": "separation_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.2, 
+            "y": 0.3
+        },
+        "separation_twoHealthline1" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline1", 
+            "textValue": "When their aura is", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.475
+        },
+        "separation_twoHealthline2" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline2", 
+            "textValue": "dimmed, characters", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.425
+        },
+        "separation_twoHealthline3" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline2", 
+            "textValue": "will die next hit", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.375
+        },
+        "separation_textbox_twoHealthConfirm" : {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "hint_font", 
+            "height": 0.1, 
+            "key": "separation_textbox_twoHealthConfirm", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.25, 
+            "y": 0.2
         }
     }
 }

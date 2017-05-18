@@ -2,14 +2,16 @@
     "tutorialLevels": {
         "rapidSpawn": {
             "stepKeys": [
-                "rapidSpawn_health_modal"
+                "rapidSpawn_health_modal",
+                "rapidSpawn_health_hint",
+                "rapidSpawn_twoHealth_hint"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
                 "bottom_font" : "Museo300-Regular_32"
             },
-            "levelKey": "tutorial1",
-            "key": "tutorial1"
+            "levelKey": "rapidSpawn",
+            "key": "rapidSpawn"
         }
     },
     "tutorialSteps": {
@@ -30,12 +32,30 @@
             "menuBackgroundKey": "",
             "minTime" : 0,
             "hints": []
+        },
+        "rapidSpawn_health_hint" : {
+            "start": "ON_PLAYER_HIT",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "rapidSpawn_textbox_healthHint",
+                "rapidSpawn_healthHintline1",
+                "rapidSpawn_healthHintline2",
+                "rapidSpawn_healthHintline3",
+                "rapidSpawn_textbox_healthHintConfirm"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "minTime" : 0
         }
     },
     "UIData": {
         "rapidSpawn_gradientDim": {
             "height": 1.0, 
-            "key": "tutorial1_gradientDim", 
+            "key": "rapidSpawn_gradientDim", 
             "textureKey": "tutorial_gradientDim", 
             "type": "IMAGE", 
             "width": 1.0, 
@@ -59,12 +79,60 @@
         },
         "rapidSpawn_health_modal": {
             "height": 0.75, 
-            "key": "tutorial1_health_modal", 
+            "key": "rapidSpawn_health_modal", 
             "textureKey": "hp_indicator_number", 
             "type": "IMAGE", 
             "width": 0.8, 
             "x": 0.1, 
             "y": 0.125
+        },
+        "rapidSpawn_textbox_healthHint" : {
+            "height": 0.24, 
+            "key": "rapidSpawn_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.2, 
+            "y": 0.3
+        },
+        "rapidSpawn_healthHintline1" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline1", 
+            "textValue": "characters blinks red", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.475
+        },
+        "rapidSpawn_healthHintline2" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline2", 
+            "textValue": "when hit and are", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.425
+        },
+        "rapidSpawn_healthHintline3" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline2", 
+            "textValue": "temporarily immune", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.375
+        },
+        "rapidSpawn_textbox_healthHintConfirm" : {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "hint_font", 
+            "height": 0.1, 
+            "key": "rapidSpawn_textbox_healthHintConfirm", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.25, 
+            "y": 0.2
         }
     }
 }
