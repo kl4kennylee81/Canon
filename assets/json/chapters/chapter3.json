@@ -5,7 +5,8 @@
             "name": "The Girl and the Fesh",
             "levels": [
                        "level31",
-                       "level32"
+                       "level32",
+                       "level33"
                        ]
         }
     },
@@ -19,6 +20,11 @@
             "key": "level32",
             "levelKey": "lure",
             "name": "Lure"
+        },
+        "level33": {
+            "key": "level33",
+            "levelKey": "unwind",
+            "name": "Unwind"
         }
     }
 }

@@ -98,6 +98,12 @@
             "complete": 0,
             "highScore": 0
         },
+        "level33": {
+            "name": "level33",
+            "unlocked" : 1,
+            "complete": 0,
+            "highScore": 0
+        },
         "level51": {
             "name": "level51",
             "unlocked" : 1,
