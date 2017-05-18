@@ -96,11 +96,6 @@ namespace cugl {
 		/** The memory high water mark */
 		size_t _peaksize;
 
-		/** The array of preallocated objects */
-		T* _prealloc;
-		/** The capacity of the preallocated objects */
-		size_t _capacity;
-
 		/** The list of objects in the free list */
 		std::queue<T*> _freeobjs;
 
@@ -111,6 +106,12 @@ namespace cugl {
 
 #pragma mark Constructors
 	public:
+        /** The capacity of the preallocated objects */
+        size_t _capacity;
+        
+        /** The array of preallocated objects. Exposing it. */
+        T* _prealloc;
+        
 		/**
 		* Creates a new free list with no capacity.
 		*

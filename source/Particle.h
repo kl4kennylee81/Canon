@@ -66,7 +66,7 @@ public:
     
     float findAngularVelocity(float time);
     
-    // TODO add some field here to mark the particle inactive.
+    int group_id;
 };
 
 #endif /* defined(__MD_PARTICLE_H__) */

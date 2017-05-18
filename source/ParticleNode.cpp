@@ -8,14 +8,35 @@
 
 #include "ParticleNode.hpp"
 
-void ParticleNode::update(std::set<Particle*>& reset) {
-    for (auto it=_particles.begin(); it !=_particles.end(); ++it) {
-        Particle* p = *it;
-        p->move();
+void ParticleNode::addParticle(ParticleData pd, int group_num) {
+    Particle* particle = _memory->malloc();
+    if (particle != nullptr) {
+        // set the attributes of the new particle
+        particle->init(pd);
+        particle->group_id = group_num;
+    }
+}
+
+void ParticleNode::update() {
+    std::cout<<"memory size " << _memory->getUsage() << "\n";
+    std::set<Particle*> to_remove;
+    
+    for (int i = 0; i < _memory->_capacity; i++) {
+        Particle* particle = &_memory->_prealloc[i];
         
-        if (!p->isActive()) {
-            reset.insert(p);
+        // skip over ones that have been freed
+        if (!particle->_pd.active) continue;
+        
+        particle->move();
+        
+        if (!particle->isActive()) {
+            to_remove.insert(particle);
         }
+    }
+    
+    // free the ones that aren't active anymore
+    for (auto it = to_remove.begin(); it != to_remove.end(); it++) {
+        _memory->free((*it));
     }
 }
 
@@ -43,16 +64,18 @@ void ParticleNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& t
     batch->setBlendFunc(_srcFactor, _dstFactor);
     Mat4 combined = this->getCombined();
     
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
+    // loop through the entire memory
+    for (int i = 0; i < _memory->_capacity; i++) {
+        Particle particle = _memory->_prealloc[i];
         Mat4 new_transform;
         
-        if ((*it)->_pd.scale) {
-            new_transform = updateTransformLocal(combined, (*it)->_pd.current_scale, (*it)->_pd.current_angle);
+        if (particle._pd.scale) {
+            new_transform = updateTransformLocal(combined, particle._pd.current_scale, particle._pd.current_angle);
         }
         
         Rect bounds = _polygon.getBounds();
-        bounds.origin += (*it)->_pd.position;
-        batch->setColor((*it)->getCurrentColor());
+        bounds.origin += particle._pd.position;
+        batch->setColor(particle.getCurrentColor());
         batch->fill(bounds, bounds.origin, new_transform);
     }
 }

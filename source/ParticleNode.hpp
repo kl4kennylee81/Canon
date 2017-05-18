@@ -19,10 +19,11 @@
  * only need one ParticleNode for a collection of particles.
  */
 class ParticleNode : public PolygonNode {
-private:
-    /** Container to store the particles currently allocated */
-    std::set<Particle*> _particles;
-    
+private:    
+    /**
+     * Each particle node holds its own memory
+     */
+    std::shared_ptr<cugl::FreeList<Particle>> _memory;
     
 public:
     /**
@@ -47,41 +48,37 @@ public:
      *
      * @return the number of particles in this node
      */
-    size_t getParticleCount() { return _particles.size(); }
+    size_t getParticleCount() { return _memory->getUsage(); }
     
     /**
-     * Adds a particle to this node
-     *
-     * If the particle is already in the node, nothing happens
-     *
-     * @param particle  The particle to add to this node
+     * Initializes the memory inside of this particle node.
      */
-    void addParticle(Particle* particle) {
-        _particles.insert(particle);
+    void init_memory(int max_size) {
+        _memory = FreeList<Particle>::alloc(max_size);
     }
     
     /**
-     * Removes a particle from this node
-     *
-     * If the particle is not in the node, nothing happens
-     *
-     * @param particle  The particle to remove from this node
+     * Creates the particle with given particle data template and
+     * assigns it to group_num. -1 means no group.
+     */
+    void addParticle(ParticleData pd, int group_num);
+    
+    /**
+     * No use for this?
      */
     void removeParticle(Particle* particle) {
-        _particles.erase(particle);
+//        _particles.erase(particle);
     }
     
     /**
-     * Updates all of the particles, moving them one time step
-     *
-     * If a particle goes out of the bounding box of this node, it is added
-     * to the reset set.  This allows the caller a chance to remove and
-     * recycle these particles.
-     *
-     * @param reset The recycle set
+     * Goes through the memory in this particle node. Moves each particle one step.
+     * Also in charge of freeing the particles that are expired.
      */
-    void update(std::set<Particle*>& reset);
+    void update();
     
+    /**
+     * need this for rotating the node with custom transformation matrix in the draw.
+     */
     Mat4 updateTransformLocal(Mat4 combined, float scale, float angle);
     
     /**

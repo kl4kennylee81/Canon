@@ -30,6 +30,7 @@ bool Particle::init(ParticleData pd) {
 }
 
 void Particle::move() {
+    
     if (!_pd.active) return;
     
     if (_pd.move) {
