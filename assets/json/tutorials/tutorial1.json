@@ -237,7 +237,7 @@
             "endEffects": [
             ],
             "menuBackgroundKey": "",
-            "minTime" : 120
+            "minTime" : 60
         },
         "tutorial1_slowTime" : {
             "start": "ON_PATH_START",
@@ -247,8 +247,10 @@
                 "tutorial1_slowTime"
             ],
             "startEffects":[
+                "PAUSE_SPAWNING"
             ],
             "endEffects": [
+                "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
             "minTime" : 240
