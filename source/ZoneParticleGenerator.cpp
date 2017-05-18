@@ -1,6 +1,5 @@
 //
 //  ZoneParticleGenerator.cpp
-//  MemoryDemo
 //
 //  Created by Hong Jeon on 5/4/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
@@ -8,13 +7,12 @@
 
 #include "ZoneParticleGenerator.hpp"
 
-bool ZoneParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+bool ZoneParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _particle_map = particle_map;
-    _memory = mem;
     _active = false;
     
     // initialize particle node and attach to the world node
-    ParticleData circlepd = _particle_map->at("t_portalbackground");
+    ParticleData circlepd = _particle_map->at("zone_circle");
     _circlepartnode = ParticleNode::allocWithTexture(circlepd.texture);
     _circlepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _circlepartnode->setBlendEquation(GL_FUNC_ADD);
@@ -23,7 +21,7 @@ bool ZoneParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, 
     state->getWorldNode()->addChild(_circlepartnode);
     
     // initialize particle node and attach to the world node
-    ParticleData ringpd = _particle_map->at("t_portalcircle");
+    ParticleData ringpd = _particle_map->at("zone_ring");
     _ringpartnode = ParticleNode::allocWithTexture(ringpd.texture);
     _ringpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _ringpartnode->setBlendEquation(GL_FUNC_ADD);
@@ -45,33 +43,33 @@ ParticleData ZoneParticleGenerator::randomizePD(ParticleData pd) {
 }
 
 void ZoneParticleGenerator::createZoneParticle(int num, std::set<Particle*>& particle_set, ElementType element) {
-    if (element == ElementType::BLUE) {
-        _circlepd.start_color = Color4f::BLUE;
-        _circlepd.end_color = Color4f::BLUE;
-        _ringpd.start_color = Color4f::BLUE;
-        _ringpd.end_color = Color4f::BLUE;
-    } else {
-        _circlepd.start_color = Color4f::YELLOW;
-        _circlepd.end_color = Color4f::YELLOW;
-        _ringpd.start_color = Color4f::YELLOW;
-        _ringpd.end_color = Color4f::YELLOW;
-    }
-    
-    Particle* circle = _memory->malloc();
-    if (circle != nullptr) {
-        particle_set.insert(circle);
-        circle->init(_circlepd);
-        _circlepartnode->addParticle(circle);
-    }
-    
-    for (int ii = 0; ii < num; ++ii) {
-        Particle* ring = _memory->malloc();
-        if (ring != nullptr) {
-            particle_set.insert(ring);
-            ring->init(randomizePD(_ringpd));
-            _ringpartnode->addParticle(ring);
-        }
-    }
+//    if (element == ElementType::BLUE) {
+//        _circlepd.start_color = Color4f::BLUE;
+//        _circlepd.end_color = Color4f::BLUE;
+//        _ringpd.start_color = Color4f::BLUE;
+//        _ringpd.end_color = Color4f::BLUE;
+//    } else {
+//        _circlepd.start_color = Color4f::YELLOW;
+//        _circlepd.end_color = Color4f::YELLOW;
+//        _ringpd.start_color = Color4f::YELLOW;
+//        _ringpd.end_color = Color4f::YELLOW;
+//    }
+//    
+//    Particle* circle = _memory->malloc();
+//    if (circle != nullptr) {
+//        particle_set.insert(circle);
+//        circle->init(_circlepd);
+//        _circlepartnode->addParticle(circle);
+//    }
+//    
+//    for (int ii = 0; ii < num; ++ii) {
+//        Particle* ring = _memory->malloc();
+//        if (ring != nullptr) {
+//            particle_set.insert(ring);
+//            ring->init(randomizePD(_ringpd));
+//            _ringpartnode->addParticle(ring);
+//        }
+//    }
 }
 
 void ZoneParticleGenerator::add_mapping(GameObject* obj) {
@@ -89,11 +87,10 @@ void ZoneParticleGenerator::remove_mapping(GameObject* obj) {
         Particle* p = *it;
         _circlepartnode->removeParticle(p);
         _ringpartnode->removeParticle(p);
-        _memory->free(p);
+//        _memory->free(p);
     }
     
     _obj_to_wrapper.erase(obj);
-    
 }
 
 void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
@@ -133,7 +130,7 @@ void ZoneParticleGenerator::generate() {
         Particle* p = *it;
         _circlepartnode->removeParticle(p);
         _ringpartnode->removeParticle(p);
-        _memory->free(p);
+//        _memory->free(p);
     }
     _particles.clear();
 }

@@ -45,11 +45,11 @@ private:
 public:
     TrailParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
+    bool init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
     
-    static std::shared_ptr<TrailParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+    static std::shared_ptr<TrailParticleGenerator> alloc(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
         std::shared_ptr<TrailParticleGenerator> result = std::make_shared<TrailParticleGenerator>();
-        return (result->init(mem, state, particle_map) ? result : nullptr);
+        return (result->init(state, particle_map) ? result : nullptr);
     }
     
     /**

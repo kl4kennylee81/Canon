@@ -25,9 +25,6 @@
 
 class ParticleController : public BaseController {
 private:
-    /** The memory pool for future allocations */
-    std::shared_ptr<cugl::FreeList<Particle>> _memory;
-    
     /** Can retreive specific particles by name */
     std::unordered_map<std::string, ParticleData> _particle_map;
     
@@ -37,7 +34,7 @@ private:
     std::shared_ptr<TrailParticleGenerator> _trail_gen;
     std::shared_ptr<PulseParticleGenerator> _pulse_gen;
     
-    /** Handlers for events. Replace all of these later with proper event handling. */
+    /** Handlers for events */
     void handleCharacterSpawn(GameObject* obj);
     void handleCharacterDeath(GameObject* obj);
     void handleDeathParticle(GameObject* obj);

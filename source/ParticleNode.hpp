@@ -23,6 +23,7 @@ private:
     /** Container to store the particles currently allocated */
     std::set<Particle*> _particles;
     
+    
 public:
     /**
      * Returns a new ParticleNode with the given texture

@@ -11,21 +11,21 @@
 #define PARTICLE_DELAY 0
 #define PARTICLE_COUNT 2
 
-bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
-    _memory = mem;
+bool TrailParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _cooldown = PARTICLE_DELAY;
     _particle_map = particle_map;
     _active = false;
     
     // initialize separate ParticleNodes for blue and gold
-    _bluepd = _particle_map->at("blue_particle");
+    _bluepd = _particle_map->at("blue_trail");
     _bluepartnode = ParticleNode::allocWithTexture(_bluepd.texture);
     _bluepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _bluepartnode->setBlendEquation(GL_FUNC_ADD);
     _bluepartnode->setPosition(Vec2::ZERO);
     state->getWorldNode()->addChild(_bluepartnode);
     
-    _goldpd = _particle_map->at("gold_particle");
+    // gold particle node
+    _goldpd = _particle_map->at("gold_trail");
     _goldpartnode = ParticleNode::allocWithTexture(_goldpd.texture);
     _goldpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _goldpartnode->setBlendEquation(GL_FUNC_ADD);
@@ -79,19 +79,19 @@ void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
 }
 
 void TrailParticleGenerator::createTrailParticle(int num, ParticleData pd, std::shared_ptr<ParticleNode> partnode, Vec2 world_pos) {
-    for (int ii = 0; ii < num; ii++) {
-        Particle* sprite = _memory->malloc();
-        if (sprite != nullptr) {
-            float rand = getRandomFloat(0,1.0);
-            auto angle = rand*2.0f*M_PI;
-            
-            pd.position = world_pos;
-            pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
-            
-            sprite->init(pd);
-            partnode->addParticle(sprite);
-        }
-    }
+//    for (int ii = 0; ii < num; ii++) {
+//        Particle* sprite = _memory->malloc();
+//        if (sprite != nullptr) {
+//            float rand = getRandomFloat(0,1.0);
+//            auto angle = rand*2.0f*M_PI;
+//            
+//            pd.position = world_pos;
+//            pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
+//            
+//            sprite->init(pd);
+//            partnode->addParticle(sprite);
+//        }
+//    }
 }
 
 void TrailParticleGenerator::generate() {
@@ -112,7 +112,7 @@ void TrailParticleGenerator::generate() {
         Particle* p = *it;
         _bluepartnode->removeParticle(p);
         _goldpartnode->removeParticle(p);
-        _memory->free(p);
+//        _memory->free(p);
     }
     
     _particles.clear();

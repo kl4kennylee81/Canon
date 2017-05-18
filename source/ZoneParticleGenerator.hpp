@@ -1,6 +1,5 @@
 //
 //  ZoneParticleGenerator.hpp
-//  MemoryDemo
 //
 //  Created by Hong Jeon on 5/4/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
@@ -37,11 +36,11 @@ private:
 public:
     ZoneParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
+    bool init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
     
-    static std::shared_ptr<ZoneParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+    static std::shared_ptr<ZoneParticleGenerator> alloc(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
         std::shared_ptr<ZoneParticleGenerator> result = std::make_shared<ZoneParticleGenerator>();
-        return (result->init(mem, state, particle_map) ? result : nullptr);
+        return (result->init(state, particle_map) ? result : nullptr);
     }
     
     void generate();

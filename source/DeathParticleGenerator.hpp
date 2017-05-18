@@ -1,6 +1,5 @@
 //
 //  DeathParticleGenerator.hpp
-//  MemoryDemo
 //
 //  Created by Hong Jeon on 5/5/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
@@ -20,6 +19,9 @@ private:
     std::shared_ptr<ParticleNode> _bluepartnode; // one particlenode per texture for now
     std::shared_ptr<ParticleNode> _goldpartnode;
     
+    ParticleData _blue_death_pd;
+    ParticleData _gold_death_pd;
+    
     std::set<std::shared_ptr<ParticleWrapper>> _alive_wrappers;
     
     void createDeathParticles(std::set<Particle*>& particle_set, ElementType element, Vec2 location);
@@ -31,11 +33,11 @@ private:
 public:
     DeathParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
+    bool init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
     
-    static std::shared_ptr<DeathParticleGenerator> alloc(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+    static std::shared_ptr<DeathParticleGenerator> alloc(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
         std::shared_ptr<DeathParticleGenerator> result = std::make_shared<DeathParticleGenerator>();
-        return (result->init(mem, state, particle_map) ? result : nullptr);
+        return (result->init(state, particle_map) ? result : nullptr);
     }
     
     void generate();

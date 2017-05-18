@@ -28,22 +28,13 @@ using namespace cugl;
  */
 class ParticleGenerator {
 protected:
-    /**
-     * Each particle node is associated with one texture. If there is more than one
-     * particle node controlled by a generator, then you can make separate variables for those.
-     */
-    std::shared_ptr<ParticleNode> _partnode;
-    
-    /** Initialized and held in ParticleController */
-    std::shared_ptr<cugl::FreeList<Particle>> _memory;
-    
     /** The set of particles to be removed at the end of update()*/
     std::set<Particle*> _particles;
     
+    /**
+     * The map that keeps all of the particle data by name.
+     */
     std::unordered_map<std::string, ParticleData>* _particle_map;
-    
-    /** Copy of the particle data */
-    ParticleData _pd;
     
     /** Flag to start or stop the generator */
     bool _active;
