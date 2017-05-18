@@ -41,7 +41,7 @@ void MenuController::eventUpdate(Event* e) {
             switch(fEvent->_finishType){
                 case FinishEvent::FinishEventType::GAME_WON:
                 {
-                    this->getMenuGraph()->setActiveMenu("gameover");
+                    this->getMenuGraph()->setActiveMenu("victory");
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -77,8 +77,9 @@ void MenuController::update(float timestep) {
         return;
     }
     
-    // check that a press has been made
-    if (!InputController::getIsPressedUp()){
+    // check that a press has been made or in the past
+    // previously pressed is used because when pressing up it is no longer currently pressed
+    if (!InputController::getIsPressedUp() && !InputController::getIsPressed()){
         return;
     }
     
@@ -94,12 +95,23 @@ void MenuController::update(float timestep) {
             continue;
         }
         
+        // if its a button reset its press down
+        button->setDown(false);
+
+        // we need to check if the button is currently being pressed down
+        Vec2 curVec = InputController::getInputVector();
+		if (button->containsScreen(curVec)) {
+			button->setDown(true);
+		}
+        
         Vec2 vec = InputController::getPrevVector();
         
-        // check if this button was clicked
-        if (!button->containsScreen(vec)){
+        // if not clicked or is not a press up we skip
+        if (!button->containsScreen(vec)||!InputController::getIsPressedUp()){
             continue;
         }
+
+		button->setDown(false);
         
         // execute the appropriate action
         switch(uiElement->getAction()->type){

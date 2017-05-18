@@ -14,10 +14,16 @@ class ButtonAction {
 public:
 
 	ButtonActionType type;
+	std::string active;
 
     virtual bool init(ButtonActionType t)
 	{
 		type = t;
+		return true;
+	}
+
+	virtual bool init(std::string activeKey) {
+		active = activeKey;
 		return true;
 	}
     
