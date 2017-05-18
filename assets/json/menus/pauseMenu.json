@@ -31,7 +31,6 @@
     "UIData": {
         "pauseMenu_LevelButton": {
             "buttonAction": {
-                "active": "pauseMenu_glow", 
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "levelSelect", 
                 "type": "modeChange"
@@ -47,7 +46,6 @@
         }, 
         "pauseMenu_RetryButton": {
             "buttonAction": {
-                "active": "pauseMenu_glow", 
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
@@ -104,7 +102,6 @@
         }, 
         "pauseMenu_homeButton2": {
             "buttonAction": {
-                "active": "pauseMenu_glow", 
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
