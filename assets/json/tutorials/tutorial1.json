@@ -4,7 +4,8 @@
             "stepKeys": [
                 "tutorial1_draw_path",
                 "tutorial1_move_any",
-                "tutorial1_swipe_other"
+                "tutorial1_swipe_other",
+                "tutorial1_cancel_path"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
@@ -62,10 +63,38 @@
             "startEffects":[
             ],
             "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 0,
+            "handMovement":{
+                "uiKey": "tutorial1_one_tap",
+                "path": "(550,160) (370,50)",
+                "repeat": 1,
+                "speed": 2.0,
+                "cooldown": 30
+            }
+        },
+        "tutorial1_cancel_path":{
+            "start": "IMMEDIATE",
+            "end": "ON_PATH_DRAWN",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_cancel_path"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
                 "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
-            "minTime" : 150
+            "minTime" : 150,
+            "handMovement":{
+                "uiKey": "tutorial1_multi_tap",
+                "path": "(450,160)",
+                "repeat": 1,
+                "speed": 2.0,
+                "cooldown": 0
+            }
         }
     },
     "UIData": {
@@ -139,7 +168,15 @@
         "tutorial1_swipe_other": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_other", 
-            "textValue": "Try drawing another path with the orange", 
+            "textValue": "draw another path with the orange character", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_cancel_path": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_swipe_other", 
+            "textValue": "Cancel paths being drawn with multi tap", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075

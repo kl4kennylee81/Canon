@@ -50,7 +50,7 @@ bool ActiveHandMovement::update(){
     Vec2 newPos = current + velocity;
     _node->setPosition(newPos);
     if (_activePath->updateActivePath(newPos)){
-        if (_component->_repeat){
+        if (_component->_repeat && _component->_cooldown > 0){
             _node->setVisible(false);
         }
         return !_component->_repeat;
