@@ -40,8 +40,14 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
 
 void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
+	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
+	int numChaps = chKeys.size();
+	auto iter = std::find(chKeys.begin(), chKeys.end(), chapter);
+	int chIndex = std::distance(chKeys.begin(), iter);
+
 	std::shared_ptr<ChapterSelectData> chapterData = assets->get<ChapterSelectData>(chapter);
     std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
+
     
 	float X_MARGIN = 0.09913988229968311;
 	float Y_MARGIN = 0.4774557165861513;
@@ -89,8 +95,12 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 
 		// make label for level entry
 		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
+		//std::shared_ptr<UIData> labelText = assets->get<UIData>("levelNumberText");
+
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
 		textData->textValue = listEntry->name;
+		//textData->textValue = std::to_string(i + chIndex*8);
+
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets,selectMenu->getFontMap());
         labelNode->setAnchor(Vec2::ANCHOR_MIDDLE);
         float labelX = (boxData->width/2.0 + x) * GAME_SCENE_WIDTH;

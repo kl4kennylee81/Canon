@@ -25,6 +25,14 @@
             "type": "TEXT",
             "width": 0.36
         },
+        "levelNumberText": {
+            "fontKey": "menu_header_font",
+            "height": 0.17,
+            "key": "levelNumberText",
+            "textValue": "",
+            "type": "TEXT",
+            "width": 0.36
+        },
         "levelSelect_Chap3": {
             "height": 0.2745571658615137,
             "key": "levelSelect_Chap3",
