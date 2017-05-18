@@ -108,13 +108,13 @@
             "endEffects": [
             ],
             "menuBackgroundKey": "",
-            "minTime" : 180,
+            "minTime" : 150,
             "handMovement":{
                 "uiKey": "tutorial1_multi_tap",
                 "path": "(460,160) (460,180)",
                 "repeat": 1,
                 "speed": 0.5,
-                "cooldown": 60
+                "cooldown": 50
             }
         },
         "tutorial1_killRip_modal":{
