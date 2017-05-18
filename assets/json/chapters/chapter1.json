@@ -9,7 +9,8 @@
                 "level12",
                 "level13",
                 "level14",
-                "level15"
+                "level15",
+                "level16"
             ]
         }
     },
@@ -26,22 +27,27 @@
         },
         "level12": {
             "key": "level12",
-            "levelKey": "separation",
-            "name": "separation"
-        },
-        "level13": {
-            "key": "level13",
             "levelKey": "precision",
             "name": "precision"
         },
+        "level13": {
+            "key": "level13",
+            "levelKey": "separation",
+            "name": "separation"
+        },
         "level14": {
-            "name": "The xx",
             "key": "level14",
-            "levelKey": "xxxxxx"
+            "levelKey": "miniweave",
+            "name": "Miniweave"
         },
         "level15": {
-            "name": "Blobos",
+            "name": "Mixed",
             "key": "level15",
+            "levelKey": "mixed"
+        },
+        "level16": {
+            "name": "Blobos",
+            "key": "level16",
             "levelKey": "blobos"
         }
     }

@@ -1,10 +1,22 @@
 {
     "music": {
         "rustling_leaves": {
-            "file": "./sounds/rustling_leaves.mp3", 
+            "file": "./sounds/normal_battle_music.mp3",
+            "volume": 0.2
+        },
+        "menu": {
+            "file": "./sounds/menu_music.wav",
+            "volume": 0.2
+        },
+        "boss1": {
+            "file": "./sounds/boss1_music.wav",
+            "volume": 0.2
+        },
+        "boss2": {
+            "file": "./sounds/boss2_music.wav",
             "volume": 0.2
         }
-    }, 
+    },
     "soundfx": {
         "base_death": {
             "file": "./sounds/base_death.wav", 

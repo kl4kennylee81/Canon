@@ -1,0 +1,270 @@
+{
+    "name":	"mixed",
+    "counter":	17,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "mixed":	{
+            "key":	"mixed",
+            "levelEntries":	{
+                "mixed wave 06":	{
+                    "key":	"mixed wave 06",
+                    "waveKey":	"mixed wave 06",
+                    "time":	300
+                },
+                "mixed wave 14":	{
+                    "key":	"mixed wave 14",
+                    "waveKey":	"mixed wave 14",
+                    "time":	420
+                },
+                "mixed wave 17":	{
+                    "key":	"mixed wave 17",
+                    "waveKey":	"mixed wave 17",
+                    "time":	180
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "key":	"player1",
+                    "x":	18.750000,
+                    "y":	7.812500,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "key":	"player2",
+                    "x":	12.500000,
+                    "y":	7.812500,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "mixed wave 06":	{
+            "key":	"mixed wave 06",
+            "waveEntries":	{
+                "mixed wave 06 object 1":	{
+                    "key":	"mixed wave 06 object 1",
+                    "x":	24,
+                    "y":	14.600000,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 2":	{
+                    "key":	"mixed wave 06 object 2",
+                    "x":	26.500000,
+                    "y":	14.600000,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 3":	{
+                    "key":	"mixed wave 06 object 3",
+                    "x":	21.500000,
+                    "y":	1.833333,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 4":	{
+                    "key":	"mixed wave 06 object 4",
+                    "x":	19,
+                    "y":	1.833333,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 5":	{
+                    "key":	"mixed wave 06 object 5",
+                    "x":	16.500000,
+                    "y":	14.533333,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 6":	{
+                    "key":	"mixed wave 06 object 6",
+                    "x":	14,
+                    "y":	14.533333,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 7":	{
+                    "key":	"mixed wave 06 object 7",
+                    "x":	11.500000,
+                    "y":	1.966667,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 8":	{
+                    "key":	"mixed wave 06 object 8",
+                    "x":	9,
+                    "y":	1.966667,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 06 object 9":	{
+                    "key":	"mixed wave 06 object 9",
+                    "x":	10.250000,
+                    "y":	3.100000,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 06 object 10":	{
+                    "key":	"mixed wave 06 object 10",
+                    "x":	15.250000,
+                    "y":	13.500000,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 06 object 11":	{
+                    "key":	"mixed wave 06 object 11",
+                    "x":	20.250000,
+                    "y":	3.100000,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 06 object 12":	{
+                    "key":	"mixed wave 06 object 12",
+                    "x":	25.250000,
+                    "y":	13.500000,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        },
+        "mixed wave 14":	{
+            "key":	"mixed wave 14",
+            "waveEntries":	{
+                "mixed wave 14 object 1":	{
+                    "key":	"mixed wave 14 object 1",
+                    "x":	30,
+                    "y":	14.200000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 14 object 2":	{
+                    "key":	"mixed wave 14 object 2",
+                    "x":	30,
+                    "y":	11.700000,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 14 object 3":	{
+                    "key":	"mixed wave 14 object 3",
+                    "x":	30,
+                    "y":	9.200000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 14 object 4":	{
+                    "key":	"mixed wave 14 object 4",
+                    "x":	30,
+                    "y":	6.700000,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 14 object 5":	{
+                    "key":	"mixed wave 14 object 5",
+                    "x":	30,
+                    "y":	4.100000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "mixed wave 14 object 6":	{
+                    "key":	"mixed wave 14 object 6",
+                    "x":	30,
+                    "y":	1.600000,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                }
+            }
+        },
+        "mixed wave 17":	{
+            "key":	"mixed wave 17",
+            "waveEntries":	{
+                "mixed wave 17 object 1":	{
+                    "key":	"mixed wave 17 object 1",
+                    "x":	1.800000,
+                    "y":	3.633333,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 2":	{
+                    "key":	"mixed wave 17 object 2",
+                    "x":	3.533333,
+                    "y":	14.333334,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 3":	{
+                    "key":	"mixed wave 17 object 3",
+                    "x":	1.500000,
+                    "y":	12.866667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 4":	{
+                    "key":	"mixed wave 17 object 4",
+                    "x":	3.366667,
+                    "y":	1.866667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 5":	{
+                    "key":	"mixed wave 17 object 5",
+                    "x":	28.266666,
+                    "y":	14.200001,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 6":	{
+                    "key":	"mixed wave 17 object 6",
+                    "x":	30,
+                    "y":	12.766666,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 7":	{
+                    "key":	"mixed wave 17 object 7",
+                    "x":	30.100000,
+                    "y":	3.533333,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "mixed wave 17 object 8":	{
+                    "key":	"mixed wave 17 object 8",
+                    "x":	28.533333,
+                    "y":	1.866667,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        }
+    }
+}
