@@ -161,7 +161,7 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
     for (auto pa : actionsToStop){
         switch (pa) {
             case ParticleAction::PULSE:
-//                _pulse_gen->remove_mapping(obj);
+                _pulse_gen->remove_mapping(obj);
                 break;
             case ParticleAction::TRAIL:
                 _trail_gen->remove_character(obj);
@@ -181,10 +181,11 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
     for (auto pa : actionsToStart){
         switch (pa) {
             case ParticleAction::PULSE:
-//                _pulse_gen->add_mapping(obj);
+                _pulse_gen->add_mapping(obj);
                 break;
             case ParticleAction::TRAIL:{
                 _trail_gen->add_character(obj);
+                _trail_gen->start();
                 break;
             }
             case ParticleAction::ZONE:{
@@ -232,7 +233,7 @@ void ParticleController::handleZoneSpawn(GameObject* obj) {
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
     _trail_gen->generate();
 //    _death_gen->generate();
-//    _pulse_gen->generate();
+    _pulse_gen->generate();
 //    _zone_gen->generate();
 }
 
@@ -358,12 +359,12 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     pulsepd.color_duration = -1; // infinite
     pulsepd.scale = true;
     pulsepd.start_scale = 0.05;
-    pulsepd.end_scale = 0.4;
+    pulsepd.end_scale = 1;
     pulsepd.current_scale = 0.05;
     pulsepd.alpha_fade = true;
     pulsepd.start_alpha = 0.5;
     pulsepd.alpha_duration = 120;
-    pulsepd.texture_name = "t_portalcircle";
+    pulsepd.texture_name = "pulse";
     pulsepd.texture = assets->get<Texture>(pulsepd.texture_name);
     
     _particle_map.insert(std::make_pair("blue_trail", pd)); // blue trail
@@ -375,13 +376,12 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _particle_map.insert(std::make_pair("pulse_ring", pulsepd)); // ring
     
     _trail_gen = TrailParticleGenerator::alloc(state, &_particle_map);
-    _trail_gen->start();
     
 //    _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
 //    _death_gen->start();
     
-//    _pulse_gen = PulseParticleGenerator::alloc(state, &_particle_map);
-//    _pulse_gen->start();
+    _pulse_gen = PulseParticleGenerator::alloc(state, &_particle_map);
+    _pulse_gen->start();
     
 //    _zone_gen = ZoneParticleGenerator::alloc(state, &_particle_map);
 //    _zone_gen->start();

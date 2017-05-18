@@ -10,17 +10,13 @@
 
 #include <stdio.h>
 #include "ParticleGenerator.hpp"
+#include "GroupContainer.hpp"
 
 /**
  * Create a pulase in the given locations. Used to indicate spawning enemies.
  */
 class PulseParticleGenerator : public ParticleGenerator {
 private:
-    /**
-     * How many pulses to generate per second
-     */
-    float _pulse_rate;
-    
     /**
      * Frames to wait until the next pulse is fired
      */
@@ -37,19 +33,19 @@ private:
     ParticleData _ringpd;
     
     /**
-     * GameObject -> wrapper
+     * Group allocator
      */
-    std::unordered_map<GameObject*, std::shared_ptr<ParticleWrapper>> _obj_to_wrapper;
-
-    
-    void createPulseParticles(std::set<Particle*>& particle_set);
-    
-    ParticleData randomizeAngle(ParticleData pd);
+    std::shared_ptr<GroupContainer> _groups;
     
     /**
-     * Creates a fresh pulse particle from the template _pd and attaches it to the ParticleNode
+     * GameObject -> group number of the wrapper
      */
-    Particle* createSinglePulse(ParticleData pd);
+    // maybe try changing this to something else if it lags
+    std::unordered_map<GameObject*, int> _obj_to_group_num;
+    
+    void createPulseParticles(Vec2 world_pos, int group_num);
+    
+    ParticleData randomizeAngle(ParticleData pd);
     
     void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     

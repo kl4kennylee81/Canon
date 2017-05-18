@@ -48,7 +48,9 @@ public:
     /** Holds all properties of the particle that are set by a data file */
     ParticleData _pd;
     
-    Particle() {}
+    Particle() {
+        group_num = -1;
+    }
     
     bool init(ParticleData pd);
     
@@ -66,7 +68,7 @@ public:
     
     float findAngularVelocity(float time);
     
-    int group_id;
+    int group_num;
 };
 
 #endif /* defined(__MD_PARTICLE_H__) */

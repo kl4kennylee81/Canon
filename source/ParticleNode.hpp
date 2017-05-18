@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "Particle.h"
+#include "GroupContainer.hpp"
 
 /**
  * A scene graph node for a list of particles.
@@ -26,6 +27,9 @@ private:
     std::shared_ptr<cugl::FreeList<Particle>> _memory;
     
 public:
+    // expose groups passed down from the generator
+    std::shared_ptr<GroupContainer> _groups;
+    
     /**
      * Returns a new ParticleNode with the given texture
      *
@@ -75,6 +79,11 @@ public:
      * Also in charge of freeing the particles that are expired.
      */
     void update();
+    
+    /**
+     * need to peer into the gorup and update the particles based on group settings
+     */
+    void group_update_particles(Particle* particle);
     
     /**
      * need this for rotating the node with custom transformation matrix in the draw.

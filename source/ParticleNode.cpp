@@ -8,24 +8,28 @@
 
 #include "ParticleNode.hpp"
 
-void ParticleNode::addParticle(ParticleData pd, int group_num) {
+void ParticleNode::addParticle(ParticleData pd, int g_num) {
     Particle* particle = _memory->malloc();
     if (particle != nullptr) {
         // set the attributes of the new particle
         particle->init(pd);
-        particle->group_id = group_num;
+        particle->group_num = g_num;
     }
 }
 
 void ParticleNode::update() {
-    std::cout<<"memory size " << _memory->getUsage() << "\n";
     std::set<Particle*> to_remove;
     
     for (int i = 0; i < _memory->_capacity; i++) {
         Particle* particle = &_memory->_prealloc[i];
         
         // skip over ones that have been freed
-        if (!particle->_pd.active) continue;
+        if (!particle->_pd.active) {
+            continue;
+        }
+        
+        // find out the particle groupnum and update the groups
+        group_update_particles(particle);
         
         particle->move();
         
@@ -38,6 +42,19 @@ void ParticleNode::update() {
     for (auto it = to_remove.begin(); it != to_remove.end(); it++) {
         _memory->free((*it));
     }
+}
+
+void ParticleNode::group_update_particles(Particle* particle) {
+    // don't update group if particle doesn't have a group
+    if (particle->group_num < 0) {
+        return;
+    }
+    // find the group
+    Group g = _groups->group_array[particle->group_num];
+    // update position
+    particle->_pd.position = g.global_position;
+    // update active based on group
+    particle->_pd.active = g.alive;
 }
 
 Mat4 ParticleNode::updateTransformLocal(Mat4 combined, float scale, float angle) {
@@ -67,6 +84,12 @@ void ParticleNode::draw(const std::shared_ptr<SpriteBatch>& batch, const Mat4& t
     // loop through the entire memory
     for (int i = 0; i < _memory->_capacity; i++) {
         Particle particle = _memory->_prealloc[i];
+        
+        // if not active, don't draw
+        if (!particle._pd.active) {
+            continue;
+        }
+        
         Mat4 new_transform;
         
         if (particle._pd.scale) {

@@ -9,7 +9,13 @@
 #include <map>
 #include <math.h>
 
+// how many frames to wait until the next pulse
 #define TIMEOUT_FRAMES 100
+// how many pulses to generate per second
+#define PULSE_RATE 7
+// max number of pulse particles
+#define MAX_PARTICLES 1000
+#define MAX_GROUPS 1000
 
 bool PulseParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _particle_map = particle_map;
@@ -22,41 +28,18 @@ bool PulseParticleGenerator::init(std::shared_ptr<GameState> state, std::unorder
     _pulsepartnode->setBlendEquation(GL_FUNC_ADD);
     _pulsepartnode->setPosition(Vec2::ZERO);
     _pulsepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    
+    // important steps
+    _groups = GroupContainer::alloc(MAX_GROUPS);
+    _pulsepartnode->init_memory(MAX_PARTICLES);
+    _pulsepartnode->_groups = _groups;
+    
     state->getWorldNode()->addChild(_pulsepartnode);
     
     // initialize instance variables.
-    _pulse_rate = 7; // pulses per ParticleWrapper
     _timeout = TIMEOUT_FRAMES;
     
     return true;
-}
-
-void PulseParticleGenerator::createPulseParticles(std::set<Particle*>& particle_set) {
-    ParticleData pd = _ringpd; // don't taint the template
-    
-    // how much scale each pulse is separated by
-    float scale_rate = ((float)(pd.end_scale - pd.start_scale)/(_pulse_rate-1));
-    // how much ttl each pulse is separated by
-    float ttl_rate = ceil(((float)pd.ttl)/(_pulse_rate-1));
-    pd.current_scale = pd.start_scale;
-    
-    // create the particles taht are spaced out by a constant amount
-    for (int ii = 0; ii < _pulse_rate; ii++) {
-        Particle* particle = createSinglePulse(pd);
-        particle_set.insert(particle);
-        pd.current_scale += scale_rate; // ones in the outer ring are bigger
-        pd.ttl -= ttl_rate; // ones in the outer ring die sooner
-    }
-}
-
-Particle* PulseParticleGenerator::createSinglePulse(ParticleData pd) {
-//    Particle* particle = _memory->malloc();
-//    if (particle != nullptr) {
-//        particle->init(randomizeAngle(pd)); // init makes a copy of pd
-//        _pulsepartnode->addParticle(particle);
-//    }
-//    return particle;
-    return nullptr;
 }
 
 ParticleData PulseParticleGenerator::randomizeAngle(ParticleData pd) {
@@ -66,61 +49,25 @@ ParticleData PulseParticleGenerator::randomizeAngle(ParticleData pd) {
     return pd;
 }
 
-void PulseParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
-    std::set<Particle*> to_remove;
-    
-    //    if (wrapper->_particle_set.size() < _pulse_rate && _timeout >= TIMEOUT_FRAMES) {
-    //        Particle* particle = createSinglePulse(_pd);
-    //        wrapper->_particle_set.insert(particle);
-    //        _timeout = 0;
-    //    }
-    
-    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
-        Particle* p = *it;
-        
-        // update all particles to be in the position of the wrapper
-        p->_pd.position = wrapper->_global_position;
-//        p->_pd.position += Vec2(20,40);
-        p->move();
-        
-        if (!p->isActive()) {
-            to_remove.insert(p);
-            
-            if (wrapper->_repeat) {
-                // make a brand new particle if we repeat
-                Particle* particle = createSinglePulse(_ringpd);
-                wrapper->_particle_set.insert(particle);
-            }
-        }
-    }
-    
-    // remove from particle_list in the wrapper
-    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-        wrapper->_particle_set.erase(*it);
-    }
-    
-    // this removes it from the actual ParticleNode
-    reset.insert(to_remove.begin(), to_remove.end());
-    
-    _timeout++;
-}
-
 /**
- * Makes a ParticleWrapper in the given location
- * and adds particles to the mapping Location -> ParticleWrapper
+ * Generates a pulse at world_pos and assigns a new group to that pulse.
  */
-//void PulseParticleGenerator::add_particles(cugl::Vec2 location) {
-//    Vec2* location_ptr = new Vec2(location); // temporary
-//    
-//    // create the wrapper
-//    std::set<Particle*> pulse_particles_set;
-//    createPulseParticles(pulse_particles_set);
-//    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(pulse_particles_set, location);
-//    wrapper->setRepeat(true);
-//    
-//    // insert wrapper to location -> wrapper map
-//    _location_to_wrapper.insert(std::make_pair(location_ptr, wrapper));
-//}
+void PulseParticleGenerator::createPulseParticles(Vec2 world_pos, int group_num) {
+    ParticleData pd = _ringpd; // don't taint the template
+    
+    // how much scale each pulse is separated by
+    float scale_rate = ((float)(pd.end_scale - pd.start_scale)/(PULSE_RATE-1));
+    // how much ttl each pulse is separated by
+    float ttl_rate = ceil(((float)pd.ttl)/(PULSE_RATE-1));
+    pd.current_scale = pd.start_scale;
+    
+    // create the particles that are spaced out by a constant amount
+    for (int ii = 0; ii < PULSE_RATE; ii++) {
+        _pulsepartnode->addParticle(randomizeAngle(pd), group_num);
+        pd.current_scale += scale_rate; // ones in the outer ring are bigger
+        pd.ttl -= ttl_rate; // ones in the outer ring die sooner
+    }
+}
 
 void PulseParticleGenerator::add_mapping(GameObject* obj) {
     // don't add pulses on players
@@ -128,55 +75,53 @@ void PulseParticleGenerator::add_mapping(GameObject* obj) {
     
     // this might be the source of the gravity bug?
     Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+    bool repeat = true;
+    
+    // finds the next available group num
+    int group_num = _groups->makeNewGroup(world_pos, repeat);
     
     // create the wrapper
-    std::set<Particle*> pulse_particles_set;
-    createPulseParticles(pulse_particles_set);
-    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(pulse_particles_set, world_pos);
-    wrapper->setRepeat(true);
+    createPulseParticles(world_pos, group_num);
     
     // insert wrapper to object -> wrapper map
-    _obj_to_wrapper.insert(std::make_pair(obj, wrapper));
+    _obj_to_group_num.insert(std::make_pair(obj, group_num));
+    
+    std::cout <<"added mapping\n";
+    
 }
 
 void PulseParticleGenerator::remove_mapping(GameObject* obj) {
-    
     if (obj->getIsPlayer()) return;
     
-    auto wrapper = _obj_to_wrapper.at(obj);
-    for(auto it = wrapper->_particle_set.begin(); it != wrapper->_particle_set.end(); ++it) {
-        Particle* p = *it;
-        _pulsepartnode->removeParticle(p);
-//        _memory->free(p);
-    }
+    // find out what group the object belongs to
+    auto group_num = _obj_to_group_num.at(obj);
     
-    _obj_to_wrapper.erase(obj);
+    // mark this one as done. very important.
+    _groups->group_array[group_num].alive = false;
+//
+    // remove object from the mapping
+    _obj_to_group_num.erase(obj);
+    
+    std::cout <<"removed mapping\n";
 }
 
 /**
  * Goes through all of the ParticleWrapper we have, and calls update on each one of them
  */
 void PulseParticleGenerator::generate() {
-    
     if (!_active) return;
     
-    for (auto it = _obj_to_wrapper.begin(); it != _obj_to_wrapper.end(); it++) {
+    for (auto it = _obj_to_group_num.begin(); it != _obj_to_group_num.end(); it++) {
         GameObject* obj = it->first;
-        std::shared_ptr<ParticleWrapper> wrapper = it->second;
+        int group_num = it->second;
         
-        // sync the position of the wrapper to the character
+        // sync the position of the group to the character
         Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
-        wrapper->_global_position = world_pos;
-        
-        updateWrapper(wrapper, _particles);
+        _groups->group_array[group_num].global_position = world_pos;
     }
     
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Particle* p = *it;
-        _pulsepartnode->removeParticle(p);
-//        _memory->free(p);
-    }
-    _particles.clear();
+    // update every particle in this node
+    _pulsepartnode->update();
 }
 
 
