@@ -6,7 +6,7 @@
                 "tutorial1_move_any",
                 "tutorial1_swipe_other",
                 "tutorial1_cancel_path",
-                "tutorial1_tryCancel",
+                "tutorial1_extraTime",
                 "tutorial1_killRip_modal",
                 "tutorial1_swipe_yellowEnemy",
                 "tutorial1_swipe_blueEnemy",
@@ -24,20 +24,6 @@
         }
     },
     "tutorialSteps": {
-        "tutorial1_tryCancel" : {
-            "start": "IMMEDIATE",
-            "end": "ON_PATH_CANCELED",
-            "UIEntries": [
-                "tutorial1_textbox_bottom",
-                "tutorial1_textbox_tryCancel"
-            ],
-            "startEffects":[
-            ],
-            "endEffects": [
-                "RESUME_SPAWNING"
-            ],
-            "minTime" : 0
-        },
         "tutorial1_draw_path":{
             "start": "IMMEDIATE",
             "end": "ON_PATH_START",
@@ -97,8 +83,8 @@
             }
         },
         "tutorial1_cancel_path":{
-            "start": "IMMEDIATE",
-            "end": "ON_PATH_DRAWN",
+            "start": "ON_PATH_DRAWN",
+            "end": "ON_PATH_CANCELED",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_cancel_path"
@@ -106,19 +92,35 @@
             "startEffects":[
             ],
             "endEffects": [
+                "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
             "minTime" : 120,
             "handMovement":{
                 "uiKey": "tutorial1_multi_tap",
-                "path": "(460,160) (460,180)",
+                "path": "(460,160) (460,190)",
                 "repeat": 1,
-                "speed": 0.5,
-                "cooldown": 50
+                "speed": 0.4,
+                "cooldown": 75
             }
         },
-        "tutorial1_killRip_modal":{
+        "tutorial1_extraTime":{
             "start": "ON_ENEMY_SPAWN",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 75,
+            "hints": ["tutorial1_hitWrongEnemyHint"]
+        },
+        "tutorial1_killRip_modal":{
+            "start": "IMMEDIATE",
             "end": "ON_CLICK",
             "UIEntries": [
                 "tutorial1_gradientDim",
@@ -287,8 +289,8 @@
             "textureKey": "tutorial_textbox_hint", 
             "type": "IMAGE", 
             "width": 0.25, 
-            "x": 0.5, 
-            "y": 0.5
+            "x": 0.7, 
+            "y": 0.13
         }, 
         "tutorial1_one_tap": {
             "height": 0.25, 
@@ -344,7 +346,7 @@
         "tutorial1_cancel_path": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_other", 
-            "textValue": "Cancel paths being drawn with multi tap", 
+            "textValue": "draw a path and then tap with another finger to cancel", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
@@ -371,16 +373,16 @@
             "key": "tutorial1_hitWrongEnemyHint_textLine1", 
             "textValue": "you used the wrong", 
             "type": "TEXT", 
-            "x": 0.625, 
-            "y": 0.65
+            "x": 0.825, 
+            "y": 0.275
         },
         "tutorial1_hitWrongEnemyHint_textline2" : {
             "fontKey": "hint_font", 
             "key": "tutorial1_hitWrongEnemyHint_textLine2", 
             "textValue": "character to attack", 
             "type": "TEXT", 
-            "x": 0.625, 
-            "y": 0.60
+            "x": 0.825, 
+            "y": 0.225
         },
         "tutorial1_swipe_yellowEnemy" : {
             "fontKey": "bottom_font", 
@@ -461,21 +463,6 @@
             "width": 0.15, 
             "x": 0.10, 
             "y": 0.675
-        },
-        "tutorial1_textbox_tryCancel" : {
-            "fontKey": "bottom_font", 
-            "key": "tutorial1_slowTime", 
-            "textValue": "Draw a path and cancel it", 
-            "type": "TEXT", 
-            "x": 0.5, 
-            "y": 0.075,
-            "handMovement":{
-                "uiKey": "tutorial1_multi_tap",
-                "path": "(460,160) (460,180)",
-                "repeat": 1,
-                "speed": 0.5,
-                "cooldown": 50
-            }
         }
     }
 }

@@ -3,8 +3,7 @@
         "rapidSpawn": {
             "stepKeys": [
                 "rapidSpawn_health_modal",
-                "rapidSpawn_health_hint",
-                "rapidSpawn_twoHealth_hint"
+                "rapidSpawn_health_hint"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
