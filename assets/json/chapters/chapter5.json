@@ -1,0 +1,24 @@
+{
+    "ChapterSelectData": {
+        "chapter05": {
+            "chapterKey": "chapter05",
+            "name": "The Girl and the Moon",
+            "levels": [
+                       "level51",
+                       "level52"
+                       ]
+        }
+    },
+    "LevelSelectData": {
+        "level51": {
+            "name": "Boss1",
+            "key": "level51",
+            "levelKey": "boss1"
+        },
+        "level52": {
+            "name": "Boss2",
+            "key": "level52",
+            "levelKey": "boss2"
+        }
+    }
+}

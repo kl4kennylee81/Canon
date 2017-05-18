@@ -9,12 +9,12 @@
                 "blobos wave 14":	{
                     "key":	"blobos wave 14",
                     "waveKey":	"blobos wave 14",
-                    "time":	460
+                    "time":	600
                 },
                 "blobos wave 17":	{
                     "key":	"blobos wave 17",
                     "waveKey":	"blobos wave 17",
-                    "time":	330
+                    "time":	570
                 },
                 "blobos wave 18":	{
                     "key":	"blobos wave 18",
@@ -117,96 +117,72 @@
             "waveEntries":	{
                 "blobos wave 17 object 1":	{
                     "key":	"blobos wave 17 object 1",
-                    "x":	18.833334,
-                    "y":	8.500000,
+                    "x":	25.566668,
+                    "y":	7.900000,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 2":	{
                     "key":	"blobos wave 17 object 2",
-                    "x":	11.566667,
-                    "y":	8.700000,
+                    "x":	15.366667,
+                    "y":	8.033334,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 3":	{
                     "key":	"blobos wave 17 object 3",
-                    "x":	5.100000,
-                    "y":	8.500000,
+                    "x":	5.500000,
+                    "y":	8.233333,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 4":	{
                     "key":	"blobos wave 17 object 4",
-                    "x":	4.966667,
-                    "y":	13.333334,
+                    "x":	5.500000,
+                    "y":	12.900000,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 5":	{
                     "key":	"blobos wave 17 object 5",
-                    "x":	11.400000,
-                    "y":	13.166666,
+                    "x":	15.266666,
+                    "y":	12.833333,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 6":	{
                     "key":	"blobos wave 17 object 6",
-                    "x":	18.733334,
-                    "y":	13.100000,
+                    "x":	25.666666,
+                    "y":	12.633333,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 7":	{
                     "key":	"blobos wave 17 object 7",
-                    "x":	5.033333,
-                    "y":	3.333333,
+                    "x":	5.533333,
+                    "y":	3.066667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 8":	{
                     "key":	"blobos wave 17 object 8",
-                    "x":	11.566667,
-                    "y":	3.366666,
+                    "x":	15.500000,
+                    "y":	3.233334,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 17 object 9":	{
                     "key":	"blobos wave 17 object 9",
-                    "x":	18.633333,
-                    "y":	3.500000,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "blobos wave 17 object 10":	{
-                    "key":	"blobos wave 17 object 10",
-                    "x":	25.766666,
-                    "y":	3.233334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "blobos wave 17 object 11":	{
-                    "key":	"blobos wave 17 object 11",
-                    "x":	25.666666,
-                    "y":	13.233334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "blobos wave 17 object 12":	{
-                    "key":	"blobos wave 17 object 12",
-                    "x":	25.866667,
-                    "y":	8.500000,
+                    "x":	25.633333,
+                    "y":	3.033333,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
@@ -218,79 +194,79 @@
             "waveEntries":	{
                 "blobos wave 18 object 1":	{
                     "key":	"blobos wave 18 object 1",
-                    "x":	14.666667,
-                    "y":	11.833334,
+                    "x":	15.633333,
+                    "y":	11.900000,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 2":	{
                     "key":	"blobos wave 18 object 2",
-                    "x":	29.299999,
-                    "y":	1.266667,
+                    "x":	31.033333,
+                    "y":	1.500000,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 3":	{
                     "key":	"blobos wave 18 object 3",
-                    "x":	2.033333,
-                    "y":	14.500000,
+                    "x":	0.966666,
+                    "y":	14.433332,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 4":	{
                     "key":	"blobos wave 18 object 4",
-                    "x":	2.266666,
-                    "y":	10.333333,
+                    "x":	1,
+                    "y":	10.400000,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 5":	{
                     "key":	"blobos wave 18 object 5",
-                    "x":	2.266666,
-                    "y":	6.200000,
+                    "x":	0.966666,
+                    "y":	6.300000,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 6":	{
                     "key":	"blobos wave 18 object 6",
-                    "x":	2.300000,
-                    "y":	1.900000,
+                    "x":	1.033333,
+                    "y":	1.966667,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 7":	{
                     "key":	"blobos wave 18 object 7",
-                    "x":	14.633333,
-                    "y":	14.600000,
+                    "x":	15.633333,
+                    "y":	14.400000,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 8":	{
                     "key":	"blobos wave 18 object 8",
-                    "x":	14.633333,
-                    "y":	9.233334,
+                    "x":	15.600000,
+                    "y":	9.366667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 9":	{
                     "key":	"blobos wave 18 object 9",
-                    "x":	14.666667,
-                    "y":	6.600000,
+                    "x":	15.600000,
+                    "y":	6.766666,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 10":	{
                     "key":	"blobos wave 18 object 10",
-                    "x":	14.600000,
+                    "x":	15.566667,
                     "y":	4.166667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
@@ -298,32 +274,32 @@
                 },
                 "blobos wave 18 object 11":	{
                     "key":	"blobos wave 18 object 11",
-                    "x":	14.666667,
-                    "y":	1.566667,
+                    "x":	15.500000,
+                    "y":	1.533334,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 12":	{
                     "key":	"blobos wave 18 object 12",
-                    "x":	29.366667,
-                    "y":	14.700001,
+                    "x":	31.100000,
+                    "y":	14.466666,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 13":	{
                     "key":	"blobos wave 18 object 13",
-                    "x":	29.333334,
-                    "y":	10.500000,
+                    "x":	30.966667,
+                    "y":	10.333333,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "blobos wave 18 object 14":	{
                     "key":	"blobos wave 18 object 14",
-                    "x":	29.200001,
-                    "y":	6.166667,
+                    "x":	30.933332,
+                    "y":	6.033334,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"

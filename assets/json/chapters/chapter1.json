@@ -5,13 +5,11 @@
             "name": "The Girl and the Firefly",
             "levels": [
                 "tutorial01",
-                "level01",
-                "level02",
-                "level03",
-                "level04",
-                "level05",
-                "level06",
-                "level07"
+                "level11",
+                "level12",
+                "level13",
+                "level14",
+                "level15"
             ]
         }
     },
@@ -21,40 +19,30 @@
             "levelKey": "tutorial01",
             "name": "tutorial01"
         },
-        "level01": {
-            "key": "level01",
+        "level11": {
+            "key": "level11",
             "levelKey": "rapidSpawn",
             "name": "rapidSpawn"
         },
-        "level02": {
-            "key": "level02",
+        "level12": {
+            "key": "level12",
             "levelKey": "separation",
             "name": "separation"
         },
-        "level03": {
-            "key": "level03",
+        "level13": {
+            "key": "level13",
             "levelKey": "precision",
             "name": "precision"
         },
-        "level04": {
+        "level14": {
             "name": "The xx",
-            "key": "level04",
+            "key": "level14",
             "levelKey": "xxxxxx"
         },
-        "level05": {
+        "level15": {
             "name": "Blobos",
-            "key": "level05",
+            "key": "level15",
             "levelKey": "blobos"
-        },
-        "level06": {
-            "key": "level06",
-            "levelKey": "overlap",
-            "name": "overlap"
-        },
-        "level07": {
-            "key": "level07",
-            "levelKey": "interweave",
-            "name": "Weave"
         }
     }
 }

@@ -51,6 +51,12 @@ void ClockController::eventUpdate(Event* e) {
                     GameState::_internalClock->setTimeDilation(1);
                     break;
                 }
+                case PathEvent::PathEventType::CANCELLED:
+                {
+                    // Player is done drawing
+                    GameState::_internalClock->setTimeDilation(1);
+                    break;
+                }
             }
             break;
         }

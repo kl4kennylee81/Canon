@@ -166,6 +166,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		_path->clear();
 		_wasPressed = false;
 		_pathSceneNode->removeAllChildren();
+        std::shared_ptr<PathCancelled> drawEvent = PathCancelled::alloc();
+        notify(drawEvent.get());
 		return;
 	}
     

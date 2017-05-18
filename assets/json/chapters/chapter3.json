@@ -1,0 +1,24 @@
+{
+    "ChapterSelectData": {
+        "chapter03": {
+            "chapterKey": "chapter03",
+            "name": "The Girl and the Fesh",
+            "levels": [
+                       "level31",
+                       "level32"
+                       ]
+        }
+    },
+    "LevelSelectData": {
+        "level31": {
+            "key": "level31",
+            "levelKey": "squareLaser",
+            "name": "Lasers"
+        },
+        "level32": {
+            "key": "level32",
+            "levelKey": "lure",
+            "name": "Lure"
+        }
+    }
+}
