@@ -58,7 +58,7 @@
           "startingAngle": 0.0,
           "angleVariance": 60,
           "numberShots": 5,
-          "cooldown": 200,
+          "cooldown": 175,
           "velocity": 3.0,
           "target": "true",
           "element": "OPPOSITE"
