@@ -144,7 +144,7 @@ static std::string transitionToStr(TutorialTransition trans){
     if (trans == TutorialTransition::IMMEDIATE) {
         return "IMMEDIATE";
     }
-    if (trans == TutorialTransition::ON_PATH_CANCEL){
+    if (trans == TutorialTransition::ON_PATH_CANCELED){
         return "ON_PATH_CANCELED";
     }
     return "";

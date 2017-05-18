@@ -53,6 +53,12 @@ void TutorialController::eventUpdate(Event* e) {
                     case PathEvent::PathEventType::DRAWING:
                     {
                         checkTransitionCondition(TutorialTransition::ON_PATH_START);
+                        break;
+                    }
+                    case PathEvent::PathEventType::CANCELLED:
+                    {
+                        checkTransitionCondition(TutorialTransition::ON_PATH_CANCELED);
+                        break;
                     }
                     default:
                     {
@@ -195,6 +201,11 @@ void TutorialController::updateConditions(std::shared_ptr<GameState> state){
     
     /** check any immediate condition to go off */
     checkTransitionCondition(TutorialTransition::IMMEDIATE);
+    
+    /** check condition for enemy cleared if no enemies are in the state and it is state tutorial paused */
+    if (state->getGameplayState() == GameplayState::TUTORIAL_PAUSE && state->getEnemyObjects().size() <= 0){
+        checkTransitionCondition(TutorialTransition::ON_ENEMY_CLEARED);
+    }
 }
 
 void TutorialController::updateHint(std::shared_ptr<GameState> state){

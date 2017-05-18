@@ -6,7 +6,14 @@
                 "tutorial1_move_any",
                 "tutorial1_swipe_other",
                 "tutorial1_cancel_path",
-                "tutorial1_killRip_modal"
+                "tutorial1_tryCancel",
+                "tutorial1_killRip_modal",
+                "tutorial1_swipe_yellowEnemy",
+                "tutorial1_swipe_blueEnemy",
+                "tutorial1_progressBar",
+                "tutorial1_spawnCircles",
+                "tutorial1_defeatEnemies",
+                "tutorial1_slowTime"
             ],
             "fontMap" : {
                 "hint_font" : "Museo300-Regular_24",
@@ -17,6 +24,20 @@
         }
     },
     "tutorialSteps": {
+        "tutorial1_tryCancel" : {
+            "start": "IMMEDIATE",
+            "end": "ON_PATH_CANCELED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_textbox_tryCancel"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "minTime" : 0
+        },
         "tutorial1_draw_path":{
             "start": "IMMEDIATE",
             "end": "ON_PATH_START",
@@ -77,25 +98,23 @@
         },
         "tutorial1_cancel_path":{
             "start": "IMMEDIATE",
-            "end": "ON_PATH_DRAWN",
+            "end": "IMMEDIATE",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_cancel_path"
             ],
             "startEffects":[
-                "PAUSE_SPAWNING"
             ],
             "endEffects": [
-                "RESUME_SPAWNING"
             ],
             "menuBackgroundKey": "",
-            "minTime" : 0,
+            "minTime" : 180,
             "handMovement":{
                 "uiKey": "tutorial1_multi_tap",
                 "path": "(460,160) (460,180)",
                 "repeat": 1,
-                "speed": 1.0,
-                "cooldown": 20
+                "speed": 0.5,
+                "cooldown": 60
             }
         },
         "tutorial1_killRip_modal":{
@@ -113,7 +132,126 @@
                 "RESUME_GAME"
             ],
             "menuBackgroundKey": "",
+            "minTime" : 120,
+            "hints": ["tutorial1_hitWrongEnemyHint"]
+        },
+        "tutorial1_swipe_yellowEnemy" : {
+            "start": "IMMEDIATE",
+            "end": "ON_ENEMY_CLEARED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_swipe_yellowEnemy"
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 120,
+            "handMovement":{
+                "uiKey": "tutorial1_one_tap",
+                "path": "(775,125) (850,225)",
+                "repeat": 1,
+                "speed": 1.5,
+                "cooldown": 60
+            }
+        },
+        "tutorial1_swipe_blueEnemy":{
+            "start": "IMMEDIATE",
+            "end": "ON_ENEMY_CLEARED",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_swipe_blueEnemy"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 120,
+            "handMovement":{
+                "uiKey": "tutorial1_one_tap",
+                "path": "(250,200) (150,100)",
+                "repeat": 1,
+                "speed": 1.5,
+                "cooldown": 60
+            }
+        },
+        "tutorial1_hitWrongEnemyHint":{
+            "start": "ON_PLAYER_HIT",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+                "tutorial1_textbox_hint",
+                "tutorial1_hitWrongEnemyHint_textline1",
+                "tutorial1_hitWrongEnemyHint_textline2"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 150,
+            "hints": []
+        },
+        "tutorial1_progressBar" : {
+            "start": "IMMEDIATE",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "tutorial1_textbox_progressBar",
+                "tutorial1_progressBarline1",
+                "tutorial1_progressBarline2",
+                "tutorial1_progressBarline3",
+                "tutorial1_textbox_progressBarConfirm"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "minTime" : 0
+        },
+        "tutorial1_spawnCircles" : {
+            "start": "ON_ENEMY_SPAWNING",
+            "end": "ON_ENEMY_SPAWN",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_spawnCircles"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 150
+        },
+        "tutorial1_defeatEnemies" : {
+            "start": "IMMEDIATE",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_defeatEnemies"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
             "minTime" : 120
+        },
+        "tutorial1_slowTime" : {
+            "start": "ON_PATH_START",
+            "end": "ON_PATH_DRAWN",
+            "UIEntries": [
+                "tutorial1_textbox_bottom",
+                "tutorial1_slowTime"
+            ],
+            "startEffects":[
+            ],
+            "endEffects": [
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 240
         }
     },
     "UIData": {
@@ -217,6 +355,118 @@
             "width": 0.8, 
             "x": 0.1, 
             "y": 0.125
+        },
+        "tutorial1_swipe_blueEnemy": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_swipe_other", 
+            "textValue": "Now try defeating the blue enemy", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_hitWrongEnemyHint_textline1" : {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_hitWrongEnemyHint_textLine1", 
+            "textValue": "you used the wrong", 
+            "type": "TEXT", 
+            "x": 0.625, 
+            "y": 0.65
+        },
+        "tutorial1_hitWrongEnemyHint_textline2" : {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_hitWrongEnemyHint_textLine2", 
+            "textValue": "character to attack", 
+            "type": "TEXT", 
+            "x": 0.625, 
+            "y": 0.60
+        },
+        "tutorial1_swipe_yellowEnemy" : {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_swipe_yellowEnemy", 
+            "textValue": "draw a path with yellow through the yellow enemy", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_spawnCircles" : {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_spawnCricles", 
+            "textValue": "Watch out for spawning enemies", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_defeatEnemies" : {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_defeatEnemies", 
+            "textValue": "defeat the enemies!", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_slowTime" : {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_slowTime", 
+            "textValue": "Time slows when drawing a path", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
+        "tutorial1_textbox_progressBar" : {
+            "height": 0.24, 
+            "key": "tutorial1_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.05, 
+            "y": 0.75
+        },
+        "tutorial1_progressBarline1" : {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_progressBarline1", 
+            "textValue": "progress bar shows", 
+            "type": "TEXT", 
+            "x": 0.175, 
+            "y": 0.925
+        },
+        "tutorial1_progressBarline2" : {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_progressBarline2", 
+            "textValue": "progress through", 
+            "type": "TEXT", 
+            "x": 0.175, 
+            "y": 0.875
+        },
+        "tutorial1_progressBarline3" : {
+            "fontKey": "hint_font", 
+            "key": "tutorial1_progressBarline2", 
+            "textValue": "the level", 
+            "type": "TEXT", 
+            "x": 0.175, 
+            "y": 0.825
+        },
+        "tutorial1_textbox_progressBarConfirm" : {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "hint_font", 
+            "height": 0.1, 
+            "key": "tutorial1_textbox_progressBarConfirm", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.10, 
+            "y": 0.675
+        },
+        "tutorial1_textbox_tryCancel" : {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_slowTime", 
+            "textValue": "Draw a path and cancel it", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
         }
     }
 }
