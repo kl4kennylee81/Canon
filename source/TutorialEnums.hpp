@@ -19,6 +19,7 @@ enum class TutorialTransition : int {
     // path controller
     ON_PATH_DRAWN,
     ON_PATH_START,
+    ON_PATH_CANCELED,
     // collision controller
     ON_ENEMY_CLEARED,
     ON_PLAYER_HIT,
@@ -81,6 +82,9 @@ static std::string tutorialEffectToStr (TutorialEffect effect){
 }
 
 static TutorialTransition strToTransition(std::string trans){
+    if (trans == "ON_PATH_CANCELED"){
+        return TutorialTransition::ON_PATH_CANCELED;
+    }
     if (trans == "ON_MOVE_FINISHED"){
         return TutorialTransition::ON_MOVE_FINISHED;
     }
@@ -139,6 +143,9 @@ static std::string transitionToStr(TutorialTransition trans){
     }
     if (trans == TutorialTransition::IMMEDIATE) {
         return "IMMEDIATE";
+    }
+    if (trans == TutorialTransition::ON_PATH_CANCEL){
+        return "ON_PATH_CANCELED";
     }
     return "";
 }
