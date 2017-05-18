@@ -94,6 +94,9 @@ void MenuController::update(float timestep) {
         if (button == nullptr){
             continue;
         }
+        
+        // if its a button reset its press down
+        button->setDown(false);
 
         // we need to check if the button is currently being pressed down
         Vec2 curVec = InputController::getInputVector();
