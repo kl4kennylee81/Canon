@@ -468,7 +468,14 @@
             "textValue": "Draw a path and cancel it", 
             "type": "TEXT", 
             "x": 0.5, 
-            "y": 0.075
+            "y": 0.075,
+            "handMovement":{
+                "uiKey": "tutorial1_multi_tap",
+                "path": "(460,160) (460,180)",
+                "repeat": 1,
+                "speed": 0.5,
+                "cooldown": 50
+            }
         }
     }
 }
