@@ -1,0 +1,70 @@
+{
+    "tutorialLevels": {
+        "overlap": {
+            "stepKeys": [
+                "overlap_zone_modal"
+            ],
+            "fontMap" : {
+                "hint_font" : "Museo300-Regular_24",
+                "bottom_font" : "Museo300-Regular_32"
+            },
+            "levelKey": "tutorial1",
+            "key": "tutorial1"
+        }
+    },
+    "tutorialSteps": {
+        "overlap_zone_modal":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "overlap_gradientDim",
+                "overlap_zone_modal",
+                "overlap_hintCheckButton"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 0,
+            "hints": []
+        }
+    },
+    "UIData": {
+        "overlap_gradientDim": {
+            "height": 1.0, 
+            "key": "tutorial1_gradientDim", 
+            "textureKey": "tutorial_gradientDim", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "overlap_hintCheckButton": {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "bottom_font", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.425, 
+            "y": 0.125
+        },
+        "overlap_zone_modal": {
+            "height": 0.75, 
+            "key": "tutorial1_zone_modal", 
+            "textureKey": "zone_intro", 
+            "type": "IMAGE", 
+            "width": 0.8, 
+            "x": 0.1, 
+            "y": 0.125
+        }
+    }
+}

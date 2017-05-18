@@ -1,0 +1,70 @@
+{
+    "tutorialLevels": {
+        "squareLaser": {
+            "stepKeys": [
+                "squareLaser_fesh_modal"
+            ],
+            "fontMap" : {
+                "hint_font" : "Museo300-Regular_24",
+                "bottom_font" : "Museo300-Regular_32"
+            },
+            "levelKey": "tutorial1",
+            "key": "tutorial1"
+        }
+    },
+    "tutorialSteps": {
+        "squareLaser_fesh_modal":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "squareLaser_gradientDim",
+                "squareLaser_fesh_modal",
+                "squareLaser_hintCheckButton"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 0,
+            "hints": []
+        }
+    },
+    "UIData": {
+        "squareLaser_gradientDim": {
+            "height": 1.0, 
+            "key": "tutorial1_gradientDim", 
+            "textureKey": "tutorial_gradientDim", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "squareLaser_hintCheckButton": {
+            "buttonAction": {
+                "buttonTarget": "", 
+                "nextScreen": "", 
+                "type": ""
+            }, 
+            "buttonLabel": "Continue", 
+            "fontKey": "bottom_font", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.425, 
+            "y": 0.125
+        },
+        "squareLaser_fesh_modal": {
+            "height": 0.75, 
+            "key": "tutorial1_fesh_modal", 
+            "textureKey": "fesh_zones", 
+            "type": "IMAGE", 
+            "width": 0.8, 
+            "x": 0.1, 
+            "y": 0.125
+        }
+    }
+}

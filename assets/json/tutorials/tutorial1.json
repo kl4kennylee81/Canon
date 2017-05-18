@@ -98,7 +98,7 @@
         },
         "tutorial1_cancel_path":{
             "start": "IMMEDIATE",
-            "end": "IMMEDIATE",
+            "end": "ON_PATH_DRAWN",
             "UIEntries": [
                 "tutorial1_textbox_bottom",
                 "tutorial1_cancel_path"
@@ -108,7 +108,7 @@
             "endEffects": [
             ],
             "menuBackgroundKey": "",
-            "minTime" : 150,
+            "minTime" : 120,
             "handMovement":{
                 "uiKey": "tutorial1_multi_tap",
                 "path": "(460,160) (460,180)",

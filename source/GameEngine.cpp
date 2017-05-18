@@ -6,6 +6,23 @@
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
+#ifdef _WIN32
+#define CURRENT_OS "windows"
+#define TEMPLATE_PATH "json\\templates\\"
+#define LEVEL_PATH "json\\fullLevels\\"
+#define MENU_PATH "json\\menus\\"
+#define CHAPTER_PATH "json\\chapters\\"
+#define TUTORIAL_PATH "json\\tutorials\\"
+#elif __APPLE__
+#define CURRENT_OS "apple"
+#define TEMPLATE_PATH "json/templates/"
+#define LEVEL_PATH "json/fullLevels/"
+#define MENU_PATH "json/menus/"
+#define CHAPTER_PATH "json/chapters/"
+#define TUTORIAL_PATH "json/tutorials/"
+#include <dirent.h>
+#endif
+
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "SaveData.hpp";
@@ -156,16 +173,13 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
-	_assets->loadDirectory("json/randomMenuAssets.json");
-    
-    _assets->loadDirectory("json/tutorials/tutorial1.json");
-    
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;
     std::string levelDir = assetDir + LEVEL_PATH;
 	std::string menuDir = assetDir + MENU_PATH;
 	std::string chapterDir = assetDir + CHAPTER_PATH;
+    std::string tutorialDir = assetDir + TUTORIAL_PATH;
     
     //load all template wave entries
 
@@ -174,11 +188,13 @@ void GameEngine::onStartup() {
     loadFilesWindows(_assets, levelDir, LEVEL_PATH);
 	loadFilesWindows(_assets, menuDir, MENU_PATH);
 	loadFilesWindows(_assets, chapterDir, CHAPTER_PATH);
+    loadFilesWindows(_assets, tutorialDir, TUTORIAL_PATH);
 	#elif __APPLE__
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);
 	loadFilesApple(_assets, menuDir, MENU_PATH);
 	loadFilesApple(_assets, chapterDir, CHAPTER_PATH);
+    loadFilesApple(_assets, tutorialDir, TUTORIAL_PATH);
 	#endif
     
     // Activate mouse or touch screen input as appropriate
