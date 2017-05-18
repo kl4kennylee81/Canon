@@ -120,18 +120,18 @@
         },
         "separation_textbox_twoHealthConfirm" : {
             "buttonAction": {
-                "buttonTarget": "", 
-                "nextScreen": "", 
-                "type": ""
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
             }, 
-            "buttonLabel": "Continue", 
-            "fontKey": "hint_font", 
-            "height": 0.1, 
-            "key": "separation_textbox_twoHealthConfirm", 
+            "height": 0.13, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
             "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.50, 
-            "y": 0.025
+            "width": 0.075, 
+            "x": 0.65, 
+            "y": 0.05
         }
     }
 }
