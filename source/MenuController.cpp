@@ -93,6 +93,12 @@ void MenuController::update(float timestep) {
         if (button == nullptr){
             continue;
         }
+
+		Vec2 curVec = InputController::getInputVector();
+
+		if (!button->containsScreen(curVec)) {
+			button->setDown(true);
+		}
         
         Vec2 vec = InputController::getPrevVector();
         
@@ -100,6 +106,8 @@ void MenuController::update(float timestep) {
         if (!button->containsScreen(vec)){
             continue;
         }
+
+		button->setDown(false);
         
         // execute the appropriate action
         switch(uiElement->getAction()->type){

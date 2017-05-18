@@ -31,6 +31,7 @@
     "UIData": {
         "pauseMenu_LevelButton": {
             "buttonAction": {
+                "active": "pauseMenu_glow", 
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "levelSelect", 
                 "type": "modeChange"
@@ -46,6 +47,7 @@
         }, 
         "pauseMenu_RetryButton": {
             "buttonAction": {
+                "active": "pauseMenu_glow", 
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
@@ -91,8 +93,18 @@
             "x": 0.4146672702580353, 
             "y": 0.18599033816425117
         }, 
+        "pauseMenu_glow": {
+            "height": 0.4341384863123994, 
+            "key": "pauseMenu_glow", 
+            "textureKey": "pauseMenu_homeglow", 
+            "type": "IMAGE", 
+            "width": 0.24368492530556812, 
+            "x": 0.5958352195563603, 
+            "y": 0.30080515297906607
+        }, 
         "pauseMenu_homeButton2": {
             "buttonAction": {
+                "active": "pauseMenu_glow", 
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
@@ -204,6 +216,7 @@
         }, 
         "pauseMenu_resumeButton": {
             "buttonAction": {
+                "active": "pauseMenu_glow", 
                 "fxKey": "RESUME", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
