@@ -55,7 +55,7 @@
             "type": "BUTTON", 
             "width": 0.15, 
             "x": 0.425, 
-            "y": 0.125
+            "y": 0.075
         },
         "squareLaser_fesh_modal": {
             "height": 0.75, 
