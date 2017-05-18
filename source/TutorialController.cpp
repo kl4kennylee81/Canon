@@ -308,7 +308,7 @@ bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<
     }
     
     // TODO 5 is a magic number just to get it to the front of the screen right now
-    state->getScene()->addChild(_tutorialNode,5);
+    state->getGameplayNode()->addChild(_tutorialNode,5);
     return true;
 }
 
