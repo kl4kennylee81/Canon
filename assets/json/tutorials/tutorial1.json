@@ -116,7 +116,7 @@
                 "RESUME_GAME"
             ],
             "menuBackgroundKey": "",
-            "minTime" : 75,
+            "minTime" : 30,
             "hints": ["tutorial1_hitWrongEnemyHint"]
         },
         "tutorial1_killRip_modal":{
