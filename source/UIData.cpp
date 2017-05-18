@@ -52,7 +52,17 @@ std::shared_ptr<cugl::Node> ButtonUIData::dataToNode(std::shared_ptr<GenericAsse
 
 	if (uiBackgroundKey != "") {
 		auto buttonTexture = PolygonNode::allocWithTexture(assets->get<Texture>(uiBackgroundKey));
-		button = Button::alloc(buttonTexture);
+
+		if (buttonAction->active != "") {
+			auto buttonDownNode = assets->get<UIData>(buttonAction->active)->dataToNode(assets, fontMap);
+
+			buttonDownNode->addChild(buttonTexture); 
+			button = Button::alloc(buttonTexture, buttonDownNode);
+		}
+		else {
+			button = Button::alloc(buttonTexture);
+		}
+		
         button->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         button->setPosition(Vec2(this->x * GAME_SCENE_WIDTH, this->y * Util::getGameSceneHeight()));
         

@@ -161,7 +161,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     //}
 
 	// clear path on two finger touch
-	if (InputController::getDoubleTouch()) {
+    if (InputController::getDoubleTouch() && controllerState != PathControllerState::IDLE) {
         controllerState = IDLE;
 		_path->clear();
 		_wasPressed = false;
