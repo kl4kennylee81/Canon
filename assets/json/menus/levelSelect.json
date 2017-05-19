@@ -5,8 +5,7 @@
                 "levelSelect_backarrow", 
                 "levelSelect_rightarrow", 
                 "levelSelect_plainhomeicon", 
-                "levelSelect_homeglow1",
-                "MenubackToLevelEditor"
+                "levelSelect_homeglow1"
             ], 
             "fontMap": {
                 "menu_body_font": "Museo300-Regular_16", 
@@ -17,21 +16,6 @@
         }
     }, 
     "UIData": {
-        "MenubackToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
-            }, 
-            "buttonLabel": "Level Edit", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "MenubackToLevelEditor", 
-            "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.3
-        }, 
         "levelLabelText": {
             "fontKey": "menu_body_font", 
             "height": 0.17, 
