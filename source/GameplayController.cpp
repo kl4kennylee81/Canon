@@ -9,6 +9,7 @@
 #include "GameplayController.hpp"
 #include "MenuEvent.hpp"
 #include "FinishEvent.hpp"
+#include "MenuController.hpp"
 
 using namespace cugl;
 
@@ -61,6 +62,26 @@ void GameplayController::eventUpdate(Event* e) {
                     _gameState->toggleReset();
                     break;
                 }
+				case MenuEvent::MenuEventType::NEXTLEVEL:
+				{
+					// possible refactor includes puttign this logic into gameplaycontroller instead
+					std::shared_ptr<LevelData> ld = _levelController->getWorld()->getLevelData();
+					std::string ldkey = ld->key;
+					std::pair<std::string, int> info = MenuController::getNextLevelInfo(ldkey, _ultimateMap, getWorld()->getAssetManager());
+					
+					if (info.first == "") {
+						// handle when there is no next level
+						break;
+					}
+					std::shared_ptr<LevelData> nextld = getWorld()->getAssetManager()->get<LevelData>(info.first);
+					_paused = false;
+
+					_levelController->getWorld()->init(_levelController->getWorld()->getAssetManager(), nextld);
+					std::shared_ptr<Scene> s = _gameState->getScene();
+					std::shared_ptr<World> w = _levelController->getWorld();
+					dispose();
+					init(s, w);
+				}
 
 			}
 			break;
@@ -229,6 +250,8 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_paused = false;
 
     activate();
+
+	MenuController::createLevelNameUltimateMap(_ultimateMap, getWorld()->getAssetManager());
     
 	return true;
 }

@@ -97,7 +97,7 @@ class FxTriggerButtonAction : public ButtonAction {
 public:
     
     enum class FXType : int {
-        PAUSE, RESUME, RETRY, SWITCH_CHAPTER, NONE
+        PAUSE, RESUME, RETRY, SWITCH_CHAPTER, NONE, NEXTLEVEL
     };
 
     FXType fxKey;
@@ -108,6 +108,7 @@ public:
         if (event == "PAUSE") return FXType::PAUSE;
         if (event == "RESUME") return FXType::RESUME;
         if (event == "RETRY") return FXType::RETRY;
+		if (event == "NEXTLEVEL") return FXType::NEXTLEVEL;
 		if (event == "SWITCH_CHAPTER") return FXType::SWITCH_CHAPTER;
         return FXType::NONE;
     }
