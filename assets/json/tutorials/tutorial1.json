@@ -105,7 +105,7 @@
             }
         },
         "tutorial1_extraTime":{
-            "start": "ON_ENEMY_SPAWN",
+            "start": "ON_ENEMY_SPAWNING",
             "end": "IMMEDIATE",
             "UIEntries": [
             ],

@@ -284,6 +284,7 @@ void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::
 }
 
 /** update when step ends */
+
 void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
     // its reset and will be active after resetting
     if (!_isActive && !step->getStepData()->getActiveReset()){
