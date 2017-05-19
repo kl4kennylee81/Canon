@@ -29,6 +29,8 @@ private:
     
     std::vector<std::string> _hintKeys; // hints are just other tutorialStepData
     
+    bool _activeWhenReset; // active after resetting
+    
 public:
     
     std::string menuBackgroundKey; // replace the background for narrative start screens
@@ -39,7 +41,8 @@ public:
     TutorialStepData():
     Data(),
     _minTime(0),
-    _handMovement(nullptr){};
+    _handMovement(nullptr),
+    _activeWhenReset(false){};
     
     ~TutorialStepData(){
         dispose();
@@ -60,7 +63,8 @@ public:
               std::vector<TutorialEffect> endEffects,
               float minTime,
               std::shared_ptr<HandMovementComponent> hmovement,
-              std::vector<std::string> hintKeys) {
+              std::vector<std::string> hintKeys,
+              bool activeWhenReset) {
         menuBackgroundKey = mbKey;
         _uiEntryKeys = keys;
         _startCondition = start;
@@ -70,6 +74,7 @@ public:
         _minTime = minTime;
         _handMovement = hmovement;
         _hintKeys = hintKeys;
+        _activeWhenReset = activeWhenReset;
         
         return true;
     }
