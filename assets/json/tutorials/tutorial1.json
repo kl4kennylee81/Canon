@@ -346,7 +346,7 @@
         "tutorial1_cancel_path": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_other", 
-            "textValue": "draw a path and then tap with another finger to cancel", 
+            "textValue": "draw a path and while drawing tap with another finger to cancel", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075

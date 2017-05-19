@@ -10,7 +10,7 @@
 #include "Util.hpp"
 
 #define PARTICLE_NUM 2
-#define MAX_PARTICLES 500
+#define MAX_PARTICLES 750
 #define MAX_GROUPS 2
 #define FADE_TIME 40
 #define MIN_DISTANCE 0.2
