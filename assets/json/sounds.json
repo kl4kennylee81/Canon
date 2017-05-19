@@ -2,7 +2,7 @@
     "music": {
         "rustling_leaves": {
             "file": "./sounds/normal_battle_music.mp3",
-            "volume": 0.2
+            "volume": 0.3
         },
         "menu": {
             "file": "./sounds/menu_music.wav",
@@ -10,11 +10,11 @@
         },
         "boss1": {
             "file": "./sounds/boss1_music.wav",
-            "volume": 0.2
+            "volume": 0.4
         },
         "boss2": {
             "file": "./sounds/boss2_music.wav",
-            "volume": 0.2
+            "volume": 0.4
         }
     },
     "soundfx": {
@@ -27,30 +27,32 @@
             "volume": 0.3
         }, 
         "female_death": {
-            "file": "./sounds/female_death.wav", 
+            "file": "./sounds/female_death_new.wav",
             "volume": 0.3
         }, 
         "male_death": {
-            "file": "./sounds/male_death.wav", 
+            "file": "./sounds/male_death_new.wav",
             "volume": 0.3
         }, 
         "slow_motion_end": {
             "file": "./sounds/slow_motion_end.wav", 
-            "volume": 1.0
+            "volume": 0.7
         }, 
         "slow_motion_start": {
             "file": "./sounds/slow_motion_start.wav", 
-            "volume": 1.0
+            "volume": 0.7
         }
     }, 
     "sounds": {
         "baseEnemySound": {
             "DEATH": "base_death", 
-            "SPAWN": "base_spawn", 
+            "SPAWN": "base_spawn",
+            "HIT": "base_death",
             "key": "baseEnemySound"
         }, 
         "female": {
-            "DEATH": "female_death", 
+            "HIT": "female_death",
+            "DEATH": "female_death",
             "key": "female"
         }, 
         "general": {
@@ -59,7 +61,8 @@
             "key": "general"
         }, 
         "male": {
-            "DEATH": "male_death", 
+            "HIT": "male_death",
+            "DEATH": "male_death",
             "key": "male"
         }
     }

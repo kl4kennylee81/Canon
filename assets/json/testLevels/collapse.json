@@ -1,311 +1,339 @@
 {
-    "name":	"collapse",
-    "counter":	18,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "collapse":	{
-            "key":	"collapse",
-            "levelEntries":	{
-                "collapse wave 16":	{
-                    "key":	"collapse wave 16",
-                    "waveKey":	"collapse wave 16",
-                    "time":	500
-                },
-                "collapse wave 17":	{
-                    "key":	"collapse wave 17",
-                    "waveKey":	"collapse wave 17",
-                    "time":	400
-                },
-                "collapse wave 18":	{
-                    "key":	"collapse wave 18",
-                    "waveKey":	"collapse wave 18",
-                    "time":	180
+    "counter": 18, 
+    "levels": {
+        "collapse": {
+            "key": "collapse", 
+            "levelEntries": {
+                "collapse wave 16": {
+                    "key": "collapse wave 16", 
+                    "time": 500, 
+                    "waveKey": "collapse wave 16"
+                }, 
+                "collapse wave 17": {
+                    "key": "collapse wave 17", 
+                    "time": 400, 
+                    "waveKey": "collapse wave 17"
+                }, 
+                "collapse wave 18": {
+                    "key": "collapse wave 18", 
+                    "time": 180, 
+                    "waveKey": "collapse wave 18"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "collapse wave 16":	{
-            "key":	"collapse wave 16",
-            "waveEntries":	{
-                "collapse wave 16 object 1":	{
-                    "key":	"collapse wave 16 object 1",
-                    "x":	15.900000,
-                    "y":	13.100000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 16 object 2":	{
-                    "key":	"collapse wave 16 object 2",
-                    "x":	9.766666,
-                    "y":	13.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 16 object 3":	{
-                    "key":	"collapse wave 16 object 3",
-                    "x":	28.700001,
-                    "y":	14.600000,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 16 object 4":	{
-                    "key":	"collapse wave 16 object 4",
-                    "x":	22.333334,
-                    "y":	14.633333,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 16 object 5":	{
-                    "key":	"collapse wave 16 object 5",
-                    "x":	15.800000,
-                    "y":	14.700001,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 16 object 6":	{
-                    "key":	"collapse wave 16 object 6",
-                    "x":	9.633333,
-                    "y":	14.600000,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 16 object 7":	{
-                    "key":	"collapse wave 16 object 7",
-                    "x":	22.533333,
-                    "y":	13.066668,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 16 object 8":	{
-                    "key":	"collapse wave 16 object 8",
-                    "x":	3.266666,
-                    "y":	14.633333,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 16 object 9":	{
-                    "key":	"collapse wave 16 object 9",
-                    "x":	3.300000,
-                    "y":	13.133333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 16 object 10":	{
-                    "key":	"collapse wave 16 object 10",
-                    "x":	28.766666,
-                    "y":	13.033334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
+    }, 
+    "name": "collapse", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "collapse wave 16": {
+            "key": "collapse wave 16", 
+            "waveEntries": {
+                "collapse wave 16 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 16 object 1", 
+                    "templateKey": "birb", 
+                    "x": 15.9, 
+                    "y": 13.1
+                }, 
+                "collapse wave 16 object 10": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 16 object 10", 
+                    "templateKey": "birb", 
+                    "x": 28.766666, 
+                    "y": 13.033334
+                }, 
+                "collapse wave 16 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 16 object 2", 
+                    "templateKey": "birb", 
+                    "x": 9.766666, 
+                    "y": 13.133333
+                }, 
+                "collapse wave 16 object 3": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 16 object 3", 
+                    "templateKey": "stump", 
+                    "x": 28.700001, 
+                    "y": 14.6, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 16 object 4": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 16 object 4", 
+                    "templateKey": "stump", 
+                    "x": 22.333334, 
+                    "y": 14.633333, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 16 object 5": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 16 object 5", 
+                    "templateKey": "stump", 
+                    "x": 15.8, 
+                    "y": 14.700001, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 16 object 6": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 16 object 6", 
+                    "templateKey": "stump", 
+                    "x": 9.633333, 
+                    "y": 14.6, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 16 object 7": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 16 object 7", 
+                    "templateKey": "birb", 
+                    "x": 22.533333, 
+                    "y": 13.066668
+                }, 
+                "collapse wave 16 object 8": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 16 object 8", 
+                    "templateKey": "stump", 
+                    "x": 3.266666, 
+                    "y": 14.633333, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 16 object 9": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 16 object 9", 
+                    "templateKey": "birb", 
+                    "x": 3.3, 
+                    "y": 13.133333
                 }
             }
-        },
-        "collapse wave 17":	{
-            "key":	"collapse wave 17",
-            "waveEntries":	{
-                "collapse wave 17 object 1":	{
-                    "key":	"collapse wave 17 object 1",
-                    "x":	4.200000,
-                    "y":	13.800000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 2":	{
-                    "key":	"collapse wave 17 object 2",
-                    "x":	29.233334,
-                    "y":	8.066667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 17 object 3":	{
-                    "key":	"collapse wave 17 object 3",
-                    "x":	29.133333,
-                    "y":	13.800000,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 17 object 4":	{
-                    "key":	"collapse wave 17 object 4",
-                    "x":	29.400000,
-                    "y":	2.133333,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 17 object 5":	{
-                    "key":	"collapse wave 17 object 5",
-                    "x":	4.033333,
-                    "y":	8.066667,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 6":	{
-                    "key":	"collapse wave 17 object 6",
-                    "x":	4.133333,
-                    "y":	2.200000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 7":	{
-                    "key":	"collapse wave 17 object 7",
-                    "x":	27.666666,
-                    "y":	13.833334,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 8":	{
-                    "key":	"collapse wave 17 object 8",
-                    "x":	27.700001,
-                    "y":	8.100000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 9":	{
-                    "key":	"collapse wave 17 object 9",
-                    "x":	27.900000,
-                    "y":	2.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 17 object 10":	{
-                    "key":	"collapse wave 17 object 10",
-                    "x":	2.300000,
-                    "y":	13.766666,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 17 object 11":	{
-                    "key":	"collapse wave 17 object 11",
-                    "x":	2.266666,
-                    "y":	8,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "collapse wave 17 object 12":	{
-                    "key":	"collapse wave 17 object 12",
-                    "x":	2.366667,
-                    "y":	2.166667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
+        }, 
+        "collapse wave 17": {
+            "key": "collapse wave 17", 
+            "waveEntries": {
+                "collapse wave 17 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 1", 
+                    "templateKey": "birb", 
+                    "x": 4.2, 
+                    "y": 13.8
+                }, 
+                "collapse wave 17 object 10": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 10", 
+                    "templateKey": "stump", 
+                    "x": 2.3, 
+                    "y": 13.766666, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 11": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 11", 
+                    "templateKey": "stump", 
+                    "x": 2.266666, 
+                    "y": 8, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 12": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 12", 
+                    "templateKey": "stump", 
+                    "x": 2.366667, 
+                    "y": 2.166667, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 2", 
+                    "templateKey": "stump", 
+                    "x": 29.233334, 
+                    "y": 8.066667, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 3", 
+                    "templateKey": "stump", 
+                    "x": 29.133333, 
+                    "y": 13.8, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 4": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 4", 
+                    "templateKey": "stump", 
+                    "x": 29.4, 
+                    "y": 2.133333, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "collapse wave 17 object 5": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 5", 
+                    "templateKey": "birb", 
+                    "x": 4.033333, 
+                    "y": 8.066667
+                }, 
+                "collapse wave 17 object 6": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 6", 
+                    "templateKey": "birb", 
+                    "x": 4.133333, 
+                    "y": 2.2
+                }, 
+                "collapse wave 17 object 7": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 7", 
+                    "templateKey": "birb", 
+                    "x": 27.666666, 
+                    "y": 13.833334
+                }, 
+                "collapse wave 17 object 8": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 17 object 8", 
+                    "templateKey": "birb", 
+                    "x": 27.700001, 
+                    "y": 8.1
+                }, 
+                "collapse wave 17 object 9": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 17 object 9", 
+                    "templateKey": "birb", 
+                    "x": 27.9, 
+                    "y": 2.133333
                 }
             }
-        },
-        "collapse wave 18":	{
-            "key":	"collapse wave 18",
-            "waveEntries":	{
-                "collapse wave 18 object 1":	{
-                    "key":	"collapse wave 18 object 1",
-                    "x":	3.900000,
-                    "y":	14.466666,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 2":	{
-                    "key":	"collapse wave 18 object 2",
-                    "x":	1.333333,
-                    "y":	12.366667,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 3":	{
-                    "key":	"collapse wave 18 object 3",
-                    "x":	1.333333,
-                    "y":	3.500000,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 4":	{
-                    "key":	"collapse wave 18 object 4",
-                    "x":	3.966667,
-                    "y":	1.333333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 5":	{
-                    "key":	"collapse wave 18 object 5",
-                    "x":	27.700001,
-                    "y":	14.433332,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 6":	{
-                    "key":	"collapse wave 18 object 6",
-                    "x":	30.066668,
-                    "y":	12.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 7":	{
-                    "key":	"collapse wave 18 object 7",
-                    "x":	30.266666,
-                    "y":	3.666667,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "collapse wave 18 object 8":	{
-                    "key":	"collapse wave 18 object 8",
-                    "x":	27.666666,
-                    "y":	1.333333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
+        }, 
+        "collapse wave 18": {
+            "key": "collapse wave 18", 
+            "waveEntries": {
+                "collapse wave 18 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 18 object 1", 
+                    "templateKey": "birb", 
+                    "x": 3.9, 
+                    "y": 14.466666
+                }, 
+                "collapse wave 18 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 18 object 2", 
+                    "templateKey": "birb", 
+                    "x": 1.333333, 
+                    "y": 12.366667
+                }, 
+                "collapse wave 18 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 18 object 3", 
+                    "templateKey": "birb", 
+                    "x": 1.333333, 
+                    "y": 3.5
+                }, 
+                "collapse wave 18 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 18 object 4", 
+                    "templateKey": "birb", 
+                    "x": 3.966667, 
+                    "y": 1.333333
+                }, 
+                "collapse wave 18 object 5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 18 object 5", 
+                    "templateKey": "birb", 
+                    "x": 27.700001, 
+                    "y": 14.433332
+                }, 
+                "collapse wave 18 object 6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 18 object 6", 
+                    "templateKey": "birb", 
+                    "x": 30.066668, 
+                    "y": 12.133333
+                }, 
+                "collapse wave 18 object 7": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "collapse wave 18 object 7", 
+                    "templateKey": "birb", 
+                    "x": 30.266666, 
+                    "y": 3.666667
+                }, 
+                "collapse wave 18 object 8": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "collapse wave 18 object 8", 
+                    "templateKey": "birb", 
+                    "x": 27.666666, 
+                    "y": 1.333333
                 }
             }
         }

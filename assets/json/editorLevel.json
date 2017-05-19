@@ -17,7 +17,7 @@
 					"waveKey":	"sneakAttack wave 22",
 =======
 	"name":	"madness",
-	"counter":	65,
+	"counter":	66,
 	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
 	"levels":	{
 		"madness":	{

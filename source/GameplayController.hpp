@@ -31,6 +31,7 @@
 #include "Event.hpp"
 #include "BulletController.hpp"
 #include "TutorialController.hpp"
+#include "ChapterSelectData.hpp"
 
 class GameplayController : public BaseController {
 protected:
@@ -55,6 +56,12 @@ protected:
     float _scale;
 	bool _paused;
 
+    std::string _curLevelName;
+    std::shared_ptr<ChapterSelectData> _chapterData;
+    std::shared_ptr<GenericAssetManager> _assets;
+    
+    bool _nextLevel;
+    
 public:
     
     GameplayController();
@@ -79,16 +86,20 @@ public:
     
     std::shared_ptr<World> getWorld();
 
-    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld);
+    virtual bool init(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld, std::shared_ptr<ChapterSelectData> chapterData, std::string curLevelName);
 
-    static std::shared_ptr<GameplayController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld) {
+    static std::shared_ptr<GameplayController> alloc(std::shared_ptr<cugl::Scene> scene, std::shared_ptr<World> levelWorld, std::shared_ptr<ChapterSelectData> chapterData, std::string curLevelName) {
 		std::shared_ptr<GameplayController> result = std::make_shared<GameplayController>();
-		return (result->init(scene,levelWorld) ? result : nullptr);
+		return (result->init(scene,levelWorld, chapterData,curLevelName) ? result : nullptr);
 	}
 
     std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     void onResume(const std::shared_ptr<cugl::JsonValue>);
+    
+    bool chapterHasAnotherLevel();
+    
+    std::string getNextLevelName();
 
 };
 

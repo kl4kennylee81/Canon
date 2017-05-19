@@ -113,7 +113,7 @@ void ZoneController::update(float timestep) {
 }
 
 void ZoneController::dispose(){
-    _world = nullptr;
+    _assets = nullptr;
     state = nullptr;
 }
 
@@ -272,7 +272,6 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     if (psd == nullptr){
         psd = _world->getParticleStateData("genericZone");
     }
-    
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
@@ -298,7 +297,6 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     std::vector<GameObject*> objs = {};
     for (auto zEntry : data->zones) {
         ElementType zoneElement = Element::elementDataTypeToElement(zEntry->elementType ,gameObj->getPhysicsComponent()->getElementType());
-        
         std::shared_ptr<ObjectData> od = _world->getObjectData(zEntry->objectKey);
         std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
         std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
@@ -306,7 +304,6 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         if (psd == nullptr){
             psd = _world->getParticleStateData("genericZone");
         }
-        
         std::shared_ptr<GameObject> zone = GameObject::alloc();
         zone->setIsPlayer(gameObj->getIsPlayer());
         zone->type = GameObject::ObjectType::ZONE;
@@ -337,7 +334,6 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     if (psd == nullptr){
         psd = _world->getParticleStateData("genericZone");
     }
-    
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
