@@ -72,21 +72,21 @@
                     "repeat": "active"
                 }
             }, 
-            "cols": 1, 
+            "cols": 2, 
             "id": 104, 
             "key": "startMenu_background", 
-            "rows": 1, 
-            "size": 1, 
+            "rows": 3, 
+            "size": 6, 
             "statemap": {
                 "active": {
                     "first": 0, 
                     "frames": [
-                        9
+                        15,15,15,15,15,15
                     ], 
-                    "total": 1
+                    "total": 6
                 }
             }, 
-            "texture": "./textures/menus/startMenu/startMenu_background.png"
+            "texture": "./textures/menus/startMenu/twinkle.png"
         },
         "victory_dimBG": {
             "actionmap": {

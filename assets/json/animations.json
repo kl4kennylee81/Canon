@@ -362,6 +362,7 @@
             "key": "whiteSector", 
             "rows": 2, 
             "size": 2, 
+            "physicsAngle": 1,
             "statemap": {
                 "idle": {
                     "first": 0, 
