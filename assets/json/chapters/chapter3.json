@@ -8,7 +8,8 @@
                 "level32",
                 "level33",
                 "level34",
-                "level35"
+                "level35",
+                "level52"
             ],
             "chapterTexture": "chapter02_texture"
         }
@@ -38,6 +39,12 @@
             "key": "level35",
             "levelKey": "madness",
             "name": "Madness"
+        },
+        "level52": {
+            "name": "Boss2",
+            "key": "level52",
+            "levelKey": "boss2",
+            "songKey": "boss2"
         }
     }
 }
