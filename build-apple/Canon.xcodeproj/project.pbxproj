@@ -27,6 +27,8 @@
 		824E10AD1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10B21EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
 		824E10B31EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
+		824F97161ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */; };
+		824F97171ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */; };
 		829314B11E8A552C00CFA733 /* InternalClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314AF1E8A552C00CFA733 /* InternalClock.cpp */; };
 		829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314B31E8A554B00CFA733 /* ClockController.cpp */; };
 		829615521E9BC5B300A731DB /* ParticleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615501E9BC5B300A731DB /* ParticleController.cpp */; };
@@ -294,6 +296,8 @@
 		824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleGenerator.cpp; sourceTree = "<group>"; };
 		824E10B11EA941E70068C0F5 /* ParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleGenerator.hpp; sourceTree = "<group>"; };
 		824F970F1ECE373700AFED96 /* GroupContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GroupContainer.hpp; sourceTree = "<group>"; };
+		824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathParticleGenerator.cpp; sourceTree = "<group>"; };
+		824F97151ECEAD7900AFED96 /* PathParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathParticleGenerator.hpp; sourceTree = "<group>"; };
 		829314AF1E8A552C00CFA733 /* InternalClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InternalClock.cpp; sourceTree = "<group>"; };
 		829314B01E8A552C00CFA733 /* InternalClock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InternalClock.hpp; sourceTree = "<group>"; };
 		829314B31E8A554B00CFA733 /* ClockController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockController.cpp; sourceTree = "<group>"; };
@@ -696,6 +700,8 @@
 				9F6F87621EBCBD1100AD021D /* TrailParticleGenerator.hpp */,
 				9F6F87651EBCBD1E00AD021D /* ZoneParticleGenerator.cpp */,
 				9F6F87661EBCBD1E00AD021D /* ZoneParticleGenerator.hpp */,
+				824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */,
+				824F97151ECEAD7900AFED96 /* PathParticleGenerator.hpp */,
 			);
 			name = particleGenerators;
 			sourceTree = "<group>";
@@ -1430,6 +1436,7 @@
 				9F6F87681EBCBD1E00AD021D /* ZoneParticleGenerator.cpp in Sources */,
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
 				9F6F87641EBCBD1100AD021D /* TrailParticleGenerator.cpp in Sources */,
+				824F97171ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
 				DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */,
@@ -1511,6 +1518,7 @@
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
+				824F97161ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,

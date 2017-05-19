@@ -19,6 +19,7 @@
 #include "DeathParticleGenerator.hpp"
 #include "ZoneParticleGenerator.hpp"
 #include "PulseParticleGenerator.hpp"
+#include "PathParticleGenerator.hpp"
 #include "Util.hpp"
 #include "ActiveParticleState.hpp"
 #include "ParticleStateData.hpp"
@@ -33,6 +34,7 @@ private:
     std::shared_ptr<ZoneParticleGenerator> _zone_gen;
     std::shared_ptr<TrailParticleGenerator> _trail_gen;
     std::shared_ptr<PulseParticleGenerator> _pulse_gen;
+    std::shared_ptr<PathParticleGenerator> _path_gen;
     
     /** Handlers for events */
     void handleCharacterSpawn(GameObject* obj);

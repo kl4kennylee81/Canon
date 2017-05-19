@@ -51,7 +51,7 @@ public:
     virtual void stop() { _active = false; };
     
     /** Generate one step of the particles */
-    virtual void generate() = 0;
+    virtual void generate() {};
     
     /** Uniform random generator [a,b) */
     static float getRandomFloat(float a, float b);

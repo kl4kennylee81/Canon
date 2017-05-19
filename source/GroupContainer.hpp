@@ -21,11 +21,23 @@
  */
 class Group {
 public:
+    
+    /**
+     * Every particle in the group has the same position
+     */
+    bool position;
+    
     /**
      * The position for all particles encapulated by this wrapper. In update, all the particles
      * positions get updates to match the global position.
      */
     Vec2 global_position;
+    
+    /**
+     * Trigger group fade
+     */
+    bool fade;
+    int fade_time;
     
     /**
      * Resetting the ttl of the particle after it has died. Mainly for repeating effects
@@ -46,6 +58,8 @@ public:
         global_position = Vec2(0,0);
         repeat = true;
         alive = false;
+        position = true;
+        fade = false;
     }
     
     /**

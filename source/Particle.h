@@ -34,7 +34,6 @@ private:
     
     /** These are fields that you do not set on initialization. */
     Color4f _color_step;
-    Color4f _current_color;
     Color4f _alpha_step;
     
     /**
@@ -45,6 +44,8 @@ private:
     float findScaleStep();
     
 public:
+    Color4f _current_color;
+    
     // this is the data it starts from if we reset the particles. like in pulse
     ParticleData _original;
     

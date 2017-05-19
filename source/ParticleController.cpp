@@ -206,6 +206,7 @@ void ParticleController::update(float timestep, std::shared_ptr<GameState> state
     _trail_gen->generate();
     _death_gen->generate();
     _pulse_gen->generate();
+    _path_gen->generate(state);
 //    _zone_gen->generate();
 }
 
@@ -335,6 +336,26 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     pulsepd.texture_name = "pulse";
     pulsepd.texture = assets->get<Texture>(pulsepd.texture_name);
     
+    // blue path texture
+    ParticleData bluepathpd;
+    bluepathpd.ttl = -1; // infinite
+//    bluepathpd.scale = true;
+    bluepathpd.start_scale = 1;
+    bluepathpd.current_scale = 1;
+    bluepathpd.end_scale = 1;
+    bluepathpd.texture_name = "blue_particle";
+    bluepathpd.texture = assets->get<Texture>(bluepathpd.texture_name);
+    
+    // gold path texture
+    ParticleData goldpathpd;
+    goldpathpd.ttl = -1; // infinite
+//    goldpathpd.scale = true;
+    goldpathpd.start_scale = 1;
+    goldpathpd.current_scale = 1;
+    goldpathpd.end_scale = 1;
+    goldpathpd.texture_name = "gold_particle";
+    goldpathpd.texture = assets->get<Texture>(goldpathpd.texture_name);
+    
     _particle_map.insert(std::make_pair("blue_trail", pd)); // blue trail
     _particle_map.insert(std::make_pair("gold_trail", pd2)); // gold trail
     _particle_map.insert(std::make_pair("blue_death", temp)); // blue death
@@ -342,6 +363,8 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _particle_map.insert(std::make_pair("zone_circle", circlepd_temp)); // circle
     _particle_map.insert(std::make_pair("zone_ring", ringpd_temp)); // ring
     _particle_map.insert(std::make_pair("pulse_ring", pulsepd)); // ring
+    _particle_map.insert(std::make_pair("blue_path", bluepathpd)); // blue path
+    _particle_map.insert(std::make_pair("gold_path", goldpathpd)); // gold path
     
     _trail_gen = TrailParticleGenerator::alloc(state, &_particle_map);
     
@@ -350,6 +373,9 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     
     _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
     _death_gen->start();
+    
+    _path_gen = PathParticleGenerator::alloc(state, &_particle_map);
+//    _path_gen->start();
     
 //    _zone_gen = ZoneParticleGenerator::alloc(state, &_particle_map);
 //    _zone_gen->start();

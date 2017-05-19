@@ -23,12 +23,21 @@ void ParticleNode::group_update_particles(Particle* particle) {
     if (particle->group_num < 0) {
         return;
     }
+    
     // find the group
-    Group g = _groups->group_array[particle->group_num];
-    // update position
-    particle->_pd.position = g.global_position;
+    Group* g = &_groups->group_array[particle->group_num];
+    
+    if (g->position) {
+        particle->_pd.position = g->global_position;
+    }
+    
+    if (g->fade) {
+        particle->_pd.alpha_fade = true;
+        particle->_pd.ttl = g->fade_time;
+    }
+    
     // update active based on group
-    particle->_pd.active = g.alive;
+    particle->_pd.active = g->alive;
 }
 
 

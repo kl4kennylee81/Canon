@@ -62,7 +62,6 @@ ParticleData DeathParticleGenerator::randomizePD(ParticleData pd) {
 }
 
 void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
-    std::cout << "adding death particles\n";
     for (int ii = 0; ii < CLUSTER_SIZE; ++ii) {
         if (element == ElementType::BLUE) {
             ParticleData pd = _blue_death_pd; // copy template
