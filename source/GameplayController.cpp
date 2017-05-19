@@ -9,10 +9,13 @@
 #include "GameplayController.hpp"
 #include "MenuEvent.hpp"
 #include "FinishEvent.hpp"
+#include "LevelData.hpp"
+#include "LevelSelectData.hpp"
 
 using namespace cugl;
 
 #define RUSTLING_LEAVES "./sounds/rustlingleaves.mp3"
+#define STALL_FRAMES 150
 
 GameplayController::GameplayController() :
 BaseController(),
@@ -73,8 +76,13 @@ void GameplayController::eventUpdate(Event* e) {
                 {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
-                    this->notify(e);
-                    _paused = true;
+                    if (_chapterData != nullptr && chapterHasAnotherLevel()) {
+                        _nextLevel = true;
+                        
+                    } else {
+                        this->notify(e);
+                        _paused = true;
+                    }
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -92,7 +100,6 @@ void GameplayController::eventUpdate(Event* e) {
 }
 
 void GameplayController::update(float timestep) {
-
     // TODO temporary rest until we have a retry screen
     if (_gameState->getReset()){
         // repopulate the randomly generated level
@@ -100,13 +107,79 @@ void GameplayController::update(float timestep) {
         std::shared_ptr<Scene> s = _gameState->getScene();
         std::shared_ptr<World> w = _levelController->getWorld();
         dispose();
-        init(s,w);
+        init(s,w,_chapterData,_curLevelName);
         _tutorialController->toggleActive();
         return;
     }
     // TODO hacky way to pause the game
     if (_paused){
         return;
+    } else if (_nextLevel) {
+        auto nextLevelName = getNextLevelName();
+        std::shared_ptr<LevelSelectData> lsData = _assets->get<LevelSelectData>(getNextLevelName());
+        std::shared_ptr<LevelData> level = _assets->get<LevelData>(lsData->levelKey);
+        AudioEngine::get()->playMusic(_assets->get<Music>(lsData->songKey),true);
+        std::shared_ptr<World> levelWorld = World::alloc(_assets,level);
+        
+        _curLevelName = nextLevelName;
+        
+        _pathController->detach(_tutorialController.get());
+        _moveController->detach(_tutorialController.get());
+        _collisionController->detach(_tutorialController.get());
+        _spawnController->detach(_tutorialController.get());
+        
+        _levelController->detach(_collisionController.get());
+        _levelController->detach(_animationController.get());
+        _levelController->detach(_spawnController.get());
+        _levelController->detach(_aiController.get());
+        _levelController->detach(_bulletController.get());
+        _levelController->detach(_zoneController.get());
+        _levelController->detach(_finishController.get());
+        _levelController->detach(_soundController.get());
+        _levelController->detach(_particleController.get());
+        _levelController->detach(_tutorialController.get());
+        
+        _bulletController->detach(_levelController.get());
+        
+        _animationController->detach(_finishController.get());
+        
+        _finishController->detach(this);
+        
+        _tutorialController->detach(_levelController.get());
+        
+        _levelController->removeProgressBarNode();
+        _levelController->dispose();
+        _tutorialController->dispose();
+        
+        _levelController = LevelController::alloc(_gameState,levelWorld, false);
+        _finishController = FinishController::alloc();
+        _tutorialController = TutorialController::alloc(_gameState, levelWorld);
+        
+        _pathController->attach(_tutorialController.get());
+        _moveController->attach(_tutorialController.get());
+        _collisionController->attach(_tutorialController.get());
+        _spawnController->attach(_tutorialController.get());
+        
+        _levelController->attach(_collisionController.get());
+        _levelController->attach(_animationController.get());
+        _levelController->attach(_spawnController.get());
+        _levelController->attach(_aiController.get());
+        _levelController->attach(_bulletController.get());
+        _levelController->attach(_zoneController.get());
+        _levelController->attach(_finishController.get());
+        _levelController->attach(_soundController.get());
+        _levelController->attach(_particleController.get());
+        _levelController->attach(_tutorialController.get());
+        
+        _bulletController->attach(_levelController.get());
+        
+        _animationController->attach(_finishController.get());
+        
+        _finishController->attach(this);
+        
+        _tutorialController->attach(_levelController.get());
+        
+        _nextLevel = false;
     }
     else if (_gameState->getGameplayState() == GameplayState::NORMAL){
         _clockController->update(timestep);
@@ -151,7 +224,7 @@ void GameplayController::deactivate(){
 }
 
 
-bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld) {
+bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<World> levelWorld, std::shared_ptr<ChapterSelectData> chapterData, std::string curLevelName) {
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
 	_pathController = PathController::alloc(_gameState, levelWorld);
 	_moveController = MoveController::alloc(_gameState);
@@ -160,13 +233,13 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _bulletController = BulletController::alloc();
     _switchController = SwitchController::alloc(_gameState);
     _spawnController = SpawnController::alloc();
-    _zoneController = ZoneController::alloc(_gameState,levelWorld);
+    _zoneController = ZoneController::alloc(_gameState,levelWorld->getAssetManager());
     _animationController = AnimationController::alloc(_gameState,levelWorld->getAssetManager());
 	_levelController = LevelController::alloc(_gameState,levelWorld);
     _clockController = ClockController::alloc();
     _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
-    _soundController = SoundController::alloc(levelWorld);
+    _soundController = SoundController::alloc(levelWorld->getAssetManager());
     _tutorialController = TutorialController::alloc(_gameState, levelWorld);
 
 	_pathController->attach(_moveController.get());
@@ -228,7 +301,12 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _tutorialController->attach(_levelController.get());
     
 	_paused = false;
-
+    
+    _chapterData = chapterData;
+    _assets = levelWorld->getAssetManager();
+    _curLevelName = curLevelName;
+    _nextLevel = false;
+    
     activate();
     
 	return true;
@@ -277,4 +355,15 @@ void GameplayController::onResume(const std::shared_ptr<cugl::JsonValue> resumeJ
     _levelController->initAfterResume(_gameState,resumeJson->get("levelController"), resumeJson->get("spawnController"));
 	_moveController->initAfterResume(_gameState, resumeJson->get("moveController"));
 	_aiController->initAfterResume(_gameState, resumeJson->get("aiController"));
+}
+
+bool GameplayController::chapterHasAnotherLevel() {
+    auto levels = _chapterData->getLevelKeys();
+    return std::find(levels.begin(), levels.end(), _curLevelName) != levels.end() && _curLevelName != levels.back();
+}
+
+std::string GameplayController::getNextLevelName() {
+    auto levels = _chapterData->getLevelKeys();
+    auto curPosition = find(levels.begin(), levels.end(), _curLevelName) - levels.begin();
+    return levels[curPosition+1];
 }

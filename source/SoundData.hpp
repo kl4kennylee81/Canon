@@ -42,6 +42,7 @@ public:
         if (action == "SPAWN") return SoundAction::SPAWN;
         if (action == "ACTIVE") return SoundAction::ACTIVE;
         if (action == "DEATH") return SoundAction::DEATH;
+        if (action == "HIT") return SoundAction::HIT;
         std::cout << "stringToAction: SoundData: default action?\n";
         return SoundAction::DEFAULT;
     }
@@ -53,6 +54,7 @@ public:
         if (action == SoundAction::SPAWN) return "SPAWN";
         if (action == SoundAction::ACTIVE) return "ACTIVE";
         if (action == SoundAction::DEATH) return "DEATH";
+        if (action == SoundAction::HIT) return "HIT";
         std::cout << "actionToString: SoundData: default action?\n";
         return "DEFAULT";
     }

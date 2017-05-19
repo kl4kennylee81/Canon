@@ -1,262 +1,304 @@
 {
-    "name": "cornered",
-    "counter":  55,
-    "template names":   ["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":   {
+    "counter": 55, 
+    "levels": {
         "cornered": {
-            "key":  "cornered",
+            "key": "cornered", 
             "levelEntries": {
                 "cornered wave 36": {
-                    "key":  "cornered wave 36",
-                    "waveKey":  "cornered wave 36",
-                    "time": 270
-                },
+                    "key": "cornered wave 36", 
+                    "time": 270, 
+                    "waveKey": "cornered wave 36"
+                }, 
                 "cornered wave 42": {
-                    "key":  "cornered wave 42",
-                    "waveKey":  "cornered wave 42",
-                    "time": 270
-                },
+                    "key": "cornered wave 42", 
+                    "time": 270, 
+                    "waveKey": "cornered wave 42"
+                }, 
                 "cornered wave 43": {
-                    "key":  "cornered wave 43",
-                    "waveKey":  "cornered wave 43",
-                    "time": 400
-                },
+                    "key": "cornered wave 43", 
+                    "time": 400, 
+                    "waveKey": "cornered wave 43"
+                }, 
                 "cornered wave 47": {
-                    "key":  "cornered wave 47",
-                    "waveKey":  "cornered wave 47",
-                    "time": 400
-                },
+                    "key": "cornered wave 47", 
+                    "time": 400, 
+                    "waveKey": "cornered wave 47"
+                }, 
                 "cornered wave 49": {
-                    "key":  "cornered wave 49",
-                    "waveKey":  "cornered wave 49",
-                    "time": 430
-                },
+                    "key": "cornered wave 49", 
+                    "time": 430, 
+                    "waveKey": "cornered wave 49"
+                }, 
                 "cornered wave 52": {
-                    "key":  "cornered wave 52",
-                    "waveKey":  "cornered wave 52",
-                    "time": 240
-                },
+                    "key": "cornered wave 52", 
+                    "time": 240, 
+                    "waveKey": "cornered wave 52"
+                }, 
                 "cornered wave 53": {
-                    "key":  "cornered wave 53",
-                    "waveKey":  "cornered wave 53",
-                    "time": 30
+                    "key": "cornered wave 53", 
+                    "time": 30, 
+                    "waveKey": "cornered wave 53"
                 }
-            },
-            "playerChars":  {
-                "player1":  {
-                    "key":  "player1",
-                    "x":    18.750000,
-                    "y":    7.812500,
-                    "element":  "GOLD",
-                    "aiKey":    "",
-                    "templateKey":  "playerCharMale"
-                },
-                "player2":  {
-                    "key":  "player2",
-                    "x":    12.500000,
-                    "y":    7.812500,
-                    "element":  "BLUE",
-                    "aiKey":    "",
-                    "templateKey":  "playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":    {
+    }, 
+    "name": "cornered", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
         "cornered wave 36": {
-            "key":  "cornered wave 36",
-            "waveEntries":  {
-                "cornered wave 36 object 1":    {
-                    "key":  "cornered wave 36 object 1",
-                    "x":    14.866667,
-                    "y":    8.033334,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 36 object 2":    {
-                    "key":  "cornered wave 36 object 2",
-                    "x":    16.900000,
-                    "y":    8.033334,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 36", 
+            "waveEntries": {
+                "cornered wave 36 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 36 object 1", 
+                    "templateKey": "lump", 
+                    "x": 14.866667, 
+                    "y": 8.033334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 36 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 36 object 2", 
+                    "templateKey": "lump", 
+                    "x": 16.9, 
+                    "y": 8.033334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 42": {
-            "key":  "cornered wave 42",
-            "waveEntries":  {
-                "cornered wave 42 object 1":    {
-                    "key":  "cornered wave 42 object 1",
-                    "x":    25.166666,
-                    "y":    9.166666,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 42 object 2":    {
-                    "key":  "cornered wave 42 object 2",
-                    "x":    25.133333,
-                    "y":    6.866667,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 42", 
+            "waveEntries": {
+                "cornered wave 42 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 42 object 1", 
+                    "templateKey": "lump", 
+                    "x": 25.166666, 
+                    "y": 9.166666, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 42 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 42 object 2", 
+                    "templateKey": "lump", 
+                    "x": 25.133333, 
+                    "y": 6.866667, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 43": {
-            "key":  "cornered wave 43",
-            "waveEntries":  {
-                "cornered wave 43 object 1":    {
-                    "key":  "cornered wave 43 object 1",
-                    "x":    7.133333,
-                    "y":    9.266666,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 43 object 2":    {
-                    "key":  "cornered wave 43 object 2",
-                    "x":    7.066667,
-                    "y":    7.133333,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 43", 
+            "waveEntries": {
+                "cornered wave 43 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 43 object 1", 
+                    "templateKey": "lump", 
+                    "x": 7.133333, 
+                    "y": 9.266666, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 43 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 43 object 2", 
+                    "templateKey": "lump", 
+                    "x": 7.066667, 
+                    "y": 7.133333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 47": {
-            "key":  "cornered wave 47",
-            "waveEntries":  {
-                "cornered wave 47 object 1":    {
-                    "key":  "cornered wave 47 object 1",
-                    "x":    28.500000,
-                    "y":    14.900000,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 47 object 2":    {
-                    "key":  "cornered wave 47 object 2",
-                    "x":    30.966667,
-                    "y":    12.700001,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 47 object 3":    {
-                    "key":  "cornered wave 47 object 3",
-                    "x":    1.233334,
-                    "y":    2.933333,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 47 object 4":    {
-                    "key":  "cornered wave 47 object 4",
-                    "x":    2.666667,
-                    "y":    1.233333,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 47", 
+            "waveEntries": {
+                "cornered wave 47 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 47 object 1", 
+                    "templateKey": "lump", 
+                    "x": 28.5, 
+                    "y": 14.9, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 47 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 47 object 2", 
+                    "templateKey": "lump", 
+                    "x": 30.966667, 
+                    "y": 12.700001, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 47 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 47 object 3", 
+                    "templateKey": "lump", 
+                    "x": 1.233334, 
+                    "y": 2.933333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 47 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 47 object 4", 
+                    "templateKey": "lump", 
+                    "x": 2.666667, 
+                    "y": 1.233333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 49": {
-            "key":  "cornered wave 49",
-            "waveEntries":  {
-                "cornered wave 49 object 1":    {
-                    "key":  "cornered wave 49 object 1",
-                    "x":    28.700001,
-                    "y":    1.133334,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 49 object 2":    {
-                    "key":  "cornered wave 49 object 2",
-                    "x":    30.833334,
-                    "y":    3.966667,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 49 object 3":    {
-                    "key":  "cornered wave 49 object 3",
-                    "x":    4.033333,
-                    "y":    15.200001,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 49 object 4":    {
-                    "key":  "cornered wave 49 object 4",
-                    "x":    1.900000,
-                    "y":    13.133333,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 49", 
+            "waveEntries": {
+                "cornered wave 49 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 49 object 1", 
+                    "templateKey": "lump", 
+                    "x": 28.700001, 
+                    "y": 1.133334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 49 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 49 object 2", 
+                    "templateKey": "lump", 
+                    "x": 30.833334, 
+                    "y": 3.966667, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 49 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 49 object 3", 
+                    "templateKey": "lump", 
+                    "x": 4.033333, 
+                    "y": 15.200001, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 49 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 49 object 4", 
+                    "templateKey": "lump", 
+                    "x": 1.9, 
+                    "y": 13.133333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 52": {
-            "key":  "cornered wave 52",
-            "waveEntries":  {
-                "cornered wave 52 object 1":    {
-                    "key":  "cornered wave 52 object 1",
-                    "x":    14.200000,
-                    "y":    11.733334,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 52 object 2":    {
-                    "key":  "cornered wave 52 object 2",
-                    "x":    15.900000,
-                    "y":    11.833334,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 52", 
+            "waveEntries": {
+                "cornered wave 52 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 52 object 1", 
+                    "templateKey": "lump", 
+                    "x": 14.2, 
+                    "y": 11.733334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 52 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 52 object 2", 
+                    "templateKey": "lump", 
+                    "x": 15.9, 
+                    "y": 11.833334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
+        }, 
         "cornered wave 53": {
-            "key":  "cornered wave 53",
-            "waveEntries":  {
-                "cornered wave 53 object 1":    {
-                    "key":  "cornered wave 53 object 1",
-                    "x":    15.700000,
-                    "y":    3.533333,
-                    "element":  "GOLD",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
-                },
-                "cornered wave 53 object 2":    {
-                    "key":  "cornered wave 53 object 2",
-                    "x":    14.200000,
-                    "y":    3.400000,
-                    "element":  "BLUE",
-                    "aiKey":    "homing",
-                    "templateKey":  "birb",
-                    "zoneKeys": ["birb_zone"]
+            "key": "cornered wave 53", 
+            "waveEntries": {
+                "cornered wave 53 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "cornered wave 53 object 1", 
+                    "templateKey": "lump", 
+                    "x": 15.7, 
+                    "y": 3.533333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "cornered wave 53 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "cornered wave 53 object 2", 
+                    "templateKey": "lump", 
+                    "x": 14.2, 
+                    "y": 3.4, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
         }

@@ -1,274 +1,304 @@
 {
-    "name":	"sneakAttack",
-    "counter":	5,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "sneakAttack":	{
-            "key":	"sneakAttack",
-            "levelEntries":	{
-                "sneakAttack wave 02":	{
-                    "key":	"sneakAttack wave 02",
-                    "waveKey":	"sneakAttack wave 02",
-                    "time":	570
-                },
-                "sneakAttack wave 03":	{
-                    "key":	"sneakAttack wave 03",
-                    "waveKey":	"sneakAttack wave 03",
-                    "time":	570
-                },
-                "sneakAttack wave 04":	{
-                    "key":	"sneakAttack wave 04",
-                    "waveKey":	"sneakAttack wave 04",
-                    "time":	500
-                },
-                "sneakAttack wave 05":	{
-                    "key":	"sneakAttack wave 05",
-                    "waveKey":	"sneakAttack wave 05",
-                    "time":	180
+    "counter": 5, 
+    "levels": {
+        "sneakAttack": {
+            "key": "sneakAttack", 
+            "levelEntries": {
+                "sneakAttack wave 02": {
+                    "key": "sneakAttack wave 02", 
+                    "time": 570, 
+                    "waveKey": "sneakAttack wave 02"
+                }, 
+                "sneakAttack wave 03": {
+                    "key": "sneakAttack wave 03", 
+                    "time": 570, 
+                    "waveKey": "sneakAttack wave 03"
+                }, 
+                "sneakAttack wave 04": {
+                    "key": "sneakAttack wave 04", 
+                    "time": 500, 
+                    "waveKey": "sneakAttack wave 04"
+                }, 
+                "sneakAttack wave 05": {
+                    "key": "sneakAttack wave 05", 
+                    "time": 180, 
+                    "waveKey": "sneakAttack wave 05"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"player1",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"player2",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "sneakAttack wave 02":	{
-            "key":	"sneakAttack wave 02",
-            "waveEntries":	{
-                "sneakAttack wave 02 object 1":	{
-                    "key":	"sneakAttack wave 02 object 1",
-                    "x":	29.066668,
-                    "y":	11.166666,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 2":	{
-                    "key":	"sneakAttack wave 02 object 2",
-                    "x":	27.033333,
-                    "y":	9.033334,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 3":	{
-                    "key":	"sneakAttack wave 02 object 3",
-                    "x":	29.266666,
-                    "y":	6.966667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 4":	{
-                    "key":	"sneakAttack wave 02 object 4",
-                    "x":	2.933333,
-                    "y":	10.933333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 5":	{
-                    "key":	"sneakAttack wave 02 object 5",
-                    "x":	5.366667,
-                    "y":	8.633333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 6":	{
-                    "key":	"sneakAttack wave 02 object 6",
-                    "x":	3.066667,
-                    "y":	6.433333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 02 object 7":	{
-                    "key":	"sneakAttack wave 02 object 7",
-                    "x":	3.033333,
-                    "y":	8.666667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "sneakAttack wave 02 object 8":	{
-                    "key":	"sneakAttack wave 02 object 8",
-                    "x":	29.133333,
-                    "y":	9.066667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
+    }, 
+    "name": "sneakAttack", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "sneakAttack wave 02": {
+            "key": "sneakAttack wave 02", 
+            "waveEntries": {
+                "sneakAttack wave 02 object 1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 02 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 29.066668, 
+                    "y": 11.166666
+                }, 
+                "sneakAttack wave 02 object 2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 02 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 27.033333, 
+                    "y": 9.033334
+                }, 
+                "sneakAttack wave 02 object 3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 02 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 29.266666, 
+                    "y": 6.966667
+                }, 
+                "sneakAttack wave 02 object 4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 02 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 2.933333, 
+                    "y": 10.933333
+                }, 
+                "sneakAttack wave 02 object 5": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 02 object 5", 
+                    "templateKey": "blobo", 
+                    "x": 5.366667, 
+                    "y": 8.633333
+                }, 
+                "sneakAttack wave 02 object 6": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 02 object 6", 
+                    "templateKey": "blobo", 
+                    "x": 3.066667, 
+                    "y": 6.433333
+                }, 
+                "sneakAttack wave 02 object 7": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 02 object 7", 
+                    "templateKey": "stump", 
+                    "x": 3.033333, 
+                    "y": 8.666667, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 02 object 8": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 02 object 8", 
+                    "templateKey": "stump", 
+                    "x": 29.133333, 
+                    "y": 9.066667, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
                 }
             }
-        },
-        "sneakAttack wave 03":	{
-            "key":	"sneakAttack wave 03",
-            "waveEntries":	{
-                "sneakAttack wave 03 object 1":	{
-                    "key":	"sneakAttack wave 03 object 1",
-                    "x":	15.533334,
-                    "y":	2.866667,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 2":	{
-                    "key":	"sneakAttack wave 03 object 2",
-                    "x":	13.300000,
-                    "y":	0.966666,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 3":	{
-                    "key":	"sneakAttack wave 03 object 3",
-                    "x":	17.966667,
-                    "y":	0.966666,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 4":	{
-                    "key":	"sneakAttack wave 03 object 4",
-                    "x":	15.166667,
-                    "y":	13.200000,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 5":	{
-                    "key":	"sneakAttack wave 03 object 5",
-                    "x":	13.066667,
-                    "y":	15.200001,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 6":	{
-                    "key":	"sneakAttack wave 03 object 6",
-                    "x":	17.533333,
-                    "y":	15.233334,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "sneakAttack wave 03 object 7":	{
-                    "key":	"sneakAttack wave 03 object 7",
-                    "x":	15.633333,
-                    "y":	0.966666,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "sneakAttack wave 03 object 8":	{
-                    "key":	"sneakAttack wave 03 object 8",
-                    "x":	15.266666,
-                    "y":	15.200001,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
+        }, 
+        "sneakAttack wave 03": {
+            "key": "sneakAttack wave 03", 
+            "waveEntries": {
+                "sneakAttack wave 03 object 1": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 03 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 15.533334, 
+                    "y": 2.866667
+                }, 
+                "sneakAttack wave 03 object 2": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 03 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 13.3, 
+                    "y": 0.966666
+                }, 
+                "sneakAttack wave 03 object 3": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 03 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 17.966667, 
+                    "y": 0.966666
+                }, 
+                "sneakAttack wave 03 object 4": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 03 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 15.166667, 
+                    "y": 13.2
+                }, 
+                "sneakAttack wave 03 object 5": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 03 object 5", 
+                    "templateKey": "blobo", 
+                    "x": 13.066667, 
+                    "y": 15.200001
+                }, 
+                "sneakAttack wave 03 object 6": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 03 object 6", 
+                    "templateKey": "blobo", 
+                    "x": 17.533333, 
+                    "y": 15.233334
+                }, 
+                "sneakAttack wave 03 object 7": {
+                    "aiKey": "verticalUp", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 03 object 7", 
+                    "templateKey": "stump", 
+                    "x": 15.633333, 
+                    "y": 0.966666, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 03 object 8": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 03 object 8", 
+                    "templateKey": "stump", 
+                    "x": 15.266666, 
+                    "y": 15.200001, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
                 }
             }
-        },
-        "sneakAttack wave 04":	{
-            "key":	"sneakAttack wave 04",
-            "waveEntries":	{
-                "sneakAttack wave 04 object 1":	{
-                    "key":	"sneakAttack wave 04 object 1",
-                    "x":	3.166667,
-                    "y":	9.099999,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 04 object 2":	{
-                    "key":	"sneakAttack wave 04 object 2",
-                    "x":	3.200000,
-                    "y":	7.233334,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 04 object 3":	{
-                    "key":	"sneakAttack wave 04 object 3",
-                    "x":	28.400000,
-                    "y":	9.166666,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 04 object 4":	{
-                    "key":	"sneakAttack wave 04 object 4",
-                    "x":	28.433332,
-                    "y":	7.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
+        }, 
+        "sneakAttack wave 04": {
+            "key": "sneakAttack wave 04", 
+            "waveEntries": {
+                "sneakAttack wave 04 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 04 object 1", 
+                    "templateKey": "lump", 
+                    "x": 3.166667, 
+                    "y": 9.099999, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 04 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 04 object 2", 
+                    "templateKey": "lump", 
+                    "x": 3.2, 
+                    "y": 7.233334, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 04 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 04 object 3", 
+                    "templateKey": "lump", 
+                    "x": 28.4, 
+                    "y": 9.166666, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 04 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 04 object 4", 
+                    "templateKey": "lump", 
+                    "x": 28.433332, 
+                    "y": 7.133333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
-        "sneakAttack wave 05":	{
-            "key":	"sneakAttack wave 05",
-            "waveEntries":	{
-                "sneakAttack wave 05 object 1":	{
-                    "key":	"sneakAttack wave 05 object 1",
-                    "x":	1.100000,
-                    "y":	1.300000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 05 object 2":	{
-                    "key":	"sneakAttack wave 05 object 2",
-                    "x":	30.666666,
-                    "y":	14.500000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 05 object 3":	{
-                    "key":	"sneakAttack wave 05 object 3",
-                    "x":	1.733334,
-                    "y":	14.766666,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "sneakAttack wave 05 object 4":	{
-                    "key":	"sneakAttack wave 05 object 4",
-                    "x":	30.466667,
-                    "y":	1.366666,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
+        }, 
+        "sneakAttack wave 05": {
+            "key": "sneakAttack wave 05", 
+            "waveEntries": {
+                "sneakAttack wave 05 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 05 object 1", 
+                    "templateKey": "lump", 
+                    "x": 1.1, 
+                    "y": 1.3, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 05 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "sneakAttack wave 05 object 2", 
+                    "templateKey": "lump", 
+                    "x": 30.666666, 
+                    "y": 14.5, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 05 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 05 object 3", 
+                    "templateKey": "lump", 
+                    "x": 1.733334, 
+                    "y": 14.766666, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "sneakAttack wave 05 object 4": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "sneakAttack wave 05 object 4", 
+                    "templateKey": "lump", 
+                    "x": 30.466667, 
+                    "y": 1.366666, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
         }

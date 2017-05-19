@@ -40,17 +40,17 @@
         "grumpBullet4", 
         "grumpBullet6"
     ], 
-    "waves":	{
-        "boss1 wave 20":	{
-            "key":	"boss1 wave 20",
-            "waveEntries":	{
-                "boss1 wave 20 object 1":	{
-                    "key":	"boss1 wave 20 object 1",
-                    "x":	26.866667,
-                    "y":	10.0,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"grumpBullet6"
+    "waves": {
+        "boss1 wave 20": {
+            "key": "boss1 wave 20", 
+            "waveEntries": {
+                "boss1 wave 20 object 1": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "boss1 wave 20 object 1", 
+                    "templateKey": "grumpBullet6", 
+                    "x": 26.866667, 
+                    "y": 10.0
                 }
             }
         }

@@ -1,0 +1,167 @@
+{
+    "animations": {
+        "blue_lump_animation": {
+            "texture": "./textures/models/enemy_models/lump/lump_blue.png",
+            "rows": 3,
+            "cols": 8,
+            "size": 24,
+            "statemap": {
+                "spawning": {
+                    "first": 0,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "idle": {
+                    "first": 16,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "spawn": {
+                    "first": 8,
+                    "total": 8,
+                    "frames": [6,6,6,9,9,9,6,6]
+                },
+                "death": {
+                    "first": 20,
+                    "total": 2,
+                    "frames": [12,12]
+                }
+            },
+            "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
+                "SPAWN": {
+                    "active": "spawn",
+                    "repeat": "idle"
+                },
+                "DEATH": {
+                    "active": "death"
+                }
+            }
+        },
+        "yellow_lump_animation": {
+            "texture": "./textures/models/enemy_models/lump/lump_yellow.png",
+            "rows": 3,
+            "cols": 8,
+            "size": 24,
+            "statemap": {
+                "spawning": {
+                    "first": 0,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "idle": {
+                    "first": 16,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "spawn": {
+                    "first": 8,
+                    "total": 8,
+                    "frames": [6,6,6,9,9,9,6,6]
+                },
+                "death": {
+                    "first": 20,
+                    "total": 2,
+                    "frames": [12,12]
+                }
+            },
+            "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
+                "SPAWN": {
+                    "active": "spawn",
+                    "repeat": "idle"
+                },
+                "DEATH": {
+                    "active": "death"
+                }
+            }
+        }
+    },
+    "objects": {
+        "lump_object": {
+            "animationScale": 2.0,
+            "blueAnimationKey": "blue_lump_animation",
+            "goldAnimationKey": "yellow_lump_animation",
+            "key": "lump_object",
+            "shapeKey": "lump_shape",
+            "soundKey": "baseEnemySound"
+        },
+        "lump_zoneObject": {
+            "blueAnimationKey": "whiteCircle",
+            "goldAnimationKey": "whiteCircle",
+            "key": "lump_zoneObject",
+            "shapeKey": "lump_zoneShape"
+        }
+    },
+    "shapes": {
+        "lump_shape": {
+            "key": "lump_shape",
+            "vertices": [
+                         0.0,
+                         0.0,
+                         1.25,
+                         0.0,
+                         1.25,
+                         1.25,
+                         0.0,
+                         1.25
+                         ]
+        },
+        "lump_zoneShape": {
+            "key": "lump_zoneShape",
+            "vertices": [
+                         0.0,
+                         -3.375,
+                         1.6875,
+                         -2.9228357377743746,
+                         2.9228357377743746,
+                         -1.6875,
+                         3.375,
+                         0.0,
+                         2.9228357377743746,
+                         1.6875,
+                         1.6875,
+                         2.9228357377743746,
+                         0.0,
+                         3.375,
+                         -1.6875,
+                         2.9228357377743746,
+                         -2.9228357377743746,
+                         1.6875,
+                         -3.375, 
+                         0.0, 
+                         -2.9228357377743746, 
+                         -1.6875, 
+                         -1.6875, 
+                         -2.9228357377743746
+                         ]
+        }
+    }, 
+    "templates": {
+        "lump": {
+            "aiKeys": [
+                       "homing"
+                       ], 
+            "key": "lump", 
+            "name": "lump", 
+            "objectKey": "lump_object", 
+            "zones": [[],["lump_zone"]]
+        }
+    },
+    "zones": {
+        "lump_zone": {
+            "cooldown": 0, 
+            "duration": 180, 
+            "element": "BLUE", 
+            "key": "lump_zone", 
+            "objectKey": "lump_zoneObject", 
+            "relX": 0, 
+            "relY": 0, 
+            "type": "STATIC"
+        }
+    }
+}

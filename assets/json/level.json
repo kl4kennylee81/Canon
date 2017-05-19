@@ -1,9 +1,15 @@
 {
     "objects": {
-        "bar": {
-            "blueAnimationKey": "whiteBar", 
-            "goldAnimationKey": "whiteBar", 
-            "key": "bar", 
+        "horizontalBar": {
+            "blueAnimationKey": "whiteBarHorizontal", 
+            "goldAnimationKey": "whiteBarHorizontal", 
+            "key": "horizontalBar", 
+            "shapeKey": "bar"
+        }, 
+        "verticalBar": {
+            "blueAnimationKey": "whiteBarVertical", 
+            "goldAnimationKey": "whiteBarVertical", 
+            "key": "verticalBar", 
             "shapeKey": "bar"
         }, 
         "circle": {

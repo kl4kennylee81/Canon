@@ -61,44 +61,44 @@
                     "aiKey": "horizontalLeft", 
                     "element": "GOLD", 
                     "key": "patrol wave 14 object 1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 16.533333, 
                     "y": 10.633333, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 14 object 2": {
                     "aiKey": "verticalDown", 
                     "element": "BLUE", 
                     "key": "patrol wave 14 object 2", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 13.2, 
                     "y": 10.633333, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 14 object 3": {
                     "aiKey": "horizontalRight", 
                     "element": "GOLD", 
                     "key": "patrol wave 14 object 3", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 13.1, 
                     "y": 7.4, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 14 object 4": {
                     "aiKey": "verticalUp", 
                     "element": "BLUE", 
                     "key": "patrol wave 14 object 4", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 16.6, 
                     "y": 7.4, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 14 object 5": {
@@ -142,44 +142,44 @@
                     "aiKey": "horizontalRight", 
                     "element": "BLUE", 
                     "key": "patrol wave 21 object 1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 7.366667, 
                     "y": 12.433334, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 21 object 2": {
                     "aiKey": "horizontalLeft", 
                     "element": "BLUE", 
                     "key": "patrol wave 21 object 2", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 24.666666, 
                     "y": 5.666667, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 21 object 3": {
                     "aiKey": "verticalDown", 
                     "element": "GOLD", 
                     "key": "patrol wave 21 object 3", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 24.633333, 
                     "y": 12.233334, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }, 
                 "patrol wave 21 object 4": {
                     "aiKey": "verticalUp", 
                     "element": "GOLD", 
                     "key": "patrol wave 21 object 4", 
-                    "templateKey": "blobo", 
+                    "templateKey": "stump", 
                     "x": 7.433333, 
                     "y": 5.8, 
                     "zoneKeys": [
-                        "blobo_zone"
+                        "stump_zone"
                     ]
                 }
             }

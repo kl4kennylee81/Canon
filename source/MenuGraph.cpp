@@ -152,13 +152,14 @@ void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& asse
 		int newIndex = (chIndex + numChaps - 1) % numChaps;
 		updatedChapter = chKeys.at(newIndex);
 	}
-
+    
 	// update save data...we should totes do this somewhere else / make a funciton for this
 	save->currentChapter = updatedChapter;
 	assets->loadDirectory(save->toJsonValue());
 	// todo: write updated save state and current chapter to the save file upon game exit...or do it now
 
 	_menuMap["levelSelect"] = menu;
+    _currentChapter = updatedChapter;
 	augmentLevelMenu(assets, _menuMap, updatedChapter);
 }
 
@@ -180,8 +181,8 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 
 	// chapter shenanigans
 	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
-	std::string currentChapter = save->currentChapter;
-	augmentLevelMenu(assets, _menuMap, currentChapter);
+	_currentChapter = save->currentChapter;
+	augmentLevelMenu(assets, _menuMap, _currentChapter);
 }
 
 void MenuGraph::setActiveMenu(std::shared_ptr<Menu> menu){

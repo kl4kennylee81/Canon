@@ -1,242 +1,248 @@
 {
-    "name":	"xxxxxx",
-    "counter":	13,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "xxxxxx":	{
-            "key":	"xxxxxx",
-            "levelEntries":	{
-                "xxxxxx wave 06":	{
-                    "key":	"xxxxxx wave 06",
-                    "waveKey":	"xxxxxx wave 06",
-                    "time":	300
-                },
-                "xxxxxx wave 12":	{
-                    "key":	"xxxxxx wave 12",
-                    "waveKey":	"xxxxxx wave 12",
-                    "time":	360
+    "counter": 13, 
+    "levels": {
+        "xxxxxx": {
+            "key": "xxxxxx", 
+            "levelEntries": {
+                "xxxxxx wave 06": {
+                    "key": "xxxxxx wave 06", 
+                    "time": 300, 
+                    "waveKey": "xxxxxx wave 06"
+                }, 
+                "xxxxxx wave 12": {
+                    "key": "xxxxxx wave 12", 
+                    "time": 360, 
+                    "waveKey": "xxxxxx wave 12"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"player1",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"player2",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "xxxxxx wave 06":	{
-            "key":	"xxxxxx wave 06",
-            "waveEntries":	{
-                "xxxxxx wave 06 object 1":	{
-                    "key":	"xxxxxx wave 06 object 1",
-                    "x":	29,
-                    "y":	15.166666,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 2":	{
-                    "key":	"xxxxxx wave 06 object 2",
-                    "x":	22.733334,
-                    "y":	12.733333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 3":	{
-                    "key":	"xxxxxx wave 06 object 3",
-                    "x":	20.866667,
-                    "y":	15.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 4":	{
-                    "key":	"xxxxxx wave 06 object 4",
-                    "x":	24.333334,
-                    "y":	7.033334,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 5":	{
-                    "key":	"xxxxxx wave 06 object 5",
-                    "x":	27.500000,
-                    "y":	12.900000,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 6":	{
-                    "key":	"xxxxxx wave 06 object 6",
-                    "x":	26.100000,
-                    "y":	10.200001,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 7":	{
-                    "key":	"xxxxxx wave 06 object 7",
-                    "x":	29.600000,
-                    "y":	1.866667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 8":	{
-                    "key":	"xxxxxx wave 06 object 8",
-                    "x":	22.633333,
-                    "y":	4.600000,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 9":	{
-                    "key":	"xxxxxx wave 06 object 9",
-                    "x":	20.900000,
-                    "y":	1.866667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 10":	{
-                    "key":	"xxxxxx wave 06 object 10",
-                    "x":	27.566668,
-                    "y":	4.566667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 11":	{
-                    "key":	"xxxxxx wave 06 object 11",
-                    "x":	26.166666,
-                    "y":	7.099999,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 06 object 12":	{
-                    "key":	"xxxxxx wave 06 object 12",
-                    "x":	24.366667,
-                    "y":	10.166667,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo"
+    }, 
+    "name": "xxxxxx", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "xxxxxx wave 06": {
+            "key": "xxxxxx wave 06", 
+            "waveEntries": {
+                "xxxxxx wave 06 object 1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 29, 
+                    "y": 15.166666
+                }, 
+                "xxxxxx wave 06 object 10": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 10", 
+                    "templateKey": "blobo", 
+                    "x": 27.566668, 
+                    "y": 4.566667
+                }, 
+                "xxxxxx wave 06 object 11": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 11", 
+                    "templateKey": "blobo", 
+                    "x": 26.166666, 
+                    "y": 7.099999
+                }, 
+                "xxxxxx wave 06 object 12": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 12", 
+                    "templateKey": "blobo", 
+                    "x": 24.366667, 
+                    "y": 10.166667
+                }, 
+                "xxxxxx wave 06 object 2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 22.733334, 
+                    "y": 12.733333
+                }, 
+                "xxxxxx wave 06 object 3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 20.866667, 
+                    "y": 15.133333
+                }, 
+                "xxxxxx wave 06 object 4": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 24.333334, 
+                    "y": 7.033334
+                }, 
+                "xxxxxx wave 06 object 5": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 5", 
+                    "templateKey": "blobo", 
+                    "x": 27.5, 
+                    "y": 12.9
+                }, 
+                "xxxxxx wave 06 object 6": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 6", 
+                    "templateKey": "blobo", 
+                    "x": 26.1, 
+                    "y": 10.200001
+                }, 
+                "xxxxxx wave 06 object 7": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 06 object 7", 
+                    "templateKey": "blobo", 
+                    "x": 29.6, 
+                    "y": 1.866667
+                }, 
+                "xxxxxx wave 06 object 8": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 8", 
+                    "templateKey": "blobo", 
+                    "x": 22.633333, 
+                    "y": 4.6
+                }, 
+                "xxxxxx wave 06 object 9": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 06 object 9", 
+                    "templateKey": "blobo", 
+                    "x": 20.9, 
+                    "y": 1.866667
                 }
             }
-        },
-        "xxxxxx wave 12":	{
-            "key":	"xxxxxx wave 12",
-            "waveEntries":	{
-                "xxxxxx wave 12 object 1":	{
-                    "key":	"xxxxxx wave 12 object 1",
-                    "x":	13.600000,
-                    "y":	15.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 2":	{
-                    "key":	"xxxxxx wave 12 object 2",
-                    "x":	7.933333,
-                    "y":	7.266666,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 3":	{
-                    "key":	"xxxxxx wave 12 object 3",
-                    "x":	4.633333,
-                    "y":	15.133333,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 4":	{
-                    "key":	"xxxxxx wave 12 object 4",
-                    "x":	4.833334,
-                    "y":	1.833333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 5":	{
-                    "key":	"xxxxxx wave 12 object 5",
-                    "x":	12,
-                    "y":	12.766666,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 6":	{
-                    "key":	"xxxxxx wave 12 object 6",
-                    "x":	10.200000,
-                    "y":	10.333333,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 7":	{
-                    "key":	"xxxxxx wave 12 object 7",
-                    "x":	13.833333,
-                    "y":	1.833333,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 8":	{
-                    "key":	"xxxxxx wave 12 object 8",
-                    "x":	6.333334,
-                    "y":	4.600000,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 9":	{
-                    "key":	"xxxxxx wave 12 object 9",
-                    "x":	12.300000,
-                    "y":	4.600000,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 10":	{
-                    "key":	"xxxxxx wave 12 object 10",
-                    "x":	10.333333,
-                    "y":	7.266666,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 11":	{
-                    "key":	"xxxxxx wave 12 object 11",
-                    "x":	8,
-                    "y":	10.299999,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
-                },
-                "xxxxxx wave 12 object 12":	{
-                    "key":	"xxxxxx wave 12 object 12",
-                    "x":	6.500000,
-                    "y":	12.700001,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo"
+        }, 
+        "xxxxxx wave 12": {
+            "key": "xxxxxx wave 12", 
+            "waveEntries": {
+                "xxxxxx wave 12 object 1": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 13.6, 
+                    "y": 15.133333
+                }, 
+                "xxxxxx wave 12 object 10": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 10", 
+                    "templateKey": "blobo", 
+                    "x": 10.333333, 
+                    "y": 7.266666
+                }, 
+                "xxxxxx wave 12 object 11": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 11", 
+                    "templateKey": "blobo", 
+                    "x": 8, 
+                    "y": 10.299999
+                }, 
+                "xxxxxx wave 12 object 12": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 12", 
+                    "templateKey": "blobo", 
+                    "x": 6.5, 
+                    "y": 12.700001
+                }, 
+                "xxxxxx wave 12 object 2": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 7.933333, 
+                    "y": 7.266666
+                }, 
+                "xxxxxx wave 12 object 3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 3", 
+                    "templateKey": "blobo", 
+                    "x": 4.633333, 
+                    "y": 15.133333
+                }, 
+                "xxxxxx wave 12 object 4": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 4", 
+                    "templateKey": "blobo", 
+                    "x": 4.833334, 
+                    "y": 1.833333
+                }, 
+                "xxxxxx wave 12 object 5": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 5", 
+                    "templateKey": "blobo", 
+                    "x": 12, 
+                    "y": 12.766666
+                }, 
+                "xxxxxx wave 12 object 6": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 6", 
+                    "templateKey": "blobo", 
+                    "x": 10.2, 
+                    "y": 10.333333
+                }, 
+                "xxxxxx wave 12 object 7": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 7", 
+                    "templateKey": "blobo", 
+                    "x": 13.833333, 
+                    "y": 1.833333
+                }, 
+                "xxxxxx wave 12 object 8": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "xxxxxx wave 12 object 8", 
+                    "templateKey": "blobo", 
+                    "x": 6.333334, 
+                    "y": 4.6
+                }, 
+                "xxxxxx wave 12 object 9": {
+                    "aiKey": "horizontalRight", 
+                    "element": "BLUE", 
+                    "key": "xxxxxx wave 12 object 9", 
+                    "templateKey": "blobo", 
+                    "x": 12.3, 
+                    "y": 4.6
                 }
             }
         }

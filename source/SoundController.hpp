@@ -14,12 +14,13 @@
 #include <cugl/cugl.h>
 #include <map>
 #include "BaseController.hpp"
-#include "World.hpp"
+#include "GenericAssetManager.hpp"
+#include "SoundData.hpp"
 
 class SoundController : public BaseController {
 protected:
     int step;
-    std::shared_ptr<World> _world;
+    std::shared_ptr<GenericAssetManager> _assets;
     
     std::shared_ptr<SoundData> generalSounds;
     std::map<GameObject*, std::shared_ptr<SoundData>> objectSoundMap;
@@ -44,11 +45,11 @@ public:
     
     void dispose() {};
     
-    virtual bool init(std::shared_ptr<World> world);
+    virtual bool init(std::shared_ptr<GenericAssetManager> assets);
     
-    static std::shared_ptr<SoundController> alloc(std::shared_ptr<World> world) {
+    static std::shared_ptr<SoundController> alloc(std::shared_ptr<GenericAssetManager> assets) {
         std::shared_ptr<SoundController> result = std::make_shared<SoundController>();
-        return (result->init(world) ? result : nullptr);
+        return (result->init(assets) ? result : nullptr);
     }
     
     void handleObjectAction(GameObject* obj, SoundAction action);

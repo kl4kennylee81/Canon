@@ -27,6 +27,8 @@ protected:
     std::unordered_map<std::string, std::shared_ptr<Menu>> _menuMap;
     
     void setMode(Mode mode);
+    
+    std::string _currentChapter;
 public:
     MenuGraph();
     
@@ -74,6 +76,8 @@ public:
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
     
     bool initAfterResume(std::shared_ptr<cugl::JsonValue> menuGraphResumeJson);
+    
+    std::string getCurrentChapter() { return _currentChapter;}
 };
 
 #endif /* MenuGraph_hpp */

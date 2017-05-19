@@ -1,0 +1,138 @@
+{
+    "animations":{
+        "blue_stump_animation": {
+            "texture": "./textures/models/enemy_models/stump/stump_blue.png",
+            "rows": 3,
+            "cols": 8,
+            "size": 24,
+            "statemap": {
+                "spawning": {
+                    "first": 0,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "idle": {
+                    "first": 16,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "spawn": {
+                    "first": 8,
+                    "total": 8,
+                    "frames": [6,6,6,9,9,9,6,6]
+                },
+                "death": {
+                    "first": 20,
+                    "total": 2,
+                    "frames": [12,12]
+                }
+            },
+            "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
+                "SPAWN": {
+                    "active": "spawn",
+                    "repeat": "idle"
+                },
+                "DEATH": {
+                    "active": "death"
+                }
+            }
+        },
+        "yellow_stump_animation": {
+            "texture": "./textures/models/enemy_models/stump/stump_yellow.png",
+            "rows": 3,
+            "cols": 8,
+            "size": 24,
+            "statemap": {
+                "spawning": {
+                    "first": 0,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "idle": {
+                    "first": 16,
+                    "total": 4,
+                    "frames": [12,12,12,12]
+                },
+                "spawn": {
+                    "first": 8,
+                    "total": 8,
+                    "frames": [6,6,6,9,9,9,6,6]
+                },
+                "death": {
+                    "first": 20,
+                    "total": 2,
+                    "frames": [12,12]
+                }
+            },
+            "actionmap": {
+                "SPAWNING": {
+                    "repeat": "spawning"
+                },
+                "SPAWN": {
+                    "active": "spawn",
+                    "repeat": "idle"
+                },
+                "DEATH": {
+                    "active": "death"
+                }
+            }
+        }
+    },
+    "objects": {
+        "stump_object": {
+            "animationScale": 2.0,
+            "blueAnimationKey": "blue_stump_animation",
+            "goldAnimationKey": "yellow_stump_animation",
+            "key": "stump_object",
+            "shapeKey": "stump_shape",
+            "soundKey": "baseEnemySound"
+        }
+    },
+    "shapes": {
+        "stump_shape": {
+            "key": "stump_shape",
+            "vertices": [
+                         0.0,
+                         0.0,
+                         1.25,
+                         0.0,
+                         1.25,
+                         1.25,
+                         0.0,
+                         1.25
+                         ]
+        }
+    },
+    "templates": {
+        "stump": {
+            "aiKeys": [
+                       "horizontal",
+                       "horizontalLeft",
+                       "horizontalRight", 
+                       "verticalUp", 
+                       "verticalDown", 
+                       "vertical", 
+                       "static"
+                       ], 
+            "key": "stump", 
+            "name": "stump", 
+            "objectKey": "stump_object",
+            "zones": [[],["stump_zone"]]
+        }
+    },
+    "zones": {
+        "stump_zone": {
+            "cooldown": 0,
+            "duration": 180,
+            "element": "BLUE",
+            "key": "birb_zone",
+            "objectKey": "birb_zoneObject",
+            "relX": 0,
+            "relY": 0,
+            "type": "STATIC"
+        }
+    }
+}

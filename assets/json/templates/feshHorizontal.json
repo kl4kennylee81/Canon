@@ -2,9 +2,10 @@
   "animations":{
     "blue_feshHorizontal_animation": {
       "texture": "./textures/models/enemy_models/fesh/fesh_blue.png",
-      "rows": 5,
+      "rows": 3,
       "cols": 8,
-      "size": 40,
+      "size": 24,
+      "angle": 90,
       "statemap": {
           "spawning": {
             "first": 0,
@@ -12,19 +13,19 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 24,
-            "total": 1,
-            "frames": [10]
+            "first": 16,
+            "total": 4,
+            "frames": [12,12,12,12]
           },
           "spawn": {
             "first": 8,
             "total": 8,
-            "frames": [9,9,9,12,12,12,9,9]
+            "frames": [6,6,6,9,9,9,6,6]
           },
           "death": {
-            "first": 1,
-            "total": 1,
-            "frames": [10]
+            "first": 20,
+            "total": 2,
+            "frames": [12,12]
           }
       },
       "actionmap": {
@@ -42,9 +43,10 @@
     },
     "yellow_feshHorizontal_animation": {
       "texture": "./textures/models/enemy_models/fesh/fesh_yellow.png",
-      "rows": 5,
+      "rows": 3,
       "cols": 8,
-      "size": 40,
+      "size": 24,
+      "angle": 90,
       "statemap": {
           "spawning": {
             "first": 0,
@@ -52,19 +54,19 @@
             "frames": [12,12,12,12]
           },
           "idle": {
-            "first": 24,
-            "total": 1,
-            "frames": [10]
+            "first": 16,
+            "total": 4,
+            "frames": [12,12,12,12]
           },
           "spawn": {
             "first": 8,
             "total": 8,
-            "frames": [9,9,9,12,12,12,9,9]
+            "frames": [6,6,6,9,9,9,6,6]
           },
           "death": {
-            "first": 1,
-            "total": 1,
-            "frames": [10]
+            "first": 20,
+            "total": 2,
+            "frames": [12,12]
           }
       },
       "actionmap": {
@@ -92,8 +94,8 @@
         }, 
         "feshHorizontal_zoneObject": {
             "animationScale": 1.0, 
-            "blueAnimationKey": "whiteBar", 
-            "goldAnimationKey": "whiteBar", 
+            "blueAnimationKey": "whiteBarHorizontal", 
+            "goldAnimationKey": "whiteBarHorizontal", 
             "key": "feshHorizontal_zoneObject", 
             "shapeKey": "feshHorizontal_zoneShape"
         }

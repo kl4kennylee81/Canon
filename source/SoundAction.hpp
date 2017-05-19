@@ -18,6 +18,7 @@ enum class SoundAction : int {
     SPAWN,
     ACTIVE,
     DEATH,
+    HIT,
     
     /** Default **/
     DEFAULT
