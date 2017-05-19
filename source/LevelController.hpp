@@ -32,6 +32,8 @@ protected:
 	std::map<int, std::string> _uidToWaveEntryMap;
     
     LevelState _levelState;
+    
+    bool _spawnPlayers;
 
 public:
     LevelController();
@@ -61,13 +63,13 @@ public:
     
     void dispose();
     
-    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<World> world, bool spawnPlayers);
     
     bool init(std::string levelDataKey, std::shared_ptr<GameState> state, std::shared_ptr<World> world);
     
-    static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
+    static std::shared_ptr<LevelController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<World> world, bool spawnPlayers = true) {
         std::shared_ptr<LevelController> result = std::make_shared<LevelController>();
-        return (result->init(state, world) ? result : nullptr);
+        return (result->init(state, world, spawnPlayers) ? result : nullptr);
     }
 
 	std::shared_ptr<World> getWorld() {
@@ -81,6 +83,8 @@ public:
 	std::string serialize(std::shared_ptr<GameState> state);
 
     std::shared_ptr<cugl::JsonValue> toJsonValue(std::shared_ptr<GameState> state);
+    
+    void removeProgressBarNode() { _progressBarController->cleanup();};
 };
 
 #endif /* LevelController_hpp */
