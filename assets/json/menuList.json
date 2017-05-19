@@ -8,7 +8,8 @@
                 "levelSelect",
                 "pauseMenu",
                 "startMenu",
-                "victory"
+                "victory",
+                "storyScreen"
             ],
             "startMenuKey": "startMenu"
         }

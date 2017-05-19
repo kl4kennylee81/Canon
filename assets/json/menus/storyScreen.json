@@ -1,0 +1,41 @@
+{
+    "MenuScreenData": {
+        "storyScreen": {
+            "UIEntries": [
+                "storyScreen_storyImage", 
+                "storyScreen_storyToContinue"
+            ], 
+            "key": "storyScreen",
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }
+        }
+    }, 
+    "UIData": {
+        "storyScreen_storyImage": {
+            "height": 1.0, 
+            "key": "storyScreen_storyImage", 
+            "textureKey": "storyScreen_Canon", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        }, 
+        "storyScreen_storyToContinue": {
+            "fontKey": "menu_header_font", 
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Continue", 
+            "height": 0.09, 
+            "key": "storyScreen_storyToContinue", 
+            "type": "BUTTON", 
+            "width": 0.04164780443639656, 
+            "x": 0.9298325033952014, 
+            "y": 0.05072463768115938
+        }
+    }
+}
