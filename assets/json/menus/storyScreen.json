@@ -2,7 +2,7 @@
     "MenuScreenData": {
         "storyScreen": {
             "UIEntries": [
-                "storyScreen_storyImage",
+                "storyScreen_storyImage", 
                 "storyScreen_storyImage2"
             ], 
             "fontMap": {
@@ -21,12 +21,12 @@
             }, 
             "height": 1.0, 
             "key": "storyScreen_storyImage", 
-            "uiBackgroundKey": "storyScreen_Canon", 
             "type": "BUTTON", 
+            "uiBackgroundKey": "storyScreen_Canon", 
             "width": 1.0, 
             "x": 0.0, 
             "y": 0.0
-        },
+        }, 
         "storyScreen_storyImage2": {
             "buttonAction": {
                 "buttonTarget": "MAIN_MENU", 
@@ -35,8 +35,8 @@
             }, 
             "height": 1.0, 
             "key": "storyScreen_storyImage2", 
-            "uiBackgroundKey": "storyScreen_Canon", 
             "type": "BUTTON", 
+            "uiBackgroundKey": "storyScreen_Canon", 
             "width": 1.0, 
             "x": 0.0, 
             "y": 0.0
