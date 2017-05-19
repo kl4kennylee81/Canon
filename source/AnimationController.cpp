@@ -239,6 +239,8 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
         _worldnode->sortZOrder();
     }
     
+
+    
     std::shared_ptr<AnimationState> state = anim->getAnimationState();
     Color4 color = anim->getAnimationNode()->getColor();
     color.a = state->alpha * 255;
