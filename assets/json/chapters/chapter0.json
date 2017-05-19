@@ -9,7 +9,7 @@
                        "level12",
                        "level13"
                        ],
-            "chapterTexture": "chapter01_texture"
+            "chapterTexture": "chapter01_texture",
             "continuous": 1
         }
     },
