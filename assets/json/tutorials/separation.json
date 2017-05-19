@@ -19,6 +19,8 @@
             "start": "IMMEDIATE",
             "end": "IMMEDIATE",
             "UIEntries": [
+                "separation_textbox_bottom",
+                "separation_extraTimeText"
             ],
             "startEffects":[
                 "PAUSE_SPAWNING"
@@ -70,6 +72,23 @@
         }
     },
     "UIData": {
+        "separation_textbox_bottom": {
+            "height": 0.15, 
+            "key": "separation_textbox_bottom", 
+            "textureKey": "tutorial_textbox_bottom", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "separation_extraTimeText": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_draw_path", 
+            "textValue": "I see the light....", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
         "separation_gradientDim": {
             "height": 1.0, 
             "key": "tutorial1_gradientDim", 

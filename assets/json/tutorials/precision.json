@@ -18,6 +18,8 @@
             "start": "IMMEDIATE",
             "end": "IMMEDIATE",
             "UIEntries": [
+               "precision_textbox_bottom",
+                "precision_extraTimeText"
             ],
             "startEffects":[
                 "PAUSE_SPAWNING"
@@ -50,6 +52,23 @@
         }
     },
     "UIData": {
+        "precision_textbox_bottom": {
+            "height": 0.15, 
+            "key": "precision_textbox_bottom", 
+            "textureKey": "tutorial_textbox_bottom", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "precision_extraTimeText": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_draw_path", 
+            "textValue": "I think we're almost there!", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
         "precision_gradientDim": {
             "height": 1.0, 
             "key": "tutorial1_gradientDim", 

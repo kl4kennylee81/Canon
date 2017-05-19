@@ -19,6 +19,8 @@
             "start": "IMMEDIATE",
             "end": "IMMEDIATE",
             "UIEntries": [
+                "rapidSpawn_textbox_bottom",
+                "rapidSpawn_extraTimeText"
             ],
             "startEffects":[
                 "PAUSE_SPAWNING"
@@ -70,6 +72,23 @@
         }
     },
     "UIData": {
+        "rapidSpawn_textbox_bottom": {
+            "height": 0.15, 
+            "key": "rapidSpawn_textbox_bottom", 
+            "textureKey": "tutorial_textbox_bottom", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "rapidSpawn_extraTimeText": {
+            "fontKey": "bottom_font", 
+            "key": "tutorial1_draw_path", 
+            "textValue": "Get ready, enemies approach!", 
+            "type": "TEXT", 
+            "x": 0.5, 
+            "y": 0.075
+        },
         "rapidSpawn_gradientDim": {
             "height": 1.0, 
             "key": "rapidSpawn_gradientDim", 
