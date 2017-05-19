@@ -12,7 +12,8 @@
                 "level15",
                 "level16"
             ],
-            "chapterTexture": "chapter01_texture"
+            "chapterTexture": "chapter01_texture",
+            "continuous": 1
         }
     },
     "LevelSelectData": {
