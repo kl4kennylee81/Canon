@@ -47,10 +47,7 @@
         }, 
         "pauseMenu_RetryButton": {
             "buttonAction": {
-<<<<<<< HEAD
                 "active": "pauseMenu_glow", 
-=======
->>>>>>> screenWorks
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
@@ -107,10 +104,7 @@
         }, 
         "pauseMenu_homeButton2": {
             "buttonAction": {
-<<<<<<< HEAD
                 "active": "pauseMenu_glow", 
-=======
->>>>>>> screenWorks
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
@@ -222,10 +216,7 @@
         }, 
         "pauseMenu_resumeButton": {
             "buttonAction": {
-<<<<<<< HEAD
                 "active": "pauseMenu_glow", 
-=======
->>>>>>> screenWorks
                 "fxKey": "RESUME", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"

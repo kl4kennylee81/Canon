@@ -4,12 +4,13 @@
             "chapterKey": "chapter03",
             "name": "The Girl and the Fesh",
             "levels": [
-                       "level31",
-                       "level32",
-                       "level33",
-                       "level34",
-                       "level35"
-                       ]
+                "level31",
+                "level32",
+                "level33",
+                "level34",
+                "level35"
+            ],
+            "chapterTexture": "chapter02_texture"
         }
     },
     "LevelSelectData": {
