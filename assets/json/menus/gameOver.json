@@ -4,7 +4,6 @@
             "UIEntries": [
                 "gameOver_bluemod", 
                 "gameOver_homeButton", 
-                "gameOver_ToLevelEditor", 
                 "gameOver_levelsButton", 
                 "gameOver_retryButton", 
                 "gameOver_GameOverText", 
@@ -35,22 +34,7 @@
             "width": 0.6917157084653689, 
             "x": 0.13309189678587596, 
             "y": 0.5716586151368759
-        }, 
-        "gameOver_ToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
-            }, 
-            "buttonLabel": "Level Edit", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "gameOver_ToLevelEditor", 
-            "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.025
-        }, 
+        },
         "gameOver_bluemod": {
             "height": 0.3357487922705314, 
             "key": "gameOver_bluemod", 
