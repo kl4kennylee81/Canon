@@ -379,7 +379,8 @@
                     "total": 1,
                     "alpha": 0.7
                 }
-            }, 
+            },
+            "physicsAngle" : 1, 
             "texture": "./textures/models/zones/sector_spritesheet.png"
         }
     }
