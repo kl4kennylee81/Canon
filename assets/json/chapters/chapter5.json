@@ -3,10 +3,7 @@
         "chapter05": {
             "chapterKey": "chapter05",
             "name": "The Girl and the Moon",
-            "levels": [
-                "level51",
-                "level52"
-            ],
+            "levels": [],
             "chapterTexture": "chapter05_texture"
         }
     },

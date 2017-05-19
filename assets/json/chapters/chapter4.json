@@ -3,7 +3,10 @@
         "chapter04": {
             "chapterKey": "chapter04",
             "name": "The Girl and the Grump",
-            "levels": [],
+            "levels": [
+                "level51",
+                "level52"
+            ],
             "chapterTexture": "chapter04_texture"
         }
     },
