@@ -32,10 +32,19 @@ void SoundController::eventUpdate(Event* e) {
         case Event::EventType::COLLISION: {
             CollisionEvent* collisionEvent = (CollisionEvent*)e;
             switch (collisionEvent->_collisionType) {
-                case CollisionEvent::CollisionEventType::OBJECT_GONE:
+                case CollisionEvent::CollisionEventType::OBJECT_GONE: {
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     handleObjectAction(objectGone->_obj, SoundAction::DEATH);
                     break;
+                }
+                case CollisionEvent::CollisionEventType::OBJECT_HIT: {
+                    ObjectHitEvent* objectHit = (ObjectHitEvent*)collisionEvent;
+                    if(objectHit->_obj->type == GameObject::ObjectType::CHARACTER){
+                        handleObjectAction(objectHit->_obj, SoundAction::HIT);
+                    }
+                    break;
+                }
+
             }
             break;
         }

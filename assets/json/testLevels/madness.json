@@ -1,341 +1,365 @@
 {
-    "name":	"madness",
-    "counter":	65,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "madness":	{
-            "key":	"madness",
-            "levelEntries":	{
-                "madness wave 63":	{
-                    "key":	"madness wave 63",
-                    "waveKey":	"madness wave 63",
-                    "time":	750
-                },
-                "madness wave 64":	{
-                    "key":	"madness wave 64",
-                    "waveKey":	"madness wave 64",
-                    "time":	600
-                },
-                "madness wave 65":	{
-                    "key":	"madness wave 65",
-                    "waveKey":	"madness wave 65",
-                    "time":	180
+    "counter": 65, 
+    "levels": {
+        "madness": {
+            "key": "madness", 
+            "levelEntries": {
+                "madness wave 63": {
+                    "key": "madness wave 63", 
+                    "time": 750, 
+                    "waveKey": "madness wave 63"
+                }, 
+                "madness wave 64": {
+                    "key": "madness wave 64", 
+                    "time": 600, 
+                    "waveKey": "madness wave 64"
+                }, 
+                "madness wave 65": {
+                    "key": "madness wave 65", 
+                    "time": 180, 
+                    "waveKey": "madness wave 65"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"player1",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"player2",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "madness wave 63":	{
-            "key":	"madness wave 63",
-            "waveEntries":	{
-                "madness wave 63 object 1":	{
-                    "key":	"madness wave 63 object 1",
-                    "x":	29,
-                    "y":	8,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"feshVertical",
-                    "zoneKeys":	["feshVertical_zone"]
-                },
-                "madness wave 63 object 2":	{
-                    "key":	"madness wave 63 object 2",
-                    "x":	13.933333,
-                    "y":	7.866667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"feshVertical",
-                    "zoneKeys":	["feshVertical_zone"]
-                },
-                "madness wave 63 object 3":	{
-                    "key":	"madness wave 63 object 3",
-                    "x":	6.733334,
-                    "y":	7.900000,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"feshVertical",
-                    "zoneKeys":	["feshVertical_zone"]
-                },
-                "madness wave 63 object 4":	{
-                    "key":	"madness wave 63 object 4",
-                    "x":	21.433332,
-                    "y":	7.900000,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"feshVertical"
-                },
-                "madness wave 63 object 5":	{
-                    "key":	"madness wave 63 object 5",
-                    "x":	6.733334,
-                    "y":	5.433333,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 63 object 6":	{
-                    "key":	"madness wave 63 object 6",
-                    "x":	13.933333,
-                    "y":	10.299999,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 63 object 7":	{
-                    "key":	"madness wave 63 object 7",
-                    "x":	21.433332,
-                    "y":	5.466666,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 63 object 8":	{
-                    "key":	"madness wave 63 object 8",
-                    "x":	28.966667,
-                    "y":	10.299999,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 63 object 9":	{
-                    "key":	"madness wave 63 object 9",
-                    "x":	4.700000,
-                    "y":	5.433333,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 10":	{
-                    "key":	"madness wave 63 object 10",
-                    "x":	8.800000,
-                    "y":	5.433333,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 11":	{
-                    "key":	"madness wave 63 object 11",
-                    "x":	11.833333,
-                    "y":	10.299999,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 12":	{
-                    "key":	"madness wave 63 object 12",
-                    "x":	16,
-                    "y":	10.299999,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 13":	{
-                    "key":	"madness wave 63 object 13",
-                    "x":	19.266666,
-                    "y":	5.466666,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 14":	{
-                    "key":	"madness wave 63 object 14",
-                    "x":	23.533333,
-                    "y":	5.466666,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 15":	{
-                    "key":	"madness wave 63 object 15",
-                    "x":	26.866667,
-                    "y":	10.233334,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 16":	{
-                    "key":	"madness wave 63 object 16",
-                    "x":	6.700000,
-                    "y":	3.433333,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 17":	{
-                    "key":	"madness wave 63 object 17",
-                    "x":	13.933333,
-                    "y":	12.366667,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 18":	{
-                    "key":	"madness wave 63 object 18",
-                    "x":	21.400000,
-                    "y":	3.500000,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 19":	{
-                    "key":	"madness wave 63 object 19",
-                    "x":	28.900000,
-                    "y":	12.333333,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
-                },
-                "madness wave 63 object 20":	{
-                    "key":	"madness wave 63 object 20",
-                    "x":	30.966667,
-                    "y":	10.333333,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"blobo"
+    }, 
+    "name": "madness", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "madness wave 63": {
+            "key": "madness wave 63", 
+            "waveEntries": {
+                "madness wave 63 object 1": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 1", 
+                    "templateKey": "feshVertical", 
+                    "x": 29, 
+                    "y": 8, 
+                    "zoneKeys": [
+                        "feshVertical_zone"
+                    ]
+                }, 
+                "madness wave 63 object 10": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 10", 
+                    "templateKey": "blobo", 
+                    "x": 8.8, 
+                    "y": 5.433333
+                }, 
+                "madness wave 63 object 11": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 11", 
+                    "templateKey": "blobo", 
+                    "x": 11.833333, 
+                    "y": 10.299999
+                }, 
+                "madness wave 63 object 12": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 12", 
+                    "templateKey": "blobo", 
+                    "x": 16, 
+                    "y": 10.299999
+                }, 
+                "madness wave 63 object 13": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 13", 
+                    "templateKey": "blobo", 
+                    "x": 19.266666, 
+                    "y": 5.466666
+                }, 
+                "madness wave 63 object 14": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 14", 
+                    "templateKey": "blobo", 
+                    "x": 23.533333, 
+                    "y": 5.466666
+                }, 
+                "madness wave 63 object 15": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 15", 
+                    "templateKey": "blobo", 
+                    "x": 26.866667, 
+                    "y": 10.233334
+                }, 
+                "madness wave 63 object 16": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 16", 
+                    "templateKey": "blobo", 
+                    "x": 6.7, 
+                    "y": 3.433333
+                }, 
+                "madness wave 63 object 17": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 17", 
+                    "templateKey": "blobo", 
+                    "x": 13.933333, 
+                    "y": 12.366667
+                }, 
+                "madness wave 63 object 18": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 18", 
+                    "templateKey": "blobo", 
+                    "x": 21.4, 
+                    "y": 3.5
+                }, 
+                "madness wave 63 object 19": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 19", 
+                    "templateKey": "blobo", 
+                    "x": 28.9, 
+                    "y": 12.333333
+                }, 
+                "madness wave 63 object 2": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 2", 
+                    "templateKey": "feshVertical", 
+                    "x": 13.933333, 
+                    "y": 7.866667, 
+                    "zoneKeys": [
+                        "feshVertical_zone"
+                    ]
+                }, 
+                "madness wave 63 object 20": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 20", 
+                    "templateKey": "blobo", 
+                    "x": 30.966667, 
+                    "y": 10.333333
+                }, 
+                "madness wave 63 object 3": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 3", 
+                    "templateKey": "feshVertical", 
+                    "x": 6.733334, 
+                    "y": 7.9, 
+                    "zoneKeys": [
+                        "feshVertical_zone"
+                    ]
+                }, 
+                "madness wave 63 object 4": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 4", 
+                    "templateKey": "feshVertical", 
+                    "x": 21.433332, 
+                    "y": 7.9
+                }, 
+                "madness wave 63 object 5": {
+                    "aiKey": "verticalUp", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 5", 
+                    "templateKey": "stump", 
+                    "x": 6.733334, 
+                    "y": 5.433333, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 63 object 6": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 6", 
+                    "templateKey": "stump", 
+                    "x": 13.933333, 
+                    "y": 10.299999, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 63 object 7": {
+                    "aiKey": "verticalUp", 
+                    "element": "BLUE", 
+                    "key": "madness wave 63 object 7", 
+                    "templateKey": "stump", 
+                    "x": 21.433332, 
+                    "y": 5.466666, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 63 object 8": {
+                    "aiKey": "verticalDown", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 8", 
+                    "templateKey": "stump", 
+                    "x": 28.966667, 
+                    "y": 10.299999, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 63 object 9": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 63 object 9", 
+                    "templateKey": "blobo", 
+                    "x": 4.7, 
+                    "y": 5.433333
                 }
             }
-        },
-        "madness wave 64":	{
-            "key":	"madness wave 64",
-            "waveEntries":	{
-                "madness wave 64 object 1":	{
-                    "key":	"madness wave 64 object 1",
-                    "x":	5.800000,
-                    "y":	15,
-                    "element":	"BLUE",
-                    "aiKey":	"verticalDown",
-                    "templateKey":	"feshHorizontal"
-                },
-                "madness wave 64 object 2":	{
-                    "key":	"madness wave 64 object 2",
-                    "x":	26.400000,
-                    "y":	0.566667,
-                    "element":	"GOLD",
-                    "aiKey":	"verticalUp",
-                    "templateKey":	"feshHorizontal"
-                },
-                "madness wave 64 object 3":	{
-                    "key":	"madness wave 64 object 3",
-                    "x":	7.966667,
-                    "y":	14.900000,
-                    "element":	"GOLD",
-                    "aiKey":	"horizontalRight",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 64 object 4":	{
-                    "key":	"madness wave 64 object 4",
-                    "x":	28.566668,
-                    "y":	0.566667,
-                    "element":	"BLUE",
-                    "aiKey":	"horizontalLeft",
-                    "templateKey":	"blobo",
-                    "zoneKeys":	["blobo_zone"]
-                },
-                "madness wave 64 object 5":	{
-                    "key":	"madness wave 64 object 5",
-                    "x":	8.066667,
-                    "y":	12.966667,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 64 object 6":	{
-                    "key":	"madness wave 64 object 6",
-                    "x":	28.533333,
-                    "y":	2.366667,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 64 object 7":	{
-                    "key":	"madness wave 64 object 7",
-                    "x":	31.033333,
-                    "y":	0.833333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 64 object 8":	{
-                    "key":	"madness wave 64 object 8",
-                    "x":	10.400000,
-                    "y":	14.833333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
+        }, 
+        "madness wave 64": {
+            "key": "madness wave 64", 
+            "waveEntries": {
+                "madness wave 64 object 1": {
+                    "aiKey": "verticalDown", 
+                    "element": "BLUE", 
+                    "key": "madness wave 64 object 1", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 5.8, 
+                    "y": 15
+                }, 
+                "madness wave 64 object 2": {
+                    "aiKey": "verticalUp", 
+                    "element": "GOLD", 
+                    "key": "madness wave 64 object 2", 
+                    "templateKey": "feshHorizontal", 
+                    "x": 26.4, 
+                    "y": 0.566667
+                }, 
+                "madness wave 64 object 3": {
+                    "aiKey": "horizontalRight", 
+                    "element": "GOLD", 
+                    "key": "madness wave 64 object 3", 
+                    "templateKey": "stump", 
+                    "x": 7.966667, 
+                    "y": 14.9, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 64 object 4": {
+                    "aiKey": "horizontalLeft", 
+                    "element": "BLUE", 
+                    "key": "madness wave 64 object 4", 
+                    "templateKey": "stump", 
+                    "x": 28.566668, 
+                    "y": 0.566667, 
+                    "zoneKeys": [
+                        "stump_zone"
+                    ]
+                }, 
+                "madness wave 64 object 5": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "madness wave 64 object 5", 
+                    "templateKey": "birb", 
+                    "x": 8.066667, 
+                    "y": 12.966667
+                }, 
+                "madness wave 64 object 6": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "madness wave 64 object 6", 
+                    "templateKey": "birb", 
+                    "x": 28.533333, 
+                    "y": 2.366667
+                }, 
+                "madness wave 64 object 7": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "madness wave 64 object 7", 
+                    "templateKey": "birb", 
+                    "x": 31.033333, 
+                    "y": 0.833333
+                }, 
+                "madness wave 64 object 8": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "madness wave 64 object 8", 
+                    "templateKey": "birb", 
+                    "x": 10.4, 
+                    "y": 14.833333
                 }
             }
-        },
-        "madness wave 65":	{
-            "key":	"madness wave 65",
-            "waveEntries":	{
-                "madness wave 65 object 1":	{
-                    "key":	"madness wave 65 object 1",
-                    "x":	23,
-                    "y":	10.799999,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 65 object 2":	{
-                    "key":	"madness wave 65 object 2",
-                    "x":	15.700000,
-                    "y":	10.766666,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 65 object 3":	{
-                    "key":	"madness wave 65 object 3",
-                    "x":	8.700000,
-                    "y":	10.833333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 65 object 4":	{
-                    "key":	"madness wave 65 object 4",
-                    "x":	8.933333,
-                    "y":	5.100000,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 65 object 5":	{
-                    "key":	"madness wave 65 object 5",
-                    "x":	15.666667,
-                    "y":	5.133333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
-                },
-                "madness wave 65 object 6":	{
-                    "key":	"madness wave 65 object 6",
-                    "x":	22.799999,
-                    "y":	5.133333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb"
+        }, 
+        "madness wave 65": {
+            "key": "madness wave 65", 
+            "waveEntries": {
+                "madness wave 65 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "madness wave 65 object 1", 
+                    "templateKey": "birb", 
+                    "x": 23, 
+                    "y": 10.799999
+                }, 
+                "madness wave 65 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "madness wave 65 object 2", 
+                    "templateKey": "birb", 
+                    "x": 15.7, 
+                    "y": 10.766666
+                }, 
+                "madness wave 65 object 3": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "madness wave 65 object 3", 
+                    "templateKey": "birb", 
+                    "x": 8.7, 
+                    "y": 10.833333
+                }, 
+                "madness wave 65 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "madness wave 65 object 4", 
+                    "templateKey": "birb", 
+                    "x": 8.933333, 
+                    "y": 5.1
+                }, 
+                "madness wave 65 object 5": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "madness wave 65 object 5", 
+                    "templateKey": "birb", 
+                    "x": 15.666667, 
+                    "y": 5.133333
+                }, 
+                "madness wave 65 object 6": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "madness wave 65 object 6", 
+                    "templateKey": "birb", 
+                    "x": 22.799999, 
+                    "y": 5.133333
                 }
             }
         }

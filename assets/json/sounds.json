@@ -46,10 +46,12 @@
     "sounds": {
         "baseEnemySound": {
             "DEATH": "base_death", 
-            "SPAWN": "base_spawn", 
+            "SPAWN": "base_spawn",
+            "HIT": "base_death",
             "key": "baseEnemySound"
         }, 
         "female": {
+            "HIT": "female_death",
             "DEATH": "female_death",
             "key": "female"
         }, 
@@ -59,6 +61,7 @@
             "key": "general"
         }, 
         "male": {
+            "HIT": "male_death",
             "DEATH": "male_death",
             "key": "male"
         }

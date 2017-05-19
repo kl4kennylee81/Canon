@@ -1,94 +1,99 @@
 {
-  "name": "tutorial01",
-  "counter":  39,
-  "template names": ["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-  "levels": {
-    "tutorial01": {
-      "key":  "tutorial01",
-      "levelEntries": {
+    "counter": 39, 
+    "levels": {
+        "tutorial01": {
+            "key": "tutorial01", 
+            "levelEntries": {
+                "tutorial01 wave 20": {
+                    "key": "tutorial01 wave 20", 
+                    "time": 10, 
+                    "waveKey": "tutorial01 wave 20"
+                }, 
+                "tutorial01 wave 36": {
+                    "key": "tutorial01 wave 36", 
+                    "time": 240, 
+                    "waveKey": "tutorial01 wave 36"
+                }, 
+                "tutorial01 wave 38": {
+                    "key": "tutorial01 wave 38", 
+                    "time": 300, 
+                    "waveKey": "tutorial01 wave 38"
+                }
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
+                }
+            }
+        }
+    }, 
+    "name": "tutorial01", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
         "tutorial01 wave 20": {
-          "key":  "tutorial01 wave 20",
-          "waveKey":  "tutorial01 wave 20",
-          "time": 10
-        },
+            "key": "tutorial01 wave 20", 
+            "waveEntries": {}
+        }, 
         "tutorial01 wave 36": {
-          "key":  "tutorial01 wave 36",
-          "waveKey":  "tutorial01 wave 36",
-          "time": 240
-        },
+            "key": "tutorial01 wave 36", 
+            "waveEntries": {
+                "tutorial01 wave 36 object 1": {
+                    "aiKey": "static", 
+                    "element": "BLUE", 
+                    "key": "tutorial01 wave 36 object 1", 
+                    "templateKey": "blobo", 
+                    "x": 7.366667, 
+                    "y": 8.233333
+                }, 
+                "tutorial01 wave 36 object 2": {
+                    "aiKey": "static", 
+                    "element": "GOLD", 
+                    "key": "tutorial01 wave 36 object 2", 
+                    "templateKey": "blobo", 
+                    "x": 26.266666, 
+                    "y": 8.533334
+                }
+            }
+        }, 
         "tutorial01 wave 38": {
-          "key":  "tutorial01 wave 38",
-          "waveKey":  "tutorial01 wave 38",
-          "time": 300
+            "key": "tutorial01 wave 38", 
+            "waveEntries": {
+                "tutorial01 wave 38 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "tutorial01 wave 38 object 1", 
+                    "templateKey": "birb", 
+                    "x": 5.0, 
+                    "y": 14.066668
+                }, 
+                "tutorial01 wave 38 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "tutorial01 wave 38 object 2", 
+                    "templateKey": "birb", 
+                    "x": 27.0, 
+                    "y": 14.1
+                }
+            }
         }
-      },
-      "playerChars":  {
-        "player1":  {
-          "key":  "player1",
-          "x":  18.750000,
-          "y":  7.812500,
-          "element":  "GOLD",
-          "aiKey":  "",
-          "templateKey":  "playerCharMale"
-        },
-        "player2":  {
-          "key":  "player2",
-          "x":  12.500000,
-          "y":  7.812500,
-          "element":  "BLUE",
-          "aiKey":  "",
-          "templateKey":  "playerCharFemale"
-        }
-      }
     }
-  },
-  "waves":  {
-    "tutorial01 wave 20": {
-      "key":  "tutorial01 wave 20",
-      "waveEntries":  {
-      }
-    },
-    "tutorial01 wave 36": {
-      "key":  "tutorial01 wave 36",
-      "waveEntries":  {
-        "tutorial01 wave 36 object 1":  {
-          "key":  "tutorial01 wave 36 object 1",
-          "x":  7.366667,
-          "y":  8.233333,
-          "element":  "BLUE",
-          "aiKey":  "static",
-          "templateKey":  "blobo"
-        },
-        "tutorial01 wave 36 object 2":  {
-          "key":  "tutorial01 wave 36 object 2",
-          "x":  26.266666,
-          "y":  8.533334,
-          "element":  "GOLD",
-          "aiKey":  "static",
-          "templateKey":  "blobo"
-        }
-      }
-    },
-    "tutorial01 wave 38": {
-      "key":  "tutorial01 wave 38",
-      "waveEntries":  {
-        "tutorial01 wave 38 object 1":  {
-          "key":  "tutorial01 wave 38 object 1",
-          "x":  5.0,
-          "y":  14.066668,
-          "element":  "GOLD",
-          "aiKey":  "homing",
-          "templateKey":  "birb"
-        },
-        "tutorial01 wave 38 object 2":  {
-          "key":  "tutorial01 wave 38 object 2",
-          "x":  27.0,
-          "y":  14.100000,
-          "element":  "BLUE",
-          "aiKey":  "homing",
-          "templateKey":  "birb"
-        }
-      }
-    }
-  }
 }

@@ -1,104 +1,122 @@
 {
-    "name":	"overlap",
-    "counter":	39,
-    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-    "levels":	{
-        "overlap":	{
-            "key":	"overlap",
-            "levelEntries":	{
-                "overlap wave 36":	{
-                    "key":	"overlap wave 36",
-                    "waveKey":	"overlap wave 36",
-                    "time":	420
-                },
-                "overlap wave 38":	{
-                    "key":	"overlap wave 38",
-                    "waveKey":	"overlap wave 38",
-                    "time":	450
+    "counter": 39, 
+    "levels": {
+        "overlap": {
+            "key": "overlap", 
+            "levelEntries": {
+                "overlap wave 36": {
+                    "key": "overlap wave 36", 
+                    "time": 420, 
+                    "waveKey": "overlap wave 36"
+                }, 
+                "overlap wave 38": {
+                    "key": "overlap wave 38", 
+                    "time": 450, 
+                    "waveKey": "overlap wave 38"
                 }
-            },
-            "playerChars":	{
-                "player1":	{
-                    "key":	"player1",
-                    "x":	18.750000,
-                    "y":	7.812500,
-                    "element":	"GOLD",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharMale"
-                },
-                "player2":	{
-                    "key":	"player2",
-                    "x":	12.500000,
-                    "y":	7.812500,
-                    "element":	"BLUE",
-                    "aiKey":	"",
-                    "templateKey":	"playerCharFemale"
+            }, 
+            "playerChars": {
+                "player1": {
+                    "aiKey": "", 
+                    "element": "GOLD", 
+                    "key": "player1", 
+                    "templateKey": "playerCharMale", 
+                    "x": 18.75, 
+                    "y": 7.8125
+                }, 
+                "player2": {
+                    "aiKey": "", 
+                    "element": "BLUE", 
+                    "key": "player2", 
+                    "templateKey": "playerCharFemale", 
+                    "x": 12.5, 
+                    "y": 7.8125
                 }
             }
         }
-    },
-    "waves":	{
-        "overlap wave 36":	{
-            "key":	"overlap wave 36",
-            "waveEntries":	{
-                "overlap wave 36 object 1":	{
-                    "key":	"overlap wave 36 object 1",
-                    "x":	15.933333,
-                    "y":	15.033333,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "overlap wave 36 object 2":	{
-                    "key":	"overlap wave 36 object 2",
-                    "x":	14.200000,
-                    "y":	15.033333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
+    }, 
+    "name": "overlap", 
+    "template names": [
+        "birb", 
+        "blobo", 
+        "grump", 
+        "feshHorizontal", 
+        "feshVertical"
+    ], 
+    "waves": {
+        "overlap wave 36": {
+            "key": "overlap wave 36", 
+            "waveEntries": {
+                "overlap wave 36 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "overlap wave 36 object 1", 
+                    "templateKey": "lump", 
+                    "x": 15.933333, 
+                    "y": 15.033333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "overlap wave 36 object 2": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "overlap wave 36 object 2", 
+                    "templateKey": "lump", 
+                    "x": 14.2, 
+                    "y": 15.033333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
-        },
-        "overlap wave 38":	{
-            "key":	"overlap wave 38",
-            "waveEntries":	{
-                "overlap wave 38 object 1":	{
-                    "key":	"overlap wave 38 object 1",
-                    "x":	29.033333,
-                    "y":	14.366667,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "overlap wave 38 object 2":	{
-                    "key":	"overlap wave 38 object 2",
-                    "x":	3.100000,
-                    "y":	14.433332,
-                    "element":	"GOLD",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "overlap wave 38 object 3":	{
-                    "key":	"overlap wave 38 object 3",
-                    "x":	4.333334,
-                    "y":	15.033333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
-                },
-                "overlap wave 38 object 4":	{
-                    "key":	"overlap wave 38 object 4",
-                    "x":	27.666666,
-                    "y":	15.033333,
-                    "element":	"BLUE",
-                    "aiKey":	"homing",
-                    "templateKey":	"birb",
-                    "zoneKeys":	["birb_zone"]
+        }, 
+        "overlap wave 38": {
+            "key": "overlap wave 38", 
+            "waveEntries": {
+                "overlap wave 38 object 1": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "overlap wave 38 object 1", 
+                    "templateKey": "lump", 
+                    "x": 29.033333, 
+                    "y": 14.366667, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "overlap wave 38 object 2": {
+                    "aiKey": "homing", 
+                    "element": "GOLD", 
+                    "key": "overlap wave 38 object 2", 
+                    "templateKey": "lump", 
+                    "x": 3.1, 
+                    "y": 14.433332, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "overlap wave 38 object 3": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "overlap wave 38 object 3", 
+                    "templateKey": "lump", 
+                    "x": 4.333334, 
+                    "y": 15.033333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
+                }, 
+                "overlap wave 38 object 4": {
+                    "aiKey": "homing", 
+                    "element": "BLUE", 
+                    "key": "overlap wave 38 object 4", 
+                    "templateKey": "lump", 
+                    "x": 27.666666, 
+                    "y": 15.033333, 
+                    "zoneKeys": [
+                        "lump_zone"
+                    ]
                 }
             }
         }
