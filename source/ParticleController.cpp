@@ -63,6 +63,10 @@ void ParticleController::eventUpdate(Event* e) {
                     handleAction(obj, AnimationAction::DEATH);
                     // do something to remove from mapping
                     //animationMap.at(obj)->setLastAnimation();
+                    
+                    if (obj->getIsPlayer()) {
+                        _path_gen->remove_path(obj);
+                    }
                     break;
             }
             break;
@@ -70,11 +74,19 @@ void ParticleController::eventUpdate(Event* e) {
         case Event::EventType::PATH: {
             PathEvent* pathEvent = (PathEvent*)e;
             switch (pathEvent->_pathType) {
-                case PathEvent::PathEventType::PATH_FINISHED:
+                case PathEvent::PathEventType::PATH_FINISHED: {
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
                     GameObject* obj = pathFinished->_activeChar.get();
                     handleAction(obj, AnimationAction::ATTACK);
+                    _path_gen->remove_path(obj);
                     break;
+                }
+                case PathEvent::PathEventType::DRAWING: {
+                    PathDrawing* pathDrawing = (PathDrawing*)pathEvent;
+                    _path_gen->add_path(pathDrawing->_path);
+                    _path_gen->start();
+                    break;
+                }
             }
             break;
         }
@@ -183,7 +195,7 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
                 break;
             case ParticleAction::TRAIL:{
                 _trail_gen->add_character(obj);
-                _trail_gen->start();
+//                _trail_gen->start();
                 break;
             }
             case ParticleAction::ZONE:{
@@ -339,20 +351,32 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     // blue path texture
     ParticleData bluepathpd;
     bluepathpd.ttl = -1; // infinite
-//    bluepathpd.scale = true;
+    bluepathpd.color_fade = true;
+    bluepathpd.start_color = Color4f::WHITE;
+    bluepathpd.end_color = Color4f::WHITE;
+    bluepathpd.color_duration = -1;
+    bluepathpd.scale = true;
     bluepathpd.start_scale = 1;
     bluepathpd.current_scale = 1;
     bluepathpd.end_scale = 1;
+    bluepathpd.start_alpha = 1;
+    bluepathpd.alpha_duration = 50;
     bluepathpd.texture_name = "blue_particle";
     bluepathpd.texture = assets->get<Texture>(bluepathpd.texture_name);
     
     // gold path texture
     ParticleData goldpathpd;
     goldpathpd.ttl = -1; // infinite
-//    goldpathpd.scale = true;
+    goldpathpd.color_fade = true;
+    goldpathpd.start_color = Color4f::WHITE;
+    goldpathpd.end_color = Color4f::WHITE;
+    goldpathpd.color_duration = -1;
+    goldpathpd.scale = true;
     goldpathpd.start_scale = 1;
     goldpathpd.current_scale = 1;
     goldpathpd.end_scale = 1;
+    goldpathpd.start_alpha = 1;
+    goldpathpd.alpha_duration = 50;
     goldpathpd.texture_name = "gold_particle";
     goldpathpd.texture = assets->get<Texture>(goldpathpd.texture_name);
     
@@ -369,13 +393,12 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _trail_gen = TrailParticleGenerator::alloc(state, &_particle_map);
     
     _pulse_gen = PulseParticleGenerator::alloc(state, &_particle_map);
-    _pulse_gen->start();
+//    _pulse_gen->start();
     
     _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
-    _death_gen->start();
+//    _death_gen->start();
     
     _path_gen = PathParticleGenerator::alloc(state, &_particle_map);
-//    _path_gen->start();
     
 //    _zone_gen = ZoneParticleGenerator::alloc(state, &_particle_map);
 //    _zone_gen->start();

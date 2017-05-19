@@ -1,0 +1,236 @@
+{
+    "name":	"unwind",
+    "counter":	58,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "unwind":	{
+            "key":	"unwind",
+            "levelEntries":	{
+                "unwind wave 53":	{
+                    "key":	"unwind wave 53",
+                    "waveKey":	"unwind wave 53",
+                    "time":	150
+                },
+                "unwind wave 56":	{
+                    "key":	"unwind wave 56",
+                    "waveKey":	"unwind wave 56",
+                    "time":	270
+                },
+                "unwind wave 57":	{
+                    "key":	"unwind wave 57",
+                    "waveKey":	"unwind wave 57",
+                    "time":	270
+                },
+                "unwind wave 58":	{
+                    "key":	"unwind wave 58",
+                    "waveKey":	"unwind wave 58",
+                    "time":	180
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "key":	"player1",
+                    "x":	18.750000,
+                    "y":	7.812500,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "key":	"player2",
+                    "x":	12.500000,
+                    "y":	7.812500,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "unwind wave 53":	{
+            "key":	"unwind wave 53",
+            "waveEntries":	{
+                "unwind wave 53 object 1":	{
+                    "key":	"unwind wave 53 object 1",
+                    "x":	12.100000,
+                    "y":	10.500000,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"feshHorizontal"
+                },
+                "unwind wave 53 object 2":	{
+                    "key":	"unwind wave 53 object 2",
+                    "x":	19.666666,
+                    "y":	10.466667,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical"
+                },
+                "unwind wave 53 object 3":	{
+                    "key":	"unwind wave 53 object 3",
+                    "x":	12.133333,
+                    "y":	5.200000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
+                },
+                "unwind wave 53 object 4":	{
+                    "key":	"unwind wave 53 object 4",
+                    "x":	19.666666,
+                    "y":	5.233334,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"feshHorizontal"
+                }
+            }
+        },
+        "unwind wave 56":	{
+            "key":	"unwind wave 56",
+            "waveEntries":	{
+                "unwind wave 56 object 1":	{
+                    "key":	"unwind wave 56 object 1",
+                    "x":	16.766666,
+                    "y":	13.266666,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 56 object 2":	{
+                    "key":	"unwind wave 56 object 2",
+                    "x":	14.466666,
+                    "y":	2.733334,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 56 object 3":	{
+                    "key":	"unwind wave 56 object 3",
+                    "x":	6.400000,
+                    "y":	5.600000,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 56 object 4":	{
+                    "key":	"unwind wave 56 object 4",
+                    "x":	24.466667,
+                    "y":	10.166667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        },
+        "unwind wave 57":	{
+            "key":	"unwind wave 57",
+            "waveEntries":	{
+                "unwind wave 57 object 1":	{
+                    "key":	"unwind wave 57 object 1",
+                    "x":	29.733334,
+                    "y":	8.200001,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical"
+                },
+                "unwind wave 57 object 2":	{
+                    "key":	"unwind wave 57 object 2",
+                    "x":	29.600000,
+                    "y":	13.200000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                },
+                "unwind wave 57 object 3":	{
+                    "key":	"unwind wave 57 object 3",
+                    "x":	29.733334,
+                    "y":	3.400000,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                },
+                "unwind wave 57 object 4":	{
+                    "key":	"unwind wave 57 object 4",
+                    "x":	2.600000,
+                    "y":	13.300000,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                },
+                "unwind wave 57 object 5":	{
+                    "key":	"unwind wave 57 object 5",
+                    "x":	2.666667,
+                    "y":	3.166667,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                },
+                "unwind wave 57 object 6":	{
+                    "key":	"unwind wave 57 object 6",
+                    "x":	0.433333,
+                    "y":	8.033334,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo"
+                },
+                "unwind wave 57 object 7":	{
+                    "key":	"unwind wave 57 object 7",
+                    "x":	31.400000,
+                    "y":	8.166667,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"blobo"
+                },
+                "unwind wave 57 object 8":	{
+                    "key":	"unwind wave 57 object 8",
+                    "x":	2.733334,
+                    "y":	8.233333,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical"
+                }
+            }
+        },
+        "unwind wave 58":	{
+            "key":	"unwind wave 58",
+            "waveEntries":	{
+                "unwind wave 58 object 1":	{
+                    "key":	"unwind wave 58 object 1",
+                    "x":	12.433333,
+                    "y":	10.200001,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 58 object 2":	{
+                    "key":	"unwind wave 58 object 2",
+                    "x":	18.033333,
+                    "y":	10.166667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 58 object 3":	{
+                    "key":	"unwind wave 58 object 3",
+                    "x":	18,
+                    "y":	5.566667,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "unwind wave 58 object 4":	{
+                    "key":	"unwind wave 58 object 4",
+                    "x":	12.566667,
+                    "y":	5.600000,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                }
+            }
+        }
+    }
+}

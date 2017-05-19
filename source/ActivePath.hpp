@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <cugl/cugl.h>
 #include "Path.hpp"
+#include "PathParameters.h"
 
 class ActivePath {
 public:
@@ -43,6 +44,13 @@ public:
 		std::shared_ptr<ActivePath> result = std::make_shared<ActivePath>();
 		return (result->init(path, index) ? result : nullptr);
 	}
+    
+    /** returns true if the active path is completed */
+    bool updateActivePath(cugl::Vec2 newPos, float radius=RADIUS_WORLD);
+    
+    bool isDone(){
+        return _pathIndex >= _path->_coordinates.size();
+    }
 };
 
 #endif /* ActivePath_hpp */

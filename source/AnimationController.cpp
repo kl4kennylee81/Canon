@@ -23,7 +23,7 @@ using namespace cugl;
 #define DEBUG_COLOR  Color4::GREEN
 
 /** The alpha of the zones on/off */
-#define ZONE_ON_ALPHA 0.6
+#define ZONE_ON_ALPHA 0.5
 #define ZONE_OFF_ALPHA 0.1
 
 AnimationController::AnimationController():
@@ -55,7 +55,10 @@ void AnimationController::eventUpdate(Event* e) {
                 case CollisionEvent::CollisionEventType::OBJECT_HIT: {
                     ObjectHitEvent* objectHit = (ObjectHitEvent*)collisionEvent;
                     GameObject* obj = objectHit->_obj;
-                    animationMap.at(obj)->setHitStun(true);
+                    if(obj->type != GameObject::ObjectType::ZONE){
+                        animationMap.at(obj)->setHitStun(true);
+                    }
+                    handleAction(obj, AnimationAction::HIT);
                     break;
                 }
                 case CollisionEvent::CollisionEventType::HIT_FINISHED: {
@@ -137,28 +140,29 @@ void AnimationController::eventUpdate(Event* e) {
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
                     ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
-                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawning->object)->getAnimationNode();
                     
                     // TODO change the colors to a macro
                     if (zoneSpawning->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                        anim->setColor(Color4f(BLUE_COLOR));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
+                        anim->setColor(Color4f(GOLD_COLOR));
                     }
+                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
-                    handleAction(zoneSpawn->object, AnimationAction::SPAWN);
                     std::shared_ptr<AnimationNode> anim = animationMap.at(zoneSpawn->object)->getAnimationNode();
                     
                     // TODO change the colors to a macro
                     if (zoneSpawn->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
+                        anim->setColor(Color4f(BLUE_COLOR));
                     } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
+                        anim->setColor(Color4f(GOLD_COLOR));
                     }
+                    handleAction(zoneSpawn->object, AnimationAction::SPAWN);
+
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_ON: {
@@ -166,12 +170,6 @@ void AnimationController::eventUpdate(Event* e) {
                     GameObject* obj = zoneOn->object;
                     std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
                     
-                    // TODO change the colors to a macro
-                    if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
-                    } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_ON_ALPHA));
-                    }
                     animationMap.at(zoneOn->object)->setFlash(false);
                     break;
                 }
@@ -180,12 +178,6 @@ void AnimationController::eventUpdate(Event* e) {
                     GameObject* obj = zoneOff->object;
                     std::shared_ptr<AnimationNode> anim = animationMap.at(obj)->getAnimationNode();
                     
-                    // TODO change the colors to a macro
-                    if (obj->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        anim->setColor(Color4f(BLUE_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
-                    } else {
-                        anim->setColor(Color4f(GOLD_COLOR)*Color4f(1,1,1,ZONE_OFF_ALPHA));
-                    }
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_DELETE: {
@@ -206,7 +198,7 @@ void AnimationController::eventUpdate(Event* e) {
 
 
 void AnimationController::update(float timestep,std::shared_ptr<GameState> state) {
-    syncAll();
+    syncAll(state);
     updateFrames(state);
 }
 
@@ -232,6 +224,7 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
     }
     
     if (anim->isLastAnimation()){ return;}
+    
     anim->handleAction(action);
     if (anim->getAnimationNode()->getParent() == nullptr){
         syncAnimation(anim,obj);
@@ -245,18 +238,30 @@ void AnimationController::handleAction(GameObject* obj, AnimationAction action) 
         _worldnode->addChild(anim->getAnimationNode(),zaxis);
         _worldnode->sortZOrder();
     }
+    
+
+    
+    std::shared_ptr<AnimationState> state = anim->getAnimationState();
+    Color4 color = anim->getAnimationNode()->getColor();
+    color.a = state->alpha * 255;
+    anim->getAnimationNode()->setColor(color);
 }
 
 /**
  * Syncs the location of the animatino node to the world coordinates of
  * the corresponding location of the node's physics body.
  */
-void AnimationController::syncAll() {
+void AnimationController::syncAll(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end(); it++) {
         GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         if (obj->getPhysicsComponent() != nullptr) {
             syncAnimation(anim,obj);
+        }
+        
+        /** sync the arrow */
+        if(obj->getPhysicsComponent()->hasArrow()){
+            obj->syncArrow(state->getWorldNode());
         }
     }
 }
@@ -304,6 +309,8 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
  */
 void AnimationController::updateFrames(std::shared_ptr<GameState> state) {
     for (auto it = animationMap.begin(); it != animationMap.end();) {
+        
+        GameObject* obj = it->first;
         std::shared_ptr<ActiveAnimation> anim = it->second;
         
         if (anim->getAnimationNode()->getParent() == nullptr){

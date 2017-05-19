@@ -77,8 +77,12 @@ void Particle::move() {
         _pd.active = false;
     }
     
-    _pd.ttl--;
+    if (_pd.ttl > -1) {
+        _pd.ttl--;
+    }
+    
     _time_alive++;
+//    std::cout << "ttl " << _pd.ttl << "\n";
 }
 
 float Particle::findScaleStep() {

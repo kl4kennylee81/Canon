@@ -9,21 +9,6 @@
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
 
-#ifdef _WIN32
-#define CURRENT_OS "windows"
-#define TEMPLATE_PATH "json\\templates\\"
-#define LEVEL_PATH "json\\fullLevels\\"
-#define MENU_PATH "json\\menus\\"
-#define CHAPTER_PATH "json\\chapters\\"
-#elif __APPLE__
-#define CURRENT_OS "apple"
-#define TEMPLATE_PATH "json/templates/"
-#define LEVEL_PATH "json/fullLevels/"
-#define MENU_PATH "json/menus/"
-#define CHAPTER_PATH "json/chapters/"
-#include <dirent.h>
-#endif
-
 #include <cugl/cugl.h>
 #include <sys/types.h>
 #include <errno.h>

@@ -27,7 +27,8 @@ enum class WaveEditorState : int {
 	DONE,
 	NEW_TEMPLATE,
     REFRESH,
-    TEMPLATE_TOGGLE
+    TEMPLATE_TOGGLE,
+    ZONE_TOGGLE
 };
 
 class WaveEditorController : public BaseController {
@@ -54,6 +55,8 @@ private:
     bool _newEntry;
     
     bool _colorChanged;
+    
+    bool _zoneChanged;
     
     bool _aiChanged;
     

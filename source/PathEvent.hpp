@@ -23,7 +23,9 @@ public:
         PATH_FINISHED,
         
         /** User is currently drawing */
-        DRAWING
+        DRAWING,
+        
+        CANCELLED
     };
 
 	PathEventType _pathType;
@@ -46,14 +48,33 @@ class PathDrawing : public PathEvent {
 public:
     PathDrawing() : PathEvent(){}
     
-    bool init() {
+    std::shared_ptr<Path> _path;
+    
+    bool init(std::shared_ptr<Path> path) {
         PathEvent::init();
         _pathType = PathEventType::DRAWING;
+        _path = path;
         return true;
     }
     
-    static std::shared_ptr<PathDrawing> alloc() {
+    static std::shared_ptr<PathDrawing> alloc(std::shared_ptr<Path> path) {
         std::shared_ptr<PathDrawing> result = std::make_shared<PathDrawing>();
+        return (result->init(path) ? result : nullptr);
+    }
+};
+
+class PathCancelled : public PathEvent {
+public:
+    PathCancelled() : PathEvent(){}
+    
+    bool init() {
+        PathEvent::init();
+        _pathType = PathEventType::CANCELLED;
+        return true;
+    }
+    
+    static std::shared_ptr<PathCancelled> alloc() {
+        std::shared_ptr<PathCancelled> result = std::make_shared<PathCancelled>();
         return (result->init() ? result : nullptr);
     }
 };

@@ -35,10 +35,19 @@ def get_asset_mapping():
         image_files[name] = os.path.join(newPath, filename)
       if ext == 'ttf':
         font_files[name] = os.path.join(newPath, filename)
+      if ext == 'otf':
+        font_files[name] = os.path.join(newPath, filename)
 
   {i:i for i in range(1, 11)}
   image_mapping = {key : {"file": image_files[key], "minfilter" : "nearest", "magfilter" : "linear", "wrapS" : "clamp", "wrapT" : "clamp"} for key in image_files.keys()}
-  font_mapping = {key : {"file": font_files[key], "size": 64} for key in font_files.keys()}
+  
+  font_sizes = [180,40,32,24,16,12]
+
+  font_mapping = dict()
+  for font_size in font_sizes:
+    for key in font_files.keys():
+      fontJson = {"file": font_files[key], "size": font_size}
+      font_mapping[key+"_"+str(font_size)] = fontJson
 
   mapping = {"textures": image_mapping, "fonts": font_mapping}
   return mapping
@@ -80,14 +89,13 @@ def modify_json(src_json, file_path_mapping):
             src_json['UIData'][menu_name][target] = append_name
 
           # rename the key in overarching uiData json to the jsonObject
-          if not (len(menu_name) > len(filename) and 
-          filename + "_" == menu_name[:len(filename)+1]):
+          if not (len(menu_name) > len(filename) and filename + "_" == menu_name[:len(filename)+1]):
             append_name = filename + "_" + menu_name
             child_json = src_json['UIData'].pop(menu_name,None)
             src_json['UIData'][append_name] = child_json
 
           # bonus feature LOL make sure key field is correct
-          src_json['UIData'][append_name]['key'] = append_name
+          src_json['UIData'][append_name]['key'] = append_name # todo: handle when append_name is not present
 
           for idx,uiEntry in enumerate(copy.deepcopy(src_json['MenuScreenData'][filename]["UIEntries"])):
             if (menu_name == uiEntry):

@@ -109,7 +109,6 @@
     "templates": {
         "blobo": {
             "aiKeys": [
-                "homing", 
                 "horizontal", 
                 "horizontalLeft", 
                 "horizontalRight", 
@@ -120,7 +119,20 @@
             ], 
             "key": "blobo", 
             "name": "blobo", 
-            "objectKey": "blobo_object"
+            "objectKey": "blobo_object",
+            "zones": [[],["blobo_zone"]]
+        }
+    },
+    "zones": {
+        "blobo_zone": {
+            "cooldown": 0,
+            "duration": 180,
+            "element": "BLUE",
+            "key": "birb_zone",
+            "objectKey": "birb_zoneObject",
+            "relX": 0,
+            "relY": 0,
+            "type": "STATIC"
         }
     }
 }

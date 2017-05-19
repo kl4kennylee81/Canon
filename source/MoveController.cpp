@@ -71,18 +71,18 @@ void MoveController::updateActivePaths(float timestep, std::shared_ptr<GameState
         if (player == nullptr){
             return;
         }
-		Vec2 goal = path->_path->get(path->_pathIndex);
-		Vec2 current = player->getPosition();
-		if (std::abs(current.distance(goal)) <= (((float) RADIUS))) {
-			path->_pathIndex = path->_pathIndex + 1;
-			if (path->_pathIndex >= path->_path->size()) {
-				player->getPhysicsComponent()->getBody()->setVX(0);
-				player->getPhysicsComponent()->getBody()->setVY(0);
-				auto moveEvent = MoveFinished::alloc(player);
-				notify(moveEvent.get());
-				toDelete.push_back(player);
-			}
-		}
+        
+        Vec2 current = player->getPosition();
+        
+        // update returns true if active path is completed
+        // radius is in physics coordinates
+        if (path->updateActivePath(current,RADIUS)){
+            player->getPhysicsComponent()->getBody()->setVX(0);
+            player->getPhysicsComponent()->getBody()->setVY(0);
+            auto moveEvent = MoveFinished::alloc(player);
+            notify(moveEvent.get());
+            toDelete.push_back(player);
+        }
 	}
     
     // TODO replace with iterator delete and break

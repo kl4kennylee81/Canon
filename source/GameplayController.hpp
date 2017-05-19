@@ -30,6 +30,7 @@
 #include "Observer.hpp"
 #include "Event.hpp"
 #include "BulletController.hpp"
+#include "TutorialController.hpp"
 
 class GameplayController : public BaseController {
 protected:
@@ -48,6 +49,7 @@ protected:
     std::shared_ptr<ParticleController> _particleController;
     std::shared_ptr<FinishController> _finishController;
     std::shared_ptr<SoundController> _soundController;
+    std::shared_ptr<TutorialController> _tutorialController;
 
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;

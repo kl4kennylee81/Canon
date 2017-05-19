@@ -97,6 +97,13 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
             _aiChanged = false;
         }
     }
+    case WaveEditorState::ZONE_TOGGLE: {
+        deactivateAndClear(_levelEditNode->getChildByName("templates"));
+        if(_zoneChanged) {
+            updateWaveEntryNodes();
+            _zoneChanged = false;
+        }
+    }
     case WaveEditorState::COLOR_TOGGLE: {
         deactivateAndClear(_levelEditNode->getChildByName("templates"));
         if(_colorChanged) {
@@ -114,9 +121,9 @@ bool WaveEditorController::update(float timestep, std::shared_ptr<MenuGraph> men
     
     _levelEditNode->removeChildByName("label");
     std::string str = getStateAsString();
-    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne"));
+    auto label = Label::alloc(str, _world->getAssetManager()->get<Font>("Charlemagne_40"));
     label->setPosition(400,20);
-    label->setScale(0.5);
+    label->setScale(0.6);
     _levelEditNode->addChildWithName(label, "label");
 	return false;
 }
@@ -274,6 +281,9 @@ std::string WaveEditorController::getStateAsString(){
         case WaveEditorState::AI_TOGGLE: {
             return "AI TOGGLE";
         }
+        case WaveEditorState::ZONE_TOGGLE: {
+            return "ZONE TOGGLE";
+        }
     }
     return "";
 }
@@ -295,6 +305,10 @@ void WaveEditorController::checkKeyboardInput() {
         }
         if(key == KeyCode::A){
             _state = WaveEditorState::AI_TOGGLE;
+            return;
+        }
+        if(key == KeyCode::Z){
+            _state = WaveEditorState::ZONE_TOGGLE;
             return;
         }
         if(key == KeyCode::NUM_1){
@@ -343,6 +357,13 @@ void WaveEditorController::waveEntryButtonListenerFunction(const std::string& na
                 auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
                 waveEntry->setAIKey(templateEntry->getNextAIKey(waveEntry->getAIKey()));
                 _aiChanged = true;
+                break;
+            }
+            case WaveEditorState::ZONE_TOGGLE: {
+                auto waveEntry = _currentWave->getEntry(index);
+                auto templateEntry = this->getTemplateWaveEntry(waveEntry->getTemplateKey());
+                waveEntry->setZoneKeys(templateEntry->getNextZoneKeys(waveEntry->getZoneKeys()));
+                _zoneChanged = true;
                 break;
             }
             default:{
@@ -538,8 +559,8 @@ void WaveEditorController::updateTemplateNodes() {
     deactivateAndClear(templateNode);
     for (int i = 0; i < _templates.size(); i++) {
         auto button = getButtonFromTemplate(30, 500 - (i * 75), _templates.at(i), ElementType::BLUE);
-        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.3);
+        auto label = Label::alloc(_templates.at(i)->getName(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.35);
         label->setPosition(90, 500 - (i * 75));
         button->setListener(
         [=](const std::string& name, bool down) {
@@ -567,13 +588,13 @@ void WaveEditorController::updateWaveEntryNodes(){
         auto button = getButtonFromTemplate(pos.x, pos.y, templateData, entry->getElement());
         
         // create the zones
-        for (std::string zoneKey :templateData->getZoneKeys()){
+        for (std::string zoneKey : _world->getZoneKeys(entry)){
             std::shared_ptr<Node> zoneNode = createZoneNode(entry->getPosition().x,entry->getPosition().y,zoneKey,entry->getElement());
             entryNode->addChild(zoneNode,0);
         }
 
-        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne"));
-        label->setScale(0.18);
+        auto label = Label::alloc(entry->getAIKey(), _world->getAssetManager()->get<Font>("Charlemagne_40"));
+        label->setScale(0.25);
         label->setPosition(pos.x, pos.y);
         
         button->setListener(
@@ -590,6 +611,20 @@ void WaveEditorController::updateWaveEntryNodes(){
 void WaveEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 
+    Vec2 screen1;
+    Vec2 scene1 = Vec2::Vec2(GAME_SCENE_WIDTH, Util::getSceneToWorldTranslateY());
+    auto topBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
+    auto bottomBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
+
+    topBorder->setColor(Color4::PAPYRUS);
+    bottomBorder->setColor(Color4::PAPYRUS);
+    _levelEditNode->addChild(topBorder);
+    _levelEditNode->addChild(bottomBorder);
+    topBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bottomBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    topBorder->setPosition(Vec2::Vec2(0, Util::getGameSceneHeight()-Util::getSceneToWorldTranslateY()));
+    bottomBorder->setPosition(Vec2::Vec2(0,0));
+    
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 	backButton->setListener(
 		[=](const std::string& name, bool down) {
@@ -627,8 +662,8 @@ void WaveEditorController::setSceneGraph() {
 	_levelEditNode->addChildWithName(Node::alloc(), "templates");
     _levelEditNode->addChildWithName(Node::alloc(), "entries");
     
-    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne"));
-    label->setScale(0.4);
+    auto label = Label::alloc(_waveKey, _world->getAssetManager()->get<Font>("Charlemagne_40"));
+    label->setScale(0.5);
     label->setPosition(500,550);
     _levelEditNode->addChild(label);
     
@@ -679,6 +714,7 @@ bool WaveEditorController::init(std::shared_ptr<Node> node, std::shared_ptr<Worl
     _aiChanged = false;
     _entryRemoved = false;
     _showTemplates = true;
+    _zoneChanged = false;
     
     std::shared_ptr<JsonReader> reader = JsonReader::allocWithAsset("./json/editorLevel.json");
     if (reader == nullptr) {

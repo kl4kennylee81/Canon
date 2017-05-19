@@ -26,6 +26,8 @@ public:
     
     std::vector<std::string> zoneKeys;
     
+    std::vector<std::vector<std::string>> allZoneKeys;
+    
     std::string bulletKey;
     
     TemplateWaveEntry() : Data(){}
@@ -67,7 +69,13 @@ public:
     
     std::string getNextAIKey(std::string currentKey);
     
+    std::vector<std::string> getNextZoneKeys(std::vector<std::string> currentKeys);
+    
     std::vector<std::string> getZoneKeys();
+    
+    void addZoneKeys(std::vector<std::string> zk){
+        allZoneKeys.push_back(zk);
+    }
     
     float getSpawnTime();
 };

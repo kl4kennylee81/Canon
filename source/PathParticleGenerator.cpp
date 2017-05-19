@@ -7,21 +7,26 @@
 //
 
 #include "PathParticleGenerator.hpp"
+#include "Util.hpp"
 
 #define PARTICLE_NUM 2
 #define MAX_PARTICLES 200
 #define MAX_GROUPS 2
 #define FADE_TIME 40
+#define NUM_INTERPOLATE 20
+#define THRESHOLD 0
 
 bool PathParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _active = false; // default
     _particle_map = particle_map;
     _groups = GroupContainer::alloc(MAX_GROUPS);
     
-    // don't use group positioning
+    // don't use group positioning. custom init for now. hacky
     for (int i = 0; i < MAX_GROUPS; i++) {
         _groups->group_array[i].position = false;
+        _groups->group_array[i].repeat = false;
         _groups->group_array[i].fade_time = FADE_TIME;
+        _groups->group_array[i].alive = true;
     }
     
     // initialize particle node and attach to the world node
@@ -61,6 +66,19 @@ void PathParticleGenerator::add_path(std::shared_ptr<Path> path) {
     _path = path; // no copy;
 }
 
+void PathParticleGenerator::remove_path(GameObject* active_char) {
+    ElementType active_element = active_char->getPhysicsComponent()->getElementType();
+    int group_num;
+    if (active_element == ElementType::BLUE) {
+        group_num = 0;
+    } else {
+        group_num = 1;
+    }
+    
+    _groups->group_array[group_num].fade = true;
+    _last_size = 0;
+}
+
 void PathParticleGenerator::add_particles(int group_num, std::vector<Vec2> locations) {
     ParticleData pd;
     
@@ -71,7 +89,8 @@ void PathParticleGenerator::add_particles(int group_num, std::vector<Vec2> locat
     }
     
     for (auto it = locations.begin(); it != locations.end(); it++) {
-        pd.position = (*it);
+        // sync positions
+        pd.position = (*it)*Util::getGamePhysicsScale();
         if (group_num == 0) {
             _bluepartnode->addParticle(pd, group_num, pd);
         } else {
@@ -84,17 +103,21 @@ void PathParticleGenerator::add_particles(int group_num, std::vector<Vec2> locat
  * Sync paths and add particles on the new points that came in the path
  */
 void PathParticleGenerator::update_paths(int group_num) {
-    // pathcontroller has reset the path
-    if (_path->size() < _last_size) {
-        _groups->group_array[group_num].fade = true;
+    Vec2 second;
+    
+    if (_last_size == 0) {
+        // if its the first point, then use the first point as last also
+        second = _last_point;
+    } else {
+        // otherwise take the last point in the path
+        second = _path->getLast();
     }
-    else {
-        // generate the vector of the difference between last point and path
-        std::vector<Vec2> locations;
+
+    // generate the vector of the difference between last point and path
+    std::vector<Vec2> locations = interpolate(_last_point, second, NUM_INTERPOLATE, THRESHOLD);
         
-        // add particles on the difference
-        add_particles(group_num, locations);
-    }
+    // add particles on the difference
+    add_particles(group_num, locations);
     
     _last_size = _path->size();
     _last_point = _path->getLast();

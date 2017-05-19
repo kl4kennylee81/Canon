@@ -32,10 +32,14 @@ protected:
     
     std::shared_ptr<cugl::Node> _debugnode;
     
+    std::shared_ptr<cugl::Texture> _arrowTexture;
+    
     std::vector<GameObject*> objsScheduledForRemoval;
     std::vector<GameObject*> objsToIgnore;
     
     std::map<GameObject*,float> hitStunMap;
+    
+    std::map<GameObject*, GameObject*> zoneMap;
     
     GameObject* bluePlayer;
     GameObject* goldPlayer;
@@ -89,7 +93,7 @@ public:
 
 	virtual bool init();
 
-    virtual bool init(std::shared_ptr<GameState> state);
+    virtual bool init(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets);
     
     void initPhysicsComponent(ObjectInitEvent* objectInit);
     
@@ -104,9 +108,9 @@ public:
 		return (result->init() ? result : nullptr);
 	}
 
-    static std::shared_ptr<CollisionController> alloc(std::shared_ptr<GameState> state) {
+    static std::shared_ptr<CollisionController> alloc(std::shared_ptr<GameState> state, std::shared_ptr<GenericAssetManager> assets) {
 		std::shared_ptr<CollisionController> result = std::make_shared<CollisionController>();
-		return (result->init(state) ? result : nullptr);
+		return (result->init(state, assets) ? result : nullptr);
 	}
     
     void beginContact(b2Contact* contact);

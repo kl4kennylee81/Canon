@@ -58,6 +58,31 @@ public:
      * to see if it started over with another path.
      */
     void add_path(std::shared_ptr<Path> path);
+    
+    void remove_path(GameObject* active_char);
+    
+    std::vector<cugl::Vec2> interpolate(cugl::Vec2 fst, cugl::Vec2 snd, float dist, float thresh){
+        std::vector<cugl::Vec2> coords = {};
+        cugl::Vec2 step = snd-fst;
+        
+        // if under the threshold, only return the last one
+        std::cout << "step length: " << step.length() << "\n";
+        if (step.length() < thresh) {
+            coords.push_back(snd);
+            return coords;
+        }
+        
+        float length = step.length();
+        step.normalize();
+        step.scale(dist);
+        float totSteps = length/dist;
+        for (int i = 0; i < totSteps; i++){
+            cugl::Vec2 toAdd = fst+step*i;
+            coords.push_back(toAdd);
+        }
+        return coords;
+    }
+
 };
 
 

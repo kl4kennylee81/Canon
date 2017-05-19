@@ -1,0 +1,137 @@
+{
+    "tutorialLevels": {
+        "separation": {
+            "stepKeys": [
+                "separation_homing_modal",
+                "separation_twoHealth_hint"
+            ],
+            "fontMap" : {
+                "hint_font" : "Museo300-Regular_24",
+                "bottom_font" : "Museo300-Regular_32"
+            },
+            "levelKey": "tutorial1",
+            "key": "tutorial1"
+        }
+    },
+    "tutorialSteps": {
+        "separation_homing_modal":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "separation_gradientDim",
+                "separation_homing_modal",
+                "separation_hintCheckButton"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 0,
+            "hints": []
+        },
+        "separation_twoHealth_hint" : {
+            "start": "ON_PLAYER_HIT",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "separation_textbox_twoHealth",
+                "separation_twoHealthline1",
+                "separation_twoHealthline2",
+                "separation_twoHealthline3",
+                "separation_textbox_twoHealthConfirm"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "minTime" : 0
+        }
+    },
+    "UIData": {
+        "separation_gradientDim": {
+            "height": 1.0, 
+            "key": "tutorial1_gradientDim", 
+            "textureKey": "tutorial_gradientDim", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "separation_hintCheckButton": {
+            "buttonAction": {
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.26, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.075
+        },
+        "separation_homing_modal": {
+            "height": 0.75, 
+            "key": "tutorial1_homing_modal", 
+            "textureKey": "homing_indicator", 
+            "type": "IMAGE", 
+            "width": 0.8, 
+            "x": 0.1, 
+            "y": 0.125
+        },
+        "separation_textbox_twoHealth" : {
+            "height": 0.24, 
+            "key": "separation_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.45, 
+            "y": 0.10
+        },
+        "separation_twoHealthline1" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline1", 
+            "textValue": "When their aura is", 
+            "type": "TEXT", 
+            "x": 0.575, 
+            "y": 0.275
+        },
+        "separation_twoHealthline2" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline2", 
+            "textValue": "dimmed, characters", 
+            "type": "TEXT", 
+            "x": 0.575, 
+            "y": 0.225
+        },
+        "separation_twoHealthline3" : {
+            "fontKey": "hint_font", 
+            "key": "separation_twoHealthline2", 
+            "textValue": "will die next hit", 
+            "type": "TEXT", 
+            "x": 0.575, 
+            "y": 0.175
+        },
+        "separation_textbox_twoHealthConfirm" : {
+            "buttonAction": {
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.13, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
+            "type": "BUTTON", 
+            "width": 0.075, 
+            "x": 0.65, 
+            "y": 0.05
+        }
+    }
+}

@@ -1,0 +1,137 @@
+{
+    "tutorialLevels": {
+        "rapidSpawn": {
+            "stepKeys": [
+                "rapidSpawn_health_modal",
+                "rapidSpawn_health_hint"
+            ],
+            "fontMap" : {
+                "hint_font" : "Museo300-Regular_24",
+                "bottom_font" : "Museo300-Regular_32"
+            },
+            "levelKey": "rapidSpawn",
+            "key": "rapidSpawn"
+        }
+    },
+    "tutorialSteps": {
+        "rapidSpawn_health_modal":{
+            "start": "ON_ENEMY_SPAWN",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "rapidSpawn_gradientDim",
+                "rapidSpawn_health_modal",
+                "rapidSpawn_hintCheckButton"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 0,
+            "hints": []
+        },
+        "rapidSpawn_health_hint" : {
+            "start": "ON_PLAYER_HIT",
+            "end": "ON_CLICK",
+            "UIEntries": [
+                "rapidSpawn_textbox_healthHint",
+                "rapidSpawn_healthHintline1",
+                "rapidSpawn_healthHintline2",
+                "rapidSpawn_healthHintline3",
+                "rapidSpawn_textbox_healthHintConfirm"
+            ],
+            "startEffects":[
+                "PAUSE_GAME"
+            ],
+            "endEffects": [
+                "RESUME_GAME"
+            ],
+            "minTime" : 0
+        }
+    },
+    "UIData": {
+        "rapidSpawn_gradientDim": {
+            "height": 1.0, 
+            "key": "rapidSpawn_gradientDim", 
+            "textureKey": "tutorial_gradientDim", 
+            "type": "IMAGE", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "rapidSpawn_hintCheckButton": {
+            "buttonAction": {
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.26, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.075
+        },
+        "rapidSpawn_health_modal": {
+            "height": 0.75, 
+            "key": "rapidSpawn_health_modal", 
+            "textureKey": "hp_indicator_number", 
+            "type": "IMAGE", 
+            "width": 0.8, 
+            "x": 0.1, 
+            "y": 0.125
+        },
+        "rapidSpawn_textbox_healthHint" : {
+            "height": 0.24, 
+            "key": "rapidSpawn_textbox_hint", 
+            "textureKey": "tutorial_textbox_hint", 
+            "type": "IMAGE", 
+            "width": 0.25, 
+            "x": 0.2, 
+            "y": 0.3
+        },
+        "rapidSpawn_healthHintline1" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline1", 
+            "textValue": "characters blinks red", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.475
+        },
+        "rapidSpawn_healthHintline2" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline2", 
+            "textValue": "when hit and are", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.425
+        },
+        "rapidSpawn_healthHintline3" : {
+            "fontKey": "hint_font", 
+            "key": "rapidSpawn_healthHintline2", 
+            "textValue": "temporarily immune", 
+            "type": "TEXT", 
+            "x": 0.325, 
+            "y": 0.375
+        },
+        "rapidSpawn_textbox_healthHintConfirm" : {
+            "buttonAction": {
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.13, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
+            "type": "BUTTON", 
+            "width": 0.075, 
+            "x": 0.4, 
+            "y": 0.235
+        }
+    }
+}

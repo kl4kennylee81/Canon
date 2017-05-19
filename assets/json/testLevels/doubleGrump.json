@@ -59,7 +59,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object2", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 20.66666603125, 
                     "y": 5.9666666875
                 }, 
@@ -67,7 +67,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object3", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 10.53333378125, 
                     "y": 11.66666603125
                 }, 
@@ -75,7 +75,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object4", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 10.5, 
                     "y": 5.73333359375
                 }, 
@@ -83,7 +83,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object5", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 20.5333328125, 
                     "y": 11.4666671875
                 }, 

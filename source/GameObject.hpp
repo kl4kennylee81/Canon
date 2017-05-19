@@ -22,7 +22,9 @@ protected:
     int _uid;
     std::shared_ptr<PhysicsComponent> _body;
     std::shared_ptr<cugl::Node> _node;
+    bool _hasArrow;
     bool _isPlayer;
+    bool _isBoss;
     
 public:
     // static int to give Uid to gameObjects
@@ -40,6 +42,7 @@ public:
     _uid(0),
     _body(nullptr),
     _node(nullptr),
+    _hasArrow(false),
     _isPlayer(false){}
     
     ~GameObject(){ dispose(); }
@@ -66,6 +69,8 @@ public:
         std::shared_ptr<GameObject> result = std::make_shared<GameObject>();
         return (result->init(body,node) ? result : nullptr);
     }
+    
+    void syncArrow(std::shared_ptr<cugl::Node> node);
     
     bool getIsPlayer() { return _isPlayer; };
     

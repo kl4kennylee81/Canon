@@ -7,6 +7,7 @@
 //
 
 #include "ParticleNode.hpp"
+#include "Util.hpp"
 
 void ParticleNode::addParticle(ParticleData pd, int g_num, ParticleData original) {
     Particle* particle = _memory->malloc();
@@ -32,8 +33,12 @@ void ParticleNode::group_update_particles(Particle* particle) {
     }
     
     if (g->fade) {
-        particle->_pd.alpha_fade = true;
-        particle->_pd.ttl = g->fade_time;
+        // check if fade on the particle is already happening
+        if (!particle->_pd.alpha_fade) {
+            particle->_pd.alpha_fade = true;
+            // change from infinite to set time limit
+            particle->_pd.ttl = particle->_pd.alpha_duration;
+        }
     }
     
     // update active based on group
@@ -76,13 +81,16 @@ void ParticleNode::update() {
 Mat4 ParticleNode::updateTransformLocal(Mat4 combined, float scale, float angle) {
     Vec2 offset = _anchor*getContentSize();
     
+    // Hacky taking into account the offset of the cloud/black border on top and bottom
+    // the worldYTranslate is in scene node coordinates (1024 x ?)
+    
     Mat4::createTranslation(-offset.x, -offset.y, 0.0f, &combined);
     combined.scale(scale, scale, 1.0f);
     combined.rotateZ(angle);
     combined.translate(offset.x, offset.y, 0.0f);
     
     combined.m[12] += _position.x-offset.x;
-    combined.m[13] += _position.y-offset.y;
+    combined.m[13] += _position.y-offset.y + Util::getSceneToWorldTranslateY();
     
     return combined;
 }

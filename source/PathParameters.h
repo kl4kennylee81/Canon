@@ -2,7 +2,7 @@
 // Modify in world coordinates
 #define MIN_DISTANCE_WORLD 20.f
 #define AI_SPEED_WORLD 1.f
-#define VELOCITY_WORLD 15.f
+#define VELOCITY_WORLD 16.5f
 #define RADIUS_WORLD 9.f
 #define TOUCH_RADIUS_WORLD 100.f
 

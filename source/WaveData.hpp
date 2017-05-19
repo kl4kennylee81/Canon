@@ -24,9 +24,15 @@ private:
     
     std::string aiKey;
     
+    std::vector<std::string> zoneKeys;
+    
 public:
     
     WaveEntry():Data(){}
+    
+    std::vector<std::string> getZoneKeys() { return zoneKeys; }
+    
+    void setZoneKeys(std::vector<std::string> birb) { zoneKeys = birb; }
     
     ElementType getElement();
     
