@@ -269,6 +269,10 @@ void TutorialController::updateStep(std::shared_ptr<GameState> state){
 void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
     /** play the start effects */
     handleTutorialEffects(state, step->getStepData()->getStartEffects());
+    if (!_isActive && !step->getStepData()->getActiveReset()){
+        step->setState(TutorialState::DONE);
+        return;
+    }
     step->setState(TutorialState::ACTIVE);
     
     if (step->getActiveHand() != nullptr){
@@ -279,6 +283,10 @@ void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::
 
 /** update when step ends */
 void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
+    // its reset and will be active after resetting
+    if (!_isActive && !step->getStepData()->getActiveReset()){
+        return;
+    }
     /** play the post effects of the current step */
     handleTutorialEffects(state, step->getStepData()->getEndEffects());
     
@@ -298,9 +306,9 @@ void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::sh
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
     // skip if tutorial isn't active
-    if (isInActive()){
-        return;
-    }
+//    if (isInActive()){
+//        return;
+//    }
     
     /** start off by clearing the tutorial Node */
     _tutorialNode->removeAllChildren();

@@ -134,6 +134,10 @@ public:
     std::vector<std::string> getHintKeys(){
         return _hintKeys;
     }
+    
+    bool getActiveReset(){
+        return _activeWhenReset;
+    }
 };
 
 #endif /* TutorialStepData_hpp */

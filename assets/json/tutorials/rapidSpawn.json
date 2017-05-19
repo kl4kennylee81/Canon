@@ -48,7 +48,8 @@
             "endEffects": [
                 "RESUME_GAME"
             ],
-            "minTime" : 0
+            "minTime" : 0,
+            "activeWhenReset" : 1
         }
     },
     "UIData": {
