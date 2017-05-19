@@ -13,6 +13,8 @@
 #include "FinishEvent.hpp"
 #include "LevelEditorEvent.hpp"
 #include "LevelSelectData.hpp"
+#include "ChapterListData.hpp"
+#include "ChapterSelectData.hpp"
 
 using namespace cugl;
 
@@ -22,6 +24,7 @@ using namespace cugl;
 MenuController::MenuController() :
 BaseController(),
 _menuGraph(nullptr){}
+
 
 void MenuController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -178,6 +181,13 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
+					case FxTriggerButtonAction::FXType::NEXTLEVEL:
+					{
+						std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
+						notify(nextLevel.get());
+						getMenuGraph()->setActiveMenu(action->nextScreen);
+						break;
+					}
 					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
 					{
 						std::string cData = action->chapterData;
@@ -226,6 +236,7 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
     _menuGraph = menuGraph;
     _selectedLevel = "";
 	_assets = assets;
+	createLevelNameUltimateMap(_levelNameUltimateMap, _assets);
     this->activate();
     return true;
 }

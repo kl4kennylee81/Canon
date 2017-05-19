@@ -190,6 +190,7 @@ void GameState::toggleReset(){
     }
 }
 
+
 /**
  * The method called to draw the gameState to the screen.
  *

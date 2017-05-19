@@ -170,9 +170,9 @@
         }, 
         "victory_nexticon": {
             "buttonAction": {
-                "buttonTarget": "MAIN_MENU", 
-                "nextScreen": "startMenu", 
-                "type": "modeChange"
+                "fxKey": "NEXTLEVEL", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
             }, 
             "height": 0.15458937198067632, 
             "key": "victory_nexticon", 
