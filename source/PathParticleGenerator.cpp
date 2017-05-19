@@ -72,10 +72,11 @@ int element_to_group(ElementType element) {
     return group_num;
 }
 
-void PathParticleGenerator::add_path(std::shared_ptr<Path> path, ElementType element) {
+void PathParticleGenerator::add_path(std::shared_ptr<Path> path, ElementType element, Vec2 starting_point) {
     int group_num = element_to_group(_active_element);
     _groups->group_array[group_num].fade = false;
     _last_size = 0;
+    _last_point = starting_point;
     _path = path; // no copy;
     _active_element = element;
 }
@@ -116,14 +117,17 @@ void PathParticleGenerator::update_paths(int group_num) {
         return;
     }
     
+    /*
     // if its the first point, then use the first point as last also
     if (_last_size == 0) {
         first = _path->getLast();
     } else {
         // otherwise take the last point in the path
         first = _last_point;
-    }
+    }*/
 
+    first = _last_point;
+    
     // generate the vector of the difference between last point and path
     std::vector<Vec2> locations = interpolate(first, _path->getLast(), MIN_DISTANCE, THRESH);
 

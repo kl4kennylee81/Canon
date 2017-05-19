@@ -59,7 +59,7 @@ public:
      * Gets called on path init. We keep a reference to this same path and check its size
      * to see if it started over with another path.
      */
-    void add_path(std::shared_ptr<Path> path, ElementType element);
+    void add_path(std::shared_ptr<Path> path, ElementType element, Vec2 starting_point);
     
     void remove_path(GameObject* active_char);
     
