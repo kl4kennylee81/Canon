@@ -16,16 +16,16 @@
                     "element": "GOLD", 
                     "key": "player1", 
                     "templateKey": "playerCharMale", 
-                    "x": 18.75, 
-                    "y": 7.8125
+                    "x": 4.5,
+                    "y": 10.8125
                 }, 
                 "player2": {
                     "aiKey": "", 
                     "element": "BLUE", 
                     "key": "player2", 
                     "templateKey": "playerCharFemale", 
-                    "x": 12.5, 
-                    "y": 7.8125
+                    "x": 4.5,
+                    "y": 5.8125
                 }
             }
         }

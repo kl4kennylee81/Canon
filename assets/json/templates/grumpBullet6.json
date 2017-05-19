@@ -5,6 +5,7 @@
             "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
             "objectKey":  "grumpBullet6_object",
             "bulletKey": "grumpBullet6_bullet",
+            "spawnTime": 0.0,
             "zoneKeys": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite","grumpBullet6_aura"],
             "zones": [["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite","grumpBullet6_aura"]]
         }
