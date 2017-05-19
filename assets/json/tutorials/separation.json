@@ -98,7 +98,7 @@
         "separation_twoHealthline1" : {
             "fontKey": "hint_font", 
             "key": "separation_twoHealthline1", 
-            "textValue": "When their aura is", 
+            "textValue": "When their auras are", 
             "type": "TEXT", 
             "x": 0.575, 
             "y": 0.275
