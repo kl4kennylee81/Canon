@@ -18,7 +18,8 @@
                 "pauseMenu_resumeglow", 
                 "pauseMenu_levelsglow", 
                 "pauseMenu_homeglow", 
-                "pauseMenu_retryglow"
+                "pauseMenu_retryglow",
+                "pauseMenu_backToLevelEditor"
             ], 
             "fontMap": {
                 "menu_body_font": "Museo300-Regular_16", 
@@ -281,6 +282,21 @@
             "width": 0.12222725215029426, 
             "x": 0.3775464010864645, 
             "y": 0.12157809983896943
+        },
+        "pauseMenu_backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "levelSelect_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.05
         }
     }
 }
