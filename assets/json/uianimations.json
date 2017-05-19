@@ -72,18 +72,18 @@
                     "repeat": "active"
                 }
             }, 
-            "cols": 2, 
+            "cols": 1, 
             "id": 104, 
             "key": "startMenu_background", 
-            "rows": 2, 
-            "size": 4, 
+            "rows": 1, 
+            "size": 1, 
             "statemap": {
                 "active": {
                     "first": 0, 
                     "frames": [
-                        9,9,9,9
+                        9
                     ], 
-                    "total": 4
+                    "total": 1
                 }
             }, 
             "texture": "./textures/menus/startMenu/startMenu_background.png"

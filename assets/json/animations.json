@@ -238,7 +238,7 @@
             }, 
             "texture": "./textures/models/enemy_models/enemy_red.png"
         }, 
-        "whiteBar": {
+        "whiteBarHorizontal": {
             "actionmap": {
                 "SPAWN": {
                     "repeat": "idle"
@@ -259,7 +259,7 @@
                         10
                     ], 
                     "total": 1,
-                    "alpha": 0.6
+                    "alpha": 1
                 }, 
                 "spawning": {
                     "first": 1, 
@@ -270,7 +270,41 @@
                     "alpha": 0.7
                 }
             }, 
-            "texture": "./textures/models/zones/square_spritesheet.png"
+            "texture": "./textures/models/zones/horizontal_square_spritesheet.png"
+        }, 
+        "whiteBarVertical": {
+            "actionmap": {
+                "SPAWN": {
+                    "repeat": "idle"
+                }, 
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            }, 
+            "cols": 2, 
+            "key": "whiteBar", 
+            "nonUniformScale": 1, 
+            "rows": 1, 
+            "size": 2, 
+            "statemap": {
+                "idle": {
+                    "first": 1, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1,
+                    "alpha": 1
+                }, 
+                "spawning": {
+                    "first": 0, 
+                    "frames": [
+                        10
+                    ], 
+                    "total": 1,
+                    "alpha": 0.7
+                }
+            }, 
+            "texture": "./textures/models/zones/vertical_square_spritesheet.png"
         }, 
         "whiteCircle": {
             "actionmap": {

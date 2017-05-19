@@ -94,8 +94,8 @@
         }, 
         "feshHorizontal_zoneObject": {
             "animationScale": 1.0, 
-            "blueAnimationKey": "whiteBar", 
-            "goldAnimationKey": "whiteBar", 
+            "blueAnimationKey": "whiteBarHorizontal", 
+            "goldAnimationKey": "whiteBarHorizontal", 
             "key": "feshHorizontal_zoneObject", 
             "shapeKey": "feshHorizontal_zoneShape"
         }
