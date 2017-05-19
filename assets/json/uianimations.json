@@ -28,21 +28,26 @@
                     "repeat": "active"
                 }
             }, 
-            "cols": 1, 
+            "cols": 2,
             "id": 102, 
             "key": "levelSelect_background", 
-            "rows": 1, 
-            "size": 1, 
+            "rows": 3,
+            "size": 6,
             "statemap": {
                 "active": {
                     "first": 0, 
                     "frames": [
-                        9
+                        15,
+                        15,
+                        15,
+                        15,
+                        15,
+                        15
                     ], 
-                    "total": 1
+                    "total": 6
                 }
             }, 
-            "texture": "./textures/menus/levelSelect/levelSelect_background.png"
+            "texture": "./textures/menus/levelSelect/lvlselectanimation.png"
         },
         "pauseMenu_dim": {
             "actionmap": {
