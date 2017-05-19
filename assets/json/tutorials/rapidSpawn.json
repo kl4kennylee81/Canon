@@ -134,7 +134,7 @@
         "rapidSpawn_healthHintline1" : {
             "fontKey": "hint_font", 
             "key": "rapidSpawn_healthHintline1", 
-            "textValue": "characters blinks red", 
+            "textValue": "Characters blink red", 
             "type": "TEXT", 
             "x": 0.325, 
             "y": 0.475
@@ -142,7 +142,7 @@
         "rapidSpawn_healthHintline2" : {
             "fontKey": "hint_font", 
             "key": "rapidSpawn_healthHintline2", 
-            "textValue": "when hit and are", 
+            "textValue": "when hit, and are", 
             "type": "TEXT", 
             "x": 0.325, 
             "y": 0.425

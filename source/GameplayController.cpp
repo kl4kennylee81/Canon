@@ -104,15 +104,12 @@ void GameplayController::eventUpdate(Event* e) {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
 
-                    //if (_chapterData != nullptr && chapterHasAnotherLevel()) {
-                    //    _nextLevel = true;
-                    //    
-                    //} else {
-                    //    this->notify(e);
-                    //    _paused = true;
-                    //}
-
-					this->notify(e);
+                    if (_chapterData != nullptr && chapterHasAnotherLevel()) {
+                        _nextLevel = true;
+                    } else {
+                        this->notify(e);
+                        _paused = true;
+                    }
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:

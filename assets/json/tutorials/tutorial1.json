@@ -338,7 +338,7 @@
         "tutorial1_swipe_other": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_other", 
-            "textValue": "draw another path with the orange character", 
+            "textValue": "Draw another path with the orange character", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
@@ -346,7 +346,7 @@
         "tutorial1_cancel_path": {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_other", 
-            "textValue": "draw a path and while drawing tap with another finger to cancel", 
+            "textValue": "Draw a path and while drawing tap with another finger to cancel", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
@@ -371,7 +371,7 @@
         "tutorial1_hitWrongEnemyHint_textline1" : {
             "fontKey": "hint_font", 
             "key": "tutorial1_hitWrongEnemyHint_textLine1", 
-            "textValue": "you used the wrong", 
+            "textValue": "You used the wrong", 
             "type": "TEXT", 
             "x": 0.825, 
             "y": 0.275
@@ -387,7 +387,7 @@
         "tutorial1_swipe_yellowEnemy" : {
             "fontKey": "bottom_font", 
             "key": "tutorial1_swipe_yellowEnemy", 
-            "textValue": "draw a path with yellow through the yellow enemy", 
+            "textValue": "Draw a path with yellow through the yellow enemy", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
@@ -428,7 +428,7 @@
         "tutorial1_progressBarline1" : {
             "fontKey": "hint_font", 
             "key": "tutorial1_progressBarline1", 
-            "textValue": "progress bar shows", 
+            "textValue": "Progress bar shows", 
             "type": "TEXT", 
             "x": 0.175, 
             "y": 0.925
