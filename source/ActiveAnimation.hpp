@@ -16,6 +16,7 @@
 #include "AnimationAction.hpp"
 #include "GameState.hpp"
 #include "Element.hpp"
+#include <math.h>
 
 class ActiveAnimation {
 private:
@@ -77,6 +78,8 @@ public:
     void setAnimationData(std::shared_ptr<AnimationData> data) {
         _data = data;
         _node = cugl::AnimationNode::alloc(_data->texture, _data->rows, _data->cols, _data->size);
+        float ang = data->angle/90*M_PI/2;
+        _node->setAngle(ang);
     }
     
     std::shared_ptr<cugl::AnimationNode> getAnimationNode() {

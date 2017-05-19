@@ -70,6 +70,7 @@ public:
     int cols;
     int size;
     bool nonUniformScale;
+    float angle;
     
     AnimationData() : Data(){}
     
