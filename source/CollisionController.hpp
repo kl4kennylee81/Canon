@@ -39,6 +39,8 @@ protected:
     
     std::map<GameObject*,float> hitStunMap;
     
+    std::map<GameObject*, GameObject*> zoneMap;
+    
     GameObject* bluePlayer;
     GameObject* goldPlayer;
     GameObject* blueZone;

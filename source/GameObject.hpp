@@ -24,6 +24,7 @@ protected:
     std::shared_ptr<cugl::Node> _node;
     bool _hasArrow;
     bool _isPlayer;
+    bool _isBoss;
     
 public:
     // static int to give Uid to gameObjects

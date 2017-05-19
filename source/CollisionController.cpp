@@ -74,12 +74,13 @@ void CollisionController::eventUpdate(Event* e) {
                 case ZoneEvent::ZoneEventType::ZONE_INIT: {
                     ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
                     initPhysicsComponent(zoneInit);
-                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
-                        blueZone = zoneInit->object.get();
-                    }
-                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
-                        goldZone = zoneInit->object.get();
-                    }
+//                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::BLUE) {
+//                        blueZone = zoneInit->object.get();
+//                    }
+//                    if (zoneInit->object->getIsPlayer() && zoneInit->object->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
+//                        goldZone = zoneInit->object.get();
+//                    }
+                    zoneMap[zoneInit->character] = zoneInit->object.get();
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
@@ -373,18 +374,32 @@ void CollisionController::beginContact(b2Contact* contact) {
         if (gotHit->getPhysicsComponent()->isAlive()) {
             objsToIgnore.push_back(gotHit);
             hitStunMap.insert({gotHit,HIT_STUN});
-            if (gotHit == bluePlayer) {
-                objsToIgnore.push_back(blueZone);
-                hitStunMap.insert({blueZone,HIT_STUN});
-                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(blueZone);
-                notify(zoneHit.get());
+//            if (gotHit == bluePlayer) {
+//                objsToIgnore.push_back(blueZone);
+//                hitStunMap.insert({blueZone,HIT_STUN});
+//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(blueZone);
+//                notify(zoneHit.get());
+//            }
+//            if (gotHit == goldPlayer) {
+//                objsToIgnore.push_back(goldZone);
+//                hitStunMap.insert({goldZone,HIT_STUN});
+//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
+//                notify(zoneHit.get());
+//            }
+//            if (gotHit->getIsPlayer() == false){
+//                objsToIgnore.push_back(goldZone);
+//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
+//                notify(zoneHit.get());
+//            }
+//            
+            GameObject* zone = zoneMap[gotHit];
+            objsToIgnore.push_back(zone);
+            if(gotHit->getIsPlayer()){
+                hitStunMap.insert({zone,HIT_STUN});
             }
-            if (gotHit == goldPlayer) {
-                objsToIgnore.push_back(goldZone);
-                hitStunMap.insert({goldZone,HIT_STUN});
-                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
-                notify(zoneHit.get());
-            }
+            std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(zone);
+            notify(zoneHit.get());
+
             std::shared_ptr<ObjectHitEvent> objectHitEvent = ObjectHitEvent::alloc(gotHit);
             notify(objectHitEvent.get());
         } else {
