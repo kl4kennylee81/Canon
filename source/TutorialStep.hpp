@@ -116,7 +116,7 @@ public:
         return _state == TutorialState::POST_ACTIVE || _state == TutorialState::ACTIVE;
     }
     
-    void update();
+    void update(bool didReset);
     
     void setActiveHand(std::shared_ptr<ActiveHandMovement> hand){
         _activeHand = hand;

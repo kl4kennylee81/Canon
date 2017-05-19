@@ -395,7 +395,7 @@
         "tutorial1_spawnCircles" : {
             "fontKey": "bottom_font", 
             "key": "tutorial1_spawnCricles", 
-            "textValue": "Watch out for spawning enemies", 
+            "textValue": "An Enemy will appear at the spawning circle", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075
@@ -403,7 +403,7 @@
         "tutorial1_defeatEnemies" : {
             "fontKey": "bottom_font", 
             "key": "tutorial1_defeatEnemies", 
-            "textValue": "defeat the enemies!", 
+            "textValue": "The Enemy has appeared, defeat the enemy!", 
             "type": "TEXT", 
             "x": 0.5, 
             "y": 0.075

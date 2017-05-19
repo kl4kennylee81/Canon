@@ -37,9 +37,9 @@ void TutorialController::notify(Event* e) {
 }
 
 void TutorialController::eventUpdate(Event* e) {
-    if (isInActive()){
-        return;
-    }
+//    if (isInActive()){
+//        return;
+//    }
     
     switch (e->_eventType) {
             case Event::EventType::PATH:
@@ -213,7 +213,7 @@ void TutorialController::updateHint(std::shared_ptr<GameState> state){
     /** need to now add to tutorialNode the currentlyActiveHints and activeSteps*/
     for(std::shared_ptr<TutorialStep> hint : _activeHints){
         // update the hints minTime
-        hint->update();
+        hint->update(!_isActive);
         
         /** check step is preactive and play its effect */
         if (hint->getState() == TutorialState::PRE_ACTIVE){
@@ -248,7 +248,7 @@ void TutorialController::updateStep(std::shared_ptr<GameState> state){
     }
     
     /** update first */
-    getCurrentStep()->update();
+    getCurrentStep()->update(!_isActive);
     
     /** check step is preactive and play its effect */
     if (getCurrentStep() != nullptr && getCurrentStep()->getState() == TutorialState::PRE_ACTIVE){
@@ -267,12 +267,14 @@ void TutorialController::updateStep(std::shared_ptr<GameState> state){
 
 /** update when step first becomes active */
 void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
-    /** play the start effects */
-    handleTutorialEffects(state, step->getStepData()->getStartEffects());
+    // not active is when a reset happens
     if (!_isActive && !step->getStepData()->getActiveReset()){
         step->setState(TutorialState::DONE);
         return;
     }
+    
+    /** play the start effects */
+    handleTutorialEffects(state, step->getStepData()->getStartEffects());
     step->setState(TutorialState::ACTIVE);
     
     if (step->getActiveHand() != nullptr){
@@ -305,10 +307,6 @@ void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::sh
 }
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
-    // skip if tutorial isn't active
-//    if (isInActive()){
-//        return;
-//    }
     
     /** start off by clearing the tutorial Node */
     _tutorialNode->removeAllChildren();

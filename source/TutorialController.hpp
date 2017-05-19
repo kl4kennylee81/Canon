@@ -37,7 +37,7 @@ private:
     
     int _currentStep;
     
-    bool _isActive;
+    bool _isActive; //tutorial controller is not active if a reset had happened
     
 public:
     TutorialController();

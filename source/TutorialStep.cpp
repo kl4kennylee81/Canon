@@ -19,9 +19,12 @@ bool TutorialStep::init(std::shared_ptr<TutorialStepData> stepData){
     return true;
 }
 
-void TutorialStep::update(){
+void TutorialStep::update(bool didReset){
     if (isActive()){
         _currentActiveTime+=GameState::_internalClock->getTimeDilation();
+    }
+    if (didReset && !_tutStepData->getActiveReset()){
+        _state = TutorialState::DONE;
     }
     
     if (_state == TutorialState::POST_ACTIVE && _currentActiveTime >= _tutStepData->getMinTime()){
