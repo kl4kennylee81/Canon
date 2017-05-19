@@ -83,7 +83,7 @@ void ParticleController::eventUpdate(Event* e) {
                 }
                 case PathEvent::PathEventType::DRAWING: {
                     PathDrawing* pathDrawing = (PathDrawing*)pathEvent;
-                    _path_gen->add_path(pathDrawing->_path);
+                    _path_gen->add_path(pathDrawing->_path, pathDrawing->_active_element);
                     _path_gen->start();
                     break;
                 }
@@ -195,7 +195,7 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
                 break;
             case ParticleAction::TRAIL:{
                 _trail_gen->add_character(obj);
-//                _trail_gen->start();
+                _trail_gen->start();
                 break;
             }
             case ParticleAction::ZONE:{
@@ -356,11 +356,12 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     bluepathpd.end_color = Color4f::WHITE;
     bluepathpd.color_duration = -1;
     bluepathpd.scale = true;
-    bluepathpd.start_scale = 1;
-    bluepathpd.current_scale = 1;
-    bluepathpd.end_scale = 1;
+    bluepathpd.start_scale = 0.9;
+    bluepathpd.current_scale = bluepathpd.start_scale;
+    bluepathpd.end_scale = bluepathpd.start_scale;
+    bluepathpd.group_fade = true;
     bluepathpd.start_alpha = 1;
-    bluepathpd.alpha_duration = 50;
+    bluepathpd.alpha_duration = 15;
     bluepathpd.texture_name = "blue_particle";
     bluepathpd.texture = assets->get<Texture>(bluepathpd.texture_name);
     
@@ -372,11 +373,12 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     goldpathpd.end_color = Color4f::WHITE;
     goldpathpd.color_duration = -1;
     goldpathpd.scale = true;
-    goldpathpd.start_scale = 1;
-    goldpathpd.current_scale = 1;
-    goldpathpd.end_scale = 1;
+    goldpathpd.start_scale = 0.9;
+    goldpathpd.current_scale = goldpathpd.start_scale;
+    goldpathpd.end_scale = goldpathpd.start_scale;
+    goldpathpd.group_fade = true;
     goldpathpd.start_alpha = 1;
-    goldpathpd.alpha_duration = 50;
+    goldpathpd.alpha_duration = 15;
     goldpathpd.texture_name = "gold_particle";
     goldpathpd.texture = assets->get<Texture>(goldpathpd.texture_name);
     
@@ -393,10 +395,10 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _trail_gen = TrailParticleGenerator::alloc(state, &_particle_map);
     
     _pulse_gen = PulseParticleGenerator::alloc(state, &_particle_map);
-//    _pulse_gen->start();
+    _pulse_gen->start();
     
     _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
-//    _death_gen->start();
+    _death_gen->start();
     
     _path_gen = PathParticleGenerator::alloc(state, &_particle_map);
     

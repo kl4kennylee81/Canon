@@ -22,6 +22,8 @@ private:
     ParticleData _blue_path_pd;
     ParticleData _gold_path_pd;
     
+    ElementType _active_element;
+    
     /**
      * This shared pointer refers to the one path. Address doesn't change after initial assignment.
      */
@@ -57,7 +59,7 @@ public:
      * Gets called on path init. We keep a reference to this same path and check its size
      * to see if it started over with another path.
      */
-    void add_path(std::shared_ptr<Path> path);
+    void add_path(std::shared_ptr<Path> path, ElementType element);
     
     void remove_path(GameObject* active_char);
     
@@ -65,10 +67,11 @@ public:
         std::vector<cugl::Vec2> coords = {};
         cugl::Vec2 step = snd-fst;
         
-        // if under the threshold, only return the last one
-        std::cout << "step length: " << step.length() << "\n";
+        if (step.length() == 0) {
+            return coords;
+        }
+        
         if (step.length() < thresh) {
-            coords.push_back(snd);
             return coords;
         }
         

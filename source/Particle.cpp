@@ -21,7 +21,7 @@ bool Particle::init(ParticleData pd) {
         _color_step = findColorStep();
     }
     
-    if (_pd.alpha_fade) {
+    if (_pd.alpha_fade || _pd.group_fade) {
         _alpha_step = findAlphaStep();
         _current_color.set(_current_color.r, _current_color.g, _current_color.b, _pd.start_alpha);
     }
@@ -82,7 +82,6 @@ void Particle::move() {
     }
     
     _time_alive++;
-//    std::cout << "ttl " << _pd.ttl << "\n";
 }
 
 float Particle::findScaleStep() {

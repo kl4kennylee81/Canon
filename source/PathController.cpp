@@ -216,7 +216,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		updateMinMax(currentLocation);
         
         // notify that the controller has started drawing
-        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc(_path);
+        ElementType active_element = active->getPhysicsComponent()->getElementType();
+        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc(_path, active_element);
         notify(drawEvent.get());
         
         controllerState = DRAWING;

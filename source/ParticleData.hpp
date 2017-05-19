@@ -72,6 +72,8 @@ public:
     int alpha_duration; // # frames till end_alpha
     float start_alpha;
     
+    bool group_fade;
+    
     /**
      * TODO: Everything undearneath this point needs to get completed in order for JSON loading.
      */
