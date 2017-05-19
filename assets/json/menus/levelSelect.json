@@ -6,7 +6,6 @@
                 "levelSelect_rightarrow", 
                 "levelSelect_plainhomeicon", 
                 "levelSelect_homeglow1", 
-                "levelSelect_swirls", 
                 "levelSelect_backToLevelEditor"
             ], 
             "fontMap": {
@@ -33,33 +32,6 @@
             "textValue": "", 
             "type": "TEXT", 
             "width": 0.36
-        }, 
-        "levelSelect_Chap3": {
-            "height": 0.2745571658615137, 
-            "key": "levelSelect_Chap3", 
-            "textureKey": "levelSelect_Chap3", 
-            "type": "IMAGE", 
-            "width": 0.4938886373924853, 
-            "x": 0.25667722951561794, 
-            "y": 0.6876006441223833
-        }, 
-        "levelSelect_Chap4": {
-            "height": 0.2777777777777778, 
-            "key": "levelSelect_Chap4", 
-            "textureKey": "levelSelect_Chap4", 
-            "type": "IMAGE", 
-            "width": 0.47532820280669985, 
-            "x": 0.2666364870982345, 
-            "y": 0.6876006441223832
-        }, 
-        "levelSelect_Chap5": {
-            "height": 0.2745571658615137, 
-            "key": "levelSelect_Chap5", 
-            "textureKey": "levelSelect_Chap5", 
-            "type": "IMAGE", 
-            "width": 0.48664554096876417, 
-            "x": 0.25667722951561794, 
-            "y": 0.6876006441223833
         }, 
         "levelSelect_backToLevelEditor": {
             "buttonAction": {
@@ -157,15 +129,6 @@
             "width": 0.11770031688546853, 
             "x": 0.09913988229968311, 
             "y": 0.4774557165861513
-        }, 
-        "levelSelect_swirls": {
-            "height": 0.11272141706924316, 
-            "key": "levelSelect_swirls", 
-            "textureKey": "levelSelect_swirls", 
-            "type": "IMAGE", 
-            "width": 0.9995473064735174, 
-            "x": 0.0, 
-            "y": -5.551115123125783e-17
         }
     }
 }

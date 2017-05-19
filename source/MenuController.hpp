@@ -79,7 +79,7 @@ public:
     
     std::string getSelectedLevel();
 
-	static void createLevelNameUltimateMap(std::map<std::string, std::map<std::string, std::string>>& map, std::shared_ptr<GenericAssetManager>& _assets) {
+	static void createLevelNameUltimateMap(std::map<std::string, std::map<std::string, std::string>>& map, std::shared_ptr<GenericAssetManager> _assets) {
 		std::vector<std::string> levelList; // all levels in chronological order
 		std::vector<std::string> levelNameList; // all level names ...
 
@@ -113,7 +113,9 @@ public:
 
 			// check index out of bounds for last level
 			if (index == levelList.size()) {
-				// for the last level, the "next" and "nextName" will not exist
+				item.second.insert(std::make_pair("nextKey", ""));
+				item.second.insert(std::make_pair("nextName", ""));
+				item.second.insert(std::make_pair("nextChap", "-1"));
 				continue;
 			}
 			item.second.insert(std::make_pair("nextKey", levelList.at(index)));
@@ -126,14 +128,30 @@ public:
 	// returns (nextlevelname, nextlevelchapterindex)
 	static std::pair<std::string, int> getNextLevelInfo(std::string levelName, 
 			std::map<std::string, std::map<std::string, std::string>>& theMap, 
-			std::shared_ptr<GenericAssetManager>& _assets) {
+			std::shared_ptr<GenericAssetManager> _assets) {
 
-		if (levelName == "") {
-			return std::make_pair("", 0);
-		}
 		std::map<std::string, std::string> subMap = theMap.at(levelName);
 		std::string nextLevelName = subMap.at("nextName");
 		int nextChapIndex = std::stoi(subMap.at("nextChap"));
+
+		if (nextChapIndex == -1) {
+			return std::make_pair("", 0);
+		}
+		return std::make_pair(nextLevelName, nextChapIndex);
+	}
+
+	// returns (thislevelindex, thislevelchapterindex
+	static std::pair<int, int> getLevelInfo(std::string levelName,
+		std::map<std::string, std::map<std::string, std::string>>& theMap,
+		std::shared_ptr<GenericAssetManager> _assets) {
+
+		std::map<std::string, std::string> subMap = theMap.at(levelName);
+		int nextLevelName = std::stoi(subMap.at("num"));
+		int nextChapIndex = std::stoi(subMap.at("chapNum"));
+
+		if (nextChapIndex == -1) {
+			return std::make_pair(0, 0);
+		}
 		return std::make_pair(nextLevelName, nextChapIndex);
 	}
 };

@@ -134,6 +134,11 @@ void MenuController::update(float timestep) {
                     case Mode::GAMEPLAY:
                     {
                         _selectedLevel = action->levelSelectDataKey;
+						std::string lName = _assets->get<LevelSelectData>(_selectedLevel)->levelKey;
+
+						std::pair<int, int> lvlInfo = getLevelInfo(lName, _levelNameUltimateMap, _assets);
+						//getMenuGraph()->populateGameplayMenu(_assets, getMenuGraph()->getMenuMap(), lvlInfo.first+1, lvlInfo.second+1); // offset by 1
+
 						getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
@@ -185,6 +190,8 @@ void MenuController::update(float timestep) {
 					{
 						std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
 						notify(nextLevel.get());
+
+						//getMenuGraph()->populateGameplayMenu(_assets);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}
