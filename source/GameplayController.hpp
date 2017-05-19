@@ -55,6 +55,7 @@ protected:
     /** The scale between the physics world and the screen (MUST BE UNIFORM) */
     float _scale;
 	bool _paused;
+	std::map<std::string, std::map<std::string, std::string>> _ultimateMap;
 
     std::string _curLevelName;
     std::shared_ptr<ChapterSelectData> _chapterData;

@@ -13,6 +13,8 @@
 #include "FinishEvent.hpp"
 #include "LevelEditorEvent.hpp"
 #include "LevelSelectData.hpp"
+#include "ChapterListData.hpp"
+#include "ChapterSelectData.hpp"
 
 using namespace cugl;
 
@@ -22,6 +24,7 @@ using namespace cugl;
 MenuController::MenuController() :
 BaseController(),
 _menuGraph(nullptr){}
+
 
 void MenuController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -131,6 +134,11 @@ void MenuController::update(float timestep) {
                     case Mode::GAMEPLAY:
                     {
                         _selectedLevel = action->levelSelectDataKey;
+						std::string lName = _assets->get<LevelSelectData>(_selectedLevel)->levelKey;
+
+						std::pair<int, int> lvlInfo = getLevelInfo(lName, _levelNameUltimateMap, _assets);
+						//getMenuGraph()->populateGameplayMenu(_assets, getMenuGraph()->getMenuMap(), lvlInfo.first+1, lvlInfo.second+1); // offset by 1
+
 						getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
@@ -178,6 +186,15 @@ void MenuController::update(float timestep) {
                         getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
+					case FxTriggerButtonAction::FXType::NEXTLEVEL:
+					{
+						std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
+						notify(nextLevel.get());
+
+						//getMenuGraph()->populateGameplayMenu(_assets);
+						getMenuGraph()->setActiveMenu(action->nextScreen);
+						break;
+					}
 					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
 					{
 						std::string cData = action->chapterData;
@@ -226,6 +243,7 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
     _menuGraph = menuGraph;
     _selectedLevel = "";
 	_assets = assets;
+	createLevelNameUltimateMap(_levelNameUltimateMap, _assets);
     this->activate();
     return true;
 }

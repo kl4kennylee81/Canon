@@ -11,6 +11,8 @@
 #include "FinishEvent.hpp"
 #include "LevelData.hpp"
 #include "LevelSelectData.hpp"
+#include "MenuController.hpp"
+
 
 using namespace cugl;
 
@@ -64,6 +66,31 @@ void GameplayController::eventUpdate(Event* e) {
                     _gameState->toggleReset();
                     break;
                 }
+				case MenuEvent::MenuEventType::NEXTLEVEL:
+				{
+					// possible refactor includes puttign this logic into gameplaycontroller instead
+					std::shared_ptr<LevelData> ld = _levelController->getWorld()->getLevelData();
+					std::string ldkey = ld->key;
+					std::pair<std::string, int> info = MenuController::getNextLevelInfo(ldkey, _ultimateMap, getWorld()->getAssetManager());
+
+					if (info.first == "") {
+						//std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
+						//notify(nextLevel.get());
+						// handle when there is no next level
+						break;
+					}
+
+					_paused = false;
+					std::shared_ptr<LevelData> nextld = getWorld()->getAssetManager()->get<LevelData>(info.first);
+
+					_levelController->getWorld()->init(_levelController->getWorld()->getAssetManager(), nextld);
+					std::shared_ptr<Scene> s = _gameState->getScene();
+					std::shared_ptr<World> w = _levelController->getWorld();
+					dispose();
+
+					init(s, w, _chapterData, _curLevelName);
+
+				}
 
 			}
 			break;
@@ -76,13 +103,16 @@ void GameplayController::eventUpdate(Event* e) {
                 {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
-                    if (_chapterData != nullptr && chapterHasAnotherLevel()) {
-                        _nextLevel = true;
-                        
-                    } else {
-                        this->notify(e);
-                        _paused = true;
-                    }
+
+                    //if (_chapterData != nullptr && chapterHasAnotherLevel()) {
+                    //    _nextLevel = true;
+                    //    
+                    //} else {
+                    //    this->notify(e);
+                    //    _paused = true;
+                    //}
+
+					this->notify(e);
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -311,6 +341,8 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _nextLevel = false;
     
     activate();
+
+	MenuController::createLevelNameUltimateMap(_ultimateMap, getWorld()->getAssetManager());
     
 	return true;
 }

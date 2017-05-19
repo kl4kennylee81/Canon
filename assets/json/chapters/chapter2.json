@@ -9,7 +9,8 @@
                 "level23",
                 "level24",
                 "level25",
-                "level26"
+                "level26",
+                "level51"
             ],
             "chapterTexture": "chapter02_texture"
         }
@@ -44,6 +45,12 @@
             "key": "level26",
             "levelKey": "collapse",
             "name": "Collapse"
+        },
+        "level51": {
+            "name": "Boss1",
+            "key": "level51",
+            "levelKey": "boss1",
+            "songKey": "boss1"
         }
     },
     "UIData": {
