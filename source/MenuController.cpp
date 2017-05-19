@@ -189,7 +189,7 @@ void MenuController::update(float timestep) {
 						std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
 						notify(nextLevel.get());
 
-						getMenuGraph()->populateGameplayMenu(_assets);
+						//getMenuGraph()->populateGameplayMenu(_assets);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}
