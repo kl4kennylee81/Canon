@@ -10,7 +10,7 @@
 
 #define PARTICLE_DELAY 0
 #define PARTICLE_COUNT 2
-#define MAX_PARTICLES 250
+#define MAX_PARTICLES 200
 
 bool TrailParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _cooldown = PARTICLE_DELAY;

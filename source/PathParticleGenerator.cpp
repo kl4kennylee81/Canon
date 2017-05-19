@@ -10,11 +10,11 @@
 #include "Util.hpp"
 
 #define PARTICLE_NUM 2
-#define MAX_PARTICLES 750
+#define MAX_PARTICLES 1000
 #define MAX_GROUPS 2
 #define FADE_TIME 40
-#define MIN_DISTANCE 0.2
-#define THRESH 0.2
+#define MIN_DISTANCE 0.3
+#define THRESH 0.6
 
 bool PathParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _active = false; // default
@@ -138,7 +138,7 @@ void PathParticleGenerator::update_paths(int group_num) {
     _last_point = _path->getLast();
 }
 
-void PathParticleGenerator::generate(std::shared_ptr<GameState> state) {
+void PathParticleGenerator::generate() {
     if (!_active) return;
 
     int group_num = element_to_group(_active_element);

@@ -65,7 +65,7 @@ void ParticleController::eventUpdate(Event* e) {
                     //animationMap.at(obj)->setLastAnimation();
                     
                     if (obj->getIsPlayer()) {
-                        _path_gen->remove_path(obj);
+                        //_path_gen->remove_path(obj);
                     }
                     break;
             }
@@ -78,13 +78,13 @@ void ParticleController::eventUpdate(Event* e) {
                     PathFinished* pathFinished = (PathFinished*)pathEvent;
                     GameObject* obj = pathFinished->_activeChar.get();
                     handleAction(obj, AnimationAction::ATTACK);
-                    _path_gen->remove_path(obj);
+                    //_path_gen->remove_path(obj);
                     break;
                 }
                 case PathEvent::PathEventType::DRAWING: {
                     PathDrawing* pathDrawing = (PathDrawing*)pathEvent;
-                    _path_gen->add_path(pathDrawing->_path, pathDrawing->_active_element, pathDrawing->_starting_point);
-                    _path_gen->start();
+                    //_path_gen->add_path(pathDrawing->_path, pathDrawing->_active_element, pathDrawing->_starting_point);
+                    //_path_gen->start();
                     break;
                 }
             }
@@ -224,7 +224,7 @@ void ParticleController::update(float timestep, std::shared_ptr<GameState> state
     _trail_gen->generate();
     _death_gen->generate();
     _pulse_gen->generate();
-    _path_gen->generate(state);
+    //_path_gen->generate();
 //    _zone_gen->generate();
 }
 
@@ -406,7 +406,7 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
     _death_gen->start();
     
-    _path_gen = PathParticleGenerator::alloc(state, &_particle_map);
+    //_path_gen = PathParticleGenerator::alloc(state, &_particle_map);
     
 //    _zone_gen = ZoneParticleGenerator::alloc(state, &_particle_map);
 //    _zone_gen->start();

@@ -97,7 +97,7 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
 	Poly2 pathPoly = _path->getPoly();
 	auto pathNode = TexturedPathNode::allocWithPoly(pathPoly, 0.25, PathJoint::ROUND, PathCap::ROUND);
     pathNode->setPath(_path->clone());
-    pathNode->setStroke(15);
+    pathNode->setStroke(13);
     pathNode->setTexture(_mainTexture);
     pathNode->setCapTexture(_capTexture);
     pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
@@ -119,12 +119,11 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
     }
     
     
-    
     // switch color of path depending on who's turn
     if (_drawingChar->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
-        pathNode->setColor(Color4::ORANGE);
+        pathNode->setColor(Color4::Color4(255,247,120,250));
     } else {
-        pathNode->setColor(Color4::BLUE);
+        pathNode->setColor(Color4::Color4(136, 250, 238,250));
     }
     
 	_pathSceneNode->removeAllChildren();
@@ -230,11 +229,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		if (distance > MIN_DISTANCE) {
             _path->add(physicsPosition);
 			updateMinMax(physicsPosition);
-			//addPathToScene(state);
+			addPathToScene(state);
 		}
 	}
 	if (_wasPressed && !isPressed) {
-//		addPathToScene(state);
+		addPathToScene(state);
         
         // notify that the controller has finished drawing
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, _drawingChar, state->getOtherPlayer(_drawingChar));

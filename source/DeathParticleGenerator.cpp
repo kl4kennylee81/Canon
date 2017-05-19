@@ -11,7 +11,7 @@
 #define CLUSTER_SIZE 2
 
 // max number of pulse particles
-#define MAX_PARTICLES 75
+#define MAX_PARTICLES 30
 #define MAX_GROUPS 1
 
 bool DeathParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {

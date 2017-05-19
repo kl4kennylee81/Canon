@@ -13,9 +13,9 @@
 #define TIMEOUT_FRAMES 100
 // how many pulses to generate per second
 #define PULSE_RATE 3
-#define NUM_PARTICLES 3
+#define NUM_PARTICLES 1
 // max number of pulse particles
-#define MAX_PARTICLES 40*PULSE_RATE*NUM_PARTICLES
+#define MAX_PARTICLES 120*PULSE_RATE*NUM_PARTICLES
 #define MAX_GROUPS 1000
 
 #define BLUER 49

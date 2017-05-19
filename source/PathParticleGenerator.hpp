@@ -53,7 +53,7 @@ public:
         return (result->init(state, particle_map) ? result : nullptr);
     }
     
-    void generate(std::shared_ptr<GameState> state);
+    void generate();
     
     /**
      * Gets called on path init. We keep a reference to this same path and check its size
