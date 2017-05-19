@@ -3,13 +3,20 @@
         "chapter04": {
             "chapterKey": "chapter04",
             "name": "The Girl and the Grump",
-            "levels": [
-
-                       ],
-            "chapterTexture": "chapter02_texture"
+            "levels": [],
+            "chapterTexture": "chapter04_texture"
         }
     },
-    "LevelSelectData": {
-
+    "LevelSelectData": {},
+    "UIData": {
+        "chapter04_texture": {
+            "height": 0.2777777777777778,
+            "key": "chapter04_texture",
+            "textureKey": "chapter04_texture",
+            "type": "IMAGE",
+            "width": 0.47532820280669985,
+            "x": 0.2666364870982345,
+            "y": 0.6876006441223832
+        }
     }
 }
