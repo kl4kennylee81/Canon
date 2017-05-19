@@ -165,21 +165,6 @@ public:
         cugl::Vec2::divide(physicsCoords,GAME_PHYSICS_SCALE,&physicsCoords);
         return physicsCoords;
     }
-    
-    static std::vector<cugl::Vec2> interpolate(cugl::Vec2 fst, cugl::Vec2 snd, float dist){
-        std::vector<cugl::Vec2> coords = {};
-        cugl::Vec2 step = snd-fst;
-        float length = step.length();
-        step.normalize();
-        step.scale(dist);
-        float totSteps = length/dist;
-        for (int i = 0; i < totSteps; i++){
-            cugl::Vec2 toAdd = fst+step*i;
-            coords.push_back(fst+step*i);
-        }
-        return coords;
-    }
-
 };
 
 

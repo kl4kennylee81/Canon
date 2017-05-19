@@ -27,6 +27,8 @@
 		824E10AD1EA941B80068C0F5 /* ParticleData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10AA1EA941B80068C0F5 /* ParticleData.cpp */; };
 		824E10B21EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
 		824E10B31EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */; };
+		824F97161ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */; };
+		824F97171ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */; };
 		829314B11E8A552C00CFA733 /* InternalClock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314AF1E8A552C00CFA733 /* InternalClock.cpp */; };
 		829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829314B31E8A554B00CFA733 /* ClockController.cpp */; };
 		829615521E9BC5B300A731DB /* ParticleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615501E9BC5B300A731DB /* ParticleController.cpp */; };
@@ -128,8 +130,6 @@
 		9F6F87681EBCBD1E00AD021D /* ZoneParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F87651EBCBD1E00AD021D /* ZoneParticleGenerator.cpp */; };
 		9F6F876B1EBCBD3000AD021D /* PulseParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F87691EBCBD3000AD021D /* PulseParticleGenerator.cpp */; };
 		9F6F876C1EBCBD3000AD021D /* PulseParticleGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F87691EBCBD3000AD021D /* PulseParticleGenerator.cpp */; };
-		9F6F876F1EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F876D1EBCBD4A00AD021D /* ParticleWrapper.cpp */; };
-		9F6F87701EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F876D1EBCBD4A00AD021D /* ParticleWrapper.cpp */; };
 		9F6F87731EBCBD7D00AD021D /* ParticleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F87711EBCBD7D00AD021D /* ParticleNode.cpp */; };
 		9F6F87741EBCBD7D00AD021D /* ParticleNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F87711EBCBD7D00AD021D /* ParticleNode.cpp */; };
 		9F7668481E84AE2D003A06E8 /* HomingAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7668421E84AE2D003A06E8 /* HomingAIData.cpp */; };
@@ -317,6 +317,9 @@
 		824E10AB1EA941B80068C0F5 /* ParticleData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleData.hpp; sourceTree = "<group>"; };
 		824E10B01EA941E70068C0F5 /* ParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleGenerator.cpp; sourceTree = "<group>"; };
 		824E10B11EA941E70068C0F5 /* ParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleGenerator.hpp; sourceTree = "<group>"; };
+		824F970F1ECE373700AFED96 /* GroupContainer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GroupContainer.hpp; sourceTree = "<group>"; };
+		824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PathParticleGenerator.cpp; sourceTree = "<group>"; };
+		824F97151ECEAD7900AFED96 /* PathParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PathParticleGenerator.hpp; sourceTree = "<group>"; };
 		829314AF1E8A552C00CFA733 /* InternalClock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InternalClock.cpp; sourceTree = "<group>"; };
 		829314B01E8A552C00CFA733 /* InternalClock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InternalClock.hpp; sourceTree = "<group>"; };
 		829314B31E8A554B00CFA733 /* ClockController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClockController.cpp; sourceTree = "<group>"; };
@@ -363,8 +366,6 @@
 		9F6F87661EBCBD1E00AD021D /* ZoneParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ZoneParticleGenerator.hpp; sourceTree = "<group>"; };
 		9F6F87691EBCBD3000AD021D /* PulseParticleGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PulseParticleGenerator.cpp; sourceTree = "<group>"; };
 		9F6F876A1EBCBD3000AD021D /* PulseParticleGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PulseParticleGenerator.hpp; sourceTree = "<group>"; };
-		9F6F876D1EBCBD4A00AD021D /* ParticleWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleWrapper.cpp; sourceTree = "<group>"; };
-		9F6F876E1EBCBD4A00AD021D /* ParticleWrapper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleWrapper.hpp; sourceTree = "<group>"; };
 		9F6F87711EBCBD7D00AD021D /* ParticleNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleNode.cpp; sourceTree = "<group>"; };
 		9F6F87721EBCBD7D00AD021D /* ParticleNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleNode.hpp; sourceTree = "<group>"; };
 		9F7668361E8388DF003A06E8 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
@@ -651,12 +652,11 @@
 				9F6F875C1EBCBCE100AD021D /* particleGenerators */,
 				829615571E9BCA5500A731DB /* Particle.cpp */,
 				8296155B1E9BCACA00A731DB /* Particle.h */,
-				824E10AA1EA941B80068C0F5 /* ParticleData.cpp */,
-				824E10AB1EA941B80068C0F5 /* ParticleData.hpp */,
 				9F6F87711EBCBD7D00AD021D /* ParticleNode.cpp */,
 				9F6F87721EBCBD7D00AD021D /* ParticleNode.hpp */,
-				9F6F876D1EBCBD4A00AD021D /* ParticleWrapper.cpp */,
-				9F6F876E1EBCBD4A00AD021D /* ParticleWrapper.hpp */,
+				824F970F1ECE373700AFED96 /* GroupContainer.hpp */,
+				824E10AA1EA941B80068C0F5 /* ParticleData.cpp */,
+				824E10AB1EA941B80068C0F5 /* ParticleData.hpp */,
 				DF554B2F1EC7A53A006E70FE /* ParticleAction.hpp */,
 				DF554B301EC7B78A006E70FE /* ActiveParticleState.cpp */,
 				DF554B311EC7B78A006E70FE /* ActiveParticleState.hpp */,
@@ -744,6 +744,8 @@
 				9F6F87621EBCBD1100AD021D /* TrailParticleGenerator.hpp */,
 				9F6F87651EBCBD1E00AD021D /* ZoneParticleGenerator.cpp */,
 				9F6F87661EBCBD1E00AD021D /* ZoneParticleGenerator.hpp */,
+				824F97141ECEAD7900AFED96 /* PathParticleGenerator.cpp */,
+				824F97151ECEAD7900AFED96 /* PathParticleGenerator.hpp */,
 			);
 			name = particleGenerators;
 			sourceTree = "<group>";
@@ -1397,7 +1399,7 @@
 				TargetAttributes = {
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 4S972L8QNQ;
+						DevelopmentTeam = YX9S6B2J7Q;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1528,6 +1530,7 @@
 				9F6F87681EBCBD1E00AD021D /* ZoneParticleGenerator.cpp in Sources */,
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
 				9F6F87641EBCBD1100AD021D /* TrailParticleGenerator.cpp in Sources */,
+				824F97171ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */,
 				9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
@@ -1550,7 +1553,6 @@
 				9F3BA6011E8BA575003138C0 /* ActiveZone.cpp in Sources */,
 				9F3BA6021E8BA575003138C0 /* ZoneEvent.cpp in Sources */,
 				9F3BA6031E8BA575003138C0 /* Condition.cpp in Sources */,
-				9F6F87701EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */,
 				9F3BA6201E8BA9D9003138C0 /* InputController.cpp in Sources */,
 				9F6F876C1EBCBD3000AD021D /* PulseParticleGenerator.cpp in Sources */,
 				9F4F5EE31EBE943000CC97AC /* MenuListData.cpp in Sources */,
@@ -1619,6 +1621,7 @@
 				9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
+				824F97161ECEAD7900AFED96 /* PathParticleGenerator.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
 				9FF0B44D1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
@@ -1680,7 +1683,6 @@
 				9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */,
 				DF909EF81E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
 				9F9A76731EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
-				9F6F876F1EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */,
 				273CB3B31EBC5DB50042708C /* BulletAI.cpp in Sources */,
 				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
 				9F6F876B1EBCBD3000AD021D /* PulseParticleGenerator.cpp in Sources */,
@@ -1733,14 +1735,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1756,7 +1758,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4S972L8QNQ;
+				DEVELOPMENT_TEAM = YX9S6B2J7Q;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1764,7 +1766,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1878,7 +1880,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kyleGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -1898,7 +1900,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Mac-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.kyleGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.mac.hongGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

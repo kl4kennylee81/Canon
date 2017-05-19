@@ -34,7 +34,6 @@ private:
     
     /** These are fields that you do not set on initialization. */
     Color4f _color_step;
-    Color4f _current_color;
     Color4f _alpha_step;
     
     /**
@@ -45,10 +44,17 @@ private:
     float findScaleStep();
     
 public:
+    Color4f _current_color;
+    
+    // this is the data it starts from if we reset the particles. like in pulse
+    ParticleData _original;
+    
     /** Holds all properties of the particle that are set by a data file */
     ParticleData _pd;
     
-    Particle() {}
+    Particle() {
+        group_num = -1;
+    }
     
     bool init(ParticleData pd);
     
@@ -60,11 +66,19 @@ public:
     /** Must have this method to be compatible with a FreeList */
     void reset();
     
+    /**
+     * Uses the particle data from when it was initialized.
+     * Instance variables are initialized too.
+     */
+    void replay_from_beginning();
+    
     Color4f getCurrentColor() { return _current_color; }
     
     bool isActive();
     
     float findAngularVelocity(float time);
+    
+    int group_num;
 };
 
 #endif /* defined(__MD_PARTICLE_H__) */

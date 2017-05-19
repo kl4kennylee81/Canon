@@ -15,3 +15,7 @@ float ParticleGenerator::getRandomFloat(float a, float b) {
     float rand = dist(mt);
     return rand;
 }
+
+Color4f ParticleGenerator::normalizedRGB(int r, int g, int b, float a) {
+    return Color4f(r/(float)255, g/(float)255, b/(float)255, a);
+}

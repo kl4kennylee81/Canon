@@ -1,6 +1,5 @@
 //
 //  PulseParticleGenerator.cpp
-//  MemoryDemo
 //
 //  Created by Hong Jeon on 5/4/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
@@ -10,64 +9,47 @@
 #include <map>
 #include <math.h>
 
+// how many frames to wait until the next pulse
 #define TIMEOUT_FRAMES 100
+// how many pulses to generate per second
+#define PULSE_RATE 3
+#define NUM_PARTICLES 3
+// max number of pulse particles
+#define MAX_PARTICLES 40*PULSE_RATE*NUM_PARTICLES
+#define MAX_GROUPS 1000
 
-bool PulseParticleGenerator::init(std::shared_ptr<ParticleNode> partnode,
-                                  std::shared_ptr<cugl::FreeList<Particle>> mem,
-                                  ParticleData pd) {
-    _partnode = partnode;
-    _memory = mem;
+#define BLUER 49
+#define BLUEG 185
+#define BLUEB 255
+
+#define GOLDR 235
+#define GOLDG 235
+#define GOLDB 56
+
+
+bool PulseParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
+    _particle_map = particle_map;
+    _active = false;
     
-    ParticleData pd_temp;
-    pd_temp.ttl = 180;
+    // initialize partnode
+    _ringpd = _particle_map->at("pulse_ring");
+    _pulsepartnode = ParticleNode::allocWithTexture(_ringpd.texture);
+    _pulsepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    _pulsepartnode->setBlendEquation(GL_FUNC_ADD);
+    _pulsepartnode->setPosition(Vec2::ZERO);
+    _pulsepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
     
-    // fix this later
-    pd_temp.color_fade = true;
-    pd_temp.start_color = Color4f::WHITE;
-    pd_temp.end_color = Color4f::WHITE;
-    pd_temp.color_duration = -1; // infinite
+    // important steps
+    _groups = GroupContainer::alloc(MAX_GROUPS);
+    _pulsepartnode->init_memory(MAX_PARTICLES);
+    _pulsepartnode->_groups = _groups;
     
-    pd_temp.scale = true;
-    pd_temp.start_scale = 0.05;
-    pd_temp.end_scale = 0.4;
-    pd_temp.current_scale = pd_temp.start_scale;
+    state->getWorldNode()->addChild(_pulsepartnode);
     
-    pd_temp.alpha_fade = true;
-    pd_temp.start_alpha = 0.5;
-    pd_temp.alpha_duration = 120;
-    
-    _pd = pd_temp;
-    _pulse_rate = 7; // pulses per ParticleWrapper
+    // initialize instance variables.
     _timeout = TIMEOUT_FRAMES;
     
     return true;
-}
-
-void PulseParticleGenerator::createPulseParticles(std::set<Particle*>& particle_set) {
-    ParticleData pd = _pd; // don't taint the template
-    
-    // how much scale each pulse is separated by
-    float scale_rate = ((float)(pd.end_scale - pd.start_scale)/(_pulse_rate-1));
-    // how much ttl each pulse is separated by
-    float ttl_rate = ceil(((float)pd.ttl)/(_pulse_rate-1));
-    pd.current_scale = pd.start_scale;
-    
-    // create the particles taht are spaced out by a constant amount
-    for (int ii = 0; ii < _pulse_rate; ii++) {
-        Particle* particle = createSinglePulse(pd);
-        particle_set.insert(particle);
-        pd.current_scale += scale_rate;
-        pd.ttl -= ttl_rate;
-    }
-}
-
-Particle* PulseParticleGenerator::createSinglePulse(ParticleData pd) {
-    Particle* particle = _memory->malloc();
-    if (particle != nullptr) {
-        particle->init(randomizeAngle(pd)); // init makes a copy of pd
-        _partnode->addParticle(particle);
-    }
-    return particle;
 }
 
 ParticleData PulseParticleGenerator::randomizeAngle(ParticleData pd) {
@@ -77,59 +59,74 @@ ParticleData PulseParticleGenerator::randomizeAngle(ParticleData pd) {
     return pd;
 }
 
-void PulseParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
-    std::set<Particle*> to_remove;
+/**
+ * Generates a pulse at world_pos and assigns a new group to that pulse.
+ */
+void PulseParticleGenerator::createPulseParticles(Vec2 world_pos, int group_num, ElementType element) {
+    ParticleData pd = _ringpd; // don't taint the template
     
-    //    if (wrapper->_particle_set.size() < _pulse_rate && _timeout >= TIMEOUT_FRAMES) {
-    //        Particle* particle = createSinglePulse(_pd);
-    //        wrapper->_particle_set.insert(particle);
-    //        _timeout = 0;
-    //    }
+    // how much scale each pulse is separated by
+    float scale_rate = ((float)(pd.end_scale - pd.start_scale)/(PULSE_RATE-1));
+    // how much ttl each pulse is separated by
+    float ttl_rate = ceil(((float)pd.ttl)/(PULSE_RATE-1));
+    pd.current_scale = pd.start_scale;
     
-    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
-        Particle* p = *it;
-        
-        // update all particles to be in the position of the wrapper
-        p->_pd.position = wrapper->_global_position;
-        p->move();
-        
-        if (!p->isActive()) {
-            to_remove.insert(p);
-            
-            if (wrapper->_repeat) {
-                // make a brand new particle
-                Particle* particle = createSinglePulse(_pd);
-                wrapper->_particle_set.insert(particle);
-            }
-        }
+    if (element == ElementType::BLUE) {
+        pd.color_fade = true;
+        pd.start_color = normalizedRGB(BLUER,BLUEG,BLUEB,1);
+        pd.end_color = normalizedRGB(BLUER,BLUEG,BLUEB,1);
+        pd.color_duration = -1; // infinite
+    } else {
+        pd.color_fade = true;
+        pd.start_color = normalizedRGB(GOLDR,GOLDG,GOLDB,1);
+        pd.end_color = normalizedRGB(GOLDR,GOLDG,GOLDB,1);
+        pd.color_duration = -1; // infinite
     }
     
-    // remove from particle_list
-    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-        wrapper->_particle_set.erase(*it);
+    // pd is the original starting particle
+    ParticleData original = pd;
+    
+    // create the particles that are spaced out by a constant amount
+    for (int ii = 0; ii < PULSE_RATE; ii++) {
+        _pulsepartnode->addParticle(randomizeAngle(pd), group_num, original);
+        _pulsepartnode->_original = original;
+        pd.current_scale += scale_rate; // ones in the outer ring are bigger
+        pd.ttl -= ttl_rate; // ones in the outer ring die sooner
     }
-    
-    // this removes it from the actual ParticleNode
-    reset.insert(to_remove.begin(), to_remove.end());
-    
-    _timeout++;
 }
 
-/**
- * Makes a ParticleWrapper in the given location
- * and adds particles to the mapping Location -> ParticleWrapper
- */
-void PulseParticleGenerator::add_particles(cugl::Vec2 location) {
-    Vec2* location_ptr = new Vec2(location); // temporary
+void PulseParticleGenerator::add_mapping(GameObject* obj) {
+    // don't add pulses on players or zones or bullets
+    if (obj->type != GameObject::ObjectType::CHARACTER || obj->getIsPlayer()) return;
+    
+    // this might be the source of the gravity bug?
+    Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+    bool repeat = true;
+    
+    // finds the next available group num
+    int group_num = _groups->makeNewGroup(world_pos, repeat);
+    ElementType element = obj->getPhysicsComponent()->getElementType();
     
     // create the wrapper
-    std::set<Particle*> pulse_particles_set;
-    createPulseParticles(pulse_particles_set);
-    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(pulse_particles_set, location);
-    wrapper->setRepeat(true);
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        createPulseParticles(world_pos, group_num, element);
+    }
     
-    // insert wrapper to location -> wrapper map
-    _location_to_wrapper.insert(std::make_pair(location_ptr, wrapper));
+    // insert wrapper to object -> wrapper map
+    _obj_to_group_num.insert(std::make_pair(obj, group_num));
+}
+
+void PulseParticleGenerator::remove_mapping(GameObject* obj) {
+    if (obj->type != GameObject::ObjectType::CHARACTER || obj->getIsPlayer()) return;
+    
+    // find out what group the object belongs to
+    auto group_num = _obj_to_group_num.at(obj);
+    
+    // mark this one as done. very important.
+    _groups->group_array[group_num].alive = false;
+
+    // remove object from the mapping
+    _obj_to_group_num.erase(obj);
 }
 
 /**
@@ -138,17 +135,17 @@ void PulseParticleGenerator::add_particles(cugl::Vec2 location) {
 void PulseParticleGenerator::generate() {
     if (!_active) return;
     
-    for (auto it = _location_to_wrapper.begin(); it != _location_to_wrapper.end(); it++) {
-        std::shared_ptr<ParticleWrapper> wrapper = it->second;
-        updateWrapper(wrapper, _particles);
+    for (auto it = _obj_to_group_num.begin(); it != _obj_to_group_num.end(); it++) {
+        GameObject* obj = it->first;
+        int group_num = it->second;
+        
+        // sync the position of the group to the character
+        Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+        _groups->group_array[group_num].global_position = world_pos;
     }
     
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Particle* p = *it;
-        _partnode->removeParticle(p);
-        _memory->free(p);
-    }
-    _particles.clear();
+    // update every particle in this node
+    _pulsepartnode->update();
 }
 
 

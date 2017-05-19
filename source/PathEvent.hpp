@@ -49,17 +49,19 @@ public:
     PathDrawing() : PathEvent(){}
     
     std::shared_ptr<Path> _path;
+    ElementType _active_element;
     
-    bool init(std::shared_ptr<Path> path) {
+    bool init(std::shared_ptr<Path> path, ElementType element) {
         PathEvent::init();
         _pathType = PathEventType::DRAWING;
         _path = path;
+        _active_element = element;
         return true;
     }
     
-    static std::shared_ptr<PathDrawing> alloc(std::shared_ptr<Path> path) {
+    static std::shared_ptr<PathDrawing> alloc(std::shared_ptr<Path> path, ElementType element) {
         std::shared_ptr<PathDrawing> result = std::make_shared<PathDrawing>();
-        return (result->init(path) ? result : nullptr);
+        return (result->init(path, element) ? result : nullptr);
     }
 };
 
