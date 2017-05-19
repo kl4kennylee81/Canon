@@ -77,7 +77,7 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
         _begincap->setScale(scale);
         _begincap->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         _begincap->setPosition(0,0);
-        addChild(_begincap);
+//        addChild(_begincap);
         _foresize.width -= beginCap->getSize().width;
     }
     
@@ -92,7 +92,7 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
         } else {
             _finalcap->setPosition(_begincap->getBoundingBox().getMaxX(),0);
         }
-        addChild(_finalcap);
+//        addChild(_finalcap);
         _foresize.width -= finalCap->getSize().width;
     }
     
@@ -121,7 +121,8 @@ bool ProgressBarModel::initWithCaps(const std::shared_ptr<Texture>& background,
     } else {
         _foreground->setPosition(_begincap->getBoundingBox().getMaxX(),0);
     }
-    addChild(_foreground);
+//    addChild(_foreground);
+    _foregroundActive = false;
     return true;
 }
 

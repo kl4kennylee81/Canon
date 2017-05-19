@@ -87,7 +87,7 @@ public:
                                                    std::shared_ptr<HandMovementComponent> hmovement,
                                                    std::vector<std::string> hintKeys) {
         std::shared_ptr<TutorialStepData> result = std::make_shared<TutorialStepData>();
-        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime,hmovement,hintKeys) ? result : nullptr);
+        return (result->init(mbKey, keys,start,end,startEffect,endEffect,minTime,hmovement,hintKeys,false) ? result : nullptr);
     }
     
     bool init() {
