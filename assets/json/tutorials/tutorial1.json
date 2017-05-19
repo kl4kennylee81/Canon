@@ -270,18 +270,18 @@
         },
         "tutorial1_hintCheckButton": {
             "buttonAction": {
-                "buttonTarget": "", 
-                "nextScreen": "", 
-                "type": ""
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
             }, 
-            "buttonLabel": "Continue", 
-            "fontKey": "bottom_font", 
-            "height": 0.1, 
-            "key": "levelSelect_backToLevelEditor", 
+            "height": 0.26, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
             "type": "BUTTON", 
             "width": 0.15, 
-            "x": 0.425, 
-            "y": 0.175
+            "x": 0.8, 
+            "y": 0.075
         },
         "tutorial1_textbox_hint": {
             "height": 0.24, 
@@ -451,18 +451,18 @@
         },
         "tutorial1_textbox_progressBarConfirm" : {
             "buttonAction": {
-                "buttonTarget": "", 
-                "nextScreen": "", 
-                "type": ""
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
             }, 
-            "buttonLabel": "Continue", 
-            "fontKey": "hint_font", 
-            "height": 0.1, 
-            "key": "tutorial1_textbox_progressBarConfirm", 
+            "height": 0.13, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
             "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.10, 
-            "y": 0.675
+            "width": 0.075, 
+            "x": 0.25, 
+            "y": 0.69
         }
     }
 }

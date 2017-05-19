@@ -2,63 +2,111 @@
     "MenuScreenData": {
         "startMenu": {
             "UIEntries": [
-                "startMenu_infoButton", 
-                "startMenu_settingsButton", 
-                "startMenu_title", 
-                "startMenu_playButton"
+                "startMenu_boonanainfoicon", 
+                "startMenu_Canon", 
+                "startMenu_loide", 
+                "startMenu_odette", 
+                "startMenu_settings icon", 
+                "startMenu_star circle", 
+                "startMenu_starticon", 
+                "startMenu_startglow1", 
+                "startMenu_startglow2"
             ], 
             "key": "startMenu", 
-            "menuBackgroundKey": "lakebg"
+            "menuBackgroundKey": "startMenu_background"
         }
     }, 
     "UIData": {
-        "startMenu_infoButton": {
-            "buttonAction": {
-                "buttonTarget": "", 
-                "type": "menuChange"
-            }, 
-            "height": 0.171, 
-            "key": "startMenu_infoButton", 
-            "type": "BUTTON", 
-            "uiBackgroundKey": "startMenu_infosymbol", 
-            "width": 0.096, 
-            "x": 0.9, 
-            "y": 0.008
-        }, 
-        "startMenu_playButton": {
-            "buttonAction": {
-                "buttonTarget": "levelSelect", 
-                "type": "menuChange"
-            }, 
-            "height": 0.157, 
-            "key": "startMenu_playButton", 
-            "type": "BUTTON", 
-            "uiBackgroundKey": "startMenu_swipetoplay", 
-            "width": 0.339, 
-            "x": 0.339, 
-            "y": 0.217
-        }, 
-        "startMenu_settingsButton": {
-            "buttonAction": {
-                "buttonTarget": "", 
-                "type": "menuChange"
-            }, 
-            "height": 0.171, 
-            "key": "startMenu_settingsButton", 
-            "type": "BUTTON", 
-            "uiBackgroundKey": "startMenu_settingsymbol", 
-            "width": 0.096, 
-            "x": 0.005, 
-            "y": 0.008
-        }, 
-        "startMenu_title": {
-            "height": 0.545, 
-            "key": "startMenu_title", 
-            "textureKey": "startMenu_title", 
+        "startMenu_Canon": {
+            "height": 0.2898550724637681, 
+            "key": "startMenu_Canon", 
+            "textureKey": "startMenu_Canon", 
             "type": "IMAGE", 
-            "width": 0.796, 
-            "x": 0.104, 
-            "y": 0.33
+            "width": 0.5717519239474875, 
+            "x": 0.20235400633770936, 
+            "y": 0.5322061191626408
+        }, 
+        "startMenu_boonanainfoicon": {
+            "height": 0.09098228663446055, 
+            "key": "startMenu_boonanainfoicon", 
+            "textureKey": "startMenu_boonanainfoicon", 
+            "type": "IMAGE", 
+            "width": 0.04164780443639656, 
+            "x": 0.9298325033952014, 
+            "y": 0.05072463768115938
+        }, 
+        "startMenu_loide": {
+            "height": 0.3639291465378422, 
+            "key": "startMenu_loide", 
+            "textureKey": "startMenu_loide", 
+            "type": "IMAGE", 
+            "width": 0.14535989135355365, 
+            "x": 0.6138071525577184, 
+            "y": 0.16545893719806765
+        }, 
+        "startMenu_odette": {
+            "height": 0.3463768115942029, 
+            "key": "startMenu_odette", 
+            "textureKey": "startMenu_odette", 
+            "type": "IMAGE", 
+            "width": 0.15799004074241738, 
+            "x": 0.23132639203259395, 
+            "y": 0.18397745571658614
+        }, 
+        "startMenu_settings icon": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "height": 0.08132045088566828, 
+            "key": "startMenu_settings icon", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "startMenu_settings icon", 
+            "width": 0.04526935264825713, 
+            "x": 0.02806699864191942, 
+            "y": 0.05072463768115945
+        }, 
+        "startMenu_star circle": {
+            "height": 0.36553945249597425, 
+            "key": "startMenu_star circle", 
+            "textureKey": "startMenu_star circle", 
+            "type": "IMAGE", 
+            "width": 0.20144861928474422, 
+            "x": 0.40244454504300586, 
+            "y": 0.1481481481481482
+        }, 
+        "startMenu_startglow1": {
+            "height": 0.4194847020933977, 
+            "key": "startMenu_startglow1", 
+            "textureKey": "startMenu_startglow1", 
+            "type": "IMAGE", 
+            "width": 0.23268447261204164, 
+            "x": 0.38569488456315076, 
+            "y": 0.12399355877616747
+        }, 
+        "startMenu_startglow2": {
+            "height": 0.4114331723027375, 
+            "key": "startMenu_startglow2", 
+            "textureKey": "startMenu_startglow2", 
+            "type": "IMAGE", 
+            "width": 0.2286102308736985, 
+            "x": 0.3879583521955636, 
+            "y": 0.12238325281803536
+        }, 
+        "startMenu_starticon": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.18679549114331723, 
+            "key": "startMenu_starticon", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "startMenu_starticon", 
+            "width": 0.09687641466727026, 
+            "x": 0.4626527840651879, 
+            "y": 0.2359098228663446
         }
     }
 }

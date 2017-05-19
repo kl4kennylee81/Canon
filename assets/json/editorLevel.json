@@ -1,94 +1,219 @@
 {
-	"name":	"tutorial01",
-	"counter":	39,
-	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
-	"levels":	{
-		"tutorial01":	{
-			"key":	"tutorial01",
-			"levelEntries":	{
-				"tutorial01 wave 20":	{
-					"key":	"tutorial01 wave 20",
-					"waveKey":	"tutorial01 wave 20",
-					"time":	10
-				},
-				"tutorial01 wave 36":	{
-					"key":	"tutorial01 wave 36",
-					"waveKey":	"tutorial01 wave 36",
-					"time":	240
-				},
-				"tutorial01 wave 38":	{
-					"key":	"tutorial01 wave 38",
-					"waveKey":	"tutorial01 wave 38",
-					"time":	300
-				}
-			},
-			"playerChars":	{
-				"player1":	{
-					"key":	"player1",
-					"x":	18.750000,
-					"y":	7.812500,
-					"element":	"GOLD",
-					"aiKey":	"",
-					"templateKey":	"playerCharMale"
-				},
-				"player2":	{
-					"key":	"player2",
-					"x":	12.500000,
-					"y":	7.812500,
-					"element":	"BLUE",
-					"aiKey":	"",
-					"templateKey":	"playerCharFemale"
-				}
-			}
-		}
-	},
-	"waves":	{
-		"tutorial01 wave 20":	{
-			"key":	"tutorial01 wave 20",
-			"waveEntries":	{
-			}
-		},
-		"tutorial01 wave 36":	{
-			"key":	"tutorial01 wave 36",
-			"waveEntries":	{
-				"tutorial01 wave 36 object 1":	{
-					"key":	"tutorial01 wave 36 object 1",
-					"x":	7.366667,
-					"y":	8.233333,
-					"element":	"BLUE",
-					"aiKey":	"static",
-					"templateKey":	"blobo"
-				},
-				"tutorial01 wave 36 object 2":	{
-					"key":	"tutorial01 wave 36 object 2",
-					"x":	26.266666,
-					"y":	8.533334,
-					"element":	"GOLD",
-					"aiKey":	"static",
-					"templateKey":	"blobo"
-				}
-			}
-		},
-		"tutorial01 wave 38":	{
-			"key":	"tutorial01 wave 38",
-			"waveEntries":	{
-				"tutorial01 wave 38 object 1":	{
-					"key":	"tutorial01 wave 38 object 1",
-					"x":	0.866667,
-					"y":	15.066668,
-					"element":	"GOLD",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
-				},
-				"tutorial01 wave 38 object 2":	{
-					"key":	"tutorial01 wave 38 object 2",
-					"x":	31.133333,
-					"y":	15.100000,
-					"element":	"BLUE",
-					"aiKey":	"homing",
-					"templateKey":	"birb"
-				}
-			}
-		}
-	}
+    "name":	"maneuver",
+    "counter":	62,
+    "template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+    "levels":	{
+        "maneuver":	{
+            "key":	"maneuver",
+            "levelEntries":	{
+                "maneuver wave 59":	{
+                    "key":	"maneuver wave 59",
+                    "waveKey":	"maneuver wave 59",
+                    "time":	360
+                },
+                "maneuver wave 61":	{
+                    "key":	"maneuver wave 61",
+                    "waveKey":	"maneuver wave 61",
+                    "time":	300
+                },
+                "maneuver wave 62":	{
+                    "key":	"maneuver wave 62",
+                    "waveKey":	"maneuver wave 62",
+                    "time":	180
+                }
+            },
+            "playerChars":	{
+                "player1":	{
+                    "key":	"player1",
+                    "x":	18.750000,
+                    "y":	7.812500,
+                    "element":	"GOLD",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharMale"
+                },
+                "player2":	{
+                    "key":	"player2",
+                    "x":	12.500000,
+                    "y":	7.812500,
+                    "element":	"BLUE",
+                    "aiKey":	"",
+                    "templateKey":	"playerCharFemale"
+                }
+            }
+        }
+    },
+    "waves":	{
+        "maneuver wave 59":	{
+            "key":	"maneuver wave 59",
+            "waveEntries":	{
+                "maneuver wave 59 object 1":	{
+                    "key":	"maneuver wave 59 object 1",
+                    "x":	15.233334,
+                    "y":	1.166667,
+                    "element":	"GOLD",
+                    "aiKey":	"verticalDown",
+                    "templateKey":	"feshHorizontal",
+                    "zoneKeys":	["feshHorizontal_zone"]
+                },
+                "maneuver wave 59 object 2":	{
+                    "key":	"maneuver wave 59 object 2",
+                    "x":	15.966666,
+                    "y":	7.833333,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 59 object 3":	{
+                    "key":	"maneuver wave 59 object 3",
+                    "x":	14.766666,
+                    "y":	7.800000,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 59 object 4":	{
+                    "key":	"maneuver wave 59 object 4",
+                    "x":	13.133333,
+                    "y":	0.733334,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                },
+                "maneuver wave 59 object 5":	{
+                    "key":	"maneuver wave 59 object 5",
+                    "x":	15.266666,
+                    "y":	14.700001,
+                    "element":	"BLUE",
+                    "aiKey":	"verticalUp",
+                    "templateKey":	"feshHorizontal"
+                },
+                "maneuver wave 59 object 6":	{
+                    "key":	"maneuver wave 59 object 6",
+                    "x":	17.299999,
+                    "y":	15.333332,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"blobo",
+                    "zoneKeys":	["blobo_zone"]
+                }
+            }
+        },
+        "maneuver wave 61":	{
+            "key":	"maneuver wave 61",
+            "waveEntries":	{
+                "maneuver wave 61 object 1":	{
+                    "key":	"maneuver wave 61 object 1",
+                    "x":	6.466667,
+                    "y":	13.133333,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 61 object 2":	{
+                    "key":	"maneuver wave 61 object 2",
+                    "x":	12.566667,
+                    "y":	12.233334,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "maneuver wave 61 object 3":	{
+                    "key":	"maneuver wave 61 object 3",
+                    "x":	18.200001,
+                    "y":	12.299999,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "maneuver wave 61 object 4":	{
+                    "key":	"maneuver wave 61 object 4",
+                    "x":	24.400000,
+                    "y":	12.966667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 61 object 5":	{
+                    "key":	"maneuver wave 61 object 5",
+                    "x":	6,
+                    "y":	2.566667,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 61 object 6":	{
+                    "key":	"maneuver wave 61 object 6",
+                    "x":	12.500000,
+                    "y":	3.900000,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "maneuver wave 61 object 7":	{
+                    "key":	"maneuver wave 61 object 7",
+                    "x":	18.133333,
+                    "y":	3.900000,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb"
+                },
+                "maneuver wave 61 object 8":	{
+                    "key":	"maneuver wave 61 object 8",
+                    "x":	24.299999,
+                    "y":	2.633333,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                }
+            }
+        },
+        "maneuver wave 62":	{
+            "key":	"maneuver wave 62",
+            "waveEntries":	{
+                "maneuver wave 62 object 1":	{
+                    "key":	"maneuver wave 62 object 1",
+                    "x":	30.166666,
+                    "y":	8.133333,
+                    "element":	"BLUE",
+                    "aiKey":	"horizontalLeft",
+                    "templateKey":	"feshVertical",
+                    "zoneKeys":	["feshVertical_zone"]
+                },
+                "maneuver wave 62 object 2":	{
+                    "key":	"maneuver wave 62 object 2",
+                    "x":	31.366667,
+                    "y":	8.133333,
+                    "element":	"GOLD",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                },
+                "maneuver wave 62 object 3":	{
+                    "key":	"maneuver wave 62 object 3",
+                    "x":	1.933333,
+                    "y":	8.433333,
+                    "element":	"GOLD",
+                    "aiKey":	"horizontalRight",
+                    "templateKey":	"feshVertical",
+                    "zoneKeys":	["feshVertical_zone"]
+                },
+                "maneuver wave 62 object 4":	{
+                    "key":	"maneuver wave 62 object 4",
+                    "x":	0.566667,
+                    "y":	8.466667,
+                    "element":	"BLUE",
+                    "aiKey":	"homing",
+                    "templateKey":	"birb",
+                    "zoneKeys":	["birb_zone"]
+                }
+            }
+        }
+    }
 }

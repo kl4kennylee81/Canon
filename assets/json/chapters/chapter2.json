@@ -10,7 +10,8 @@
                 "level24",
                 "level25",
                 "level26"
-            ]
+            ],
+            "chapterTexture": "chapter02_texture"
         }
     },
     "LevelSelectData": {
@@ -43,6 +44,17 @@
             "key": "level26",
             "levelKey": "collapse",
             "name": "Collapse"
+        }
+    },
+    "UIData": {
+        "chapter02_texture": {
+            "height": 0.2753623188405797,
+            "key": "chapter02_texture",
+            "textureKey": "chapter02_texture",
+            "type": "IMAGE",
+            "width": 0.4861928474422816,
+            "x": 0.2616568583069262,
+            "y": 0.6876006441223833
         }
     }
 }

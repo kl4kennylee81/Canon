@@ -63,18 +63,18 @@
         },
         "rapidSpawn_hintCheckButton": {
             "buttonAction": {
-                "buttonTarget": "", 
-                "nextScreen": "", 
-                "type": ""
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
             }, 
-            "buttonLabel": "Continue", 
-            "fontKey": "bottom_font", 
-            "height": 0.1, 
-            "key": "levelSelect_backToLevelEditor", 
+            "height": 0.26, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
             "type": "BUTTON", 
             "width": 0.15, 
-            "x": 0.425, 
-            "y": 0.125
+            "x": 0.8, 
+            "y": 0.075
         },
         "rapidSpawn_health_modal": {
             "height": 0.75, 
@@ -120,18 +120,18 @@
         },
         "rapidSpawn_textbox_healthHintConfirm" : {
             "buttonAction": {
-                "buttonTarget": "", 
-                "nextScreen": "", 
-                "type": ""
+                "active": "pauseMenu_glow", 
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
             }, 
-            "buttonLabel": "Continue", 
-            "fontKey": "hint_font", 
-            "height": 0.1, 
-            "key": "rapidSpawn_textbox_healthHintConfirm", 
+            "height": 0.13, 
+            "key": "squareLaser_hintCheckButton",
+            "uiBackgroundKey": "tutorial_check", 
             "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.25, 
-            "y": 0.2
+            "width": 0.075, 
+            "x": 0.4, 
+            "y": 0.24
         }
     }
 }

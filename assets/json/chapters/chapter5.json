@@ -6,7 +6,8 @@
             "levels": [
                        "level51",
                        "level52"
-                       ]
+                       ],
+            "chapterTexture": "chapter02_texture"
         }
     },
     "LevelSelectData": {

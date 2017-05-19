@@ -117,6 +117,8 @@ public:
 		std::shared_ptr<ImageUIData> result = std::make_shared<ImageUIData>();
 		return (result->init(uiKey, bg, x, y, w, h, tKey) ? result : nullptr);
 	}
+
+	// todo: having both bg for background and tKey for background is unnecessary
 	bool init(std::string uiKey, std::string bg, float x, float y, float w, float h, std::string tKey)
 	{
 		UIData::init(uiKey, bg, UIDataType::IMAGE, x, y, w, h);
