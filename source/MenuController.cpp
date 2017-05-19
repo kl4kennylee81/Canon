@@ -77,6 +77,8 @@ void MenuController::update(float timestep) {
         return;
     }
     
+    activeMenu->updateAnimation();
+    
     // check that a press has been made or in the past
     // previously pressed is used because when pressing up it is no longer currently pressed
     if (!InputController::getIsPressedUp() && !InputController::getIsPressed()){

@@ -270,7 +270,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
     std::shared_ptr<AnimationNode> anim = activeAnim->getAnimationNode();
     anim->setPosition(obj->getPosition());
     
-    anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
+    //anim->setAngle(obj->getPhysicsComponent()->getBody()->getAngle());
     
     // TODO: switch from boxObstacle to PolygonObstacle
     // sync polygon obstacle size to the texture size.

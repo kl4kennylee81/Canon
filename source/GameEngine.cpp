@@ -173,6 +173,7 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
+    _assets->loadDirectory("json/uianimations.json");
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;
@@ -334,7 +335,7 @@ void GameEngine::onResume() {
     std::shared_ptr<World> levelWorld = World::alloc(_assets);
     
     // TODO replace with allocing the menuGraph and also reloading in all the files
-    _gameplay = GameplayController::alloc(_scene,levelWorld);
+    _gameplay = GameplayController::alloc(_scene,levelWorld,nullptr,"");
     
     _gameplay->onResume(resumeJson->get("gameplay"));
     
@@ -466,7 +467,9 @@ void GameEngine::initializeNextMode(){
         case Mode::GAMEPLAY:
         {
             std::shared_ptr<World> levelWorld = getNextWorld();
-            _gameplay = GameplayController::alloc(_scene, levelWorld);
+            std::string curChap = _menuGraph->getCurrentChapter();
+            std::shared_ptr<ChapterSelectData> chapterData = _assets->get<ChapterSelectData>(curChap);
+            _gameplay = GameplayController::alloc(_scene, levelWorld,chapterData, _menu->getSelectedLevel());
             break;
         }
         case Mode::MAIN_MENU:

@@ -193,6 +193,14 @@ void CollisionController::updateHitStun(){
                 notify(objectHitFinishedEvent.get());
             }
             
+            //check overlaps as contact
+            auto contactEdge = itr->first->getPhysicsComponent()->getBody()->getBody()->GetContactList();
+            while (contactEdge != nullptr) {
+                auto contact = contactEdge->contact;
+                beginContact(contact);
+                contactEdge = contactEdge->next;
+            }
+            
             itr = hitStunMap.erase(itr);
         } else {
             ++itr;

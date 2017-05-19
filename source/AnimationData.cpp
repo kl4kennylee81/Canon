@@ -75,6 +75,10 @@ bool AnimationData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     cols = json->getInt("cols");
     size = json->getInt("size");
     nonUniformScale = json->getBool("nonUniformScale");
+    angle = 0;
+    if(json->has("angle")){
+        angle = json->getFloat("angle");
+    }
     auto statemapjson = json->get("statemap");
     for (int i = 0; i < statemapjson->size(); i++) {
         auto statejson = statemapjson->get(i);

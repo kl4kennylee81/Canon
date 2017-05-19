@@ -89,7 +89,7 @@ void SoundController::handleGeneralAction(SoundAction action) {
         std::string sound = generalSounds->soundMap.at(action);
         std::string audioKey = sound + std::to_string(step);
         if (!AudioEngine::get()->isActiveEffect(sound+audioKey)) {
-            auto source = _world->getAssetManager()->get<Sound>(sound);
+            auto source = _assets->get<Sound>(sound);
             AudioEngine::get()->playEffect(sound+audioKey, source, false, source->getVolume());
         }
     }
@@ -102,15 +102,15 @@ void SoundController::handleObjectAction(GameObject* obj, SoundAction action) {
         std::string sound = sd->soundMap.at(action);
         std::string audioKey = sound + std::to_string(step);
         if (!AudioEngine::get()->isActiveEffect(sound+audioKey)) {
-            auto source = _world->getAssetManager()->get<Sound>(sound);
+            auto source = _assets->get<Sound>(sound);
             AudioEngine::get()->playEffect(sound+audioKey, source, false, source->getVolume());
         }
     }
 }
 
-bool SoundController::init(std::shared_ptr<World> world){
-    this->_world = world;
-    generalSounds = world->getSoundData(GENERAL_SOUND_DATA_NAME);
+bool SoundController::init(std::shared_ptr<GenericAssetManager> assets){
+    _assets = assets;
+    generalSounds = _assets->get<SoundData>(GENERAL_SOUND_DATA_NAME);
     return true;
 };
 
