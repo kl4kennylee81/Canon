@@ -22,6 +22,9 @@ private:
 	std::shared_ptr<ActiveAnimation> _menuBackground;
     std::vector<std::shared_ptr<UIComponent>> _uiElements;
     std::map<std::string,std::string> _fontMap;
+    
+    std::shared_ptr<cugl::PolygonNode> _storyScreen;
+    std::shared_ptr<cugl::PolygonNode> _storyScreen2;
 public:
     
     Menu():

@@ -1,0 +1,45 @@
+{
+    "MenuScreenData": {
+        "storyScreen": {
+            "UIEntries": [
+                "storyScreen_storyImage",
+                "storyScreen_storyImage2"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_40"
+            }, 
+            "key": "storyScreen"
+        }
+    }, 
+    "UIData": {
+        "storyScreen_storyImage": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 1.0, 
+            "key": "storyScreen_storyImage", 
+            "uiBackgroundKey": "storyScreen_Canon", 
+            "type": "BUTTON", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        },
+        "storyScreen_storyImage2": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 1.0, 
+            "key": "storyScreen_storyImage2", 
+            "uiBackgroundKey": "storyScreen_Canon", 
+            "type": "BUTTON", 
+            "width": 1.0, 
+            "x": 0.0, 
+            "y": 0.0
+        }
+    }
+}

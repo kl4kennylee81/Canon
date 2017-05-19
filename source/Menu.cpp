@@ -10,6 +10,8 @@
 #include "GameState.hpp"
 #include "Util.hpp"
 
+#define STORY_SLIDE 8
+
 using namespace cugl;
 
 std::shared_ptr<ActiveAnimation> Menu::getBackground() { return _menuBackground; }
@@ -46,10 +48,23 @@ bool Menu::init(std::string mKey){
 }
 
 void Menu::updateAnimation(){
-    if (_menuBackground == nullptr) {
-        return;
+    if (_menuBackground != nullptr) {
+        _menuBackground->nextFrame();
     }
-    _menuBackground->nextFrame();
+    if (_storyScreen != nullptr && _storyScreen != nullptr) {
+        _storyScreen->setPosition(_storyScreen->getPositionX()-STORY_SLIDE,0);
+        
+        if (_storyScreen->getPositionX() + _storyScreen->getWidth() < 0) {
+            _storyScreen->setPosition(_storyScreen->getPositionX()+_storyScreen->getWidth()*2,0);
+        }
+        
+        _storyScreen2->setPosition(_storyScreen2->getPositionX()-STORY_SLIDE,0);
+        
+        if (_storyScreen2->getPositionX() + _storyScreen2->getWidth() < 0) {
+            _storyScreen2->setPosition(_storyScreen2->getPositionX()+_storyScreen2->getWidth()*2,0);
+        }
+        
+    }
 }
 
 void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey,std::map<std::string,std::string> fontMap){
@@ -82,10 +97,33 @@ void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std
     }
     
     for (std::string uiKey : uiDataKeys) {
-        auto uiData = assets->get<UIData>(uiKey);
-        std::shared_ptr<Node> uiNode = uiData->dataToNode(assets,fontMap);
-        std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
-        this->addUIElement(uiComponent);
+        if (uiKey == "storyScreen_storyImage") {
+            auto uiData = assets->get<UIData>(uiKey);
+            auto storyImage = assets->get<Texture>(uiData->uiBackgroundKey);
+            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets,fontMap);
+            _storyScreen = std::static_pointer_cast<PolygonNode>(uiNode);
+        
+            _storyScreen->setScale(Util::getGameSceneHeight()/storyImage->getHeight());
+            _storyScreen->setPosition(0,0);
+            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, _storyScreen);
+            this->addUIElement(uiComponent);
+        } else if (uiKey == "storyScreen_storyImage2") {
+            auto uiData = assets->get<UIData>(uiKey);
+            auto storyImage = assets->get<Texture>(uiData->uiBackgroundKey);
+            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets,fontMap);
+            _storyScreen2 = std::static_pointer_cast<PolygonNode>(uiNode);
+            
+            _storyScreen2->setScale(Util::getGameSceneHeight()/storyImage->getHeight());
+            _storyScreen2->setPosition(_storyScreen2->getWidth(),0);
+            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, _storyScreen2);
+            this->addUIElement(uiComponent);
+            
+        } else {
+            auto uiData = assets->get<UIData>(uiKey);
+            std::shared_ptr<Node> uiNode = uiData->dataToNode(assets,fontMap);
+            std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
+            this->addUIElement(uiComponent);
+        }
         
     }
 }
