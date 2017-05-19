@@ -2,7 +2,7 @@
     "MenuScreenData": {
         "victory": {
             "UIEntries": [
-                "victory_bluemod",
+                "victory_bluemod", 
                 "victory_levelselect", 
                 "victory_redo", 
                 "victory_nexticon", 
@@ -55,7 +55,7 @@
             "width": 0.6210955183340878, 
             "x": 0.1892258940697148, 
             "y": 0.09742351046698872
-        },
+        }, 
         "victory_bluemod": {
             "height": 0.3357487922705314, 
             "key": "victory_bluemod", 
