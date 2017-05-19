@@ -10,9 +10,14 @@
 #define PARTICLE_BASE_SPEED 5
 #define CLUSTER_SIZE 2
 
+// max number of pulse particles
+#define MAX_PARTICLES 75
+#define MAX_GROUPS 1
+
 bool DeathParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _active = false; // default
     _particle_map = particle_map;
+    _groups = GroupContainer::alloc(MAX_GROUPS);
     
     // initialize particle node and attach to the world node
     _blue_death_pd = _particle_map->at("blue_death");
@@ -21,6 +26,11 @@ bool DeathParticleGenerator::init(std::shared_ptr<GameState> state, std::unorder
     _bluepartnode->setBlendEquation(GL_FUNC_ADD);
     _bluepartnode->setPosition(Vec2::ZERO);
     _bluepartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    
+    // important steps
+    _bluepartnode->init_memory(MAX_PARTICLES);
+    _bluepartnode->_groups = _groups;
+    
     state->getWorldNode()->addChild(_bluepartnode);
     
     _gold_death_pd = _particle_map->at("gold_death");
@@ -29,6 +39,11 @@ bool DeathParticleGenerator::init(std::shared_ptr<GameState> state, std::unorder
     _goldpartnode->setBlendEquation(GL_FUNC_ADD);
     _goldpartnode->setPosition(Vec2::ZERO);
     _goldpartnode->setAnchor(Vec2::ANCHOR_MIDDLE);
+    
+    // important steps
+    _goldpartnode->init_memory(MAX_PARTICLES);
+    _goldpartnode->_groups = _groups;
+    
     state->getWorldNode()->addChild(_goldpartnode);
     
     return true;
@@ -46,85 +61,24 @@ ParticleData DeathParticleGenerator::randomizePD(ParticleData pd) {
     return pd;
 }
 
-void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_set, ElementType element, Vec2 location) {
-//    for (int ii = 0; ii < CLUSTER_SIZE; ++ii) {
-//        Particle* particle = _memory->malloc();
-//        
-//        if (particle != nullptr) {
-//            if (element == ElementType::BLUE) {
-//                ParticleData pd = _blue_death_pd;
-//                pd.position = location;
-//                particle->init(randomizePD(pd));
-//                
-//                _bluepartnode->addParticle(particle);
-//                particle_set.insert(particle);
-//            } else {
-//                ParticleData pd = _gold_death_pd;
-//                pd.position = location;
-//                particle->init(randomizePD(pd));
-//                
-//                _goldpartnode->addParticle(particle);
-//                particle_set.insert(particle);
-//            }
-//        }
-//    }
-}
-
 void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
-    if (!_active) return;
-    
-//    // create the wrapper
-//    std::set<Particle*> death_particles_set;
-//    createDeathParticles(death_particles_set, element, location);
-//    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(death_particles_set, location);
-//    
-//    _alive_wrappers.insert(wrapper);
+    std::cout << "adding death particles\n";
+    for (int ii = 0; ii < CLUSTER_SIZE; ++ii) {
+        if (element == ElementType::BLUE) {
+            ParticleData pd = _blue_death_pd; // copy template
+            pd.position = location;
+            _bluepartnode->addParticle(randomizePD(pd), -1, pd);
+        } else {
+            ParticleData pd = _gold_death_pd; // copy template
+            pd.position = location;
+            _goldpartnode->addParticle(randomizePD(pd), -1, pd);
+        }
+    }
 }
-
-//void DeathParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
-//    std::set<Particle*> to_remove;
-
-//    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
-//        Particle* p = *it;
-//        p->move();
-//        
-//        if (!p->isActive()) {
-//            reset.insert(p);
-//            to_remove.insert(p);
-//        }
-//    }
-//    
-//    // remove from particle_list
-//    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-//        wrapper->_particle_set.erase(*it);
-//    }
-//}
 
 void DeathParticleGenerator::generate() {
     if (!_active) return;
     
-//    std::set<std::shared_ptr<ParticleWrapper>> to_remove;
-//    
-//    for (auto it = _alive_wrappers.begin(); it != _alive_wrappers.end(); it++) {
-//        std::shared_ptr<ParticleWrapper> wrapper = (*it);
-//        if (wrapper->_particle_set.size() == 0) {
-//            to_remove.insert(wrapper);
-//            break;
-//        }
-//        updateWrapper(wrapper, _particles);
-//    }
-//    
-//    // remove from alive wrappers set
-//    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-//        _alive_wrappers.erase(*it);
-//    }
-//    
-//    // remove the dead particles from the particle node
-//    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-//        Particle* p = *it;
-//        _bluepartnode->removeParticle(p); // check both since we don't know
-//        _goldpartnode->removeParticle(p);
-////        _memory->free(p);
-//    }
-//    _particles.clear();
+    _bluepartnode->update();
+    _goldpartnode->update();
 }

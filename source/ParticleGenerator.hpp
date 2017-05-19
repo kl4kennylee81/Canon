@@ -35,6 +35,11 @@ protected:
      */
     std::unordered_map<std::string, ParticleData>* _particle_map;
     
+    /**
+     * Group allocator
+     */
+    std::shared_ptr<GroupContainer> _groups;
+    
     /** Flag to start or stop the generator */
     bool _active;
     

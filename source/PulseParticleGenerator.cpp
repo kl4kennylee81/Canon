@@ -15,7 +15,7 @@
 #define PULSE_RATE 3
 #define NUM_PARTICLES 3
 // max number of pulse particles
-#define MAX_PARTICLES 1000
+#define MAX_PARTICLES 40*PULSE_RATE*NUM_PARTICLES
 #define MAX_GROUPS 1000
 
 #define BLUER 49

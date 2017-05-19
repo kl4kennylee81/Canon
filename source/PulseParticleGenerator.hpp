@@ -33,11 +33,6 @@ private:
     ParticleData _ringpd;
     
     /**
-     * Group allocator
-     */
-    std::shared_ptr<GroupContainer> _groups;
-    
-    /**
      * GameObject -> group number of the wrapper
      */
     // maybe try changing this to something else if it lags

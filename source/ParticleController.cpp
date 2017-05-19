@@ -18,8 +18,6 @@
 
 using namespace cugl;
 
-#define MAX_PARTICLES 1000
-
 ParticleController::ParticleController(): BaseController(){}
 
 void ParticleController::attach(Observer* obs) {
@@ -194,7 +192,7 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
             }
             case ParticleAction::DEATH: {
                 Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
-//                _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
+                _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
                 break;
             }
             default:
@@ -206,7 +204,7 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
 
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
     _trail_gen->generate();
-//    _death_gen->generate();
+    _death_gen->generate();
     _pulse_gen->generate();
 //    _zone_gen->generate();
 }
@@ -347,11 +345,11 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     
     _trail_gen = TrailParticleGenerator::alloc(state, &_particle_map);
     
-//    _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
-//    _death_gen->start();
-    
     _pulse_gen = PulseParticleGenerator::alloc(state, &_particle_map);
     _pulse_gen->start();
+    
+    _death_gen = DeathParticleGenerator::alloc(state, &_particle_map);
+    _death_gen->start();
     
 //    _zone_gen = ZoneParticleGenerator::alloc(state, &_particle_map);
 //    _zone_gen->start();
