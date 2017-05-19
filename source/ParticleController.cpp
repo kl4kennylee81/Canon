@@ -137,6 +137,9 @@ void ParticleController::eventUpdate(Event* e) {
 }
 
 void ParticleController::addObject(GameObject* obj, std::shared_ptr<ParticleStateData> psd){
+    if (psd == nullptr) {
+        return;
+    }
     std::shared_ptr<ActiveParticleState> part = ActiveParticleState::alloc();
     part->setParticleStateData(psd);
     objectStateMap.insert({obj,part});
@@ -144,6 +147,9 @@ void ParticleController::addObject(GameObject* obj, std::shared_ptr<ParticleStat
 
 void ParticleController::handleAction(GameObject* obj, AnimationAction animAction){
     if (obj == nullptr){
+        return;
+    }
+    if (objectStateMap.count(obj) <= 0){
         return;
     }
     std::shared_ptr<ActiveParticleState> partState = objectStateMap.at(obj);

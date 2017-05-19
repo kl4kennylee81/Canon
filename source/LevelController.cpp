@@ -112,6 +112,9 @@ std::shared_ptr<GameObject> LevelController::spawnWaveEntry(std::shared_ptr<Wave
     if (partdata == nullptr){
         partdata = _world->getParticleStateData("genericChar");
     }
+    if (partdata == nullptr){
+        std::cout << "still null\n";
+    }
 
     
     std::shared_ptr<GameObject> gameOb = GameObject::alloc();
