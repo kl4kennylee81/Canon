@@ -23,7 +23,8 @@ using namespace cugl;
 TutorialController::TutorialController() :
 BaseController(),
 _tutorialNode(nullptr),
-_currentStep(0){}
+_currentStep(0),
+_isActive(true){}
 
 void TutorialController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -314,6 +315,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
+    _isActive = true;
     // TODO replace with getting it from the current level that is active
     // or passed from the saveGameData file
     populateFromTutorial(levelWorld->getAssetManager(), levelWorld->getLevelData()->key);
@@ -399,6 +401,10 @@ void TutorialController::transitionNextStep(std::shared_ptr<GameState> state){
 }
 
 bool TutorialController::isInActive(){
+    if (!_isActive){
+        return true;
+    }
+    
     bool isStepsEmpty = _steps.size() == 0;
     bool isStepsDone = _currentStep >= _steps.size();
     bool isHintsDone = _activeHints.size() == 0;
@@ -457,4 +463,8 @@ void TutorialController::handleTutorialEffect(std::shared_ptr<GameState> state, 
             break;
         }
     }
+}
+
+void TutorialController::toggleActive(){
+    _isActive = false;
 }

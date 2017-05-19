@@ -37,6 +37,8 @@ private:
     
     int _currentStep;
     
+    bool _isActive;
+    
 public:
     TutorialController();
     
@@ -102,6 +104,8 @@ public:
     void updateEndStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step);
     
     void removeSteps(std::list<std::shared_ptr<TutorialStep>> hints);
+    
+    void toggleActive();
 };
 
 

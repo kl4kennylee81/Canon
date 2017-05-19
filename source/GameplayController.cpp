@@ -101,6 +101,7 @@ void GameplayController::update(float timestep) {
         std::shared_ptr<World> w = _levelController->getWorld();
         dispose();
         init(s,w);
+        _tutorialController->toggleActive();
         return;
     }
     // TODO hacky way to pause the game
