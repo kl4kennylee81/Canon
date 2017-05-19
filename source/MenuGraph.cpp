@@ -125,12 +125,12 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 		std::shared_ptr<Node> gNode = glowImg->dataToNode(assets, selectMenu->getFontMap());
 
 		// make label for level entry
-		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
-		//std::shared_ptr<UIData> labelText = assets->get<UIData>("levelNumberText");
+		//std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
+		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelNumberText");
 
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
-		textData->textValue = listEntry->name;
-		//textData->textValue = std::to_string(i+1);
+		//textData->textValue = listEntry->name;
+		textData->textValue = std::to_string(i+1);
 
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets,selectMenu->getFontMap());
         labelNode->setAnchor(Vec2::ANCHOR_MIDDLE);
