@@ -135,5 +135,7 @@ public:
     }
     
     bool getHitStun() {return hitStun;} ;
+    
+    bool usePhysicsAngle() {return _data->physicsAngle;};
 };
 #endif /* ActiveAnimation_hpp */

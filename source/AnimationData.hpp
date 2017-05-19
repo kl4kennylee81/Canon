@@ -71,6 +71,7 @@ public:
     int size;
     bool nonUniformScale;
     float angle;
+    bool physicsAngle;
     
     AnimationData() : Data(){}
     
