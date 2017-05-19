@@ -9,7 +9,7 @@
                 "madness wave 63":	{
                     "key":	"madness wave 63",
                     "waveKey":	"madness wave 63",
-                    "time":	720
+                    "time":	750
                 },
                 "madness wave 64":	{
                     "key":	"madness wave 64",
@@ -220,24 +220,24 @@
             "waveEntries":	{
                 "madness wave 64 object 1":	{
                     "key":	"madness wave 64 object 1",
-                    "x":	15.100000,
-                    "y":	13.033334,
+                    "x":	5.800000,
+                    "y":	15,
                     "element":	"BLUE",
-                    "aiKey":	"verticalUp",
+                    "aiKey":	"verticalDown",
                     "templateKey":	"feshHorizontal"
                 },
                 "madness wave 64 object 2":	{
                     "key":	"madness wave 64 object 2",
-                    "x":	15.233334,
-                    "y":	3.133333,
+                    "x":	26.400000,
+                    "y":	0.566667,
                     "element":	"GOLD",
-                    "aiKey":	"verticalDown",
+                    "aiKey":	"verticalUp",
                     "templateKey":	"feshHorizontal"
                 },
                 "madness wave 64 object 3":	{
                     "key":	"madness wave 64 object 3",
-                    "x":	17.500000,
-                    "y":	12.966667,
+                    "x":	7.966667,
+                    "y":	14.900000,
                     "element":	"GOLD",
                     "aiKey":	"horizontalRight",
                     "templateKey":	"blobo",
@@ -245,8 +245,8 @@
                 },
                 "madness wave 64 object 4":	{
                     "key":	"madness wave 64 object 4",
-                    "x":	12.966666,
-                    "y":	3.133333,
+                    "x":	28.566668,
+                    "y":	0.566667,
                     "element":	"BLUE",
                     "aiKey":	"horizontalLeft",
                     "templateKey":	"blobo",
@@ -254,32 +254,32 @@
                 },
                 "madness wave 64 object 5":	{
                     "key":	"madness wave 64 object 5",
-                    "x":	17.600000,
-                    "y":	10.933333,
+                    "x":	8.066667,
+                    "y":	12.966667,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "madness wave 64 object 6":	{
                     "key":	"madness wave 64 object 6",
-                    "x":	13,
-                    "y":	5.166667,
+                    "x":	28.533333,
+                    "y":	2.366667,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "madness wave 64 object 7":	{
                     "key":	"madness wave 64 object 7",
-                    "x":	10.933333,
-                    "y":	3.033333,
+                    "x":	31.033333,
+                    "y":	0.833333,
                     "element":	"BLUE",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
                 },
                 "madness wave 64 object 8":	{
                     "key":	"madness wave 64 object 8",
-                    "x":	19.633333,
-                    "y":	13,
+                    "x":	10.400000,
+                    "y":	14.833333,
                     "element":	"GOLD",
                     "aiKey":	"homing",
                     "templateKey":	"birb"
