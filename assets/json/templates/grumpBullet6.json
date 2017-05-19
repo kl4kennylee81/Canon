@@ -5,7 +5,8 @@
             "aiKeys":  ["static","homing","horizontal","horizontalLeft","horizontalRight","verticalUp","verticalDown","vertical"],
             "objectKey":  "grumpBullet6_object",
             "bulletKey": "grumpBullet6_bullet",
-            "zoneKeys": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite"]
+            "zoneKeys": ["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite","grumpBullet6_aura"],
+            "zones": [["grumpBullet6_zoneMatch","grumpBullet6_zoneOpposite","grumpBullet6_aura"]]
         }
     },
     "objects":{
@@ -14,7 +15,7 @@
             "blueAnimationKey": "blue_grumpBullet6_animation",
             "goldAnimationKey": "yellow_grumpBullet6_animation",
             "soundKey": "baseEnemySound",
-            "animationScale": 2.5,
+            "animationScale": 1.5,
             "health": 3,
             "speed": 1.25
         },
@@ -22,7 +23,13 @@
             "shapeKey": "grumpBullet6_bulletShape",
             "blueAnimationKey": "blue_grumpBullet6_bulletanimation",
             "goldAnimationKey": "yellow_grumpBullet6_bulletanimation",
-            "animationScale": 2.0
+            "animationScale": 2.5
+        },
+        "grumpBullet6_aura_object": {
+            "blueAnimationKey": "grumpBullet6_whiteCircle",
+            "goldAnimationKey": "grumpBullet6_whiteCircle",
+            "key": "grumpBullet6_aura_object",
+            "shapeKey": "grumpBullet6_aura_shape"
         }
     },
     "shapes":{
@@ -33,9 +40,9 @@
                          1.875,
                          0.0,
                          1.875,
-                         1.875,
+                         2.75,
                          0.0,
-                         1.875
+                         2.75
                          ]
         },
         "grumpBullet6_bulletShape":{
@@ -48,6 +55,36 @@
                          0.78125,
                          0.0,
                          0.78125
+                         ]
+        },
+        "grumpBullet6_aura_shape": {
+            "key": "grumpBullet6_aura_shape",
+            "scale": 2.1,
+            "vertices": [
+                         0.0,
+                         -0.9801000000000001,
+                         0.49005000000000004,
+                         -0.8487914982486986,
+                         0.8487914982486986,
+                         -0.49005000000000004,
+                         0.9801000000000001,
+                         0.0,
+                         0.8487914982486986,
+                         0.49005000000000004,
+                         0.49005000000000004,
+                         0.8487914982486986,
+                         0.0,
+                         0.9801000000000001,
+                         -0.49005000000000004,
+                         0.8487914982486986,
+                         -0.8487914982486986,
+                         0.49005000000000004,
+                         -0.9801000000000001,
+                         0.0,
+                         -0.8487914982486986,
+                         -0.49005000000000004, 
+                         -0.49005000000000004, 
+                         -0.8487914982486986
                          ]
         }
     },
@@ -109,9 +146,63 @@
                     "startingPosition": 0.83333
                 }
             }
+        },
+        "grumpBullet6_aura": {
+            "cooldown": 0,
+            "duration": 10,
+            "element": "MATCH",
+            "key": "grumpBullet6_aura",
+            "objectKey": "grumpBullet6_aura_object",
+            "relX": 0,
+            "relY": 0,
+            "type": "STATIC"
         }
     },
     "animations":{
+        "grumpBullet6_whiteCircle": {
+            "actionmap": {
+                "HIT": {
+                    "repeat": "hit"
+                },
+                "SPAWN": {
+                    "repeat": "idle"
+                },
+                "SPAWNING": {
+                    "repeat": "spawning"
+                }
+            },
+            "cols": 1,
+            "key": "grumpBullet6_whiteCircle",
+            "rows": 4,
+            "size": 4,
+            "statemap": {
+                "hit": {
+                    "alpha": 0.3,
+                    "first": 2,
+                    "frames": [
+                               10
+                               ],
+                    "total": 1
+                },
+                "idle": {
+                    "alpha": 0.7,
+                    "first": 3,
+                    "frames": [
+                               10
+                               ],
+                    "total": 1
+                },
+                "spawning": {
+                    "alpha": 0.0,
+                    "first": 3,
+                    "frames": [
+                               10
+                               ],
+                    "total": 1
+                }
+            },
+            "texture": "./textures/models/zones/circle_spritesheet.png"
+        }, 
         "blue_grumpBullet6_animation": {
             "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_blue.png",
             "rows": 5,
@@ -193,27 +284,32 @@
             }
         },
         "blue_grumpBullet6_bulletanimation": {
-            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_blue.png",
             "actionmap": {
                 "SPAWNING": {
                     "repeat": "idle"
                 },
                 "DEATH": {
-                    "active": "idle"
+                    "active": "death"
                 }
             },
-            "cols": 1,
+            "cols": 5, 
             "rows": 1,
-            "size": 1,
+            "size": 5,
             "statemap": {
                 "idle": {
                     "first": 0, 
                     "frames": [
-                               10
-                               ], 
-                    "total": 1
+                        9,9
+                    ], 
+                    "total": 2
+                },
+                "death": {
+                    "first": 0,
+                    "total": 1,
+                    "frames": [2]
                 }
-            }
+            }, 
+            "texture": "./textures/models/enemy_models/grumpBullet/bullet_blue.png"
         },
         "yellow_grumpBullet6_bulletanimation": {
             "actionmap": {
@@ -221,22 +317,27 @@
                     "repeat": "idle"
                 },
                 "DEATH": {
-                    "active": "idle"
+                    "active": "death"
                 }
             }, 
-            "cols": 1, 
+            "cols": 5, 
             "rows": 1,
-            "size": 1,
+            "size": 5,
             "statemap": {
                 "idle": {
                     "first": 0, 
                     "frames": [
-                               10
-                               ], 
-                    "total": 1
+                        9,9
+                    ], 
+                    "total": 2
+                },
+                "death": {
+                    "first": 0,
+                    "total": 1,
+                    "frames": [2]
                 }
             }, 
-            "texture": "./textures/models/enemy_models/grumpBullet/grumpBullet_bullet_yellow.png"
+            "texture": "./textures/models/enemy_models/grumpBullet/bullet_yellow.png"
         }
     }
 }

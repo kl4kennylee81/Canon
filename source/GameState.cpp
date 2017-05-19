@@ -17,6 +17,9 @@ using namespace cugl;
 // HACK replace with level loading sending event
 
 #define BACKGROUND_TEXTURE       "bg_blue_sky"
+#define TOP_BORDER_TEXTURE       "clouds_top"
+#define BOTTOM_BORDER_TEXTURE    "clouds_bottom"
+
 #define NUM_PLAYER_CHARS         2
 
 bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<GenericAssetManager>& assets){
@@ -29,7 +32,7 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     // reset the gameObjects atomic counter
     GameObject::resetAtomicUidCounter();
     
-    _reset = false;
+    _state = GameplayState::NORMAL;
     _activeCharacterPosition = 0;
     
     Rect size = scene->getCamera()->getViewport();
@@ -37,20 +40,39 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     // magic numbers are okay as long as 16:9
     _bounds = Rect::Rect(0,0,GAME_PHYSICS_WIDTH,GAME_PHYSICS_HEIGHT);
     
-    float world_yPos = (size.getMaxY() - (_bounds.getMaxY() * GAME_PHYSICS_SCALE))/2;
+    float world_yPos = Util::getSceneToWorldTranslateY();
     Vec2 world_pos = Vec2::Vec2(0,world_yPos);
     
     // set the bkgd texture in the levelData
-    auto image = assets->get<Texture>(BACKGROUND_TEXTURE);
-    auto bkgdTextureNode = PolygonNode::allocWithTexture(image);
+    auto bkgdImage = assets->get<Texture>(BACKGROUND_TEXTURE);
+    auto bkgdTextureNode = PolygonNode::allocWithTexture(bkgdImage);
     bkgdTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bkgdTextureNode->setPosition(Vec2::ZERO);
-    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/image->getWidth());
+    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bkgdImage->getWidth());
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    _bgnode->setPosition(world_pos);
+    _bgnode->setPosition(0,0);
     _bgnode->addChild(bkgdTextureNode);
+    
+    // set textures in levelData + remove set color
+    auto bottomBorderImage = assets->get<Texture>(BOTTOM_BORDER_TEXTURE);
+    auto bottomBorderTextureNode = PolygonNode::allocWithTexture(bottomBorderImage);
+    bottomBorderTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    bottomBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bottomBorderImage->getWidth());
+    bottomBorderTextureNode->setPosition(0, 0);
+    
+    auto topBorderImage = assets->get<Texture>(TOP_BORDER_TEXTURE);
+    auto topBorderTextureNode = PolygonNode::allocWithTexture(topBorderImage);
+    topBorderTextureNode->setAnchor(Vec2::ANCHOR_TOP_LEFT);
+    topBorderTextureNode->setScale(((float)GAME_SCENE_WIDTH)/topBorderImage->getWidth());
+    topBorderTextureNode->setPosition(0,size.getMaxY());
+    
+    _bordernode = Node::alloc();
+    _bordernode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+    _bordernode->setPosition(0,0);
+    _bordernode->addChild(bottomBorderTextureNode);
+    _bordernode->addChild(topBorderTextureNode);
     
     _worldnode = Node::alloc();
     _worldnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
@@ -67,8 +89,9 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     
     // we don't attach to scene directly have the game engine handle when to attach
     _gameplayNode->addChild(_bgnode,0);
-    _gameplayNode->addChild(_worldnode,1);
-    _gameplayNode->addChild(_debugnode,2);
+    _gameplayNode->addChild(_bordernode,1);
+    _gameplayNode->addChild(_worldnode,2);
+    _gameplayNode->addChild(_debugnode,3);
     
     return true;
 }
@@ -77,7 +100,7 @@ void GameState::dispose(){
     if (_scene->getChildByName("gameplay") != nullptr){
         detachFromScene();
     }
-    _reset = false;
+    _state = GameplayState::NORMAL;
     _scene = nullptr;
     _gameplayNode = nullptr;
     _worldnode = nullptr;
@@ -101,6 +124,14 @@ std::shared_ptr<GameObject> GameState::getActiveCharacter()
         return nullptr;
     }
     return _playerCharacters.at(_activeCharacterPosition);
+}
+
+std::shared_ptr<GameObject> GameState::getOtherPlayer(std::shared_ptr<GameObject> player)
+{
+    if (_playerCharacters.size() < 2){
+        return nullptr;
+    }
+    return _playerCharacters.at(0) == player ? _playerCharacters.at(1) : _playerCharacters.at(0);
 }
 
 std::vector<std::shared_ptr<GameObject>> GameState::getInactiveCharacters(){
@@ -148,11 +179,15 @@ void GameState::toggleActiveCharacter()
 }
 
 bool GameState::getReset(){
-    return _reset;
+    return _state == GameplayState::RESET;
 }
 
 void GameState::toggleReset(){
-    _reset = !_reset;
+    if (_state != GameplayState::RESET){
+        _state = GameplayState::RESET;
+    } else {
+        _state = GameplayState::NORMAL;
+    }
 }
 
 /**

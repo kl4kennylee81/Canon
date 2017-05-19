@@ -2,65 +2,195 @@
     "MenuScreenData": {
         "gameOver": {
             "UIEntries": [
-                "gameOver_gameoverTextImg", 
-                "tryAgainButton", 
-                "homeButton", 
-                "MenubackToLevelEditor"
+                "gameOver_bluemod", 
+                "gameOver_homeButton", 
+                "gameOver_ToLevelEditor", 
+                "gameOver_levelsButton", 
+                "gameOver_retryButton", 
+                "gameOver_GameOverText", 
+                "gameOver_leftend", 
+                "gameOver_rightend", 
+                "gameOver_levelText", 
+                "gameOver_homeText", 
+                "gameOver_retryText", 
+                "gameOver_retryglow", 
+                "gameOver_levelsglow", 
+                "gameOver_homeglow"
             ], 
-            "key": "gameover"
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_24", 
+                "menu_superheader_font": "Across the Road_180"
+            }, 
+            "key": "gameover", 
+            "menuBackgroundKey": "gameOver_dim"
         }
     }, 
     "UIData": {
-        "MenubackToLevelEditor": {
+        "gameOver_GameOverText": {
+            "height": 0.34299516908212563, 
+            "key": "gameOver_GameOverText", 
+            "textureKey": "gameOver_GameOverText", 
+            "type": "IMAGE", 
+            "width": 0.6917157084653689, 
+            "x": 0.13309189678587596, 
+            "y": 0.5716586151368759
+        }, 
+        "gameOver_ToLevelEditor": {
             "buttonAction": {
                 "buttonTarget": "LEVEL_EDIT", 
                 "nextScreen": "blankScreen", 
                 "type": "modeChange"
             }, 
             "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
             "height": 0.1, 
-            "key": "MenubackToLevelEditor", 
+            "key": "gameOver_ToLevelEditor", 
             "type": "BUTTON", 
             "width": 0.25, 
             "x": 0.375, 
-            "y": 0.05
+            "y": 0.025
         }, 
-        "gameOver_gameoverTextImg": {
-            "height": 0.261, 
-            "key": "gameOver_gameoverTextImg", 
-            "textureKey": "gameOver_gameover", 
+        "gameOver_bluemod": {
+            "height": 0.3357487922705314, 
+            "key": "gameOver_bluemod", 
+            "textureKey": "gameOver_bluemod", 
             "type": "IMAGE", 
-            "width": 0.476, 
-            "x": 0.257, 
-            "y": 0.675
+            "width": 0.4563150746944319, 
+            "x": 0.27161611588954276, 
+            "y": 0.17471819645732695
         }, 
-        "homeButton": {
+        "gameOver_homeButton": {
             "buttonAction": {
                 "buttonTarget": "MAIN_MENU", 
                 "nextScreen": "startMenu", 
                 "type": "modeChange"
             }, 
-            "buttonLabel": "home", 
-            "height": 0.1, 
-            "key": "homeButton", 
+            "height": 0.15861513687600645, 
+            "key": "gameOver_homeButton", 
             "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.375
+            "uiBackgroundKey": "gameOver_homeButton", 
+            "width": 0.09814395654142147, 
+            "x": 0.5952919873245812, 
+            "y": 0.28904991948470204
         }, 
-        "tryAgainButton": {
+        "gameOver_homeText": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "HOME", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "gameOver_homeText", 
+            "type": "BUTTON", 
+            "width": 0.06478044363965595, 
+            "x": 0.6117700316885469, 
+            "y": 0.2214170692431562
+        }, 
+        "gameOver_homeglow": {
+            "height": 0.4194847020933977, 
+            "key": "gameOver_homeglow", 
+            "textureKey": "gameOver_homeglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.5215934812132187, 
+            "y": 0.1486312399355878
+        }, 
+        "gameOver_leftend": {
+            "height": 0.49991948470209335, 
+            "key": "gameOver_leftend", 
+            "textureKey": "gameOver_leftend", 
+            "type": "IMAGE", 
+            "width": 0.13829787234042554, 
+            "x": 0.1892258940697148, 
+            "y": 0.09669887278582934
+        }, 
+        "gameOver_levelText": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "LEVELS", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "gameOver_levelText", 
+            "type": "BUTTON", 
+            "width": 0.0819375282933454, 
+            "x": 0.4590312358533273, 
+            "y": 0.2214170692431562
+        }, 
+        "gameOver_levelsButton": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.15539452495974235, 
+            "key": "gameOver_levelsButton", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "gameOver_levelsButton", 
+            "width": 0.10593028519692169, 
+            "x": 0.44590312358533274, 
+            "y": 0.2914653784219001
+        }, 
+        "gameOver_levelsglow": {
+            "height": 0.4194847020933977, 
+            "key": "gameOver_levelsglow", 
+            "textureKey": "gameOver_levelsglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.37347215934812134, 
+            "y": 0.15700483091787443
+        }, 
+        "gameOver_retryButton": {
             "buttonAction": {
                 "fxKey": "RETRY", 
                 "nextScreen": "gameScreen", 
                 "type": "fxTrigger"
             }, 
-            "buttonLabel": "try again", 
-            "height": 0.1, 
-            "key": "tryAgainButton", 
+            "height": 0.15780998389694043, 
+            "key": "gameOver_retryButton", 
             "type": "BUTTON", 
-            "width": 0.25, 
-            "x": 0.375, 
-            "y": 0.5
+            "uiBackgroundKey": "gameOver_retryButton", 
+            "width": 0.08872793119058398, 
+            "x": 0.30194658216387504, 
+            "y": 0.2906602254428341
+        }, 
+        "gameOver_retryText": {
+            "buttonAction": {
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "RETRY", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "gameOver_retryText", 
+            "type": "BUTTON", 
+            "width": 0.07505658669081032, 
+            "x": 0.30819375282933453, 
+            "y": 0.2214170692431562
+        }, 
+        "gameOver_retryglow": {
+            "height": 0.4194847020933977, 
+            "key": "gameOver_retryglow", 
+            "textureKey": "gameOver_retryglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.2240832956088728, 
+            "y": 0.16022544283413853
+        }, 
+        "gameOver_rightend": {
+            "height": 0.49991948470209335, 
+            "key": "gameOver_rightend", 
+            "textureKey": "gameOver_rightend", 
+            "type": "IMAGE", 
+            "width": 0.13829787234042554, 
+            "x": 0.6717971933001358, 
+            "y": 0.09669887278582934
         }
     }
 }

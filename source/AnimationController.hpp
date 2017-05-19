@@ -56,7 +56,7 @@ public:
     
     void handleAction(GameObject* obj, AnimationAction action);
     
-    void syncAll();
+    void syncAll(std::shared_ptr<GameState> state);
     
     void syncAnimation(std::shared_ptr<ActiveAnimation> activeAnim, GameObject* obj);
     

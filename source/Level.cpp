@@ -67,7 +67,17 @@ int Level::getCurrentWave(){
  * Gets percentage of how much of the wave is finished
  */
 float Level::getProgress(){
-    return _framesElapsed/((float)getNextTime());
+    float allTime = 0;
+    float currentTime = 0;
+    // add up all previous waves times
+    for (int i =0;i<_levelData->getNumberWaves();i++){
+        if (i < getCurrentWave()){
+            currentTime+=_levelData->getTime(i);
+        }
+        allTime+=_levelData->getTime(i);
+    }
+    // time elapsed is how much in the current wave
+    return (currentTime+_framesElapsed)/allTime;
 }
 
 void Level::toggleReadyToSpawn(){

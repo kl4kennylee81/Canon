@@ -23,9 +23,21 @@ bool MenuScreenData::preload(const std::string& file){
 
 bool MenuScreenData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     Data::preload(json);
+    std::shared_ptr<JsonValue> fontMapJson = json->get("fontMap");
+    
+    std::map<std::string,std::string> tempFontMap;
+    if (fontMapJson != nullptr){
+        for (int i =0;i < fontMapJson->size();i++){
+            std::shared_ptr<JsonValue> jsonEntry = fontMapJson->get(i);
+            std::string uiDataFontKey = jsonEntry->key();
+            std::string actualFontKey = fontMapJson->getString(jsonEntry->key());
+            tempFontMap.insert(std::make_pair(uiDataFontKey,actualFontKey));
+        }
+    }
+    
 	std::string mbKey = json->getString("menuBackgroundKey");
 	std::vector<std::string> entries = json->get("UIEntries")->asStringArray();
-	init(mbKey, entries);
+	init(mbKey, entries,tempFontMap);
 	return true;
 }
 

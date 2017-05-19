@@ -6,13 +6,31 @@
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
 //
 
+#ifdef _WIN32
+#define CURRENT_OS "windows"
+#define TEMPLATE_PATH "json\\templates\\"
+#define LEVEL_PATH "json\\fullLevels\\"
+#define MENU_PATH "json\\menus\\"
+#define CHAPTER_PATH "json\\chapters\\"
+#define TUTORIAL_PATH "json\\tutorials\\"
+#elif __APPLE__
+#define CURRENT_OS "apple"
+#define TEMPLATE_PATH "json/templates/"
+#define LEVEL_PATH "json/fullLevels/"
+#define MENU_PATH "json/menus/"
+#define CHAPTER_PATH "json/chapters/"
+#define TUTORIAL_PATH "json/tutorials/"
+#include <dirent.h>
+#endif
+
 #include "GameEngine.hpp"
 #include <cugl/base/CUBase.h>
 #include "SaveData.hpp";
 #include "SaveLevelData.hpp"
 #include "SaveChapterData.hpp"
-#include "ListChapterData.hpp"
-#include "ListLevelData.hpp"
+#include "ChapterSelectData.hpp"
+#include "ChapterListData.hpp"
+#include "LevelSelectData.hpp"
 #include "MenuScreenData.hpp"
 #include "MenuListData.hpp"
 #include "MenuEvent.hpp"
@@ -27,6 +45,8 @@
 #include <fstream>
 #include "BulletData.hpp"
 #include "ParticleStateData.hpp"
+#include "TutorialLevelData.hpp"
+#include "TutorialStepData.hpp"
 
 // Add support for simple random number generation
 #include <cstdlib>
@@ -89,8 +109,9 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<SaveLevelData>(GenericLoader<SaveLevelData>::alloc()->getHook());
 	assets->attach<SaveChapterData>(GenericLoader<SaveChapterData>::alloc()->getHook());
 	assets->attach<SaveData>(GenericLoader<SaveData>::alloc()->getHook());
-	assets->attach<ListChapterData>(GenericLoader<ListChapterData>::alloc()->getHook());
-	assets->attach<ListLevelData>(GenericLoader<ListLevelData>::alloc()->getHook());
+	assets->attach<ChapterListData>(GenericLoader<ChapterListData>::alloc()->getHook());
+	assets->attach<ChapterSelectData>(GenericLoader<ChapterSelectData>::alloc()->getHook());
+	assets->attach<LevelSelectData>(GenericLoader<LevelSelectData>::alloc()->getHook());
     assets->attach<Texture>(TextureLoader::alloc()->getHook());
     assets->attach<Font>(FontLoader::alloc()->getHook());
     assets->attach<Sound>(SoundLoader::alloc()->getHook());
@@ -109,6 +130,8 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
 	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
     assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
     assets->attach<ParticleStateData>(GenericLoader<ParticleStateData>::alloc()->getHook());
+    assets->attach<TutorialLevelData>(GenericLoader<TutorialLevelData>::alloc()->getHook());
+    assets->attach<TutorialStepData>(GenericLoader<TutorialStepData>::alloc()->getHook());
 }
 
 /**
@@ -150,17 +173,16 @@ void GameEngine::onStartup() {
     _assets->loadDirectory("json/assets.json");
     _assets->loadDirectory("json/sounds.json");
 	_assets->loadDirectory("json/menuList.json");
+	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
-	_assets->loadDirectory("json/randomMenuAssets.json");
-    
     _assets->loadDirectory("json/particleStates.json");
-    
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;
     std::string levelDir = assetDir + LEVEL_PATH;
 	std::string menuDir = assetDir + MENU_PATH;
 	std::string chapterDir = assetDir + CHAPTER_PATH;
+    std::string tutorialDir = assetDir + TUTORIAL_PATH;
     
     //load all template wave entries
 
@@ -169,11 +191,13 @@ void GameEngine::onStartup() {
     loadFilesWindows(_assets, levelDir, LEVEL_PATH);
 	loadFilesWindows(_assets, menuDir, MENU_PATH);
 	loadFilesWindows(_assets, chapterDir, CHAPTER_PATH);
+    loadFilesWindows(_assets, tutorialDir, TUTORIAL_PATH);
 	#elif __APPLE__
 	loadFilesApple(_assets, templateDir, TEMPLATE_PATH);
     loadFilesApple(_assets, levelDir, LEVEL_PATH);
 	loadFilesApple(_assets, menuDir, MENU_PATH);
 	loadFilesApple(_assets, chapterDir, CHAPTER_PATH);
+    loadFilesApple(_assets, tutorialDir, TUTORIAL_PATH);
 	#endif
     
     // Activate mouse or touch screen input as appropriate
@@ -351,7 +375,9 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
         }
         case Mode::MAIN_MENU:
         {
-            std::shared_ptr<LevelData> level = _assets->get<LevelData>(_menu->getSelectedLevel());
+            std::shared_ptr<LevelSelectData> lsData = _assets->get<LevelSelectData>(_menu->getSelectedLevel());
+            std::shared_ptr<LevelData> level = _assets->get<LevelData>(lsData->levelKey);
+            AudioEngine::get()->playMusic(_assets->get<Music>(lsData->songKey),true);
             return level;
         }
         case Mode::LEVEL_EDIT:
@@ -450,6 +476,7 @@ void GameEngine::initializeNextMode(){
         {
 //            _menu = MenuController::alloc(_scene,_menuGraph);
 //            //TODO replace hard coded populate with menus loaded from data file
+            AudioEngine::get()->playMusic(_assets->get<Music>("menu"),true);
             break;
         }
         case Mode::LEVEL_EDIT:
@@ -503,15 +530,11 @@ void GameEngine::update(float timestep) {
     switch(_menuGraph->getMode()){
         case Mode::LOADING:
         {
-            if (!_loading->isComplete()){
-                _loading->update(0.01f);
-            } else {
-                // TODO loadController should also holds onto the next mode
-                // so it can transition after loading to other screens when needed
-                // ex. useful in loading before a level
-                _menuGraph->populate(_assets);
-                _menuGraph->setNextMode(Mode::MAIN_MENU);
-            }
+            // TODO loadController should also holds onto the next mode
+            // so it can transition after loading to other screens when needed
+            // ex. useful in loading before a level
+            _menuGraph->populate(_assets);
+            _menuGraph->setNextMode(Mode::MAIN_MENU);
             break;
         }
         case Mode::GAMEPLAY:

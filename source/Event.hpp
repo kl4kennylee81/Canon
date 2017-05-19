@@ -34,7 +34,8 @@ public:
         /** menu transition system */
         FINISH,
 		MENU,
-        LEVEL_EDITOR
+        LEVEL_EDITOR,
+        TUTORIAL
     };
     
     EventType _eventType;

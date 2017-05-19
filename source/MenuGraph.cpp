@@ -12,8 +12,9 @@
 #include "GameState.hpp"
 #include "Util.hpp"
 #include "MenuListData.hpp"
-#include "ListChapterData.hpp"
-#include "ListLevelData.hpp"
+#include "ChapterListData.hpp"
+#include "ChapterSelectData.hpp"
+#include "LevelSelectData.hpp"
 #include "SaveLevelData.hpp"
 #include "SaveData.hpp"
 
@@ -33,57 +34,134 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     init();
     // TODO prepopulate the menu graph
     this->populate(assets);
+    // TODO this is a little hacky rn to switch back to the main menu
     return true;
 }
 
 void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
 {
-	std::shared_ptr<ListChapterData> chapterData = assets->get<ListChapterData>(chapter);
-	// TODO replace the hardcoded name
-	std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
+	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
+	int numChaps = chKeys.size();
+	auto iter = std::find(chKeys.begin(), chKeys.end(), chapter);
+	int chIndex = std::distance(chKeys.begin(), iter);
 
-	int i = 0;
-	for (auto s : chapterData->getLevelKeys())
+	std::shared_ptr<ChapterSelectData> chapterData = assets->get<ChapterSelectData>(chapter);
+    std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
+
+    
+	float X_MARGIN = 0.09913988229968311;
+	float Y_MARGIN = 0.4774557165861513;
+	float X_SPACING = 0.22770484382073336;
+	float Y_SPACING = 0.27697262479871176;
+	float GLOW_X_OFFSET = -0.011317338162064275;
+	float GLOW_Y_OFFSET = -0.012077294685990225;
+	float LOCK_X_OFFSET = 0.02775012893526485;
+	float LOCK_Y_OFFSET = 0.04178745119967797;
+	int ITEMS_PER_ROW = 4;
+
+    for (int i = 0;i < chapterData->getLevelKeys().size();i++)
 	{
-		std::shared_ptr<ListLevelData> listEntry = assets->get<ListLevelData>(s);
-		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(s);
+        std::string levelKey = chapterData->getLevelKeys().at(i);
+		std::shared_ptr<LevelSelectData> listEntry = assets->get<LevelSelectData>(levelKey);
+		std::shared_ptr<SaveLevelData> saveEntry = assets->get<SaveLevelData>(levelKey);
 
-		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc(Mode::GAMEPLAY, "gameScreen", listEntry->levelKey);
-		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_StarCircle");
+        // instead of having the levelKey we will have a reference to the levelSelectData key which can be retrieved
+        // to find the levelKey
+		std::shared_ptr<ButtonAction> action = ModeChangeButtonAction::alloc("", Mode::GAMEPLAY, "gameScreen", listEntry->key);
+		std::shared_ptr<UIData> boxData = assets->get<UIData>("levelSelect_star4");
 		
-        float x = 0.05 + (0.15*(i%6));
-        float y = 0.48 - (0.24 * (i/6));
-		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_StarCircle", x, y, boxData->width, boxData->height, action, "");
-		std::shared_ptr<Node> buttonNode = button->dataToNode(assets);
+		float x = X_MARGIN + X_SPACING*(i%ITEMS_PER_ROW);
+		float y = Y_MARGIN - Y_SPACING*(i/ITEMS_PER_ROW);
+		std::shared_ptr<ButtonUIData> button = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_star4", x, y, boxData->width, boxData->height, action, "");
+		std::shared_ptr<Node> buttonNode = button->dataToNode(assets,selectMenu->getFontMap());
 
-		// if locked add lock
-//		if (!entry->unlocked) {
-//			float x2 = - 0.20;
-//			float y2 = 0.35 - (0.06 * (i / 6));
+		// add lock
 		if (!saveEntry->unlocked) {
-			float x2 = (0.02*(i % 4)) - 0.20;
-			float y2 = 0.35 - (0.06 * (i / 4));
-			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_Lock");
-			std::shared_ptr<ButtonUIData> lockData = ButtonUIData::alloc("entry" + std::to_string(i + 1), "levelSelect_Lock", x2, y2, lock->width, lock->height, action, "");
-			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets);
-			buttonNode->addChild(lockNode, 4);
+			float lockX = x + LOCK_X_OFFSET;
+			float lockY = y + LOCK_Y_OFFSET;
+			std::shared_ptr<UIData> lock = assets->get<UIData>("levelSelect_lock");
+			std::shared_ptr<ImageUIData> lockData = ImageUIData::alloc("entry" + std::to_string(i + 1), "", lock->x, lock->y, lock->width, lock->height, "levelSelect_lock");
+			std::shared_ptr<Node> lockNode = lockData->dataToNode(assets,selectMenu->getFontMap());
+			std::shared_ptr<UIComponent> lockComponent = UIComponent::alloc(lock, lockNode);
+			selectMenu->addUIElement(lockComponent);
 		}
+
+		// add the glow
+		std::shared_ptr<UIData> glowData = assets->get<UIData>("levelSelect_glow1");
+		float glow_x = x + GLOW_X_OFFSET;
+		float glow_y = y + GLOW_Y_OFFSET;
+		std::shared_ptr<ImageUIData> glowImg = ImageUIData::alloc("glow" + std::to_string(i + 1), "", glow_x, glow_y, glowData->width, glowData->height, "levelSelect_glow1");
+		std::shared_ptr<Node> gNode = glowImg->dataToNode(assets, selectMenu->getFontMap());
 
 		// make label for level entry
 		std::shared_ptr<UIData> labelText = assets->get<UIData>("levelLabelText");
+		//std::shared_ptr<UIData> labelText = assets->get<UIData>("levelNumberText");
+
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
 		textData->textValue = listEntry->name;
-		std::shared_ptr<Node> labelNode = textData->dataToNode(assets);
-        labelNode->setPosition(x+225,y+300);
-		buttonNode->addChild(labelNode, 3);
+		//textData->textValue = std::to_string(i + chIndex*8);
 
-		//std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
+		std::shared_ptr<Node> labelNode = textData->dataToNode(assets,selectMenu->getFontMap());
+        labelNode->setAnchor(Vec2::ANCHOR_MIDDLE);
+        float labelX = (boxData->width/2.0 + x) * GAME_SCENE_WIDTH;
+        float labelY = (boxData->height/2.0 + y) * Util::getGameSceneHeight();
+        labelNode->setPosition(labelX, labelY);
+
+		std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
 		std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(button, buttonNode);
+		std::shared_ptr<UIComponent> glowComponent = UIComponent::alloc(glowData, gNode);
 		selectMenu->addUIElement(uiComponent);
-		//selectMenu->addUIElement(labelComponent);
-		i++;
+		selectMenu->addUIElement(labelComponent);	
+		selectMenu->addUIElement(glowComponent);
 	}
+
+	// add custom chapter heading
+	std::string cTexture = chapterData->cTexture;
+	std::shared_ptr<UIData> cHeader = assets->get<UIData>(cTexture);
+	std::shared_ptr<ImageUIData> cHeaderImg = ImageUIData::alloc(chapter, "", cHeader->x, cHeader->y, cHeader->width, cHeader->height, cTexture);
+	std::shared_ptr<Node> cNode = cHeaderImg->dataToNode(assets, selectMenu->getFontMap());
+
+	std::shared_ptr<UIComponent> headerComponent = UIComponent::alloc(cHeader, cNode);
+
+	selectMenu->addUIElement(headerComponent);
 }
+
+void MenuGraph::populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string cData) {
+    std::shared_ptr<Menu> menu = Menu::alloc("levelSelect");
+    std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>("levelSelect");
+    menu->populate(assets,menuData->getUIEntryKeys(),menuData->menuBackgroundKey,menuData->getFontMap());
+	// this overwrites the old associated value
+
+	//ptrdiff_t pos = find(Names.begin(), Names.end(), old_name_) - Names.begin();
+
+	std::shared_ptr<SaveData> save = assets->get<SaveData>("defaultPlayer"); // maybe later we have different player profiles who knows
+	std::string currentChapter = save->currentChapter;
+	
+	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
+	int numChaps = chKeys.size();
+	auto iter = std::find(chKeys.begin(), chKeys.end(), currentChapter);
+	int chIndex = std::distance(chKeys.begin(), iter);
+
+	std::string updatedChapter = currentChapter;
+	if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::NEXT) {
+		int newIndex = (chIndex + numChaps + 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
+	}
+
+	else if (FxTriggerButtonAction::stringToChapterSwitchData(cData) == ChapterSwitchData::PREVIOUS) {
+		int newIndex = (chIndex + numChaps - 1) % numChaps;
+		updatedChapter = chKeys.at(newIndex);
+	}
+
+	// update save data...we should totes do this somewhere else / make a funciton for this
+	save->currentChapter = updatedChapter;
+	assets->loadDirectory(save->toJsonValue());
+	// todo: write updated save state and current chapter to the save file upon game exit...or do it now
+
+	_menuMap["levelSelect"] = menu;
+	augmentLevelMenu(assets, _menuMap, updatedChapter);
+}
+
 
 void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 	std::shared_ptr<MenuListData> menuList = assets->get<MenuListData>("menuList");
@@ -92,27 +170,11 @@ void MenuGraph::populate(const std::shared_ptr<GenericAssetManager>& assets){
 		std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>(key);
         std::string menuKey = menuData->key;
 		std::string menuBackgroundKey = menuData->menuBackgroundKey;
-		std::shared_ptr<Menu> menu = Menu::alloc(false,menuKey);
-
-		if (menuBackgroundKey != "") {
-			// texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
-			std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(menuBackgroundKey));
-			cugl::Size imageSize = imageNode->getSize();
-			imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-			imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
-			imageNode->setPosition(Vec2::ZERO);
-
-			menu->setBackground(imageNode);
-		}
-
-		for (std::string uiKey : menuData->getUIEntryKeys()) {
-			auto uiData = assets->get<UIData>(uiKey);
-			std::shared_ptr<Node> uiNode = uiData->dataToNode(assets);
-			std::shared_ptr<UIComponent> uiComponent = UIComponent::alloc(uiData, uiNode);
-			menu->addUIElement(uiComponent);
-
-		}
-
+		std::shared_ptr<Menu> menu = Menu::alloc(menuKey);
+        menu->setFontMap(menuData->getFontMap());
+        
+        menu->populate(assets, menuData->getUIEntryKeys(),menuBackgroundKey,menuData->getFontMap());
+        
 		_menuMap.insert(std::make_pair(menuKey, menu));
 	}
 
@@ -149,8 +211,9 @@ void MenuGraph::setMode(Mode mode){
         }
         case Mode::MAIN_MENU:
         {
-            // TODO this is a little hacky rn to switch back to the main menu
-            this->setActiveMenu(_menuMap.at("levelSelect"));
+            if (_activeMenu == nullptr){
+                this->setActiveMenu(_menuMap.at("startMenu"));
+            }
             break;
         }
         default:

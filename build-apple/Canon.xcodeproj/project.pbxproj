@@ -33,6 +33,12 @@
 		829615531E9BC5B300A731DB /* ParticleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615501E9BC5B300A731DB /* ParticleController.cpp */; };
 		829615591E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
 		8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
+		9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
+		9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
+		9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
+		9F2139321ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
+		9F2139351ECC712600A60F62 /* GameStateEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139331ECC712600A60F62 /* GameStateEnums.cpp */; };
+		9F2139361ECC712600A60F62 /* GameStateEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139331ECC712600A60F62 /* GameStateEnums.cpp */; };
 		9F3BA4F61E89DB0A003138C0 /* CompositeAIData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */; };
 		9F3BA4FC1E89DBA9003138C0 /* CompositeAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FB1E89DBA9003138C0 /* CompositeAI.cpp */; };
 		9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F3BA4FE1E89DBB6003138C0 /* Condition.cpp */; };
@@ -136,6 +142,18 @@
 		9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F82210D1EA48049000EFCD0 /* FinishEvent.cpp */; };
 		9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
 		9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */; };
+		9F9A76731EC8E2F80055D471 /* TutorialEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */; };
+		9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */; };
+		9F9A76831ECA28FB0055D471 /* TutorialEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */; };
+		9F9A76841ECA28FB0055D471 /* TutorialEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */; };
+		9F9A76871ECA2E460055D471 /* LevelEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76851ECA2E460055D471 /* LevelEnums.cpp */; };
+		9F9A76881ECA2E460055D471 /* LevelEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76851ECA2E460055D471 /* LevelEnums.cpp */; };
+		9F9A76911ECA38BB0055D471 /* ChapterSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */; };
+		9F9A76921ECA38BB0055D471 /* ChapterSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */; };
+		9F9A76931ECA38BB0055D471 /* LevelSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */; };
+		9F9A76941ECA38BB0055D471 /* LevelSelectData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */; };
+		9F9A76971ECA39210055D471 /* ChapterListData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76951ECA39210055D471 /* ChapterListData.cpp */; };
+		9F9A76981ECA39210055D471 /* ChapterListData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A76951ECA39210055D471 /* ChapterListData.cpp */; };
 		9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275D41EA4BFED003D8C03 /* MenuEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */; };
 		9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */; };
@@ -157,16 +175,20 @@
 		9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9DE1E63820E00DBE3BC /* MenuScreenData.cpp */; };
 		9FE8E9E41E6382BC00DBE3BC /* AnimationController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E21E6382BC00DBE3BC /* AnimationController.cpp */; };
 		9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */; };
-		9FF0B40D1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4091EC3B1BD0044F29B /* ListChapterData.cpp */; };
-		9FF0B40E1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4091EC3B1BD0044F29B /* ListChapterData.cpp */; };
-		9FF0B40F1EC3B1BD0044F29B /* ListLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B40B1EC3B1BD0044F29B /* ListLevelData.cpp */; };
-		9FF0B4101EC3B1BD0044F29B /* ListLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B40B1EC3B1BD0044F29B /* ListLevelData.cpp */; };
 		9FF0B4171EC3B2190044F29B /* SaveChapterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4111EC3B2190044F29B /* SaveChapterData.cpp */; };
 		9FF0B4181EC3B2190044F29B /* SaveChapterData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4111EC3B2190044F29B /* SaveChapterData.cpp */; };
 		9FF0B4191EC3B2190044F29B /* SaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4131EC3B2190044F29B /* SaveData.cpp */; };
 		9FF0B41A1EC3B2190044F29B /* SaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4131EC3B2190044F29B /* SaveData.cpp */; };
 		9FF0B41B1EC3B2190044F29B /* SaveLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */; };
 		9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */; };
+		9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
+		9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42A1EC421990044F29B /* TutorialController.cpp */; };
+		9FF0B4301EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
+		9FF0B4311EC423320044F29B /* TutorialStep.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B42E1EC423320044F29B /* TutorialStep.cpp */; };
+		9FF0B4491EC6B5E00044F29B /* TutorialStepData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */; };
+		9FF0B44A1EC6B5E00044F29B /* TutorialStepData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */; };
+		9FF0B44D1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */; };
+		9FF0B44E1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */; };
 		9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F5E1E624F1A0029D648 /* Element.cpp */; };
 		9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */; };
 		9FFA3F761E63574E0029D648 /* PhysicsComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFA3F741E63574E0029D648 /* PhysicsComponent.cpp */; };
@@ -305,6 +327,12 @@
 		8296155B1E9BCACA00A731DB /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
+		9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandMovementComponent.cpp; sourceTree = "<group>"; };
+		9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HandMovementComponent.hpp; sourceTree = "<group>"; };
+		9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveHandMovement.cpp; sourceTree = "<group>"; };
+		9F2139301ECC48B500A60F62 /* ActiveHandMovement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveHandMovement.hpp; sourceTree = "<group>"; };
+		9F2139331ECC712600A60F62 /* GameStateEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameStateEnums.cpp; sourceTree = "<group>"; };
+		9F2139341ECC712600A60F62 /* GameStateEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameStateEnums.hpp; sourceTree = "<group>"; };
 		9F3BA4F41E89DB0A003138C0 /* CompositeAI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAI.hpp; sourceTree = "<group>"; };
 		9F3BA4F51E89DB0A003138C0 /* CompositeAIData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CompositeAIData.cpp; sourceTree = "<group>"; };
 		9F3BA4FA1E89DB37003138C0 /* CompositeAIData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CompositeAIData.hpp; sourceTree = "<group>"; };
@@ -354,6 +382,18 @@
 		9F82210E1EA48049000EFCD0 /* FinishEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FinishEvent.hpp; sourceTree = "<group>"; };
 		9F8221121EA48AFE000EFCD0 /* AnimationEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationEvent.cpp; sourceTree = "<group>"; };
 		9F8221131EA48AFE000EFCD0 /* AnimationEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationEvent.hpp; sourceTree = "<group>"; };
+		9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialEnums.cpp; sourceTree = "<group>"; };
+		9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialEnums.hpp; sourceTree = "<group>"; };
+		9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialEvent.cpp; sourceTree = "<group>"; };
+		9F9A76821ECA28FB0055D471 /* TutorialEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialEvent.hpp; sourceTree = "<group>"; };
+		9F9A76851ECA2E460055D471 /* LevelEnums.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelEnums.cpp; sourceTree = "<group>"; };
+		9F9A76861ECA2E460055D471 /* LevelEnums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelEnums.hpp; sourceTree = "<group>"; };
+		9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChapterSelectData.cpp; sourceTree = "<group>"; };
+		9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChapterSelectData.hpp; sourceTree = "<group>"; };
+		9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelSelectData.cpp; sourceTree = "<group>"; };
+		9F9A76901ECA38BB0055D471 /* LevelSelectData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LevelSelectData.hpp; sourceTree = "<group>"; };
+		9F9A76951ECA39210055D471 /* ChapterListData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChapterListData.cpp; sourceTree = "<group>"; };
+		9F9A76961ECA39210055D471 /* ChapterListData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ChapterListData.hpp; sourceTree = "<group>"; };
 		9FA275D11EA4BFED003D8C03 /* MenuEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MenuEvent.cpp; sourceTree = "<group>"; };
 		9FA275D21EA4BFED003D8C03 /* MenuEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MenuEvent.hpp; sourceTree = "<group>"; };
 		9FA275EF1EA4D7DB003D8C03 /* TemplateWaveEntry.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TemplateWaveEntry.cpp; sourceTree = "<group>"; };
@@ -389,16 +429,20 @@
 		9FE8E9E31E6382BC00DBE3BC /* AnimationController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimationController.hpp; sourceTree = "<group>"; };
 		9FE8E9E51E6382C800DBE3BC /* ActiveAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActiveAnimation.cpp; sourceTree = "<group>"; };
 		9FE8E9E61E6382C800DBE3BC /* ActiveAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ActiveAnimation.hpp; sourceTree = "<group>"; };
-		9FF0B4091EC3B1BD0044F29B /* ListChapterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListChapterData.cpp; sourceTree = "<group>"; };
-		9FF0B40A1EC3B1BD0044F29B /* ListChapterData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ListChapterData.hpp; sourceTree = "<group>"; };
-		9FF0B40B1EC3B1BD0044F29B /* ListLevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ListLevelData.cpp; sourceTree = "<group>"; };
-		9FF0B40C1EC3B1BD0044F29B /* ListLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ListLevelData.hpp; sourceTree = "<group>"; };
 		9FF0B4111EC3B2190044F29B /* SaveChapterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveChapterData.cpp; sourceTree = "<group>"; };
 		9FF0B4121EC3B2190044F29B /* SaveChapterData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveChapterData.hpp; sourceTree = "<group>"; };
 		9FF0B4131EC3B2190044F29B /* SaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveData.cpp; sourceTree = "<group>"; };
 		9FF0B4141EC3B2190044F29B /* SaveData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveData.hpp; sourceTree = "<group>"; };
 		9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SaveLevelData.cpp; sourceTree = "<group>"; };
 		9FF0B4161EC3B2190044F29B /* SaveLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SaveLevelData.hpp; sourceTree = "<group>"; };
+		9FF0B42A1EC421990044F29B /* TutorialController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialController.cpp; sourceTree = "<group>"; };
+		9FF0B42B1EC421990044F29B /* TutorialController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialController.hpp; sourceTree = "<group>"; };
+		9FF0B42E1EC423320044F29B /* TutorialStep.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialStep.cpp; sourceTree = "<group>"; };
+		9FF0B42F1EC423320044F29B /* TutorialStep.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialStep.hpp; sourceTree = "<group>"; };
+		9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialStepData.cpp; sourceTree = "<group>"; };
+		9FF0B4481EC6B5E00044F29B /* TutorialStepData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialStepData.hpp; sourceTree = "<group>"; };
+		9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TutorialLevelData.cpp; sourceTree = "<group>"; };
+		9FF0B44C1EC6B5F50044F29B /* TutorialLevelData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TutorialLevelData.hpp; sourceTree = "<group>"; };
 		9FFA3F5E1E624F1A0029D648 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		9FFA3F5F1E624F1A0029D648 /* Element.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Element.hpp; sourceTree = "<group>"; };
 		9FFA3F6A1E634F3A0029D648 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -770,6 +814,28 @@
 			name = AnimationEvent;
 			sourceTree = "<group>";
 		};
+		9F9A76801ECA28E30055D471 /* tutorialEvent */ = {
+			isa = PBXGroup;
+			children = (
+				9F9A76811ECA28FB0055D471 /* TutorialEvent.cpp */,
+				9F9A76821ECA28FB0055D471 /* TutorialEvent.hpp */,
+			);
+			name = tutorialEvent;
+			sourceTree = "<group>";
+		};
+		9F9A789F1ECA663F0055D471 /* chapter */ = {
+			isa = PBXGroup;
+			children = (
+				9F9A76951ECA39210055D471 /* ChapterListData.cpp */,
+				9F9A76961ECA39210055D471 /* ChapterListData.hpp */,
+				9F9A768D1ECA38BB0055D471 /* ChapterSelectData.cpp */,
+				9F9A768E1ECA38BB0055D471 /* ChapterSelectData.hpp */,
+				9F9A768F1ECA38BB0055D471 /* LevelSelectData.cpp */,
+				9F9A76901ECA38BB0055D471 /* LevelSelectData.hpp */,
+			);
+			name = chapter;
+			sourceTree = "<group>";
+		};
 		9FA275CE1EA4BFE3003D8C03 /* menuEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,6 +857,8 @@
 		9FCE470A1E655BEA002F4A3E /* prototypes */ = {
 			isa = PBXGroup;
 			children = (
+				9F9A789F1ECA663F0055D471 /* chapter */,
+				9FF0B4441EC6B3B20044F29B /* tutorial */,
 				9FF0B4081EC3B19D0044F29B /* save */,
 				273CB39C1EBBD78E0042708C /* bullet */,
 				9F3BA64B1E90CAF5003138C0 /* object */,
@@ -870,12 +938,37 @@
 				9FF0B4141EC3B2190044F29B /* SaveData.hpp */,
 				9FF0B4151EC3B2190044F29B /* SaveLevelData.cpp */,
 				9FF0B4161EC3B2190044F29B /* SaveLevelData.hpp */,
-				9FF0B4091EC3B1BD0044F29B /* ListChapterData.cpp */,
-				9FF0B40A1EC3B1BD0044F29B /* ListChapterData.hpp */,
-				9FF0B40B1EC3B1BD0044F29B /* ListLevelData.cpp */,
-				9FF0B40C1EC3B1BD0044F29B /* ListLevelData.hpp */,
 			);
 			name = save;
+			sourceTree = "<group>";
+		};
+		9FF0B4291EC419880044F29B /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9F9A76801ECA28E30055D471 /* tutorialEvent */,
+				9FF0B42A1EC421990044F29B /* TutorialController.cpp */,
+				9FF0B42B1EC421990044F29B /* TutorialController.hpp */,
+				9FF0B42E1EC423320044F29B /* TutorialStep.cpp */,
+				9FF0B42F1EC423320044F29B /* TutorialStep.hpp */,
+				9F9A76711EC8E2F80055D471 /* TutorialEnums.cpp */,
+				9F9A76721EC8E2F80055D471 /* TutorialEnums.hpp */,
+				9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */,
+				9F2139301ECC48B500A60F62 /* ActiveHandMovement.hpp */,
+			);
+			name = tutorial;
+			sourceTree = "<group>";
+		};
+		9FF0B4441EC6B3B20044F29B /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9FF0B4471EC6B5E00044F29B /* TutorialStepData.cpp */,
+				9FF0B4481EC6B5E00044F29B /* TutorialStepData.hpp */,
+				9FF0B44B1EC6B5F50044F29B /* TutorialLevelData.cpp */,
+				9FF0B44C1EC6B5F50044F29B /* TutorialLevelData.hpp */,
+				9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */,
+				9F21392A1ECC373100A60F62 /* HandMovementComponent.hpp */,
+			);
+			name = tutorial;
 			sourceTree = "<group>";
 		};
 		9FFA3F631E625E490029D648 /* models */ = {
@@ -904,7 +997,6 @@
 		9FFA3F771E6357AE0029D648 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				9FFA3FA01E6367590029D648 /* path */,
 				9FFA3F7E1E6357FE0029D648 /* observer */,
 				9F7668361E8388DF003A06E8 /* Util.hpp */,
 			);
@@ -962,15 +1054,6 @@
 			name = PathEvent;
 			sourceTree = "<group>";
 		};
-		9FFA3FA01E6367590029D648 /* path */ = {
-			isa = PBXGroup;
-			children = (
-				9FFA3F931E6364C70029D648 /* Path.cpp */,
-				9FFA3F941E6364C70029D648 /* Path.hpp */,
-			);
-			name = path;
-			sourceTree = "<group>";
-		};
 		9FFA3FA11E6367820029D648 /* movement */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +1062,8 @@
 				9FFA3FA41E6367C60029D648 /* ActivePath.cpp */,
 				9FFA3FA51E6367C60029D648 /* ActivePath.hpp */,
 				9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */,
+				9FFA3F931E6364C70029D648 /* Path.cpp */,
+				9FFA3F941E6364C70029D648 /* Path.hpp */,
 			);
 			name = movement;
 			sourceTree = "<group>";
@@ -1030,6 +1115,8 @@
 				9FFA3FAC1E636B430029D648 /* GameState.hpp */,
 				DFBD546D1E60E62D0027FCC1 /* GameplayController.cpp */,
 				DFBD546E1E60E62D0027FCC1 /* GameplayController.hpp */,
+				9F2139331ECC712600A60F62 /* GameStateEnums.cpp */,
+				9F2139341ECC712600A60F62 /* GameStateEnums.hpp */,
 			);
 			name = gameplay;
 			sourceTree = "<group>";
@@ -1045,6 +1132,8 @@
 				9FFA3FBD1E636CF90029D648 /* Level.hpp */,
 				DF93BDC21E7647FC00EA6A1D /* SpawnController.cpp */,
 				DF93BDC31E7647FC00EA6A1D /* SpawnController.hpp */,
+				9F9A76851ECA2E460055D471 /* LevelEnums.cpp */,
+				9F9A76861ECA2E460055D471 /* LevelEnums.hpp */,
 			);
 			name = level;
 			sourceTree = "<group>";
@@ -1214,6 +1303,7 @@
 		EBBF18B11D749176008E2001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9FF0B4291EC419880044F29B /* tutorial */,
 				9FF0B4071EC3B1380044F29B /* save */,
 				9F8221051EA47EC3000EFCD0 /* finish */,
 				9F3BA64C1E932849003138C0 /* levelEditor */,
@@ -1307,11 +1397,11 @@
 				TargetAttributes = {
 					EB74548B1D74D75C002FBAE6 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = H26RD7FXNA;
+						DevelopmentTeam = 4S972L8QNQ;
 					};
 					EBBF18901D74904A008E2001 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = NV24Q8X6G8;
+						DevelopmentTeam = 4S972L8QNQ;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1411,8 +1501,10 @@
 				273CB3B41EBC5DB50042708C /* BulletAI.cpp in Sources */,
 				DF554B331EC7B78A006E70FE /* ActiveParticleState.cpp in Sources */,
 				9F3BA5E51E8BA575003138C0 /* AILoader.cpp in Sources */,
+				9FF0B4311EC423320044F29B /* TutorialStep.cpp in Sources */,
 				9F3BA6681EA074E1003138C0 /* ButtonAction.cpp in Sources */,
 				9F3BA5E61E8BA575003138C0 /* HomingAIData.cpp in Sources */,
+				9F9A76841ECA28FB0055D471 /* TutorialEvent.cpp in Sources */,
 				9F3BA5E71E8BA575003138C0 /* PathAIData.cpp in Sources */,
 				9F8221151EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9F3BA5E81E8BA575003138C0 /* StaticAIData.cpp in Sources */,
@@ -1421,9 +1513,11 @@
 				273CB3B81EBC62FC0042708C /* BulletAIData.cpp in Sources */,
 				9F3BA5EA1E8BA575003138C0 /* CompositeAIData.cpp in Sources */,
 				273CB3A01EBBD7B70042708C /* BulletData.cpp in Sources */,
+				9F2139361ECC712600A60F62 /* GameStateEnums.cpp in Sources */,
 				9F3BA5EB1E8BA575003138C0 /* MenuScreenData.cpp in Sources */,
 				9F3BA5EC1E8BA575003138C0 /* AnimationData.cpp in Sources */,
 				273CB39B1EB7CC8F0042708C /* TexturedPathNode.cpp in Sources */,
+				9F9A76941ECA38BB0055D471 /* LevelSelectData.cpp in Sources */,
 				9F3BA5ED1E8BA575003138C0 /* ObjectData.cpp in Sources */,
 				9F3BA5EE1E8BA575003138C0 /* ShapeData.cpp in Sources */,
 				9F3BA5F01E8BA575003138C0 /* WaveData.cpp in Sources */,
@@ -1434,6 +1528,7 @@
 				9F6F87681EBCBD1E00AD021D /* ZoneParticleGenerator.cpp in Sources */,
 				9F3BA5F51E8BA575003138C0 /* World.cpp in Sources */,
 				9F6F87641EBCBD1100AD021D /* TrailParticleGenerator.cpp in Sources */,
+				9F9A76741EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
 				9F3BA5F61E8BA575003138C0 /* ProgressBarController.cpp in Sources */,
 				9F3BA6641E9F48BA003138C0 /* UIComponent.cpp in Sources */,
 				DFEACF241EA40C78003836B7 /* SoundController.cpp in Sources */,
@@ -1444,8 +1539,10 @@
 				9F3BA5FA1E8BA575003138C0 /* Level.cpp in Sources */,
 				9F3BA5FB1E8BA575003138C0 /* SpawnController.cpp in Sources */,
 				9F6F87741EBCBD7D00AD021D /* ParticleNode.cpp in Sources */,
+				9FF0B44A1EC6B5E00044F29B /* TutorialStepData.cpp in Sources */,
 				9F3BA5FC1E8BA575003138C0 /* GameState.cpp in Sources */,
 				9F3BA5FD1E8BA575003138C0 /* GameplayController.cpp in Sources */,
+				9F9A76981ECA39210055D471 /* ChapterListData.cpp in Sources */,
 				9F3BA5FE1E8BA575003138C0 /* GameEngine.cpp in Sources */,
 				9F3BA5FF1E8BA575003138C0 /* BaseController.cpp in Sources */,
 				9F6F87591EBCBCCA00AD021D /* DeathParticleGenerator.cpp in Sources */,
@@ -1465,19 +1562,22 @@
 				9F3BA6081E8BA575003138C0 /* AIController.cpp in Sources */,
 				9F3BA6091E8BA575003138C0 /* MoveController.cpp in Sources */,
 				9FF0B41A1EC3B2190044F29B /* SaveData.cpp in Sources */,
-				9FF0B4101EC3B1BD0044F29B /* ListLevelData.cpp in Sources */,
 				9F3BA60A1E8BA575003138C0 /* ActivePath.cpp in Sources */,
 				9FF0B4181EC3B2190044F29B /* SaveChapterData.cpp in Sources */,
 				829615531E9BC5B300A731DB /* ParticleController.cpp in Sources */,
 				9F3BA6481E90CAC9003138C0 /* UIDataLoader.cpp in Sources */,
 				824E10B31EA941E70068C0F5 /* ParticleGenerator.cpp in Sources */,
 				9FA275F61EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
+				9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */,
+				9F9A76881ECA2E460055D471 /* LevelEnums.cpp in Sources */,
 				9F3BA60B1E8BA575003138C0 /* PathEvent.cpp in Sources */,
 				9FF0B41C1EC3B2190044F29B /* SaveLevelData.cpp in Sources */,
+				9FF0B44E1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
 				9F3BA60C1E8BA575003138C0 /* PathController.cpp in Sources */,
 				9FA276011EA4D80A003D8C03 /* LevelEditorEvent.cpp in Sources */,
 				273CB3A81EBBF20F0042708C /* ActiveBullet.cpp in Sources */,
 				9F3BA60D1E8BA575003138C0 /* InternalClock.cpp in Sources */,
+				9F9A76921ECA38BB0055D471 /* ChapterSelectData.cpp in Sources */,
 				9F82210B1EA47EDB000EFCD0 /* FinishController.cpp in Sources */,
 				9F3BA6501E932862003138C0 /* LevelEditorController.cpp in Sources */,
 				9F3BA60E1E8BA575003138C0 /* ClockController.cpp in Sources */,
@@ -1485,11 +1585,12 @@
 				8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */,
 				9F3BA6101E8BA575003138C0 /* PhysicsComponent.cpp in Sources */,
 				9F3BA6111E8BA575003138C0 /* CollisionController.cpp in Sources */,
+				9FF0B42D1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9F3BA6121E8BA575003138C0 /* Element.cpp in Sources */,
 				9F3BA6131E8BA575003138C0 /* Path.cpp in Sources */,
-				9FF0B40E1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */,
 				9F3BA6401E90C902003138C0 /* Menu.cpp in Sources */,
 				9F3BA6141E8BA575003138C0 /* Event.cpp in Sources */,
+				9F2139321ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */,
 				9F8221101EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9F3BA6151E8BA575003138C0 /* Subject.cpp in Sources */,
 				9F3BA6161E8BA575003138C0 /* Observer.cpp in Sources */,
@@ -1513,11 +1614,14 @@
 				9FFA3FB01E636B780029D648 /* AIController.cpp in Sources */,
 				DF98288F1E8346F30026223D /* ZoneController.cpp in Sources */,
 				9F3BA5001E89DBB6003138C0 /* Condition.cpp in Sources */,
+				9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */,
 				9FCE47121E655D8B002F4A3E /* LevelData.cpp in Sources */,
+				9FF0B42C1EC421990044F29B /* TutorialController.cpp in Sources */,
 				9FE8E9DD1E6381D400DBE3BC /* MenuGraph.cpp in Sources */,
 				9FFA3F9F1E6365840029D648 /* PathEvent.cpp in Sources */,
 				9FFA3F951E6364C70029D648 /* Path.cpp in Sources */,
 				9FFA3FBE1E636CF90029D648 /* Level.cpp in Sources */,
+				9FF0B44D1EC6B5F50044F29B /* TutorialLevelData.cpp in Sources */,
 				9FE8E9E01E63820E00DBE3BC /* MenuScreenData.cpp in Sources */,
 				9F3BA63F1E90C902003138C0 /* Menu.cpp in Sources */,
 				824E10AC1EA941B80068C0F5 /* ParticleData.cpp in Sources */,
@@ -1533,9 +1637,12 @@
 				DF909EFB1E80DBD4003BB459 /* ZoneData.cpp in Sources */,
 				9FA275D31EA4BFED003D8C03 /* MenuEvent.cpp in Sources */,
 				DF98287B1E80E0000026223D /* StaticZoneData.cpp in Sources */,
+				9FF0B4491EC6B5E00044F29B /* TutorialStepData.cpp in Sources */,
 				9F3BA64F1E932862003138C0 /* LevelEditorController.cpp in Sources */,
+				9F9A76931ECA38BB0055D471 /* LevelSelectData.cpp in Sources */,
 				9FFA3F7A1E6357D10029D648 /* Subject.cpp in Sources */,
 				9FFA3F821E635ACF0029D648 /* Event.cpp in Sources */,
+				9F2139351ECC712600A60F62 /* GameStateEnums.cpp in Sources */,
 				273CB3AB1EBC29CE0042708C /* BulletInitEvent.cpp in Sources */,
 				9F8221141EA48AFE000EFCD0 /* AnimationEvent.cpp in Sources */,
 				9FE8E9E71E6382C800DBE3BC /* ActiveAnimation.cpp in Sources */,
@@ -1547,10 +1654,12 @@
 				829615521E9BC5B300A731DB /* ParticleController.cpp in Sources */,
 				9FA275F51EA4D7DB003D8C03 /* WaveEditorController.cpp in Sources */,
 				DF98289A1E8351900026223D /* ZoneEvent.cpp in Sources */,
+				9F9A76971ECA39210055D471 /* ChapterListData.cpp in Sources */,
 				9FFA3F981E6365390029D648 /* PathController.cpp in Sources */,
 				9FFA3FCF1E6372830029D648 /* AnimationData.cpp in Sources */,
 				9F82210F1EA48049000EFCD0 /* FinishEvent.cpp in Sources */,
 				9FFA3FA61E6367C60029D648 /* ActivePath.cpp in Sources */,
+				9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */,
 				9F3BA61F1E8BA9D9003138C0 /* InputController.cpp in Sources */,
 				9FFA3F6C1E634F3A0029D648 /* GameObject.cpp in Sources */,
 				DF909EF01E80BEEA003BB459 /* AIData.cpp in Sources */,
@@ -1560,6 +1669,7 @@
 				DF9828951E834C210026223D /* ActiveZone.cpp in Sources */,
 				9FFA3F601E624F1A0029D648 /* Element.cpp in Sources */,
 				DF554B321EC7B78A006E70FE /* ActiveParticleState.cpp in Sources */,
+				9F9A76871ECA2E460055D471 /* LevelEnums.cpp in Sources */,
 				273CB3AF1EBC38550042708C /* BulletSpawnEvent.cpp in Sources */,
 				DF9828851E80E0250026223D /* PulseZoneData.cpp in Sources */,
 				9FFA3F7D1E6357E00029D648 /* Observer.cpp in Sources */,
@@ -1567,10 +1677,9 @@
 				9FFA3FCC1E6372670029D648 /* ShapeData.cpp in Sources */,
 				9FCE470F1E655C79002F4A3E /* WaveData.cpp in Sources */,
 				DFBD546F1E60E62D0027FCC1 /* GameplayController.cpp in Sources */,
-				9FF0B40F1EC3B1BD0044F29B /* ListLevelData.cpp in Sources */,
 				9FA275F31EA4D7DB003D8C03 /* TemplateWaveEntry.cpp in Sources */,
-				9FF0B40D1EC3B1BD0044F29B /* ListChapterData.cpp in Sources */,
 				DF909EF81E80D77A003BB459 /* ZoneLoader.cpp in Sources */,
+				9F9A76731EC8E2F80055D471 /* TutorialEnums.cpp in Sources */,
 				9F6F876F1EBCBD4A00AD021D /* ParticleWrapper.cpp in Sources */,
 				273CB3B31EBC5DB50042708C /* BulletAI.cpp in Sources */,
 				DF93BDC41E7647FC00EA6A1D /* SpawnController.cpp in Sources */,
@@ -1579,13 +1688,16 @@
 				9FE8E9DA1E6381B100DBE3BC /* MenuController.cpp in Sources */,
 				9FCE471F1E6686DF002F4A3E /* Mode.cpp in Sources */,
 				9F3BA6431E90CAB1003138C0 /* UIData.cpp in Sources */,
+				9F9A76831ECA28FB0055D471 /* TutorialEvent.cpp in Sources */,
 				273CB39F1EBBD7B70042708C /* BulletData.cpp in Sources */,
 				DF93BDBE1E75C20300EA6A1D /* GenericAssetManager.cpp in Sources */,
+				9F9A76911ECA38BB0055D471 /* ChapterSelectData.cpp in Sources */,
 				9FE4FD741E7BA623007AD880 /* ProgressBarModel.cpp in Sources */,
 				829314B51E8A554B00CFA733 /* ClockController.cpp in Sources */,
 				273CB3A31EBBF1E80042708C /* BulletController.cpp in Sources */,
 				9FFA3FA91E6368480029D648 /* MoveController.cpp in Sources */,
 				9F6F87581EBCBCCA00AD021D /* DeathParticleGenerator.cpp in Sources */,
+				9FF0B4301EC423320044F29B /* TutorialStep.cpp in Sources */,
 				273CB3A71EBBF20F0042708C /* ActiveBullet.cpp in Sources */,
 				9FFA3FD81E6373470029D648 /* LoadController.cpp in Sources */,
 				9FE4FD511E79F2A9007AD880 /* PathAI.cpp in Sources */,
@@ -1621,14 +1733,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kyleGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1644,7 +1756,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = H26RD7FXNA;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1652,7 +1764,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kyleGame1;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.cornell.gdiac.ios.kenGame1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1758,7 +1870,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NV24Q8X6G8;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",
@@ -1778,7 +1890,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = NV24Q8X6G8;
+				DEVELOPMENT_TEAM = 4S972L8QNQ;
 				HEADER_SEARCH_PATHS = (
 					"$(CUGL_INCLUDES)",
 					"\"$(SRCROOT)/Source",

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <cugl/cugl.h>
+#include "Util.hpp"
 
 class Path {
 public:
@@ -77,6 +78,26 @@ public:
 		std::shared_ptr<Path> result = std::make_shared<Path>();
 		return (result->init(vecList) ? result : nullptr);
 	}
+    
+    static std::vector<cugl::Vec2> getPathFromString(const std::string& str) {
+        auto strings = Util::split(str, ' ');
+        std::vector<cugl::Vec2> path;
+        for (auto it : strings) {
+            path.push_back(Util::getTupleFromString(it));
+        }
+        return path;
+    }
+    
+    static std::string getStringFromPath(std::vector<cugl::Vec2> vecPath)
+    {
+        std::string acc = "";
+        for (int i = 0; i < vecPath.size(); i++)
+        {
+            acc += "(" + std::to_string(vecPath.at(i).x) + "," + std::to_string(vecPath.at(i).y) + ")";
+            if (i < vecPath.size() - 1) acc += " ";
+        }
+        return acc;
+    }
 };
 
 #endif /* Path_hpp */

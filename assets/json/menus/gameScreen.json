@@ -14,13 +14,14 @@
                 "nextScreen": "pauseScreen", 
                 "type": "fxTrigger"
             }, 
-            "height": 0.08, 
+            "fontKey": "Museo300-Regular_16", 
+            "height": 0.06, 
             "key": "gameScreen_pauseButton", 
             "type": "BUTTON", 
             "uiBackgroundKey": "gameScreen_pauseButton", 
-            "width": 0.06, 
-            "x": 0.02, 
-            "y": 0.02
+            "width": 0.045, 
+            "x": 0.95, 
+            "y": 0.92
         }
     }
 }

@@ -17,6 +17,9 @@
 #include "Level.hpp"
 #include <map>
 #include "ProgressBarController.hpp"
+#include "LevelEnums.hpp"
+
+
 
 class LevelController : public BaseController {
 protected:
@@ -27,6 +30,8 @@ protected:
     std::shared_ptr<ProgressBarController> _progressBarController;
 
 	std::map<int, std::string> _uidToWaveEntryMap;
+    
+    LevelState _levelState;
 
 public:
     LevelController();

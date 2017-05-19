@@ -101,7 +101,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 7.8125, 
                     "y": 10.9375
                 }
@@ -114,7 +114,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 7.8125, 
                     "y": 4.6875
                 }
@@ -127,7 +127,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 23.4375, 
                     "y": 4.6875
                 }
@@ -140,7 +140,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 23.4375, 
                     "y": 10.9375
                 }
@@ -153,7 +153,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 7.8125, 
                     "y": 7.8125
                 }
@@ -166,7 +166,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 15.625, 
                     "y": 4.6875
                 }
@@ -179,7 +179,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 23.4375, 
                     "y": 7.8125
                 }
@@ -192,7 +192,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 15.625, 
                     "y": 10.9375
                 }
@@ -205,7 +205,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 7.8125, 
                     "y": 10.9375
                 }
@@ -218,7 +218,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 7.8125, 
                     "y": 4.6875
                 }
@@ -231,7 +231,7 @@
                     "aiKey": "homing", 
                     "element": "BLUE", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 23.4375, 
                     "y": 4.6875
                 }
@@ -244,7 +244,7 @@
                     "aiKey": "homing", 
                     "element": "GOLD", 
                     "key": "object1", 
-                    "templateKey": "blobo", 
+                    "templateKey": "birb", 
                     "x": 23.4375, 
                     "y": 10.9375
                 }

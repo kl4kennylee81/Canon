@@ -277,7 +277,8 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,psd,data->getPosition(objPos),zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,gameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
+
     notify(initevent.get());
     
     if (zone->getIsPlayer()){
@@ -310,7 +311,7 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         zone->setIsPlayer(gameObj->getIsPlayer());
         zone->type = GameObject::ObjectType::ZONE;
     
-        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,psd,zEntry->getPosition(objPos,data->radius),zoneElement);
+        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,psd,zEntry->getPosition(objPos,data->radius),zoneElement);
         notify(initevent.get());
         
         state->addEnemyGameObject(zone);
@@ -341,7 +342,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,ad,sd,psd,data->getPosition(objPos),zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, GameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);

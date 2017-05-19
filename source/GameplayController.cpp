@@ -26,7 +26,8 @@ _switchController(nullptr),
 _levelController(nullptr),
 _clockController(nullptr),
 _finishController(nullptr),
-_soundController(nullptr)
+_soundController(nullptr),
+_tutorialController(nullptr)
 {}
 
 GameplayController::~GameplayController(){
@@ -103,22 +104,32 @@ void GameplayController::update(float timestep) {
         return;
     }
     // TODO hacky way to pause the game
-	if (_paused) return;
-    
-    _clockController->update(timestep);
-    _levelController->update(timestep, _gameState);
-    _spawnController->update(timestep, _gameState);
-    _switchController->update(timestep, _gameState);
-    _pathController->update(timestep, _gameState);
-    _moveController->update(timestep, _gameState);
-    _aiController->update(timestep, _gameState);
-    _bulletController->update(timestep, _gameState);
-    _zoneController->update(timestep);
-    _collisionController->update(timestep, _gameState);
-    _animationController->update(timestep, _gameState);
-    _particleController->update(timestep, _gameState);
-    _finishController->update(timestep, _gameState);
-    _soundController->update(timestep, _gameState);
+    if (_paused){
+        return;
+    }
+    else if (_gameState->getGameplayState() == GameplayState::NORMAL){
+        _clockController->update(timestep);
+        _levelController->update(timestep, _gameState);
+        _spawnController->update(timestep, _gameState);
+        _switchController->update(timestep, _gameState);
+        _pathController->update(timestep, _gameState);
+        _moveController->update(timestep, _gameState);
+        _aiController->update(timestep, _gameState);
+        _bulletController->update(timestep, _gameState);
+        _zoneController->update(timestep);
+        _collisionController->update(timestep, _gameState);
+        _animationController->update(timestep, _gameState);
+        _particleController->update(timestep, _gameState);
+        _soundController->update(timestep, _gameState);
+        _tutorialController->update(timestep, _gameState);
+        _finishController->update(timestep, _gameState);
+    }
+    else if (_gameState->getGameplayState() == GameplayState::TUTORIAL_PAUSE){
+        _clockController->update(timestep);
+        _tutorialController->update(timestep, _gameState);
+        _finishController->update(timestep, _gameState);
+
+    }
 }
 
 /**
@@ -143,7 +154,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_gameState = GameState::alloc(scene, levelWorld->getAssetManager());
 	_pathController = PathController::alloc(_gameState, levelWorld);
 	_moveController = MoveController::alloc(_gameState);
-	_collisionController = CollisionController::alloc(_gameState);
+	_collisionController = CollisionController::alloc(_gameState, levelWorld->getAssetManager());
 	_aiController = AIController::alloc();
     _bulletController = BulletController::alloc();
     _switchController = SwitchController::alloc(_gameState);
@@ -155,6 +166,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _particleController = ParticleController::alloc(_gameState, levelWorld->getAssetManager());
     _finishController = FinishController::alloc();
     _soundController = SoundController::alloc(levelWorld);
+    _tutorialController = TutorialController::alloc(_gameState, levelWorld);
 
 	_pathController->attach(_moveController.get());
     _pathController->attach(_switchController.get());
@@ -163,6 +175,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _pathController->attach(_soundController.get());
     _pathController->attach(_zoneController.get());
     _pathController->attach(_particleController.get());
+    _pathController->attach(_tutorialController.get());
     
     _levelController->attach(_collisionController.get());
     _levelController->attach(_animationController.get());
@@ -173,11 +186,13 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _levelController->attach(_finishController.get());
     _levelController->attach(_soundController.get());
     _levelController->attach(_particleController.get());
+    _levelController->attach(_tutorialController.get());
     
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
     _moveController->attach(_animationController.get());
     _moveController->attach(_particleController.get());
+    _moveController->attach(_tutorialController.get());
 
     _collisionController->attach(_animationController.get());
     _collisionController->attach(_zoneController.get());
@@ -185,6 +200,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _collisionController->attach(_bulletController.get());
     _collisionController->attach(_soundController.get());
     _collisionController->attach(_particleController.get());
+    _collisionController->attach(_tutorialController.get());
     
     _spawnController->attach(_collisionController.get());
     _spawnController->attach(_animationController.get());
@@ -194,6 +210,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _spawnController->attach(_zoneController.get());
     _spawnController->attach(_soundController.get());
     _spawnController->attach(_pathController.get());
+    _spawnController->attach(_tutorialController.get());
     
     _bulletController->attach(_levelController.get());
     
@@ -208,11 +225,12 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     // attach the gameplayController to the finishController
     _finishController->attach(this);
     
+    /** have to pause spawning */
+    _tutorialController->attach(_levelController.get());
+    
 	_paused = false;
 
     activate();
-    
-    AudioEngine::get()->playMusic(levelWorld->getAssetManager()->get<Music>("rustling_leaves"),true);
     
 	return true;
 }
@@ -229,6 +247,7 @@ void GameplayController::dispose(){
     _animationController = nullptr;
     _zoneController = nullptr;
     _soundController = nullptr;
+    _tutorialController = nullptr;
 
     _gameState = nullptr;
 }

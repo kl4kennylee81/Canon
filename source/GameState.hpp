@@ -14,17 +14,18 @@
 #include "GameObject.hpp"
 #include "GenericAssetManager.hpp"
 #include "InternalClock.hpp"
+#include "GameStateEnums.hpp"
 
 /** This is adjusted by screen aspect ratio to get the height */
 #define GAME_SCENE_WIDTH 1024
 /** This is the aspect ratio for physics */
-#define GAME_SCENE_ASPECT (9.0/16.0)
+//#define GAME_SCENE_ASPECT (9.0/16.0)
 
 /** This is the logical physics width of the game **/
 #define GAME_PHYSICS_WIDTH 32.f
 
 /** This is the logical physics height of the game **/
-#define GAME_PHYSICS_HEIGHT 18.f
+#define GAME_PHYSICS_HEIGHT 16.f
 
 /** The scaling from physics coordinates to the game scene **/
 #define GAME_PHYSICS_SCALE (GAME_SCENE_WIDTH/GAME_PHYSICS_WIDTH)
@@ -50,6 +51,8 @@ protected:
     
     std::shared_ptr<cugl::Node> _bgnode;
     
+    std::shared_ptr<cugl::Node> _bordernode;
+    
     cugl::Rect _bounds;
     
     std::vector<std::shared_ptr<GameObject>> _playerCharacters;
@@ -63,6 +66,8 @@ protected:
     std::vector<std::shared_ptr<GameObject>> _enemyObjects;
     
     bool _reset;
+    
+    GameplayState _state; // the state machine of the gameplay controller
 public:
     static std::unique_ptr<InternalClock> _internalClock;
     
@@ -111,6 +116,8 @@ GameState():
 
     std::shared_ptr<GameObject> getInactiveCharacter();
     
+    std::shared_ptr<GameObject> getOtherPlayer(std::shared_ptr<GameObject> player);
+    
     std::vector<std::shared_ptr<GameObject>> getInactiveCharacters();
 
     bool getReset();
@@ -120,8 +127,6 @@ GameState():
     void toggleActiveCharacter();
     
     std::vector<std::shared_ptr<GameObject>>& getEnemyObjects() { return _enemyObjects; }
-    
-    
     
     std::shared_ptr<cugl::Node> getDebugNode() {
         return _debugnode;
@@ -167,6 +172,19 @@ GameState():
     }
 
 	std::shared_ptr<GameObject> getUID2GameObject(int uid);
+    
+    /** tutorial controller is still active */
+    void toggleTutorialPause(){
+        if (_state != GameplayState::TUTORIAL_PAUSE){
+            _state = GameplayState::TUTORIAL_PAUSE;
+        } else {
+            _state = GameplayState::NORMAL;
+        }
+    }
+    
+    GameplayState getGameplayState(){
+        return _state;
+    }
     
 #pragma worldNode Transformation Settings getter
     float getPhysicsScale();

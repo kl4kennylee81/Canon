@@ -13,11 +13,18 @@
 #include <algorithm>
 #include <typeinfo>
 #include <sstream>
+#include "GameState.hpp"
 
 
 
 class Util {
 public:
+    
+    static cugl::Vec2 getTupleFromString(const std::string& s) {
+        std::string str = s.substr(1, s.size() - 2);
+        auto nums = split(str, ',');
+        return cugl::Vec2::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
+    }
     
     static std::string appendLeadingZero(int n_zero,std::string in){
         std::string new_string = std::string(n_zero - in.length(), '0') + in;
@@ -157,6 +164,20 @@ public:
         physicsCoords.y -= getSceneToWorldTranslateY();
         cugl::Vec2::divide(physicsCoords,GAME_PHYSICS_SCALE,&physicsCoords);
         return physicsCoords;
+    }
+    
+    static std::vector<cugl::Vec2> interpolate(cugl::Vec2 fst, cugl::Vec2 snd, float dist){
+        std::vector<cugl::Vec2> coords = {};
+        cugl::Vec2 step = snd-fst;
+        float length = step.length();
+        step.normalize();
+        step.scale(dist);
+        float totSteps = length/dist;
+        for (int i = 0; i < totSteps; i++){
+            cugl::Vec2 toAdd = fst+step*i;
+            coords.push_back(fst+step*i);
+        }
+        return coords;
     }
 
 };

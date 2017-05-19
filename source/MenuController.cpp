@@ -12,6 +12,7 @@
 #include "MenuEvent.hpp"
 #include "FinishEvent.hpp"
 #include "LevelEditorEvent.hpp"
+#include "LevelSelectData.hpp"
 
 using namespace cugl;
 
@@ -40,7 +41,7 @@ void MenuController::eventUpdate(Event* e) {
             switch(fEvent->_finishType){
                 case FinishEvent::FinishEventType::GAME_WON:
                 {
-                    this->getMenuGraph()->setActiveMenu("gameover");
+                    this->getMenuGraph()->setActiveMenu("victory");
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:
@@ -76,8 +77,9 @@ void MenuController::update(float timestep) {
         return;
     }
     
-    // check that a press has been made
-    if (!InputController::getIsPressedUp()){
+    // check that a press has been made or in the past
+    // previously pressed is used because when pressing up it is no longer currently pressed
+    if (!InputController::getIsPressedUp() && !InputController::getIsPressed()){
         return;
     }
     
@@ -87,19 +89,29 @@ void MenuController::update(float timestep) {
             continue;
         }
         
-        // check if the uiElement is a button
-        if (std::dynamic_pointer_cast<Button>(uiElement->getNode()) == nullptr){
+        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        
+        if (button == nullptr){
             continue;
         }
         
-        std::shared_ptr<Button> button = std::dynamic_pointer_cast<Button>(uiElement->getNode());
+        // if its a button reset its press down
+        button->setDown(false);
+
+        // we need to check if the button is currently being pressed down
+        Vec2 curVec = InputController::getInputVector();
+		if (button->containsScreen(curVec)) {
+			button->setDown(true);
+		}
         
         Vec2 vec = InputController::getPrevVector();
         
-        // check if this button was clicked
-        if (!button->containsScreen(vec)){
+        // if not clicked or is not a press up we skip
+        if (!button->containsScreen(vec)||!InputController::getIsPressedUp()){
             continue;
         }
+
+		button->setDown(false);
         
         // execute the appropriate action
         switch(uiElement->getAction()->type){
@@ -116,7 +128,7 @@ void MenuController::update(float timestep) {
                 switch(action->modeTarget){
                     case Mode::GAMEPLAY:
                     {
-                        _selectedLevel = action->nextLevel;
+                        _selectedLevel = action->levelSelectDataKey;
 						getMenuGraph()->setActiveMenu(action->nextScreen);
                         break;
                     }
@@ -166,10 +178,13 @@ void MenuController::update(float timestep) {
                     }
 					case FxTriggerButtonAction::FXType::SWITCH_CHAPTER:
 					{
-						std::string nextChapter = action->chapterData;
+						std::string cData = action->chapterData;
 						std::shared_ptr<Event> chapterSwitchEvent = ChapterSwitchEvent::alloc();
+                        
+                        // gameplay controller is listening to menuController
 						notify(chapterSwitchEvent.get()); // don't think anything is really listening to this?
-						getMenuGraph()->augmentLevelMenu(_assets, getMenuGraph()->getMenuMap(), nextChapter);
+                        
+						getMenuGraph()->populateChapter(_assets, cData);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}

@@ -47,6 +47,17 @@ std::shared_ptr<JsonValue> TemplateWaveEntry::toJsonValue()
     }
     if (zoneKeys.size() > 0) object->appendChild("zoneKeys", zones);
 	
+    std::shared_ptr<JsonValue> allZones = JsonValue::allocArray();
+    for (int i = 0; i < allZoneKeys.size(); i++){
+        std::vector<std::string> zone = allZoneKeys.at(i);
+        std::shared_ptr<JsonValue> zoneJson = JsonValue::allocArray();
+        for(int j = 0; j < zone.size(); j++){
+            zoneJson->appendChild(JsonValue::alloc(zone.at(j)));
+        }
+        allZones->appendChild(zoneJson);
+    }
+    
+    if(allZoneKeys.size() > 0) object->appendChild("zones", allZones);
     return object;
 }
 
@@ -79,6 +90,14 @@ bool TemplateWaveEntry::preload(const std::shared_ptr<cugl::JsonValue>& json){
     float sTime = json->getFloat("spawnTime",SPAWN_FRAMES);
 	Data::preload(json);
     init(name, ob, ais, zones, sTime, bk);
+    
+    if(json->has("zones")) {
+        std::shared_ptr<JsonValue> jzone = json->get("zones");
+        for(int i = 0; i < jzone->size(); i++){
+            std::vector<std::string> zs = jzone->get(i)->asStringArray();
+            addZoneKeys(zs);
+        }
+    }
     return true;
 }
 
@@ -105,6 +124,26 @@ std::string TemplateWaveEntry::getNextAIKey(std::string currentKey){
 
     return aiKeys.at(0);
 }
+
+bool vectorEqual(std::vector<std::string> v1, std::vector<std::string> v2){
+    if(v1.size() != v2.size()) return false;
+    for(int i = 0; i < v1.size(); i++){
+        if(v1.at(i).compare(v2.at(i)) != 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+std::vector<std::string> TemplateWaveEntry::getNextZoneKeys(std::vector<std::string> currentKeys){
+    for(int i = 0; i < allZoneKeys.size() - 1; i++) {
+        if(vectorEqual(currentKeys, allZoneKeys.at(i))){
+            return allZoneKeys.at(i+1);
+        }
+    }    
+    return allZoneKeys.at(0);
+}
+
 
 std::vector<std::string> TemplateWaveEntry::getZoneKeys(){
     return zoneKeys;
