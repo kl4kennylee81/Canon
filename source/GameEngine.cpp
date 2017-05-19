@@ -173,6 +173,7 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
+    _assets->loadDirectory("json/uianimations.json");
     
     std::string assetDir = Application::get()->getAssetDirectory();
     std::string templateDir = assetDir + TEMPLATE_PATH;

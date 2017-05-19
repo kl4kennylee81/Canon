@@ -12,14 +12,14 @@
 
 using namespace cugl;
 
-std::shared_ptr<cugl::Node> Menu::getBackground() { return _menuBackground; }
+std::shared_ptr<ActiveAnimation> Menu::getBackground() { return _menuBackground; }
 
 std::string Menu::getMenuKey() { return _mKey; }
 
-void Menu::setBackground(std::shared_ptr<cugl::Node> node)
-{ 
-	_menuBackground = node;
-	this->_menu->addChild(node, 0);
+void Menu::setBackground(std::shared_ptr<ActiveAnimation> anim)
+{
+	_menuBackground = anim;
+	this->_menu->addChild(anim->getNode(), 0);
 }
 
 void Menu::addUIElement(std::shared_ptr<UIComponent> element){
@@ -45,19 +45,40 @@ bool Menu::init(std::string mKey){
     return true;
 }
 
+void Menu::updateAnimation(){
+    if (_menuBackground == nullptr) {
+        return;
+    }
+    _menuBackground->nextFrame();
+}
+
 void Menu::populate(std::shared_ptr<GenericAssetManager> assets, std::vector<std::string> uiDataKeys,std::string bgKey,std::map<std::string,std::string> fontMap){
     // make sure the fontmap is set
     this->setFontMap(fontMap);
     
     if (bgKey != "") {
         // texture fetch and scale: note, we put this before uielements because z-orders are not automatically enforced..it's by order actually
+        /*
         std::shared_ptr<Node> imageNode = PolygonNode::allocWithTexture(assets->get<Texture>(bgKey));
         cugl::Size imageSize = imageNode->getSize();
         imageNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
         imageNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
         imageNode->setPosition(Vec2::ZERO);
         
-        this->setBackground(imageNode);
+        this->setBackground(imageNode);*/
+        
+        std::shared_ptr<AnimationData> animData = assets->get<AnimationData>(bgKey);
+        std::shared_ptr<ActiveAnimation> anim = ActiveAnimation::alloc();
+        anim->setAnimationData(animData);
+        anim->handleAction(AnimationAction::ACTIVE);
+        
+        std::shared_ptr<cugl::AnimationNode> animNode = anim->getNode();
+        cugl::Size imageSize = animNode->getBoundingRect().size;
+        animNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+        animNode->setScale(Vec2(GAME_SCENE_WIDTH / imageSize.width, Util::getGameSceneHeight() / imageSize.height));
+        animNode->setPosition(Vec2::ZERO);
+        
+        this->setBackground(anim);
     }
     
     for (std::string uiKey : uiDataKeys) {
