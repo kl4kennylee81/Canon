@@ -1,41 +1,17 @@
 {
     "ChapterSelectData": {
-        "chapter01": {
-            "chapterKey": "chapter01",
+        "chapter02": {
+            "chapterKey": "chapter02",
             "name": "The Girl and the Firefly",
             "levels": [
-                "tutorial01",
-                "level11",
-                "level12",
-                "level13",
                 "level14",
                 "level15",
                 "level16"
             ],
-            "chapterTexture": "chapter01_texture"
+            "chapterTexture": "chapter02_texture"
         }
     },
     "LevelSelectData": {
-        "tutorial01": {
-            "key": "tutorial01",
-            "levelKey": "tutorial01",
-            "name": "tutorial01"
-        },
-        "level11": {
-            "key": "level11",
-            "levelKey": "rapidSpawn",
-            "name": "rapidSpawn"
-        },
-        "level12": {
-            "key": "level12",
-            "levelKey": "precision",
-            "name": "precision"
-        },
-        "level13": {
-            "key": "level13",
-            "levelKey": "separation",
-            "name": "separation"
-        },
         "level14": {
             "key": "level14",
             "levelKey": "miniweave",
@@ -53,10 +29,10 @@
         }
     },
     "UIData": {
-        "chapter01_texture": {
+        "chapter02_texture": {
             "height": 0.2745571658615137,
-            "key": "chapter01_texture",
-            "textureKey": "chapter01_texture",
+            "key": "chapter02_texture",
+            "textureKey": "chapter02_texture",
             "type": "IMAGE",
             "width": 0.4712539610683567,
             "x": 0.2684472612041648,

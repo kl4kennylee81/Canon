@@ -1,7 +1,7 @@
 {
     "ChapterSelectData": {
-        "chapter02": {
-            "chapterKey": "chapter02",
+        "chapter03": {
+            "chapterKey": "chapter03",
             "name": "The Girl and the Fire Lord",
             "levels": [
                 "level21",
@@ -12,7 +12,7 @@
                 "level26",
                 "level51"
             ],
-            "chapterTexture": "chapter02_texture"
+            "chapterTexture": "chapter03_texture"
         }
     },
     "LevelSelectData": {
@@ -54,10 +54,10 @@
         }
     },
     "UIData": {
-        "chapter02_texture": {
+        "chapter03_texture": {
             "height": 0.2753623188405797,
-            "key": "chapter02_texture",
-            "textureKey": "chapter02_texture",
+            "key": "chapter03_texture",
+            "textureKey": "chapter03_texture",
             "type": "IMAGE",
             "width": 0.4861928474422816,
             "x": 0.2616568583069262,

@@ -16,7 +16,7 @@
             "goldAnimationKey": "yellow_grumpBullet6_animation",
             "soundKey": "baseEnemySound",
             "animationScale": 1.5,
-            "health": 3,
+            "health": 2,
             "speed": 1.25
         },
         "grumpBullet6_bulletObject": {

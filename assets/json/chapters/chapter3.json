@@ -1,7 +1,7 @@
 {
     "ChapterSelectData": {
-        "chapter03": {
-            "chapterKey": "chapter03",
+        "chapter04": {
+            "chapterKey": "chapter04",
             "name": "The Girl and the Moon",
             "levels": [
                 "level31",
@@ -11,7 +11,7 @@
                 "level35",
                 "level52"
             ],
-            "chapterTexture": "chapter03_texture"
+            "chapterTexture": "chapter04_texture"
         }
     },
     "LevelSelectData": {
@@ -48,10 +48,10 @@
         }
     },
     "UIData": {
-        "chapter03_texture": {
+        "chapter04_texture": {
             "height": 0.2745571658615137,
-            "key": "chapter03_texture",
-            "textureKey": "chapter03_texture",
+            "key": "chapter04_texture",
+            "textureKey": "chapter04_texture",
             "type": "IMAGE",
             "width": 0.4938886373924853,
             "x": 0.25667722951561794,
