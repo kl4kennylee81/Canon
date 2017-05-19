@@ -18,6 +18,7 @@
 #include "SoundData.hpp"
 #include "MenuListData.hpp"
 #include "BulletData.hpp"
+#include "ParticleStateData.hpp"
 #include "TutorialLevelData.hpp"
 #include "TutorialStepData.hpp"
 #include "ChapterListData.hpp"
@@ -258,6 +259,9 @@ bool GenericAssetManager::loadDirectory(const std::shared_ptr<JsonValue>& json) 
         }
         else if (child->key() == "bullets") {
             success = readCategory(typeid(BulletData).hash_code(), child) && success;
+        }
+        else if (child->key() == "particleStates") {
+            success = readCategory(typeid(ParticleStateData).hash_code(), child) && success;
         }
         else if (child->key() == "tutorialLevels") {
             success = readCategory(typeid(TutorialLevelData).hash_code(), child) && success;

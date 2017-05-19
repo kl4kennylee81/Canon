@@ -14,6 +14,7 @@
 #include <memory>
 #include <assert.h>
 #include "CollisionEvent.hpp"
+#include "MoveEvent.hpp"
 
 using namespace cugl;
 
@@ -37,7 +38,19 @@ void ParticleController::eventUpdate(Event* e) {
             switch (levelEvent->levelEventType) {
                 case LevelEvent::LevelEventType::OBJECT_INIT: {
                     ObjectInitEvent* objectInit = (ObjectInitEvent*)levelEvent;
-                    handleCharacterSpawn(objectInit->object.get());
+                    addObject(objectInit->object.get(), objectInit->partStateData);
+                    break;
+                }
+                case LevelEvent::LevelEventType::OBJECT_SPAWNING: {
+                    ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
+                    GameObject* obj = objectSpawn->object.get();
+                    handleAction(obj, AnimationAction::SPAWNING);
+                    break;
+                }
+                case LevelEvent::LevelEventType::OBJECT_SPAWN: {
+                    ObjectSpawnEvent* objectSpawn = (ObjectSpawnEvent*)levelEvent;
+                    GameObject* obj = objectSpawn->object.get();
+                    handleAction(obj, AnimationAction::SPAWN);
                     break;
                 }
             }
@@ -49,9 +62,33 @@ void ParticleController::eventUpdate(Event* e) {
                 case CollisionEvent::CollisionEventType::OBJECT_GONE:
                     ObjectGoneEvent* objectGone = (ObjectGoneEvent*)collisionEvent;
                     GameObject* obj = objectGone->_obj;
-                    handleDeathParticle(obj);
-                    handleCharacterDeath(obj);
+                    handleAction(obj, AnimationAction::DEATH);
+                    // do something to remove from mapping
+                    //animationMap.at(obj)->setLastAnimation();
                     break;
+            }
+            break;
+        }
+        case Event::EventType::PATH: {
+            PathEvent* pathEvent = (PathEvent*)e;
+            switch (pathEvent->_pathType) {
+                case PathEvent::PathEventType::PATH_FINISHED:
+                    PathFinished* pathFinished = (PathFinished*)pathEvent;
+                    GameObject* obj = pathFinished->_activeChar.get();
+                    handleAction(obj, AnimationAction::ATTACK);
+                    break;
+            }
+            break;
+        }
+        case Event::EventType::MOVE: {
+            MoveEvent* moveEvent = (MoveEvent*)e;
+            switch(moveEvent->_moveEventType){
+                case MoveEvent::MoveEventType::MOVE_FINISHED:
+                {
+                    GameObject* obj = moveEvent->_character.get();
+                    handleAction(obj, AnimationAction::RETURN);
+                    break;
+                }
             }
             break;
         }
@@ -60,44 +97,119 @@ void ParticleController::eventUpdate(Event* e) {
             switch (zoneEvent->zoneEventType) {
                 case ZoneEvent::ZoneEventType::ZONE_INIT: {
                     ZoneInitEvent* zoneInit = (ZoneInitEvent*)zoneEvent;
-//                    addAnimation(zoneInit->object.get(), zoneInit->animationData);
-                    
-                    // mapping gameobj ->
+                    addObject(zoneInit->object.get(), zoneInit->partStateData);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWNING: {
                     ZoneSpawningEvent* zoneSpawning = (ZoneSpawningEvent*)zoneEvent;
-//                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
+                    handleAction(zoneSpawning->object, AnimationAction::SPAWNING);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_SPAWN: {
                     ZoneSpawnEvent* zoneSpawn = (ZoneSpawnEvent*)zoneEvent;
-//                    handleZoneSpawn(zoneSpawn->object);
+                    handleAction(zoneSpawn->object, AnimationAction::SPAWN);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_ON: {
                     ZoneOnEvent* zoneOn = (ZoneOnEvent*)zoneEvent;
                     GameObject* obj = zoneOn->object;
+                    handleAction(obj, AnimationAction::ATTACK);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_OFF: {
                     ZoneOffEvent* zoneOff = (ZoneOffEvent*)zoneEvent;
                     GameObject* obj = zoneOff->object;
+                    handleAction(obj, AnimationAction::ATTACK);
                     break;
                 }
                 case ZoneEvent::ZoneEventType::ZONE_DELETE: {
                     ZoneDeleteEvent* zoneDelete = (ZoneDeleteEvent*)zoneEvent;
-                    // remove from GameObject -> ParticleWrapper
+                    GameObject* obj = zoneDelete->object;
+                    handleAction(obj, AnimationAction::DEATH);
+                    // do something to remove from mapping
+                    //animationMap.at(obj)->setLastAnimation();
                     break;
-                }
-                case ZoneEvent::ZoneEventType::ZONE_FLASH: {
-                    ZoneFlashEvent* zoneFlash = (ZoneFlashEvent*)zoneEvent;
                 }
             }
             break;
         }
     }
 }
+
+void ParticleController::addObject(GameObject* obj, std::shared_ptr<ParticleStateData> psd){
+    if (psd == nullptr) {
+        return;
+    }
+    std::shared_ptr<ActiveParticleState> part = ActiveParticleState::alloc();
+    part->setParticleStateData(psd);
+    objectStateMap.insert({obj,part});
+}
+
+void ParticleController::handleAction(GameObject* obj, AnimationAction animAction){
+    if (obj == nullptr){
+        return;
+    }
+    if (objectStateMap.count(obj) <= 0){
+        return;
+    }
+    std::shared_ptr<ActiveParticleState> partState = objectStateMap.at(obj);
+    if (partState == nullptr){
+        return;
+    }
+    
+    //if animation action not in map, don't do anything
+    if (!(partState->hasAnimationAction(animAction))){
+        return;
+    }
+    
+    //stop these generators
+    std::vector<ParticleAction> actionsToStop = partState->getCurrentParticleActions();
+    for (auto pa : actionsToStop){
+        switch (pa) {
+            case ParticleAction::PULSE:
+                //_pulse_gen->remove(obj);
+                break;
+            case ParticleAction::TRAIL:
+                _trail_gen->remove_character(obj);
+                break;
+            case ParticleAction::ZONE:
+                _zone_gen->remove_mapping(obj);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    partState->setAnimationAction(animAction);
+    
+    //start these generators
+    std::vector<ParticleAction> actionsToStart = partState->getCurrentParticleActions();
+    for (auto pa : actionsToStart){
+        switch (pa) {
+            case ParticleAction::PULSE:
+                //_pulse_gen->add(obj);
+                break;
+            case ParticleAction::TRAIL:{
+                _trail_gen->add_character(obj);
+                break;
+            }
+            case ParticleAction::ZONE:{
+                _zone_gen->add_mapping(obj);
+                break;
+            }
+            case ParticleAction::DEATH: {
+                Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+                _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    
+}
+
+/*
 
 void ParticleController::handleCharacterSpawn(GameObject* obj) {
     if (!obj->getIsPlayer()) return;
@@ -121,11 +233,13 @@ void ParticleController::handleDeathParticle(GameObject* obj) {
 void ParticleController::handleZoneSpawn(GameObject* obj) {
     _zone_gen->add_mapping(obj);
 }
+*/
 
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
     _death_gen->generate();
     _trail_gen->generate();
-//    _zone_gen->generate();
+    _zone_gen->generate();
+    //_pulse_gen->generate();
 }
 
 bool ParticleController::init(std::shared_ptr<GameState> state, const std::shared_ptr<GenericAssetManager>& assets) {
@@ -257,8 +371,11 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     _trail_gen = TrailParticleGenerator::alloc(_memory, state, &_particle_map);
     _trail_gen->start();
     
-//    _zone_gen = ZoneParticleGenerator::alloc(_memory, state, &_particle_map);
-//    _zone_gen->start();
+    _zone_gen = ZoneParticleGenerator::alloc(_memory, state, &_particle_map);
+    _zone_gen->start();
+    
+    //_pulse_gen = PulseParticleGenerator::alloc(_memory, state, &_particle_map);
+    //_pulse_gen->start();
     
     return true;
 }

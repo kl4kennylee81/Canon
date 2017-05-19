@@ -14,6 +14,7 @@
 #include "GameObject.hpp"
 #include "AnimationData.hpp"
 #include "ShapeData.hpp"
+#include "ParticleStateData.hpp"
 
 class ZoneEvent : public Event {
 public:
@@ -41,6 +42,7 @@ public:
     std::shared_ptr<GameObject> object;
     std::shared_ptr<AnimationData> animationData;
     std::shared_ptr<ShapeData> shapeData;
+    std::shared_ptr<ParticleStateData> partStateData;
     cugl::Vec2 pos;
     ElementType element;
     
@@ -48,20 +50,21 @@ public:
         zoneEventType = ZoneEventType::ZONE_INIT;
     }
     
-    bool init(std::shared_ptr<GameObject> object, GameObject* c, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, cugl::Vec2 pos, ElementType element){
+    bool init(std::shared_ptr<GameObject> object, GameObject* c, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<ParticleStateData> partStateData,cugl::Vec2 pos, ElementType element){
         this->zoneEventType = ZoneEventType::ZONE_INIT;
         this->object = object;
         this->animationData = animationData;
         this->shapeData = shapeData;
+        this->partStateData = partStateData;
         this->pos = pos;
         this->element = element;
         this->character = c;
         return true;
     }
     
-    static std::shared_ptr<ZoneInitEvent> alloc(std::shared_ptr<GameObject> object, GameObject* c, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, cugl::Vec2 pos, ElementType element){
+    static std::shared_ptr<ZoneInitEvent> alloc(std::shared_ptr<GameObject> object, GameObject* c, std::shared_ptr<AnimationData> animationData, std::shared_ptr<ShapeData> shapeData, std::shared_ptr<ParticleStateData> partStateData, cugl::Vec2 pos, ElementType element){
         std::shared_ptr<ZoneInitEvent> result = std::make_shared<ZoneInitEvent>();
-        return (result->init(object, c, animationData,shapeData,pos,element) ? result : nullptr);
+        return (result->init(object, c,animationData,shapeData,partStateData,pos,element) ? result : nullptr);
     }
 };
 

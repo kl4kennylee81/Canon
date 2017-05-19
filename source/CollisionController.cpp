@@ -305,6 +305,9 @@ bool CollisionController::addToWorld(GameObject* obj) {
 }
 
 bool CollisionController::removeFromWorld(GameObject* obj) {
+    auto position = std::find(objsToIgnore.begin(), objsToIgnore.end(), obj);
+    if (position != objsToIgnore.end()) objsToIgnore.erase(position);
+    
     _world->removeObstacle(obj->getPhysicsComponent()->getBody().get());
     
     obj->getPhysicsComponent()->getBody()->setDebugScene(nullptr);
@@ -366,24 +369,7 @@ void CollisionController::beginContact(b2Contact* contact) {
         if (gotHit->getPhysicsComponent()->isAlive()) {
             objsToIgnore.push_back(gotHit);
             hitStunMap.insert({gotHit,HIT_STUN});
-//            if (gotHit == bluePlayer) {
-//                objsToIgnore.push_back(blueZone);
-//                hitStunMap.insert({blueZone,HIT_STUN});
-//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(blueZone);
-//                notify(zoneHit.get());
-//            }
-//            if (gotHit == goldPlayer) {
-//                objsToIgnore.push_back(goldZone);
-//                hitStunMap.insert({goldZone,HIT_STUN});
-//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
-//                notify(zoneHit.get());
-//            }
-//            if (gotHit->getIsPlayer() == false){
-//                objsToIgnore.push_back(goldZone);
-//                std::shared_ptr<ObjectHitEvent> zoneHit = ObjectHitEvent::alloc(goldZone);
-//                notify(zoneHit.get());
-//            }
-//            
+
             GameObject* zone = zoneMap[gotHit];
             objsToIgnore.push_back(zone);
             if(gotHit->getIsPlayer()){

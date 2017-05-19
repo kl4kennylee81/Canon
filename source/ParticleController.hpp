@@ -18,7 +18,10 @@
 #include "ParticleGenerator.hpp"
 #include "DeathParticleGenerator.hpp"
 #include "ZoneParticleGenerator.hpp"
+#include "PulseParticleGenerator.hpp"
 #include "Util.hpp"
+#include "ActiveParticleState.hpp"
+#include "ParticleStateData.hpp"
 
 class ParticleController : public BaseController {
 private:
@@ -32,12 +35,15 @@ private:
     std::shared_ptr<DeathParticleGenerator> _death_gen;
     std::shared_ptr<ZoneParticleGenerator> _zone_gen;
     std::shared_ptr<TrailParticleGenerator> _trail_gen;
+    std::shared_ptr<PulseParticleGenerator> _pulse_gen;
     
     /** Handlers for events. Replace all of these later with proper event handling. */
     void handleCharacterSpawn(GameObject* obj);
     void handleCharacterDeath(GameObject* obj);
     void handleDeathParticle(GameObject* obj);
     void handleZoneSpawn(GameObject* obj);
+    
+    std::map<GameObject*, std::shared_ptr<ActiveParticleState>> objectStateMap;
     
 public:
     ParticleController();
@@ -58,6 +64,10 @@ public:
         std::shared_ptr<ParticleController> result = std::make_shared<ParticleController>();
         return (result->init(state, assets) ? result : nullptr);
     }
+    
+    void addObject(GameObject* obj, std::shared_ptr<ParticleStateData>);
+    
+    void handleAction(GameObject* obj, AnimationAction animAction);
 };
 
 

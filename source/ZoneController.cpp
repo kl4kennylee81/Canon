@@ -268,11 +268,17 @@ void ZoneController::staticZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
+    std::shared_ptr<ParticleStateData> psd = _world->getParticleStateData(od->getParticleStateKey());
+    if (psd == nullptr){
+        psd = _world->getParticleStateData("genericZone");
+    }
+    
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,data->getPosition(objPos),zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone,gameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
+
     notify(initevent.get());
     
     if (zone->getIsPlayer()){
@@ -296,11 +302,16 @@ void ZoneController::rotateZoneInit(std::shared_ptr<ActiveZone> activeZone, std:
         std::shared_ptr<ObjectData> od = _world->getObjectData(zEntry->objectKey);
         std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
         std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
+        std::shared_ptr<ParticleStateData> psd = _world->getParticleStateData(od->getParticleStateKey());
+        if (psd == nullptr){
+            psd = _world->getParticleStateData("genericZone");
+        }
+        
         std::shared_ptr<GameObject> zone = GameObject::alloc();
         zone->setIsPlayer(gameObj->getIsPlayer());
         zone->type = GameObject::ObjectType::ZONE;
     
-        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,zEntry->getPosition(objPos,data->radius),zoneElement);
+        std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,psd,zEntry->getPosition(objPos,data->radius),zoneElement);
         notify(initevent.get());
         
         state->addEnemyGameObject(zone);
@@ -322,11 +333,16 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     std::shared_ptr<ObjectData> od = _world->getObjectData(data->objectKey);
     std::shared_ptr<ShapeData> sd = _world->getShapeData(od->getShapeKey());
     std::shared_ptr<AnimationData> ad = _world->getAnimationData(od->getAnimationKey(zoneElement));
+    std::shared_ptr<ParticleStateData> psd = _world->getParticleStateData(od->getParticleStateKey());
+    if (psd == nullptr){
+        psd = _world->getParticleStateData("genericZone");
+    }
+    
     std::shared_ptr<GameObject> zone = GameObject::alloc();
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,data->getPosition(objPos),zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);

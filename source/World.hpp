@@ -23,6 +23,7 @@
 #include "GenericAssetManager.hpp"
 #include "AIData.hpp"
 #include "TemplateWaveEntry.hpp"
+#include "ParticleStateData.hpp"
 
 /** contain all the static data loaded in metadata needed/ prototypes of
   * path data, physics shape data, animation data etc. to spawn out the active
@@ -56,6 +57,7 @@ public:
     std::unordered_map<std::string, std::shared_ptr<SoundData>> _soundData;
     std::unordered_map<std::string, std::shared_ptr<TemplateWaveEntry>> _templateData;
     std::unordered_map<std::string, std::shared_ptr<BulletData>> _bulletData;
+    std::unordered_map<std::string, std::shared_ptr<ParticleStateData>> _partStateData;
     
     std::unordered_set<std::string> _tempKeys;
 
@@ -112,6 +114,8 @@ public:
     std::shared_ptr<ZoneData> getZoneData(std::string zoneKey);
 
     std::shared_ptr<SoundData> getSoundData(std::string soundKey);
+    
+    std::shared_ptr<ParticleStateData> getParticleStateData(std::string partKey);
     
     std::shared_ptr<TemplateWaveEntry> getTemplate(std::string templateKey);
     
