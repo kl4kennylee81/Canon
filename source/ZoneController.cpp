@@ -342,7 +342,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     zone->setIsPlayer(gameObj->getIsPlayer());
     zone->type = GameObject::ObjectType::ZONE;
     
-    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, GameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
+    std::shared_ptr<ZoneInitEvent> initevent = ZoneInitEvent::alloc(zone, gameObj, ad,sd,psd,data->getPosition(objPos),zoneElement);
     notify(initevent.get());
     
     state->addEnemyGameObject(zone);
