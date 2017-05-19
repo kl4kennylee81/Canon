@@ -50,18 +50,20 @@ public:
     
     std::shared_ptr<Path> _path;
     ElementType _active_element;
+    cugl::Vec2 _starting_point;
     
-    bool init(std::shared_ptr<Path> path, ElementType element) {
+    bool init(std::shared_ptr<Path> path, ElementType element, cugl::Vec2 starting_point) {
         PathEvent::init();
         _pathType = PathEventType::DRAWING;
         _path = path;
         _active_element = element;
+        _starting_point = starting_point;
         return true;
     }
     
-    static std::shared_ptr<PathDrawing> alloc(std::shared_ptr<Path> path, ElementType element) {
+    static std::shared_ptr<PathDrawing> alloc(std::shared_ptr<Path> path, ElementType element, cugl::Vec2 starting_point) {
         std::shared_ptr<PathDrawing> result = std::make_shared<PathDrawing>();
-        return (result->init(path, element) ? result : nullptr);
+        return (result->init(path, element, starting_point) ? result : nullptr);
     }
 };
 

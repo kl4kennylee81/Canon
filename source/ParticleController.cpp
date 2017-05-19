@@ -83,7 +83,7 @@ void ParticleController::eventUpdate(Event* e) {
                 }
                 case PathEvent::PathEventType::DRAWING: {
                     PathDrawing* pathDrawing = (PathDrawing*)pathEvent;
-                    _path_gen->add_path(pathDrawing->_path, pathDrawing->_active_element);
+                    _path_gen->add_path(pathDrawing->_path, pathDrawing->_active_element, pathDrawing->_starting_point);
                     _path_gen->start();
                     break;
                 }
