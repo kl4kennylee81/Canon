@@ -68,19 +68,24 @@ void GameplayController::eventUpdate(Event* e) {
 					std::shared_ptr<LevelData> ld = _levelController->getWorld()->getLevelData();
 					std::string ldkey = ld->key;
 					std::pair<std::string, int> info = MenuController::getNextLevelInfo(ldkey, _ultimateMap, getWorld()->getAssetManager());
-					
+
 					if (info.first == "") {
+						//std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
+						//notify(nextLevel.get());
 						// handle when there is no next level
 						break;
 					}
-					std::shared_ptr<LevelData> nextld = getWorld()->getAssetManager()->get<LevelData>(info.first);
+
 					_paused = false;
+					std::shared_ptr<LevelData> nextld = getWorld()->getAssetManager()->get<LevelData>(info.first);
 
 					_levelController->getWorld()->init(_levelController->getWorld()->getAssetManager(), nextld);
 					std::shared_ptr<Scene> s = _gameState->getScene();
 					std::shared_ptr<World> w = _levelController->getWorld();
 					dispose();
 					init(s, w);
+
+
 				}
 
 			}

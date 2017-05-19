@@ -46,6 +46,7 @@ public:
 
 	std::unordered_map<std::string, std::shared_ptr<Menu>> getMenuMap() { return _menuMap; }
     
+	void populateGameplayMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>>& map, int chIndex, int lvlIndex);
 	void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter);
 
 	void populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string chapter);

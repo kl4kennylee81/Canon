@@ -10,7 +10,7 @@
                 "level34",
                 "level35"
             ],
-            "chapterTexture": "chapter02_texture"
+            "chapterTexture": "chapter03_texture"
         }
     },
     "LevelSelectData": {
@@ -38,6 +38,17 @@
             "key": "level35",
             "levelKey": "madness",
             "name": "Madness"
+        }
+    },
+    "UIData": {
+        "chapter03_texture": {
+            "height": 0.2745571658615137,
+            "key": "chapter03_texture",
+            "textureKey": "chapter03_texture",
+            "type": "IMAGE",
+            "width": 0.4938886373924853,
+            "x": 0.25667722951561794,
+            "y": 0.6876006441223833
         }
     }
 }

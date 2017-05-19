@@ -2,26 +2,58 @@
     "MenuScreenData": {
         "gameScreen": {
             "UIEntries": [
-                "gameScreen_pauseButton"
+                "gameScreen_paintedpause", 
+                "gameScreen_pauseglow"
             ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_24"
+            }, 
             "key": "gameScreen"
         }
     }, 
     "UIData": {
-        "gameScreen_pauseButton": {
+        "gameScreen_numberglow": {
+            "height": 0.15217391304347827, 
+            "key": "gameScreen_numberglow", 
+            "textureKey": "gameScreen_numberglow", 
+            "type": "IMAGE", 
+            "width": 0.1448619284744228, 
+            "x": -0.005885015844273427, 
+            "y": 0.8784219001610305
+        }, 
+        "gameScreen_paintedpause": {
             "buttonAction": {
                 "fxKey": "PAUSE", 
                 "nextScreen": "pauseScreen", 
                 "type": "fxTrigger"
             }, 
-            "fontKey": "Museo300-Regular_16", 
-            "height": 0.06, 
-            "key": "gameScreen_pauseButton", 
+            "height": 0.05877616747181964, 
+            "key": "gameScreen_paintedpause", 
             "type": "BUTTON", 
-            "uiBackgroundKey": "gameScreen_pauseButton", 
-            "width": 0.045, 
-            "x": 0.95, 
-            "y": 0.92
+            "uiBackgroundKey": "gameScreen_paintedpause", 
+            "width": 0.039384336803983705, 
+            "x": 0.9330013580805795, 
+            "y": 0.9202898550724637
+        }, 
+        "gameScreen_pauseglow": {
+            "height": 0.2286634460547504, 
+            "key": "gameScreen_pauseglow", 
+            "textureKey": "gameScreen_pauseglow", 
+            "type": "IMAGE", 
+            "width": 0.13354459031235855, 
+            "x": 0.8832050701674966, 
+            "y": 0.8260869565217391
+        }, 
+        "gameScreen_text": {
+            "fontKey": "menu_header_font", 
+            "height": 0.09017713365539452, 
+            "key": "gameScreen_text", 
+            "textValue": "", 
+            "type": "TEXT", 
+            "width": 0.057492077863286556, 
+            "x": 0.03757356269805342, 
+            "y": 0.9106280193236715
         }
     }
 }

@@ -38,7 +38,38 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
     return true;
 }
 
-void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter)
+void MenuGraph::populateGameplayMenu(const std::shared_ptr<GenericAssetManager>& assets,
+	const std::unordered_map<std::string, std::shared_ptr<Menu>>& map, 
+	int levelIndex, int chapterIndex) {
+
+	std::shared_ptr<Menu> gameMenu  = map.at("gameScreen");
+
+	// make label for chapter/level note
+	std::shared_ptr<UIData> labelText = assets->get<UIData>("gameScreen_text");
+
+	std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
+	textData->textValue = "ch" + std::to_string(chapterIndex) + ":" + "lvl" + std::to_string(levelIndex);
+
+	std::shared_ptr<Node> labelNode = textData->dataToNode(assets, gameMenu->getFontMap());
+	labelNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
+	labelNode->setPosition(textData->x, textData->y);
+
+	// add the glow
+	std::shared_ptr<UIData> glowData = assets->get<UIData>("gameScreen_numberglow");
+	std::shared_ptr<ImageUIData> glowImg = ImageUIData::alloc("gameScreen_numberglow", "", glowData->x, glowData->y, glowData->width, glowData->height, "gameScreen_numberglow");
+	std::shared_ptr<Node> gNode = glowImg->dataToNode(assets, gameMenu->getFontMap());
+	std::shared_ptr<UIComponent> glowComponent = UIComponent::alloc(glowData, gNode);
+
+	std::shared_ptr<UIComponent> labelComponent = UIComponent::alloc(labelText, labelNode);
+	gameMenu->addUIElement(glowComponent);
+	gameMenu->addUIElement(labelComponent);
+
+	_menuMap["gameScreen"] = gameMenu;
+}
+
+void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, 
+	const std::unordered_map<std::string, std::shared_ptr<Menu>> map, 
+	std::string chapter)
 {
 	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
 	int numChaps = chKeys.size();
@@ -99,7 +130,7 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 
 		std::shared_ptr<TextUIData> textData = std::dynamic_pointer_cast<TextUIData>(labelText);
 		textData->textValue = listEntry->name;
-		//textData->textValue = std::to_string(i + chIndex*8);
+		//textData->textValue = std::to_string(i+1);
 
 		std::shared_ptr<Node> labelNode = textData->dataToNode(assets,selectMenu->getFontMap());
         labelNode->setAnchor(Vec2::ANCHOR_MIDDLE);

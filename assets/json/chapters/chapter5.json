@@ -4,10 +4,10 @@
             "chapterKey": "chapter05",
             "name": "The Girl and the Moon",
             "levels": [
-                       "level51",
-                       "level52"
-                       ],
-            "chapterTexture": "chapter02_texture"
+                "level51",
+                "level52"
+            ],
+            "chapterTexture": "chapter05_texture"
         }
     },
     "LevelSelectData": {
@@ -22,6 +22,17 @@
             "key": "level52",
             "levelKey": "boss2",
             "songKey": "boss2"
+        }
+    },
+    "UIData": {
+        "chapter05_texture": {
+            "height": 0.2745571658615137,
+            "key": "chapter05_texture",
+            "textureKey": "chapter05_texture",
+            "type": "IMAGE",
+            "width": 0.48664554096876417,
+            "x": 0.25667722951561794,
+            "y": 0.6876006441223833
         }
     }
 }
