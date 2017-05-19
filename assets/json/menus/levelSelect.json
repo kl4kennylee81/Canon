@@ -5,8 +5,7 @@
                 "levelSelect_backarrow", 
                 "levelSelect_rightarrow", 
                 "levelSelect_plainhomeicon", 
-                "levelSelect_homeglow1", 
-                "levelSelect_backToLevelEditor"
+                "levelSelect_homeglow1"
             ], 
             "fontMap": {
                 "menu_body_font": "Museo300-Regular_16", 
@@ -32,22 +31,7 @@
             "textValue": "", 
             "type": "TEXT", 
             "width": 0.36
-        }, 
-        "levelSelect_backToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
-            }, 
-            "buttonLabel": "Level Edit", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "levelSelect_backToLevelEditor", 
-            "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.8, 
-            "y": 0.05
-        }, 
+        },
         "levelSelect_backarrow": {
             "buttonAction": {
                 "chapterData": "PREVIOUS", 

@@ -394,7 +394,7 @@ void GameplayController::onResume(const std::shared_ptr<cugl::JsonValue> resumeJ
 
 bool GameplayController::chapterHasAnotherLevel() {
     auto levels = _chapterData->getLevelKeys();
-    return std::find(levels.begin(), levels.end(), _curLevelName) != levels.end() && _curLevelName != levels.back();
+    return std::find(levels.begin(), levels.end(), _curLevelName) != levels.end() && _curLevelName != levels.back() && _chapterData->continuous;
 }
 
 std::string GameplayController::getNextLevelName() {

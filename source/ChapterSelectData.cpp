@@ -14,6 +14,7 @@ bool ChapterSelectData::preload(const std::shared_ptr<cugl::JsonValue>& json)
 	Data::preload(json);
 	init(json->getString("name"),
 		json->get("levels")->asStringArray(), json->getString("chapterTexture"));
+    continuous = json->getBool("continuous");
 
 	return true;
 }
