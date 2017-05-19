@@ -23,7 +23,8 @@ using namespace cugl;
 TutorialController::TutorialController() :
 BaseController(),
 _tutorialNode(nullptr),
-_currentStep(0){}
+_currentStep(0),
+_isActive(true){}
 
 void TutorialController::attach(Observer* obs) {
     BaseController::attach(obs);
@@ -268,6 +269,10 @@ void TutorialController::updateStep(std::shared_ptr<GameState> state){
 void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
     /** play the start effects */
     handleTutorialEffects(state, step->getStepData()->getStartEffects());
+    if (!_isActive && !step->getStepData()->getActiveReset()){
+        step->setState(TutorialState::DONE);
+        return;
+    }
     step->setState(TutorialState::ACTIVE);
     
     if (step->getActiveHand() != nullptr){
@@ -278,6 +283,10 @@ void TutorialController::updateStartStep(std::shared_ptr<GameState> state, std::
 
 /** update when step ends */
 void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::shared_ptr<TutorialStep> step){
+    // its reset and will be active after resetting
+    if (!_isActive && !step->getStepData()->getActiveReset()){
+        return;
+    }
     /** play the post effects of the current step */
     handleTutorialEffects(state, step->getStepData()->getEndEffects());
     
@@ -297,9 +306,9 @@ void TutorialController::updateEndStep(std::shared_ptr<GameState> state, std::sh
 
 void TutorialController::update(float timestep, std::shared_ptr<GameState> state) {
     // skip if tutorial isn't active
-    if (isInActive()){
-        return;
-    }
+//    if (isInActive()){
+//        return;
+//    }
     
     /** start off by clearing the tutorial Node */
     _tutorialNode->removeAllChildren();
@@ -314,6 +323,7 @@ void TutorialController::update(float timestep, std::shared_ptr<GameState> state
 bool TutorialController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> levelWorld) {
     _tutorialNode = Node::alloc();
     _currentStep = 0;
+    _isActive = true;
     // TODO replace with getting it from the current level that is active
     // or passed from the saveGameData file
     populateFromTutorial(levelWorld->getAssetManager(), levelWorld->getLevelData()->key);
@@ -399,6 +409,10 @@ void TutorialController::transitionNextStep(std::shared_ptr<GameState> state){
 }
 
 bool TutorialController::isInActive(){
+    if (!_isActive){
+        return true;
+    }
+    
     bool isStepsEmpty = _steps.size() == 0;
     bool isStepsDone = _currentStep >= _steps.size();
     bool isHintsDone = _activeHints.size() == 0;
@@ -457,4 +471,8 @@ void TutorialController::handleTutorialEffect(std::shared_ptr<GameState> state, 
             break;
         }
     }
+}
+
+void TutorialController::toggleActive(){
+    _isActive = false;
 }

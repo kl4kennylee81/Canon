@@ -24,6 +24,7 @@ bool TutorialStepData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::vector<std::string> entries = json->get("UIEntries")->asStringArray();
     TutorialTransition start = strToTransition(json->getString("start"));
     TutorialTransition end = strToTransition(json->getString("end"));
+    bool activeWhenReset = json->getBool("activeWhenReset",false);
     
     float minTime = json->getFloat("minTime");
     
@@ -57,7 +58,7 @@ bool TutorialStepData::preload(const std::shared_ptr<cugl::JsonValue>& json){
         hints = json->get("hints")->asStringArray();
     }
     
-    return init(mbKey,entries,start,end,startEffects,endEffects,minTime,hmovement,hints);
+    return init(mbKey,entries,start,end,startEffects,endEffects,minTime,hmovement,hints,activeWhenReset);
 }
 
 std::shared_ptr<cugl::JsonValue> TutorialStepData::toJsonValue(){

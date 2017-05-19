@@ -44,6 +44,7 @@
 #include <iostream>
 #include <fstream>
 #include "BulletData.hpp"
+#include "ParticleStateData.hpp"
 #include "TutorialLevelData.hpp"
 #include "TutorialStepData.hpp"
 
@@ -128,6 +129,7 @@ void GameEngine::attachLoaders(std::shared_ptr<GenericAssetManager> assets){
     assets->attach<TemplateWaveEntry>(GenericLoader<TemplateWaveEntry>::alloc()->getHook());
 	assets->attach<MenuListData>(GenericLoader<MenuListData>::alloc()->getHook());
     assets->attach<BulletData>(GenericLoader<BulletData>::alloc()->getHook());
+    assets->attach<ParticleStateData>(GenericLoader<ParticleStateData>::alloc()->getHook());
     assets->attach<TutorialLevelData>(GenericLoader<TutorialLevelData>::alloc()->getHook());
     assets->attach<TutorialStepData>(GenericLoader<TutorialStepData>::alloc()->getHook());
 }
@@ -173,6 +175,7 @@ void GameEngine::onStartup() {
 	_assets->loadDirectory("json/menuList.json");
 	_assets->loadDirectory("json/chapterList.json");
 	_assets->loadDirectory("json/save.json");
+    _assets->loadDirectory("json/particleStates.json");
     _assets->loadDirectory("json/uianimations.json");
     
     std::string assetDir = Application::get()->getAssetDirectory();

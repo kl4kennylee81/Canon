@@ -1,4 +1,21 @@
 {
+<<<<<<< HEAD
+	"name":	"sneakAttack",
+	"counter":	22,
+	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
+	"levels":	{
+		"sneakAttack":	{
+			"key":	"sneakAttack",
+			"levelEntries":	{
+				"sneakAttack wave 21":	{
+					"key":	"sneakAttack wave 21",
+					"waveKey":	"sneakAttack wave 21",
+					"time":	180
+				},
+				"sneakAttack wave 22":	{
+					"key":	"sneakAttack wave 22",
+					"waveKey":	"sneakAttack wave 22",
+=======
 	"name":	"madness",
 	"counter":	66,
 	"template names":	["birb", "blobo", "grump", "feshHorizontal", "feshVertical"],
@@ -19,12 +36,17 @@
 				"madness wave 65":	{
 					"key":	"madness wave 65",
 					"waveKey":	"madness wave 65",
+>>>>>>> f3a14e3df1462f86590ae281cecc71195103ca6e
 					"time":	180
 				}
 			},
 			"playerChars":	{
 				"player1":	{
+<<<<<<< HEAD
+					"key":	"",
+=======
 					"key":	"player1",
+>>>>>>> f3a14e3df1462f86590ae281cecc71195103ca6e
 					"x":	18.750000,
 					"y":	7.812500,
 					"element":	"GOLD",
@@ -32,7 +54,11 @@
 					"templateKey":	"playerCharMale"
 				},
 				"player2":	{
+<<<<<<< HEAD
+					"key":	"",
+=======
 					"key":	"player2",
+>>>>>>> f3a14e3df1462f86590ae281cecc71195103ca6e
 					"x":	12.500000,
 					"y":	7.812500,
 					"element":	"BLUE",
@@ -43,6 +69,24 @@
 		}
 	},
 	"waves":	{
+<<<<<<< HEAD
+		"sneakAttack wave 21":	{
+			"key":	"sneakAttack wave 21",
+			"waveEntries":	{
+				"sneakAttack wave 21 object 1":	{
+					"key":	"sneakAttack wave 21 object 1",
+					"x":	22.666666,
+					"y":	11.066667,
+					"element":	"BLUE",
+					"aiKey":	"homing",
+					"templateKey":	"birb"
+				}
+			}
+		},
+		"sneakAttack wave 22":	{
+			"key":	"sneakAttack wave 22",
+			"waveEntries":	{
+=======
 		"madness wave 63":	{
 			"key":	"madness wave 63",
 			"waveEntries":	{
@@ -337,6 +381,7 @@
 					"aiKey":	"homing",
 					"templateKey":	"birb"
 				}
+>>>>>>> f3a14e3df1462f86590ae281cecc71195103ca6e
 			}
 		}
 	}

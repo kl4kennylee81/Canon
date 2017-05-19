@@ -216,7 +216,8 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		updateMinMax(currentLocation);
         
         // notify that the controller has started drawing
-        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc(_path);
+        ElementType active_element = active->getPhysicsComponent()->getElementType();
+        std::shared_ptr<PathDrawing> drawEvent = PathDrawing::alloc(_path, active_element);
         notify(drawEvent.get());
         
         controllerState = DRAWING;
@@ -229,11 +230,11 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
 		if (distance > MIN_DISTANCE) {
             _path->add(physicsPosition);
 			updateMinMax(physicsPosition);
-			addPathToScene(state);
+			//addPathToScene(state);
 		}
 	}
 	if (_wasPressed && !isPressed) {
-		addPathToScene(state);
+//		addPathToScene(state);
         
         // notify that the controller has finished drawing
         std::shared_ptr<PathFinished> pathEvent = PathFinished::alloc(_path, _drawingChar, state->getOtherPlayer(_drawingChar));

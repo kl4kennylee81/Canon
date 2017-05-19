@@ -62,12 +62,12 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     cugl::Size cameraSize = state->getScene()->getCamera()->getViewport().size;
     
 	// Constants
-	float PERCENT_WIDTH = 0.7f;
-	float PERCENT_HEIGHT = 0.98f;
+	float PERCENT_WIDTH = 0.5f;
+	float PERCENT_HEIGHT = 0.97f;
 	float BAR_WIDTH = cameraSize.getIWidth() *PERCENT_WIDTH;
     
     // world coordinates are fixed bar will be same height in all screen aspect ratios
-	float BAR_HEIGHT = 64.f;
+	float BAR_HEIGHT = 11.f;
 	
 	// parent pbar node, child of scenenode
     if (_pBarSceneNode == nullptr){
@@ -85,8 +85,8 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     std::shared_ptr<Texture> finalCap_f = manager->get<Texture>(FINALCAP_FGRD);
     
     std::shared_ptr<Texture> barBackground = manager->get<Texture>(BAR_BACKGROUND);
-    std::shared_ptr<Texture> beginCap_b = manager->get<Texture>(BEGINCAP_BGRD);
-    std::shared_ptr<Texture> finalCap_b = manager->get<Texture>(FINALCAP_BGRD);
+//    std::shared_ptr<Texture> beginCap_b = manager->get<Texture>(BEGINCAP_BGRD);
+//    std::shared_ptr<Texture> finalCap_b = manager->get<Texture>(FINALCAP_BGRD);
 
     
     std::shared_ptr<LevelData> level = world->getLevelData();
@@ -100,8 +100,7 @@ bool ProgressBarController::init(std::shared_ptr<GameState> state, std::shared_p
     Size size = Size(levelNetTime*spacePerUnitTime,BAR_HEIGHT);
     
     std::shared_ptr<ProgressBarModel> progressBar =
-    ProgressBarModel::allocWithCaps(barBackground,beginCap_b,finalCap_b,
-                                barForeground,beginCap_f,finalCap_f,size);
+    ProgressBarModel::allocWithCaps(barBackground,barForeground,beginCap_f,finalCap_f,size);
     
     // set the bar to the top center of the screen
     float barXPos = cameraSize.getIWidth()/2.f;

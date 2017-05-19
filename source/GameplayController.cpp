@@ -108,6 +108,7 @@ void GameplayController::update(float timestep) {
         std::shared_ptr<World> w = _levelController->getWorld();
         dispose();
         init(s,w,_chapterData,_curLevelName);
+        _tutorialController->toggleActive();
         return;
     }
     // TODO hacky way to pause the game
@@ -247,6 +248,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _pathController->attach(_clockController.get());
     _pathController->attach(_soundController.get());
     _pathController->attach(_zoneController.get());
+    _pathController->attach(_particleController.get());
     _pathController->attach(_tutorialController.get());
     
     _levelController->attach(_collisionController.get());
@@ -263,6 +265,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
 	_moveController->attach(_switchController.get());
     _moveController->attach(_pathController.get());
     _moveController->attach(_animationController.get());
+    _moveController->attach(_particleController.get());
     _moveController->attach(_tutorialController.get());
 
     _collisionController->attach(_animationController.get());
@@ -281,6 +284,7 @@ bool GameplayController::init(std::shared_ptr<Scene> scene, std::shared_ptr<Worl
     _spawnController->attach(_zoneController.get());
     _spawnController->attach(_soundController.get());
     _spawnController->attach(_pathController.get());
+    _spawnController->attach(_particleController.get());
     _spawnController->attach(_tutorialController.get());
     
     _bulletController->attach(_levelController.get());

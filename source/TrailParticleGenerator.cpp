@@ -10,36 +10,41 @@
 
 #define PARTICLE_DELAY 0
 #define PARTICLE_COUNT 2
+#define MAX_PARTICLES 250
 
-bool TrailParticleGenerator::init(std::shared_ptr<cugl::FreeList<Particle>> mem, std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
-    _memory = mem;
+bool TrailParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _cooldown = PARTICLE_DELAY;
     _particle_map = particle_map;
     _active = false;
     
     // initialize separate ParticleNodes for blue and gold
-    _bluepd = _particle_map->at("blue_particle");
+    _bluepd = _particle_map->at("blue_trail");
     _bluepartnode = ParticleNode::allocWithTexture(_bluepd.texture);
     _bluepartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _bluepartnode->setBlendEquation(GL_FUNC_ADD);
     _bluepartnode->setPosition(Vec2::ZERO);
+    _bluepartnode->init_memory(MAX_PARTICLES);
     state->getWorldNode()->addChild(_bluepartnode);
     
-    _goldpd = _particle_map->at("gold_particle");
+    // gold particle node
+    _goldpd = _particle_map->at("gold_trail");
     _goldpartnode = ParticleNode::allocWithTexture(_goldpd.texture);
     _goldpartnode->setBlendFunc(GL_SRC_ALPHA, GL_ONE);
     _goldpartnode->setBlendEquation(GL_FUNC_ADD);
     _goldpartnode->setPosition(Vec2::ZERO);
+    _goldpartnode->init_memory(MAX_PARTICLES);
     state->getWorldNode()->addChild(_goldpartnode);
     
     return true;
 }
 
 void TrailParticleGenerator::add_character(GameObject* char_obj) {
+    std::cout<<"added trail mapping!\n";
     _character_list.push_back(char_obj);
 }
 
 void TrailParticleGenerator::remove_character(GameObject* char_obj) {
+    std::cout<<"removing trail mapping!\n";
     for(auto it = _character_list.begin() ; it != _character_list.end(); ++it) {
         if ((*it) == char_obj){
             it = _character_list.erase(it);
@@ -51,8 +56,10 @@ void TrailParticleGenerator::remove_character(GameObject* char_obj) {
 void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
     ElementType element = char_obj->getPhysicsComponent()->getElementType();
     Vec2 vel = char_obj->getPhysicsComponent()->getBody()->getLinearVelocity();
+    Vec2 world_pos = char_obj->getPosition() * Util::getGamePhysicsScale();
     bool active;
     
+    // don't make the trail if the character is not moving
     if (vel.isZero()) {
         active = false;
     } else {
@@ -71,7 +78,7 @@ void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
     }
     
     if (active && _cooldown == 0) {
-        createTrailParticle(PARTICLE_COUNT, pd, partnode, char_obj->getPosition() * Util::getGamePhysicsScale());
+        createTrailParticle(PARTICLE_COUNT, pd, partnode, world_pos);
         _cooldown = PARTICLE_DELAY;
     } else if (_cooldown > 0) {
         _cooldown--;
@@ -80,17 +87,13 @@ void TrailParticleGenerator::generate_trail(GameObject* char_obj) {
 
 void TrailParticleGenerator::createTrailParticle(int num, ParticleData pd, std::shared_ptr<ParticleNode> partnode, Vec2 world_pos) {
     for (int ii = 0; ii < num; ii++) {
-        Particle* sprite = _memory->malloc();
-        if (sprite != nullptr) {
-            float rand = getRandomFloat(0,1.0);
-            auto angle = rand*2.0f*M_PI;
-            
-            pd.position = world_pos;
-            pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
-            
-            sprite->init(pd);
-            partnode->addParticle(sprite);
-        }
+        float rand = getRandomFloat(0,1.0);
+        auto angle = rand*2.0f*M_PI;
+        
+        pd.position = world_pos;
+        pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
+        
+        partnode->addParticle(pd, -1, pd); // -1 means no group
     }
 }
 
@@ -104,18 +107,8 @@ void TrailParticleGenerator::generate() {
     }
     
     // Move all of the particles according to velocity
-    _bluepartnode->update(_particles);
-    _goldpartnode->update(_particles);
-    
-    // Garbage collect particles
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Particle* p = *it;
-        _bluepartnode->removeParticle(p);
-        _goldpartnode->removeParticle(p);
-        _memory->free(p);
-    }
-    
-    _particles.clear();
+    _bluepartnode->update();
+    _goldpartnode->update();
 }
 
 

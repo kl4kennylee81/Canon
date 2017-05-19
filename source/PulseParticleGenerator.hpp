@@ -1,6 +1,5 @@
 //
 //  PulseParticleGenerator.hpp
-//  MemoryDemo
 //
 //  Created by Hong Jeon on 5/4/17.
 //  Copyright © 2017 Game Design Initiative at Cornell. All rights reserved.
@@ -11,6 +10,7 @@
 
 #include <stdio.h>
 #include "ParticleGenerator.hpp"
+#include "GroupContainer.hpp"
 
 /**
  * Create a pulase in the given locations. Used to indicate spawning enemies.
@@ -18,50 +18,53 @@
 class PulseParticleGenerator : public ParticleGenerator {
 private:
     /**
-     * How many pulses to generate per second
-     */
-    float _pulse_rate;
-    
-    /**
      * Frames to wait until the next pulse is fired
      */
     float _timeout;
     
     /**
-     * This will be replaced by GameObject -> ParticleWrapper
+     * Main node for the pulse. Replace later with a list.
      */
-    std::unordered_map<cugl::Vec2*, std::shared_ptr<ParticleWrapper>> _location_to_wrapper;
+    std::shared_ptr<ParticleNode> _pulsepartnode;
     
-    void createPulseParticles(std::set<Particle*>& particle_set);
+    /**
+     * This also might need to be replace with a general list.
+     */
+    ParticleData _ringpd;
+    
+    /**
+     * GameObject -> group number of the wrapper
+     */
+    // maybe try changing this to something else if it lags
+    std::unordered_map<GameObject*, int> _obj_to_group_num;
+    
+    void createPulseParticles(Vec2 world_pos, int group_num, ElementType element);
     
     ParticleData randomizeAngle(ParticleData pd);
     
-    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
+//    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     
 public:
     PulseParticleGenerator() : ParticleGenerator() {}
     
-    bool init(std::shared_ptr<ParticleNode> partnode,
-              std::shared_ptr<cugl::FreeList<Particle>> mem,
-              ParticleData pd);
+    bool init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map);
     
-    static std::shared_ptr<PulseParticleGenerator> alloc(std::shared_ptr<ParticleNode> partnode, std::shared_ptr<cugl::FreeList<Particle>> mem, ParticleData pd) {
+    static std::shared_ptr<PulseParticleGenerator> alloc(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
         std::shared_ptr<PulseParticleGenerator> result = std::make_shared<PulseParticleGenerator>();
-        return (result->init(partnode, mem, pd) ? result : nullptr);
+        return (result->init(state, particle_map) ? result : nullptr);
     }
     
     void generate();
     
     /**
-     * Creates a fresh pulse particle from the template _pd and attaches it to the ParticleNode
+     * Adds a gameobject to a list to generate a pulse at that location.
      */
-    Particle* createSinglePulse(ParticleData pd);
+    void add_mapping(GameObject* obj);
     
     /**
-     * This is going to get replaced by the code that handles associating the zone with the particle wrapper
-     * for now, associate a location with a particle wrapper
+     * Removes the gameobject. Use this when you want to get rid of the pulse on the object.
      */
-    void add_particles(Vec2 location);
+    void remove_mapping(GameObject* obj);
 };
 
 
