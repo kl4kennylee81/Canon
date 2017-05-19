@@ -154,7 +154,7 @@ void LevelController::dispose(){
 void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     
     // send the player spawning event
-    if (!_level.hasPlayerSpawned()){
+    if (!_level.hasPlayerSpawned() && _spawnPlayers){
         _level.togglePlayerSpawned();
         for (auto playerEntry : _level.getPlayerChars()){
             spawnAndRecordWaveEntry(playerEntry,true,state);
@@ -184,11 +184,12 @@ void LevelController::update(float timestep,std::shared_ptr<GameState> state){
     }
 }
 
-bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world) {
+bool LevelController::init(std::shared_ptr<GameState> state, std::shared_ptr<World> world, bool spawnPlayers) {
     _world = world;
     _level.init(world->getLevelData());
     _progressBarController = ProgressBarController::alloc(state,world);
     _levelState = LevelState::ACTIVE;
+    _spawnPlayers = spawnPlayers;
     return true;
 }
 
