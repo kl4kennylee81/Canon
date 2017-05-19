@@ -2,6 +2,7 @@
     "tutorialLevels": {
         "precision": {
             "stepKeys": [
+                "precision_extraTime",
                 "precision_blobo_modal"
             ],
             "fontMap" : {
@@ -13,6 +14,22 @@
         }
     },
     "tutorialSteps": {
+        "precision_extraTime" : {
+            "start": "IMMEDIATE",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 150,
+            "hints": [],
+            "activeWhenReset" : 1            
+        },
         "precision_blobo_modal":{
             "start": "ON_ENEMY_SPAWN",
             "end": "ON_CLICK",

@@ -2,6 +2,7 @@
     "tutorialLevels": {
         "rapidSpawn": {
             "stepKeys": [
+                "rapidSpawn_extraTime",
                 "rapidSpawn_health_modal",
                 "rapidSpawn_health_hint"
             ],
@@ -14,6 +15,22 @@
         }
     },
     "tutorialSteps": {
+        "rapidSpawn_extraTime" : {
+            "start": "IMMEDIATE",
+            "end": "IMMEDIATE",
+            "UIEntries": [
+            ],
+            "startEffects":[
+                "PAUSE_SPAWNING"
+            ],
+            "endEffects": [
+                "RESUME_SPAWNING"
+            ],
+            "menuBackgroundKey": "",
+            "minTime" : 150,
+            "hints": [],
+            "activeWhenReset" : 1            
+        },
         "rapidSpawn_health_modal":{
             "start": "ON_ENEMY_SPAWN",
             "end": "ON_CLICK",
