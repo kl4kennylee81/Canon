@@ -18,7 +18,7 @@
                 "pauseMenu_resumeglow", 
                 "pauseMenu_levelsglow", 
                 "pauseMenu_homeglow", 
-                "pauseMenu_retryglow",
+                "pauseMenu_retryglow", 
                 "pauseMenu_backToLevelEditor"
             ], 
             "fontMap": {
@@ -69,6 +69,21 @@
             "width": 0.05296514259846084, 
             "x": 0.4146672702580353, 
             "y": 0.18599033816425117
+        }, 
+        "pauseMenu_backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "pauseMenu_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.05
         }, 
         "pauseMenu_bluemodule": {
             "height": 0.3357487922705314, 
@@ -282,21 +297,6 @@
             "width": 0.12222725215029426, 
             "x": 0.3775464010864645, 
             "y": 0.12157809983896943
-        },
-        "pauseMenu_backToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
-            }, 
-            "buttonLabel": "Level Edit", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "levelSelect_backToLevelEditor", 
-            "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.8, 
-            "y": 0.05
         }
     }
 }

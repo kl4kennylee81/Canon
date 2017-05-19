@@ -18,7 +18,7 @@
                 "victory_Bunchofstars", 
                 "victory_4CornerSwirls", 
                 "victory_loide", 
-                "victory_odette",
+                "victory_odette", 
                 "victory_backToLevelEditor"
             ], 
             "fontMap": {
@@ -72,6 +72,21 @@
             "width": 0.25, 
             "x": 0.375, 
             "y": 0.025
+        }, 
+        "victory_backToLevelEditor": {
+            "buttonAction": {
+                "buttonTarget": "LEVEL_EDIT", 
+                "nextScreen": "blankScreen", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "Level Edit", 
+            "fontKey": "menu_header_font", 
+            "height": 0.1, 
+            "key": "victory_backToLevelEditor", 
+            "type": "BUTTON", 
+            "width": 0.15, 
+            "x": 0.8, 
+            "y": 0.05
         }, 
         "victory_bluemod": {
             "height": 0.3357487922705314, 
@@ -222,21 +237,6 @@
             "width": 0.3481213218650973, 
             "x": 0.33635129017655047, 
             "y": 0.498389694041868
-        },
-        "victory_backToLevelEditor": {
-            "buttonAction": {
-                "buttonTarget": "LEVEL_EDIT", 
-                "nextScreen": "blankScreen", 
-                "type": "modeChange"
-            }, 
-            "buttonLabel": "Level Edit", 
-            "fontKey": "menu_header_font", 
-            "height": 0.1, 
-            "key": "levelSelect_backToLevelEditor", 
-            "type": "BUTTON", 
-            "width": 0.15, 
-            "x": 0.8, 
-            "y": 0.05
         }
     }
 }
