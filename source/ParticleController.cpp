@@ -204,32 +204,6 @@ void ParticleController::handleAction(GameObject* obj, AnimationAction animActio
     
 }
 
-/*
-
-void ParticleController::handleCharacterSpawn(GameObject* obj) {
-    if (!obj->getIsPlayer()) return;
-    _trail_gen->add_character(obj);
-}
-
-void ParticleController::handleCharacterDeath(GameObject* obj) {
-    if (!obj->getIsPlayer()) return;
-    _trail_gen->remove_character(obj);
-}
-
-
-// there is bug here where we get like 4 death events from collision controller per 1 monster death
-void ParticleController::handleDeathParticle(GameObject* obj) {
-    if (obj->type == GameObject::ObjectType::ZONE) return;
-    
-    Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
-    _death_gen->add_particles(world_pos, obj->getPhysicsComponent()->getElementType());
-}
-
-void ParticleController::handleZoneSpawn(GameObject* obj) {
-    _zone_gen->add_mapping(obj);
-}
-*/
-
 void ParticleController::update(float timestep, std::shared_ptr<GameState> state) {
     _trail_gen->generate();
 //    _death_gen->generate();
@@ -352,18 +326,14 @@ bool ParticleController::init(std::shared_ptr<GameState> state, const std::share
     
     // pulse for spawning
     ParticleData pulsepd;
-    pulsepd.ttl = 180;
-    pulsepd.color_fade = true;
-    pulsepd.start_color = Color4f::WHITE;
-    pulsepd.end_color = Color4f::WHITE;
-    pulsepd.color_duration = -1; // infinite
+    pulsepd.ttl = 60;
     pulsepd.scale = true;
-    pulsepd.start_scale = 0.05;
-    pulsepd.end_scale = 1;
-    pulsepd.current_scale = 0.05;
+    pulsepd.start_scale = 0.1;
+    pulsepd.current_scale = 0.00;
+    pulsepd.end_scale = .7;
     pulsepd.alpha_fade = true;
-    pulsepd.start_alpha = 0.5;
-    pulsepd.alpha_duration = 120;
+    pulsepd.start_alpha = .3;
+    pulsepd.alpha_duration = 50;
     pulsepd.texture_name = "pulse";
     pulsepd.texture = assets->get<Texture>(pulsepd.texture_name);
     

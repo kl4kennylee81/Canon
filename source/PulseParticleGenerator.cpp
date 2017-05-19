@@ -12,10 +12,20 @@
 // how many frames to wait until the next pulse
 #define TIMEOUT_FRAMES 100
 // how many pulses to generate per second
-#define PULSE_RATE 7
+#define PULSE_RATE 3
+#define NUM_PARTICLES 3
 // max number of pulse particles
 #define MAX_PARTICLES 1000
 #define MAX_GROUPS 1000
+
+#define BLUER 49
+#define BLUEG 185
+#define BLUEB 255
+
+#define GOLDR 235
+#define GOLDG 235
+#define GOLDB 56
+
 
 bool PulseParticleGenerator::init(std::shared_ptr<GameState> state, std::unordered_map<std::string, ParticleData>* particle_map) {
     _particle_map = particle_map;
@@ -52,7 +62,7 @@ ParticleData PulseParticleGenerator::randomizeAngle(ParticleData pd) {
 /**
  * Generates a pulse at world_pos and assigns a new group to that pulse.
  */
-void PulseParticleGenerator::createPulseParticles(Vec2 world_pos, int group_num) {
+void PulseParticleGenerator::createPulseParticles(Vec2 world_pos, int group_num, ElementType element) {
     ParticleData pd = _ringpd; // don't taint the template
     
     // how much scale each pulse is separated by
@@ -61,17 +71,33 @@ void PulseParticleGenerator::createPulseParticles(Vec2 world_pos, int group_num)
     float ttl_rate = ceil(((float)pd.ttl)/(PULSE_RATE-1));
     pd.current_scale = pd.start_scale;
     
+    if (element == ElementType::BLUE) {
+        pd.color_fade = true;
+        pd.start_color = normalizedRGB(BLUER,BLUEG,BLUEB,1);
+        pd.end_color = normalizedRGB(BLUER,BLUEG,BLUEB,1);
+        pd.color_duration = -1; // infinite
+    } else {
+        pd.color_fade = true;
+        pd.start_color = normalizedRGB(GOLDR,GOLDG,GOLDB,1);
+        pd.end_color = normalizedRGB(GOLDR,GOLDG,GOLDB,1);
+        pd.color_duration = -1; // infinite
+    }
+    
+    // pd is the original starting particle
+    ParticleData original = pd;
+    
     // create the particles that are spaced out by a constant amount
     for (int ii = 0; ii < PULSE_RATE; ii++) {
-        _pulsepartnode->addParticle(randomizeAngle(pd), group_num);
+        _pulsepartnode->addParticle(randomizeAngle(pd), group_num, original);
+        _pulsepartnode->_original = original;
         pd.current_scale += scale_rate; // ones in the outer ring are bigger
         pd.ttl -= ttl_rate; // ones in the outer ring die sooner
     }
 }
 
 void PulseParticleGenerator::add_mapping(GameObject* obj) {
-    // don't add pulses on players
-    if (obj->getIsPlayer()) return;
+    // don't add pulses on players or zones or bullets
+    if (obj->type != GameObject::ObjectType::CHARACTER || obj->getIsPlayer()) return;
     
     // this might be the source of the gravity bug?
     Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
@@ -79,30 +105,28 @@ void PulseParticleGenerator::add_mapping(GameObject* obj) {
     
     // finds the next available group num
     int group_num = _groups->makeNewGroup(world_pos, repeat);
+    ElementType element = obj->getPhysicsComponent()->getElementType();
     
     // create the wrapper
-    createPulseParticles(world_pos, group_num);
+    for (int i = 0; i < NUM_PARTICLES; i++) {
+        createPulseParticles(world_pos, group_num, element);
+    }
     
     // insert wrapper to object -> wrapper map
     _obj_to_group_num.insert(std::make_pair(obj, group_num));
-    
-    std::cout <<"added mapping\n";
-    
 }
 
 void PulseParticleGenerator::remove_mapping(GameObject* obj) {
-    if (obj->getIsPlayer()) return;
+    if (obj->type != GameObject::ObjectType::CHARACTER || obj->getIsPlayer()) return;
     
     // find out what group the object belongs to
     auto group_num = _obj_to_group_num.at(obj);
     
     // mark this one as done. very important.
     _groups->group_array[group_num].alive = false;
-//
+
     // remove object from the mapping
     _obj_to_group_num.erase(obj);
-    
-    std::cout <<"removed mapping\n";
 }
 
 /**

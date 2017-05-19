@@ -93,7 +93,7 @@ void TrailParticleGenerator::createTrailParticle(int num, ParticleData pd, std::
         pd.position = world_pos;
         pd.velocity = Vec2(((float)(PARTICLE_SPEED*cosf(angle))),(float)(PARTICLE_SPEED*sinf(angle)));
         
-        partnode->addParticle(pd, -1); // -1 means no group
+        partnode->addParticle(pd, -1, pd); // -1 means no group
     }
 }
 

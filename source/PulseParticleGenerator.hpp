@@ -43,11 +43,11 @@ private:
     // maybe try changing this to something else if it lags
     std::unordered_map<GameObject*, int> _obj_to_group_num;
     
-    void createPulseParticles(Vec2 world_pos, int group_num);
+    void createPulseParticles(Vec2 world_pos, int group_num, ElementType element);
     
     ParticleData randomizeAngle(ParticleData pd);
     
-    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
+//    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     
 public:
     PulseParticleGenerator() : ParticleGenerator() {}

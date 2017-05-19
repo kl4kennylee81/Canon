@@ -30,6 +30,9 @@ public:
     // expose groups passed down from the generator
     std::shared_ptr<GroupContainer> _groups;
     
+    // needed this for replaying pulses
+    ParticleData _original;
+    
     /**
      * Returns a new ParticleNode with the given texture
      *
@@ -65,7 +68,7 @@ public:
      * Creates the particle with given particle data template and
      * assigns it to group_num. -1 means no group.
      */
-    void addParticle(ParticleData pd, int group_num);
+    void addParticle(ParticleData pd, int group_num, ParticleData original);
     
     /**
      * No use for this?

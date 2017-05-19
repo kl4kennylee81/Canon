@@ -8,14 +8,29 @@
 
 #include "ParticleNode.hpp"
 
-void ParticleNode::addParticle(ParticleData pd, int g_num) {
+void ParticleNode::addParticle(ParticleData pd, int g_num, ParticleData original) {
     Particle* particle = _memory->malloc();
     if (particle != nullptr) {
         // set the attributes of the new particle
         particle->init(pd);
         particle->group_num = g_num;
+        particle->_original = original;
     }
 }
+
+void ParticleNode::group_update_particles(Particle* particle) {
+    // don't update group if particle doesn't have a group
+    if (particle->group_num < 0) {
+        return;
+    }
+    // find the group
+    Group g = _groups->group_array[particle->group_num];
+    // update position
+    particle->_pd.position = g.global_position;
+    // update active based on group
+    particle->_pd.active = g.alive;
+}
+
 
 void ParticleNode::update() {
     std::set<Particle*> to_remove;
@@ -34,7 +49,12 @@ void ParticleNode::update() {
         particle->move();
         
         if (!particle->isActive()) {
-            to_remove.insert(particle);
+            // check if this guy is supposed to repeat
+            if (particle->group_num >= 0 && _groups->group_array[particle->group_num].repeat) {
+                particle->replay_from_beginning();
+            } else {
+                to_remove.insert(particle);
+            }
         }
     }
     
@@ -42,19 +62,6 @@ void ParticleNode::update() {
     for (auto it = to_remove.begin(); it != to_remove.end(); it++) {
         _memory->free((*it));
     }
-}
-
-void ParticleNode::group_update_particles(Particle* particle) {
-    // don't update group if particle doesn't have a group
-    if (particle->group_num < 0) {
-        return;
-    }
-    // find the group
-    Group g = _groups->group_array[particle->group_num];
-    // update position
-    particle->_pd.position = g.global_position;
-    // update active based on group
-    particle->_pd.active = g.alive;
 }
 
 Mat4 ParticleNode::updateTransformLocal(Mat4 combined, float scale, float angle) {

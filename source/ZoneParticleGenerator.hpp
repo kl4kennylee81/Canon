@@ -29,9 +29,9 @@ private:
     /**
      * This will be replaced by GameObject -> ParticleWrapper
      */
-    std::unordered_map<GameObject*, std::shared_ptr<ParticleWrapper>> _obj_to_wrapper;
+//    std::unordered_map<GameObject*, std::shared_ptr<ParticleWrapper>> _obj_to_wrapper;
     
-    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
+//    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     
 public:
     ZoneParticleGenerator() : ParticleGenerator() {}

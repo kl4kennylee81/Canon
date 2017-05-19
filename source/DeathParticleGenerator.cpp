@@ -73,58 +73,58 @@ void DeathParticleGenerator::createDeathParticles(std::set<Particle*>& particle_
 void DeathParticleGenerator::add_particles(Vec2 location, ElementType element) {
     if (!_active) return;
     
-    // create the wrapper
-    std::set<Particle*> death_particles_set;
-    createDeathParticles(death_particles_set, element, location);
-    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(death_particles_set, location);
-    
-    _alive_wrappers.insert(wrapper);
+//    // create the wrapper
+//    std::set<Particle*> death_particles_set;
+//    createDeathParticles(death_particles_set, element, location);
+//    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(death_particles_set, location);
+//    
+//    _alive_wrappers.insert(wrapper);
 }
 
-void DeathParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
-    std::set<Particle*> to_remove;
-    
-    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
-        Particle* p = *it;
-        p->move();
-        
-        if (!p->isActive()) {
-            reset.insert(p);
-            to_remove.insert(p);
-        }
-    }
-    
-    // remove from particle_list
-    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-        wrapper->_particle_set.erase(*it);
-    }
-}
+//void DeathParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
+//    std::set<Particle*> to_remove;
+
+//    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
+//        Particle* p = *it;
+//        p->move();
+//        
+//        if (!p->isActive()) {
+//            reset.insert(p);
+//            to_remove.insert(p);
+//        }
+//    }
+//    
+//    // remove from particle_list
+//    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
+//        wrapper->_particle_set.erase(*it);
+//    }
+//}
 
 void DeathParticleGenerator::generate() {
     if (!_active) return;
     
-    std::set<std::shared_ptr<ParticleWrapper>> to_remove;
-    
-    for (auto it = _alive_wrappers.begin(); it != _alive_wrappers.end(); it++) {
-        std::shared_ptr<ParticleWrapper> wrapper = (*it);
-        if (wrapper->_particle_set.size() == 0) {
-            to_remove.insert(wrapper);
-            break;
-        }
-        updateWrapper(wrapper, _particles);
-    }
-    
-    // remove from alive wrappers set
-    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
-        _alive_wrappers.erase(*it);
-    }
-    
-    // remove the dead particles from the particle node
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Particle* p = *it;
-        _bluepartnode->removeParticle(p); // check both since we don't know
-        _goldpartnode->removeParticle(p);
-//        _memory->free(p);
-    }
-    _particles.clear();
+//    std::set<std::shared_ptr<ParticleWrapper>> to_remove;
+//    
+//    for (auto it = _alive_wrappers.begin(); it != _alive_wrappers.end(); it++) {
+//        std::shared_ptr<ParticleWrapper> wrapper = (*it);
+//        if (wrapper->_particle_set.size() == 0) {
+//            to_remove.insert(wrapper);
+//            break;
+//        }
+//        updateWrapper(wrapper, _particles);
+//    }
+//    
+//    // remove from alive wrappers set
+//    for (auto it=to_remove.begin(); it != to_remove.end(); it++) {
+//        _alive_wrappers.erase(*it);
+//    }
+//    
+//    // remove the dead particles from the particle node
+//    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
+//        Particle* p = *it;
+//        _bluepartnode->removeParticle(p); // check both since we don't know
+//        _goldpartnode->removeParticle(p);
+////        _memory->free(p);
+//    }
+//    _particles.clear();
 }

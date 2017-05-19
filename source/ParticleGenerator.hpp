@@ -15,7 +15,6 @@
 #include "Particle.h"
 #include "ParticleData.hpp"
 #include "ParticleNode.hpp"
-#include "ParticleWrapper.hpp"
 #include "GameObject.hpp"
 #include "GameState.hpp"
 #include "PhysicsComponent.hpp"
@@ -51,6 +50,8 @@ public:
     
     /** Uniform random generator [a,b) */
     static float getRandomFloat(float a, float b);
+    
+    Color4f normalizedRGB(int r, int g, int b, float a);
 };
 
 #endif /* ParticleGenerator_hpp */

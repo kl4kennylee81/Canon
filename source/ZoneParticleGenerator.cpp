@@ -73,39 +73,39 @@ void ZoneParticleGenerator::createZoneParticle(int num, std::set<Particle*>& par
 }
 
 void ZoneParticleGenerator::add_mapping(GameObject* obj) {
-    Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
-    std::set<Particle*> zone_particles_set;
-    createZoneParticle(_ring_num, zone_particles_set, obj->getPhysicsComponent()->getElementType());
-    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(zone_particles_set, world_pos);
-    
-    _obj_to_wrapper.insert(std::make_pair(obj, wrapper));
+//    Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+//    std::set<Particle*> zone_particles_set;
+//    createZoneParticle(_ring_num, zone_particles_set, obj->getPhysicsComponent()->getElementType());
+//    std::shared_ptr<ParticleWrapper> wrapper = ParticleWrapper::alloc(zone_particles_set, world_pos);
+//    
+//    _obj_to_wrapper.insert(std::make_pair(obj, wrapper));
 }
 
 void ZoneParticleGenerator::remove_mapping(GameObject* obj) {
-    auto wrapper = _obj_to_wrapper.at(obj);
-    for(auto it = wrapper->_particle_set.begin(); it != wrapper->_particle_set.end(); ++it) {
-        Particle* p = *it;
-        _circlepartnode->removeParticle(p);
-        _ringpartnode->removeParticle(p);
-//        _memory->free(p);
-    }
-    
-    _obj_to_wrapper.erase(obj);
+//    auto wrapper = _obj_to_wrapper.at(obj);
+//    for(auto it = wrapper->_particle_set.begin(); it != wrapper->_particle_set.end(); ++it) {
+//        Particle* p = *it;
+//        _circlepartnode->removeParticle(p);
+//        _ringpartnode->removeParticle(p);
+////        _memory->free(p);
+//    }
+//    
+//    _obj_to_wrapper.erase(obj);
 }
 
-void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
-    // update _global_position by looking at the zone position;
-    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
-        
-        Particle* p = *it;
-        p->_pd.position = wrapper->_global_position;
-        p->move();
-        
-        if (!p->isActive()) {
-            reset.insert(p);
-        }
-    }
-}
+//void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset) {
+//    // update _global_position by looking at the zone position;
+//    for (auto it=wrapper->_particle_set.begin(); it !=wrapper->_particle_set.end(); ++it) {
+//        
+//        Particle* p = *it;
+//        p->_pd.position = wrapper->_global_position;
+//        p->move();
+//        
+//        if (!p->isActive()) {
+//            reset.insert(p);
+//        }
+//    }
+//}
 
 /**
  * Goes through all of the ParticleWrapper we have, and calls update on each one of them
@@ -113,26 +113,26 @@ void ZoneParticleGenerator::updateWrapper(std::shared_ptr<ParticleWrapper> wrapp
 void ZoneParticleGenerator::generate() {
     if (!_active) return;
     
-    for (auto it = _obj_to_wrapper.begin(); it != _obj_to_wrapper.end(); it++) {
-        
-        GameObject* obj = it->first;
-        std::shared_ptr<ParticleWrapper> wrapper = it->second;
-        
-        // sync zone position with char position.
-        Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
-        wrapper->_global_position = world_pos;
-        
-        // update particles
-        updateWrapper(wrapper, _particles);
-    }
-    
-    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
-        Particle* p = *it;
-        _circlepartnode->removeParticle(p);
-        _ringpartnode->removeParticle(p);
-//        _memory->free(p);
-    }
-    _particles.clear();
+//    for (auto it = _obj_to_wrapper.begin(); it != _obj_to_wrapper.end(); it++) {
+//        
+//        GameObject* obj = it->first;
+//        std::shared_ptr<ParticleWrapper> wrapper = it->second;
+//        
+//        // sync zone position with char position.
+//        Vec2 world_pos = obj->getPosition()*Util::getGamePhysicsScale();
+//        wrapper->_global_position = world_pos;
+//        
+//        // update particles
+//        updateWrapper(wrapper, _particles);
+//    }
+//    
+//    for(auto it = _particles.begin(); it != _particles.end(); ++it) {
+//        Particle* p = *it;
+//        _circlepartnode->removeParticle(p);
+//        _ringpartnode->removeParticle(p);
+////        _memory->free(p);
+//    }
+//    _particles.clear();
 }
 
 

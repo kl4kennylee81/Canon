@@ -45,6 +45,9 @@ private:
     float findScaleStep();
     
 public:
+    // this is the data it starts from if we reset the particles. like in pulse
+    ParticleData _original;
+    
     /** Holds all properties of the particle that are set by a data file */
     ParticleData _pd;
     
@@ -61,6 +64,12 @@ public:
     
     /** Must have this method to be compatible with a FreeList */
     void reset();
+    
+    /**
+     * Uses the particle data from when it was initialized.
+     * Instance variables are initialized too.
+     */
+    void replay_from_beginning();
     
     Color4f getCurrentColor() { return _current_color; }
     

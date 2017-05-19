@@ -22,13 +22,13 @@ private:
     ParticleData _blue_death_pd;
     ParticleData _gold_death_pd;
     
-    std::set<std::shared_ptr<ParticleWrapper>> _alive_wrappers;
+//    std::set<std::shared_ptr<ParticleWrapper>> _alive_wrappers;
     
     void createDeathParticles(std::set<Particle*>& particle_set, ElementType element, Vec2 location);
     
     ParticleData randomizePD(ParticleData pd);
     
-    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
+//    void updateWrapper(std::shared_ptr<ParticleWrapper> wrapper, std::set<Particle*>& reset);
     
 public:
     DeathParticleGenerator() : ParticleGenerator() {}
