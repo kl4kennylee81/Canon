@@ -44,7 +44,7 @@
             "key": "levelSelect_backarrow", 
             "type": "BUTTON", 
             "uiBackgroundKey": "levelSelect_backarrow", 
-            "width": 0.022181982797645994, 
+            "width": 0.044181982797645994, 
             "x": 0.04119511090991399, 
             "y": 0.3776167471819646
         }, 
@@ -101,7 +101,7 @@
             "key": "levelSelect_rightarrow", 
             "type": "BUTTON", 
             "uiBackgroundKey": "levelSelect_rightarrow", 
-            "width": 0.022181982797645994, 
+            "width": 0.044181982797645994, 
             "x": 0.9361702127659575, 
             "y": 0.3776167471819646
         }, 
