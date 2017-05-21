@@ -97,7 +97,7 @@
         "startMenu_starticon": {
             "buttonAction": {
                 "buttonTarget": "MAIN_MENU", 
-                "nextScreen": "storyScreen", 
+                "nextScreen": "levelSelect", 
                 "type": "modeChange"
             }, 
             "height": 0.18679549114331723, 
