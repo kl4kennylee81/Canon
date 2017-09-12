@@ -15,10 +15,13 @@
 class FinishEvent : public Event {
 public:
     enum class FinishEventType : int {
+        // TODO: it's more accurate to have it be level won, level lost, and game won
         /** Signal game is won */
         GAME_WON,
         /** Signal game is lost */
-        GAME_LOST
+        GAME_LOST,
+        /** Signal that last level of game is beaten **/
+        GAME_COMPLETED
     };
     
     FinishEventType _finishType;
@@ -70,6 +73,23 @@ public:
     }
     
     GameWonEvent() : FinishEvent(){}
+};
+
+class GameCompletedEvent : public FinishEvent {
+public:
+    bool init() {
+        FinishEvent::init();
+        _finishType = FinishEventType::GAME_COMPLETED;
+        return true;
+    }
+    
+    static std::shared_ptr<GameCompletedEvent> alloc() {
+        std::shared_ptr<GameCompletedEvent> result = std::make_shared<GameCompletedEvent>();
+        return (result->init() ? result : nullptr);
+    }
+    
+    GameCompletedEvent() : FinishEvent(){}
+    
 };
 
 #endif /* FinishEvent_hpp */

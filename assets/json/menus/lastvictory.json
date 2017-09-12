@@ -1,0 +1,210 @@
+{
+    "MenuScreenData": {
+        "lastvictory": {
+            "UIEntries": [
+                "lastvictory_bluemod", 
+                "lastvictory_levelselect", 
+                "lastvictory_redo", 
+                "lastvictory_homebutton2", 
+                "lastvictory_victoryText", 
+                "lastvictory_SideEnds", 
+                "lastvictory_levelText", 
+                "lastvictory_homeText", 
+                "lastvictory_retryText", 
+                "lastvictory_retryglow", 
+                "lastvictory_levelglow", 
+                "lastvictory_homeglow", 
+                "lastvictory_Bunchofstars", 
+                "lastvictory_4CornerSwirls", 
+                "lastvictory_loide", 
+                "lastvictory_odette"
+            ], 
+            "fontMap": {
+                "menu_body_font": "Museo300-Regular_16", 
+                "menu_header_font": "Museo300-Regular_24", 
+                "menu_superheader_font": "Across the Road_180"
+            }, 
+            "key": "lastvictory", 
+            "menuBackgroundKey": "lastvictory_dimBG"
+        }
+    }, 
+    "UIData": {
+        "lastvictory_4CornerSwirls": {
+            "height": 0.9685990338164251, 
+            "key": "lastvictory_4CornerSwirls", 
+            "textureKey": "lastvictory_4CornerSwirls", 
+            "type": "IMAGE", 
+            "width": 0.9818922589406971, 
+            "x": 0.008601177003168854, 
+            "y": 0.015297906602254496
+        }, 
+        "lastvictory_Bunchofstars": {
+            "height": 0.8099838969404187, 
+            "key": "lastvictory_Bunchofstars", 
+            "textureKey": "lastvictory_Bunchofstars", 
+            "type": "IMAGE", 
+            "width": 0.8981439565414214, 
+            "x": 0.05115436849253056, 
+            "y": 0.08212560386473422
+        }, 
+        "lastvictory_SideEnds": {
+            "height": 0.5, 
+            "key": "lastvictory_SideEnds", 
+            "textureKey": "lastvictory_SideEnds", 
+            "type": "IMAGE", 
+            "width": 0.6210955183340878, 
+            "x": 0.1892258940697148, 
+            "y": 0.09742351046698872
+        }, 
+        "lastvictory_bluemod": {
+            "height": 0.3357487922705314, 
+            "key": "lastvictory_bluemod", 
+            "textureKey": "lastvictory_bluemod", 
+            "type": "IMAGE", 
+            "width": 0.4563150746944319, 
+            "x": 0.27161611588954276, 
+            "y": 0.17552334943639297
+        }, 
+        "lastvictory_homeText": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "HOME", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "lastvictory_homeText", 
+            "type": "BUTTON", 
+            "width": 0.06478044363965595, 
+            "x": 0.6167496604798551, 
+            "y": 0.22222222222222224
+        }, 
+        "lastvictory_homebutton2": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "startMenu", 
+                "type": "modeChange"
+            }, 
+            "height": 0.15861513687600645, 
+            "key": "lastvictory_homebutton2", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "lastvictory_HomeButton", 
+            "width": 0.09370755998189226, 
+            "x": 0.6079674060660932, 
+            "y": 0.28904991948470204
+        }, 
+        "lastvictory_homeglow": {
+            "height": 0.4194847020933977, 
+            "key": "lastvictory_homeglow", 
+            "textureKey": "lastvictory_homeglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.5319148936170213, 
+            "y": 0.16103059581320456
+        }, 
+        "lastvictory_levelText": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "buttonLabel": "LEVELS", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "lastvictory_levelText", 
+            "type": "BUTTON", 
+            "width": 0.0819375282933454, 
+            "x": 0.4590312358533273, 
+            "y": 0.22222222222222224
+        }, 
+        "lastvictory_levelglow": {
+            "height": 0.4194847020933977, 
+            "key": "lastvictory_levelglow", 
+            "textureKey": "lastvictory_levelglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.3761883205070167, 
+            "y": 0.15780998389694045
+        }, 
+        "lastvictory_levelselect": {
+            "buttonAction": {
+                "buttonTarget": "MAIN_MENU", 
+                "nextScreen": "levelSelect", 
+                "type": "modeChange"
+            }, 
+            "height": 0.15539452495974235, 
+            "key": "lastvictory_levelselect", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "lastvictory_levelselect", 
+            "width": 0.10593028519692169, 
+            "x": 0.44590312358533274, 
+            "y": 0.29227053140096615
+        }, 
+        "lastvictory_loide": {
+            "height": 0.25201288244766507, 
+            "key": "lastvictory_loide", 
+            "textureKey": "lastvictory_loide", 
+            "type": "IMAGE", 
+            "width": 0.10683567224988683, 
+            "x": 0.15527387958352196, 
+            "y": 0.5974235104669887
+        }, 
+        "lastvictory_odette": {
+            "height": 0.2471014492753623, 
+            "key": "lastvictory_odette", 
+            "textureKey": "lastvictory_odette", 
+            "type": "IMAGE", 
+            "width": 0.10411951109099139, 
+            "x": 0.7460389316432775, 
+            "y": 0.6321256038647344
+        }, 
+        "lastvictory_redo": {
+            "buttonAction": {
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
+            }, 
+            "height": 0.15780998389694043, 
+            "key": "lastvictory_redo", 
+            "type": "BUTTON", 
+            "uiBackgroundKey": "lastvictory_redo", 
+            "width": 0.08872793119058398, 
+            "x": 0.30194658216387504, 
+            "y": 0.2914653784219001
+        }, 
+        "lastvictory_retryText": {
+            "buttonAction": {
+                "fxKey": "RETRY", 
+                "nextScreen": "gameScreen", 
+                "type": "fxTrigger"
+            }, 
+            "buttonLabel": "RETRY", 
+            "fontKey": "menu_header_font", 
+            "height": 0.05636070853462158, 
+            "key": "lastvictory_retryText", 
+            "type": "BUTTON", 
+            "width": 0.07505658669081032, 
+            "x": 0.30819375282933453, 
+            "y": 0.22222222222222224
+        }, 
+        "lastvictory_retryglow": {
+            "height": 0.4194847020933977, 
+            "key": "lastvictory_retryglow", 
+            "textureKey": "lastvictory_retryglow", 
+            "type": "IMAGE", 
+            "width": 0.24545043005885017, 
+            "x": 0.2240832956088728, 
+            "y": 0.16103059581320456
+        }, 
+        "lastvictory_victoryText": {
+            "height": 0.4146537842190016, 
+            "key": "lastvictory_victoryText", 
+            "textureKey": "lastvictory_victoryText", 
+            "type": "IMAGE", 
+            "width": 0.3481213218650973, 
+            "x": 0.33635129017655047, 
+            "y": 0.498389694041868
+        }
+    }
+}

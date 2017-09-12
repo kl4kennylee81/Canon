@@ -68,17 +68,10 @@ void GameplayController::eventUpdate(Event* e) {
                 }
 				case MenuEvent::MenuEventType::NEXTLEVEL:
 				{
-					// possible refactor includes puttign this logic into gameplaycontroller instead
+					// TODO: _ultimateMap could be trimmed, it has a lot of info
 					std::shared_ptr<LevelData> ld = _levelController->getWorld()->getLevelData();
 					std::string ldkey = ld->key;
 					std::pair<std::string, int> info = MenuController::getNextLevelInfo(ldkey, _ultimateMap, getWorld()->getAssetManager());
-
-					if (info.first == "") {
-						//std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
-						//notify(nextLevel.get());
-						// handle when there is no next level
-						break;
-					}
 
 					_paused = false;
 					std::shared_ptr<LevelData> nextld = getWorld()->getAssetManager()->get<LevelData>(info.first);
@@ -103,13 +96,27 @@ void GameplayController::eventUpdate(Event* e) {
                 {
                     // route it onward to the observers of the gameplay controller
                     // which is the menu controller
-
+                    
                     if (_chapterData != nullptr && chapterHasAnotherLevel()) {
                         _nextLevel = true;
                     } else {
+                        
+                        // figuring out if they beat the game
+                        std::shared_ptr<LevelData> ld = _levelController->getWorld()->getLevelData();
+                        std::string ldkey = ld->key;
+                        std::pair<std::string, int> info = MenuController::getNextLevelInfo(ldkey, _ultimateMap, getWorld()->getAssetManager());
+                        
+                        if (info.first == "") {
+                            std::shared_ptr<Event> fEvent = GameCompletedEvent::alloc();
+                            notify(fEvent.get());
+                            _paused = true;
+                            break;
+                        }
+                        
                         this->notify(e);
                         _paused = true;
                     }
+                    
                     break;
                 }
                 case FinishEvent::FinishEventType::GAME_LOST:

@@ -140,6 +140,7 @@ public:
 		return std::make_pair(nextLevelName, nextChapIndex);
 	}
 
+    // TODO: this was done last minute night before gdiac, could be improved
 	// returns (thislevelindex, thislevelchapterindex
 	static std::pair<int, int> getLevelInfo(std::string levelName,
 		std::map<std::string, std::map<std::string, std::string>>& theMap,

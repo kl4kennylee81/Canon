@@ -114,6 +114,28 @@
                 }
             }, 
             "texture": "./textures/menus/victory/victory_dimBG.png"
+        },
+        "lastvictory_dimBG": {
+            "actionmap": {
+                "ACTIVE": {
+                    "repeat": "active"
+                }
+            },
+            "cols": 1,
+            "id": 106,
+            "key": "lastvictory_dimBG",
+            "rows": 1,
+            "size": 1,
+            "statemap": {
+                "active": {
+                    "first": 0,
+                    "frames": [
+                        9
+                    ],
+                    "total": 1
+                }
+            },
+            "texture": "./textures/menus/lastvictory/lastvictory_dimBG.png"
         }
     }
 }

@@ -9,7 +9,8 @@
                 "pauseMenu",
                 "startMenu",
                 "victory",
-                "storyScreen"
+                "storyScreen",
+                "lastvictory"
             ],
             "startMenuKey": "startMenu"
         }
