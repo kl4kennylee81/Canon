@@ -138,13 +138,14 @@ void MenuController::update(float timestep) {
                 switch(action->modeTarget){
                     case Mode::GAMEPLAY:
                     {
-                        _selectedLevel = action->levelSelectDataKey;
-						std::string lName = _assets->get<LevelSelectData>(_selectedLevel)->levelKey;
+                        // logic for chapter name and level name goes here because we switch into gameplay mode at the start of each level
+                        getMenuGraph()->setSelectedLevel(action->levelSelectDataKey);
+						std::string lName = _assets->get<LevelSelectData>(getMenuGraph()->getSelectedLevel())->levelKey;
 
 						std::pair<int, int> lvlInfo = getLevelInfo(lName, _levelNameUltimateMap, _assets);
-						//getMenuGraph()->populateGameplayMenu(_assets, getMenuGraph()->getMenuMap(), lvlInfo.first+1, lvlInfo.second+1); // offset by 1
-
+						getMenuGraph()->populateGameplayMenu(_assets, lvlInfo.first+1, lvlInfo.second+1); // offset by 1
 						getMenuGraph()->setActiveMenu(action->nextScreen);
+                    
                         break;
                     }
                     case Mode::MAIN_MENU:
@@ -193,10 +194,18 @@ void MenuController::update(float timestep) {
                     }
 					case FxTriggerButtonAction::FXType::NEXTLEVEL:
 					{
-						std::shared_ptr<Event> nextLevel = NextLevelEvent::alloc();
-						notify(nextLevel.get());
+						std::shared_ptr<Event> nLevelEvent = NextLevelEvent::alloc();
+						notify(nLevelEvent.get());
+                        
+                        // this is the other entry point to change levels, so we need to update the ch:lvl label
+                        // selectedlevel is in key format (e.g. level14)
+                        std::string curName = _assets->get<LevelSelectData>(getMenuGraph()->getSelectedLevel())->levelKey;
+                        std::pair<std::string, int> nextLevelInfo = getNextLevelInfo(curName, _levelNameUltimateMap, _assets);
+                        
+                        std::pair<int, int> lvlInfo = getLevelInfo(nextLevelInfo.first, _levelNameUltimateMap, _assets);
+                        getMenuGraph()->populateGameplayMenu(_assets, lvlInfo.first+1, lvlInfo.second+1); // offset by 1
+                        getMenuGraph()->setSelectedLevel(_levelNameUltimateMap.at(nextLevelInfo.first).at("key"));
 
-						//getMenuGraph()->populateGameplayMenu(_assets);
 						getMenuGraph()->setActiveMenu(action->nextScreen);
 						break;
 					}
@@ -237,7 +246,6 @@ void MenuController::draw(const std::shared_ptr<SpriteBatch>& _batch) {
 
 bool MenuController::init(std::shared_ptr<MenuGraph> menuGraph){
     _menuGraph = menuGraph;
-    _selectedLevel = "";
     return true;
 }
 
@@ -246,7 +254,6 @@ bool MenuController::init(std::shared_ptr<cugl::Scene> scene,
 						  std::shared_ptr<GenericAssetManager> assets){
     _scene = scene;
     _menuGraph = menuGraph;
-    _selectedLevel = "";
 	_assets = assets;
 	createLevelNameUltimateMap(_levelNameUltimateMap, _assets);
     this->activate();
@@ -265,8 +272,4 @@ void MenuController::activate(){
 
 void MenuController::deactivate(){
     _menuGraph->detachFromScene(_scene);
-}
-
-std::string MenuController::getSelectedLevel(){
-    return _selectedLevel;
 }

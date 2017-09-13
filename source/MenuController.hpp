@@ -25,12 +25,11 @@ protected:
     std::shared_ptr<cugl::Scene>  _scene;
     
     std::shared_ptr<MenuGraph> _menuGraph;
-    
-    std::string _selectedLevel; // key to the levelSelectData chosen
 
 	std::shared_ptr<GenericAssetManager> _assets;
 
 	std::map<std::string, std::map<std::string, std::string>> _levelNameUltimateMap;
+    
 public:
     
     MenuController();
@@ -76,8 +75,6 @@ public:
     void activate();
     
     void deactivate();
-    
-    std::string getSelectedLevel();
 
 	static void createLevelNameUltimateMap(std::map<std::string, std::map<std::string, std::string>>& map, std::shared_ptr<GenericAssetManager> _assets) {
 		std::vector<std::string> levelList; // all levels in chronological order
@@ -85,6 +82,7 @@ public:
 
 		std::vector<std::string> chKeys = _assets->get<ChapterListData>("chapterList")->getChapterKeys();
 		for (auto chKey : chKeys) {
+            int lvlIndex = 0; // keeps track of the lvl number with respect to chapter
 
 			// get chapter index
 			int numChaps = chKeys.size();
@@ -100,10 +98,14 @@ public:
 
 				std::map<std::string, std::string> subMap;
 				subMap.insert(std::make_pair("key", lsData->key));
-				subMap.insert(std::make_pair("num", std::to_string(levelList.size() - 1)));
+                subMap.insert(std::make_pair("num", std::to_string(levelList.size() - 1)));
+                subMap.insert(std::make_pair("lvlnum", std::to_string(lvlIndex)));
 				subMap.insert(std::make_pair("chapNum", std::to_string(chIndex)));
 
 				map.insert(std::make_pair(lsData->levelKey, subMap));
+                
+                // increment
+                lvlIndex++;
 			}
 		}
 
@@ -147,7 +149,7 @@ public:
 		std::shared_ptr<GenericAssetManager> _assets) {
 
 		std::map<std::string, std::string> subMap = theMap.at(levelName);
-		int nextLevelName = std::stoi(subMap.at("num"));
+		int nextLevelName = std::stoi(subMap.at("lvlnum"));
 		int nextChapIndex = std::stoi(subMap.at("chapNum"));
 
 		if (nextChapIndex == -1) {

@@ -376,7 +376,7 @@ std::shared_ptr<LevelData> GameEngine::getNextLevelData(){
         }
         case Mode::MAIN_MENU:
         {
-            std::shared_ptr<LevelSelectData> lsData = _assets->get<LevelSelectData>(_menu->getSelectedLevel());
+            std::shared_ptr<LevelSelectData> lsData = _assets->get<LevelSelectData>(_menuGraph->getSelectedLevel());
             std::shared_ptr<LevelData> level = _assets->get<LevelData>(lsData->levelKey);
             AudioEngine::get()->playMusic(_assets->get<Music>(lsData->songKey),true);
             return level;
@@ -472,7 +472,7 @@ void GameEngine::initializeNextMode(){
             std::shared_ptr<World> levelWorld = getNextWorld();
             std::string curChap = _menuGraph->getCurrentChapter();
             std::shared_ptr<ChapterSelectData> chapterData = _assets->get<ChapterSelectData>(curChap);
-            _gameplay = GameplayController::alloc(_scene, levelWorld,chapterData, _menu->getSelectedLevel());
+            _gameplay = GameplayController::alloc(_scene, levelWorld,chapterData, _menuGraph->getSelectedLevel());
             break;
         }
         case Mode::MAIN_MENU:

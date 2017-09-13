@@ -29,8 +29,13 @@ protected:
     void setMode(Mode mode);
     
     std::string _currentChapter;
+    
+    std::string _selectedLevel; // key to the levelSelectData chosen
 public:
     MenuGraph();
+    
+    std::string getSelectedLevel() { return _selectedLevel; }
+    void setSelectedLevel(std::string s) { _selectedLevel = s; }
     
     bool init();
     
@@ -48,7 +53,7 @@ public:
 
 	std::unordered_map<std::string, std::shared_ptr<Menu>> getMenuMap() { return _menuMap; }
     
-	void populateGameplayMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>>& map, int chIndex, int lvlIndex);
+	void populateGameplayMenu(const std::shared_ptr<GenericAssetManager>& assets,  int chIndex, int lvlIndex);
 	void augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& assets, const std::unordered_map<std::string, std::shared_ptr<Menu>> map, std::string chapter);
 
 	void populateChapter(const std::shared_ptr<GenericAssetManager>& assets, std::string chapter);

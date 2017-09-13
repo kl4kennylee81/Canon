@@ -39,10 +39,12 @@ bool MenuGraph::init(const std::shared_ptr<GenericAssetManager>& assets){
 }
 
 void MenuGraph::populateGameplayMenu(const std::shared_ptr<GenericAssetManager>& assets,
-	const std::unordered_map<std::string, std::shared_ptr<Menu>>& map, 
 	int levelIndex, int chapterIndex) {
-
-	std::shared_ptr<Menu> gameMenu  = map.at("gameScreen");
+    
+    // regenerate gameScreen to clear the added uielements
+    std::shared_ptr<Menu> gameMenu = Menu::alloc("gameScreen");
+    std::shared_ptr<MenuScreenData> menuData = assets->get<MenuScreenData>("gameScreen");
+    gameMenu->populate(assets,menuData->getUIEntryKeys(),menuData->menuBackgroundKey,menuData->getFontMap());
 
 	// make label for chapter/level note
 	std::shared_ptr<UIData> labelText = assets->get<UIData>("gameScreen_text");
@@ -72,9 +74,9 @@ void MenuGraph::augmentLevelMenu(const std::shared_ptr<GenericAssetManager>& ass
 	std::string chapter)
 {
 	std::vector<std::string> chKeys = assets->get<ChapterListData>("chapterList")->getChapterKeys();
-	int numChaps = chKeys.size();
-	auto iter = std::find(chKeys.begin(), chKeys.end(), chapter);
-	int chIndex = std::distance(chKeys.begin(), iter);
+	//int numChaps = chKeys.size();
+	//auto iter = std::find(chKeys.begin(), chKeys.end(), chapter);
+	//int chIndex = std::distance(chKeys.begin(), iter);
 
 	std::shared_ptr<ChapterSelectData> chapterData = assets->get<ChapterSelectData>(chapter);
     std::shared_ptr<Menu> selectMenu = map.at("levelSelect");
