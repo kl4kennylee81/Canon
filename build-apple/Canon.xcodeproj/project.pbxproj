@@ -33,6 +33,7 @@
 		829615531E9BC5B300A731DB /* ParticleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615501E9BC5B300A731DB /* ParticleController.cpp */; };
 		829615591E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
 		8296155A1E9BCA5500A731DB /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 829615571E9BCA5500A731DB /* Particle.cpp */; };
+		9F1006F321E01C5B00A8A4EA /* setup.py in Resources */ = {isa = PBXBuildFile; fileRef = 9F1006F121E01C5B00A8A4EA /* setup.py */; };
 		9F21392B1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
 		9F21392C1ECC373100A60F62 /* HandMovementComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */; };
 		9F2139311ECC48B500A60F62 /* ActiveHandMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F21392F1ECC48B500A60F62 /* ActiveHandMovement.cpp */; };
@@ -325,6 +326,7 @@
 		829615511E9BC5B300A731DB /* ParticleController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticleController.hpp; sourceTree = "<group>"; };
 		829615571E9BCA5500A731DB /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		8296155B1E9BCACA00A731DB /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
+		9F1006F121E01C5B00A8A4EA /* setup.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = setup.py; sourceTree = "<group>"; };
 		9F1CCC1F1E692F3B00F218F8 /* PathParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathParameters.h; sourceTree = "<group>"; };
 		9F1CCC231E694A1C00F218F8 /* MoveEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MoveEvent.hpp; sourceTree = "<group>"; };
 		9F2139291ECC373100A60F62 /* HandMovementComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HandMovementComponent.cpp; sourceTree = "<group>"; };
@@ -1197,6 +1199,7 @@
 		EB2BE9B71D749870002FE78B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				9F1006F121E01C5B00A8A4EA /* setup.py */,
 				DFEACF321EA41DDC003836B7 /* sounds */,
 				EBFE7C041E19B496001007C2 /* json */,
 				EB2BE9BA1D7498D2002FE78B /* textures */,
@@ -1453,6 +1456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1006F321E01C5B00A8A4EA /* setup.py in Resources */,
 				EB7454D01D750623002FBAE6 /* textures in Resources */,
 				EB7454D11D750623002FBAE6 /* fonts in Resources */,
 				DFEACF341EA41DDC003836B7 /* sounds in Resources */,
