@@ -348,7 +348,7 @@ void ZoneController::pulseZoneInit(std::shared_ptr<ActiveZone> activeZone, std::
     activeZone->isOn = true;
     activeZone->curIndex = 0;
     activeZone->origSize = zone->getPhysicsComponent()->getBody()->getSize();
-    activeZone->sizeScale = Vec2::Vec2(data->minSize);
+    activeZone->sizeScale = Vec2(data->minSize);
 }
 
 void ZoneController::handleObjectSpawning(GameObject* obj) {

@@ -39,12 +39,10 @@ bool TrailParticleGenerator::init(std::shared_ptr<GameState> state, std::unorder
 }
 
 void TrailParticleGenerator::add_character(GameObject* char_obj) {
-    std::cout<<"added trail mapping!\n";
     _character_list.push_back(char_obj);
 }
 
 void TrailParticleGenerator::remove_character(GameObject* char_obj) {
-    std::cout<<"removing trail mapping!\n";
     for(auto it = _character_list.begin() ; it != _character_list.end(); ++it) {
         if ((*it) == char_obj){
             it = _character_list.erase(it);

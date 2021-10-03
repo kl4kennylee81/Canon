@@ -28,7 +28,7 @@ std::vector<std::shared_ptr<BulletInitEvent>> ActiveBullet::shootBullets(std::sh
     ElementType element = Element::elementDataTypeToElement(_bulletData->getElementDataType(), el);
     for(auto it: state->getPlayerCharacters()) {
         if(it->getPhysicsComponent()->getElementType() != element ){
-            Vec2 targetVector = Vec2::Vec2(_object->getPosition()).subtract(it->getPosition());
+            Vec2 targetVector = Vec2(_object->getPosition()).subtract(it->getPosition());
             targetAngle = targetVector.getAngle();
         }
     }

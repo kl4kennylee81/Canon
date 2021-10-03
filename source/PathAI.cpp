@@ -61,8 +61,8 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		Vec2 position = object->getPosition();
         float height = GAME_PHYSICS_HEIGHT;
-		Vec2 top = Vec2::Vec2(position.x, height);
-		Vec2 bottom = Vec2::Vec2(position.x, 0);
+		Vec2 top = Vec2(position.x, height);
+		Vec2 bottom = Vec2(position.x, 0);
 		auto newPath = Path::alloc();
 		if (_direction == PathDirection::UP || (_direction == PathDirection::RANDOM && dist2(rng) == 1)) {
 			newPath->add(top);
@@ -79,8 +79,8 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		Vec2 position = object->getPosition();
         float width = GAME_PHYSICS_WIDTH;
-		Vec2 right = Vec2::Vec2(width, position.y);
-		Vec2 left = Vec2::Vec2(0, position.y);
+		Vec2 right = Vec2(width, position.y);
+		Vec2 left = Vec2(0, position.y);
 		auto newPath = Path::alloc();
 		if (_direction == PathDirection::RIGHT || (_direction == PathDirection::RANDOM && dist2(rng) == 1)) {
 			newPath->add(right);
@@ -97,7 +97,7 @@ bool PathAI::init(std::shared_ptr<GameObject> object, PathType type, std::vector
 	{
 		auto newPath = Path::alloc();
 		for (auto it : path) {
-			Vec2 point = Vec2::Vec2(it.x, it.y);
+			Vec2 point = Vec2(it.x, it.y);
 			Vec2 translated = point.add(object->getPosition());
 			newPath->add(translated);
 		}

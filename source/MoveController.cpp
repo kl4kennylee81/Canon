@@ -100,7 +100,7 @@ bool MoveController::init(std::shared_ptr<GameState> state) {
  */
 Vec2 MoveController::getVelocityVector(Vec2 start, Vec2 end, float velocity)
 {
-	Vec2 direction = Vec2::Vec2(end.x, end.y).subtract(start);
+	Vec2 direction = Vec2(end.x, end.y).subtract(start);
 	direction.normalize().scale(velocity * GameState::_internalClock->getTimeDilation());
 	return direction;
 }

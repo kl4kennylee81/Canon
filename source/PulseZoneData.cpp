@@ -37,12 +37,12 @@ bool PulseZoneData::preload(const std::shared_ptr<cugl::JsonValue>& json){
     std::string oid = json->getString("objectKey");
     float minSizeX = json->getFloat("minSizeX",1.0);
     float minSizeY = json->getFloat("minSizeY",1.0);
-    Vec2 minSize = Vec2::Vec2(minSizeX,minSizeY);
+    Vec2 minSize = Vec2(minSizeX,minSizeY);
     int minTime = json->getInt("minTime");
     
     float maxSizeX = json->getFloat("maxSizeX",1.0);
     float maxSizeY = json->getFloat("maxSizeY",1.0);
-    Vec2 maxSize = Vec2::Vec2(maxSizeX,maxSizeY);
+    Vec2 maxSize = Vec2(maxSizeX,maxSizeY);
     
     int maxTime = json->getInt("maxTime");
     float lerpTime = json->getFloat("lerpTime");

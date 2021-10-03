@@ -23,7 +23,7 @@ public:
     static cugl::Vec2 getTupleFromString(const std::string& s) {
         std::string str = s.substr(1, s.size() - 2);
         auto nums = split(str, ',');
-        return cugl::Vec2::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
+        return cugl::Vec2(std::stoi(nums.at(0)), std::stoi(nums.at(1)));
     }
     
     static std::string appendLeadingZero(int n_zero,std::string in){
@@ -91,12 +91,12 @@ public:
     }
 
 	static std::shared_ptr<cugl::Button> makeBoxButton(int x, int y, int width, int height, cugl::Color4 upColor, cugl::Color4 downColor) {
-		auto up = cugl::PolygonNode::alloc(cugl::Rect::Rect(0, 0, width, height));
+		auto up = cugl::PolygonNode::alloc(cugl::Rect(0, 0, width, height));
 		up->setColor(upColor);
-		auto down = cugl::PolygonNode::alloc(cugl::Rect::Rect(0, 0, width, height));
+		auto down = cugl::PolygonNode::alloc(cugl::Rect(0, 0, width, height));
 		down->setColor(downColor);
 		auto button = cugl::Button::alloc(up, down);
-		button->setPosition(cugl::Vec2::Vec2(x, y));
+		button->setPosition(cugl::Vec2(x, y));
 		return button;
 	}
     

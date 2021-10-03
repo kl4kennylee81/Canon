@@ -38,10 +38,10 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     Rect size = scene->getCamera()->getViewport();
     
     // magic numbers are okay as long as 16:9
-    _bounds = Rect::Rect(0,0,GAME_PHYSICS_WIDTH,GAME_PHYSICS_HEIGHT);
+    _bounds = Rect(0,0,GAME_PHYSICS_WIDTH,GAME_PHYSICS_HEIGHT);
     
     float world_yPos = Util::getSceneToWorldTranslateY();
-    Vec2 world_pos = Vec2::Vec2(0,world_yPos);
+    Vec2 world_pos = Vec2(0,world_yPos);
     
     // set the bkgd texture in the levelData
     auto bkgdImage = assets->get<Texture>(BACKGROUND_TEXTURE);

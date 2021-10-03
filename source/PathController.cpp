@@ -101,7 +101,7 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
     pathNode->setTexture(_mainTexture);
     pathNode->setCapTexture(_capTexture);
     pathNode->setAnchor(Vec2::ANCHOR_MIDDLE);
-	Vec2 midPoint = Vec2::Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
+	Vec2 midPoint = Vec2((_minx + _maxx) / 2, (_miny + _maxy) / 2);
 	pathNode->setPosition(midPoint);
     
 //    Poly2 pathPoly = _path->getPoly();
@@ -121,9 +121,9 @@ void PathController::addPathToScene(std::shared_ptr<GameState> state) {
     
     // switch color of path depending on who's turn
     if (_drawingChar->getPhysicsComponent()->getElementType() == ElementType::GOLD) {
-        pathNode->setColor(Color4::Color4(255,247,120,250));
+        pathNode->setColor(Color4(255,247,120,250));
     } else {
-        pathNode->setColor(Color4::Color4(136, 250, 238,250));
+        pathNode->setColor(Color4(136, 250, 238,250));
     }
     
 	_pathSceneNode->removeAllChildren();
@@ -172,18 +172,18 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
     
     _cooldown_frames += GameState::_internalClock->getTimeDilation();
     bool isPressed = InputController::getIsPressed();
-    Vec2 position = isPressed ? InputController::getInputVector() : Vec2::Vec2();
+    Vec2 position = isPressed ? InputController::getInputVector() : Vec2();
     
-    Vec2 physicsPosition = Vec2::Vec2();
+    Vec2 physicsPosition = Vec2();
     
     if (isPressed){
         Util::screenToPhysicsCoords(position,physicsPosition);
         float buffer = GAME_PHYSICS_WIDTH * 0.02;
         float x2 = GAME_PHYSICS_WIDTH - buffer;
         float y2 = GAME_PHYSICS_HEIGHT - buffer;
-        physicsPosition.clamp(Vec2::Vec2(buffer, buffer), Vec2::Vec2(x2, y2));
+        physicsPosition.clamp(Vec2(buffer, buffer), Vec2(x2, y2));
         
-        Vec2 physicPosition = Vec2::Vec2();
+        Vec2 physicPosition = Vec2();
         Util::screenToPhysicsCoords(position, physicPosition);
         
         if (controllerState == IDLE){
@@ -222,7 +222,7 @@ void PathController::update(float timestep,std::shared_ptr<GameState> state){
         controllerState = DRAWING;
 	}
 	if (isPressed) {
-		Vec2 prev = _path->size() == 0 ? Vec2::Vec2(0, 0) : _path->getLast();
+		Vec2 prev = _path->size() == 0 ? Vec2(0, 0) : _path->getLast();
 		double diffx = physicsPosition.x - prev.x;
 		double diffy = physicsPosition.y - prev.y;
 		double distance = std::sqrt((diffx * diffx) + (diffy * diffy));

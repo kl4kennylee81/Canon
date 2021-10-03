@@ -20,14 +20,14 @@ public:
 	void add(cugl::Vec2 vec) { _coordinates.push_back(vec); }
 
 	void add(float x, float y) {
-		cugl::Vec2 vec = cugl::Vec2::Vec2(x, y);
+		cugl::Vec2 vec = cugl::Vec2(x, y);
 		add(vec);
 	}
 
 	std::shared_ptr<cugl::JsonValue> toJsonValue();
 
 	cugl::Poly2 getPoly() {
-		cugl::Poly2 pathPoly = cugl::Poly2::Poly2(_coordinates);
+		cugl::Poly2 pathPoly = cugl::Poly2(_coordinates);
 		pathPoly.setType(cugl::Poly2::Type::PATH);
 		return pathPoly;
 	}

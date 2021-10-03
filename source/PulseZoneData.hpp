@@ -35,9 +35,9 @@ public:
     bool init(std::string objectKey, cugl::Vec2 minSize, int minTime, cugl::Vec2 maxSize, int maxTime, float lerpTime, ElementDataType element) {
         ZoneData::init(ZoneType::PULSE);
         this->objectKey = objectKey;
-        this->minSize = cugl::Vec2::Vec2(minSize);
+        this->minSize = cugl::Vec2(minSize);
         this->minTime = minTime;
-        this->maxSize = cugl::Vec2::Vec2(maxSize);
+        this->maxSize = cugl::Vec2(maxSize);
         this->maxTime = maxTime;
         this->elementType = element;
         this->_lerpTime = lerpTime;

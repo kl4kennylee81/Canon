@@ -219,7 +219,7 @@ void WaveEditorController::updateDragAndDrop(){
         for(auto it: templateNode->getChildren()){
             it->setVisible(false);
         }
-        auto poly = PolygonNode::alloc(Rect::Rect(0,0,20,20));
+        auto poly = PolygonNode::alloc(Rect(0,0,20,20));
         poly->setColor(Color4::BLACK);
         _dragNode->addChildWithTag(poly, 1);
         _dragStart = false;
@@ -421,7 +421,7 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     std::shared_ptr<PolygonObstacle> obst = PolygonObstacle::alloc(poly);
     
     // TODO replace this hacky multiply by physics scale
-    Size polySize = Size::Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
+    Size polySize = Size(obst->getSize().width*GAME_PHYSICS_SCALE,obst->getSize().height*GAME_PHYSICS_SCALE);
     
     auto activeAnim = ActiveAnimation::alloc(obj->getAnimationScale());
     auto animData = _world->getAnimationData(obj->getAnimationKey(ElementType::GOLD));
@@ -437,13 +437,13 @@ Vec2 WaveEditorController::getAnimationScale(std::string objectKey,bool isNonUni
     if (isNonUniform){
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY) * activeAnim->getAnimationScale();
+        Vec2 animationScale = Vec2(scaleX,scaleY) * activeAnim->getAnimationScale();
         return animationScale;
     } else {
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
         float animationScale = std::max(scaleX,scaleY) * activeAnim->getAnimationScale();
-        return Vec2::Vec2(animationScale,animationScale);
+        return Vec2(animationScale,animationScale);
     }
 
 }
@@ -462,7 +462,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             auto staticAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(staticAnimD);
             std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
-            Vec2 zonePos = staticZoneD->getPosition(Vec2::Vec2(x,y));
+            Vec2 zonePos = staticZoneD->getPosition(Vec2(x,y));
             Util::physicsToSceneCoords(zonePos, zonePos);
             zoneNode->setPosition(zonePos);
             zoneNode->setScale(getAnimationScale(staticZoneD->objectKey,staticAnimD->nonUniformScale));
@@ -486,7 +486,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
                 auto zoneAnim = ActiveAnimation::alloc(zoneObjData->getAnimationScale());
                 zoneAnim->setAnimationData(zEntryAnimD);
                 std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
-                Vec2 zonePos = zEntry->getPosition(Vec2::Vec2(x,y),rotateZoneD->radius);
+                Vec2 zonePos = zEntry->getPosition(Vec2(x,y),rotateZoneD->radius);
                 Util::physicsToSceneCoords(zonePos, zonePos);
                 zoneNode->setPosition(zonePos);
                 zoneNode->setAngle(zEntry->getAngle());
@@ -515,7 +515,7 @@ std::shared_ptr<Node> WaveEditorController::createZoneNode(float x, // this is i
             auto pulseAnimD = _world->getAnimationData(zoneObjData->getAnimationKey(zoneElement));
             zoneAnim->setAnimationData(pulseAnimD);
             std::shared_ptr<Node> zoneNode = zoneAnim->getAnimationNode();
-            Vec2 zonePos = pulseZoneD->getPosition(Vec2::Vec2(x,y));
+            Vec2 zonePos = pulseZoneD->getPosition(Vec2(x,y));
             Util::physicsToSceneCoords(zonePos, zonePos);
             zoneNode->setPosition(zonePos);
             Vec2 animScale = getAnimationScale(pulseZoneD->objectKey,pulseAnimD->nonUniformScale);
@@ -612,9 +612,9 @@ void WaveEditorController::setSceneGraph() {
 	deactivateAndClear(_levelEditNode);
 
     Vec2 screen1;
-    Vec2 scene1 = Vec2::Vec2(GAME_SCENE_WIDTH, Util::getSceneToWorldTranslateY());
-    auto topBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
-    auto bottomBorder = PolygonNode::alloc(Rect::Rect(0,0, scene1.x, scene1.y));
+    Vec2 scene1 = Vec2(GAME_SCENE_WIDTH, Util::getSceneToWorldTranslateY());
+    auto topBorder = PolygonNode::alloc(Rect(0,0, scene1.x, scene1.y));
+    auto bottomBorder = PolygonNode::alloc(Rect(0,0, scene1.x, scene1.y));
 
     topBorder->setColor(Color4::PAPYRUS);
     bottomBorder->setColor(Color4::PAPYRUS);
@@ -622,8 +622,8 @@ void WaveEditorController::setSceneGraph() {
     _levelEditNode->addChild(bottomBorder);
     topBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bottomBorder->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
-    topBorder->setPosition(Vec2::Vec2(0, Util::getGameSceneHeight()-Util::getSceneToWorldTranslateY()));
-    bottomBorder->setPosition(Vec2::Vec2(0,0));
+    topBorder->setPosition(Vec2(0, Util::getGameSceneHeight()-Util::getSceneToWorldTranslateY()));
+    bottomBorder->setPosition(Vec2(0,0));
     
 	auto backButton = Util::makeBoxButton(30, 30, 30, 30, Color4::RED, Color4::PAPYRUS);
 	backButton->setListener(

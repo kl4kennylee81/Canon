@@ -301,7 +301,7 @@ void AnimationController::syncAnimation(std::shared_ptr<ActiveAnimation> activeA
         
         float scaleX = (polySize.width)/animationSize.width;
         float scaleY = (polySize.height)/animationSize.height;
-        Vec2 animationScale = Vec2::Vec2(scaleX,scaleY);
+        Vec2 animationScale = Vec2(scaleX,scaleY);
         anim->setScale(animationScale);
     }
 }
