@@ -48,7 +48,6 @@ bool GameState::init(std::shared_ptr<Scene> scene, const std::shared_ptr<Generic
     auto bkgdTextureNode = PolygonNode::allocWithTexture(bkgdImage);
     bkgdTextureNode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);
     bkgdTextureNode->setPosition(Vec2::ZERO);
-    bkgdTextureNode->setScale(((float)GAME_SCENE_WIDTH)/bkgdImage->getWidth());
     
     _bgnode = Node::alloc();
     _bgnode->setAnchor(Vec2::ANCHOR_BOTTOM_LEFT);

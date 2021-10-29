@@ -34,8 +34,8 @@
 using namespace cugl;
 
 // These really only apply if the game is windowed (not on mobile device)
-#define GAME_WIDTH 960
-#define GAME_HEIGHT 540
+#define GAME_WIDTH 1200
+#define GAME_HEIGHT 900
 
 /**
  * The main entry point of any CUGL application.
