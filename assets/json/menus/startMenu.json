@@ -6,7 +6,6 @@
                 "startMenu_Canon", 
                 "startMenu_loide", 
                 "startMenu_odette", 
-                "startMenu_settings icon", 
                 "startMenu_star circle", 
                 "startMenu_starticon", 
                 "startMenu_startglow1", 
@@ -52,20 +51,6 @@
             "width": 0.15799004074241738, 
             "x": 0.23132639203259395, 
             "y": 0.18397745571658614
-        }, 
-        "startMenu_settings icon": {
-            "buttonAction": {
-                "buttonTarget": "MAIN_MENU", 
-                "nextScreen": "startMenu", 
-                "type": "modeChange"
-            }, 
-            "height": 0.08132045088566828, 
-            "key": "startMenu_settings icon", 
-            "type": "BUTTON", 
-            "uiBackgroundKey": "startMenu_settings icon", 
-            "width": 0.04526935264825713, 
-            "x": 0.02806699864191942, 
-            "y": 0.05072463768115945
         }, 
         "startMenu_star circle": {
             "height": 0.36553945249597425, 
