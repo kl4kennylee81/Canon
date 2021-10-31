@@ -49,12 +49,12 @@
     },
     "UIData": {
         "chapter04_texture": {
-            "height": 0.2745571658615137,
+            "height": 0.2753623188405797,
             "key": "chapter04_texture",
             "textureKey": "chapter04_texture",
             "type": "IMAGE",
-            "width": 0.4938886373924853,
-            "x": 0.25667722951561794,
+            "width": 0.4861928474422816,
+            "x": 0.2616568583069262,
             "y": 0.6876006441223833
         }
     }
